@@ -1,0 +1,14 @@
+# Difference with default Doxyfile 1.9.1
+PROJECT_NAME           = Complete Maximum a Posteriori
+OUTPUT_DIRECTORY       = docs
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTRACT_ALL            = YES
+CASE_SENSE_NAMES       = NO
+HIDE_SCOPE_NAMES       = YES
+INPUT                  = include \
+                        src
+FILE_PATTERNS          = *.cpp \
+                         *.h
+RECURSIVE              = YES
+USE_MATHJAX            = YES
+HTML_EXTRA_FILES = main.pdf

@@ -26,11 +26,7 @@ CMP++ can be compiled into a static library using the provided makefile. Make su
     cd cmp
     make
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Sample Tests
+## Running the test case
 
 To run the test, do
 

@@ -104,7 +104,7 @@ namespace cmp {
             /**
              * @brief Perform a single chain step and updates the mean and covariance matrix.
              **/ 
-            void step_update(); 
+            void step_update();
 
             /**
              * @brief update the mean vector and covariance matrix.
@@ -177,11 +177,19 @@ namespace cmp {
     std::pair<vector_t, matrix_t> mean_cov(const std::vector<vector_t> & samples);
 
     /**
-     * @brief computes the 
+     * @brief computes the correlation length and the effective sample size of some samples
+     * @param samples the samples from the mcmc sampling
+     * @return a pair containing the correlations lengths and the effective sample size
     */
     std::pair<vector_t, double> single_chain_diagnosis(std::vector<vector_t> samples);
 
 
+    /**
+     * @brief compute the r_hat statistics of multiple chains. Chains have converged if it is less than 1.1
+     * 
+     * @param chains a vector containing multiple chains sampling the same distribution.
+     * @return the r_hat statistics. 
+     */
     double r_hat(const std::vector<mcmc_chain> & chains);
 
 

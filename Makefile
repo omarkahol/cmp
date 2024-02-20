@@ -5,17 +5,13 @@ CXX = g++-13
 CXXFLAGS	:= -std=c++17 -Wl,-ld_classic -O3 -g
 
 # define external includes
-OMPINC   = $(HOME)/opt/openmp/include
-STCINC   = $(HOME)/opt/StochTk++/includes
 EIGEN    = $(HOME)/opt/eigen-3.4.0/
 NLOPTINC = $(HOME)/opt/nlopt-2.7.1/include
-FDIFFINC = $(HOME)/opt/finite-diff/include
-CUBINC   = $(HOME)/opt/cubature/include
 SPDLOGINC   = $(HOME)/opt/spdlog/include
 SELF = ./include
 
-#Extrenals include files and folders
-INCLUDES = -I$(EIGEN) -I$(STCINC) -I$(NLOPTINC) -I$(SPDLOGINC) -I$(SELF)
+# Extrenals include files and folders
+INCLUDES = -I$(EIGEN) -I$(NLOPTINC) -I$(SPDLOGINC) -I$(SELF)
 
 all: io pdf kernel optimization mcmc doe density density_opt staticlib docs
 	@echo Executing 'all' complete

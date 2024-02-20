@@ -10,9 +10,8 @@
 
 using namespace cmp;
 
-/*
-    This is the model to be calibrated, it is an inadequate representation of the actual model and depends on two parameters
-*/ 
+
+// Model to calibrate
 vector_t model(std::vector<vector_t> x_pts, vector_t par) {
 
     vector_t eval(x_pts.size());
@@ -25,7 +24,7 @@ vector_t model(std::vector<vector_t> x_pts, vector_t par) {
     return eval;
 }
 
-// Kernel, white noise for the experimental error and squared exponential for the model error
+// Kernel
 double err_kernel(const vector_t & x, const vector_t &y, const vector_t & hpar) {
         double sigma_e = exp(hpar(0));
         double sigma_k = exp(hpar(1));
@@ -52,7 +51,7 @@ double err_kernel_hessian(const vector_t & x, const vector_t &y, const vector_t 
         return white_noise_kernel_hess(x,y,sigma_e,i,j)+squared_kernel_hess(x,y,sigma_k,l,i-1,j-1);
 }
 
-// hyperparameter prior, combination of inverse gammma
+// hyperparameter prior
 double logprior_hpar(const vector_t & hpar) {
         return log_inv_gamma_pdf(exp(hpar(0)),3,0.04)+log_inv_gamma_pdf(exp(hpar(1)),3,0.04)+log_inv_gamma_pdf(exp(hpar(2)),5,1.2);
 }
@@ -143,7 +142,7 @@ int main() {
     write_vector(x_pred,file_x_pred);
 
 
-    //create doe and density
+    //create density
     density main_density;
 
     // set up the main properties
@@ -156,7 +155,6 @@ int main() {
     main_density.set_log_prior_hpar(logprior_hpar);
 
     density_opt d_opt(main_density);
-    d_opt.set_beta(1.0);
     d_opt.set_err_kernel_gradient(err_kernel_gradient);
     d_opt.set_err_kernel_hessian(err_kernel_hessian);
     d_opt.set_logprior_hpar_hessian(logprior_hpar_hessian);
@@ -172,7 +170,7 @@ int main() {
         auto cov = d_opt.covariance(hpar);
         Eigen::LDLT<matrix_t> cov_inv(cov);
 
-        return d_opt.loglikelihood(res,cov_inv) + d_opt.logprior_par(par) + d_opt.logprior_hpar(hpar);
+        return d_opt.loglikelihood(res,cov_inv) + d_opt.logprior_par(par) + d_opt.logprior_hpar(hpar) + d_opt.log_cmp_correction(hpar,cov_inv,res);
     };
 
     in_bounds_t in_bounds = [&d_opt](const vector_t & par) {

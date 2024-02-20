@@ -14,7 +14,7 @@
 #include <random>
 #include <string>
 #include <nlopt.h>
-#include <gp++.h>
+#include <nlopt.hpp>
 #include "spdlog/fmt/ostr.h"
 
 namespace cmp {

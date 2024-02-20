@@ -3,3 +3,4 @@ docs
 *.nb
 *.o
 *.a
+.DS_Store

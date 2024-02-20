@@ -6,7 +6,7 @@ CMP++ or CMP is a C++ library used to perform the Bayesian calibration of comput
 - Modular, sequential
 - Modular, adaptive
 
-You can find additional details in my personal [website](https://omarkahol.github.io/assets/pdf/projects/cmp/cmp.pdf).
+You can find additional details in my personal [website](https://omarkahol.github.io).
 ## Getting Started
 
 These instructions will help you compile and link the CMP++ library to your project. Please refer to the [technical documentation](https://omarkahol.github.io/assets/pdf/projects/cmp/cmp.pdf).

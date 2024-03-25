@@ -2,7 +2,7 @@
 CXX = g++-13
 
 # define any compile-time flags
-CXXFLAGS	:= -std=c++17 -Wl,-ld_classic -O3 -g
+CXXFLAGS	:= -std=c++17 -Wl,-ld_classic -g -O3
 
 # define external includes
 EIGEN    = $(HOME)/opt/eigen-3.4.0/
@@ -26,12 +26,18 @@ LFLAGS = -lcmp -lnlopt
 # define target file
 TARGET = main.cpp
 
+#files
+FILES = ../src/density.cpp ../src/gp.cpp ../src/grid.cpp ../src/io.cpp ../src/kernel.cpp ../src/mcmc.cpp ../src/optimization.cpp ../src/pdf.cpp
+
 # define executable
 OUTPUT = out
 
 test: main.cpp 
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(TARGET) -o $(OUTPUT).o
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(OUTPUT) $(OUTPUT).o $(LFLAGS) $(LIBS)
+
+test_full: main.cpp
+	$(CXX) $(CXXFLAG) $(INCLUDES) $(TARGET) $(FILES) -o $(OUTPUT) $(LFLAGS) $(LIBS)
 clean:
 	rm out*
 	rm *_samples.csv

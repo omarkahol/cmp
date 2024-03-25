@@ -3,25 +3,19 @@
 #include <cmp_defines.h>
 #include <mcmc.h>
 #include <io.h>
-#include <doe.h>
+#include <grid.h>
 #include <density.h>
 #include <pdf.h>
 #include <kernel.h>
+#include <finite_diff.h>
 
 using namespace cmp;
 
 
 // Model to calibrate
-vector_t model(std::vector<vector_t> x_pts, vector_t par) {
-
-    vector_t eval(x_pts.size());
-    double x;
-    for (int i=0; i< x_pts.size(); i++) {
-        x = x_pts[i](0);
-        eval(i) =  par(0)*tanh(par(1)*(x-1)/par(0));
-    }
-
-    return eval;
+double model(const vector_t &x, const vector_t &par) {
+    double V_hat = x(0)-1;
+    return par(0)*tanh(par(1)*V_hat/par(0));
 }
 
 // Kernel
@@ -39,7 +33,7 @@ double err_kernel_gradient(const vector_t & x, const vector_t &y, const vector_t
         double sigma_k = exp(hpar(1));
         double l = exp(hpar(2));
 
-        return white_noise_kernel_grad(x,y,sigma_e,i) + squared_kernel_grad(x,y,sigma_k,l,i-1);
+        return white_noise_kernel_grad(x,y,sigma_e,i)+squared_kernel_grad(x,y,sigma_k,l,i-1);
 }
 
 // kernel hessian, i and j are the row and colum respectively
@@ -77,15 +71,12 @@ int main() {
     std::ifstream file_obs("data.csv");
     auto obs = read_vector(file_obs);
 
-    std::vector<vector_t> x_obs(obs.size());
-    vector_t y_obs(obs.size());
+    std::vector<double> x_obs(obs.size());
+    std::vector<double> y_obs(obs.size());
 
     for (int i=0; i<obs.size(); i++) {
-        vector_t x(1);
-        x << obs[i](0);
-        x_obs[i] = x;
-
-        y_obs(i) = obs[i](1);
+        x_obs[i] = obs[i](0);
+        y_obs[i] = obs[i](1);
     }
 
 
@@ -110,36 +101,39 @@ int main() {
     vector_t lb_hpar(dim_hpar);
     vector_t ub_hpar(dim_hpar);
 
-    lb_hpar << 1e-7, 1e-7, 1e-7;
-    ub_hpar << 100, 100, 100;
-
-    lb_hpar.array() = lb_hpar.array().log();
-    ub_hpar.array() = ub_hpar.array().log();
+    lb_hpar << -100, -100, -100;
+    ub_hpar <<  100,  100,  100;
 
     // propose a sensible guess
     vector_t hpar_guess(dim_hpar);
-    hpar_guess << 0.0043, 0.0010, 1;
-    hpar_guess.array() = hpar_guess.array().log();
+    hpar_guess << -4.77, -4.62, -1.40;
 
     // model error guassian process
-    auto err_mean = [](std::vector<vector_t> const &x_pts, vector_t const &hpar) {
-        vector_t b = vector_t::Zero(x_pts.size());
-        return b;
+    auto err_mean = [](vector_t x, vector_t const &hpar) {
+        return 0;
     };
 
     // Define prediction points and save them
     int num_pred = 100;
-    std::vector<vector_t> x_pred(num_pred);
+    std::vector<double> x_pred(num_pred);
     double x_min = 1;
     double x_max = 5;
     for (int i = 0; i < num_pred; i++) {
-        vector_t tmp(1);
-        tmp << x_min + (x_max-x_min) * double(i) / double(num_pred-1);
-        x_pred[i] = tmp;
+        x_pred[i] = x_min + (x_max-x_min) * double(i) / double(num_pred-1);
     }
 
-    std::ofstream file_x_pred("x_pred.csv");
-    write_vector(x_pred,file_x_pred);
+
+    //Create the model error
+    gp model_error;
+    model_error.set_mean(err_mean);
+    model_error.set_kernel(err_kernel);
+    model_error.set_kernel_gradient(err_kernel_gradient);
+    model_error.set_kernel_hessian(err_kernel_hessian);
+
+    model_error.set_logprior(logprior_hpar);
+    model_error.set_logprior_hessian(logprior_hpar_hessian);
+    model_error.set_par_bounds(lb_hpar,ub_hpar);
+    model_error.set_obs(v_to_vvxd(x_obs),y_obs);
 
 
     //create density
@@ -147,33 +141,27 @@ int main() {
 
     // set up the main properties
     main_density.set_model(model);
-    main_density.set_err_mean(err_mean);
-    main_density.set_err_kernel(err_kernel);
+    main_density.set_model_error(&model_error);
     main_density.set_log_prior_par(logprior_par);
-    main_density.set_obs(x_obs,y_obs);
-    main_density.set_hpar_bounds(lb_hpar,ub_hpar);
-    main_density.set_log_prior_hpar(logprior_hpar);
+    main_density.set_obs(v_to_vvxd(x_obs),y_obs);
 
-    density_opt d_opt(main_density);
-    d_opt.set_err_kernel_gradient(err_kernel_gradient);
-    d_opt.set_err_kernel_hessian(err_kernel_hessian);
-    d_opt.set_logprior_hpar_hessian(logprior_hpar_hessian);
 
     // create the getter function for the hyperparameters. It is an optimization
-    get_hpar_t get_hpar = [&d_opt](const vector_t &par, const vector_t &hpar) {
-        return d_opt.hpar_opt(par,hpar,1e-4);
+    get_hpar_t get_hpar = [&main_density](const vector_t &par, const vector_t &hpar) {
+        return main_density.hpar_opt(par,hpar,1e-4);
     };
 
     // create the score function
-    score_t score = [&d_opt](const vector_t & par, const vector_t & hpar) {
-        auto res = d_opt.residuals(par);
-        auto cov = d_opt.covariance(hpar);
+    score_t score = [&main_density,&model_error,&x_obs](const vector_t & par, const vector_t & hpar) {
+        
+        auto res = main_density.residuals(par);
+        auto cov = model_error.covariance(hpar);
         Eigen::LDLT<matrix_t> cov_inv(cov);
 
-        return d_opt.loglikelihood(res,cov_inv) + d_opt.logprior_par(par) + d_opt.logprior_hpar(hpar) + d_opt.log_cmp_correction(hpar,cov_inv,res);
+        return main_density.loglikelihood(res,cov_inv) + main_density.logprior_par(par) + main_density.model_error()->logprior(hpar);
     };
 
-    in_bounds_t in_bounds = [&d_opt](const vector_t & par) {
+    in_bounds_t in_bounds = [&main_density](const vector_t & par) {
         return true;
     };
 
@@ -213,7 +201,6 @@ int main() {
     }
     chain.info();
 
-
     //set the samples
     main_density.set_par_samples(pars);
     main_density.set_hpar_samples(hpars);
@@ -227,11 +214,11 @@ int main() {
 
     //write predictions
     std::ofstream file_cal_pred("pred.csv");
-    auto pred_cal  = main_density.pred_calibrated_model(x_pred,0.95);
-    auto pred_corr = main_density.pred_corrected_model(x_pred);
+    auto pred_cal  = main_density.pred_calibrated_model(v_to_vvxd(x_pred),0.95);
+    auto pred_corr = main_density.pred_corrected_model(v_to_vvxd(x_pred));
     
     for(int i=0; i<x_pred.size(); i++) {
-        file_cal_pred << x_pred[i](0) << " " << pred_cal[0](i) << " " << pred_cal[1](i) << " " << pred_cal[2](i) << " " << pred_corr[0](i) << " " << 2*sqrt(pred_corr[1](i)) <<'\n';
+        file_cal_pred << x_pred[i] << " " << pred_cal(i,0) << " " << pred_cal(i,1) << " " << pred_cal(i,2) << " " << pred_corr(i,0) << " " << 2*sqrt(pred_corr(i,1)) <<'\n';
     }
 
     // Diagnostics

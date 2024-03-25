@@ -20,6 +20,14 @@
 namespace cmp {
     typedef Eigen::VectorXd vector_t;
     typedef Eigen::MatrixXd matrix_t;
+
+    typedef std::function<double(vector_t const &, vector_t const &)> model_t;
+    typedef std::function<double(vector_t const &, vector_t const &, vector_t const &)> kernel_t;
+    typedef std::function<double(vector_t const &)> prior_t;
+
+    typedef std::function<double(const vector_t &par, const vector_t &hpar)> score_t;
+    typedef std::function<vector_t(const vector_t &par, const vector_t &hpar)> get_hpar_t;
+    typedef std::function<bool(const vector_t &par)> in_bounds_t;
 }
 
 #endif

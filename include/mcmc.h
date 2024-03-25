@@ -8,9 +8,6 @@
 #include "cmp_defines.h"
 
 namespace cmp {
-    typedef std::function<double(const vector_t &par, const vector_t &hpar)> score_t;
-    typedef std::function<vector_t(const vector_t &par, const vector_t &hpar)> get_hpar_t;
-    typedef std::function<bool(const vector_t &par)> in_bounds_t;
 
     /**
      * A class for generating samples from a Markov Chain.

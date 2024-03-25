@@ -1,8 +1,8 @@
-#include "doe.h"
+#include "grid.h"
 
 using namespace cmp;
 
-doe::doe(vector_t const &lb, vector_t const &ub, int n) : m_lb(lb), m_ub(ub) {
+grid::grid(vector_t const &lb, vector_t const &ub, int n) : m_lb(lb), m_ub(ub) {
 
     //Get the number of parameters and the number of points of the grid
     int n_par = lb.size();
@@ -29,7 +29,7 @@ doe::doe(vector_t const &lb, vector_t const &ub, int n) : m_lb(lb), m_ub(ub) {
     }
 };
 
-vector_t doe::multi_index(int curr_point, const int n, int n_par) {
+vector_t grid::multi_index(int curr_point, const int n, int n_par) {
 
     //Create a vector for the indices of each parameter
     vector_t index(n_par);

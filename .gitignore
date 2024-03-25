@@ -4,3 +4,5 @@ docs
 *.o
 *.a
 .DS_Store
+out
+test_gp_complex

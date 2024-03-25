@@ -1,5 +1,5 @@
-#ifndef DOE_H
-#define DOE_H
+#ifndef GRID_H
+#define GRID_H
 
 #include "io.h"
 #include "cmp_defines.h"
@@ -8,23 +8,23 @@ namespace cmp {
 
     /**
      * This class build a grid of points in the parameters space \f$\theta\f$. \n 
-     * It is used by the KOH optimization method to retrive a non-normalized version of the integral over the parameter space.
+     * It is used by the KOH optimization method to retrieve a non-normalized version of the integral over the parameter space.
     */
-    class doe {
+    class grid {
 
         friend class density;
 
     public:
 
-        doe() = default;
+        grid() = default;
 
         /**
-        * Build a DoE consisting of a grid of n^d regularly spaced integers (d is the number of parameters).
+        * Build a grid consisting of a grid of n^d regularly spaced integers (d is the number of parameters).
         * @param lb lower bounds
         * @param ub ubber bounds
         * @param n number of points per parameter
         */
-        doe(vector_t const &lb, vector_t const &ub, int n);                  
+        grid(vector_t const &lb, vector_t const &ub, int n);                  
 
         /**
         * Return the grid of the parameters

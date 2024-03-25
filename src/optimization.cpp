@@ -1,4 +1,6 @@
 #include "density.h"
+#include "gp.h"
+#include "optimization.h"
 
 using namespace cmp;
 
@@ -18,7 +20,7 @@ double cmp::opt_routine(nlopt::vfunc opt_func, void *data_ptr, vector_t &x0, con
     local_opt.set_lower_bounds(lb_v);
     local_opt.set_upper_bounds(ub_v);
 
-    //Trye the optimization
+    //Try the optimization
     double f_val{};
     try {
         local_opt.optimize(x0_v, f_val);
@@ -31,46 +33,46 @@ double cmp::opt_routine(nlopt::vfunc opt_func, void *data_ptr, vector_t &x0, con
     return f_val;
 }
 
-double cmp::opt_fun_fmp(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
+double cmp::opt_fun_cmp(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
     
-    // The data type contains the residuals and the density_opt class
-    auto data = (std::pair<vector_t*, const density_opt*> *) data_bit;
+    // The data type contains the residuals and the density class
+    auto data = (std::pair<vector_t*, const density*> *) data_bit;
     
     auto res = data->first;
-    auto d_opt = data->second;
+    auto my_dens = data->second;
     
     // Convert the hyperparameters from std::vector to vector_t
     vector_t hpar = v_to_vxd(x);
 
     //Compute the covariance matrix
-    matrix_t k_mat = d_opt->covariance(hpar);
+    matrix_t k_mat = my_dens->model_error()->covariance(hpar);
 
     //compute the Cholesky decomposition and retrieve the function
     Eigen::LDLT<matrix_t> ldlt(k_mat);
-    double ll = d_opt->loglikelihood(*res, ldlt);
-    double lp = d_opt->logprior_hpar(hpar);
+    double ll = my_dens->loglikelihood(*res, ldlt);
+    double lp = my_dens->model_error()->logprior(hpar);
     
-    return d_opt->get_beta()*ll + lp;
+    return ll + lp;
 };
 
-double cmp::opt_fun_fmp_grad(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
+double cmp::opt_fun_cmp_grad(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
     
-    // The data type contains the residuals and the density_opt class
-    auto data = (std::pair<vector_t*, const density_opt*> *) data_bit;
+    // The data type contains the residuals and the density class
+    auto data = (std::pair<vector_t*, const density*> *) data_bit;
     
     auto res = data->first;
-    auto d_opt = data->second;
+    auto my_dens = data->second;
 
     // Convert the hyperparameters from std::vector to vector_t
     vector_t hpar = v_to_vxd(x);
 
     //Compute the covariance matrix
-    matrix_t k_mat = d_opt->covariance(hpar);
+    matrix_t k_mat = my_dens->model_error()->covariance(hpar);
 
     //compute the Cholesky decomposition and retrieve the function
     Eigen::LDLT<matrix_t> ldlt(k_mat);
-    double ll = d_opt->loglikelihood(*res, ldlt);
-    double lp = d_opt->logprior_hpar(hpar);
+    double ll = my_dens->loglikelihood(*res, ldlt);
+    double lp = my_dens->model_error()->logprior(hpar);
     
     // Update the gradient
     if (!(grad.size() == 0)) {
@@ -79,7 +81,7 @@ double cmp::opt_fun_fmp_grad(const std::vector<double> &x, std::vector<double> &
         for (int n = 0; n < hpar.size(); n++) {
 
             // Evaluate the contribution of the likelihood and the contribution of the prior
-            grad[n] = d_opt->loglikelihood_gradient(hpar,ldlt,*res,n) + d_opt->logprior_hpar_gradient(hpar, n);
+            grad[n] = my_dens->loglikelihood_gradient(hpar,ldlt,*res,n) + my_dens->model_error()->logprior_gradient(hpar, n);
 
             /*
             NOTE -- This needs to be fixed AS SOON AS POSSIBLE. Right now I will do a transformation to transform the gradient wrt the hpar to the gradient wrt the log-hpar. 
@@ -92,50 +94,62 @@ double cmp::opt_fun_fmp_grad(const std::vector<double> &x, std::vector<double> &
 };
 
 
-double cmp::opt_fun_par(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
-    const density_opt *d_opt = (const density_opt *) data_bit;
-    vector_t pars = v_to_vxd(x);
-    return 0;
-};
-
-
 double cmp::opt_fun_KOH(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
 
     // Cast the void* to the correct type
     auto data = static_cast<std::pair<density*, double>*>(data_bit);
-    auto d_opt = data->first;
+    auto my_dens = data->first;
     auto int_const = data->second;
 
     // Convert the hyperparameters from std::vector to vector_t
     vector_t hpar = v_to_vxd(x);
 
     // Retrieve the observation locations
-    const std::vector<vector_t> *x_obs = d_opt->get_x_obs();
+    const std::vector<vector_t> *x_obs = my_dens->get_x_obs();
 
     //Compute the covariance matrix
-    matrix_t k_mat = d_opt->covariance(hpar);
+    matrix_t k_mat = my_dens->model_error()->covariance(hpar);
 
     //Cholesky decomposition of the kernel matrix
     Eigen::LDLT<matrix_t> ldlt(k_mat);
 
     //Iterate through every point of the grid
-    size_t n_par = d_opt->get_grid()->size(); //number of points
+    size_t n_par = my_dens->get_grid()->size(); //number of points
     double integral{};
     for(size_t i=0; i<n_par; i++) {
 
         // Model parameters
-        vector_t par = d_opt->get_grid()->at(i);
+        vector_t par = my_dens->get_grid()->at(i);
 
         // Residual
-        vector_t res = *d_opt->get_y_obs() - d_opt->evaluate_model(*x_obs,par) - d_opt->error_mean(*x_obs, hpar); 
+        vector_t res = my_dens->residuals(par);
         
         // sum and check for potential numerical errors
-        integral += exp(d_opt->loglikelihood(res,ldlt) + d_opt->logprior_par(par) + d_opt->logprior_hpar(hpar));
+        integral += exp(my_dens->loglikelihood(res,ldlt) + my_dens->logprior_par(par) + my_dens->model_error()->logprior(hpar));
 
         if (std::isinf(integral)) {
-            spdlog::error("KOH optimization failed! The inetgral became too large. Try increasing the value of the integration constant!");
+            spdlog::error("KOH optimization failed! The integral became too large. Try increasing the value of the integration constant!");
         }
     }
 
     return log(integral);
 };
+
+double cmp::opt_fun_gp(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
+    
+    // The data type contains the gp class
+    auto my_gp = (const gp*) data_bit;
+    
+    // Convert the hyperparameters from std::vector to vector_t
+    vector_t hpar = v_to_vxd(x);
+
+    //Compute the covariance matrix
+    matrix_t k_mat = my_gp->covariance(hpar);
+
+    //compute the Cholesky decomposition and retrieve the function
+    Eigen::LDLT<matrix_t> ldlt(k_mat);
+    double ll = my_gp->loglikelihood(my_gp->residual(hpar), ldlt);
+    double lp = my_gp->logprior(hpar);
+    
+    return ll + lp;
+}

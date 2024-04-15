@@ -23,6 +23,7 @@ p0, =plt.plot(obs[:,0],obs[:,1],'k+',label='Experimental points')
 p1, = plt.plot(pred[:,0],pred[:,1],'b-',label = 'calibrated model')
 p2, = plt.plot(pred[:,0],pred[:,4],'r-',label = 'corrected model')
 plt.fill_between(pred[:,0],pred[:,2], pred[:,3], alpha=0.1, color="blue",lw=0)
+plt.fill_between(pred[:,0],pred[:,4]-pred[:,5], pred[:,4]+pred[:,5], alpha=0.1, color="red",lw=0)
 plt.legend(handles=[p0,p1,p2],loc='lower right')
 plt.savefig(os.path.join(os.getcwd(),'pred_ls.pdf'))
 

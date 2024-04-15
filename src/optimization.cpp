@@ -1,6 +1,7 @@
 #include "density.h"
 #include "gp.h"
 #include "optimization.h"
+#include "io.h"
 
 using namespace cmp;
 
@@ -114,12 +115,12 @@ double cmp::opt_fun_KOH(const std::vector<double> &x, std::vector<double> &grad,
     Eigen::LDLT<matrix_t> ldlt(k_mat);
 
     //Iterate through every point of the grid
-    size_t n_par = my_dens->get_grid()->size(); //number of points
-    double integral{};
+    size_t n_par = my_dens->get_samples()->size(); //number of points
+    double integral= 0.0;
     for(size_t i=0; i<n_par; i++) {
 
         // Model parameters
-        vector_t par = my_dens->get_grid()->at(i);
+        vector_t par = my_dens->get_samples()->at(i);
 
         // Residual
         vector_t res = my_dens->residuals(par);

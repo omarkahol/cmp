@@ -26,7 +26,7 @@ int main() {
 
     // Define GP-kernel
     auto kernel = [](vector_t x, vector_t y, vector_t hpar){
-        return matern_32_kernel(x,y,exp(hpar(1)),exp(hpar(2)))+white_noise_kernel(x,y,1e-5);
+        return squared_kernel(x,y,exp(hpar(1)),exp(hpar(2)))+white_noise_kernel(x,y,1e-5);
     };
 
     // Define GP-mean

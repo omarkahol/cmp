@@ -3,6 +3,8 @@ docs
 *.nb
 *.o
 *.a
+*.dylib
 .DS_Store
 out
 test_gp_complex
+out.dSYM

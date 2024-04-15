@@ -24,7 +24,7 @@ double err_kernel(const vector_t & x, const vector_t &y, const vector_t & hpar) 
         double sigma_k = exp(hpar(1));
         double l = exp(hpar(2));
 
-        return squared_kernel(x,y,sigma_k,l) + white_noise_kernel(x,y,sigma_e);
+        return white_noise_kernel(x,y,sigma_e) + matern_52_kernel(x,y,sigma_k,l);
 }
 
 // kernel gradient, i is the component required
@@ -33,7 +33,14 @@ double err_kernel_gradient(const vector_t & x, const vector_t &y, const vector_t
         double sigma_k = exp(hpar(1));
         double l = exp(hpar(2));
 
-        return white_noise_kernel_grad(x,y,sigma_e,i)+squared_kernel_grad(x,y,sigma_k,l,i-1);
+        vector_t hpars_0(2);
+        hpars_0 << sigma_k,l;
+
+        auto fun = [&x,&y](const vector_t &par){
+            return matern_52_kernel(x,y,par(0),par(1));
+        };
+
+        return white_noise_kernel_grad(x,y,sigma_e,i)+fd_gradient(hpars_0,fun,i-1);
 }
 
 // kernel hessian, i and j are the row and colum respectively
@@ -42,7 +49,14 @@ double err_kernel_hessian(const vector_t & x, const vector_t &y, const vector_t 
         double sigma_k = exp(hpar(1));
         double l = exp(hpar(2));
 
-        return white_noise_kernel_hess(x,y,sigma_e,i,j)+squared_kernel_hess(x,y,sigma_k,l,i-1,j-1);
+        vector_t hpars_0(2);
+        hpars_0 << sigma_k,l;
+
+        auto fun = [&x,&y](const vector_t &par){
+            return matern_52_kernel(x,y,par(0),par(1));
+        };
+
+        return white_noise_kernel_hess(x,y,sigma_e,i,j)+fd_hessian(hpars_0,fun,i-1,j-1);
 }
 
 // hyperparameter prior
@@ -105,8 +119,8 @@ int main() {
     ub_hpar <<  100,  100,  100;
 
     // propose a sensible guess
-    vector_t hpar_guess(dim_hpar);
-    hpar_guess << -4.77, -4.62, -1.40;
+    vector_t hpar_0(dim_hpar);
+    hpar_0 << -4.77, -4.62, -1.40;
 
     // model error guassian process
     auto err_mean = [](vector_t x, vector_t const &hpar) {
@@ -145,14 +159,18 @@ int main() {
     main_density.set_log_prior_par(logprior_par);
     main_density.set_obs(v_to_vvxd(x_obs),y_obs);
 
+    //calculate the KOH value for the hyper-parameters
+    vector_t lb_par(2), ub_par(2); // set the lower and upper bounds
+    lb_par << 0.,0.;
+    ub_par << 1.,1.;
 
-    // create the getter function for the hyperparameters. It is an optimization
-    get_hpar_t get_hpar = [&main_density](const vector_t &par, const vector_t &hpar) {
-        return main_density.hpar_opt(par,hpar,1e-4);
-    };
+    std::vector<vector_t> int_points = qmc_halton_grid(lb_par,ub_par,100'000); // generate a QMC grid in the bounds
+
+    vector_t hpar_KOH = main_density.hpar_KOH(hpar_0,int_points,20,1E-5);
+    std::cout << "Hyperparameters KOH: \n" << hpar_KOH << std::endl;
 
     // create the score function
-    score_t score = [&main_density,&model_error,&x_obs](const vector_t & par, const vector_t & hpar) {
+    score_t cmp_score = [&main_density,&model_error,&x_obs](const vector_t & par, const vector_t & hpar) {
         
         auto res = main_density.residuals(par);
         auto cov = model_error.covariance(hpar);
@@ -161,19 +179,36 @@ int main() {
         return main_density.loglikelihood(res,cov_inv) + main_density.logprior_par(par) + main_density.model_error()->logprior(hpar);
     };
 
-    in_bounds_t in_bounds = [&main_density](const vector_t & par) {
-        return true;
-    };
-
-    // setup mcmc chain
-    mcmc_chain chain(cov_prop,par_0,hpar_guess,score,get_hpar,in_bounds,rng);
+    // Setup mcmc chain
+    mcmc chain(dim_par,rng);
+    chain.seed(cov_prop,par_0);
+    vector_t par_prop(dim_par);
+    vector_t hpar_prop(dim_hpar);
+    double score = 0.0;
+    bool accept;
 
     // burn initial samples
     int burn_in = 10000;
     for(int i=0; i<burn_in; i++) {
-        chain.step();
+
+        // Propose
+        par_prop = chain.propose();
+        hpar_prop = main_density.hpar_opt(par_prop,hpar_0,1e-4);
+        
+        // Evaluate
+        score = cmp_score(par_prop,hpar_prop);
+
+        // Check if to accept
+        accept=chain.accept(par_prop,score);
+        if (accept) {
+            hpar_0 = hpar_prop;
+        }
+
+        // Update mean and covariance
         chain.update();
     }
+
+    // Adapt and
     chain.adapt_cov();
     chain.info();
     chain.reset();
@@ -182,22 +217,24 @@ int main() {
     int steps = 10000;
     std::vector<vector_t> pars(steps);
     std::vector<vector_t> hpars(steps);
-    int skip = 0;
 
     // do steps
     for (int i=0; i<steps; i++) {
-        chain.step();
-        chain.update();
+        // Propose
+        par_prop = chain.propose();
+        hpar_prop = main_density.hpar_opt(par_prop,hpar_0,1e-4);
         
-        //save
-        pars[i] = chain.get_par();
-        hpars[i] = chain.get_hpar();
+        // Evaluate
+        score = cmp_score(par_prop,hpar_prop);
 
-        //burn some steps
-        for (int j=0; j<skip; j++) {
-            chain.step();
-            chain.update();
+        // Check if to accept
+        accept = chain.accept(par_prop,score);
+        chain.update();
+        if (accept) {
+            hpar_0 = hpar_prop;
         }
+        pars[i] = chain.get_par();
+        hpars[i] = hpar_0;
     }
     chain.info();
 
@@ -211,6 +248,7 @@ int main() {
 
     std::ofstream file_hpar_samples("hpar_samples.csv");
     write_vector(hpars,file_hpar_samples);
+    
 
     //write predictions
     std::ofstream file_cal_pred("pred.csv");

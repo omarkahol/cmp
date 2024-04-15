@@ -32,7 +32,8 @@ namespace cmp {
             case EIGHTH:
                 return { { -4, -3, -2, -1, 1, 2, 3, 4 } };
             default:
-                spdlog::error("Invalid accuracy order");
+                spdlog::error("Invalid accuracy order. Using order 2");
+                return { { 1, -1 } };
             }
     }
 
@@ -47,7 +48,8 @@ namespace cmp {
             case EIGHTH:
                 return 840;
             default:
-                spdlog::error("Invalid accuracy order");
+                spdlog::error("Invalid accuracy order. Using order 2");
+                return 2;
         }
     }
 

@@ -1,7 +1,6 @@
 #ifndef DENSITY_H
 #define DENSITY_H
 
-#include "grid.h"
 #include "cmp_defines.h"
 #include "gp.h"
 
@@ -12,14 +11,10 @@ namespace cmp {
         // Member data
         protected:
             
-            grid *m_grid;                                                       ///> Pointer to the grid on the parameter space 
             gp *m_model_error;                                                  ///> Pointer to the model error Gaussian Process
             model_t m_model;                                                    ///> model
             
             prior_t m_log_prior_par;                                            ///> log of the prior density of the parameters
-
-            vector_t m_lb_par;          ///> lower bounds of the parameters
-            vector_t m_ub_par;          ///> upper bounds of the parameters
             
             std::vector<vector_t> m_x_obs;    ///> observations' locations 
             std::vector<double> m_y_obs;                 ///> observations' values
@@ -28,9 +23,9 @@ namespace cmp {
             std::vector<vector_t> m_hpar_samples;       ///> samples of the hyperparameters from MCMC
 
         public:
-            
-            density(grid *g);
             density(){
+
+                // Default construct called
 
             };
 
@@ -100,18 +95,13 @@ namespace cmp {
             /**
             Compute the model hyperparameters using the Kennedy O'Hagan method.
             @param hpar_guess an initial guess
+            @param int_points the points on which the integral must be constructed
             @param int_const the log of an integration constant. Should be in the order of magnitude of \f$ \log \text{max} p(\theta,\psi) \ p(\mathcal{D} | \theta, \psi) \f$
                 and is used to avoid numerical errors
             @param ftol_rel the relative tolerance
             @return the KOH oprimization vector_t \f$ \psi_{\text{KOH}} = \text{argmax} \;\; \int_{\Theta} p(\mathcal{D} | \psi, \theta) p(\psi, \theta) \ \text{d}\theta \f$
             */
-            vector_t hpar_KOH(vector_t const &hpar_guess, double int_const ,double ftol_rel) const;
-
-            /** 
-            Get the uniform grid on the model parameters
-            @return A const pointer to the grid address
-            */
-            const std::vector<vector_t> *get_grid() const { return &m_grid->m_grid;}
+            vector_t hpar_KOH(const vector_t &hpar_guess, const std::vector<vector_t> &int_points, double int_const ,double ftol_rel);
             
             /**
             Get the x locations of the observations
@@ -124,6 +114,13 @@ namespace cmp {
             @return a const pointer to y_obs
             */
             const std::vector<double> *get_y_obs() const { return &m_y_obs;}
+
+
+            /**
+             * @brief Get the parameters samples
+             * @return a pointer to the memory address of the samples of the parameters
+             */
+            const std::vector<vector_t> *get_samples() {return &m_par_samples;}
 
             
             /**

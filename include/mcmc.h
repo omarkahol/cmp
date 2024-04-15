@@ -9,35 +9,24 @@
 
 namespace cmp {
 
-    /**
-     * A class for generating samples from a Markov Chain.
-     * The code supports the separation between parameters, which are sampled, and
-     * hyperparameters, which are computed using the get_hpar function. 
-     * For this reason, it can be adapted to work with Fully Bayesian or Modular approaches.
-    */
-    class mcmc_chain {
+    class mcmc {
 
-        
         protected:
-            matrix_t m_cov_prop; ///<proposal covariance matrix
-            vector_t m_par; ///<current parameter value
-            vector_t m_hpar; ///<current hyperparameter value
-            double m_score; ///<current value of the score
-            score_t m_compute_score; ///<log - likelihood function
-            get_hpar_t m_get_hpar; ///< compute the hyperparameters
-            std::default_random_engine m_rng; ///<random number generator
-            matrix_t m_lt; ///<lower triangular decomposition of the proposal covariance
+
+            std::default_random_engine& m_rng;   // Random number generator
+            matrix_t m_lt;                       // Lower triangular decomposition of the proposal covariance
             
-            size_t m_dim_par;
-            size_t m_dim_hpar;
+            vector_t m_par;                      //  Current parameter value
+            double m_score{0.0};                 //  Current value of the score
+            
+            size_t m_dim;                        // Dimension of the chain
 
-            in_bounds_t m_in_bounds;
+            size_t m_steps{0};                   // Steps done
+            size_t m_accepts{0};                 // Accepted candidates
+            size_t m_updates{0};                 // Number of times the mean has been updated
 
-            size_t m_steps{0};
-            size_t m_accepts{0};
-
-            vector_t m_mean;
-            matrix_t m_cov;
+            vector_t m_mean;                     // Sample-mean vector
+            matrix_t m_cov;                      // Sample-covariance matrix
         
         
         protected:
@@ -46,68 +35,47 @@ namespace cmp {
 
         //constructors
         public:
-        /**
-         * Deafult constructor. 
-         * To correctly initialize the chain one must supply:
-         * @param cov_prop A proposal covariance matrix that will be used to propse samples.
-         * @param par An initial value for the sampled parameters.
-         * @param hpar An initial value for the computed hyperparameters.
-         * @param score A function to evaluate the score. 
-         *                         Defined as vector_t parameter \f$\theta\f$ , vector_t hyperparameter \f$\psi\f$ \f$\rightarrow\f$ double \f$ \log p (\theta | \psi(\theta), \mathcal{D}) \f$
-         * @param get_hpar A function that computes the chosen value of the hyperparameters given the proposed value of the parameters and the previous value of the hyperparameters (used as an initial guess).
-         * Defined as vector_t parameter \f$\theta\f$ , vector_t hyperparameter \f$\psi_{-1}\f$ \f$\rightarrow\f$ vector_t \f$\psi(\theta)\f$
-         * @param in_bounds A function that checks if the proposed parameter is in it's bounds. Defined as vector_t parameter \f$\theta\f$ \f$\rightarrow\f$ bool in_bounds.
-         * @param rng A random number generator.
-        */
-            mcmc_chain(matrix_t cov_prop, vector_t par, vector_t hpar, score_t score, get_hpar_t get_hpar, in_bounds_t in_bounds,std::default_random_engine rng):
-                m_cov_prop(cov_prop), m_par(par), m_hpar(hpar), m_compute_score(score), m_get_hpar(get_hpar), m_rng(rng), m_in_bounds(in_bounds){
-                    
-                    //compute the cholesky decomposition
-                    m_lt = cov_prop.llt().matrixL();
-
-                    m_dim_par = par.size();
-                    m_dim_hpar = hpar.size();
-
-                    m_mean = vector_t(par.size());
-                    m_cov = matrix_t(par.size(), par.size());
-
-                    for(int i=0; i<par.size(); i++) {
-                        m_mean(i)=0.0;
-                        for(int j=0; j < par.size(); j++) {
-                            m_cov(i,j)=0.0;
-                        }
-                    }
-
-                    m_score = score(par,hpar);
-                    
-                    spdlog::info("Setting up mcmc chain with initial value \n{0}\n and covariance \n{1}", par,cov_prop);
-                };
             
-            mcmc_chain(const mcmc_chain & other) = default;
-            
-            mcmc_chain &operator=(const mcmc_chain &other) = default;
-
-            mcmc_chain() = default;
+            /**
+             * @brief Construct a new mcmc chain object 
+             * 
+             * @param dim the size of the chain (number of parameters)
+             * @param rng the random number generator
+             */
+            mcmc(size_t dim, std::default_random_engine &rng);
         
         // Functions
         public:
+
+            /**
+             * @brief Initialize the chain
+             * 
+             * @param cov_prop The proposal covariance matrix
+             * @param par The proposal value of the parameters
+             * @param score The initial score (default is zero)
+             */
+            void seed(matrix_t cov_prop, vector_t par, double score = 0.0);
             
             /**
-             * @brief Perform a single chain step. 
-             * @note does not update the mean and the covariance function, to do so you must call update()
-             **/ 
-            void step();
+             * @brief Propose a candidate using a normal distribution using as mean the previous mean and as covariance the proposal covariance
+             * 
+             * @return vector_t, The value of the proposed candidate
+             */
+            vector_t propose();
 
             /**
-             * @brief Perform a single chain step and updates the mean and covariance matrix.
-             **/ 
-            void step_update();
+             * @brief Accept or reject a candidate
+             * 
+             * @param par The candidate
+             * @param score The score of the candidate
+             * @return true if the candidate is accepted
+             */
+            bool accept(vector_t par, double score);
 
             /**
-             * @brief update the mean vector and covariance matrix.
-             * The method simply sums the current sample and its cross product to the mean and covariance matrices
-             * @note The actual mean and covariances is computed when adap_cov() or get_mean_cov() are called
-            */
+             * @brief Updates the value of the mean and covariance matrix.
+             * 
+             */
             void update();
 
             /**
@@ -118,9 +86,9 @@ namespace cmp {
             void adapt_cov();
 
             /**
-             * Reset the value of the mean and of the covaraince matrix.
+             * Reset the value of the mean and of the covariance matrix.
              * Reset the number of steps and number of accepted steps.
-             * Does @b not reset the value of the proposal covariance matrix.
+             * Does not reset the value of the proposal covariance matrix.
             */
             void reset();
 
@@ -128,11 +96,6 @@ namespace cmp {
              * Return the current parameter
             */
             vector_t get_par() const;
-
-            /**
-             * Return the current hyperparameter
-            */
-            vector_t get_hpar() const;
 
             /**
              * Return the dimension of the chain
@@ -187,7 +150,7 @@ namespace cmp {
      * @param chains a vector containing multiple chains sampling the same distribution.
      * @return the r_hat statistics. 
      */
-    double r_hat(const std::vector<mcmc_chain> & chains);
+    double r_hat(const std::vector<mcmc> & chains);
 
 
 

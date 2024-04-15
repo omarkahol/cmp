@@ -1,18 +1,8 @@
 #include "density.h"
 #include "optimization.h"
+#include "io.h"
 
 using namespace cmp;
-
-density::density(grid *grid) {
-
-    //set the grid
-    m_grid = grid;
-
-    //set lower and upper bounds 
-    m_lb_par = m_grid->m_lb;
-    m_ub_par = m_grid->m_ub;
-
-}
 
 void density::set_obs(const std::vector<vector_t> &x_obs, const std::vector<double>&y_obs) {
     
@@ -70,7 +60,10 @@ double density::loglikelihood(vector_t const &par, vector_t const &hpar) const {
     return loglikelihood(res, ldlt);
 }
 
-vector_t density::hpar_KOH(vector_t const &hpars_guess, double int_const ,double ftol_rel) const {
+vector_t density::hpar_KOH(vector_t const &hpars_guess, const std::vector<vector_t> &int_points, double int_const ,double ftol_rel) {
+    
+    // Set the integration points as a new sample of the parameters
+    this->set_par_samples(int_points);
 
     //begin optimization
     auto begin = std::chrono::steady_clock::now();

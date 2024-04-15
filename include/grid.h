@@ -7,63 +7,75 @@
 namespace cmp {
 
     /**
-     * This class build a grid of points in the parameters space \f$\theta\f$. \n 
-     * It is used by the KOH optimization method to retrieve a non-normalized version of the integral over the parameter space.
-    */
-    class grid {
+     * @brief Generate a uniform grid with n point per dimension
+     * 
+     * @param lb The lower bound of the interval
+     * @param ub The upper bound of the interval
+     * @param n  The number of points per dimension
+     * @return std::vector<vector_t> A vector containing all points
+     * 
+     * @note This function used the function std_grid_element to compute a standard grid
+     * [0,n-1]^d and then it uses a linear transformation to remap it to the desired bounds
+     */
+    std::vector<vector_t> uniform_grid(vector_t const &lb, vector_t const &ub, int n);
 
-        friend class density;
+    /**
+     * @brief Generate a Latin Hypercube grid with n points in total
+     * 
+     * @param lb The lower bound of the interval
+     * @param ub The upper bound of the interval
+     * @param n  The total number of points
+     * @return std::vector<vector_t> A vector containing all points
+     */
+    std::vector<vector_t> lhs_grid(vector_t const &lb, vector_t const &ub, int n, std::default_random_engine &rng);
 
-    public:
+    /**
+     * @brief Computes the element #index of a standard uniform grid. 
+     * A standard uniform grid of dimension d and size n is the grid of points [0,n-1]^d.
+     * 
+     * @param index The index of the element to be constructed 
+     * @param n_pts The desired number of points per dimension 
+     * @param dim   The dimension of the grid
+     * @return std::vector<int>, the standard grid element required
+     * 
+     * @note As an example we suppose that n_pts = 3 and dim = 2. The standard grid is 
+     * (0,0), (0,1), (0,2); (1,0), (1,1), (1,2); (2,0), (2,1), (2,2)
+     * So the element 5 is (1,2)
+     */
+    std::vector<int> std_grid_element(int index, const int n_pts, const int dim);
 
-        grid() = default;
+    /**
+     * @brief Generate a 1-dimensional Halton sequence
+     * 
+     * @param base Base of the Halton sequence
+     * @param n_pts Length of the sequence
+     * @return vector_t A vector containing the sequence
+     * 
+     * @note Based on the pseudo-code in https://en.wikipedia.org/wiki/Halton_sequence
+     */
+    vector_t halton_sequence_1d(int base, int n_pts);
 
-        /**
-        * Build a grid consisting of a grid of n^d regularly spaced integers (d is the number of parameters).
-        * @param lb lower bounds
-        * @param ub ubber bounds
-        * @param n number of points per parameter
-        */
-        grid(vector_t const &lb, vector_t const &ub, int n);                  
+    /**
+     * @brief Generate a grid of points in the interval [lb,ub] using QMC sampling based of the Halton sequence
+     * 
+     * @param lb The lower bound of the hypercube
+     * @param ub The upper bound of the hypercube
+     * @param n The dimension of the grid
+     * @return std::vector<vector_t> The grid points
+     */
+    std::vector<vector_t> qmc_halton_grid(vector_t const &lb, vector_t const &ub, int n);
 
-        /**
-        * Return the grid of the parameters
-        */
-        std::vector<vector_t> get_grid() const { return m_grid; }
+    /**
+     * @brief generate a grid sampling from a uniform distribution
+     * 
+     * @param lb The lower bound of the hypercube
+     * @param ub The upper bound of the hypercube
+     * @param n The dimension of the grid
+     * @param rng A random number generator
+     * @return std::vector<vector_t> The grid points
+     */
+    std::vector<vector_t> mc_uniform_grid(vector_t const &lb, vector_t const &ub, int n, std::default_random_engine &rng);
+};
 
-        /**
-        In the case of only 2 parameters present the flatten grid consists of the following coordinates
-        
-        \n 
-        (0,0), (0,1), (0,2), ... (0,n-1), \n 
-        (1,0), (1,1), (1,2), ... (1, n-1), \n 
-        ... \n 
-        (n-1,0), (n-1,1), ...   (n-1, n-1) \n
-        \n 
-
-        The total number of elements is n ^ n_par. A linear transformation will be used to 
-        transform the range from [0,n-1] to [lb,ub]. This function returns the element number 
-        curr_point of the grid.
-
-        In the case of 2D grid with 5 points per dimension, to compute the coordinate of element numer 17 we should first do 17%5=2 and this gives the 
-        first index. To move on to the second idex we subtract the remainder and then divide by n.
-        In this case we end up with 15/5 = 3. We perform the same operation as before 3%5 = 3 and this is the 
-        second coordinate so the index will be (2,3). This procedure can be extended to any number of dimension.
-
-        @param curr_point current coordinate to be constucted.
-        @param n number of points per parameter.
-        @param n_par number of parameters.
-        */
-        vector_t multi_index(int curr_point, const int n, const int n_par);
-
-
-    protected:
-        
-        vector_t m_lb;                  ///< parameters lower bounds.
-        vector_t m_ub;                  ///< parameters upper bounds.
-        std::vector<vector_t> m_grid;   ///< grid of parameters points.
-    };
-
-}
 
 #endif

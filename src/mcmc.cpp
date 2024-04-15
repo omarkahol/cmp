@@ -2,101 +2,116 @@
 
 using namespace cmp;
 
-void mcmc_chain::step() {
+mcmc::mcmc(size_t dim, std::default_random_engine &rng): m_rng(rng), m_dim(dim) {
 
-    m_steps++;
+    // Initialize proposed steps
+    m_lt = matrix_t::Identity(dim,dim);
+    m_par = vector_t::Zero(dim);
+
+    // Initialize mean and variance
+    m_mean = vector_t::Zero(dim);
+    m_cov = matrix_t::Zero(dim,dim);
+}
+
+void mcmc::seed(matrix_t cov_prop, vector_t par, double score) {
+
+    // Extract the covariance matrix
+    m_lt = cov_prop.llt().matrixL();
+    m_par = par;
+    m_score=score;
+
+    //Info
+    spdlog::info("Setting up a {0}-dimensional with initial value \n{1}\n and covariance \n{2}", m_dim, par,cov_prop);
+}
+
+vector_t mcmc::propose() {
     
     // Sample a standard normal distribution 
-    vector_t random_variate(m_dim_par);
-    for (size_t i=0; i<m_dim_par; i++) {
+    vector_t random_variate(m_dim);
+    for (size_t i=0; i<m_dim; i++) {
         random_variate(i) = m_dist_n(m_rng);
     }
 
-    // Propose a candidate parameter
-    vector_t par_prop = m_par + m_lt*random_variate;
-
-    //check if the parameters are in their respective bounds
-    if(m_in_bounds(par_prop)) {
-        
-        // Get the value of the hyperparameter - use the current value of the hpar as guess
-        vector_t hpar_prop = m_get_hpar(par_prop, m_hpar);
-
-        // Accept with predefined probability
-        double score_prop = m_compute_score(par_prop,hpar_prop);
-        bool accept = score_prop -  m_score > log(m_dist_u(m_rng));
-        
-        if (accept) {
-            m_par = par_prop;
-            m_hpar = hpar_prop;
-            m_score = score_prop;
-            m_accepts++;
-        }
-    }
-
+    // Return the proposed parameter
+    return m_par + m_lt*random_variate;
 }
 
-void cmp::mcmc_chain::update() {
+bool mcmc::accept(vector_t par, double score) {
+
+    // Decide whether to accept the sample
+    bool accept = score -  m_score > log(m_dist_u(m_rng));
+
+    // Update chain parameters
+    if (accept) {
+        m_par = par;
+        m_score = score;
+        m_accepts++;
+    }
+    m_steps++;
+
+    return accept;
+}
+
+void mcmc::update() {
     
     // Update estimates of mean and covariance
     m_mean += m_par;
     m_cov += m_par*m_par.transpose();
+
+    // Increase the number of updates
+    m_updates++;
 }
 
-void mcmc_chain::step_update() {
-    // perform a step
-    step();
+void mcmc::adapt_cov() {
 
-    // update
-    update();
-}
-
-void mcmc_chain::adapt_cov() {
-
+    // Extract the mean vector and the covariance matrix
     auto mean_cov = get_mean_cov();
-    m_cov_prop = (pow(2.38,2)/static_cast<double>(m_dim_par)) * mean_cov.second;
+
+    // Rescale the proposal matrix
+    matrix_t cov_prop = (pow(2.38,2)/static_cast<double>(m_dim)) * mean_cov.second;
     
-    //compute the cholesky decomposition
-    m_lt = m_cov_prop.llt().matrixL();
+    // Compute the cholesky decomposition
+    m_lt = cov_prop.llt().matrixL();
 }
 
-void mcmc_chain::reset() {
+void mcmc::reset() {
+
+    // Reset the steps and accepts
     m_steps = 0;
     m_accepts = 0;
+    m_updates = 0;
 
-    m_mean = m_mean*0;
-    m_cov = m_cov*0;
+    // Reset the mean and the covariance
+    m_mean = vector_t::Zero(m_dim);
+    m_cov = matrix_t::Zero(m_dim,m_dim);
 }
 
-vector_t mcmc_chain::get_par() const {
+vector_t mcmc::get_par() const {
     return m_par;
 }
 
-vector_t mcmc_chain::get_hpar() const {
-    return m_hpar;
+size_t cmp::mcmc::get_dim() const {
+    return m_dim;
 }
 
-size_t cmp::mcmc_chain::get_dim() const {
-    return m_dim_par;
-}
-
-std::pair<vector_t, matrix_t> mcmc_chain::get_mean_cov() const
+std::pair<vector_t, matrix_t> mcmc::get_mean_cov() const
 {
-    vector_t mean = m_mean / static_cast<double>(m_steps);
-    matrix_t cov = m_cov / static_cast<double>(m_steps - 1) - mean*mean.transpose();
+    vector_t mean = m_mean / static_cast<double>(m_updates);
+    matrix_t cov = m_cov / static_cast<double>(m_updates - 1) - mean*mean.transpose();
     return std::make_pair(mean, cov);
 }
 
-size_t cmp::mcmc_chain::get_steps() const {
+size_t cmp::mcmc::get_steps() const {
     return m_steps;
 }
 
-void mcmc_chain::info() const{
+void mcmc::info() const{
 
     auto data = get_mean_cov();
     
-    spdlog::info("run {0:d} steps", m_steps);
+    spdlog::info("run {0:d} steps, updated {0:d} times", m_steps,m_updates);
     spdlog::info("acceptance ratio: {:.3f}", static_cast<double>(m_accepts)/ static_cast<double> (m_steps));
-    spdlog::info("Proposal covariance: \n{}",m_cov_prop);
+    spdlog::info("Proposal covariance: \n{}",m_lt*m_lt.transpose());
     spdlog::info("Data covariance: \n{}",data.second);
     spdlog::info("Data mean: \n{}",data.first);
     
@@ -144,8 +159,7 @@ std::pair<vector_t, double> cmp::single_chain_diagnosis(std::vector<vector_t> sa
     return std::make_pair(corr_length, ess);
 }
 
-std::pair<vector_t, matrix_t> cmp::mean_cov(const std::vector<vector_t> &samples)
-{
+std::pair<vector_t, matrix_t> cmp::mean_cov(const std::vector<vector_t> &samples) {
     vector_t mean(samples[0].size());
     matrix_t cov(samples[0].size(), samples[0].size());
 
@@ -160,7 +174,7 @@ std::pair<vector_t, matrix_t> cmp::mean_cov(const std::vector<vector_t> &samples
     return std::make_pair(mean,cov);
 }
 
-double cmp::r_hat(const std::vector<mcmc_chain> &chains) {
+double cmp::r_hat(const std::vector<mcmc> &chains) {
 
     // We have the intra chain mean and intra chain variance
     // We the compute the inter-chain mean which is the chainwise_mean of the mean
@@ -172,7 +186,7 @@ double cmp::r_hat(const std::vector<mcmc_chain> &chains) {
     vector_t chainwise_cov(dim_chain);
     vector_t chainwise_mean_cov(dim_chain);
 
-    for (const mcmc_chain &chain : chains) {
+    for (const mcmc &chain : chains) {
         auto data = chain.get_mean_cov();
 
         // Compute the mean of the mean

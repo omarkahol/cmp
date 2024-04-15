@@ -66,14 +66,8 @@ double logprior_hpar(const vector_t & hpar) {
 
 // prior hessian
 double logprior_hpar_hessian(const vector_t &hpar, const int &i, const int &j) {
-        if (i==0 && j==0)
-            return dd_log_inv_gamma_pdf(exp(hpar(0)),3,0.04);
-        else if (i==1 && j==1)
-            return dd_log_inv_gamma_pdf(exp(hpar(1)),3,0.04);
-        else if (i==2 && j==2)
-            return dd_log_inv_gamma_pdf(exp(hpar(2)),5,1.2);
-        else
-            return 0.;
+    return dd_log_inv_gamma_pdf(exp(hpar(0)),3,0.04,i,j) + dd_log_inv_gamma_pdf(exp(hpar(0)),3,0.04,i-1,j-1)
+        + dd_log_inv_gamma_pdf(exp(hpar(2)),5,1.2,i-2,j-2);
 }
 
 int main() {

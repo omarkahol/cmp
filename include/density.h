@@ -205,6 +205,8 @@ namespace cmp {
             */
             double loglikelihood_gradient(const vector_t &hpar, const Eigen::LDLT<matrix_t> &cov_inv, const vector_t &res, const int &i) const;
 
+            double loglikelihood_gradient(const vector_t &par, const vector_t &hpar, const int &i) const;
+
             /**
              * @brief hessian of the log-likelihood function wrt the hyper-parameters.
              * Evaluate the ij component of the hessian of the likelihood with respect to the hyper-parameters.
@@ -232,6 +234,17 @@ namespace cmp {
              * @return The CMP correction factor in log units (already negated).
             */
             double log_cmp_correction(const vector_t &hpar, const Eigen::LDLT<matrix_t> &cov_inv, const vector_t &res);
+
+            /**
+             * @brief computes the logarithm of the correction factor for the CMP method.
+             * The correction factor for the CMP method is defined, in log units, as \f$ -\frac{1}{2} \mid H \mid\f$ where H is the hessian of the posterior.
+             *
+             * @param par Value of the parameters
+             * @param hpar Value of the hyper-parameters 
+             * 
+             * @return The CMP correction factor in log units (already negated).
+            */
+            double log_cmp_correction(const vector_t &par, const vector_t &hpar);
 
             gp *model_error() const{return m_model_error;}
     };

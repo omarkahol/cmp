@@ -1,18 +1,12 @@
 #include "kernel.h"
 const double TOL = 1e-5;
+using namespace cmp;
 
 /*
 Squared kernel - factor
 */
 
-/**
- * @brief Return the correlation factor for the squared exponential kernel 
- * 
- * @param d input length
- * @param l correlation length
- * @return the correlation factor for the squared exponential kernel 
- */
-double se_kernel_corr(const double &d, const double &l) {
+double cmp::se_kernel_corr(const double &d, const double &l) {
     return exp(-0.5*pow(d/l,2));
 }
 

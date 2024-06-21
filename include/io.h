@@ -9,17 +9,26 @@
 #include "cmp_defines.h"
 
 namespace cmp {
+
+    /**
+     * @brief Convert a matrix into a std::vector<vector_t>
+     * 
+     * @param data The matrix to convert
+     * @return the data in a different format 
+     */
+    std::vector<vector_t> matrix_to_vvxd(const matrix_t &data);
+
     /**
     * Convert a std::vector to an Eigen::VectorXd.
-    * @param v A c++ std::vector containg doubles
-    * @return the same vector connverted into an eigen::VectorXd
+    * @param v A c++ std::vector containing doubles
+    * @return the same vector converted into an eigen::VectorXd
     */
     vector_t v_to_vxd(const std::vector<double> &v);
 
     /**
     * Convert an Eigen::VectorXd to an c++ std::vector.
-    * @param v An Eigen::VectorXd containg doubles
-    * @return the same vector connverted into a c++ std::vector.
+    * @param v An Eigen::VectorXd containing doubles
+    * @return the same vector converted into a c++ std::vector.
     */
     std::vector<double> vxd_to_v(const vector_t &v);
 
@@ -58,7 +67,9 @@ namespace cmp {
     * \n 
     * The separator must be a blank space
     * @param i_file An open and valid file stream.
-    * @return A std::vector containg each row of the file as a Eigen::VectorXd.
+    * @return A std::vector containin
+    * 
+    * g each row of the file as a Eigen::VectorXd.
     */
     std::vector<vector_t> read_vector(std::ifstream &i_file);
 }

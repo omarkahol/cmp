@@ -13,7 +13,7 @@ namespace cmp {
 
         protected:
 
-            std::default_random_engine& m_rng;   // Random number generator
+            std::default_random_engine m_rng;    // Random number generator
             matrix_t m_lt;                       // Lower triangular decomposition of the proposal covariance
             
             vector_t m_par;                      //  Current parameter value
@@ -42,7 +42,9 @@ namespace cmp {
              * @param dim the size of the chain (number of parameters)
              * @param rng the random number generator
              */
-            mcmc(size_t dim, std::default_random_engine &rng);
+            mcmc(size_t dim, std::default_random_engine rng);
+
+            mcmc() = default;
         
         // Functions
         public:
@@ -64,13 +66,27 @@ namespace cmp {
             vector_t propose();
 
             /**
+             * @brief Perform a single MCMC step (without updating the mean and cov)
+             * 
+             * @param get_score The score function
+             */
+            void step(const score_t &get_score);
+
+            /**
+             * @brief Perform a single MCMC step and update the mean and covariance
+             * 
+             * @param get_score The score function
+             */
+            void step_update(const score_t &get_score);
+
+            /**
              * @brief Accept or reject a candidate
              * 
              * @param par The candidate
              * @param score The score of the candidate
              * @return true if the candidate is accepted
              */
-            bool accept(vector_t par, double score);
+            bool accept(const vector_t &par, double score);
 
             /**
              * @brief Updates the value of the mean and covariance matrix.
@@ -98,6 +114,15 @@ namespace cmp {
             vector_t get_par() const;
 
             /**
+             * @brief Get the current score
+             * 
+             * @return the score
+             */
+            double get_score() const {
+                return m_score;
+            }
+
+            /**
              * Return the dimension of the chain
             */
             size_t get_dim() const;
@@ -106,6 +131,13 @@ namespace cmp {
              * Return the number of steps performed
             */
             size_t get_steps() const;
+
+            /**
+             * Return the number of steps performed
+            */
+            double get_acceptance_ratio() const {
+                return m_accepts/static_cast<double>(m_steps);
+            }
 
             /**
              * Evaluate the current mean vector and covariance matrix of the samples.

@@ -65,6 +65,23 @@ vector_t gp::par_opt(vector_t x0, double ftol_rel) const {
     return x0;
 }
 
+vector_t gp::par_opt_loo(vector_t x0, double ftol_rel) const {
+    opt_routine(opt_fun_gp_loo, (void*)this, x0, m_lb_par, m_ub_par, ftol_rel, nlopt::LN_SBPLX);
+    return x0;
+}
+
+double gp::prediction_mean(const vector_t &x, const vector_t &par, const vector_t &alpha) const {
+    
+    int n_obs = m_x_obs.size();
+
+    double k_star_dot_alpha = 0.0;
+    for(int i=0; i<n_obs; i++) {
+        k_star_dot_alpha += m_kernel(x,m_x_obs.at(i),par)*alpha(i);
+    }
+
+    return m_mean(x,par) + k_star_dot_alpha;
+}
+
 matrix_t gp::predict(const std::vector<vector_t> &x_pts, const vector_t &par, const Eigen::LDLT<matrix_t> &ldlt, const vector_t &res) const{
     
     // Define the two kernel evaluation matrices
@@ -98,45 +115,63 @@ matrix_t gp::predict(const std::vector<vector_t> &x_pts, const vector_t &par) co
 
     // Call overloaded version of the function
     return gp::predict(x_pts,par,ldlt,res);
-
 }
 
 
 vector_t gp::draw_sample(const std::vector<vector_t> &x_pts, vector_t const &par, std::default_random_engine &rng) const {
 
-    // Compute the residuals and the covariance matrix
-    auto cov_mat = this->covariance(par);
-    auto res = this->residual(par);
-    auto ldlt = Eigen::LDLT<matrix_t>(cov_mat);
-    
     std::normal_distribution<double> dist_n(0, 1);
-    
-    // Compute the matrices for the predictive mean and variance
-    matrix_t k_star = matrix_t::Zero(x_pts.size(), m_x_obs.size());
-    matrix_t k_xy = matrix_t::Zero(x_pts.size(), x_pts.size());
+    size_t n_obs = m_x_obs.size();
+    size_t n_pts = x_pts.size();
 
-    for (int i = 0; i < k_star.rows(); i++) {
-        for (int j = 0; j < k_star.cols(); j++) {
+    // Compute the residuals and the covariance matrix
+    matrix_t cov(n_obs,n_obs);
+    vector_t res(n_obs);
+
+    for(size_t i=0; i<n_obs; i++) {
+        res(i) = m_y_obs[i] - m_mean(m_x_obs[i],par);
+        for(size_t j=i; j<n_obs;j++) {
+            cov(i,j) = m_kernel(m_x_obs.at(i),m_x_obs.at(j),par);
+
+            if(i!=j) {
+                cov(j,i) = cov(i,j);
+            }
+        }
+    }
+    auto ldlt = cov.ldlt();
+
+    // Compute the matrices for the predictive mean and variance
+    matrix_t k_star(n_pts, n_obs);
+    matrix_t k_xy(n_pts, n_pts);
+    vector_t gp_mean (n_pts);
+
+    for (size_t i = 0; i < n_pts; i++) {
+
+        gp_mean(i) = m_mean(x_pts.at(i),par);
+        
+        // Fill k_star
+        for (size_t j = 0; j < n_obs; j++) {
             k_star(i, j) = m_kernel(x_pts.at(i), m_x_obs.at(j), par);
         }
-
-        for (int k = i; k < k_xy.cols(); k++) {
-            k_xy(i, k) = m_kernel(x_pts.at(i), x_pts.at(k), par);
+        
+        // Fill k_xy
+        for (size_t j = i; j < n_pts; j++) {
+            k_xy(i, j) = m_kernel(x_pts.at(i), x_pts.at(j), par);
 
             // Tensor must be symmetric
-            if (i!=k){
-                k_xy(k,i) = k_xy(i,k);
+            if (i!=j){
+                k_xy(j,i) = k_xy(i,j);
             }
         }
 
     }
 
     // Use GP predictive equations for the evaluation of the mean and variance
-    auto mean = evaluate_mean(x_pts, par) + k_star * ldlt.solve(res);
-    auto var = k_xy - k_star * ldlt.solve(k_star.transpose());
+    vector_t prediction_mean = gp_mean + k_star*ldlt.solve(res);
+    matrix_t prediction_var = k_xy - k_star * ldlt.solve(k_star.transpose());
     
     // Setup the solver and compute the eigen-decomposition of the covariance matrix
-    Eigen::SelfAdjointEigenSolver<matrix_t> solver(var);
+    Eigen::SelfAdjointEigenSolver<matrix_t> solver(prediction_var);
     vector_t eigen_val = solver.eigenvalues();
 
     // Compute the sqrt of the eigenvalue matrix
@@ -144,12 +179,12 @@ vector_t gp::draw_sample(const std::vector<vector_t> &x_pts, vector_t const &par
         eigen_val(i) = sqrt(fabs(eigen_val(i)));
     
     // Extract a uniform sample and multiply it by the sqrt of the eigenvalues
-    vector_t sample(mean.size());
+    vector_t sample(prediction_mean.size());
     for (int i = 0; i < sample.size(); i++)
         sample(i) = dist_n(rng) * eigen_val(i);
     
     // A single random sample ~ N(mean, cov)
-    return mean + solver.eigenvectors() * sample;
+    return prediction_mean + solver.eigenvectors() * sample;
 }
 
 
@@ -195,4 +230,66 @@ matrix_t gp::covariance_hessian(const vector_t &par, const int &l, const int &k)
     }
 
     return k_der;
+}
+
+matrix_t cmp::gp::reduced_covariance_matrix(const std::vector<vector_t> x_pts, const vector_t &par) {
+
+    // Sizes of the matrices
+    size_t n_obs = m_x_obs.size();
+    size_t n_pts = x_pts.size();
+
+    // Get the initial covariance
+    matrix_t k = matrix_t::Identity(n_obs+1,n_obs+1);
+    matrix_t k_star = matrix_t::Zero(n_pts, n_obs+1);
+    matrix_t k_xy_diag = vector_t::Zero(x_pts.size());
+
+    // Fill the initial part of the covariance
+    for (size_t i=0; i<n_obs; i++) {
+        for(size_t j=i; j<n_obs; j++) {
+            
+            k(i,j) = m_kernel(m_x_obs[i],m_x_obs[j],par);
+            
+            // Kernel is symmetric
+            if (i != j) {
+                k(j,i) = k(i,j);
+            }
+        }
+    }
+    
+    // Fill k_star and k_xy
+    for(size_t i=0; i<n_pts; i++) {
+        for (size_t j=0; j<n_obs; j++) {
+            k_star(i,j) = m_kernel(x_pts[i],m_x_obs[j],par);
+        }
+
+        k_xy_diag(i) = m_kernel(x_pts[i],x_pts[i],par);
+    }
+
+    // This is the initial predictive variance
+    vector_t var_0 = k_xy_diag - (k_star * k.ldlt().solve(k_star.transpose())).diagonal();
+    
+    // Now we compute the actual matrix
+    matrix_t vij = matrix_t::Zero(n_pts,n_pts);
+    for(size_t i=0; i<n_pts; i++) {
+
+        vector_t x_sel = x_pts[i];
+        
+        // Fill the last row of the covariance matrix
+        for (size_t j=0; j<n_obs; j++) {
+            k(n_obs,j) = m_kernel(m_x_obs[j],x_sel,par);
+            k(j,n_obs) = k(n_obs,j);
+        }
+        k(n_obs,n_obs) = m_kernel(x_sel,x_sel,par);
+
+        // Fill the last colum of the k_star matrix
+        for (size_t j=0; j<n_pts; j++) {
+            k_star(j,n_obs) = m_kernel(x_pts[j],x_sel,par);
+        }
+
+        // Compute the new variance
+        vector_t var_i = k_xy_diag - (k_star * k.ldlt().solve(k_star.transpose())).diagonal();
+        vij.row(i).array() = var_0.array()-var_i.array();
+    }
+
+    return vij;
 }

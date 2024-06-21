@@ -131,6 +131,8 @@ namespace cmp {
      */
     double locally_periodic_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l, const double &p);
 
+    double se_kernel_corr(const double &d, const double &l);
+
 
     double matern_12_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);
     double matern_32_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);

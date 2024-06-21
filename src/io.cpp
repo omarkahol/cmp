@@ -1,15 +1,26 @@
 #include "io.h"
 
-using namespace cmp; 
+using namespace cmp;
 
-vector_t cmp::v_to_vxd(std::vector<double> const &v) {
+std::vector<vector_t> cmp::matrix_to_vvxd(const matrix_t &data) {
+    int n_rows = data.rows();
+
+    std::vector<vector_t> data_v(n_rows);
+    for (int i=0; i<n_rows; i++) {
+        data_v[i] = data.row(i);
+    }
+
+    return data_v;
+}
+
+vector_t cmp::v_to_vxd(std::vector<double> const &v)
+{
 
     vector_t x(v.size());
     for (int i = 0; i < v.size(); i++) {
         x(i) = v[i];
     }
     return x;
-
 }
 
 std::vector<double> cmp::vxd_to_v(vector_t const &x) {

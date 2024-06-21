@@ -233,6 +233,21 @@ double density::loglikelihood_gradient(const vector_t &hpar, const Eigen::LDLT<m
     return 0.5 * (alpha_alpha_t * covariance_grad - cov_inv.solve(covariance_grad)).trace();
 }
 
+double density::loglikelihood_gradient(const vector_t &par, const vector_t &hpar, const int &i) const{
+    
+    // Compute the covariance matrix
+    matrix_t cov_mat = m_model_error->covariance(hpar);
+
+    //Compute the residuals
+    vector_t res = residuals(par);
+    
+    // Cholesky decomposition
+    Eigen::LDLT<matrix_t> ldlt(cov_mat);
+
+    //Evaluate the loglikelihood by calling the overloaded version
+    return loglikelihood_gradient(hpar, ldlt, res, i);
+}
+
 
 double density::loglikelihood_hessian(const vector_t &hpar, const Eigen::LDLT<matrix_t> &cov_inv, const vector_t &res, const int &l, const int &k) const {
 
@@ -306,4 +321,19 @@ double density::log_cmp_correction(const vector_t &hpar, const Eigen::LDLT<matri
     Eigen::LDLT<matrix_t> ldlt(S);
     return -0.5*(ldlt.vectorD().array().abs().log()).sum();
 
+}
+
+double density::log_cmp_correction(const vector_t &par, const vector_t &hpar) {
+    
+    // Compute the covariance matrix
+    matrix_t cov_mat = m_model_error->covariance(hpar);
+
+    //Compute the residuals
+    vector_t res = residuals(par);
+    
+    // Cholesky decomposition
+    Eigen::LDLT<matrix_t> ldlt(cov_mat);
+
+    // Call the overloaded version
+    return log_cmp_correction(hpar,ldlt,res);
 }

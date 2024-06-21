@@ -154,3 +154,38 @@ double cmp::opt_fun_gp(const std::vector<double> &x, std::vector<double> &grad, 
     
     return ll + lp;
 }
+
+double cmp::opt_fun_gp_loo(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
+    
+    // The data type contains the gp class
+    auto my_gp = (const gp*) data_bit;
+    
+    // Convert the hyperparameters from std::vector to vector_t
+    vector_t hpar = v_to_vxd(x);
+
+    //Compute the covariance matrix
+    matrix_t k_mat = my_gp->covariance(hpar);
+
+    //compute the inverse of the covariance matrix
+    matrix_t k_inv = k_mat.inverse();
+
+    //compute the residuals
+    vector_t res = my_gp->residual(hpar);
+
+    //compute the leave-one-out residuals
+    vector_t loo_res = vector_t::Zero(res.size());
+    loo_res = k_inv*res;
+    loo_res.array() /= k_inv.diagonal().array();
+    
+    // compute the leave-one-out variance
+    vector_t loo_var = vector_t::Zero(res.size());
+    loo_var.array() = 1.0/k_inv.diagonal().array();
+
+    // Compute the leave-one-out log-likelihood
+    vector_t loo_ll = vector_t::Zero(res.size());
+    loo_ll.array() = - 0.5 * loo_var.array().log() - 0.5 * loo_res.array().square()/loo_var.array();
+
+    return loo_ll.sum() + my_gp->logprior(hpar); 
+
+
+}

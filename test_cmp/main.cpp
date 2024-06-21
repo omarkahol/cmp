@@ -164,7 +164,7 @@ int main() {
     std::cout << "Hyperparameters KOH: \n" << hpar_KOH << std::endl;
 
     // create the score function
-    score_t cmp_score = [&main_density,&model_error,&x_obs](const vector_t & par, const vector_t & hpar) {
+    auto cmp_score = [&main_density,&model_error,&x_obs](const vector_t & par, const vector_t & hpar) {
         
         auto res = main_density.residuals(par);
         auto cov = model_error.covariance(hpar);

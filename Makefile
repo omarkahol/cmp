@@ -24,15 +24,19 @@ LIBS = -L$(NLOPTLIB)
 LFLAGS = -lnlopt
 
 # define the objects
-OBJ = output/io.o output/pdf.o output/kernel.o output/optimization.o output/mcmc.o output/grid.o output/density.o output/gp.o output/finite_diff.o
+OBJ = output/io.o output/utils.o output/pdf.o output/kernel.o output/optimization.o output/mcmc.o output/grid.o output/density.o output/gp.o output/finite_diff.o output/wasserstein.o
 
-all: io pdf kernel optimization mcmc grid density gp finite_diff staticlib docs
+all: io utils pdf kernel optimization mcmc grid density gp finite_diff staticlib docs
 	@echo Executing 'all' complete
 	@echo Documentation up to date
 
 io: src/io.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/io.cpp -o output/io.o
 	@echo Compiled io
+
+utils: src/utils.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/utils.cpp -o output/utils.o
+	@echo Compiled utils
 
 pdf: src/pdf.cpp 
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/pdf.cpp -o output/pdf.o
@@ -66,12 +70,16 @@ gp: src/gp.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/gp.cpp -o output/gp.o
 	@echo Compiled gp
 
+wasserstein: src/wasserstein.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/wasserstein.cpp -o output/wasserstein.o
+	@echo Compiled wasserstein
+
 staticlib: $(OBJ)
 	ar cr lib/libcmp.a $(OBJ)
 	@echo Created static library
 
 dynamiclib: $(OBJ)
-	$(CXX) -dynamiclib -fPIC -o lib/libcmp.dylib $(OBJ) $(LFLAGS) $(LIBS)
+	$(CXX) -Wl,-ld_classic -dynamiclib -fPIC -o lib/libcmp.dylib $(OBJ) $(LFLAGS) $(LIBS)
 
 docs: Doxyfile
 	doxygen Doxyfile

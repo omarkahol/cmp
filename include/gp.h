@@ -119,6 +119,8 @@ namespace cmp {
             */
             vector_t par_opt(vector_t x0, double ftol_rel) const;
 
+            vector_t par_opt_loo(vector_t x0, double ftol_rel) const;
+
             /**
              * @brief Compute the prediction mean and variance of the GP at some new prediction points (overloaded version)
              * 
@@ -139,6 +141,16 @@ namespace cmp {
              * @return A vector containing the variance of the prediction at each required point. 
              */
             matrix_t predict(const std::vector<vector_t> &x_pts, const vector_t &par, const Eigen::LDLT<matrix_t> &ldlt, const vector_t &res) const;
+
+            /**
+             * @brief Compute the prediction mean of the GP at a new prediction point. 
+             * 
+             * @param x The value of the new prediction point.
+             * @param par The value of the GP parameters to be used.
+             * @param alpha the solution of [K*x = r] where K is the covariance matrix and r is the residual
+             * @return The mean of the prediction 
+             */
+            double prediction_mean(const vector_t &x, const vector_t &par, const vector_t &alpha) const;
 
             /**
             Draw a random sample of the model error evaluated at x_pts.
@@ -203,6 +215,8 @@ namespace cmp {
             */
             matrix_t covariance_hessian(const vector_t &par, const int &i, const int &j) const;
 
+            matrix_t reduced_covariance_matrix(const std::vector<vector_t> x_pts, const vector_t & par);
+
             vector_t get_lb_par(){return m_lb_par;}
             vector_t get_ub_par(){return m_ub_par;}
 
@@ -233,8 +247,8 @@ namespace cmp {
     @note Must be used with a non gradient-based algorithm
     */
     double opt_fun_gp(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
+    
+    double opt_fun_gp_loo(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
 }
-
-
 
 #endif // MACRO

@@ -72,6 +72,9 @@ int main() {
 
     std::ofstream pred_file("pred.csv");
     matrix_t y_pred = my_gp.predict(x_pred,par_opt,ldlt,res);
+    for (int i=0; i<n_pts_pred; i++) {
+        y_pred(i,0) = my_gp.prediction_mean(x_pred[i],par_opt,ldlt.solve(res));
+    }
     write_data(x_pred,y_pred,pred_file);
 
 

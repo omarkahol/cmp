@@ -2,7 +2,7 @@
 
 using namespace cmp;
 
-mcmc::mcmc(size_t dim, std::default_random_engine &rng): m_rng(rng), m_dim(dim) {
+mcmc::mcmc(size_t dim, std::default_random_engine rng): m_rng(rng), m_dim(dim) {
 
     // Initialize proposed steps
     m_lt = matrix_t::Identity(dim,dim);
@@ -19,12 +19,12 @@ void mcmc::seed(matrix_t cov_prop, vector_t par, double score) {
     m_lt = cov_prop.llt().matrixL();
     m_par = par;
     m_score=score;
-
-    //Info
-    spdlog::info("Setting up a {0}-dimensional with initial value \n{1}\n and covariance \n{2}", m_dim, par,cov_prop);
 }
 
 vector_t mcmc::propose() {
+
+    // Increase the number of steps
+    m_steps++;
     
     // Sample a standard normal distribution 
     vector_t random_variate(m_dim);
@@ -36,7 +36,7 @@ vector_t mcmc::propose() {
     return m_par + m_lt*random_variate;
 }
 
-bool mcmc::accept(vector_t par, double score) {
+bool mcmc::accept(const vector_t &par, double score) {
 
     // Decide whether to accept the sample
     bool accept = score -  m_score > log(m_dist_u(m_rng));
@@ -47,9 +47,28 @@ bool mcmc::accept(vector_t par, double score) {
         m_score = score;
         m_accepts++;
     }
-    m_steps++;
 
     return accept;
+}
+
+void mcmc::step(const score_t &get_score) {
+    // Propose a candidate
+    vector_t cand_prop = propose();
+
+    // Compute the score
+    double score_prop = get_score(cand_prop);
+
+    // Decide whether to accept the candidate 
+    accept(cand_prop,score_prop);
+
+}
+
+void mcmc::step_update(const score_t &get_score) {
+    // Make a step
+    step(get_score);
+
+    // Update
+    update();
 }
 
 void mcmc::update() {
@@ -109,7 +128,7 @@ void mcmc::info() const{
 
     auto data = get_mean_cov();
     
-    spdlog::info("run {0:d} steps, updated {0:d} times", m_steps,m_updates);
+    spdlog::info("run {0:d} steps, updated {1:d} times", m_steps,m_updates);
     spdlog::info("acceptance ratio: {:.3f}", static_cast<double>(m_accepts)/ static_cast<double> (m_steps));
     spdlog::info("Proposal covariance: \n{}",m_lt*m_lt.transpose());
     spdlog::info("Data covariance: \n{}",data.second);

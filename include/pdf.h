@@ -27,7 +27,7 @@ namespace cmp {
     * @param b the scale factor
     * @return The the derivative (wrt x) of the logarithm of the inverse gamma distribution evaluated at \p x and using \p a and \p b parameters.
     */
-    double d_log_inv_gamma_pdf(const double &x, const double &a, const double &b);
+    double d_log_inv_gamma_pdf(const double &x, const double &a, const double &b,const int& i=0);
 
     /**
     * Evaluate the II derivative (wrt x) of the logarithm of the Inverse-Gamma PDF.
@@ -37,7 +37,7 @@ namespace cmp {
     * @param b the scale factor
     * @return The the II derivative (wrt x) of the logarithm of the inverse gamma distribution evaluated at \p x and using \p a and \p b parameters.
     */
-    double dd_log_inv_gamma_pdf(const double &x, const double &a, const double &b);
+    double dd_log_inv_gamma_pdf(const double &x, const double &a, const double &b,const int& i=0,const int& j=0);
 
     /**
     * Evaluate the logarithm of the normal pdf.
@@ -57,7 +57,7 @@ namespace cmp {
     * @param std The standard deviation \f$\sigma\f$ of the pdf.
     * @return The derivative of logarithm of the normal distribution evaluated at \p x.
     */
-    double d_log_normal_pdf(const double &x, const double &mean, const double &std);
+    double d_log_normal_pdf(const double &x, const double &mean, const double &std,const int& i=0);
 
     /**
     * Evaluate the II derivative logarithm of the normal pdf wrt \p x.
@@ -67,7 +67,7 @@ namespace cmp {
     * @param std The standard deviation \f$\sigma\f$ of the pdf.
     * @return The II derivative of logarithm of the normal distribution evaluated at \p x wrt at \p x 
     */
-    double dd_log_normal_pdf(const double &x, const double &mean, const double &std);
+    double dd_log_normal_pdf(const double &x, const double &mean, const double &std, const int& i=0, const int& j=0);
 
     /**
     * Evaluate the logarithm of the lognormal pdf.
@@ -87,7 +87,7 @@ namespace cmp {
     * @param std The standard deviation \f$\sigma\f$ of the pdf.
     * @return The derivative of logarithm of the lognormal distribution evaluated at \p x.
     */
-    double d_log_lognormal_pdf(const double &x, const double &mean, const double &std);
+    double d_log_lognormal_pdf(const double &x, const double &mean, const double &std, const int& i=0);
 
     /**
     * Evaluate the II derivative of the logarithm of the lognormal pdf wrt \p x.
@@ -97,7 +97,7 @@ namespace cmp {
     * @param std The standard deviation \f$\sigma\f$ of the pdf.
     * @return The II derivative of logarithm of the lognormal distribution evaluated at \p x wrt at \p x 
     */
-    double dd_log_lognormal_pdf(const double &x, const double &mean, const double &std);
+    double dd_log_lognormal_pdf(const double &x, const double &mean, const double &std, const int& i=0, const int& j=0);
 
     /**
     * Evaluate the logarithm of a power law pdf, x^-n.
@@ -115,7 +115,7 @@ namespace cmp {
     * @param n The exponent.
     * @return The derivative of the logarithm of the power law evaluated at \p x.
     */
-    double d_log_power_pdf(const double &x, const double &n);
+    double d_log_power_pdf(const double &x, const double &n, const int& i=0);
 
     /**
     * Evaluate the II derivative of the logarithm of a power law pdf, x^-n, wrt x.
@@ -124,6 +124,6 @@ namespace cmp {
     * @param n The exponent.
     * @return The II derivative of the logarithm of the power law evaluated at \p x.
     */
-    double dd_log_power_pdf(const double &x, const double &n);
+    double dd_log_power_pdf(const double &x, const double &n,const int& i=0,const int& j=0);
 }
 #endif

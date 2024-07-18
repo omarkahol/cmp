@@ -65,6 +65,7 @@ std::pair<vector_t, Eigen::LLT<matrix_t>> cmp::normalize(std::vector<vector_t> &
 
 std::pair<double, double> cmp::normalize(std::vector<double> &grid) {
     
+    
     int rows = grid.size();
 
     double mean = 0.0;
@@ -77,7 +78,7 @@ std::pair<double, double> cmp::normalize(std::vector<double> &grid) {
 
     // Rescale to compute the actual mean and covariance
     mean = mean / double(rows);
-    cov = (cov / double(rows - 1) - mean*mean);
+    cov = cov / double(rows) - mean*mean;
 
     double std = sqrt(cov);
 
@@ -92,12 +93,16 @@ void cmp::scale(vector_t &v, const std::pair<vector_t, Eigen::LLT<matrix_t>> &sc
     v = scale.second.matrixL().solve(v-scale.first);
 }
 
+void cmp::scale(double &v, const std::pair<double, double> &scale) {
+    v = (v - scale.first)/scale.second;
+}
+
 void cmp::un_scale(vector_t &v, const std::pair<vector_t, Eigen::LLT<matrix_t>> &scale) {
     v = scale.second.matrixL()*v + scale.first;
 }
 
 void cmp::un_scale(double &v, const std::pair<double, double> &scale) {
-    v = scale.second*v + scale.first;
+    v = v*scale.second + scale.first;
 }
 
 laplace_object cmp::gaussian_approximation(const score_t &score, const vector_t & par_0, const vector_t &par_lb, const vector_t &par_ub, const double &tol) {

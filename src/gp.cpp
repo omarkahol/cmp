@@ -43,6 +43,16 @@ vector_t gp::evaluate_mean(const std::vector<vector_t> &x_pts, const vector_t &p
     return y;
 }
 
+vector_t cmp::gp::evaluate_mean_gradient(const std::vector<vector_t> &x_pts, const vector_t &par, int i) const {
+    
+    vector_t y(x_pts.size());
+    for (size_t j=0; j<x_pts.size(); j++) {
+        y(j) = m_mean_gradient(x_pts.at(j), par, i);
+    }
+
+    return y;
+}
+
 vector_t gp::residual(const vector_t &par) const{
     
     vector_t res(m_y_obs.size());
@@ -60,8 +70,8 @@ double gp::loglikelihood(vector_t const &res, Eigen::LDLT<matrix_t> const &ldlt)
     return -0.5 * res.dot(alpha) - 0.5 * (ldlt.vectorD().array().log()).sum() - 0.5 * res.size() * log(2 * M_PI);
 }
 
-vector_t gp::par_opt(vector_t x0, double ftol_rel) const {
-    opt_routine(opt_fun_gp, (void*)this, x0, m_lb_par, m_ub_par, ftol_rel, nlopt::LN_SBPLX);
+vector_t gp::par_opt(vector_t x0, double ftol_rel, nlopt::algorithm alg) const {
+    opt_routine(opt_fun_gp, (void*)this, x0, m_lb_par, m_ub_par, ftol_rel, alg);
     return x0;
 }
 
@@ -292,4 +302,29 @@ matrix_t cmp::gp::reduced_covariance_matrix(const std::vector<vector_t> x_pts, c
     }
 
     return vij;
+}
+
+double cmp::gp::loglikelihood_gradient(const vector_t &res, const Eigen::LDLT<matrix_t> &ldlt, const vector_t &par, const int &n) const {
+    
+    // Solve linear system
+    vector_t alpha = ldlt.solve(res);
+    
+    // Compute the gradient
+    vector_t grad = vector_t::Zero(par.size());
+    for (int i = 0; i < par.size(); i++) {
+        
+        // Compute the derivative of the covariance matrix
+        matrix_t k_der = covariance_gradient(par, i);
+
+        // Compute the derivative of the mean
+        vector_t mean_der = evaluate_mean_gradient(m_x_obs, par, i);
+        
+        // Kernel contribution
+        grad(i) = 0.5 * (alpha*alpha.transpose()*k_der - ldlt.solve(k_der)).trace();
+
+        // Mean contribution
+        grad(i) += res.transpose()*ldlt.solve(mean_der);
+    }
+    
+    return grad(n);
 }

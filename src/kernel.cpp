@@ -10,25 +10,13 @@ double cmp::se_kernel_corr(const double &d, const double &l) {
     return exp(-0.5*pow(d/l,2));
 }
 
-/**
- * @brief Return the derivative of the correlation factor for the squared exponential kernel 
- * 
- * @param d input length
- * @param l correlation length
- * @return the derivative of the correlation factor for the squared exponential kernel 
- */
-double d_se_kernel_corr(const double &d, const double &l){
+
+double cmp::d_se_kernel_corr(const double &d, const double &l){
     return se_kernel_corr(d,l)*pow(d,2)/pow(l,3);
 }
 
-/**
- * @brief Return the II derivative of the correlation factor for the squared exponential kernel 
- * 
- * @param d input length
- * @param l correlation length
- * @return the II derivative of the correlation factor for the squared exponential kernel 
- */
-double dd_se_kernel_corr(const double &d, const double &l){
+
+double cmp::dd_se_kernel_corr(const double &d, const double &l){
     return (se_kernel_corr(d,l)*pow(d,2)/pow(l,4))*(-3+pow(d,2)/pow(l,3));
 }
 
@@ -130,15 +118,29 @@ double cmp::locally_periodic_kernel(const vector_t &x, const vector_t &y, const 
 
 
 double cmp::matern_12_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l) {
-    return s*s*exp(-(x-y).norm()/l);
+    double d = (x-y).norm();
+    return s*s*matern_12_corr(d,l);
 }
 double cmp::matern_32_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l) {
-    double c_1 = sqrt(3)*(x-y).norm()/l;
-    return s*s*(1+c_1)*exp(-c_1);
+    double d = (x-y).norm();
+    return s*s*matern_32_corr(d,l);
 }
 double cmp::matern_52_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l) {
     double d = (x-y).norm();
+    return s*s*matern_52_corr(d,l);
+}
+
+double cmp::matern_12_corr(const double &d, const double &l) {
+    return exp(-d/l);
+}
+
+double cmp::matern_32_corr(const double &d,const double &l) {
+    double c_1 = sqrt(3)*d/l;
+    return (1+c_1)*exp(-c_1);
+}
+
+double cmp::matern_52_corr(const double &d,const double &l) {
     double c_1 = sqrt(5)*d/l;
     double c_2 = (5/3)*pow(d/l,2);
-    return s*s*(1+c_1+c_2)*exp(-c_1);
+    return (1+c_1+c_2)*exp(-c_1);
 }

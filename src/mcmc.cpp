@@ -1,11 +1,12 @@
 #include "mcmc.h"
+#include <algorithm>
 
 using namespace cmp;
 
 mcmc::mcmc(size_t dim, std::default_random_engine rng): m_rng(rng), m_dim(dim) {
 
     // Initialize proposed steps
-    m_lt = matrix_t::Identity(dim,dim);
+    m_lt = matrix_t::Identity(dim,dim).llt();
     m_par = vector_t::Zero(dim);
 
     // Initialize mean and variance
@@ -16,15 +17,12 @@ mcmc::mcmc(size_t dim, std::default_random_engine rng): m_rng(rng), m_dim(dim) {
 void mcmc::seed(matrix_t cov_prop, vector_t par, double score) {
 
     // Extract the covariance matrix
-    m_lt = cov_prop.llt().matrixL();
+    m_lt = cov_prop.llt();
     m_par = par;
     m_score=score;
 }
 
 vector_t mcmc::propose() {
-
-    // Increase the number of steps
-    m_steps++;
     
     // Sample a standard normal distribution 
     vector_t random_variate(m_dim);
@@ -33,10 +31,13 @@ vector_t mcmc::propose() {
     }
 
     // Return the proposed parameter
-    return m_par + m_lt*random_variate;
+    return m_par + m_lt.matrixL()*random_variate;
 }
 
 bool mcmc::accept(const vector_t &par, double score) {
+
+    // Increase the number of steps
+    m_steps++;
 
     // Decide whether to accept the sample
     bool accept = score -  m_score > log(m_dist_u(m_rng));
@@ -51,7 +52,8 @@ bool mcmc::accept(const vector_t &par, double score) {
     return accept;
 }
 
-void mcmc::step(const score_t &get_score) {
+void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma) {
+    
     // Propose a candidate
     vector_t cand_prop = propose();
 
@@ -59,13 +61,43 @@ void mcmc::step(const score_t &get_score) {
     double score_prop = get_score(cand_prop);
 
     // Decide whether to accept the candidate 
-    accept(cand_prop,score_prop);
+    bool accepted = accept(cand_prop,score_prop);
 
-}
 
-void mcmc::step_update(const score_t &get_score) {
-    // Make a step
-    step(get_score);
+    // Perform a DRAM step
+    if (!accepted && DRAM_STEP) {
+
+        // Generate a new porposal from a narrower distribution
+        vector_t random_variate(m_dim);
+        for (size_t i=0; i<m_dim; i++) {
+            random_variate(i) = m_dist_n(m_rng);
+        }
+        vector_t cand_prop_2 = m_par + (m_lt.matrixL()*random_variate)*gamma;
+
+        // Compute the score
+        double score_prop_2 = get_score(cand_prop_2);
+
+        // Compute acceptance probabilities
+        double alfa_qs_qsm1 = std::min(1.0,score_prop - m_score);
+        double alfa_qs_qs2 = std::min(1.0,score_prop - score_prop_2);
+
+        // Compute difference between the two jumping distributions
+        double j_qs_qs2 = m_lt.solve(cand_prop - cand_prop_2).squaredNorm();
+        double j_qs_qsm1 = m_lt.solve(cand_prop - m_par).squaredNorm();
+
+        double log_j_diff = 0.5*(j_qs_qsm1 - j_qs_qs2);
+        double log_score_diff = score_prop_2 - m_score;
+        double log_alfa_diff = log(1-alfa_qs_qs2)-log(1-alfa_qs_qsm1);
+
+        // Generate a random number
+        double u = m_dist_u(m_rng);
+
+        if (log(u) < log_j_diff + log_score_diff + log_alfa_diff) {
+            m_par = cand_prop_2;
+            m_score = score_prop_2;
+            m_accepts++;
+        }
+    }
 
     // Update
     update();
@@ -74,23 +106,22 @@ void mcmc::step_update(const score_t &get_score) {
 void mcmc::update() {
     
     // Update estimates of mean and covariance
-    m_mean += m_par;
-    m_cov += m_par*m_par.transpose();
+    m_mean = (double(m_steps)*m_mean + m_par)/double(m_steps+1);
+    m_cov = (double(m_steps)*m_cov + m_par*m_par.transpose())/double(m_steps+1);
 
-    // Increase the number of updates
-    m_updates++;
+    // Note that to get the true covariance we still need to subtract the mean squared
 }
 
-void mcmc::adapt_cov() {
+void mcmc::adapt_cov(double epsilon) {
 
     // Extract the mean vector and the covariance matrix
-    auto mean_cov = get_mean_cov();
+    auto cov = get_cov();
 
     // Rescale the proposal matrix
-    matrix_t cov_prop = (pow(2.38,2)/static_cast<double>(m_dim)) * mean_cov.second;
+    matrix_t cov_prop = (pow(2.38,2)/static_cast<double>(m_dim)) * cov + epsilon*matrix_t::Identity(m_dim,m_dim);
     
     // Compute the cholesky decomposition
-    m_lt = cov_prop.llt().matrixL();
+    m_lt = cov_prop.llt();
 }
 
 void mcmc::reset() {
@@ -98,7 +129,6 @@ void mcmc::reset() {
     // Reset the steps and accepts
     m_steps = 0;
     m_accepts = 0;
-    m_updates = 0;
 
     // Reset the mean and the covariance
     m_mean = vector_t::Zero(m_dim);
@@ -113,11 +143,12 @@ size_t cmp::mcmc::get_dim() const {
     return m_dim;
 }
 
-std::pair<vector_t, matrix_t> mcmc::get_mean_cov() const
-{
-    vector_t mean = m_mean / static_cast<double>(m_updates);
-    matrix_t cov = m_cov / static_cast<double>(m_updates - 1) - mean*mean.transpose();
-    return std::make_pair(mean, cov);
+vector_t mcmc::get_mean() const {
+    return m_mean;
+}
+
+matrix_t mcmc::get_cov() const {
+    return m_cov - m_mean*m_mean.transpose();
 }
 
 size_t cmp::mcmc::get_steps() const {
@@ -126,13 +157,14 @@ size_t cmp::mcmc::get_steps() const {
 
 void mcmc::info() const{
 
-    auto data = get_mean_cov();
+    auto mean = get_mean();
+    auto cov = get_cov();
     
-    spdlog::info("run {0:d} steps, updated {1:d} times", m_steps,m_updates);
-    spdlog::info("acceptance ratio: {:.3f}", static_cast<double>(m_accepts)/ static_cast<double> (m_steps));
-    spdlog::info("Proposal covariance: \n{}",m_lt*m_lt.transpose());
-    spdlog::info("Data covariance: \n{}",data.second);
-    spdlog::info("Data mean: \n{}",data.first);
+    spdlog::info("run {0:d} steps", m_steps);
+    spdlog::info("acceptance ratio: {:.3f}", get_acceptance_ratio());
+    spdlog::info("Proposal covariance: \n{}",m_lt.matrixLLT());
+    spdlog::info("Data covariance: \n{}",cov);
+    spdlog::info("Data mean: \n{}",mean);
     
 }
 
@@ -206,7 +238,7 @@ double cmp::r_hat(const std::vector<mcmc> &chains) {
     vector_t chainwise_mean_cov(dim_chain);
 
     for (const mcmc &chain : chains) {
-        auto data = chain.get_mean_cov();
+        auto data = std::make_pair(chain.get_mean(),chain.get_cov());
 
         // Compute the mean of the mean
         chainwise_mean += data.first;

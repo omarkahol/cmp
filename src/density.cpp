@@ -254,11 +254,6 @@ double density::loglikelihood_hessian(const vector_t &hpar, const Eigen::LDLT<ma
     // Required quantities for the computation
     vector_t alpha = cov_inv.solve(res);
     matrix_t alpha_alpha_t = alpha * alpha.transpose();
-
-    //Evaluate the gradients and the hessian in a single run instead of calling the three functions (maybe more efficient?)
-    // matrix_t covariance_grad_l = covariance_gradient(hpar,l);
-    // matrix_t covariance_grad_k = covariance_gradient(hpar,k);
-    // matrix_t covariance_hess = covariance_hessian(hpar,l,k);
     
     size_t n_obs = res.size();
     matrix_t covariance_grad_l = matrix_t::Zero(n_obs, n_obs);

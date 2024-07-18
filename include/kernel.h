@@ -131,12 +131,111 @@ namespace cmp {
      */
     double locally_periodic_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l, const double &p);
 
+    
+    /**
+     * @brief Calculates the squared exponential kernel correlation.
+     *
+     * This function calculates the squared exponential kernel correlation between two points.
+     *
+     * @param d The distance between the two points.
+     * @param l The length scale parameter.
+     * @return The kernel correlation value.
+     */
     double se_kernel_corr(const double &d, const double &l);
 
+    /**
+     * Calculates the derivative correlation of the squared exponential kernel wrt `l`.
+     *
+     * This function takes two parameters, `d` and `l`, and calculates the derivative of the correlation
+     * of the squared exponential kernel. The `d` parameter represents the distance
+     * between two points, and the `l` parameter represents the length scale of the kernel.
+     *
+     * @param d The distance between two points.
+     * @param l The length scale of the kernel.
+     * @return The derivative correlation of the squared exponential kernel wrt `l`.
+     */
+    double d_se_kernel_corr(const double &d, const double &l);
 
+
+
+    /**
+     * Calculates the second derivative correlation of the squared exponential kernel wrt `l`.
+     *
+     * This function takes two parameters, `d` and `l`, and calculates the second derivative of the correlation
+     * of the squared exponential kernel. The `d` parameter represents the distance
+     * between two points, and the `l` parameter represents the length scale of the kernel.
+     *
+     * @param d The distance between two points.
+     * @param l The length scale of the kernel.
+     * @return The second derivative correlation of the squared exponential kernel wrt `l`.
+     */
+    double dd_se_kernel_corr(const double &d, const double &l);
+
+    
+    /**
+     * Calculates the Matérn 1/2 kernel value between two vectors.
+     *
+     * @param x The first vector.
+     * @param y The second vector.
+     * @param s The scaling parameter.
+     * @param l The length scale parameter.
+     * @return The Matérn 1/2 kernel value between x and y.
+     */
     double matern_12_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);
+
+
+    /**
+     * Calculates the Matérn 3/2 kernel value between two vectors.
+     *
+     * @param x The first vector.
+     * @param y The second vector.
+     * @param s The scaling parameter.
+     * @param l The length scale parameter.
+     * @return The Matérn 3/2 kernel value between x and y.
+     */
     double matern_32_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);
+
+
+    /**
+     * Calculates the Matérn 5/2 kernel value between two vectors.
+     *
+     * @param x The first vector.
+     * @param y The second vector.
+     * @param s The kernel scale parameter.
+     * @param l The kernel length scale parameter.
+     * @return The Matérn 5/2 kernel value between x and y.
+     */
     double matern_52_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);
+
+
+    /**
+     * Calculates the Matérn 1/2 correlation value for a given distance and length scale.
+     *
+     * @param d The distance between two points.
+     * @param l The length scale parameter.
+     * @return The Matérn 1/2 correlation value.
+     */
+    double matern_12_corr(const double &d, const double &l);
+
+
+    /**
+     * Calculates the Matérn 3/2 correlation value for a given distance and length scale.
+     *
+     * @param d The distance between two points.
+     * @param l The length scale parameter.
+     * @return The Matérn 3/2 correlation value.
+     */
+    double matern_32_corr(const double &d, const double &l);
+
+
+    /**
+     * Calculates the Matérn 5/2 correlation value for a given distance and length scale.
+     *
+     * @param d The distance between two points.
+     * @param l The length scale parameter.
+     * @return The Matérn 5/2 correlation value.
+     */
+    double matern_52_corr(const double &d, const double &l);
 }
 
 #endif

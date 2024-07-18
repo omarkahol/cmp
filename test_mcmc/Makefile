@@ -1,5 +1,5 @@
 # define the Cpp compiler to use
-CXX = g++-13
+CXX = g++-14
 
 # define any compile-time flags
 CXXFLAGS	:= -std=c++17 -Wl,-ld_classic -O3 -g

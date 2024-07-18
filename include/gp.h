@@ -5,7 +5,6 @@
 
 namespace cmp {
 
-
     /**
      * @brief This class implements a Gaussian process, providing algorithms for training and prediction.
      * 
@@ -23,7 +22,7 @@ namespace cmp {
             vector_t m_lb_par;
             vector_t m_ub_par;
 
-
+            std::function<double(vector_t const &, vector_t const &, int i)> m_mean_gradient;                             ///> Function that returns the i-th component of the mean gradient
             std::function<double(vector_t const &, vector_t const &, vector_t const &, int i)> m_kernel_gradient;         ///> Function that returns the i-th component of the kernel gradient
             std::function<double(vector_t const &, vector_t const &, vector_t const &, int i, int j)> m_kernel_hessian;   ///> Function that returns the ij-th component of the kernel hessian
             std::function<double(vector_t const &, int i)> m_logprior_gradient;                                           ///> Function that returns the i-th component of the log-prior gradient
@@ -108,17 +107,37 @@ namespace cmp {
                 return m_logprior(par);
             }
 
-            /**
-            Optimization of the gp-parameters (uses a gradient free method) by MAP optimization.
+            double logprior_gradient(vector_t const &par, const int &i) const{
+                return m_logprior_gradient(par,i);
+            }
+
+            double logprior_hessian(vector_t const &par, const int &i, const int&j) const{
+                return m_logprior_hessian(par,i,j);
+            }
+
             
-            @param par the current value of the parameters
-            @param x0 guess for the hyperparameters
-            @param ftol_rel tolerance
+            /**
+             * @brief Optimize the parameters of the vector function.
+             *
+             * This function optimizes the parameters of the vector function using the specified algorithm.
+             *
+             * @param x0 The initial guess for the parameters.
+             * @param ftol_rel The relative tolerance for convergence.
+             * @param alg The optimization algorithm to use (default is nlopt::LN_SBPLX).
+             * @return The optimized parameters.
+             */
+            vector_t par_opt(vector_t x0, double ftol_rel, nlopt::algorithm alg = nlopt::LN_SBPLX) const;
 
-            @return The MAP value of the gp-parameters.
-            */
-            vector_t par_opt(vector_t x0, double ftol_rel) const;
-
+            /**
+             * \brief Optimize the parameters of the model using leave-one-out cross-validation.
+             *
+             * This function optimizes the parameters of the model using leave-one-out cross-validation.
+             * It takes an initial guess `x0` for the parameters and a relative tolerance `ftol_rel` for convergence.
+             *
+             * \param x0 The initial guess for the parameters.
+             * \param ftol_rel The relative tolerance for convergence.
+             * \return The optimized parameters.
+             */
             vector_t par_opt_loo(vector_t x0, double ftol_rel) const;
 
             /**
@@ -171,6 +190,19 @@ namespace cmp {
             vector_t draw_sample(const std::vector<vector_t> &x_pts, vector_t const &par, std::default_random_engine &rng) const;
 
 
+            
+            /**
+             * @brief Sets the mean gradient function.
+             *
+             * This function sets the mean gradient function to be used in the Gaussian Process.
+             * The mean gradient function is a user-defined function that calculates the mean gradient
+             * for a given input vector, target vector, and index.
+             *
+             * @param mean_gradient The mean gradient function to be set.
+             */
+            void set_mean_gradient(std::function<double(vector_t const &, vector_t const &, int i)> mean_gradient) { m_mean_gradient = mean_gradient; }
+
+
             /**
             Set the derivative of the kernel with respect to the hyperparameters.
             This function is necessary to use gradient based-optimization methods and the CMP method.
@@ -217,10 +249,35 @@ namespace cmp {
 
             matrix_t reduced_covariance_matrix(const std::vector<vector_t> x_pts, const vector_t & par);
 
+            double loglikelihood_gradient(const vector_t &res, const Eigen::LDLT<matrix_t> &ldlt, const vector_t &par, const int &n) const;
+
             vector_t get_lb_par(){return m_lb_par;}
             vector_t get_ub_par(){return m_ub_par;}
 
+            /**
+             * @brief Evaluates the mean of a set of points.
+             *
+             * This function calculates the mean of a set of points given by `x_pts` using the parameters `par`.
+             *
+             * @param x_pts The vector of points to calculate the mean for.
+             * @param par The parameters used for the calculation.
+             * @return The mean of the points.
+             */
             vector_t evaluate_mean(const std::vector<vector_t> &x_pts, const vector_t &par) const;
+
+            
+            /**
+             * @brief Evaluates the mean gradient of the function at a given point.
+             *
+             * This function calculates the mean gradient of the function at a specific point
+             * using the provided input points and parameters.
+             *
+             * @param x_pts The input points used for evaluation.
+             * @param par The parameters used for evaluation.
+             * @param i The component of teh gradient.
+             * @return The mean gradient of the function at the specified point.
+             */
+            vector_t evaluate_mean_gradient(const std::vector<vector_t> &x_pts, const vector_t &par, int i) const;
 
             double kernel(const vector_t &x, const vector_t &y, const vector_t par){return m_kernel(x,y,par);}
             double kernel_gradient(const vector_t &x, const vector_t &y, const vector_t par, const int &i){return m_kernel_gradient(x,y,par,i);}
@@ -247,6 +304,8 @@ namespace cmp {
     @note Must be used with a non gradient-based algorithm
     */
     double opt_fun_gp(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
+
+    double opt_fun_gp_grad(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
     
     double opt_fun_gp_loo(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
 }

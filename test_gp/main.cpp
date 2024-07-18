@@ -29,14 +29,32 @@ int main() {
         return squared_kernel(x,y,exp(hpar(1)),exp(hpar(2)))+white_noise_kernel(x,y,1e-5);
     };
 
+    auto kernel_grad = [](vector_t x, vector_t y, vector_t hpar, int i){
+        return squared_kernel_grad(x,y,exp(hpar(1)),exp(hpar(2)),i-1);
+    };
+
     // Define GP-mean
     auto mean = [](const vector_t &x, const vector_t &hpar){
         return hpar(0);
     };
 
+    auto mean_grad = [](const vector_t &x, const vector_t &hpar, int i){
+        return i==0 ? 1.0 : 0.0;
+    };
+
     // Define log-prior 
     auto logprior = [](vector_t hpar){
-        return -2*hpar(1)+log_inv_gamma_pdf(exp(hpar(2)),1.5,0.25);
+        return -2*hpar(1)+log_normal_pdf(hpar(2),0,1)+log_normal_pdf(hpar(0),0,1);
+    };
+
+    auto logprior_grad = [](vector_t hpar, int i){
+        if (i==0) {
+            return d_log_normal_pdf(hpar(0),0,1);
+        } else if (i==1) {
+            return -2.0;
+        } else {
+            return d_log_normal_pdf(hpar(2),0,1);
+        }
     };
 
     gp my_gp;
@@ -46,10 +64,14 @@ int main() {
     my_gp.set_logprior(logprior);
     my_gp.set_obs(v_to_vvxd(x_obs),y_obs);
 
+    my_gp.set_mean_gradient(mean_grad);
+    my_gp.set_kernel_gradient(kernel_grad);
+    my_gp.set_logprior_gradient(logprior_grad);
+
     vector_t par_guess(3);
     par_guess << 1.0,-2,-1;
 
-    vector_t par_opt = my_gp.par_opt(par_guess,1E-5);
+    vector_t par_opt = my_gp.par_opt(par_guess,1E-5,nlopt::LD_LBFGS);
     std::cout << par_opt << std::endl;
     auto cov = my_gp.covariance(par_opt);
     auto res = my_gp.residual(par_opt);

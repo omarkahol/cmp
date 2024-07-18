@@ -14,7 +14,7 @@ namespace cmp {
         protected:
 
             std::default_random_engine m_rng;    // Random number generator
-            matrix_t m_lt;                       // Lower triangular decomposition of the proposal covariance
+            Eigen::LLT<matrix_t> m_lt;                       // Lower triangular decomposition of the proposal covariance
             
             vector_t m_par;                      //  Current parameter value
             double m_score{0.0};                 //  Current value of the score
@@ -23,7 +23,6 @@ namespace cmp {
 
             size_t m_steps{0};                   // Steps done
             size_t m_accepts{0};                 // Accepted candidates
-            size_t m_updates{0};                 // Number of times the mean has been updated
 
             vector_t m_mean;                     // Sample-mean vector
             matrix_t m_cov;                      // Sample-covariance matrix
@@ -70,14 +69,7 @@ namespace cmp {
              * 
              * @param get_score The score function
              */
-            void step(const score_t &get_score);
-
-            /**
-             * @brief Perform a single MCMC step and update the mean and covariance
-             * 
-             * @param get_score The score function
-             */
-            void step_update(const score_t &get_score);
+            void step(const score_t &get_score, bool DRAM_STEP = false, double gamma = 0.2);
 
             /**
              * @brief Accept or reject a candidate
@@ -99,7 +91,7 @@ namespace cmp {
              * \f$ C_{\text{prop}} = \frac{2.38^2}{d} C_{\text{curr}} \f$ \n 
              * The current covariance matrix is stored and updated automatically at every step.
             */
-            void adapt_cov();
+            void adapt_cov(double epsilon = 1e-5);
 
             /**
              * Reset the value of the mean and of the covariance matrix.
@@ -140,9 +132,14 @@ namespace cmp {
             }
 
             /**
-             * Evaluate the current mean vector and covariance matrix of the samples.
+             * Return the mean of the data
             */
-            std::pair<vector_t, matrix_t> get_mean_cov() const;
+            vector_t get_mean() const;
+
+            /**
+             * Return the covariance of the data
+            */
+            matrix_t get_cov() const;
 
             /**
              * Log the total number of steps, acceptance ratio, proposal covariance and data mean and covariance.

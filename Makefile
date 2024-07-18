@@ -1,89 +1,54 @@
-# define the Cpp compiler to use
-CXX = g++-13
+# Define the C++ compiler to use
+CXX = g++-14
 
-# define any compile-time flags  
-CXXFLAGS	:= -std=c++17 -Wl,-ld_classic -O3 -g
+# Define any compile-time flags
+CXXFLAGS := -std=c++17 -Wl,-ld_classic -O3 -g
 
-# define external includes
-EIGEN    = $(HOME)/opt/eigen-3.4.0/
+# Define external includes
+EIGEN = $(HOME)/opt/eigen-3.4.0/
 NLOPTINC = $(HOME)/opt/nlopt-2.7.1/include
-SPDLOGINC   = $(HOME)/opt/spdlog/include
+SPDLOGINC = $(HOME)/opt/spdlog/include
 SELF = ./include
 USR = /opt/homebrew/include
+PYBIND = $(HOME)/venvs/scicomp/lib/python3.12/site-packages/pybind11/include
+PYTHON = /opt/homebrew/Cellar/python@3.12/3.12.4/Frameworks/Python.framework/Versions/Current/include/python3.12
 
-# define external libs
+# Define external libs
 NLOPTLIB = $(HOME)/opt/nlopt-2.7.1/lib
 
-# Extrenals include files and folders
-INCLUDES = -I$(EIGEN) -I$(NLOPTINC) -I$(SPDLOGINC) -I$(SELF) -I$(USR)
+# External include files and folders
+INCLUDES = -I$(EIGEN) -I$(NLOPTINC) -I$(SPDLOGINC) -I$(SELF) -I$(USR) 
 
-#include specific libraries
+# Include specific libraries
 LIBS = -L$(NLOPTLIB)
 
-# define library flags
+# Define library flags
 LFLAGS = -lnlopt
 
-# define the objects
-OBJ = output/io.o output/utils.o output/pdf.o output/kernel.o output/optimization.o output/mcmc.o output/grid.o output/density.o output/gp.o output/finite_diff.o output/wasserstein.o
+# Define the objects
+OBJ = $(patsubst src/%.cpp,output/%.o,$(wildcard src/*.cpp))
 
-all: io utils pdf kernel optimization mcmc grid density gp finite_diff staticlib docs
+all: $(OBJ) staticlib dynamiclib docs
 	@echo Executing 'all' complete
 	@echo Documentation up to date
 
-io: src/io.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/io.cpp -o output/io.o
-	@echo Compiled io
-
-utils: src/utils.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/utils.cpp -o output/utils.o
-	@echo Compiled utils
-
-pdf: src/pdf.cpp 
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/pdf.cpp -o output/pdf.o
-	@echo Compiled pdf
-
-finite_diff: src/finite_diff.cpp 
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/finite_diff.cpp -o output/finite_diff.o
-	@echo Compiled finite_diff
-
-kernel: src/kernel.cpp 
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/kernel.cpp -o output/kernel.o
-	@echo Compiled kernel
-
-optimization: src/optimization.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/optimization.cpp -o output/optimization.o
-	@echo Compiled optimization
-
-mcmc: src/mcmc.cpp 
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/mcmc.cpp -o output/mcmc.o
-	@echo Compiled mcmc
-
-grid: src/grid.cpp 
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/grid.cpp -o output/grid.o
-	@echo Compiled grid
-
-density: src/density.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/density.cpp -o output/density.o
-	@echo Compiled density
-
-gp: src/gp.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/gp.cpp -o output/gp.o
-	@echo Compiled gp
-
-wasserstein: src/wasserstein.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/wasserstein.cpp -o output/wasserstein.o
-	@echo Compiled wasserstein
+output/%.o: src/%.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+	@echo Compiled $<
 
 staticlib: $(OBJ)
 	ar cr lib/libcmp.a $(OBJ)
-	@echo Created static library
+	@echo Created static library 
+	@echo  
 
 dynamiclib: $(OBJ)
 	$(CXX) -Wl,-ld_classic -dynamiclib -fPIC -o lib/libcmp.dylib $(OBJ) $(LFLAGS) $(LIBS)
+	@echo Created dynamic library 
+	@echo 
 
 docs: Doxyfile
 	doxygen Doxyfile
-	
+
 clean:
-	rm -rf output/*.o 
+	rm -rf output/*.o
 	rm -rf lib/*.a

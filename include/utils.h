@@ -55,6 +55,8 @@ namespace cmp {
      */
     void scale(vector_t &v, const std::pair<vector_t, Eigen::LLT<matrix_t>> &scale);
 
+    void scale(double &v, const std::pair<double, double> &scale);
+
     /**
      * @brief Un-normalize a vector
      * 

@@ -2,6 +2,8 @@
 #include "gp.h"
 #include "optimization.h"
 #include "io.h"
+#include "pdf.h"
+#include "finite_diff.h"
 
 using namespace cmp;
 
@@ -139,20 +141,31 @@ double cmp::opt_fun_KOH(const std::vector<double> &x, std::vector<double> &grad,
 double cmp::opt_fun_gp(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
     
     // The data type contains the gp class
-    auto my_gp = (const gp*) data_bit;
+    auto my_gp = static_cast<const gp*>(data_bit);
     
     // Convert the hyperparameters from std::vector to vector_t
     vector_t hpar = v_to_vxd(x);
 
-    //Compute the covariance matrix
+    // Compute the covariance matrix and the residuals
     matrix_t k_mat = my_gp->covariance(hpar);
+    vector_t res = my_gp->residual(hpar);
 
-    //compute the Cholesky decomposition and retrieve the function
-    Eigen::LDLT<matrix_t> ldlt(k_mat);
-    double ll = my_gp->loglikelihood(my_gp->residual(hpar), ldlt);
+    // Compuyte the Cholesky decomposition
+    Eigen::LDLT<matrix_t> ldlt(k_mat); 
+
+    // Evaluate the log-likelihood and the log-prior
+    double ll = my_gp->loglikelihood(res, ldlt);
     double lp = my_gp->logprior(hpar);
-    
-    return ll + lp;
+
+    // Update the gradient (note that the gradient is optional)
+    if (grad.size() != 0) {
+        
+        // Update each component of the gradient
+        for (int n = 0; n < hpar.size(); n++) {
+            grad[n] = my_gp->logprior_gradient(hpar,n) + my_gp->loglikelihood_gradient(res,ldlt,hpar,n);
+        }
+    }
+    return lp+ll;
 }
 
 double cmp::opt_fun_gp_loo(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
@@ -185,7 +198,5 @@ double cmp::opt_fun_gp_loo(const std::vector<double> &x, std::vector<double> &gr
     vector_t loo_ll = vector_t::Zero(res.size());
     loo_ll.array() = - 0.5 * loo_var.array().log() - 0.5 * loo_res.array().square()/loo_var.array();
 
-    return loo_ll.sum() + my_gp->logprior(hpar); 
-
-
+    return loo_ll.sum() + my_gp->logprior(hpar);
 }

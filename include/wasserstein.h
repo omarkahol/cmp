@@ -16,16 +16,6 @@ namespace cmp {
     double wasserstein_1d(std::vector<double> &samples_1, std::vector<double> &samples_2, const double &p);
 
     /**
-     * @brief Generate a uniform sample from the surface of a hypersphere (maybe move to utils.h)
-     * 
-     * @param dim The dimension of the hyper-sphere (>=1)
-     * @param dist_n A normal distribution
-     * @param rng A prng
-     * @return vector_t, The sample from the hypersphere.
-     */
-    vector_t hypersphere_sample(int dim, std::normal_distribution<double> &dist_n, std::default_random_engine &rng);
-
-    /**
      * @brief Computes the sliced-Wasserstein distance of order p between some n-dimensional points. 
      * 
      * @param samples_1 The first set of samples.
@@ -36,7 +26,7 @@ namespace cmp {
      * @param rng A prng 
      * @return SW_p^p, the p-th power of the sliced Wasserstein distance between the samples
      */
-    double sliced_wasserstein(const std::vector<vector_t> &samples_1, const std::vector<vector_t> &samples_2, const double &p, const int &slices, std::normal_distribution<double> &dist_n, std::default_random_engine &rng);
+    double sliced_wasserstein(const std::vector<Eigen::VectorXd> &samples_1, const std::vector<Eigen::VectorXd> &samples_2, const double &p, const int &slices, std::normal_distribution<double> &dist_n, std::default_random_engine &rng);
 
 }
 

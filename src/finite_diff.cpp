@@ -54,7 +54,7 @@ namespace cmp {
     }
 
 
-    double fd_gradient(const vector_t &x_0, const std::function<double(const vector_t&)> fun, const int &i, const accuracy accuracy, const double h) {
+    double fd_gradient(const Eigen::VectorXd &x_0, const std::function<double(const Eigen::VectorXd&)> fun, const int &i, const accuracy accuracy, const double h) {
         
         // Check on the components
         if (i<0 || i>x_0.size()-1) {
@@ -70,7 +70,7 @@ namespace cmp {
         const int n_steps = external_coeffs.size();
 
 
-        vector_t x_step = x_0;
+        Eigen::VectorXd x_step = x_0;
         double grad = 0.0;
 
         for(int l = 0; l<n_steps; l++) {
@@ -83,7 +83,7 @@ namespace cmp {
     }
 
 
-    double fd_hessian(const vector_t &x_0, const std::function<double(const vector_t&)> fun, const int &i, const int &j, const accuracy accuracy, const double h) {
+    double fd_hessian(const Eigen::VectorXd &x_0, const std::function<double(const Eigen::VectorXd&)> fun, const int &i, const int &j, const accuracy accuracy, const double h) {
         
         // Check on the components
         if (i<0 || i>x_0.size()-1) {
@@ -101,7 +101,7 @@ namespace cmp {
         const int n_steps = external_coeffs.size();
 
 
-        vector_t x_step = x_0;
+        Eigen::VectorXd x_step = x_0;
         double hess = 0.0;
 
         for(int l = 0; l<n_steps; l++) {

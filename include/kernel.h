@@ -20,7 +20,7 @@ namespace cmp {
      * 
      * @return the kernel evaluation \f$ \sigma^2 \exp(-\frac{1}{2}(\frac{x-y}{l})^2)\f$
     */
-    double squared_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);
+    double squared_kernel(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l);
 
     /**
      * @brief White noise kernel.
@@ -31,7 +31,7 @@ namespace cmp {
      * 
      * @return the kernel evaluation \f$ \sigma^2 \delta_{xy}\f$
     */
-    double white_noise_kernel(const vector_t &x, const vector_t &y, const double &s);
+    double white_noise_kernel(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s);
 
    /**
      * @brief squared exponential kernel gradient.
@@ -44,7 +44,7 @@ namespace cmp {
      * 
      * @return the kernel derivative evaluated at x and y
     */
-    double squared_kernel_grad(const vector_t &x, const vector_t &y, const double &s, const double &l, const int &i);
+    double squared_kernel_grad(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l, const int &i);
 
 
     /**
@@ -57,7 +57,7 @@ namespace cmp {
      * 
      * @return the kernel derivative evaluated at x and y
     */
-   double white_noise_kernel_grad(const vector_t &x, const vector_t &y, const double &s, const int &i);
+   double white_noise_kernel_grad(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const int &i);
 
    /**
      * @brief squared exponential kernel hessian.
@@ -71,7 +71,7 @@ namespace cmp {
      * 
      * @return the kernel hessian evaluated at x and y
     */
-    double squared_kernel_hess(const vector_t &x, const vector_t &y, const double &s, const double &l, const int &i, const int &j);
+    double squared_kernel_hess(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l, const int &i, const int &j);
 
 
    /**
@@ -86,7 +86,7 @@ namespace cmp {
     *
     * @return the kernel hessian evaluated at x and y
     */
-    double white_noise_kernel_hess(const vector_t &x, const vector_t &y, const double &s, const int &i, const int &j);
+    double white_noise_kernel_hess(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const int &i, const int &j);
 
 
     /**
@@ -101,7 +101,7 @@ namespace cmp {
      * 
      * @return the rq kernel evaluation 
      */
-    double rational_quadratic_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l, const double &a);
+    double rational_quadratic_kernel(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l, const double &a);
 
     /**
      * @brief Periodic kernel
@@ -115,7 +115,7 @@ namespace cmp {
      * 
      * @return the periodic kernel evaluation 
      */
-    double periodic_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l, const double &p);
+    double periodic_kernel(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l, const double &p);
 
     /**
      * @brief Locally periodic kernel
@@ -129,7 +129,7 @@ namespace cmp {
      * 
      * @return the locally periodic kernel evaluation 
      */
-    double locally_periodic_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l, const double &p);
+    double locally_periodic_kernel(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l, const double &p);
 
     
     /**
@@ -181,7 +181,7 @@ namespace cmp {
      * @param l The length scale parameter.
      * @return The Matérn 1/2 kernel value between x and y.
      */
-    double matern_12_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);
+    double matern_12_kernel(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l);
 
 
     /**
@@ -193,7 +193,7 @@ namespace cmp {
      * @param l The length scale parameter.
      * @return The Matérn 3/2 kernel value between x and y.
      */
-    double matern_32_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);
+    double matern_32_kernel(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l);
 
 
     /**
@@ -205,7 +205,7 @@ namespace cmp {
      * @param l The kernel length scale parameter.
      * @return The Matérn 5/2 kernel value between x and y.
      */
-    double matern_52_kernel(const vector_t &x, const vector_t &y, const double &s, const double &l);
+    double matern_52_kernel(const Eigen::VectorXd &x, const Eigen::VectorXd &y, const double &s, const double &l);
 
 
     /**

@@ -18,14 +18,11 @@
 #include "spdlog/fmt/ostr.h"
 
 namespace cmp {
-    typedef Eigen::VectorXd vector_t;
-    typedef Eigen::MatrixXd matrix_t;
-
-    typedef std::function<double(vector_t const &, vector_t const &)> model_t;
-    typedef std::function<double(vector_t const &, vector_t const &, vector_t const &)> kernel_t;
-    typedef std::function<double(vector_t const &)> prior_t;
-
-    typedef std::function<double(const vector_t &par)> score_t;
+    
+    typedef std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &)> model_t;
+    typedef std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, Eigen::VectorXd const &)> kernel_t;
+    typedef std::function<double(Eigen::VectorXd const &)> prior_t;
+    typedef std::function<double(Eigen::VectorXd const &)> score_t;
 }
 
 #endif

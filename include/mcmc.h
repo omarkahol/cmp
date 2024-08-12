@@ -6,17 +6,15 @@
 #define MCMC_H
 
 #include "cmp_defines.h"
+#include <distribution.h>
 
 namespace cmp {
 
     class mcmc {
 
         protected:
-
-            std::default_random_engine m_rng;    // Random number generator
-            Eigen::LLT<matrix_t> m_lt;                       // Lower triangular decomposition of the proposal covariance
             
-            vector_t m_par;                      //  Current parameter value
+            Eigen::VectorXd m_par;                      //  Current parameter value
             double m_score{0.0};                 //  Current value of the score
             
             size_t m_dim;                        // Dimension of the chain
@@ -24,13 +22,15 @@ namespace cmp {
             size_t m_steps{0};                   // Steps done
             size_t m_accepts{0};                 // Accepted candidates
 
-            vector_t m_mean;                     // Sample-mean vector
-            matrix_t m_cov;                      // Sample-covariance matrix
+            Eigen::VectorXd m_mean;                     // Sample-mean vector
+            Eigen::MatrixXd m_cov;                      // Sample-covariance matrix
         
         
         protected:
-            std::normal_distribution<double> m_dist_n{0,1};
+            // Proposal distribution
+            cmp::multivariate_distribution *m_proposal;
             std::uniform_real_distribution<double> m_dist_u{0,1};
+            std::default_random_engine m_rng;
 
         //constructors
         public:
@@ -41,7 +41,7 @@ namespace cmp {
              * @param dim the size of the chain (number of parameters)
              * @param rng the random number generator
              */
-            mcmc(size_t dim, std::default_random_engine rng);
+            mcmc(size_t dim);
 
             mcmc() = default;
         
@@ -50,35 +50,36 @@ namespace cmp {
 
             /**
              * @brief Initialize the chain
-             * 
-             * @param cov_prop The proposal covariance matrix
+
              * @param par The proposal value of the parameters
              * @param score The initial score (default is zero)
              */
-            void seed(matrix_t cov_prop, vector_t par, double score = 0.0);
-            
+            void seed(Eigen::VectorXd par, double score = 0.0);
+
+            void init(cmp::multivariate_distribution *proposal);
+
             /**
-             * @brief Propose a candidate using a normal distribution using as mean the previous mean and as covariance the proposal covariance
+             * @brief Increase the number of steps
              * 
-             * @return vector_t, The value of the proposed candidate
              */
-            vector_t propose();
+            void increase_steps() {
+                m_steps++;
+            }
 
             /**
              * @brief Perform a single MCMC step (without updating the mean and cov)
              * 
              * @param get_score The score function
              */
-            void step(const score_t &get_score, bool DRAM_STEP = false, double gamma = 0.2);
+            void step(const score_t &get_score, bool DR_STEP = false, double gamma = 0.2);
 
             /**
              * @brief Accept or reject a candidate
              * 
              * @param par The candidate
              * @param score The score of the candidate
-             * @return true if the candidate is accepted
              */
-            bool accept(const vector_t &par, double score);
+            bool accept(const Eigen::VectorXd &par, double score);
 
             /**
              * @brief Updates the value of the mean and covariance matrix.
@@ -87,11 +88,12 @@ namespace cmp {
             void update();
 
             /**
-             * Perform and adaptation of the current covariance matrix using the data covariance matrix. \n 
-             * \f$ C_{\text{prop}} = \frac{2.38^2}{d} C_{\text{curr}} \f$ \n 
-             * The current covariance matrix is stored and updated automatically at every step.
-            */
-            void adapt_cov(double epsilon = 1e-5);
+             * @brief Get a covariance matrix adapted to the samples
+             * @note The covariance matrix is adapted to the samples by computing their covariance and multiplying it by a factor of 2.38^2/d
+             * 
+             * @return Eigen::LLT<Eigen::MatrixXd> 
+             */
+            Eigen::LDLT<Eigen::MatrixXd> get_adapted_cov();
 
             /**
              * Reset the value of the mean and of the covariance matrix.
@@ -103,7 +105,7 @@ namespace cmp {
             /**
              * Return the current parameter
             */
-            vector_t get_par() const;
+            Eigen::VectorXd get_par() const;
 
             /**
              * @brief Get the current score
@@ -127,22 +129,20 @@ namespace cmp {
             /**
              * Return the number of steps performed
             */
-            double get_acceptance_ratio() const {
-                return m_accepts/static_cast<double>(m_steps);
-            }
+            double get_acceptance_ratio() const;
 
             /**
              * Return the mean of the data
             */
-            vector_t get_mean() const;
+            Eigen::VectorXd get_mean() const;
 
             /**
              * Return the covariance of the data
             */
-            matrix_t get_cov() const;
+            Eigen::MatrixXd get_cov() const;
 
             /**
-             * Log the total number of steps, acceptance ratio, proposal covariance and data mean and covariance.
+             * Log the total number of steps, acceptance ratio, data mean and covariance.
             */
             void info() const;
             
@@ -156,21 +156,21 @@ namespace cmp {
      * @return the lagged self correlation \f$ \frac{1}{n} \sum_{i=1}^{n-k} \theta_i \theta_{i+k}\f$
      * 
     */
-    vector_t self_correlation_lag(const std::vector<vector_t> &samples, int lag);
+    Eigen::VectorXd self_correlation_lag(const std::vector<Eigen::VectorXd> &samples, int lag);
 
     /**
      * @brief computes the mean vector and covariance matrix of some MCMC samples
      * @param samples samples 
      * @return a pair containing the mean and the covariance of the samples
     */
-    std::pair<vector_t, matrix_t> mean_cov(const std::vector<vector_t> & samples);
+    std::pair<Eigen::VectorXd, Eigen::MatrixXd> mean_cov(const std::vector<Eigen::VectorXd> & samples);
 
     /**
      * @brief computes the correlation length and the effective sample size of some samples
      * @param samples the samples from the mcmc sampling
      * @return a pair containing the correlations lengths and the effective sample size
     */
-    std::pair<vector_t, double> single_chain_diagnosis(std::vector<vector_t> samples);
+    std::pair<Eigen::VectorXd, double> single_chain_diagnosis(std::vector<Eigen::VectorXd> samples);
 
 
     /**

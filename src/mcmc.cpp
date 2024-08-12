@@ -3,96 +3,75 @@
 
 using namespace cmp;
 
-mcmc::mcmc(size_t dim, std::default_random_engine rng): m_rng(rng), m_dim(dim) {
-
-    // Initialize proposed steps
-    m_lt = matrix_t::Identity(dim,dim).llt();
+mcmc::mcmc(size_t dim): m_dim(dim) {
+    
+    // Initialize the parameter vector
     m_par = vector_t::Zero(dim);
+    m_score = 0.0;
 
     // Initialize mean and variance
     m_mean = vector_t::Zero(dim);
     m_cov = matrix_t::Zero(dim,dim);
 }
 
-void mcmc::seed(matrix_t cov_prop, vector_t par, double score) {
-
-    // Extract the covariance matrix
-    m_lt = cov_prop.llt();
+void mcmc::seed(vector_t par, double score) {
     m_par = par;
-    m_score=score;
+    m_score = score;
 }
 
-vector_t mcmc::propose() {
-    
-    // Sample a standard normal distribution 
-    vector_t random_variate(m_dim);
-    for (size_t i=0; i<m_dim; i++) {
-        random_variate(i) = m_dist_n(m_rng);
-    }
-
-    // Return the proposed parameter
-    return m_par + m_lt.matrixL()*random_variate;
+void cmp::mcmc::init(cmp::multivariate_distribution *proposal) {
+    m_proposal = proposal;
 }
 
 bool mcmc::accept(const vector_t &par, double score) {
 
-    // Increase the number of steps
-    m_steps++;
-
-    // Decide whether to accept the sample
-    bool accept = score -  m_score > log(m_dist_u(m_rng));
-
-    // Update chain parameters
-    if (accept) {
+    // Increase the number of accepts
+    if ((score-m_score) > log(m_dist_u(m_rng))) {
         m_par = par;
         m_score = score;
         m_accepts++;
+        return true;
     }
-
-    return accept;
+    return false;
 }
 
-void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma) {
-    
+void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
+{
+    // Increase the number of steps
+    increase_steps();
+
     // Propose a candidate
-    vector_t cand_prop = propose();
+    vector_t cand_prop = m_proposal->jump(m_par, 1.0);
 
     // Compute the score
     double score_prop = get_score(cand_prop);
 
-    // Decide whether to accept the candidate 
-    bool accepted = accept(cand_prop,score_prop);
-
+    // Decide whether to accept the candidate
+    bool accepted = accept(cand_prop, score_prop);
 
     // Perform a DRAM step
-    if (!accepted && DRAM_STEP) {
+    if ((!accepted) && DRAM_STEP) {
 
         // Generate a new porposal from a narrower distribution
-        vector_t random_variate(m_dim);
-        for (size_t i=0; i<m_dim; i++) {
-            random_variate(i) = m_dist_n(m_rng);
-        }
-        vector_t cand_prop_2 = m_par + (m_lt.matrixL()*random_variate)*gamma;
+        vector_t cand_prop_2 = m_proposal->jump(m_par, gamma);
 
         // Compute the score
         double score_prop_2 = get_score(cand_prop_2);
 
         // Compute acceptance probabilities
-        double alfa_qs_qsm1 = std::min(1.0,score_prop - m_score);
-        double alfa_qs_qs2 = std::min(1.0,score_prop - score_prop_2);
+        double alfa_qs_qsm1 = std::min(1.0,std::exp(score_prop - m_score));
+        double alfa_qs_qs2 = std::min(1.0,std::exp(score_prop - score_prop_2));
 
         // Compute difference between the two jumping distributions
-        double j_qs_qs2 = m_lt.solve(cand_prop - cand_prop_2).squaredNorm();
-        double j_qs_qsm1 = m_lt.solve(cand_prop - m_par).squaredNorm();
+        double j_qs_qs2 = m_proposal->log_jump_prob(cand_prop-cand_prop_2, 1.0);
+        double j_qs_qsm1 = m_proposal->log_jump_prob(cand_prop-m_par, 1.0);
 
-        double log_j_diff = 0.5*(j_qs_qsm1 - j_qs_qs2);
+        double log_j_diff = j_qs_qs2 - j_qs_qsm1;
         double log_score_diff = score_prop_2 - m_score;
-        double log_alfa_diff = log(1-alfa_qs_qs2)-log(1-alfa_qs_qsm1);
+        double log_alfa_diff = std::log(1.0-alfa_qs_qs2) - std::log(1-alfa_qs_qsm1);
 
-        // Generate a random number
-        double u = m_dist_u(m_rng);
-
-        if (log(u) < log_j_diff + log_score_diff + log_alfa_diff) {
+        // Evaluate the acceptance
+        if ((log_alfa_diff + log_j_diff + log_score_diff)>m_dist_u(m_rng)) {
             m_par = cand_prop_2;
             m_score = score_prop_2;
             m_accepts++;
@@ -103,28 +82,20 @@ void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma) {
     update();
 }
 
-void mcmc::update() {
-    
+void mcmc::update()
+{
     // Update estimates of mean and covariance
-    m_mean = (double(m_steps)*m_mean + m_par)/double(m_steps+1);
-    m_cov = (double(m_steps)*m_cov + m_par*m_par.transpose())/double(m_steps+1);
-
-    // Note that to get the true covariance we still need to subtract the mean squared
+    m_mean += m_par;
+    m_cov += m_par*m_par.transpose();
 }
 
-void mcmc::adapt_cov(double epsilon) {
+Eigen::LDLT<Eigen::MatrixXd> mcmc::get_adapted_cov() {
+    return ((pow(2.38,2)/static_cast<double>(m_dim)) * get_cov()).ldlt();
 
-    // Extract the mean vector and the covariance matrix
-    auto cov = get_cov();
-
-    // Rescale the proposal matrix
-    matrix_t cov_prop = (pow(2.38,2)/static_cast<double>(m_dim)) * cov + epsilon*matrix_t::Identity(m_dim,m_dim);
-    
-    // Compute the cholesky decomposition
-    m_lt = cov_prop.llt();
 }
 
-void mcmc::reset() {
+void mcmc::reset()
+{
 
     // Reset the steps and accepts
     m_steps = 0;
@@ -144,15 +115,21 @@ size_t cmp::mcmc::get_dim() const {
 }
 
 vector_t mcmc::get_mean() const {
-    return m_mean;
+    return m_mean/static_cast<double>(m_steps);
 }
 
 matrix_t mcmc::get_cov() const {
-    return m_cov - m_mean*m_mean.transpose();
+    vector_t mean = get_mean();
+    return m_cov/static_cast<double>(m_steps) - mean*mean.transpose();
 }
 
 size_t cmp::mcmc::get_steps() const {
     return m_steps;
+}
+
+double cmp::mcmc::get_acceptance_ratio() const
+{
+    return m_accepts/static_cast<double>(m_steps);
 }
 
 void mcmc::info() const{
@@ -162,7 +139,6 @@ void mcmc::info() const{
     
     spdlog::info("run {0:d} steps", m_steps);
     spdlog::info("acceptance ratio: {:.3f}", get_acceptance_ratio());
-    spdlog::info("Proposal covariance: \n{}",m_lt.matrixLLT());
     spdlog::info("Data covariance: \n{}",cov);
     spdlog::info("Data mean: \n{}",mean);
     

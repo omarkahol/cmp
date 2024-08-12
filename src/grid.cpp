@@ -3,20 +3,20 @@
 #include <random>
 using namespace cmp;
 
-std::vector<vector_t> cmp::uniform_grid(vector_t const &lb, vector_t const &ub, int n) {
+std::vector<Eigen::VectorXd> cmp::uniform_grid(Eigen::VectorXd const &lb, Eigen::VectorXd const &ub, int n) {
 
     //Get the number of parameters and the number of points of the grid
     int n_par = lb.size();
     int n_points = pow(n, n_par);
 
     //this contains the parameter vector to be added to the grid
-    vector_t par(n_par);
+    Eigen::VectorXd par(n_par);
 
     //Index will be updated to contain numbers from 0 to n-1
     std::vector<int> index(n_par);
 
     // Generate the vector containing the integration points and fill it
-    std::vector<vector_t> grid_points(n_points);
+    std::vector<Eigen::VectorXd> grid_points(n_points);
     for (int i = 0; i < n_points; i++) {
 
         //Generate current indices for the parameters
@@ -69,18 +69,18 @@ std::vector<int> cmp::std_grid_element(int index, const int n_pts, const int dim
     return element;
 };
 
-std::vector<vector_t> cmp::lhs_grid(vector_t const &lb, vector_t const &ub, int n, std::default_random_engine &rng) {
+std::vector<Eigen::VectorXd> cmp::lhs_grid(Eigen::VectorXd const &lb, Eigen::VectorXd const &ub, int n, std::default_random_engine &rng) {
 
     // Initialize the data
     std::uniform_real_distribution<double> u_dist(0, 1);
     size_t dim = lb.size();
 
     // For each dimension, pick a random permutation of [0,... n-1]
-    std::vector<vector_t> perm_1n(dim);
+    std::vector<Eigen::VectorXd> perm_1n(dim);
     for (int i=0; i<dim; i++) {
         
         // Create an array containing [0,1,... n-1]
-        vector_t array(n);
+        Eigen::VectorXd array(n);
         for (size_t i=0; i<n; i++)  {
             array(i) = i;
         }
@@ -91,9 +91,9 @@ std::vector<vector_t> cmp::lhs_grid(vector_t const &lb, vector_t const &ub, int 
     }
     
     // Generate the grid points
-    std::vector<vector_t> grid_points(n);
+    std::vector<Eigen::VectorXd> grid_points(n);
     for (int i = 0; i < n; i++) {
-        grid_points[i] = vector_t::Zero(dim);
+        grid_points[i] = Eigen::VectorXd::Zero(dim);
         for (int j = 0; j < dim; j++) {
             // The first part lb(j) + (ub(j) - lb(j)) * is just a linear transformation that transforms the interval [0,1]
             // in the desired interval. The second generates the LH in [0,1]
@@ -104,14 +104,14 @@ std::vector<vector_t> cmp::lhs_grid(vector_t const &lb, vector_t const &ub, int 
     return grid_points;
 }
 
-vector_t cmp::halton_sequence_1d(int first_el, int length) {
+Eigen::VectorXd cmp::halton_sequence_1d(int first_el, int length) {
 
     // Interval bounds 
     int lb = 0;
     int ub = 1;
 
     // Sequence elements
-    vector_t sequence(length);
+    Eigen::VectorXd sequence(length);
     int x = 0;
     int y = 0;
     for(int i=0; i<length; i++) {
@@ -133,21 +133,21 @@ vector_t cmp::halton_sequence_1d(int first_el, int length) {
     return sequence;
 }
 
-std::vector<vector_t> cmp::qmc_halton_grid(vector_t const &lb, vector_t const &ub, int n) {
+std::vector<Eigen::VectorXd> cmp::qmc_halton_grid(Eigen::VectorXd const &lb, Eigen::VectorXd const &ub, int n) {
     
     // Dimension
     size_t dim = lb.size();
 
     // For each dimension, generate a Halton sequence
-    std::vector<vector_t> halton_sequences(dim);
+    std::vector<Eigen::VectorXd> halton_sequences(dim);
     for (int i=0; i<dim; i++) {
         halton_sequences[i] = halton_sequence_1d(boost::math::prime(i),n);
     }
     
     // Generate the grid points
-    std::vector<vector_t> grid_points(n);
+    std::vector<Eigen::VectorXd> grid_points(n);
     for (int i = 0; i < n; i++) {
-        grid_points[i] = vector_t::Zero(dim);
+        grid_points[i] = Eigen::VectorXd::Zero(dim);
         for (int j = 0; j < dim; j++) {
             // The first part lb(j) + (ub(j) - lb(j)) * is a linear transformation that transforms the interval [0,1]
             // in the desired interval. The second generates the Halton sequence in [0,1]
@@ -158,16 +158,16 @@ std::vector<vector_t> cmp::qmc_halton_grid(vector_t const &lb, vector_t const &u
     return grid_points;
 }
 
-std::vector<vector_t> cmp::mc_uniform_grid(vector_t const &lb, vector_t const &ub, int n, std::default_random_engine &rng) {
+std::vector<Eigen::VectorXd> cmp::mc_uniform_grid(Eigen::VectorXd const &lb, Eigen::VectorXd const &ub, int n, std::default_random_engine &rng) {
     
     // Dimension
     size_t dim = lb.size();
     std::uniform_real_distribution<double> dist_u(0,1);
 
     // Generate the grid points
-    std::vector<vector_t> grid_points(n);
+    std::vector<Eigen::VectorXd> grid_points(n);
     for (int i = 0; i < n; i++) {
-        grid_points[i] = vector_t::Zero(dim);
+        grid_points[i] = Eigen::VectorXd::Zero(dim);
         for (int j = 0; j < dim; j++) {
             // The first part lb(j) + (ub(j) - lb(j)) * is a linear transformation that transforms the interval [0,1]
             // in the desired interval. The second generates the Halton sequence in [0,1]

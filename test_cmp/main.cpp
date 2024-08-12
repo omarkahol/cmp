@@ -2,18 +2,23 @@
 
 #include <cmp_defines.h>
 #include <mcmc.h>
-#include <io.h>
 #include <grid.h>
 #include <density.h>
-#include <pdf.h>
 #include <kernel.h>
 #include <finite_diff.h>
+#include <distribution.h>
+#include <optimization.h>
 
 using namespace cmp;
 
 
 // Model to calibrate
-double model(const vector_t &x, const vector_t &par) {
+double model(const double &x, const vector_t &par) {
+    double V_hat = x-1;
+    return par(0)*tanh(par(1)*V_hat/par(0));
+}
+
+double model_v(const vector_t &x, const vector_t &par) {
     double V_hat = x(0)-1;
     return par(0)*tanh(par(1)*V_hat/par(0));
 }
@@ -24,7 +29,7 @@ double err_kernel(const vector_t & x, const vector_t &y, const vector_t & hpar) 
         double sigma_k = exp(hpar(1));
         double l = exp(hpar(2));
 
-        return white_noise_kernel(x,y,sigma_e) + matern_52_kernel(x,y,sigma_k,l);
+        return white_noise_kernel(x,y,sigma_e) + squared_kernel(x,y,sigma_k,l);
 }
 
 // kernel gradient, i is the component required
@@ -33,14 +38,7 @@ double err_kernel_gradient(const vector_t & x, const vector_t &y, const vector_t
         double sigma_k = exp(hpar(1));
         double l = exp(hpar(2));
 
-        vector_t hpars_0(2);
-        hpars_0 << sigma_k,l;
-
-        auto fun = [&x,&y](const vector_t &par){
-            return matern_52_kernel(x,y,par(0),par(1));
-        };
-
-        return white_noise_kernel_grad(x,y,sigma_e,i)+fd_gradient(hpars_0,fun,i-1);
+        return white_noise_kernel_grad(x,y,sigma_e,i)+squared_kernel_grad(x,y,sigma_k,l,i-1);
 }
 
 // kernel hessian, i and j are the row and colum respectively
@@ -49,31 +47,13 @@ double err_kernel_hessian(const vector_t & x, const vector_t &y, const vector_t 
         double sigma_k = exp(hpar(1));
         double l = exp(hpar(2));
 
-        vector_t hpars_0(2);
-        hpars_0 << sigma_k,l;
-
-        auto fun = [&x,&y](const vector_t &par){
-            return matern_52_kernel(x,y,par(0),par(1));
-        };
-
-        return white_noise_kernel_hess(x,y,sigma_e,i,j)+fd_hessian(hpars_0,fun,i-1,j-1);
-}
-
-// hyperparameter prior
-double logprior_hpar(const vector_t & hpar) {
-        return log_inv_gamma_pdf(exp(hpar(0)),3,0.04)+log_inv_gamma_pdf(exp(hpar(1)),3,0.04)+log_inv_gamma_pdf(exp(hpar(2)),5,1.2);
-}
-
-// prior hessian
-double logprior_hpar_hessian(const vector_t &hpar, const int &i, const int &j) {
-    return dd_log_inv_gamma_pdf(exp(hpar(0)),3,0.04,i,j) + dd_log_inv_gamma_pdf(exp(hpar(0)),3,0.04,i-1,j-1)
-        + dd_log_inv_gamma_pdf(exp(hpar(2)),5,1.2,i-2,j-2);
+        return white_noise_kernel_hess(x,y,sigma_e,i,j)+squared_kernel_hess(x,y,sigma_k,l,i-1,j-1);
 }
 
 int main() {
 
     // Initialize the rng
-    std::default_random_engine rng(1409);
+    std::default_random_engine rng(140998);
 
     //Read the data vector
     std::ifstream file_obs("data.csv");
@@ -95,165 +75,155 @@ int main() {
     vector_t par_0(dim_par);
     par_0 << 0.39, 0.35;
 
-    matrix_t cov_prop(dim_par, dim_par);
-    cov_prop << 0.005, 0, 0, 0.005;
+    matrix_t cov_prop = matrix_t::Identity(dim_par, dim_par)*0.5;
 
     // uniform prior on the parameters
     auto logprior_par = [](const vector_t & par) {
             return 0;
     };
 
-    // hyperparameters, s_err, s_ker, l
-    int dim_hpar = 3;
-
-    vector_t lb_hpar(dim_hpar);
-    vector_t ub_hpar(dim_hpar);
-
-    lb_hpar << -100, -100, -100;
-    ub_hpar <<  100,  100,  100;
-
-    // propose a sensible guess
-    vector_t hpar_0(dim_hpar);
-    hpar_0 << -4.77, -4.62, -1.40;
-
     // model error guassian process
     auto err_mean = [](vector_t x, vector_t const &hpar) {
         return 0;
     };
 
-    // Define prediction points and save them
-    int num_pred = 100;
-    std::vector<double> x_pred(num_pred);
-    double x_min = 1;
-    double x_max = 5;
-    for (int i = 0; i < num_pred; i++) {
-        x_pred[i] = x_min + (x_max-x_min) * double(i) / double(num_pred-1);
-    }
+
+    /*
+    *   In this section we initialize the model error object
+    */
+
+    // priors for the hyperparameters
+    cmp::inverse_gamma_distribution prior_se(3,0.04,rng);
+    cmp::inverse_gamma_distribution prior_sk(3,0.04,rng);
+    cmp::inverse_gamma_distribution prior_l(5,1.2,rng);
 
 
-    //Create the model error
+    // log prior
+    auto log_prior_hpar = [&prior_se,&prior_sk,&prior_l](const vector_t & hpar) {
+        return prior_se.log_pdf(exp(hpar(0)))+prior_sk.log_pdf(exp(hpar(1)))+prior_l.log_pdf(exp(hpar(2)));
+    };
+
+    auto log_prior_hpar_hessian = [&prior_se,&prior_sk,&prior_l](const vector_t & hpar, const int &i, const int &j) {
+        if (i==0 && j==0)
+            return prior_se.dd_log_pdf(exp(hpar(0)));
+        else if (i==1 && j==1)
+            return prior_sk.dd_log_pdf(exp(hpar(1)));
+        else if (i==2 && j==2)
+            return prior_l.dd_log_pdf(exp(hpar(2)));
+        else
+            return 0.0;
+    };
+
+    // Create the model error
     gp model_error;
     model_error.set_mean(err_mean);
     model_error.set_kernel(err_kernel);
     model_error.set_kernel_gradient(err_kernel_gradient);
     model_error.set_kernel_hessian(err_kernel_hessian);
-
-    model_error.set_logprior(logprior_hpar);
-    model_error.set_logprior_hessian(logprior_hpar_hessian);
-    model_error.set_par_bounds(lb_hpar,ub_hpar);
+    model_error.set_par_bounds(-5*vector_t::Ones(3),2*vector_t::Ones(3));
+    model_error.set_logprior(log_prior_hpar);
+    model_error.set_logprior_hessian(log_prior_hpar_hessian);
     model_error.set_obs(v_to_vvxd(x_obs),y_obs);
 
 
-    //create density
-    density main_density;
-
-    // set up the main properties
-    main_density.set_model(model);
-    main_density.set_model_error(&model_error);
-    main_density.set_log_prior_par(logprior_par);
-    main_density.set_obs(v_to_vvxd(x_obs),y_obs);
-
-    //calculate the KOH value for the hyper-parameters
-    vector_t lb_par(2), ub_par(2); // set the lower and upper bounds
-    lb_par << 0.,0.;
-    ub_par << 1.,1.;
-
-    std::vector<vector_t> int_points = qmc_halton_grid(lb_par,ub_par,100'000); // generate a QMC grid in the bounds
-
-    vector_t hpar_KOH = main_density.hpar_KOH(hpar_0,int_points,20,1E-5);
-    std::cout << "Hyperparameters KOH: \n" << hpar_KOH << std::endl;
-
-    // create the score function
-    auto cmp_score = [&main_density,&model_error,&x_obs](const vector_t & par, const vector_t & hpar) {
-        
-        auto res = main_density.residuals(par);
-        auto cov = model_error.covariance(hpar);
-        Eigen::LDLT<matrix_t> cov_inv(cov);
-
-        return main_density.loglikelihood(res,cov_inv) + main_density.logprior_par(par) + main_density.model_error()->logprior(hpar);
+    // Here we create a function that computes the residuals
+    auto compute_residuals = [&model_error, &y_obs, &x_obs](const vector_t & par) {
+        vector_t res = vector_t::Zero(y_obs.size());
+        for (int i = 0; i < y_obs.size(); i++) {
+            res(i) = y_obs[i] - model(x_obs[i], par);
+        }
+        return res;
     };
 
-    // Setup mcmc chain
-    mcmc chain(dim_par,rng);
-    chain.seed(cov_prop,par_0);
-    vector_t par_prop(dim_par);
-    vector_t hpar_prop(dim_hpar);
-    double score = 0.0;
-    bool accept;
+    vector_t hpar_0(3);
+    hpar_0 << -4.77, -4.62, -1.40;
 
-    // burn initial samples
-    int burn_in = 10000;
-    for(int i=0; i<burn_in; i++) {
+    // density
+    density d;
+    d.set_model(model_v);
+    d.set_model_error(&model_error);
+    d.set_obs(v_to_vvxd(x_obs),y_obs);
+    d.set_log_prior_par(logprior_par);
 
-        // Propose
-        par_prop = chain.propose();
-        hpar_prop = main_density.hpar_opt(par_prop,hpar_0,1e-4);
+    auto cmp_score_d = [&d,&model_error,&hpar_0](const vector_t & par) {
+        vector_t hpar_opt = d.hpar_opt(par,hpar_0,1e-15);
+        double corr = d.log_cmp_correction(par,hpar_opt);
+        return d.loglikelihood(par,hpar_opt)+model_error.logprior(hpar_opt)+corr;
+    };
+
+    // create the score function
+    auto cmp_score = [&compute_residuals,&model_error,&x_obs,&hpar_0](const vector_t & par) {
         
-        // Evaluate
-        score = cmp_score(par_prop,hpar_prop);
+        auto res = compute_residuals(par);
 
-        // Check if to accept
-        accept=chain.accept(par_prop,score);
-        if (accept) {
-            hpar_0 = hpar_prop;
+        // Compute the optimal hyperparameters
+        auto hpar_fun = [&model_error,&res](const vector_t & hpar) {
+            auto cov_ldlt = model_error.covariance(hpar).ldlt();
+            return cmp::multivariate_normal_distribution::log_pdf(res,cov_ldlt) + model_error.logprior(hpar);
+        };
+        
+        // Compute the optimal hyperparameters
+        auto hpar_opt = cmp::arg_max(hpar_fun,hpar_0,-5*cmp::vector_t::Ones(3),5*cmp::vector_t::Ones(3),1e-15);
+
+        auto cov_ldlt = model_error.covariance(hpar_opt).ldlt();
+
+        // Compute the correction factor
+        cmp::matrix_t S_theta = cmp::matrix_t::Zero(3,3);
+        for (size_t i = 0; i < 3; i++) {
+            for (size_t j = i; j < 3; j++) {
+                S_theta(i,j) = -model_error.logprior_hessian(hpar_opt,i,j)-cmp::multivariate_normal_distribution::log_pdf_hessian(res,cov_ldlt,model_error.covariance_gradient(hpar_opt,i),model_error.covariance_gradient(hpar_opt,j),model_error.covariance_hessian(hpar_opt,i,j));
+
+                if (i!=j) {
+                    S_theta(j,i) = S_theta(i,j);
+                }
+            }
         }
 
-        // Update mean and covariance
-        chain.update();
-    }
-
-    // Adapt and
-    chain.adapt_cov();
-    chain.info();
-    chain.reset();
-
-    // sample burned chain
-    int steps = 10000;
-    std::vector<vector_t> pars(steps);
-    std::vector<vector_t> hpars(steps);
-
-    // do steps
-    for (int i=0; i<steps; i++) {
-        // Propose
-        par_prop = chain.propose();
-        hpar_prop = main_density.hpar_opt(par_prop,hpar_0,1e-4);
+        // Compute the correction factor
+        Eigen::LDLT<matrix_t> ldlt(S_theta);
+        double corr = -0.5*(ldlt.vectorD().array().abs().log()).sum();
         
-        // Evaluate
-        score = cmp_score(par_prop,hpar_prop);
+        return  cmp::multivariate_normal_distribution::log_pdf(res,cov_ldlt)+model_error.logprior(hpar_opt)+corr;
+    };
 
-        // Check if to accept
-        accept = chain.accept(par_prop,score);
-        chain.update();
-        if (accept) {
-            hpar_0 = hpar_prop;
+    // Set up a chain
+    mcmc chain(dim_par);
+    chain.seed(par_0,cmp_score_d(par_0));
+
+    // Set up the proposal
+    cmp::multivariate_normal_distribution proposal(vector_t::Zero(2),cov_prop.ldlt(), rng);
+    chain.init(&proposal);
+
+    // Parameters for the MCMC
+    size_t n_burn = 10'000;
+    size_t n_samples = 10'000;
+    size_t n_skip = 1;
+
+    // Run the chain
+    for (size_t i = 0; i < n_burn; i++) {
+        chain.step(cmp_score_d, true, 0.1);
+
+        if (i % 1000 == 0 && i > 0) {
+            proposal.set_cov_ldlt(chain.get_adapted_cov());
         }
-        pars[i] = chain.get_par();
-        hpars[i] = hpar_0;
     }
     chain.info();
 
-    //set the samples
-    main_density.set_par_samples(pars);
-    main_density.set_hpar_samples(hpars);
+    // Save the samples
+    std::vector<vector_t> samples(n_samples);
 
-    //write samples
-    std::ofstream file_par_samples("par_samples.csv");
-    write_vector(pars,file_par_samples);
+    for (size_t i = 0; i < n_samples; i++) {
+        samples[i] = chain.get_par();
 
-    std::ofstream file_hpar_samples("hpar_samples.csv");
-    write_vector(hpars,file_hpar_samples);
-    
-
-    //write predictions
-    std::ofstream file_cal_pred("pred.csv");
-    auto pred_cal  = main_density.pred_calibrated_model(v_to_vvxd(x_pred),0.95);
-    auto pred_corr = main_density.pred_corrected_model(v_to_vvxd(x_pred));
-    
-    for(int i=0; i<x_pred.size(); i++) {
-        file_cal_pred << x_pred[i] << " " << pred_cal(i,0) << " " << pred_cal(i,1) << " " << pred_cal(i,2) << " " << pred_corr(i,0) << " " << 2*sqrt(pred_corr(i,1)) <<'\n';
+        // Subsample
+        for (size_t j = 0; j < n_skip; j++) {
+            chain.step(cmp_score_d, true, 0.1);
+        }
     }
+    chain.info();
+    // Save the samples
+    std::ofstream file("par_samples.csv");
+    cmp::write_vector(samples,file);
 
-    // Diagnostics
-    auto sc_diagnosis = single_chain_diagnosis(pars);
-    std::cout << "Correlation length: \n" << sc_diagnosis.first << ".\nEffective sample size: " << sc_diagnosis.second << std::endl;
+    return 0;
 }

@@ -1,5 +1,6 @@
 #ifndef OPTMIZATION_H
 #define OPTIMIZATION_H
+
 #include "cmp_defines.h"
 
 namespace cmp{
@@ -21,7 +22,20 @@ namespace cmp{
 
     @note If a gradient based method is used, you should define the gradients
     */
-    double opt_routine(nlopt::vfunc opt_fun, void *data_ptr, vector_t &x0, const vector_t &lb, const vector_t &ub, double ftol_rel, nlopt::algorithm alg);
+    double opt_routine(nlopt::vfunc opt_fun, void *data_ptr, Eigen::VectorXd &x0, const Eigen::VectorXd &lb, const Eigen::VectorXd &ub, double ftol_rel, nlopt::algorithm alg);
+
+
+    /**
+     * @brief Compute the argmax of a log distribution
+     * 
+     * @param score The score function
+     * @param par_0 The initial guess
+     * @param par_lb Lower bounds
+     * @param par_ub Upper bounds
+     * @param tol Tolerance
+     * @return Eigen::VectorXd 
+     */
+    Eigen::VectorXd arg_max(const score_t &score, const Eigen::VectorXd & par_0, const Eigen::VectorXd &par_lb, const Eigen::VectorXd &par_ub, const double &tol);
 }
 
 

@@ -2,7 +2,7 @@
 CXX = g++-14
 
 # Define any compile-time flags
-CXXFLAGS := -std=c++17 -Wl,-ld_classic -O3 -g
+CXXFLAGS := -std=c++17 -Wl,-ld_classic -O3
 
 # Define external includes
 EIGEN = $(HOME)/opt/eigen-3.4.0/
@@ -10,20 +10,20 @@ NLOPTINC = $(HOME)/opt/nlopt-2.7.1/include
 SPDLOGINC = $(HOME)/opt/spdlog/include
 SELF = ./include
 USR = /opt/homebrew/include
-PYBIND = $(HOME)/venvs/scicomp/lib/python3.12/site-packages/pybind11/include
-PYTHON = /opt/homebrew/Cellar/python@3.12/3.12.4/Frameworks/Python.framework/Versions/Current/include/python3.12
+OMPINC = $(HOME)/opt/openmp/include
 
 # Define external libs
 NLOPTLIB = $(HOME)/opt/nlopt-2.7.1/lib
+OMPLIB = $(HOME)/opt/openmp/lib
 
 # External include files and folders
 INCLUDES = -I$(EIGEN) -I$(NLOPTINC) -I$(SPDLOGINC) -I$(SELF) -I$(USR) 
 
 # Include specific libraries
-LIBS = -L$(NLOPTLIB)
+LIBS = -L$(NLOPTLIB) -L$(OMPLIB)
 
 # Define library flags
-LFLAGS = -lnlopt
+LFLAGS = -lnlopt -lomp
 
 # Define the objects
 OBJ = $(patsubst src/%.cpp,output/%.o,$(wildcard src/*.cpp))

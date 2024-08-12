@@ -22,7 +22,7 @@ namespace cmp {
      * @param h The step size (default = 1E-5)
      * @return The required component
      */
-    double fd_gradient(const vector_t &x_0, const std::function<double(const vector_t&)> fun, const int &i, const accuracy order = SECOND, const double h=1E-5);
+    double fd_gradient(const Eigen::VectorXd &x_0, const std::function<double(const Eigen::VectorXd&)> fun, const int &i, const accuracy order = SECOND, const double h=1E-5);
 
 
     /**
@@ -36,7 +36,7 @@ namespace cmp {
      * @param h The step size (default = 1E-5)
      * @return The required component
      */
-    double fd_hessian(const vector_t &x_0, const std::function<double(const vector_t&)> fun, const int &i, const int &j, const accuracy order = SECOND, const double h=1E-5);
+    double fd_hessian(const Eigen::VectorXd &x_0, const std::function<double(const Eigen::VectorXd&)> fun, const int &i, const int &j, const accuracy order = SECOND, const double h=1E-5);
 
 }
 

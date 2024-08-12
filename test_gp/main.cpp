@@ -1,8 +1,8 @@
 #include <cmp_defines.h>
 #include <gp.h>
 #include <kernel.h>
-#include <pdf.h>
-#include <io.h>
+#include <utils.h>
+#include <omp.h>
 
 using namespace cmp;
 
@@ -10,9 +10,10 @@ int main() {
 
     // Initialize the rng
     std::default_random_engine rng(14091998);
+    std::normal_distribution<double> dist_n(0,1);
 
     // Number of training Points
-    int n_pts = 10;
+    int n_pts = 1000;
 
     // Generate observations y(x)=sin(x) + 1
     std::vector<double> x_obs(n_pts);
@@ -20,7 +21,7 @@ int main() {
 
     for (int i=0; i<n_pts; i++) {
         double x = i/(n_pts-1.0);
-        x_obs[i] = x;
+        x_obs[i] = x+0.01*dist_n(rng);
         y_obs[i] = std::sin(2*M_PI*x)+1;
     }
 
@@ -42,18 +43,19 @@ int main() {
         return i==0 ? 1.0 : 0.0;
     };
 
-    // Define log-prior 
-    auto logprior = [](vector_t hpar){
-        return -2*hpar(1)+log_normal_pdf(hpar(2),0,1)+log_normal_pdf(hpar(0),0,1);
+    // Define log-prior
+    cmp::normal_distribution prior(0,1,rng);
+    auto logprior = [&prior](vector_t hpar) {
+        return -2*hpar(1)+prior.log_pdf(hpar(2))+prior.log_pdf(hpar(0));
     };
 
-    auto logprior_grad = [](vector_t hpar, int i){
+    auto logprior_grad = [&prior](vector_t hpar, int i){
         if (i==0) {
-            return d_log_normal_pdf(hpar(0),0,1);
+            return prior.d_log_pdf(hpar(0));
         } else if (i==1) {
             return -2.0;
         } else {
-            return d_log_normal_pdf(hpar(2),0,1);
+            return prior.d_log_pdf(hpar(2));
         }
     };
 
@@ -78,7 +80,7 @@ int main() {
     auto ldlt = Eigen::LDLT<matrix_t>(cov);
 
     // Number of prediction points
-    int n_pts_pred = 1000;
+    int n_pts_pred = 100;
 
     // Generate observations y(x)=sin(x) + 1
     std::vector<vector_t> x_pred(n_pts_pred);
@@ -87,7 +89,7 @@ int main() {
 
     for (int i=0; i<n_pts_pred; i++) {
         vector_t xx(1);
-        double x = x_min + (x_max-x_min)*i/(n_pts_pred-1.0);
+        double x = x_min + (x_max-x_min)*i/(n_pts_pred-1.0) + 0.01*dist_n(rng);
         xx<<x;
         x_pred[i] = xx;
     }
@@ -98,6 +100,14 @@ int main() {
         y_pred(i,0) = my_gp.prediction_mean(x_pred[i],par_opt,ldlt.solve(res));
     }
     write_data(x_pred,y_pred,pred_file);
+
+    std::chrono::high_resolution_clock::time_point t11 = std::chrono::high_resolution_clock::now();
+    Eigen::MatrixXd c2 = my_gp.compute_variance_reduction(x_pred,ldlt,par_opt);
+    std::cout << c2.norm() << std::endl;
+    std::chrono::high_resolution_clock::time_point t22 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> time_span2 = std::chrono::duration_cast<std::chrono::duration<double>>(t22-t11);
+    std::cout << "Time to compute fast reduced covariance matrix: " << time_span2.count() << " seconds" << std::endl;
+
 
 
     return 0;

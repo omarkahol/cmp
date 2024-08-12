@@ -1,5 +1,4 @@
 #include "utils.h"
-#include <io.h>
 #include <optimization.h>
 #include <finite_diff.h>
 
@@ -40,17 +39,19 @@ std::pair<vector_t, Eigen::LLT<matrix_t>> cmp::normalize(std::vector<vector_t> &
     int rows = grid.size();
     int cols = grid[0].size();
 
+    // Compute the mean
     vector_t mean = vector_t::Zero(cols);
-    matrix_t cov = matrix_t::Zero(cols,cols);
-
     for (int i=0; i<rows; i++) {
         mean += grid[i];
-        cov += grid[i]*grid[i].transpose();
     }
-
-    // Rescale to compute the actual mean and covariance
     mean = mean / double(rows);
-    cov = (cov / double(rows)) - mean*mean.transpose();
+
+    // Compute the covariance
+    matrix_t cov = matrix_t::Zero(cols,cols);
+    for (size_t i=0; i<rows; i++){
+        cov += (grid[i]-mean)*(grid[i]-mean).transpose();
+    }
+    cov = cov / double(rows-1);
 
     // compute the Cholesky decomposition
     Eigen::LLT<matrix_t> cov_llt(cov);
@@ -69,18 +70,18 @@ std::pair<double, double> cmp::normalize(std::vector<double> &grid) {
     int rows = grid.size();
 
     double mean = 0.0;
-    double cov = 0.0;
-
     for (int i=0; i<rows; i++) {
         mean += grid[i];
-        cov += grid[i]*grid[i];
     }
-
-    // Rescale to compute the actual mean and covariance
     mean = mean / double(rows);
-    cov = cov / double(rows) - mean*mean;
 
-    double std = sqrt(cov);
+    double var = 0.0;
+    for (int i=0; i<rows; i++){
+        var += pow(grid[i]-mean,2);
+    }
+    var = var / double(rows-1);
+
+    double std = sqrt(var);
 
     for (int i=0; i<rows; i++){
         grid[i] = (grid[i] - mean)/std;
@@ -105,45 +106,96 @@ void cmp::un_scale(double &v, const std::pair<double, double> &scale) {
     v = v*scale.second + scale.first;
 }
 
-laplace_object cmp::gaussian_approximation(const score_t &score, const vector_t & par_0, const vector_t &par_lb, const vector_t &par_ub, const double &tol) {
 
-        vector_t par_opt = par_0;
+std::vector<vector_t> cmp::matrix_to_vvxd(const matrix_t &data) {
+    int n_rows = data.rows();
 
-        std::pair<const score_t &, void *> my_pair(score,nullptr);
-        void *p_data = (void *) &my_pair;
-        
-        auto my_fun = [](const std::vector<double> &x, std::vector<double> &grad, void *data)  {
-            std::pair<const score_t &, void *> *my_pair = (std::pair<const score_t &, void *>*)data;
-            vector_t x_v = v_to_vxd(x);
-            return my_pair->first(x_v);
-        };
+    std::vector<vector_t> data_v(n_rows);
+    for (int i=0; i<n_rows; i++) {
+        data_v[i] = data.row(i);
+    }
 
-        // Perform the optimization
-        double fmap = cmp::opt_routine(my_fun,p_data,par_opt,par_lb,par_ub,tol,nlopt::LN_SBPLX);
+    return data_v;
+}
 
-        // Return this value as a laplace object
-        laplace_object return_value;
-        return_value.map = fmap;
-        return_value.arg_map = par_opt;
+vector_t cmp::v_to_vxd(std::vector<double> const &v)
+{
 
-        // Compute the Hessian using finite difference
-        int dim_par = par_0.size();
-        matrix_t cov(dim_par,dim_par);
+    vector_t x(v.size());
+    for (int i = 0; i < v.size(); i++) {
+        x(i) = v[i];
+    }
+    return x;
+}
 
+std::vector<double> cmp::vxd_to_v(vector_t const &x) {
+  
+    std::vector<double> v(x.size());
+    for (int i = 0; i < v.size(); i++) {
+        v[i] = x(i);
+    }
+    return v;
 
-        // Evaluate the hessian
-        for(int i=0; i<dim_par; i++) {
-            for (int j=i; j<dim_par; j++) {
-                cov(i,j) = -fd_hessian(par_opt,score,i,j);
+}
 
-                if (i != j) {
-                    cov(j,i) = cov(i,j);
-                }
-            }
+std::vector<vector_t> cmp::v_to_vvxd(const std::vector<double> &v) {
+    
+    std::vector<vector_t> x(v.size());
+    for (int i = 0; i < v.size(); i++) {
+        vector_t vv(1);
+        vv << v[i];
+        x[i] = vv;
+    }
+    return x;
+}
+
+void cmp::write_vector(const std::vector<vector_t> &data, std::ofstream &o_file) {
+
+    for (int i = 0; i < data.size(); i++) {
+        for (int j = 0; j < data[0].size(); j++) {
+            o_file << data[i](j) << " ";
         }
+        o_file << std::endl;
+    }
+}
 
-        // Compute the LDLT decomposition
-        return_value.cov_llt = Eigen::LLT<matrix_t>(cov);
+void cmp::write_data(const std::vector<vector_t> &x, const matrix_t &y, std::ofstream &o_file) {
+    for (int i = 0; i < x.size(); i++) {
+        for (int j = 0; j < x[0].size(); j++) {
+            o_file << x[i](j) << " ";
+        }
+        for (int j = 0; j < y.cols(); j++) {
+            o_file << y(i,j) << " ";
+        }
+        o_file << std::endl;
+    }
+}
 
-        return return_value;
+std::vector<vector_t> cmp::read_vector(std::ifstream &i_file) {
+
+    std::vector<vector_t> v;
+
+    //Check if file exists
+    if (!i_file) {
+        spdlog::error("File is not open! returning an empty vector");
+        return v;
+    }
+    
+    std::string line;
+
+    while (getline(i_file, line)) {
+
+        std::istringstream iss(line);
+        std::vector<std::string> words((std::istream_iterator<std::string>(iss)), std::istream_iterator<std::string>());
+        std::vector<double> values;
+
+        for (int i = 0; i < words.size(); i++) {
+            values.push_back(stod(words[i]));
+        }
+        v.push_back(cmp::v_to_vxd(values));
+    }
+
+    spdlog::info("number of lines in the file : {0:d}", v.size());
+    spdlog::info("number of data in a line : {0:d}", v[0].size());
+    return v;
 }

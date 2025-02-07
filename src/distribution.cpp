@@ -21,7 +21,6 @@ double erfinv(float x){
 
 }
 
-
 double cmp::normal_distribution::log_pdf(const double & x) {
     return -0.5*log(2*M_PI) - log(m_std) - 0.5*pow((x-m_mean)/m_std,2);
 }
@@ -45,13 +44,18 @@ double cmp::normal_distribution::quantile(const double & p) {
     return m_mean + m_std*sqrt(2)*erfinv(2*p-1);
 }
 
-double cmp::normal_distribution::sample() {
-    return m_dist(m_rng)*m_std + m_mean;
+double cmp::normal_distribution::sample(std::default_random_engine &rng) {
+    return m_dist(rng)*m_std + m_mean;
 }
 
 double cmp::multivariate_normal_distribution::log_pdf(const Eigen::VectorXd &x)
 {
     return log_pdf(m_mean-x, m_ldlt);
+}
+
+double cmp::multivariate_normal_distribution::log_jump_pdf(const Eigen::VectorXd &jump)
+{
+    return log_pdf(jump, m_ldlt);
 }
 
 double cmp::multivariate_normal_distribution::log_pdf(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &cov_ldlt)
@@ -91,32 +95,30 @@ double cmp::multivariate_normal_distribution::log_pdf_hessian(const Eigen::Vecto
     return 0.5*H1 - 0.5*H2 - H3 + 0.5*H4;
 }
 
-Eigen::VectorXd cmp::multivariate_normal_distribution::sample()
-{
-    return jump(m_mean, 1.0);
-}
-
-Eigen::VectorXd cmp::multivariate_normal_distribution::jump(const Eigen::VectorXd &x, double gamma)
+Eigen::VectorXd cmp::multivariate_normal_distribution::sample(std::default_random_engine &rng, const double &gamma)
 {
     // Generate a sample
     Eigen::VectorXd z = Eigen::VectorXd::Zero(m_mean.size());
     for (size_t i = 0; i < m_mean.size(); i++) {
-        z(i) = m_dist(m_rng)*sqrt(abs(m_ldlt.vectorD()(i)));
+        z(i) = m_dist(rng)*sqrt(abs(m_ldlt.vectorD()(i)));
     }
 
-    return x + (m_ldlt.transpositionsP().transpose()*(m_ldlt.matrixL() * z))*gamma;
+    return m_mean + (m_ldlt.transpositionsP().transpose()*(m_ldlt.matrixL() * z))*gamma;
 }
 
-double cmp::multivariate_normal_distribution::log_jump_prob(const Eigen::VectorXd &jump, double gamma)
-{
-    return -0.5*jump.dot(m_ldlt.solve(jump))/gamma;
+Eigen::VectorXd cmp::multivariate_normal_distribution::get() {
+    return m_mean;
 }
 
-Eigen::VectorXd cmp::uniform_sphere_distribution::sample() {
+void cmp::multivariate_normal_distribution::set(const Eigen::VectorXd &x) {
+    m_mean = x;
+}
+
+Eigen::VectorXd cmp::uniform_sphere_distribution::sample(std::default_random_engine &rng) {
     // Sample a normal distribution
     Eigen::VectorXd x(m_dim);
     for (size_t i = 0; i < m_dim; i++) {
-        x(i) = m_dist(m_rng);
+        x(i) = m_dist(rng);
     }
 
     // Normalize the vector
@@ -148,9 +150,9 @@ double cmp::uniform_distribution::quantile(const double & p)
     return m_a + p*m_size;
 }
 
-double cmp::uniform_distribution::sample()
+double cmp::uniform_distribution::sample(std::default_random_engine &rng)
 {
-    return  m_dist(m_rng)*m_size + m_a;
+    return  m_dist(rng)*m_size + m_a;
 }
 
 double cmp::inverse_gamma_distribution::log_pdf(const double & x)
@@ -178,18 +180,13 @@ double cmp::inverse_gamma_distribution::quantile(const double & p)
     return 0.0;
 }
 
-double cmp::inverse_gamma_distribution::sample()
+double cmp::inverse_gamma_distribution::sample(std::default_random_engine &rng)
 {
-    double x = m_gamma(m_rng);
+    double x = m_gamma(rng);
     return 1/x;
 }
 
-double cmp::multivariate_t_distribution::log_pdf(const Eigen::VectorXd &x)
-{
-    return log_pdf(m_mean-x, m_ldlt, m_nu);
-}
-
-double cmp::multivariate_t_distribution::log_pdf(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &cov_ldlt, double nu)
+double cmp::multivariate_t_distribution::log_pdf(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &cov_ldlt, const double &nu)
 {
     // Solve linear system
     Eigen::VectorXd alpha = cov_ldlt.solve(res);
@@ -199,49 +196,58 @@ double cmp::multivariate_t_distribution::log_pdf(const Eigen::VectorXd &res, con
     return std::log(std::tgammal(0.5*(nu + dim)) - std::log(std::tgammal(0.5*nu)) - 0.5*dim*std::log(M_PI*nu)) - 0.5*det -0.5*(nu+dim)*std::log(1+res.dot(alpha)/nu);
 }
 
-Eigen::VectorXd cmp::multivariate_t_distribution::sample()
+double cmp::multivariate_t_distribution::log_pdf(const Eigen::VectorXd &x)
 {
-    return jump(m_mean, 1.0);
+    return log_pdf(m_mean-x, m_ldlt, m_nu);
 }
 
-Eigen::VectorXd cmp::multivariate_t_distribution::jump(const Eigen::VectorXd &x, double gamma)
+double cmp::multivariate_t_distribution::log_jump_pdf(const Eigen::VectorXd &jump)
+{
+    return log_pdf(jump, m_ldlt, m_nu);
+}
+
+Eigen::VectorXd cmp::multivariate_t_distribution::sample(std::default_random_engine &rng, const double &gamma)
 {
     // Sample from a T distribution
     Eigen::VectorXd z = Eigen::VectorXd::Zero(m_mean.size());
     for (size_t i = 0; i < m_mean.size(); i++) {
-        z(i) = m_dist(m_rng);
+        z(i) = m_dist(rng);
 
         // Generate a sample from a chi-square distribution
         double chi = 0.0;
         for (size_t j = 0; j < m_nu; j++) {
-            chi += std::pow(m_dist(m_rng),2);
+            chi += std::pow(m_dist(rng),2);
         }
 
         z(i) = sqrt(abs(m_ldlt.vectorD()(i)))*z(i)/std::sqrt(chi/m_nu);
     }
 
-    return x + (m_ldlt.transpositionsP().transpose()*(m_ldlt.matrixL() * z))*gamma;
+    return m_mean + (m_ldlt.transpositionsP().transpose()*(m_ldlt.matrixL() * z))*gamma;
 }
 
-double cmp::multivariate_t_distribution::log_jump_prob(const Eigen::VectorXd &jump, double gamma)
+Eigen::VectorXd cmp::multivariate_t_distribution::get()
 {
-    double alpha = jump.dot(m_ldlt.solve(jump))/gamma;
-    return  -0.5*(m_nu+jump.size())*std::log(1+alpha/m_nu);
+    return m_mean;
+} 
+
+void cmp::multivariate_t_distribution::set(const Eigen::VectorXd &x)
+{
+    m_mean = x;
 }
 
 double cmp::log_normal_distribution::log_pdf(const double &x)
 {
-    return -0.5 * pow((log(x) - m_mu) / m_sigma, 2) - log(x*m_sigma) - 0.5 * log(2 * M_PI);
+    return -0.5 * pow((log(x) - m_mu) / m_sigma, 2) - 0.5 * log(2 * M_PI);
 }
 
 double cmp::log_normal_distribution::d_log_pdf(const double &x)
 {
-    return -(-m_mu+pow(m_sigma,2)+log(x))/(x*pow(m_sigma,2));;
+    return (m_mu-log(x))/(x*pow(m_sigma,2));;
 }
 
 double cmp::log_normal_distribution::dd_log_pdf(const double &x)
 {
-    return (-1-m_mu+pow(m_sigma,2)+log(x))/pow(x*m_sigma,2);
+    return (-1-m_mu+log(x))/pow(x*m_sigma,2);
 }
 
 double cmp::log_normal_distribution::cdf(const double &x)
@@ -254,9 +260,9 @@ double cmp::log_normal_distribution::quantile(const double &p)
     return std::exp(m_mu + m_sigma*sqrt(2)*erfinv(2*p-1));
 }
 
-double cmp::log_normal_distribution::sample()
+double cmp::log_normal_distribution::sample(std::default_random_engine &rng)
 {
-    return std::exp(m_dist(m_rng)*m_sigma + m_mu);
+    return std::exp(m_dist(rng)*m_sigma + m_mu);
 }
 
 double cmp::t_distribution::log_pdf(const double &x)
@@ -286,16 +292,16 @@ double cmp::t_distribution::quantile(const double &p)
     return 0.0;
 }
 
-double cmp::t_distribution::sample()
+double cmp::t_distribution::sample(std::default_random_engine &rng)
 {   
     
     // Sample a normal variate
-    double z = m_dist(m_rng);
+    double z = m_dist(rng);
 
     // Sample a chi-square variate
     double chi = 0.0;
     for (size_t j = 0; j < m_nu; j++) {
-        chi += std::pow(m_dist(m_rng),2);
+        chi += std::pow(m_dist(rng),2);
     }
 
     // Return the sample
@@ -328,8 +334,243 @@ double cmp::cauchy_distribution::quantile(const double &p)
     return m_mu + m_sigma*tan(M_PI*(p - 0.5));
 }
 
-double cmp::cauchy_distribution::sample()
+double cmp::cauchy_distribution::sample(std::default_random_engine &rng)
 {
-    return m_dist(m_rng);
+    return m_dist(rng);
 
+}
+
+double sech(const double &x)
+{
+    return 1.0/std::cosh(x);
+}
+
+double cmp::smooth_uniform_distribution_sigmoid::log_pdf(const double &x)
+{
+
+    double p = 0.5*std::tanh(m_k*(x-m_a))- 0.5*std::tanh(m_k*(x-m_b));
+    double int_const = ((-1.*std::pow(M_E,2*m_a*m_k) + 
+        1.*std::pow(M_E,2*m_b*m_k))*
+      (1.*m_a*m_k - 1.*m_b*m_k) + 
+     (0.5*std::pow(M_E,2*m_a*m_k) - 
+        0.5*std::pow(M_E,2.*m_a*m_k) - 
+        0.5*std::pow(M_E,2*m_b*m_k) + 
+        0.5*std::pow(M_E,2.*m_b*m_k))*
+      std::log(1. + 1.*std::pow(M_E,2.*m_a*m_k))\
+      + (-0.5*std::pow(M_E,2*m_a*m_k) + 
+        0.5*std::pow(M_E,2.*m_a*m_k) + 
+        0.5*std::pow(M_E,2*m_b*m_k) - 
+        0.5*std::pow(M_E,2.*m_b*m_k))*
+      std::log(1. + 1.*std::pow(M_E,2.*m_b*m_k)))/
+   ((std::pow(M_E,2*m_a*m_k) - 
+       1.*std::pow(M_E,2*m_b*m_k))*m_k);
+    
+    if (std::isnan(int_const)) {
+        int_const = 1.0;
+    }
+
+    return std::log(p) - std::log(int_const);
+    
+}
+
+
+double cmp::smooth_uniform_distribution_sigmoid::d_log_pdf(const double &x)
+{
+    return (0.5*m_k*std::pow(sech(m_k*(-m_a + x)),2) - 
+     0.5*m_k*std::pow(sech(m_k*(-m_b + x)),2)
+     )/(0.5*std::tanh(m_k*(-m_a + x)) - 
+     0.5*std::tanh(m_k*(-m_b + x)));
+}
+
+double cmp::smooth_uniform_distribution_sigmoid::dd_log_pdf(const double &x)
+{
+    return (std::pow(m_k,2)*(0.5 - 0.5*std::cosh(2*(-m_a + m_b)*m_k) + 
+       0.125*std::cosh(2*m_k*(-m_a + x)) - 
+       0.125*std::cosh(2*m_k*(m_a - 2*m_b + x)) + 
+       0.125*std::cosh(2*m_k*(-m_b + x)) - 
+       0.125*std::cosh(2*m_k*(-2*m_a + m_b + x)))*
+     std::pow(sech(m_k*(-m_a + x)),4)*std::pow(sech(m_k*(-m_b + x)),4))/
+   std::pow(1.*std::tanh(m_k*(-m_a + x)) - 1.*std::tanh(m_k*(-m_b + x)),2);
+}
+
+double cmp::smooth_uniform_distribution_sigmoid::cdf(const double &t)
+{
+    return ((1.*std::pow(M_E,2.*m_a*m_k) - 
+        1.*std::pow(M_E,2.*m_b*m_k))*
+      (1.*m_a*m_k - 1.*m_b*m_k) + 
+     (-0.5*std::pow(M_E,2.*m_a*m_k) + 
+        0.5*std::pow(M_E,2.*m_b*m_k))*
+      std::log(1. + std::pow(M_E,2.*m_a*m_k)) + 
+     (0.5*std::pow(M_E,2.*m_a*m_k) - 
+        0.5*std::pow(M_E,2.*m_b*m_k))*
+      std::log(1. + std::pow(M_E,2.*m_b*m_k)) + 
+     (-0.5*std::pow(M_E,2*m_a*m_k) + 
+        0.5*std::pow(M_E,2*m_b*m_k))*
+      (1.*std::log(std::cosh(m_k*(m_a - t))*
+           sech(m_a*m_k)) - 
+        1.*std::log(std::cosh(m_k*(m_b - t))*
+           sech(m_b*m_k))))/
+   ((1.*std::pow(M_E,2*m_a*m_k) - 
+        1.*std::pow(M_E,2*m_b*m_k))*
+      (1.*m_a*m_k - 1.*m_b*m_k) + 
+     (-0.5*std::pow(M_E,2*m_a*m_k) + 
+        0.5*std::pow(M_E,2.*m_a*m_k) + 
+        0.5*std::pow(M_E,2*m_b*m_k) - 
+        0.5*std::pow(M_E,2.*m_b*m_k))*
+      std::log(1. + 1.*std::pow(M_E,2.*m_a*m_k))\
+      + (0.5*std::pow(M_E,2*m_a*m_k) - 
+        0.5*std::pow(M_E,2.*m_a*m_k) - 
+        0.5*std::pow(M_E,2*m_b*m_k) + 
+        0.5*std::pow(M_E,2.*m_b*m_k))*
+      std::log(1. + 1.*std::pow(M_E,2.*m_b*m_k)));
+}
+
+double cmp::smooth_uniform_distribution_sigmoid::quantile(const double &p)
+{
+
+    // Check if the quantile is outside the bounds
+    if (p < 0 || p > 1) {
+        return std::numeric_limits<double>::quiet_NaN();
+    }
+
+    // Use Newton's method to find the quantile
+    double x = 0.5*(m_a+m_b);
+    
+    // Perform 5 Newton iterations
+    for (size_t i = 0; i < 5; i++) {
+        double f = cdf(x) - p;
+        double df = std::exp(log_pdf(x));
+        x = x - f/df;
+    }
+
+    return x;
+}
+
+double cmp::smooth_uniform_distribution_sigmoid::sample(std::default_random_engine &rng)
+{
+    return quantile(m_dist(rng));
+
+}
+
+double cmp::power_law_distribution::log_pdf(const double &x)
+{
+    return log(m_tol) - m_alpha*log(x);
+}
+
+double cmp::power_law_distribution::d_log_pdf(const double &x)
+{
+    return -m_alpha/x;
+}
+
+double cmp::power_law_distribution::dd_log_pdf(const double &x)
+{
+    return m_alpha/pow(x,2);
+}
+
+double cmp::power_law_distribution::cdf(const double &t)
+{
+    return 1.0 - pow(m_tol/t,m_alpha);
+}
+
+double cmp::power_law_distribution::quantile(const double &q)
+{
+    return m_tol/pow(1-q,1/m_alpha);
+}
+
+double cmp::power_law_distribution::sample(std::default_random_engine &rng)
+{
+    return quantile(m_dist(rng));
+}
+
+double cmp::multivariate_uniform_distribution::log_pdf(const Eigen::VectorXd &x) {
+    return log_jump_pdf(x-m_mean);
+}
+
+double cmp::multivariate_uniform_distribution::log_jump_pdf(const Eigen::VectorXd &jump) {
+    for (size_t i = 0; i < jump.size(); i++) {
+        if (jump(i) < -m_eps(i)*0.5 || jump(i) > m_eps(i)*0.5) {
+            return -std::numeric_limits<double>::infinity();
+        }
+    }
+    return 0.0;
+}
+Eigen::VectorXd cmp::multivariate_uniform_distribution::sample(std::default_random_engine &rng, const double &gamma) {
+    Eigen::VectorXd rv(m_mean.size());
+    for (size_t i = 0; i < m_mean.size(); i++) {
+        rv(i) = m_mean(i) - 0.5*m_eps(i)*gamma + m_eps(i)*m_dist(rng)*gamma;
+    }
+    return rv;
+}
+
+Eigen::VectorXd cmp::multivariate_uniform_distribution::get() {
+    return m_mean;
+}
+void cmp::multivariate_uniform_distribution::set(const Eigen::VectorXd &x){
+    m_mean = x;
+}
+
+double cdf_normal(const double &x)
+{
+    return 0.5*(1+erf(x/sqrt(2)));
+}
+
+double cmp::smooth_uniform_distribution_normal::log_pdf(const double &x)
+{
+    return std::log((cdf_normal((m_b-x)/m_sigma) - cdf_normal((m_a-x)/m_sigma))/(m_b-m_a));
+}
+
+double cmp::smooth_uniform_distribution_normal::d_log_pdf(const double &x)
+{
+    return (std::pow(M_E,-std::pow(m_a - x,2)/(2.*std::pow(m_sigma,2))) - std::pow(M_E,-std::pow(m_b - x,2)/(2.*std::pow(m_sigma,2))))/((-m_a + m_b)*std::sqrt(2*M_PI)*m_sigma);
+}
+
+double cmp::smooth_uniform_distribution_normal::dd_log_pdf(const double &x)
+{
+    return ((m_a - x)/
+      std::pow(M_E,std::pow(m_a - x,2)/
+        (2.*std::pow(m_sigma,2))) + 
+     (-m_b + x)/
+      std::pow(M_E,std::pow(m_b - x,2)/
+        (2.*std::pow(m_sigma,2))))/
+   ((-m_a + m_b)*std::sqrt(2*M_PI)*std::pow(m_sigma,3));
+}
+
+double cmp::smooth_uniform_distribution_normal::cdf(const double &t)
+{
+    return (m_a - m_b + (-std::pow(M_E,
+          -std::pow(m_a - t,2)/
+           (2.*std::pow(m_sigma,2))) + 
+        std::pow(M_E,
+         -std::pow(m_b - t,2)/
+          (2.*std::pow(m_sigma,2))))*
+      std::sqrt(2/M_PI)*m_sigma + 
+     (-m_a + t)*std::erf((m_a - t)/
+        (std::sqrt(2)*m_sigma)) + 
+     (m_b - t)*std::erf((m_b - t)/
+        (std::sqrt(2)*m_sigma)))/(2.*(m_a - m_b));
+}
+
+double cmp::smooth_uniform_distribution_normal::quantile(const double &p)
+{
+    // Check if the quantile is outside the bounds
+    if (p < 0 || p > 1) {
+        return std::numeric_limits<double>::quiet_NaN();
+    }
+
+    // Use Newton's method to find the quantile
+    double x = 0.5*(m_a+m_b);
+    
+    // Perform 5 Newton iterations
+    for (size_t i = 0; i < 5; i++) {
+        double f = cdf(x) - p;
+        double df = std::exp(log_pdf(x));
+        x = x - f/df;
+    }
+
+    return x;
+}
+
+double cmp::smooth_uniform_distribution_normal::sample(std::default_random_engine &rng)
+{
+    return m_a + (m_b-m_a)*m_dist_u(rng) + m_dist_n(rng)*m_sigma;
 }

@@ -22,7 +22,7 @@ double cmp::wasserstein_1d(std::vector<double> &samples_1, std::vector<double> &
 
     };
 
-    double cmp::sliced_wasserstein(const std::vector<vector_t> &samples_1, const std::vector<vector_t> &samples_2, const double &p, const int &slices, std::normal_distribution<double> &dist_n, std::default_random_engine &rng) {
+    double cmp::sliced_wasserstein(const std::vector<Eigen::VectorXd> &samples_1, const std::vector<Eigen::VectorXd> &samples_2, const double &p, const int &slices, std::normal_distribution<double> &dist_n, std::default_random_engine &rng) {
         
         size_t dim = samples_1[0].size();
         double V_n = 2*std::pow(M_PI,dim/2.0)/std::tgamma(dim/2.0);
@@ -33,13 +33,14 @@ double cmp::wasserstein_1d(std::vector<double> &samples_1, std::vector<double> &
         std::vector<double> samples_2_p(n_samples);
 
         // Initialize a uniform sphere distribution
-        cmp::uniform_sphere_distribution sphere(dim,rng);
+        cmp::uniform_sphere_distribution sphere(dim);
+        
         
         // Start performing slices 
         for(size_t i=0; i<slices; i++) {
 
             // Pick a sample in the hyper-sphere
-            vector_t theta = sphere.sample();
+            Eigen::VectorXd theta = sphere.sample(rng);
 
             // Perform the Radon transform of the KDE
             for(size_t j=0; j<n_samples; j++) {

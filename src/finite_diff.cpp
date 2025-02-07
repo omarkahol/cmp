@@ -107,16 +107,15 @@ namespace cmp {
         for(int l = 0; l<n_steps; l++) {
             for (int k=0; k<n_steps; k++) {
                 
-                x_step[l] += internal_coeffs[l] * h;
-                x_step[k] += internal_coeffs[k] * h;
+                x_step[i] += internal_coeffs[l] * h;
+                x_step[j] += internal_coeffs[k] * h;
 
                 hess += external_coeffs[l] * external_coeffs[k] * fun(x_step);
                 
-                x_step[k] = x_0[k];
-                x_step[l] = x_0[l];
+                x_step[j] = x_0[j];
+                x_step[i] = x_0[i];
             }
         }
-
         return hess/denom;
     }
 

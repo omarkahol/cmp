@@ -3,31 +3,23 @@
 
 using namespace cmp;
 
-mcmc::mcmc(size_t dim): m_dim(dim) {
+mcmc::mcmc(cmp::proposal_distribution *proposal, std::default_random_engine &rng, const double &score): m_rng(rng) {
     
     // Initialize the parameter vector
-    m_par = vector_t::Zero(dim);
-    m_score = 0.0;
+    m_proposal = proposal;
+    m_score = score;
+    m_dim = m_proposal->get().size();
 
     // Initialize mean and variance
-    m_mean = vector_t::Zero(dim);
-    m_cov = matrix_t::Zero(dim,dim);
+    m_mean = Eigen::VectorXd::Zero(m_dim);
+    m_cov = Eigen::MatrixXd::Zero(m_dim,m_dim);
 }
 
-void mcmc::seed(vector_t par, double score) {
-    m_par = par;
-    m_score = score;
-}
-
-void cmp::mcmc::init(cmp::multivariate_distribution *proposal) {
-    m_proposal = proposal;
-}
-
-bool mcmc::accept(const vector_t &par, double score) {
+bool mcmc::accept(const Eigen::VectorXd &par, double score) {
 
     // Increase the number of accepts
     if ((score-m_score) > log(m_dist_u(m_rng))) {
-        m_par = par;
+        m_proposal->set(par);
         m_score = score;
         m_accepts++;
         return true;
@@ -41,7 +33,7 @@ void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
     increase_steps();
 
     // Propose a candidate
-    vector_t cand_prop = m_proposal->jump(m_par, 1.0);
+    Eigen::VectorXd cand_prop = m_proposal->sample(m_rng, 1.0);
 
     // Compute the score
     double score_prop = get_score(cand_prop);
@@ -53,7 +45,7 @@ void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
     if ((!accepted) && DRAM_STEP) {
 
         // Generate a new porposal from a narrower distribution
-        vector_t cand_prop_2 = m_proposal->jump(m_par, gamma);
+        Eigen::VectorXd cand_prop_2 = m_proposal->sample(m_rng, gamma);
 
         // Compute the score
         double score_prop_2 = get_score(cand_prop_2);
@@ -63,8 +55,8 @@ void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
         double alfa_qs_qs2 = std::min(1.0,std::exp(score_prop - score_prop_2));
 
         // Compute difference between the two jumping distributions
-        double j_qs_qs2 = m_proposal->log_jump_prob(cand_prop-cand_prop_2, 1.0);
-        double j_qs_qsm1 = m_proposal->log_jump_prob(cand_prop-m_par, 1.0);
+        double j_qs_qs2 = m_proposal->log_jump_pdf(cand_prop-cand_prop_2);
+        double j_qs_qsm1 = m_proposal->log_pdf(cand_prop);
 
         double log_j_diff = j_qs_qs2 - j_qs_qsm1;
         double log_score_diff = score_prop_2 - m_score;
@@ -72,7 +64,7 @@ void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
 
         // Evaluate the acceptance
         if ((log_alfa_diff + log_j_diff + log_score_diff)>m_dist_u(m_rng)) {
-            m_par = cand_prop_2;
+            m_proposal->set(cand_prop_2);
             m_score = score_prop_2;
             m_accepts++;
         }
@@ -84,9 +76,11 @@ void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
 
 void mcmc::update()
 {
+    // Get the current parameter
+    Eigen::VectorXd par = m_proposal->get();
     // Update estimates of mean and covariance
-    m_mean += m_par;
-    m_cov += m_par*m_par.transpose();
+    m_mean += par;
+    m_cov += par*par.transpose();
 }
 
 Eigen::LDLT<Eigen::MatrixXd> mcmc::get_adapted_cov() {
@@ -102,24 +96,24 @@ void mcmc::reset()
     m_accepts = 0;
 
     // Reset the mean and the covariance
-    m_mean = vector_t::Zero(m_dim);
-    m_cov = matrix_t::Zero(m_dim,m_dim);
+    m_mean = Eigen::VectorXd::Zero(m_dim);
+    m_cov = Eigen::MatrixXd::Zero(m_dim,m_dim);
 }
 
-vector_t mcmc::get_par() const {
-    return m_par;
+Eigen::VectorXd mcmc::get_par() const {
+    return m_proposal->get();
 }
 
 size_t cmp::mcmc::get_dim() const {
     return m_dim;
 }
 
-vector_t mcmc::get_mean() const {
+Eigen::VectorXd mcmc::get_mean() const {
     return m_mean/static_cast<double>(m_steps);
 }
 
-matrix_t mcmc::get_cov() const {
-    vector_t mean = get_mean();
+Eigen::MatrixXd mcmc::get_cov() const {
+    Eigen::VectorXd mean = get_mean();
     return m_cov/static_cast<double>(m_steps) - mean*mean.transpose();
 }
 
@@ -137,16 +131,16 @@ void mcmc::info() const{
     auto mean = get_mean();
     auto cov = get_cov();
     
-    spdlog::info("run {0:d} steps", m_steps);
-    spdlog::info("acceptance ratio: {:.3f}", get_acceptance_ratio());
-    spdlog::info("Data covariance: \n{}",cov);
-    spdlog::info("Data mean: \n{}",mean);
+    std::cout << "run " << m_steps << " steps" << std::endl;
+    std::cout << "acceptance ratio: " << std::fixed << std::setprecision(3) << get_acceptance_ratio() << std::endl;
+    std::cout << "Data covariance: \n" << cov << std::endl;
+    std::cout << "Data mean: \n" << mean << std::endl;
     
 }
 
-vector_t cmp::self_correlation_lag(const std::vector<vector_t> &samples, int lag) {
+Eigen::VectorXd cmp::self_correlation_lag(const std::vector<Eigen::VectorXd> &samples, int lag) {
     
-    vector_t self_corr(samples[0].size());
+    Eigen::VectorXd self_corr(samples[0].size());
 
     for (int i=0; i<samples.size() - lag; i++) {
         self_corr += samples[i].cwiseProduct(samples[i+lag]);
@@ -155,17 +149,17 @@ vector_t cmp::self_correlation_lag(const std::vector<vector_t> &samples, int lag
     return self_corr/(samples.size() - lag);
 }
 
-std::pair<vector_t, double> cmp::single_chain_diagnosis(std::vector<vector_t> samples) {
+std::pair<Eigen::VectorXd, double> cmp::single_chain_diagnosis(std::vector<Eigen::VectorXd> samples) {
 
     auto mean_cov_pair = mean_cov(samples);
-    const vector_t &mean = mean_cov_pair.first;
-    const vector_t &var = mean_cov_pair.second.diagonal();
+    const Eigen::VectorXd &mean = mean_cov_pair.first;
+    const Eigen::VectorXd &var = mean_cov_pair.second.diagonal();
 
-    vector_t corr_length=vector_t::Zero(samples[0].size());
-    vector_t self_corr_prev(samples[0].size());
+    Eigen::VectorXd corr_length=Eigen::VectorXd::Zero(samples[0].size());
+    Eigen::VectorXd self_corr_prev(samples[0].size());
 
     for(int lag=0; lag<samples.size(); lag++) {
-        vector_t self_corr(samples[0].size());
+        Eigen::VectorXd self_corr(samples[0].size());
         for (int i=0; i<samples.size() - lag; i++) {
             self_corr += (samples[i]-mean).cwiseProduct(samples[i+lag]-mean);
         }
@@ -186,11 +180,11 @@ std::pair<vector_t, double> cmp::single_chain_diagnosis(std::vector<vector_t> sa
     return std::make_pair(corr_length, ess);
 }
 
-std::pair<vector_t, matrix_t> cmp::mean_cov(const std::vector<vector_t> &samples) {
-    vector_t mean(samples[0].size());
-    matrix_t cov(samples[0].size(), samples[0].size());
+std::pair<Eigen::VectorXd, Eigen::MatrixXd> cmp::mean_cov(const std::vector<Eigen::VectorXd> &samples) {
+    Eigen::VectorXd mean(samples[0].size());
+    Eigen::MatrixXd cov(samples[0].size(), samples[0].size());
 
-    for (const vector_t &sample : samples) {
+    for (const Eigen::VectorXd &sample : samples) {
         mean += sample;
         cov += sample*sample.transpose();
     }
@@ -209,9 +203,9 @@ double cmp::r_hat(const std::vector<mcmc> &chains) {
     size_t dim_chain = chains[0].get_dim();
     size_t num_chains = chains.size();
 
-    vector_t chainwise_mean(dim_chain);
-    vector_t chainwise_cov(dim_chain);
-    vector_t chainwise_mean_cov(dim_chain);
+    Eigen::VectorXd chainwise_mean(dim_chain);
+    Eigen::VectorXd chainwise_cov(dim_chain);
+    Eigen::VectorXd chainwise_mean_cov(dim_chain);
 
     for (const mcmc &chain : chains) {
         auto data = std::make_pair(chain.get_mean(),chain.get_cov());
@@ -238,7 +232,7 @@ double cmp::r_hat(const std::vector<mcmc> &chains) {
 
     double steps = static_cast<double>(chains[0].get_steps());
 
-    vector_t var_chain = chainwise_cov + chainwise_mean_cov;
-    vector_t r_hat = (var_chain.cwiseQuotient(chainwise_cov)).cwiseSqrt();
+    Eigen::VectorXd var_chain = chainwise_cov + chainwise_mean_cov;
+    Eigen::VectorXd r_hat = (var_chain.cwiseQuotient(chainwise_cov)).cwiseSqrt();
     return r_hat.maxCoeff();
 }

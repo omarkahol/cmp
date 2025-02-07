@@ -1,24 +1,29 @@
-import math as mt
-import numpy as np
+from fig_settings import *
 import matplotlib.pyplot as plt
-import seaborn as sns
-import os 
-
-font = {"text.usetex": True,
-        'font.weight' : 'normal',
-        'font.size'   : 20,
-        "font.family": "serif"}
-plt.rcParams.update(font)
+import numpy as np
+import os
+plt.rcParams.update(tex_fonts)
 
 
 # retrieve data
 data = np.genfromtxt('pred.csv', delimiter=' ')
-x_pred = data[:,0]
-y_pred_mean = data[:,1]
-y_pred_95 = 2*np.sqrt(abs(data[:,2]))
 
 # plot the prediction
-fig, ax = plt.subplots(figsize=(12, 8))
-p2, = plt.plot(x_pred,y_pred_mean,'r-')
-plt.fill_between(x_pred,y_pred_mean-y_pred_95, y_pred_mean+y_pred_95, alpha=0.4, color="red",lw=0)
-plt.savefig(os.path.join(os.getcwd(),'pred_ls.pdf'))
+fig, ax = plt.subplots(1,1, figsize=set_size('thesis'))
+ax.plot(data[:,0], data[:,1], 'k-', label='True function')
+ax.plot(data[:,0], data[:,3], 'r--', label='Prediction')
+ax.fill_between(data[:,0], data[:,3]-data[:,5], data[:,3]+data[:,5], color='r', alpha=0.2, lw=0)
+ax.set_xlabel('x')
+ax.set_ylabel('f(x)')
+ax.legend()
+plt.show()
+
+
+fig, ax = plt.subplots(1,1, figsize=set_size('thesis'))
+ax.plot(data[:,0], data[:,2], 'k-', label='True function')
+ax.plot(data[:,0], data[:,4], 'r--', label='Prediction')
+ax.fill_between(data[:,0], data[:,4]-data[:,6], data[:,4]+data[:,6], color='r', alpha=0.2, lw=0)
+ax.set_xlabel('x')
+ax.set_ylabel('f(x)')
+ax.legend()
+plt.show()

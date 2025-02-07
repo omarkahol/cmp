@@ -14,7 +14,6 @@ namespace cmp {
 
         protected:
             
-            Eigen::VectorXd m_par;                      //  Current parameter value
             double m_score{0.0};                 //  Current value of the score
             
             size_t m_dim;                        // Dimension of the chain
@@ -28,7 +27,7 @@ namespace cmp {
         
         protected:
             // Proposal distribution
-            cmp::multivariate_distribution *m_proposal;
+            cmp::proposal_distribution *m_proposal;
             std::uniform_real_distribution<double> m_dist_u{0,1};
             std::default_random_engine m_rng;
 
@@ -38,25 +37,14 @@ namespace cmp {
             /**
              * @brief Construct a new mcmc chain object 
              * 
-             * @param dim the size of the chain (number of parameters)
              * @param rng the random number generator
              */
-            mcmc(size_t dim);
+            mcmc(cmp::proposal_distribution *proposal, std::default_random_engine &rng, const double &score = -std::numeric_limits<double>::infinity());
 
             mcmc() = default;
         
         // Functions
         public:
-
-            /**
-             * @brief Initialize the chain
-
-             * @param par The proposal value of the parameters
-             * @param score The initial score (default is zero)
-             */
-            void seed(Eigen::VectorXd par, double score = 0.0);
-
-            void init(cmp::multivariate_distribution *proposal);
 
             /**
              * @brief Increase the number of steps

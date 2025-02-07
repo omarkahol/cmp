@@ -15,6 +15,7 @@ namespace cmp {
      */
     double wasserstein_1d(std::vector<double> &samples_1, std::vector<double> &samples_2, const double &p);
 
+
     /**
      * @brief Computes the sliced-Wasserstein distance of order p between some n-dimensional points. 
      * 

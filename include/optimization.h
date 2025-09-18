@@ -2,6 +2,8 @@
 #define OPTIMIZATION_H
 
 #include "cmp_defines.h"
+#include "gp.h"
+#include "utils.h"
 
 namespace cmp{
     /**

@@ -1,8 +1,8 @@
 # Define the C++ compiler to use
-CXX = g++-14
+CXX = g++-15
 
 # Define any compile-time flags
-CXXFLAGS := -std=c++17 -Wl,-ld_classic -O3
+CXXFLAGS := -std=c++20 -O3 -fopenmp
 
 # Define external includes
 EIGEN = $(HOME)/opt/eigen-3.4.0/

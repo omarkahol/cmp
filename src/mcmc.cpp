@@ -3,40 +3,40 @@
 
 using namespace cmp;
 
-mcmc::mcmc(cmp::proposal_distribution *proposal, std::default_random_engine &rng, const double &score): m_rng(rng) {
+mcmc::MarkovChain::MarkovChain(cmp::distribution::ProposalDistribution *proposal, std::default_random_engine &rng, const double &score): rng_(rng) {
     
     // Initialize the parameter vector
-    m_proposal = proposal;
-    m_score = score;
-    m_dim = m_proposal->get().size();
+    proposal_ = proposal;
+    score_ = score;
+    dim_ = proposal_->get().size();
 
     // Initialize mean and variance
-    m_mean = Eigen::VectorXd::Zero(m_dim);
-    m_cov = Eigen::MatrixXd::Zero(m_dim,m_dim);
+    mean_ = Eigen::VectorXd::Zero(dim_);
+    cov_ = Eigen::MatrixXd::Zero(dim_,dim_);
 }
 
-bool mcmc::accept(const Eigen::VectorXd &par, double score) {
+bool mcmc::MarkovChain::accept(const Eigen::VectorXd &par, double score) {
 
     // Increase the number of accepts
-    if ((score-m_score) > log(m_dist_u(m_rng))) {
-        m_proposal->set(par);
-        m_score = score;
-        m_accepts++;
+    if ((score-score_) > log(distU_(rng_))) {
+        proposal_->set(par);
+        score_ = score;
+        nAccepts_++;
         return true;
     }
     return false;
 }
 
-void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
+void mcmc::MarkovChain::step(const score_t &getScore, bool DRAM_STEP, double gamma)
 {
     // Increase the number of steps
-    increase_steps();
+    increaseSteps();
 
     // Propose a candidate
-    Eigen::VectorXd cand_prop = m_proposal->sample(m_rng, 1.0);
+    Eigen::VectorXd cand_prop = proposal_->sample(rng_, 1.0);
 
     // Compute the score
-    double score_prop = get_score(cand_prop);
+    double score_prop = getScore(cand_prop);
 
     // Decide whether to accept the candidate
     bool accepted = accept(cand_prop, score_prop);
@@ -45,28 +45,28 @@ void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
     if ((!accepted) && DRAM_STEP) {
 
         // Generate a new porposal from a narrower distribution
-        Eigen::VectorXd cand_prop_2 = m_proposal->sample(m_rng, gamma);
+        Eigen::VectorXd cand_prop_2 = proposal_->sample(rng_, gamma);
 
         // Compute the score
-        double score_prop_2 = get_score(cand_prop_2);
+        double score_prop_2 = getScore(cand_prop_2);
 
         // Compute acceptance probabilities
-        double alfa_qs_qsm1 = std::min(1.0,std::exp(score_prop - m_score));
+        double alfa_qs_qsm1 = std::min(1.0,std::exp(score_prop - score_));
         double alfa_qs_qs2 = std::min(1.0,std::exp(score_prop - score_prop_2));
 
         // Compute difference between the two jumping distributions
-        double j_qs_qs2 = m_proposal->log_jump_pdf(cand_prop-cand_prop_2);
-        double j_qs_qsm1 = m_proposal->log_pdf(cand_prop);
+        double j_qs_qs2 = proposal_->logJumpPDF(cand_prop-cand_prop_2);
+        double j_qs_qsm1 = proposal_->logPDF(cand_prop);
 
         double log_j_diff = j_qs_qs2 - j_qs_qsm1;
-        double log_score_diff = score_prop_2 - m_score;
+        double log_score_diff = score_prop_2 - score_;
         double log_alfa_diff = std::log(1.0-alfa_qs_qs2) - std::log(1-alfa_qs_qsm1);
 
         // Evaluate the acceptance
-        if ((log_alfa_diff + log_j_diff + log_score_diff)>m_dist_u(m_rng)) {
-            m_proposal->set(cand_prop_2);
-            m_score = score_prop_2;
-            m_accepts++;
+        if ((log_alfa_diff + log_j_diff + log_score_diff)>distU_(rng_)) {
+            proposal_->set(cand_prop_2);
+            score_ = score_prop_2;
+            nAccepts_++;
         }
     }
 
@@ -74,71 +74,71 @@ void mcmc::step(const score_t &get_score, bool DRAM_STEP, double gamma)
     update();
 }
 
-void mcmc::update()
+void mcmc::MarkovChain::update()
 {
     // Get the current parameter
-    Eigen::VectorXd par = m_proposal->get();
+    Eigen::VectorXd par = proposal_->get();
     // Update estimates of mean and covariance
-    m_mean += par;
-    m_cov += par*par.transpose();
+    mean_ += par;
+    cov_ += par*par.transpose();
 }
 
-Eigen::LDLT<Eigen::MatrixXd> mcmc::get_adapted_cov() {
-    return ((pow(2.38,2)/static_cast<double>(m_dim)) * get_cov()).ldlt();
+Eigen::LDLT<Eigen::MatrixXd> mcmc::MarkovChain::getAdaptedCovariance() {
+    return ((pow(2.38,2)/static_cast<double>(dim_)) * getCovariance()).ldlt();
 
 }
 
-void mcmc::reset()
+void mcmc::MarkovChain::reset()
 {
 
     // Reset the steps and accepts
-    m_steps = 0;
-    m_accepts = 0;
+    nSteps_ = 0;
+    nAccepts_ = 0;
 
     // Reset the mean and the covariance
-    m_mean = Eigen::VectorXd::Zero(m_dim);
-    m_cov = Eigen::MatrixXd::Zero(m_dim,m_dim);
+    mean_ = Eigen::VectorXd::Zero(dim_);
+    cov_ = Eigen::MatrixXd::Zero(dim_,dim_);
 }
 
-Eigen::VectorXd mcmc::get_par() const {
-    return m_proposal->get();
+Eigen::VectorXd mcmc::MarkovChain::getCurrent() const {
+    return proposal_->get();
 }
 
-size_t cmp::mcmc::get_dim() const {
-    return m_dim;
+size_t cmp::mcmc::MarkovChain::getDim() const {
+    return dim_;
 }
 
-Eigen::VectorXd mcmc::get_mean() const {
-    return m_mean/static_cast<double>(m_steps);
+Eigen::VectorXd mcmc::MarkovChain::getMean() const {
+    return mean_/static_cast<double>(nSteps_);
 }
 
-Eigen::MatrixXd mcmc::get_cov() const {
-    Eigen::VectorXd mean = get_mean();
-    return m_cov/static_cast<double>(m_steps) - mean*mean.transpose();
+Eigen::MatrixXd mcmc::MarkovChain::getCovariance() const {
+    Eigen::VectorXd mean = getMean();
+    return cov_/static_cast<double>(nSteps_) - mean*mean.transpose();
 }
 
-size_t cmp::mcmc::get_steps() const {
-    return m_steps;
+size_t cmp::mcmc::MarkovChain::getSteps() const {
+    return nSteps_;
 }
 
-double cmp::mcmc::get_acceptance_ratio() const
+double cmp::mcmc::MarkovChain::getAcceptanceRatio() const
 {
-    return m_accepts/static_cast<double>(m_steps);
+    return nAccepts_/static_cast<double>(nSteps_);
 }
 
-void mcmc::info() const{
+void mcmc::MarkovChain::info() const{
 
-    auto mean = get_mean();
-    auto cov = get_cov();
+    auto mean = getMean();
+    auto cov = getCovariance();
     
-    std::cout << "run " << m_steps << " steps" << std::endl;
-    std::cout << "acceptance ratio: " << std::fixed << std::setprecision(3) << get_acceptance_ratio() << std::endl;
+    std::cout << "run " << nSteps_ << " steps" << std::endl;
+    std::cout << "acceptance ratio: " << std::fixed << std::setprecision(3) << getAcceptanceRatio() << std::endl;
     std::cout << "Data covariance: \n" << cov << std::endl;
     std::cout << "Data mean: \n" << mean << std::endl;
     
 }
 
-Eigen::VectorXd cmp::self_correlation_lag(const std::vector<Eigen::VectorXd> &samples, int lag) {
+Eigen::VectorXd cmp::mcmc::selfCorrelation(const std::vector<Eigen::VectorXd> &samples, int lag) {
     
     Eigen::VectorXd self_corr(samples[0].size());
 
@@ -149,9 +149,9 @@ Eigen::VectorXd cmp::self_correlation_lag(const std::vector<Eigen::VectorXd> &sa
     return self_corr/(samples.size() - lag);
 }
 
-std::pair<Eigen::VectorXd, double> cmp::single_chain_diagnosis(std::vector<Eigen::VectorXd> samples) {
+std::pair<Eigen::VectorXd, double> cmp::mcmc::singleChainDiagnosis(std::vector<Eigen::VectorXd> samples) {
 
-    auto mean_cov_pair = mean_cov(samples);
+    auto mean_cov_pair = cmp::mcmc::samplesStatistics(samples);
     const Eigen::VectorXd &mean = mean_cov_pair.first;
     const Eigen::VectorXd &var = mean_cov_pair.second.diagonal();
 
@@ -180,7 +180,7 @@ std::pair<Eigen::VectorXd, double> cmp::single_chain_diagnosis(std::vector<Eigen
     return std::make_pair(corr_length, ess);
 }
 
-std::pair<Eigen::VectorXd, Eigen::MatrixXd> cmp::mean_cov(const std::vector<Eigen::VectorXd> &samples) {
+std::pair<Eigen::VectorXd, Eigen::MatrixXd> cmp::mcmc::samplesStatistics(const std::vector<Eigen::VectorXd> &samples) {
     Eigen::VectorXd mean(samples[0].size());
     Eigen::MatrixXd cov(samples[0].size(), samples[0].size());
 
@@ -195,20 +195,20 @@ std::pair<Eigen::VectorXd, Eigen::MatrixXd> cmp::mean_cov(const std::vector<Eige
     return std::make_pair(mean,cov);
 }
 
-double cmp::r_hat(const std::vector<mcmc> &chains) {
+double cmp::mcmc::multiChainDiagnosis(const std::vector<mcmc::MarkovChain> &chains) {
 
     // We have the intra chain mean and intra chain variance
     // We the compute the inter-chain mean which is the chainwise_mean of the mean
 
-    size_t dim_chain = chains[0].get_dim();
+    size_t dim_chain = chains[0].getDim();
     size_t num_chains = chains.size();
 
     Eigen::VectorXd chainwise_mean(dim_chain);
     Eigen::VectorXd chainwise_cov(dim_chain);
     Eigen::VectorXd chainwise_mean_cov(dim_chain);
 
-    for (const mcmc &chain : chains) {
-        auto data = std::make_pair(chain.get_mean(),chain.get_cov());
+    for (const mcmc::MarkovChain &chain : chains) {
+        auto data = std::make_pair(chain.getMean(),chain.getCovariance());
 
         // Compute the mean of the mean
         chainwise_mean += data.first;
@@ -230,7 +230,7 @@ double cmp::r_hat(const std::vector<mcmc> &chains) {
     // rescale
     chainwise_mean_cov *= num_chains/(num_chains-1);
 
-    double steps = static_cast<double>(chains[0].get_steps());
+    double steps = static_cast<double>(chains[0].getSteps());
 
     Eigen::VectorXd var_chain = chainwise_cov + chainwise_mean_cov;
     Eigen::VectorXd r_hat = (var_chain.cwiseQuotient(chainwise_cov)).cwiseSqrt();

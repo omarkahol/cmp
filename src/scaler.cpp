@@ -1,81 +1,72 @@
 #include "scaler.h"
 
-cmp::standard_scaler::standard_scaler(const std::vector<double> &data)
-{   
-    double mean = 0.0;
-    double std = 0.0;
-    for (int i=0; i<data.size(); i++){
-        mean += data[i];
-        std += data[i]*data[i];
+double cmp::scaler::StandardScaler::transform(const double &x) const
+{
+    return (x - mean_)/std_;
+}
+
+double cmp::scaler::StandardScaler::inverseTransfrom(const double &x) const
+{
+    return x*std_ + mean_;
+}
+
+std::vector<double> cmp::scaler::StandardScaler::fit_transform(const std::vector<double> &data)
+{
+    fit(data);
+    std::vector<double> data_t(data.size());
+    for (size_t i=0; i<data.size(); i++){
+        data_t[i] = transform(data[i]);
     }
-    m_mean = mean/double(data.size());
-    m_scale = std::sqrt((std - mean*mean/double(data.size()))/double(data.size()-1.0));
+    return data_t;
+}
 
+void cmp::scaler::StandardScaler::fit(const std::vector<double> &data)
+{
+    mean_, std_ = 0.0, 0.0;
+    for (auto &data_i : data){
+        mean_ += data_i;
+        std_ += data_i*data_i;
+    }
+    mean_ = mean_/double(data.size());
+    std_ = std::sqrt((std_ - mean_*mean_/double(data.size()))/double(data.size()-1.0));
 
-    // Transform the data and save it
-    m_size = data.size();
-    m_data = data;
-    for (int i=0; i<m_size; i++){
-        transform(m_data[i]);
+    if (std_ == 0.0){
+        std_ = 1.0;
     }
 }
 
-void cmp::standard_scaler::transform(double &x)
+Eigen::VectorXd cmp::scaler::StandardVectorScaler::transform(const Eigen::VectorXd &x) const 
 {
-    x = (x - m_mean)/m_scale;
+    return lltDecomposition_.matrixL().solve(x - mean_);
 }
 
-void cmp::standard_scaler::inverse_transform(double &x)
+Eigen::VectorXd cmp::scaler::StandardVectorScaler::inverseTransfrom(const Eigen::VectorXd &x) const 
 {
-    x = x*m_scale + m_mean;
+    return lltDecomposition_.matrixL()*x + mean_;
 }
 
-double cmp::standard_scaler::operator[](const int &i) const
-{
-    return m_data[i];
-}
-
-const double &cmp::standard_scaler::at(const int &i) const
-{
-    return m_data.at(i);
-}
-
-size_t cmp::standard_scaler::get_size()
-{
-    return m_size;
-}
-
-const std::vector<double> &cmp::standard_scaler::get_data() const
-{
-    return m_data;
-}
-
-double cmp::standard_scaler::get_mean()
-{
-    return m_mean;
-}
-
-double cmp::standard_scaler::get_scale()
-{
-    return m_scale;
-}
-
-cmp::standard_vector_scaler::standard_vector_scaler(std::vector<Eigen::VectorXd> data)
+void cmp::scaler::StandardVectorScaler::fit(const std::vector<Eigen::VectorXd> &data)
 {
     Eigen::VectorXd mean = Eigen::VectorXd::Zero(data[0].size());
     Eigen::MatrixXd scale = Eigen::MatrixXd::Zero(data[0].size(),data[0].size());
 
-    for (int i=0; i<data.size(); i++){
-        mean += data[i];
-        scale += data[i]*data[i].transpose();
+    for (auto &data_i : data){
+        mean += data_i;
+        scale += data_i*data_i.transpose();
     }
-
-    mean /= data.size();
+    mean /= double(data.size());
     scale -= data.size()*mean*mean.transpose();
     scale /= double(data.size()-1);
 
-    // Check if the matrix is self adjoint
+    // Check if the matrix is well defined
     for (size_t i=0; i<scale.rows(); i++){
+
+        // Check if the diagonal is zero, if so set it to 1
+        if (scale(i,i) < TOL){
+            scale(i,i) = 1.0;
+        }
+
+        // Check if the matrix is symmetric
         for (size_t j=i+1; j<scale.cols(); j++){
             if (scale(i,j) != scale(j,i)){
                 scale(j,i) = scale(i,j);
@@ -84,76 +75,84 @@ cmp::standard_vector_scaler::standard_vector_scaler(std::vector<Eigen::VectorXd>
     }
 
 
-    m_scale = scale.llt();
-    m_mean = mean;
+    lltDecomposition_ = scale.llt();
+    mean_ = mean;
+}
 
-    // Transform the data
-    m_data = data;
-    m_size = data.size();
-    for (int i=0; i<m_size; i++){
-        transform(m_data[i]);
+std::vector<Eigen::VectorXd> cmp::scaler::StandardVectorScaler::fit_transform(const std::vector<Eigen::VectorXd> &data)
+{
+    fit(data);
+    std::vector<Eigen::VectorXd> data_t(data.size());
+    for (size_t i=0; i<data.size(); i++){
+        data_t[i] = transform(data[i]);
+    }
+    return data_t;
+}
+
+void cmp::scaler::PCA::eigenDecomposition()
+{
+    // Check the number of components
+    if (nComponents_ > eigenSolver_.eigenvalues().size() || nComponents_ < 0){
+        
+        Eigen::VectorXd eigenvalues = eigenSolver_.eigenvalues();
+        eigenvalues.array() = eigenvalues.array().abs().sqrt();
+
+        Eigen::MatrixXd eigenvectors = eigenSolver_.eigenvectors();
+        sqrtCov_ = eigenvectors*eigenvalues.asDiagonal();
+
+        // Compute the inverse
+        eigenvalues.array() = 1.0/eigenvalues.array();
+        sqrtCovInv_ = eigenvalues.asDiagonal()*eigenvectors.transpose();
+
+    } else {
+        
+        // Take the first n_components
+        Eigen::VectorXd eigenvalues = eigenSolver_.eigenvalues().tail(nComponents_);
+        eigenvalues.array() = eigenvalues.array().abs().sqrt();
+
+        // Take the first n_components eigenvectors
+        Eigen::MatrixXd eigenvectors = eigenSolver_.eigenvectors().rightCols(nComponents_);
+        sqrtCov_ = eigenvectors*eigenvalues.asDiagonal();
+
+        // Compute the inverse
+        eigenvalues.array() = 1.0/eigenvalues.array();
+        sqrtCovInv_ = eigenvalues.asDiagonal()*eigenvectors.transpose();
     }
 }
 
-void cmp::standard_vector_scaler::transform(Eigen::VectorXd &x)
+Eigen::VectorXd cmp::scaler::PCA::transform(const Eigen::VectorXd &data) const
 {
-    x = m_scale.matrixL().solve(x - m_mean);
+
+    return sqrtCovInv_*(data - mean_);
 }
 
-void cmp::standard_vector_scaler::inverse_transform(Eigen::VectorXd &x)
+Eigen::VectorXd cmp::scaler::PCA::inverseTransfrom(const Eigen::VectorXd &data) const
 {
-    x = m_scale.matrixL()*x + m_mean;
+    return sqrtCov_*data + mean_;
 }
 
-Eigen::VectorXd cmp::standard_vector_scaler::operator[](const int &i) const
+void cmp::scaler::PCA::fit(const std::vector<Eigen::VectorXd> &data)
 {
-    return m_data[i];
-}
-
-const Eigen::VectorXd &cmp::standard_vector_scaler::at(const int &i) const
-{
-    return m_data.at(i);
-}
-
-size_t cmp::standard_vector_scaler::get_size()
-{
-    return m_size;
-}
-
-const std::vector<Eigen::VectorXd> &cmp::standard_vector_scaler::get_data() const
-{
-    return m_data;
-}
-
-Eigen::VectorXd cmp::standard_vector_scaler::get_mean()
-{
-    return m_mean;
-}
-
-Eigen::MatrixXd cmp::standard_vector_scaler::get_scale()
-{
-    return m_scale.matrixL();
-}
-
-cmp::pca_scaler::pca_scaler(std::vector<Eigen::VectorXd> data, size_t n_components)
-{
-
-    m_size = data.size();
     Eigen::VectorXd mean = Eigen::VectorXd::Zero(data[0].size());
     Eigen::MatrixXd scale = Eigen::MatrixXd::Zero(data[0].size(),data[0].size());
 
-    for (int i=0; i<m_size; i++){
-        mean += data[i];
-        scale += data[i]*data[i].transpose();
+    for (auto &data_i : data){
+        mean += data_i;
+        scale += data_i*data_i.transpose();
     }
-
-    mean /= data.size();
+    mean /= double(data.size());
     scale -= data.size()*mean*mean.transpose();
     scale /= double(data.size()-1);
-    m_mean = mean;
 
-    // Check if the matrix is self adjoint
-    for (size_t i=0; i<m_size; i++){
+    // Check if the matrix is well defined
+    for (size_t i=0; i<scale.rows(); i++){
+
+        // Check if the diagonal is zero, if so set it to 1
+        if (scale(i,i) < TOL){
+            scale(i,i) = 1.0;
+        }
+
+        // Check if the matrix is symmetric
         for (size_t j=i+1; j<scale.cols(); j++){
             if (scale(i,j) != scale(j,i)){
                 scale(j,i) = scale(i,j);
@@ -162,231 +161,67 @@ cmp::pca_scaler::pca_scaler(std::vector<Eigen::VectorXd> data, size_t n_componen
     }
 
     // Perform the PCA
-    m_eigen_solver.compute(scale);
-    
-    // Check the number of components
-    if (n_components > m_eigen_solver.eigenvalues().size() || n_components < 0){
-        
-        Eigen::VectorXd eigenvalues = m_eigen_solver.eigenvalues();
-        eigenvalues.array() = eigenvalues.array().abs().sqrt();
+    eigenSolver_.compute(scale);
+    eigenDecomposition();
+    mean_ = mean;
+}
 
-        Eigen::MatrixXd eigenvectors = m_eigen_solver.eigenvectors();
-        m_L = eigenvectors*eigenvalues.asDiagonal();
-
-        // Compute the inverse
-        eigenvalues.array() = 1.0/eigenvalues.array();
-        m_L_inv = eigenvalues.asDiagonal()*eigenvectors.transpose();
-    } else {
-        
-        // Take the first n_components
-        Eigen::VectorXd eigenvalues = m_eigen_solver.eigenvalues().tail(n_components);
-        eigenvalues.array() = eigenvalues.array().abs().sqrt();
-
-        // Take the first n_components eigenvectors
-        Eigen::MatrixXd eigenvectors = m_eigen_solver.eigenvectors().rightCols(n_components);
-        m_L = eigenvectors*eigenvalues.asDiagonal();
-
-        // Compute the inverse
-        eigenvalues.array() = 1.0/eigenvalues.array();
-        m_L_inv = eigenvalues.asDiagonal()*eigenvectors.transpose();
-
+std::vector<Eigen::VectorXd> cmp::scaler::PCA::fit_transform(const std::vector<Eigen::VectorXd> &data)
+{
+    fit(data);
+    std::vector<Eigen::VectorXd> data_t(data.size());
+    for (size_t i=0; i<data.size(); i++){
+        data_t[i] = transform(data[i]);
     }
+    return data_t;
+}
 
-    // Transform the data
-    m_data = data;
-    for (int i=0; i<m_size; i++){
-        transform(m_data[i]);
+void cmp::scaler::PCA::resize(size_t nComponents)
+{
+    nComponents_ = nComponents;
+    eigenDecomposition();
+}
+
+
+Eigen::VectorXd cmp::scaler::EllipticScaler::transform(const Eigen::VectorXd &data) const {
+    Eigen::VectorXd transformed = data - mean_;
+    for (size_t i = 0; i < transformed.size(); i++) {
+        transformed(i) /= std_[i];
+    }
+    return transformed;
+}
+
+Eigen::VectorXd cmp::scaler::EllipticScaler::inverseTransfrom(const Eigen::VectorXd &data) const {
+    Eigen::VectorXd transformed = data;
+    for (size_t i = 0; i < transformed.size(); i++) {
+        transformed(i) *= std_[i];
+    }
+    return transformed + mean_;
+}
+
+void cmp::scaler::EllipticScaler::fit(const std::vector<Eigen::VectorXd> &data) {
+    mean_ = Eigen::VectorXd::Zero(data[0].size());
+    std_.resize(data[0].size());
+
+    for (auto &data_i : data) {
+        mean_ += data_i;
+    }
+    mean_ /= double(data.size());
+
+    for (size_t i = 0; i < std_.size(); i++) {
+        std_[i] = 0.0;
+        for (auto &data_i : data) {
+            std_[i] += (data_i(i) - mean_(i)) * (data_i(i) - mean_(i));
+        }
+        std_[i] = std::sqrt(std_[i] / double(data.size()-1));
     }
 }
 
-void cmp::pca_scaler::transform(Eigen::VectorXd &data)
-{
-    data = m_L_inv*(data - m_mean);
-}
-
-void cmp::pca_scaler::inverse_transform(Eigen::VectorXd &data)
-{
-    data = m_L*data + m_mean;
-}
-
-Eigen::VectorXd cmp::pca_scaler::operator[](const int &i) const
-{
-    return m_data[i];
-}
-
-const Eigen::VectorXd &cmp::pca_scaler::at(const int &i) const
-{
-    return m_data.at(i);
-}
-
-size_t cmp::pca_scaler::get_size()
-{
-    return m_size;
-}
-
-const std::vector<Eigen::VectorXd> &cmp::pca_scaler::get_data() const
-{
-    return m_data;
-}
-
-Eigen::VectorXd cmp::pca_scaler::get_mean()
-{
-    return m_mean;
-}
-
-Eigen::MatrixXd cmp::pca_scaler::get_scale()
-{
-    return m_L;
-}
-
-cmp::dummy_scaler::dummy_scaler(const std::vector<double> &x)
-{
-    m_data = x;
-    m_size = x.size();
-}
-
-void cmp::dummy_scaler::transform(double &x)
-{
-    // Do nothing
-}
-
-void cmp::dummy_scaler::inverse_transform(double &x)
-{
-    // Do nothing
-}
-
-double cmp::dummy_scaler::operator[](const int &i) const
-{
-    return m_data[i];
-}
-
-const double &cmp::dummy_scaler::at(const int &i) const
-{
-    return m_data.at(i);
-}
-
-size_t cmp::dummy_scaler::get_size()
-{
-    return m_size;
-}
-
-double cmp::dummy_scaler::get_mean()
-{
-    return 0.0;
-}
-
-double cmp::dummy_scaler::get_scale()
-{
-    return 1.0;
-}
-
-const std::vector<double> &cmp::dummy_scaler::get_data() const
-{
-    return m_data;
-}
-
-cmp::dummy_vector_scaler::dummy_vector_scaler(std::vector<Eigen::VectorXd> data)
-{
-    m_data = data;
-    m_size = data.size();
-}
-
-void cmp::dummy_vector_scaler::transform(Eigen::VectorXd &data)
-{
-    // Do nothing
-}
-
-void cmp::dummy_vector_scaler::inverse_transform(Eigen::VectorXd &data)
-{
-    // Do nothing
-}
-
-Eigen::VectorXd cmp::dummy_vector_scaler::operator[](const int &i) const
-{
-    return m_data[i];
-}
-
-const Eigen::VectorXd &cmp::dummy_vector_scaler::at(const int &i) const
-{
-    return m_data.at(i);
-}
-
-size_t cmp::dummy_vector_scaler::get_size()
-{
-    return m_size;
-}
-
-const std::vector<Eigen::VectorXd> &cmp::dummy_vector_scaler::get_data() const
-{
-    return m_data;
-}
-
-Eigen::VectorXd cmp::dummy_vector_scaler::get_mean()
-{
-    return Eigen::VectorXd::Ones(m_data[0].size());
-}
-
-Eigen::MatrixXd cmp::dummy_vector_scaler::get_scale()
-{
-    return Eigen::MatrixXd::Identity(m_data[0].size(),m_data[0].size());
-}
-
-cmp::component_scaler::component_scaler(cmp::vector_scaler *base, size_t component)
-{
-    m_base = base;
-    m_component = component;
-}
-
-void cmp::component_scaler::fit(cmp::vector_scaler *base, size_t component)
-{
-    m_base = base;
-    m_component = component;
-}
-
-void cmp::component_scaler::transform(double &data)
-{
-    // Do nothing
-}
-
-void cmp::component_scaler::inverse_transform(double &data)
-{
-    // Do nothing
-}
-
-double cmp::component_scaler::get_mean()
-{
-    return 0;
-}
-
-double cmp::component_scaler::get_scale()
-{
-    return 1;
-}
-
-size_t cmp::component_scaler::get_size()
-{
-    return m_base->get_size();
-}
-
-double cmp::component_scaler::operator[](const int &i) const
-{
-    return m_base->operator[](i)(m_component);
-}
-
-const double &cmp::component_scaler::at(const int &i) const
-{
-    return m_base->at(i)(m_component);
-}
-
-const std::vector<double> &cmp::component_scaler::get_data() const
-{
-    std::vector<double> data(m_base->get_size());
-    for (int i=0; i<m_base->get_size(); i++){
-        data[i] = m_base->at(i)(m_component);
+std::vector<Eigen::VectorXd> cmp::scaler::EllipticScaler::fit_transform(const std::vector<Eigen::VectorXd> &data) {
+    fit(data);
+    std::vector<Eigen::VectorXd> data_t(data.size());
+    for (size_t i = 0; i < data.size(); i++) {
+        data_t[i] = transform(data[i]);
     }
-    return data;
+    return data_t;
 }
-
-
-
-

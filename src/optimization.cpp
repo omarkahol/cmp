@@ -1,8 +1,4 @@
-#include "gp.h"
 #include "optimization.h"
-#include "utils.h"
-#include "finite_diff.h"
-#include "distribution.h"
 
 using namespace cmp;
 
@@ -54,60 +50,61 @@ Eigen::VectorXd cmp::arg_max(const score_t &score, const Eigen::VectorXd &par_0,
     return par_opt;
 }
 
-double cmp::opt_fun_gp_mle(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
+double cmp::gp::opt_fun_gp_mle(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
     
     // The data type contains the gp class
-    auto my_gp = static_cast<const gp*>(data_bit);
+    auto my_gp = static_cast<const cmp::gp::GaussianProcess*>(data_bit);
     
-    // Convert the hyperparameters from std::vector to Eigen::VectorXd
+    // Convert the hyperparameters from std::vector to Eigen::VectorXd and transform them
     Eigen::VectorXd par = v_to_vxd(x);
     Eigen::LDLT<Eigen::MatrixXd> cov_ldlt = my_gp->covariance(par).ldlt();
 
     // Evaluate the log-likelihood and the log-prior
-    double ll = cmp::multivariate_normal_distribution::log_pdf(my_gp->residual(par),cov_ldlt);
+    double ll = cmp::distribution::MultivariateNormalDistribution::logPDF(my_gp->residual(par),cov_ldlt);
 
     // Update the gradient (note that the gradient is optional)
     if (grad.size() != 0) {
         
         // Update each component of the gradient
         for (int n = 0; n < par.size(); n++) {
-            auto cov_gradient = my_gp->covariance_grad(par,n);
-            auto mean_gradient = my_gp->mean_grad(par,n);
-            grad[n] = cmp::multivariate_normal_distribution::log_pdf_gradient(my_gp->residual(par),cov_ldlt,cov_gradient,mean_gradient);
+            auto cov_gradient = my_gp->covarianceGradient(par,n);
+            auto mean_gradient = my_gp->priorMeanGradient(par,n);
+            grad[n] = cmp::distribution::MultivariateNormalDistribution::dLogPDF(my_gp->residual(par),cov_ldlt,cov_gradient,mean_gradient);
         }
     }
     return ll;
 }
 
-double cmp::opt_fun_gp_map(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
+
+double cmp::gp::opt_fun_gp_map(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
 
     // The data type contains the gp class
-    auto my_gp = static_cast<const gp*>(data_bit);
+    auto my_gp = static_cast<const cmp::gp::GaussianProcess*>(data_bit);
     Eigen::VectorXd par = v_to_vxd(x);
     
     // Call the MLE function
-    double ll = opt_fun_gp_mle(x,grad,data_bit);
+    double ll = cmp::gp::opt_fun_gp_mle(x,grad,data_bit);
 
     // Update the gradient (note that the gradient is optional)
     if (grad.size() != 0) {
-        
+
         // Update each component of the gradient
         for (int n = 0; n < par.size(); n++) {
-            grad[n] += my_gp->log_prior_grad(par,n);
+            grad[n] += my_gp->logPriorGradient(par,n);
         }
     }
-    return ll+my_gp->log_prior(par);
+    return ll+my_gp->logPrior(par);
 }
 
-double cmp::opt_fun_gp_mloo(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
+double cmp::gp::opt_fun_gp_mloo(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
     
     // The data type contains the gp class
-    auto my_gp = (const gp*) data_bit;
+    auto my_gp = (const cmp::gp::GaussianProcess*) data_bit;
     Eigen::VectorXd par = v_to_vxd(x);
     Eigen::LDLT<Eigen::MatrixXd> cov_ldlt = my_gp->covariance(par).ldlt();
 
     //compute the inverse of the covariance matrix
-    size_t n_obs = my_gp->get_size();
+    size_t n_obs = my_gp->size();
     Eigen::MatrixXd k_inv = cov_ldlt.solve(Eigen::MatrixXd::Identity(n_obs,n_obs));
 
     //compute the residuals
@@ -134,16 +131,16 @@ double cmp::opt_fun_gp_mloo(const std::vector<double> &x, std::vector<double> &g
     return loo_ll.sum();
 }
 
-double cmp::opt_fun_gp_mloop(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
+double cmp::gp::opt_fun_gp_mloop(const std::vector<double> &x, std::vector<double> &grad, void *data_bit) {
 
     // The data type contains the gp class
-    auto my_gp = (const gp*) data_bit;
+    auto my_gp = (const cmp::gp::GaussianProcess*) data_bit;
     Eigen::VectorXd par = v_to_vxd(x);
     
 
     // Call the MLOO function
     double ll = opt_fun_gp_mloo(x,grad,data_bit);
 
-    return ll+my_gp->log_prior(par);
+    return ll+my_gp->logPrior(par);
 
 }

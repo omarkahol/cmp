@@ -1,19 +1,18 @@
 #include "gp.h"
-#include "optimization.h"
-using namespace cmp;
+using namespace cmp::gp;
 
 
 /*
 FUNCTIONS FOR THE KERNEL
 */
-Eigen::MatrixXd gp::covariance(Eigen::VectorXd par) const
+Eigen::MatrixXd GaussianProcess::covariance(Eigen::VectorXd par) const
 {
     
     // Computation of the kernel matrix
-    Eigen::MatrixXd kernel_mat = Eigen::MatrixXd::Zero(m_size, m_size);
-    for (size_t i = 0; i < m_size; i++) {
-        for (size_t j = i; j < m_size; j++) {
-            kernel_mat(i, j) = m_kernel(m_x_obs->at(i), m_x_obs->at(j), par);
+    Eigen::MatrixXd kernel_mat = Eigen::MatrixXd::Zero(nObs_, nObs_);
+    for (size_t i = 0; i < nObs_; i++) {
+        for (size_t j = i; j < nObs_; j++) {
+            kernel_mat(i, j) = pKernel_->eval(XObs_[i], XObs_[j], par);
 
             // Kernel matrix is symmetric
             if (i != j) {
@@ -21,19 +20,19 @@ Eigen::MatrixXd gp::covariance(Eigen::VectorXd par) const
             }
         }
     }
-    return kernel_mat;
+    return kernel_mat + nugget_ * Eigen::MatrixXd::Identity(nObs_, nObs_);
 }
 
-Eigen::MatrixXd gp::covariance_grad(Eigen::VectorXd par,const int &n) const{
+Eigen::MatrixXd GaussianProcess::covarianceGradient(Eigen::VectorXd par,const int &n) const{
 
     // Initialize the kernel derivative
-    Eigen::MatrixXd k_der = Eigen::MatrixXd::Zero(m_size, m_size);
+    Eigen::MatrixXd k_der = Eigen::MatrixXd::Zero(nObs_, nObs_);
     
     // Fill the matrix that contains the kernel derivative
-    for (size_t i = 0; i < m_size; i++) {
-        for (size_t j = i; j < m_size; j++) {
+    for (size_t i = 0; i < nObs_; i++) {
+        for (size_t j = i; j < nObs_; j++) {
             
-            k_der(i, j) = m_kernel_grad(m_x_obs->at(i), m_x_obs->at(j), par, n);
+            k_der(i, j) = pKernel_->evalGradient(XObs_[i], XObs_[j], par, n);
             
             // The matrix is symmetric
             if (i != j) {
@@ -45,16 +44,16 @@ Eigen::MatrixXd gp::covariance_grad(Eigen::VectorXd par,const int &n) const{
     return k_der;
 }
 
-Eigen::MatrixXd gp::covariance_hess(Eigen::VectorXd par,const int &l, const int &k) const {
+Eigen::MatrixXd GaussianProcess::covarianceHessian(Eigen::VectorXd par,const int &l, const int &k) const {
 
     // Initialize the kernel hessian
-    Eigen::MatrixXd k_der = Eigen::MatrixXd::Zero(m_size, m_size);
+    Eigen::MatrixXd k_der = Eigen::MatrixXd::Zero(nObs_, nObs_);
     
     // Fill the matrix that contains the kernel hessian
-    for (size_t i = 0; i < m_size; i++) {
-        for (size_t j = i; j < m_size; j++) {
+    for (size_t i = 0; i < nObs_; i++) {
+        for (size_t j = i; j < nObs_; j++) {
             
-            k_der(i, j) = m_kernel_hess(m_x_obs->at(i), m_x_obs->at(j), par, l, k);
+            k_der(i, j) = pKernel_->evalHessian(XObs_[i], XObs_[j], par, l, k);
             
             // The matrix is symmetric
             if (i != j) {
@@ -70,54 +69,62 @@ Eigen::MatrixXd gp::covariance_hess(Eigen::VectorXd par,const int &l, const int 
 /*
 FUNCTIONS FOR THE MEAN
 */
-Eigen::VectorXd gp::mean(Eigen::VectorXd par) const{
-    Eigen::VectorXd y(m_size);
+Eigen::VectorXd GaussianProcess::priorMean(Eigen::VectorXd par) const{
+    Eigen::VectorXd y(nObs_);
 
-    for (size_t i=0; i<m_size; i++) {
-        y(i) = m_mean(m_x_obs->at(i),par);
+    for (size_t i=0; i<nObs_; i++) {
+        y(i) = pMean_->eval(XObs_[i],par);
     }
 
     return y;
 }
 
-Eigen::VectorXd cmp::gp::mean_grad(Eigen::VectorXd par,const int &i) const
+Eigen::VectorXd GaussianProcess::priorMeanGradient(Eigen::VectorXd par,const int &i) const
 {
-     Eigen::VectorXd y(m_size);
-    for (size_t j=0; j<m_size; j++) {
-        y(j) = m_mean_grad(m_x_obs->at(j), par, i);
+     Eigen::VectorXd y(nObs_);
+    for (size_t j=0; j<nObs_; j++) {
+        y(j) = pMean_->evalGradient(XObs_[j], par, i);
     }
 
     return y;
 }
 
-Eigen::VectorXd gp::residual(Eigen::VectorXd par) const
+Eigen::VectorXd GaussianProcess::residual(Eigen::VectorXd par) const
 {
 
-    Eigen::VectorXd res(m_size);
-    for (size_t i=0; i<m_size; i++) {
-        res(i) = m_y_obs->at(i)-m_mean(m_x_obs->at(i),par);
+    Eigen::VectorXd res(nObs_);
+    for (size_t i=0; i<nObs_; i++) {
+        res(i) = YObs_[i]-pMean_->eval(XObs_[i],par);
     }
     return res;
 }
 
 
 
-void cmp::gp::set_params(const Eigen::VectorXd &par)
+void GaussianProcess::setParameters(const Eigen::VectorXd &par)
 {
-    m_par = par;
+
+    // Store the parameters and scale them
+    par_ = par;
     
     // Compute the covariance matrix
     Eigen::MatrixXd cov = covariance(par);
 
     // Compute the decomposition
-    m_cov_ldlt.compute(cov);
+    covDecomposition_.compute(cov);
+
+    // Store the residuals
+    residual_ = residual(par_);
 
     // Compute the solution of [K]x=r for fast prediction
-    m_alpha = m_cov_ldlt.solve(residual(par));
+    alpha_ = covDecomposition_.solve(residual_);
+
+    // Compute the inverse of the covariance matrix and store its diagonal
+    diagCovInverse_ = covDecomposition_.solve(Eigen::MatrixXd::Identity(nObs_,nObs_)).diagonal();
 
 }
 
-void cmp::gp::fit(const Eigen::VectorXd &x0, const Eigen::VectorXd &lb, const Eigen::VectorXd &ub, const cmp::method &method, const nlopt::algorithm &alg, const double &tol_rel)
+void GaussianProcess::fit(const Eigen::VectorXd &x0, const Eigen::VectorXd &lb, const Eigen::VectorXd &ub, const method &method, const nlopt::algorithm &alg, const double &tol_rel)
 {
     // Convert Eigen::VectorXd to std::vector
     std::vector<double> x0_v = vxd_to_v(x0);
@@ -134,16 +141,16 @@ void cmp::gp::fit(const Eigen::VectorXd &x0, const Eigen::VectorXd &lb, const Ei
 
     // Set the optimization function
     switch (method) {
-        case cmp::MLE:
+        case MLE:
             optimizer.set_max_objective(opt_fun_gp_mle, static_cast<void*>(this));
             break;
-        case cmp::MAP:
+        case MAP:
             optimizer.set_max_objective(opt_fun_gp_map, static_cast<void*>(this));
             break;
-        case cmp::MLOO:
+        case MLOO:
             optimizer.set_max_objective(opt_fun_gp_mloo, static_cast<void*>(this));
             break;
-        case cmp::MLOOP:
+        case MLOOP:
             optimizer.set_max_objective(opt_fun_gp_mloop, static_cast<void*>(this));
             break;
         default:
@@ -153,134 +160,148 @@ void cmp::gp::fit(const Eigen::VectorXd &x0, const Eigen::VectorXd &lb, const Ei
     double f_val=0.0;
     try {
         optimizer.optimize(x0_v, f_val);
-        set_params(v_to_vxd(x0_v));
+        setParameters(v_to_vxd(x0_v));
     } catch (const std::runtime_error &err) {
         std::cout << err.what() << "\n";
         std::cout << "Local optimization failed. Keeping initial value." << std::endl;
-        set_params(x0);
+        setParameters(x0);
     }
 
 
 }
 
-double gp::predictive_mean(Eigen::VectorXd x) const {
-
-    // Scale the input
-    m_x_obs->transform(x);
+double GaussianProcess::predict(const Eigen::VectorXd &x) const {
 
     // Compute the dot product (see Rasmussen and Williams)
     double k_star_dot_alpha = 0.0;
-    for(size_t i=0; i<m_size; i++) {
-        k_star_dot_alpha += m_kernel(x,m_x_obs->at(i),m_par)*m_alpha(i);
+    for(size_t i=0; i<nObs_; i++) {
+        k_star_dot_alpha += pKernel_->eval(x,XObs_[i],par_)*alpha_(i);
     }
 
-    double pred = m_mean(x,m_par) + k_star_dot_alpha;
-    m_y_obs->inverse_transform(pred);
-    return pred;
+    return pMean_->eval(x,par_) + k_star_dot_alpha;
 }
 
-double gp::predictive_var(Eigen::VectorXd x) const {
+double cmp::gp::GaussianProcess::predictLooCV(const size_t &i) const
+{
+    return YObs_[i] - alpha_(i)/diagCovInverse_(i);
+}
 
-    // Scale the input
-    m_x_obs->transform(x);
+double GaussianProcess::predictVariance(const Eigen::VectorXd &x) const {
 
-    Eigen::VectorXd k_star = Eigen::VectorXd::Zero(m_size);
-    for (size_t i = 0; i < m_size; i++) {
-        k_star(i) = m_kernel(x, m_x_obs->at(i), m_par);
+    // Compute the kernel matrix
+    Eigen::VectorXd k_star = Eigen::VectorXd::Zero(nObs_);
+    for(size_t i=0; i<nObs_; i++) {
+        k_star(i) = pKernel_->eval(x,XObs_[i],par_);
+    }
+
+    // Compute the variance
+    return pKernel_->eval(x,x,par_) - k_star.dot(covDecomposition_.solve(k_star)) + nugget_;
+}
+
+double cmp::gp::GaussianProcess::predictVarianceLooCV(const size_t &i) const
+{
+    return 1.0/diagCovInverse_(i);
+}
+
+cmp::distribution::NormalDistribution cmp::gp::GaussianProcess::predictiveDistribution(const Eigen::VectorXd &x) const
+{
+
+    double k_star_dot_alpha = 0.0;
+    Eigen::VectorXd k_star = Eigen::VectorXd::Zero(nObs_);
+    for (size_t i = 0; i < nObs_; i++) {
+        k_star(i) = pKernel_->eval(x, XObs_[i], par_);
+        k_star_dot_alpha += k_star(i)*alpha_(i);
     }
 
     // Solve the system [k] x = {k_star}
-    Eigen::VectorXd k_star_sol = m_cov_ldlt.solve(k_star);
+    Eigen::VectorXd k_star_sol = covDecomposition_.solve(k_star);
 
-    // Compute the dot product between k_star and the solution
-    double pred = m_kernel(x,x,m_par) - k_star.dot(k_star_sol);
-    return pred*std::pow(m_y_obs->get_scale(),2);
+    // Compute the prediction
+    double var = pKernel_->eval(x,x,par_) - k_star.dot(k_star_sol) + nugget_;
+    double mean = pMean_->eval(x,par_) + k_star_dot_alpha;
+
+    return cmp::distribution::NormalDistribution(mean,std::sqrt(var));
 }
 
+cmp::distribution::MultivariateNormalDistribution cmp::gp::GaussianProcess::predictiveDistribution(const std::vector<Eigen::VectorXd> &x_pts) const
+{
+    // Predictive mean and covariance
+    auto [mean, cov] = predictiveMeanAndCovariance(x_pts);
 
-std::vector<Eigen::VectorXd> gp::sample(std::vector<Eigen::VectorXd> x_pts, std::default_random_engine &rng, const size_t &n) const {
+    // Return the distribution
+    return cmp::distribution::MultivariateNormalDistribution(mean,cov.ldlt());
+}
 
-    // Scale the input
-    m_x_obs->transform(x_pts);
-
-    std::normal_distribution<double> dist_n(0, 1);
+std::pair<Eigen::VectorXd, Eigen::MatrixXd> cmp::gp::GaussianProcess::predictiveMeanAndCovariance(const std::vector<Eigen::VectorXd> &x_pts) const {
     size_t n_pts = x_pts.size();
 
     // Initialize variables
-    Eigen::VectorXd gp_mean(n_pts);
-    Eigen::MatrixXd k_star(m_size, n_pts);
-    Eigen::MatrixXd k_xy(n_pts, n_pts);
+    Eigen::MatrixXd k_star(nObs_, n_pts);
+    Eigen::MatrixXd k_xx(n_pts, n_pts);
+    Eigen::VectorXd mean = Eigen::VectorXd::Zero(x_pts.size());
 
     for (size_t i = 0; i < n_pts; i++) {
-
-        gp_mean(i) = m_mean(x_pts[i],m_par);
         
-        // Fill k_star
-        for (size_t j = 0; j < m_size; j++) {
-            k_star(j, i) = m_kernel(m_x_obs->at(j), x_pts.at(i), m_par);
+        // Evaluate the prior mean
+        mean(i) = pMean_->eval(x_pts[i],par_);
+
+        // Fill k_star and compute the mean
+        for (size_t j = 0; j < nObs_; j++) {
+            k_star(j, i) = pKernel_->eval(XObs_[j], x_pts[i], par_);
+            mean(i) += k_star(j,i)*alpha_(j);
         }
         
         // Fill k_xy
         for (size_t j = i; j < n_pts; j++) {
-            k_xy(i, j) = m_kernel(x_pts.at(i), x_pts.at(j), m_par);
+            k_xx(i, j) = pKernel_->eval(x_pts[i], x_pts[j], par_);
 
             // Tensor must be symmetric
             if (i!=j){
-                k_xy(j,i) = k_xy(i,j);
+                k_xx(j,i) = k_xx(i,j);
             }
         }
 
     }
 
-    // Use GP predictive equations for the evaluation of the mean and variance
-    Eigen::VectorXd prediction_mean = gp_mean + k_star.transpose()*m_alpha;
-    Eigen::MatrixXd prediction_var = k_xy - k_star.transpose() * m_cov_ldlt.solve(k_star);
-    
-    // Setup the solver and compute the eigen-decomposition of the covariance matrix
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> solver(prediction_var, Eigen::ComputeEigenvectors);
-    Eigen::VectorXd eigen_val = solver.eigenvalues();
+    auto cov = k_xx - k_star.transpose() * covDecomposition_.solve(k_star) + nugget_*Eigen::MatrixXd::Identity(n_pts,n_pts);
 
-    // Compute the sqrt of the eigenvalue matrix
-    for (unsigned i = 0; i < eigen_val.rows(); i++)
-        eigen_val(i) = sqrt(fabs(eigen_val(i)));
-    
-    // Extract a uniform sample and multiply it by the sqrt of the eigenvalues
-    std::vector<Eigen::VectorXd> sample(n, Eigen::VectorXd::Zero(n_pts));
-    for (int i = 0; i < n; i++) {
-        for (size_t j=0; j<n_pts; j++) {
-            sample[i](j) = eigen_val(j)*dist_n(rng);
-        }
-        sample[i] = prediction_mean + solver.eigenvectors() * sample[i];
-
-        // Inverse transform the sample
-        for (size_t j=0; j<n_pts; j++) {
-            m_y_obs->inverse_transform(sample[i](j));
-        }
-    }
-    
-    
-    return sample;
+    return std::make_pair(mean, cov);
 }
 
-Eigen::MatrixXd cmp::gp::expected_variance_improvement(std::vector<Eigen::VectorXd> x_pts, double nu) const {
+cmp::distribution::NormalDistribution cmp::gp::GaussianProcess::predictiveDistributionLooCV(const size_t &i) const
+{
+    double mean = YObs_[i] - alpha_(i)/diagCovInverse_(i);
+    double std = 1.0/std::sqrt(diagCovInverse_(i));
 
-    // Scale the input
-    m_x_obs->transform(x_pts);
+    return cmp::distribution::NormalDistribution(mean, std);
+}
+
+double GaussianProcess::logLikelihood() const
+{
+    return cmp::distribution::MultivariateNormalDistribution::logPDF(residual_,covDecomposition_);
+}
+
+double GaussianProcess::logLikelihoodLooCV(const size_t &i) const
+{
+    return cmp::distribution::NormalDistribution::logPDF(YObs_[i]-predictLooCV(i),std::sqrt(predictVarianceLooCV(i)));
+}
+
+Eigen::MatrixXd GaussianProcess::expectedVarianceImprovement(const std::vector<Eigen::VectorXd> &x_pts, double nu) const {
 
     // Sizes of the matrices
     size_t n_pts = x_pts.size();
 
     // Initialize all the variables here
-    Eigen::MatrixXd Kop(m_size, n_pts);
+    Eigen::MatrixXd Kop(nObs_, n_pts);
     Eigen::MatrixXd variance_reduction_matrix(n_pts, n_pts);
-    Eigen::VectorXd Kno(m_size);
+    Eigen::VectorXd Kno(nObs_);
     Eigen::VectorXd Kpn(n_pts);
 
 
     // Fill the two matrices
     for (size_t i = 0; i < n_pts; i++) {
-        for (size_t j = 0; j <m_size; j++) {
-            Kop(j, i) = m_kernel(m_x_obs->at(j), x_pts[i], m_par);
+        for (size_t j = 0; j <nObs_; j++) {
+            Kop(j, i) = pKernel_->eval(XObs_[j], x_pts[i], par_);
         }
     }
 
@@ -288,21 +309,21 @@ Eigen::MatrixXd cmp::gp::expected_variance_improvement(std::vector<Eigen::Vector
     for (size_t sel = 0; sel<n_pts; sel++) {
 
         // Compute Kno
-        for (size_t i = 0; i < m_size; i++) {
-            Kno(i) = m_kernel(m_x_obs->at(i), x_pts[sel], m_par);
+        for (size_t i = 0; i < nObs_; i++) {
+            Kno(i) = pKernel_->eval(XObs_[i], x_pts[sel], par_);
         }
 
         // Compute Kpn
         for (size_t i = 0; i < n_pts; i++) {
-            Kpn(i) = m_kernel(x_pts[i], x_pts[sel], m_par);
+            Kpn(i) = pKernel_->eval(x_pts[i], x_pts[sel], par_);
         }
 
         // Compute rh (see Formula) 
-        Eigen::VectorXd Ksol = m_cov_ldlt.solve(Kno);
+        Eigen::VectorXd Ksol = covDecomposition_.solve(Kno);
         Eigen::VectorXd rho = Kpn - Kop.transpose()*Ksol;
 
         // Compute sigma_n
-        double sigma_n = abs(m_kernel(x_pts[sel], x_pts[sel], m_par) - Kno.dot(Ksol)) + nu;
+        double sigma_n = abs(pKernel_->eval(x_pts[sel], x_pts[sel], par_) - Kno.dot(Ksol)) + nu;
 
         // The variance reduction is computed here
         for(size_t i=0; i<n_pts; i++) {
@@ -310,31 +331,46 @@ Eigen::MatrixXd cmp::gp::expected_variance_improvement(std::vector<Eigen::Vector
         }
     }
 
-    return variance_reduction_matrix*m_y_obs->get_scale()*m_y_obs->get_scale();
+    return variance_reduction_matrix;
 }
 
-Eigen::VectorXd cmp::gp::expected_variance_improvement(std::vector<Eigen::VectorXd> x_pts, const std::vector<Eigen::VectorXd> &new_x_obs, double nu) const{
-    
-    // Scale the input
-    m_x_obs->transform(x_pts);
+double GaussianProcess::predictiveCovariance(const Eigen::VectorXd &x1, const Eigen::VectorXd &x2) const
+{
+    // Compute k_star1
+    Eigen::VectorXd k_star1 = Eigen::VectorXd::Zero(nObs_);
+    for(size_t i=0; i<nObs_; i++) {
+        k_star1(i) = pKernel_->eval(x1,XObs_[i],par_);
+    }
+
+    // Compute k_star2
+    Eigen::VectorXd k_star2 = Eigen::VectorXd::Zero(nObs_);
+    for(size_t i=0; i<nObs_; i++) {
+        k_star2(i) = pKernel_->eval(x2,XObs_[i],par_);
+    }
+
+    // Compute the covariance
+    return pKernel_->eval(x1,x2,par_) - k_star1.dot(covDecomposition_.solve(k_star2));
+}
+
+Eigen::VectorXd GaussianProcess::expectedVarianceImprovement(const std::vector<Eigen::VectorXd> &x_pts, const std::vector<Eigen::VectorXd> &new_x_obs, double nu) const{
     
     // Define the two kernel evaluation matrices
     size_t n_pts = x_pts.size();
     size_t n_new_obs = new_x_obs.size();
 
-    Eigen::MatrixXd k_no = Eigen::MatrixXd::Zero(n_new_obs, m_size);
+    Eigen::MatrixXd k_no = Eigen::MatrixXd::Zero(n_new_obs, nObs_);
     Eigen::MatrixXd k_nn = Eigen::MatrixXd::Zero(n_new_obs, n_new_obs);
     Eigen::MatrixXd k_np = Eigen::MatrixXd::Zero(n_new_obs, n_pts);
-    Eigen::MatrixXd k_op = Eigen::MatrixXd::Zero(m_size, n_pts);
+    Eigen::MatrixXd k_op = Eigen::MatrixXd::Zero(nObs_, n_pts);
 
 
     // Fill the matrices
     for (size_t i = 0; i < n_new_obs; i++) {
-        for (size_t j = 0; j < m_size; j++) {
-            k_no(i, j) = m_kernel(new_x_obs[i], m_x_obs->at(j), m_par);
+        for (size_t j = 0; j < nObs_; j++) {
+            k_no(i, j) = pKernel_->eval(new_x_obs[i], XObs_[j], par_);
         }
         for (size_t j = i; j < n_new_obs; j++) {
-            k_nn(i, j) = m_kernel(new_x_obs[i], new_x_obs[j], m_par);
+            k_nn(i, j) = pKernel_->eval(new_x_obs[i], new_x_obs[j], par_);
 
             // The matrix is symmetric
             if (i != j) {
@@ -343,19 +379,19 @@ Eigen::VectorXd cmp::gp::expected_variance_improvement(std::vector<Eigen::Vector
         }
     }
 
-    k_nn = k_nn - k_no*m_cov_ldlt.solve(k_no.transpose()) + nu*Eigen::MatrixXd::Identity(n_new_obs,n_new_obs);
+    k_nn = k_nn - k_no*covDecomposition_.solve(k_no.transpose()) + nu*Eigen::MatrixXd::Identity(n_new_obs,n_new_obs);
 
     for (size_t i = 0; i < n_pts; i++) {
         for (size_t j = 0; j < n_new_obs; j++) {
-            k_np(j, i) = m_kernel(new_x_obs[j], x_pts[i], m_par);
+            k_np(j, i) = pKernel_->eval(new_x_obs[j], x_pts[i], par_);
         }
-        for (size_t j = 0; j < m_size; j++) {
-            k_op(j, i) = m_kernel(m_x_obs->at(j), x_pts[i], m_par);
+        for (size_t j = 0; j < nObs_; j++) {
+            k_op(j, i) = pKernel_->eval(XObs_[j], x_pts[i], par_);
         }
     }
 
     // Compute rho
-    Eigen::MatrixXd rho = k_np-k_no*m_cov_ldlt.solve(k_op);
+    Eigen::MatrixXd rho = k_np-k_no*covDecomposition_.solve(k_op);
     Eigen::MatrixXd rho_sol = k_nn.ldlt().solve(rho);
 
 
@@ -365,6 +401,6 @@ Eigen::VectorXd cmp::gp::expected_variance_improvement(std::vector<Eigen::Vector
         evi(i) = rho.col(i).dot(rho_sol.col(i));
     }
 
-    return evi*m_y_obs->get_scale()*m_y_obs->get_scale();
+    return evi;
     
 }

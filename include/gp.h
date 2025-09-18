@@ -5,310 +5,303 @@
 #include <distribution.h>
 #include <utils.h>
 #include <scaler.h>
+#include <kernel++.h>
+#include <mean++.h>
+#include <prior++.h>
 
-namespace cmp {
+namespace cmp::gp
+{
 
-    enum method {MLE, MAP, MLOO, MLOOP};
+    enum method
+    {
+        MLE,
+        MAP,
+        MLOO,
+        MLOOP
+    };
 
     /**
      * @brief This class implements a Gaussian process, providing algorithms for training and prediction.
-     * 
+     *
      */
-    class gp {
+    class GaussianProcess
+    {
+    private:
+        size_t nObs_;
+        Eigen::VectorXd par_;
+        Eigen::LDLT<Eigen::MatrixXd> covDecomposition_;
+        Eigen::VectorXd alpha_;
+        Eigen::VectorXd diagCovInverse_;
+        Eigen::VectorXd residual_;
 
-        private:
-            
-            size_t m_size;
-            Eigen::VectorXd m_par;
-            Eigen::LDLT<Eigen::MatrixXd> m_cov_ldlt;
-            Eigen::VectorXd m_alpha;
+        // Observations
+        std::vector<Eigen::VectorXd> XObs_;  ///> The observation points
+        std::vector<double> YObs_;           ///> The observation values
 
-            scalar_scaler *m_y_obs{nullptr};
-            vector_scaler *m_x_obs{nullptr};
-            
-            kernel_t m_kernel;                                                                                                                  ///> The kernel function
-            model_t m_mean;                                                                                                                     ///> The mean function
-            prior_t m_log_prior;                                                                                                                ///> The prior function
-            std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, int i)> m_mean_grad;                                         ///> Function that returns the i-th component of the mean gradient
-            std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, Eigen::VectorXd const &, int i)> m_kernel_grad;              ///> Function that returns the i-th component of the kernel gradient
-            std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, Eigen::VectorXd const &, int i, int j)> m_kernel_hess;       ///> Function that returns the ij-th component of the kernel hessian
-            std::function<double(Eigen::VectorXd const &, int i)> m_log_prior_grad;                                                             ///> Function that returns the i-th component of the log-prior gradient
-            std::function<double(Eigen::VectorXd const &, int i, int j)> m_log_prior_hess;                                                      ///> Function that returns the ij-th component of the log-prior hessian
+        // Kernel, mean and prior functions
+        std::shared_ptr<kernel::Kernel> pKernel_; ///> The Kernel function
+        std::shared_ptr<mean::Mean> pMean_;       ///> The mean function
+        std::shared_ptr<prior::Prior> pPrior_;    ///> The prior function
 
-        public:
+        // The nuggget
+        double nugget_ = 1e-8;
 
-            gp()=default;
+    public:
+        GaussianProcess() = default;
 
+        /**
+         * @brief Set the values of the observations
+         *
+         * @param x_obs the observation points
+         * @param y_obs the observation values
+         */
+        void setObservations(const std::vector<Eigen::VectorXd> &xObs, const std::vector<double> &yObs)
+        {
+            XObs_ = xObs;
+            YObs_ = yObs;
+            nObs_ = xObs.size();
+        }
 
-            /**
-             * @brief Set the values of the observations
-             * 
-             * @param x_obs the observation points
-             * @param y_obs the observation values
-             */
-            void set_observations(cmp::vector_scaler *x_obs, cmp::scalar_scaler *y_obs){
-                m_x_obs = x_obs;
-                m_y_obs = y_obs;
-                m_size = m_y_obs->get_size();
-            }
+        void removeObservation(const size_t &i)
+        {
+            XObs_.erase(XObs_.begin() + i);
+            YObs_.erase(YObs_.begin() + i);
+            nObs_ = XObs_.size();
+        }
 
-            const scalar_scaler *get_y_obs() const {
-                return m_y_obs;
-            }
+        void addObservation(const Eigen::VectorXd &x, const double &y)
+        {
+            XObs_.push_back(x);
+            YObs_.push_back(y);
+            nObs_ = XObs_.size();
+        }
 
-            const vector_scaler *get_x_obs() const {
-                return m_x_obs;
-            }
+        std::vector<Eigen::VectorXd> &xObs()
+        {
+            return XObs_;
+        }
 
-            size_t get_size() const{
-                return m_size;
-            }
+        std::shared_ptr<kernel::Kernel> getKernel() const {
+            return pKernel_;
+        }
 
-            /**
-             * @brief Set the hyperparameters of the Gaussian Process.
-             * @note This function computes also the inverse of the covariance matrix.
-             * 
-             * @param par the value of the hyperparameters
-             */
-            void set_params(const Eigen::VectorXd &par);
+        std::shared_ptr<mean::Mean> getMean() const {
+            return pMean_;
+        }
 
-            /**
-             * @brief Fit the Gaussian Process to the observations
-             * 
-             * @param x0 the initial guess for the hyperparameters
-             * @param lb the lower bound for the hyperparameters
-             * @param ub the upper bound for the hyperparameters
-             * @param method the method to be used for the optimization (MLE, MAP, MLOO, MLOOP, default is MLE)
-             * @param alg the algorithm to be used for the optimization (default is nlopt::LN_SBPLX)
-             * @param tol_rel the relative tolerance for the optimization (default is 1e-3)
-             * 
-             */
-            void fit(const Eigen::VectorXd &x0, const Eigen::VectorXd &lb, const Eigen::VectorXd &ub,  const cmp::method &method = cmp::MLE, const nlopt::algorithm &alg = nlopt::LN_SBPLX, const double &tol_rel = 1e-3);
+        std::shared_ptr<prior::Prior> getPrior() const {
+            return pPrior_;
+        }
 
+        double getNugget() const {
+            return nugget_;
+        }
 
-            /**
-             * @brief Get the hyperparameters of the Gaussian Process
-             * 
-             * @return the value of the hyperparameters
-             */
-            Eigen::VectorXd get_params() const{
-                return m_par;
-            }
+        /**
+         * Set the GP
+         * @param Kernel The Kernel function
+         * @param mean The mean function
+         * @param prior The prior function
+         *
+         * @note This function is used to set the Kernel, mean and prior functions of the GP.
+         */
+        void set(const std::shared_ptr<kernel::Kernel> &Kernel, const std::shared_ptr<mean::Mean> &mean, const std::shared_ptr<prior::Prior> &prior, double nugget = 1e-8)
+        {
+            pKernel_ = Kernel;
+            pMean_ = mean;
+            pPrior_ = prior;
 
-            /**
-             * FUNCTIONS FOR THE KERNEL
-             */
-            
-            /**
-             * @brief Set the kernel function
-             * 
-             * @param kernel the function for the kernel.
-             */
-            void set_kernel(kernel_t kernel){
-                m_kernel=kernel;
-            };
+            nugget_ = nugget;
+        }
 
-            /**
-            Set the derivative of the kernel with respect to the hyperparameters.
-            This function is necessary to use gradient based-optimization methods and the CMP method.
-            This function must evaluate the derivative of the kernel at x, y with respect to hyperparameter number i.
-            */
-            void set_kernel_grad(std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, Eigen::VectorXd const &, int i)> kernel_grad) { m_kernel_grad = kernel_grad; }
+        size_t size() const
+        {
+            return nObs_;
+        }
 
-            /**
-            Set the hessian of the kernel with respect to the hyperparameters.
-            This function is necessary for the CMP method.
-            This function must evaluate the hessian of the kernel at x, y with respect to hyperparameter number i and j.
-            */
-            void set_kernel_hess(std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, Eigen::VectorXd const &, int i, int j)> kernel_hess) { m_kernel_hess = kernel_hess; }
+        /**
+         * @brief Set the hyperparameters of the Gaussian Process.
+         * @note This function computes also the inverse of the covariance matrix.
+         *
+         * @param par the value of the hyperparameters
+         */
+        void setParameters(const Eigen::VectorXd &par);
 
-            /**
-             * @brief Evaluates the covariance matrix of the kernel 
-             * 
-             * @return a matrix containing the evaluation of the kernel on the observation points 
-             */
-            Eigen::MatrixXd covariance(Eigen::VectorXd par) const;
+        /**
+         * @brief Fit the Gaussian Process to the observations
+         *
+         * @param parGuess the initial guess for the hyperparameters
+         * @param lowerBound the lower bound for the hyperparameters
+         * @param upperBound the upper bound for the hyperparameters
+         * @param method the method to be used for the optimization (MLE, MAP, MLOO, MLOOP, default is MLE)
+         * @param alg the algorithm to be used for the optimization (default is nlopt::LN_SBPLX)
+         * @param tol_rel the relative tolerance for the optimization (default is 1e-3)
+         *
+         */
+        void fit(const Eigen::VectorXd &parGuess, const Eigen::VectorXd &lowerBound, const Eigen::VectorXd &upperBound, const method &method = MLE, const nlopt::algorithm &alg = nlopt::LN_SBPLX, const double &tol_rel = 1e-3);
 
-            /**
-             * Evaluate the i-th component of the gradient of the covariance matrix.
-             * @param i The component of the gradient required
-            */
-            Eigen::MatrixXd covariance_grad(Eigen::VectorXd par,const int &i) const;
+        /**
+         * @brief Get the hyperparameters of the Gaussian Process
+         *
+         * @return the value of the hyperparameters
+         */
+        Eigen::VectorXd getParameters() const
+        {
+            return par_;
+        }
 
-            /**
-             * Evaluate the ij component of the hessian of the covariance matrix.
-             * @param i row of the hessian matrix
-             * @param j colum of the hessian matrix
-            */
-            Eigen::MatrixXd covariance_hess(Eigen::VectorXd par,const int &i, const int &j) const;
+        /**
+         * FUNCTIONS FOR THE KERNEL
+         */
 
-            const Eigen::LDLT<Eigen::MatrixXd> &cov_ldlt() const {
-                return m_cov_ldlt;
-            }
-            /** 
-             * FUNCTIONS FOR THE MEAN
-            */
+        /**
+         * @brief Evaluates the covariance matrix of the Kernel
+         *
+         * @return a matrix containing the evaluation of the Kernel on the observation points
+         */
+        Eigen::MatrixXd covariance(Eigen::VectorXd par) const;
 
-            /**
-             * @brief Set the mean function
-             * 
-             * @param mean the function for the mean.
-             */
-            void set_mean(model_t mean){
-                m_mean=mean;
-            };
+        /**
+         * Evaluate the i-th component of the gradient of the covariance matrix.
+         * @param i The component of the gradient required
+         */
+        Eigen::MatrixXd covarianceGradient(Eigen::VectorXd par, const int &i) const;
 
-            /**
-             * @brief Sets the mean gradient function.
-             *
-             * This function sets the mean gradient function to be used in the Gaussian Process.
-             * The mean gradient function is a user-defined function that calculates the mean gradient
-             * for a given input vector, target vector, and index.
-             *
-             * @param mean_gradient The mean gradient function to be set.
-             */
-            void set_mean_grad(std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, int i)> mean_grad) { m_mean_grad = mean_grad; }
-            
-            /**
-             * @brief Evaluates the mean on the observations.
-             *
-             * This function calculates the mean of a set of points given by `x_pts` using the parameters `par`.
-             *
-             * @return The mean of the points.
-             */
-            Eigen::VectorXd mean(Eigen::VectorXd par) const;
+        /**
+         * Evaluate the ij component of the hessian of the covariance matrix.
+         * @param i row of the hessian matrix
+         * @param j colum of the hessian matrix
+         */
+        Eigen::MatrixXd covarianceHessian(Eigen::VectorXd par, const int &i, const int &j) const;
 
-            /**
-             * @brief Evaluate the gradient of the mean function
-             * 
-             * @param i the index of the hyperparameter
-             * @return a vector containing the computation of the gradient
-             */
-            Eigen::VectorXd mean_grad(Eigen::VectorXd par,const int &i) const;
+        const Eigen::LDLT<Eigen::MatrixXd> &getCovDecomposition() const
+        {
+            return covDecomposition_;
+        }
+        /**
+         * FUNCTIONS FOR THE MEAN
+         */
 
-            /**
-             * @brief Evaluate the difference between the observation and the mean function
-             * 
-             * @return a vector containing the computation of the residual
-             */
-            Eigen::VectorXd residual(Eigen::VectorXd par) const;
+        /**
+         * @brief Evaluates the mean on the observations.
+         *
+         * This function calculates the mean of a set of points given by `x_pts` using the parameters `par`.
+         *
+         * @return The mean of the points.
+         */
+        Eigen::VectorXd priorMean(Eigen::VectorXd par) const;
 
-            /*
-            * FUNCTIONS FOR THE LOG PRIOR
-            */
+        /**
+         * @brief Evaluate the gradient of the mean function
+         *
+         * @param i the index of the hyperparameter
+         * @return a vector containing the computation of the gradient
+         */
+        Eigen::VectorXd priorMeanGradient(Eigen::VectorXd par, const int &i) const;
 
-            /**
-             * @brief Set the prior function
-             * 
-             * @param prior the function for the prior
-             */
-            void set_log_prior(prior_t log_prior){
-                m_log_prior=log_prior;
-            };
+        /**
+         * @brief Evaluate the difference between the observation and the mean function
+         *
+         * @return a vector containing the computation of the residual
+         */
+        Eigen::VectorXd residual(Eigen::VectorXd par) const;
 
-            /** 
-            Set the derivative of the hyperparameters prior with respect to the hyperparameters.
-            This function is necessary to use gradient based-optimization methods.
-            This function must evaluate the derivative of the log of the hyperparameter prior with respect to hyperparameter number i.
-            */
-            void set_log_prior_grad(std::function<double(Eigen::VectorXd const &, int i)> log_prior_grad) { m_log_prior_grad = log_prior_grad; }
+        /*
+         * FUNCTIONS FOR THE LOG PRIOR
+         */
 
-            /** 
-            Set the hessian of the hyperparameters prior with respect to the hyperparameters.
-            This function is necessary for the CMP method.
-            This function must evaluate the hessian of the log of the hyperparameter prior with respect to hyperparameter number i.
-            */
-            void set_log_prior_hess(std::function<double(Eigen::VectorXd const &, int i, int j)> log_prior_hess) { m_log_prior_hess = log_prior_hess; }
+        /**
+         * @brief Evaluates the log prior function
+         *
+         * @return the value of the log prior.
+         */
+        double logPrior(Eigen::VectorXd par) const
+        {
+            return pPrior_->eval(par);
+        }
 
-            /**
-             * @brief Evaluates the log prior function
-             * 
-             * @return the value of the log prior. 
-             */
-            double log_prior(Eigen::VectorXd par) const{
-                return m_log_prior(par);
-            }
+        /**
+         * This function evaluates the gradient of the log prior function.
+         *
+         * @param i The index of the hyperparameter
+         *
+         * @return The value of the gradient of the log prior function
+         */
+        double logPriorGradient(Eigen::VectorXd par, const int &i) const
+        {
+            return pPrior_->evalGradient(par, i);
+        }
 
-            /**
-             * This function evaluates the gradient of the log prior function.
-             * 
-             * @param i The index of the hyperparameter
-             * 
-             * @return The value of the gradient of the log prior function
-             */
-            double log_prior_grad(Eigen::VectorXd par,const int &i) const{
-                return m_log_prior_grad(par,i);
-            }
+        /**
+         * This function evaluates the hessian of the log prior function.
+         *
+         * @param i The index of the hyperparameter
+         * @param j The index of the hyperparameter
+         *
+         * @return The value of the hessian of the log prior function
+         */
+        double logPriorHessian(Eigen::VectorXd par, const int &i, const int &j) const
+        {
+            return pPrior_->evalHessian(par, i, j);
+        }
 
-            /**
-             * This function evaluates the hessian of the log prior function.
-             * 
-             * @param i The index of the hyperparameter
-             * @param j The index of the hyperparameter
-             * 
-             * @return The value of the hessian of the log prior function
-             */
-            double log_prior_hess(Eigen::VectorXd par, const int &i, const int&j) const{
-                return m_log_prior_hess(par,i,j);
-            }
+        /**
+         * FUNCTIONS FOR THE PREDICTIVE DISTRIBUTION
+         */
 
+        /**
+         * @brief Compute the predictive distribution at a new point
+         *
+         * @param x The new prediction point
+         * @return The prediction
+         */
+        distribution::NormalDistribution predictiveDistribution(const Eigen::VectorXd &x) const;
 
-            /**
-             * FUNCTIONS FOR THE PREDICTIVE DISTRIBUTION
-             */
-            
-            /**
-             * @brief Compute the prediction variance of the GP at a new prediction point. 
-             * 
-             * @param x The new prediction point.
-             * @return The variance of the prediction
-             */
-            double predictive_var(Eigen::VectorXd x) const;
+        /**
+         * @brief Compute the predictive distribution at a set of new prediction points.
+         *
+         * @param x_pts The new prediction points.
+         * @return The prediction
+         */
+        distribution::MultivariateNormalDistribution predictiveDistribution(const std::vector<Eigen::VectorXd> &x_pts) const;
 
-            /**
-             * @brief Compute the prediction mean of the GP at a new prediction point. 
-             * 
-             * @param x The value of the new prediction point.
-             * @return The mean of the prediction.
-             */
-            double predictive_mean(Eigen::VectorXd x) const;
+        distribution::NormalDistribution predictiveDistributionLooCV(const size_t &i) const;
 
-            /**
-            Draw n random samples of the model error evaluated at x_pts.
-            It will draw a sample from the normal distribution N(gp_mean, gp_cov)
+        double predict(const Eigen::VectorXd &x) const;
 
-            decompose COV = V^T D V
-            Where V are the eigenvectors and D the eigenvalues
+        double predictLooCV(const size_t &i) const;
 
-            then draw z from N(0,I) and compute 
-            samples = gp_mean + V*sqrt(D)*z ~ N(gp_mean, gp_cov)
+        double predictVariance(const Eigen::VectorXd &x) const;
 
-            @param x_pts Points where to evaluate the sample
-            @param rng Random number generator
-            @param n Number of samples
+        double predictiveCovariance(const Eigen::VectorXd &x1, const Eigen::VectorXd &x2) const;
 
-            @return The evaluation of the random sample in vector format 
-            */
-            std::vector<Eigen::VectorXd> sample(std::vector<Eigen::VectorXd> x_pts, std::default_random_engine &rng, const size_t &n) const;
+        double predictVarianceLooCV(const size_t &i) const;
 
-            /**
-             * @brief Compute the variance reduction matrix after observing a set of points.
-             * 
-             * @param x_pts The points where the variance reduction is computed 
-             * @return Eigen::MatrixXd The variance reduction matrix
-             */
-            Eigen::MatrixXd expected_variance_improvement(std::vector<Eigen::VectorXd> x_pts, double nu=1e-6) const;
+        double logLikelihood() const;
 
-            Eigen::VectorXd expected_variance_improvement(std::vector<Eigen::VectorXd> x_pts, const std::vector<Eigen::VectorXd> &new_x_obs, double nu=1e-6) const;
+        double logLikelihoodLooCV(const size_t &i) const;
+
+        // Compute the predictive mean and covariance at a set of new prediction points.
+        std::pair<Eigen::VectorXd, Eigen::MatrixXd> predictiveMeanAndCovariance(const std::vector<Eigen::VectorXd> &x_pts) const;
+
+        /**
+         * @brief Compute the variance reduction matrix after observing a set of points.
+         *
+         * @param x_pts The points where the variance reduction is computed
+         * @return Eigen::MatrixXd The variance reduction matrix
+         */
+        Eigen::MatrixXd expectedVarianceImprovement(const std::vector<Eigen::VectorXd> &x_pts, double nu = 1e-6) const;
+
+        Eigen::VectorXd expectedVarianceImprovement(const std::vector<Eigen::VectorXd> &x_pts, const std::vector<Eigen::VectorXd> &new_x_obs, double nu = 1e-6) const;
     };
 
-            double opt_fun_gp_mle(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
+    double opt_fun_gp_mle(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
 
-            double opt_fun_gp_map(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
-    
-            double opt_fun_gp_mloo(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
+    double opt_fun_gp_map(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
 
-            double opt_fun_gp_mloop(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
+    double opt_fun_gp_mloo(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
+
+    double opt_fun_gp_mloop(const std::vector<double> &x, std::vector<double> &grad, void *data_bit);
 }
 
 #endif // MACRO

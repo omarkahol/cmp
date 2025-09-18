@@ -3,61 +3,65 @@
 
 #include "gp.h"
 
-namespace cmp {
-    class multi_gp {
+namespace cmp::gp {
+    class MultiOutputGaussianProcess {
 
-    private:
+        private:
 
-        // Base components
-        std::vector<gp> m_gps;
-        std::vector<cmp::component_scaler> m_scalers;
+            // Base components
+            std::vector<GaussianProcess> gps_;
+            size_t nGPs_;
+            
 
-        // Observations
-        vector_scaler *m_y_obs;
-        vector_scaler *m_x_obs;
-        size_t m_dim;
+        public:
 
-    public:
+            MultiOutputGaussianProcess() = default;
 
-        multi_gp(size_t dim) : m_dim(dim) {
-            m_gps = std::vector<gp>(dim);
-            m_scalers = std::vector<cmp::component_scaler>(dim);
-        }
+            /**
+             * @brief Set the values of the observations
+             * 
+             * @param x_obs the observation points
+             * @param y_obs the observation values
+             */
+            void setObservations(const std::vector<Eigen::VectorXd> &xObs, const std::vector<Eigen::VectorXd> &yObs) {
+                
+                nGPs_ = yObs[0].size();
+                gps_.resize(nGPs_);
 
-        /**
-         * @brief Set the values of the observations
-         * 
-         * @param x_obs the observation points
-         * @param y_obs the observation values
-         */
-        void set_observations(cmp::vector_scaler *x_obs, cmp::vector_scaler *y_obs);
+                for (size_t i = 0; i < nGPs_; i++) {
+                    gps_[i] = GaussianProcess();
+                    gps_[i].setObservations(xObs, get_column(yObs, i));
+                }
+            }
 
-        void set_kernel(kernel_t kernel);
+            /**
+             * Set the GP
+             * @param kernel The kernel function
+             * @param mean The mean function
+             * @param prior The prior function
+             * 
+             */
+            void set(const std::shared_ptr<kernel::Kernel> &kernel, const std::shared_ptr<mean::Mean> &mean, const std::shared_ptr<prior::Prior> &prior) {
+                for (size_t i = 0; i < nGPs_; i++) {
+                    gps_[i].set(kernel, mean, prior);
+                }
+            }
 
-        void set_mean(model_t mean);
+            void fit(const Eigen::VectorXd &x0, const Eigen::VectorXd &lb, const Eigen::VectorXd &ub,  const method &method = MLE, const nlopt::algorithm &alg = nlopt::LN_SBPLX, const double &tol_rel = 1e-3);
 
-        void set_log_prior(prior_t log_prior);
+            cmp::distribution::MultivariateNormalDistribution predictiveDistribution(const Eigen::VectorXd &x) const;
 
-        void set_mean_grad(std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, int i)> mean_grad);
+            Eigen::VectorXd predict(const Eigen::VectorXd &x) const;
 
-        void set_kernel_grad(std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, Eigen::VectorXd const &, int i)> kernel_grad);
+            Eigen::MatrixXd predictVariance(const Eigen::VectorXd &x, const int &i) const;
 
-        void set_log_prior_grad(std::function<double(Eigen::VectorXd const &, int i)> log_prior_grad);
+            GaussianProcess &operator[](const int &i) {
+                return gps_.at(i);
+            }
 
-        void set_kernel_hess(std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, Eigen::VectorXd const &, int i, int j)> kernel_hess);
-
-        void set_log_prior_hess(std::function<double(Eigen::VectorXd const &, int i, int j)> log_prior_hess);
-
-        void fit(const Eigen::VectorXd &x0, const Eigen::VectorXd &lb, const Eigen::VectorXd &ub,  const cmp::method &method = cmp::MLE, const nlopt::algorithm &alg = nlopt::LN_SBPLX, const double &tol_rel = 1e-3);
-
-        Eigen::VectorXd predictive_mean(Eigen::VectorXd x) const;
-
-        Eigen::MatrixXd predictive_var(Eigen::VectorXd x) const;
-
-        gp &operator[](const int &i) {
-            return m_gps.at(i);
-        }
-    
+            size_t size() const {
+                return nGPs_;
+            }
 };
 
 

@@ -33,7 +33,7 @@ double cmp::wasserstein_1d(std::vector<double> &samples_1, std::vector<double> &
         std::vector<double> samples_2_p(n_samples);
 
         // Initialize a uniform sphere distribution
-        cmp::uniform_sphere_distribution sphere(dim);
+        cmp::distribution::UniformSphereDistribution sphere(dim);
         
         
         // Start performing slices 

@@ -134,12 +134,7 @@ namespace cmp {
     * 
     * g each row of the file as a Eigen::VectorXd.
     */
-    std::vector<Eigen::VectorXd> read_vector(std::ifstream &i_file);
-
-
-
-
-    
+    std::vector<Eigen::VectorXd> read_vector(std::ifstream &i_file, std::string delimiter=",", size_t header = 0);
 
 }
 

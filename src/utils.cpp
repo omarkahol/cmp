@@ -171,7 +171,7 @@ void cmp::write_data(const std::vector<Eigen::VectorXd> &x, const Eigen::MatrixX
     }
 }
 
-std::vector<Eigen::VectorXd> cmp::read_vector(std::ifstream &i_file) {
+std::vector<Eigen::VectorXd> cmp::read_vector(std::ifstream &i_file, std::string delimiter, size_t header) {
 
     std::vector<Eigen::VectorXd> v;
 
@@ -183,16 +183,51 @@ std::vector<Eigen::VectorXd> cmp::read_vector(std::ifstream &i_file) {
     
     std::string line;
 
+    // Skip the header lines
+    for (size_t i = 0; i < header; i++) {
+        if (!getline(i_file, line)) {
+            spdlog::error("Error reading header line {0:d}", i);
+            return v;
+        }
+    }
+
     while (getline(i_file, line)) {
 
-        std::istringstream iss(line);
-        std::vector<std::string> words((std::istream_iterator<std::string>(iss)), std::istream_iterator<std::string>());
-        std::vector<double> values;
-
-        for (int i = 0; i < words.size(); i++) {
-            values.push_back(stod(words[i]));
+        // Check if the line is empty
+        if (line.empty()) {
+            continue;
         }
-        v.push_back(cmp::v_to_vxd(values));
+        // Check if the line is a comment
+        if (line[0] == '#') {
+            continue;
+        }
+        
+        // Split the line into tokes using the delimiter
+        std::vector<std::string> tokens;
+        size_t pos = 0;
+        while ((pos = line.find(delimiter)) != std::string::npos) {
+            tokens.push_back(line.substr(0, pos));
+            line.erase(0, pos + delimiter.length());
+        }
+        tokens.push_back(line);
+
+        // Convert the tokens to doubles and store them in a vector
+        Eigen::VectorXd row(tokens.size());
+        for (size_t i = 0; i < tokens.size(); i++) {
+            try {
+
+                // Strip the token of any whitespace
+                tokens[i].erase(std::remove_if(tokens[i].begin(), tokens[i].end(), ::isspace), tokens[i].end());
+
+                row(i) = std::stod(tokens[i]);
+            } catch (const std::invalid_argument &e) {
+                spdlog::error("Invalid argument: {0}", e.what());
+                spdlog::log(spdlog::level::err, "Error parsing token: {0}", tokens[i]);
+                return v;
+            }
+        }
+        // Add the row to the vector
+        v.push_back(row);
     }
 
     spdlog::info("number of lines in the file : {0:d}", v.size());

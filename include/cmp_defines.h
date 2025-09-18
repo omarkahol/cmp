@@ -17,12 +17,11 @@
 #include <functional>
 
 namespace cmp {
-
-    typedef std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &)> model_t;
-    typedef std::function<double(Eigen::VectorXd const &, Eigen::VectorXd const &, Eigen::VectorXd const &)> kernel_t;
-    typedef std::function<double(Eigen::VectorXd const &)> prior_t;
-    typedef std::function<double(Eigen::VectorXd const &)> score_t;
-
+    /**
+     * @brief The score_t type
+     * 
+     */
+    using score_t = std::function<double(const Eigen::VectorXd &)>;
 
 }
 

@@ -8,28 +8,28 @@
 #include "cmp_defines.h"
 #include <distribution.h>
 
-namespace cmp {
+namespace cmp::mcmc {
 
-    class mcmc {
+    class MarkovChain {
 
         protected:
             
-            double m_score{0.0};                 //  Current value of the score
+            double score_{0.0};                 //  Current value of the score
             
-            size_t m_dim;                        // Dimension of the chain
+            size_t dim_;                        // Dimension of the chain
 
-            size_t m_steps{0};                   // Steps done
-            size_t m_accepts{0};                 // Accepted candidates
+            size_t nSteps_{0};                   // Steps done
+            size_t nAccepts_{0};                 // Accepted candidates
 
-            Eigen::VectorXd m_mean;                     // Sample-mean vector
-            Eigen::MatrixXd m_cov;                      // Sample-covariance matrix
+            Eigen::VectorXd mean_;                     // Sample-mean vector
+            Eigen::MatrixXd cov_;                      // Sample-covariance matrix
         
         
         protected:
             // Proposal distribution
-            cmp::proposal_distribution *m_proposal;
-            std::uniform_real_distribution<double> m_dist_u{0,1};
-            std::default_random_engine m_rng;
+            cmp::distribution::ProposalDistribution *proposal_;
+            std::uniform_real_distribution<double> distU_{0,1};
+            std::default_random_engine rng_;
 
         //constructors
         public:
@@ -39,9 +39,9 @@ namespace cmp {
              * 
              * @param rng the random number generator
              */
-            mcmc(cmp::proposal_distribution *proposal, std::default_random_engine &rng, const double &score = -std::numeric_limits<double>::infinity());
+            MarkovChain(cmp::distribution::ProposalDistribution *proposal, std::default_random_engine &rng, const double &score = -std::numeric_limits<double>::infinity());
 
-            mcmc() = default;
+            MarkovChain() = default;
         
         // Functions
         public:
@@ -50,16 +50,16 @@ namespace cmp {
              * @brief Increase the number of steps
              * 
              */
-            void increase_steps() {
-                m_steps++;
+            void increaseSteps() {
+                nSteps_++;
             }
 
             /**
              * @brief Perform a single MCMC step (without updating the mean and cov)
              * 
-             * @param get_score The score function
+             * @param getScore The score function
              */
-            void step(const score_t &get_score, bool DR_STEP = false, double gamma = 0.2);
+            void step(const score_t &getScore, bool DR_STEP = false, double gamma = 0.2);
 
             /**
              * @brief Accept or reject a candidate
@@ -81,7 +81,7 @@ namespace cmp {
              * 
              * @return Eigen::LLT<Eigen::MatrixXd> 
              */
-            Eigen::LDLT<Eigen::MatrixXd> get_adapted_cov();
+            Eigen::LDLT<Eigen::MatrixXd> getAdaptedCovariance();
 
             /**
              * Reset the value of the mean and of the covariance matrix.
@@ -93,41 +93,41 @@ namespace cmp {
             /**
              * Return the current parameter
             */
-            Eigen::VectorXd get_par() const;
+            Eigen::VectorXd getCurrent() const;
 
             /**
              * @brief Get the current score
              * 
              * @return the score
              */
-            double get_score() const {
-                return m_score;
+            double getScore() const {
+                return score_;
             }
 
             /**
              * Return the dimension of the chain
             */
-            size_t get_dim() const;
+            size_t getDim() const;
 
             /**
              * Return the number of steps performed
             */
-            size_t get_steps() const;
+            size_t getSteps() const;
 
             /**
              * Return the number of steps performed
             */
-            double get_acceptance_ratio() const;
+            double getAcceptanceRatio() const;
 
             /**
              * Return the mean of the data
             */
-            Eigen::VectorXd get_mean() const;
+            Eigen::VectorXd getMean() const;
 
             /**
              * Return the covariance of the data
             */
-            Eigen::MatrixXd get_cov() const;
+            Eigen::MatrixXd getCovariance() const;
 
             /**
              * Log the total number of steps, acceptance ratio, data mean and covariance.
@@ -144,21 +144,21 @@ namespace cmp {
      * @return the lagged self correlation \f$ \frac{1}{n} \sum_{i=1}^{n-k} \theta_i \theta_{i+k}\f$
      * 
     */
-    Eigen::VectorXd self_correlation_lag(const std::vector<Eigen::VectorXd> &samples, int lag);
+    Eigen::VectorXd selfCorrelation(const std::vector<Eigen::VectorXd> &samples, int lag);
 
     /**
      * @brief computes the mean vector and covariance matrix of some MCMC samples
      * @param samples samples 
      * @return a pair containing the mean and the covariance of the samples
     */
-    std::pair<Eigen::VectorXd, Eigen::MatrixXd> mean_cov(const std::vector<Eigen::VectorXd> & samples);
+    std::pair<Eigen::VectorXd, Eigen::MatrixXd> samplesStatistics(const std::vector<Eigen::VectorXd> & samples);
 
     /**
      * @brief computes the correlation length and the effective sample size of some samples
      * @param samples the samples from the mcmc sampling
      * @return a pair containing the correlations lengths and the effective sample size
     */
-    std::pair<Eigen::VectorXd, double> single_chain_diagnosis(std::vector<Eigen::VectorXd> samples);
+    std::pair<Eigen::VectorXd, double> singleChainDiagnosis(std::vector<Eigen::VectorXd> samples);
 
 
     /**
@@ -167,7 +167,7 @@ namespace cmp {
      * @param chains a vector containing multiple chains sampling the same distribution.
      * @return the r_hat statistics. 
      */
-    double r_hat(const std::vector<mcmc> & chains);
+    double multiChainDiagnosis(const std::vector<MarkovChain> & chains);
 
 
 

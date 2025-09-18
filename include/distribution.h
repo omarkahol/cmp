@@ -3,9 +3,9 @@
 
 #include "cmp_defines.h"
 
-namespace cmp {
+namespace cmp::distribution {
 
-    class univariate_distribution {
+    class UnivariateDistribution {
         public:
 
             /**
@@ -14,15 +14,31 @@ namespace cmp {
              * @param x The point at which to evaluate the log-pdf
              * @return double 
              */
-            virtual double log_pdf(const double &x) = 0;
+            virtual double logPDF(const double &x) = 0;
 
             /**
-             * @brief Evaluate the cdf of the distribution at point x
+             * @brief Evaluate the first derivative of the log-pdf
              * 
-             * @param x Point at which to evaluate the cdf
+             * @param x Point at which to evaluate the derivative
              * @return double
              */
-            virtual double cdf(const double &x) = 0;
+            virtual double dLogPDF(const double &x) = 0;
+
+            /**
+             * @brief Evaluate the second derivative of the log-pdf
+             * 
+             * @param x Point at which to evaluate the derivative
+             * @return double
+             */
+            virtual double ddLogPDF(const double &x) = 0;
+
+            /**
+             * @brief Evaluate the CDF of the distribution at point x
+             * 
+             * @param x Point at which to evaluate the CDF
+             * @return double
+             */
+            virtual double CDF(const double &x) = 0;
 
             /**
              * @brief Evaluate the quantile function of the distribution
@@ -40,9 +56,9 @@ namespace cmp {
             virtual double sample(std::default_random_engine &rng) = 0;
     };
 
-    class multivariate_distribution {
+    class MultivariateDistribution {
         public:
-            virtual double log_pdf(const Eigen::VectorXd &x) = 0;
+            virtual double logPDF(const Eigen::VectorXd &x) = 0;
             
             /**
              * @brief Generate a sample from the distribution
@@ -52,12 +68,10 @@ namespace cmp {
             virtual Eigen::VectorXd sample(std::default_random_engine &rng)=0;
     };
 
-    class proposal_distribution {
+    class ProposalDistribution : public MultivariateDistribution {
         public:
-            
-            virtual double log_pdf(const Eigen::VectorXd &x) = 0;
 
-            virtual double log_jump_pdf(const Eigen::VectorXd &jump) = 0;
+            virtual double logJumpPDF(const Eigen::VectorXd &jump) = 0;
             
             /**
              * @brief Generate a sample from the distribution
@@ -66,6 +80,10 @@ namespace cmp {
              */
             virtual Eigen::VectorXd sample(std::default_random_engine &rng, const double &gamma)=0;
 
+            Eigen::VectorXd sample(std::default_random_engine &rng) override {
+                return sample(rng,1.0);
+            }
+
             virtual Eigen::VectorXd get() = 0;
             virtual void set(const Eigen::VectorXd &x) = 0;
 
@@ -73,16 +91,28 @@ namespace cmp {
 
 
     // Univariate normal distribution
-    class normal_distribution: public univariate_distribution {
+    class NormalDistribution: public UnivariateDistribution {
         private:
-            double m_mean{0.0};
-            double m_std{1.0};
-            std::normal_distribution<double> m_dist;
+            double mean_{0.0};
+            double std_{1.0};
+            std::normal_distribution<double> distN_;
 
         public:
-            normal_distribution(double mean, double sd): m_mean(mean), m_std(sd), m_dist(0.,1.) {}
+
+            // Constructors
+            NormalDistribution(double mean, double sd): mean_(mean), std_(sd), distN_(0.,1.) {}
+            NormalDistribution() = default;
+
+            // Destructor
+            ~NormalDistribution() = default;
+
+            // Assignment operators
+            NormalDistribution &operator=(const NormalDistribution &other) = default;
+            NormalDistribution &operator=(NormalDistribution &&other) = default;
             
-            double log_pdf(const double &x) override;
+            double logPDF(const double &x) override;
+
+            static double logPDF(const double &res, const double &std);
             
             /**
              * @brief Evaluate the first derivative of the log-pdf
@@ -90,7 +120,7 @@ namespace cmp {
              * @param x Point at which to evaluate the derivative
              * @return double
              */
-            double d_log_pdf(const double &x);
+            double dLogPDF(const double &x) override;
 
             /**
              * @brief Evaluate the second derivative of the log-pdf
@@ -98,141 +128,199 @@ namespace cmp {
              * @param x Point at which to evaluate the derivative
              * @return double
              */
-            double dd_log_pdf(const double &x);
+            double ddLogPDF(const double &x) override;
             
-            double cdf(const double &x) override;
+            double CDF(const double &x) override;
             double quantile(const double &p) override;
             double sample(std::default_random_engine &rng) override;
             
-            void set_mean(double mean){m_mean = mean;};
-            void set_std(double std){m_std = std;};
+            void setMean(double mean){mean_ = mean;};
+            void setStd(double std){std_ = std;};
+
+            double mean() const {return mean_;};
+            double std() const {return std_;};
+
+            static std::shared_ptr<UnivariateDistribution> make(double mean, double std) {
+                return std::make_shared<NormalDistribution>(mean,std);
+            };
     };
 
     // Multivariate normal distribution
-    class multivariate_normal_distribution: public proposal_distribution {
+    class MultivariateNormalDistribution: public ProposalDistribution {
         private:
-            Eigen::VectorXd m_mean;
-            Eigen::LDLT<Eigen::MatrixXd> m_ldlt;
-            std::normal_distribution<double> m_dist;
+            Eigen::VectorXd mean_;
+            Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition_;
+            std::normal_distribution<double> distN_;
         public:
 
-            multivariate_normal_distribution(Eigen::VectorXd mean, Eigen::LDLT<Eigen::MatrixXd> cov_ldlt): m_mean(mean), m_ldlt(cov_ldlt), m_dist(0., 1.) {}
-            multivariate_normal_distribution() = default;
+            // Constructors
+            MultivariateNormalDistribution(Eigen::VectorXd mean, Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition): mean_(mean), ldltDecomposition_(ldltDecomposition), distN_(0., 1.) {}
+            MultivariateNormalDistribution() = default;
 
-            double log_pdf(const Eigen::VectorXd &x) override;
-            static double log_pdf(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &cov_ldlt);
+            // Destructor
+            ~MultivariateNormalDistribution() = default;
 
-            static double log_pdf_gradient(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &cov_ldlt, const Eigen::MatrixXd &cov_gradient, const Eigen::VectorXd &mean_gradient);
-            static double log_pdf_hessian(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &cov_ldlt, const Eigen::MatrixXd &cov_gradient_l, const Eigen::MatrixXd &cov_gradient_k, const Eigen::MatrixXd &cov_hessian);
+            // Assignment operators
+            MultivariateNormalDistribution &operator=(const MultivariateNormalDistribution &other) = default;
+            MultivariateNormalDistribution &operator=(MultivariateNormalDistribution &&other) = default;
+
+
+            double logPDF(const Eigen::VectorXd &x) override;
+            static double logPDF(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &ldltDecomposition);
+
+            static double dLogPDF(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &ldltDecomposition, const Eigen::MatrixXd &cov_gradient, const Eigen::VectorXd &mean_gradient);
+            static double ddLogPDF(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &ldltDecomposition, const Eigen::MatrixXd &cov_gradient_l, const Eigen::MatrixXd &cov_gradient_k, const Eigen::MatrixXd &cov_hessian);
 
             Eigen::VectorXd sample(std::default_random_engine &rng, const double &gamma=1.0) override;
             
-            void set_mean(Eigen::VectorXd mean){m_mean = mean;};
-            void set_cov_ldlt(Eigen::LDLT<Eigen::MatrixXd> cov_ldlt){m_ldlt = cov_ldlt;};
+            void setMean(Eigen::VectorXd mean){mean_ = mean;};
+            void setLdltDecomposition(Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition){ldltDecomposition_ = ldltDecomposition;};
 
             Eigen::VectorXd get() override;
             void set(const Eigen::VectorXd &x) override;
-            double log_jump_pdf(const Eigen::VectorXd &jump) override;
+            double logJumpPDF(const Eigen::VectorXd &jump) override;
 
     };
 
     // Uniform sphere distribution
-    class uniform_sphere_distribution: public multivariate_distribution {
+    class UniformSphereDistribution: public MultivariateDistribution {
         private:
-            std::normal_distribution<double> m_dist;
-            std::size_t m_dim;
+            std::normal_distribution<double> distN_{0.,1.};
+            std::size_t dim_{1};
         public:
-            uniform_sphere_distribution(size_t dim): m_dim(dim), m_dist(0.,1.) {}
-            uniform_sphere_distribution() = default;
+            UniformSphereDistribution(size_t dim): dim_(dim), distN_(0.,1.) {}
+            UniformSphereDistribution() = default;
 
-            double log_pdf(const Eigen::VectorXd &x) override {return 0.0;};
+            // Destructor
+            ~UniformSphereDistribution() = default;
+
+            // Assignment operators
+            UniformSphereDistribution &operator=(const UniformSphereDistribution &other) = default;
+            UniformSphereDistribution &operator=(UniformSphereDistribution &&other) = default;
+
+            double logPDF(const Eigen::VectorXd &x) override {return 0.0;};
 
             Eigen::VectorXd sample(std::default_random_engine &rng) override;
     };
 
     // Uniform distribution
-    class uniform_distribution: public univariate_distribution {
+    class UniformDistribution: public UnivariateDistribution {
         private:
-            double m_a;
-            double m_b;
-            std::uniform_real_distribution<double> m_dist;
-            double m_size;
+            double lowerBound_{0.0};
+            double upperBound_{1.0};
+            std::uniform_real_distribution<double> distN_{0.,1.};
         public:
-            uniform_distribution(double a, double b): m_a(a), m_b(b), m_dist(0.,1.), m_size(m_b-m_a) {}
-            uniform_distribution() = default;
+            UniformDistribution(double a, double b): lowerBound_(a), upperBound_(b), distN_(0.,1.) {}
+            UniformDistribution() = default;
 
-            double log_pdf(const double &x) override;
-            double d_log_pdf(const double &x) {return 0.0;};
-            double dd_log_pdf(const double &x) {return 0.0;};
-            double cdf(const double & x) override;
+            // Destructor
+            ~UniformDistribution() = default;
+
+            // Assignment operators
+            UniformDistribution &operator=(const UniformDistribution &other) = default;
+            UniformDistribution &operator=(UniformDistribution &&other) = default;
+
+            double logPDF(const double &x) override;
+            double dLogPDF(const double &x) {return 0.0;};
+            double ddLogPDF(const double &x) {return 0.0;};
+            double CDF(const double & x) override;
             double quantile(const double & p) override;
             double sample(std::default_random_engine &rng) override;
 
-            void set_a(double a){m_a = a;};
-            void set_b(double b){m_b = b;};
+            void setLowerBound(double a){lowerBound_ = a;};
+            void setUpperBound(double b){upperBound_ = b;};
+
+            static std::shared_ptr<UnivariateDistribution> make(double a, double b) {
+                return std::make_shared<UniformDistribution>(a,b);
+            };
     };
 
     // Inverse gamma distribution
-    class inverse_gamma_distribution: public univariate_distribution {
+    class InverseGammaDistribution: public UnivariateDistribution {
         private:
-            double m_alpha;
-            double m_beta;
-            std::gamma_distribution<double> m_gamma;
+            double alpha_;
+            double beta_;
+            std::gamma_distribution<double> distGamma_;
         public:
-            inverse_gamma_distribution(double alpha, double beta): m_alpha(alpha), m_beta(beta), m_gamma(alpha,1/beta) {}
-            inverse_gamma_distribution() = default;
+            InverseGammaDistribution(double alpha, double beta): alpha_(alpha), beta_(beta), distGamma_(alpha,1/beta) {}
+            InverseGammaDistribution() = default;
 
-            double log_pdf(const double & x) override;
-            double d_log_pdf(const double & x);
-            double dd_log_pdf(const double & x);
-            double cdf(const double & x) override;
+            // Destructor
+            ~InverseGammaDistribution() = default;
+
+            // Assignment operators
+            InverseGammaDistribution &operator=(const InverseGammaDistribution &other) = default;
+            InverseGammaDistribution &operator=(InverseGammaDistribution &&other) = default;
+
+            double logPDF(const double & x) override;
+            double dLogPDF(const double & x) override;
+            double ddLogPDF(const double & x) override;
+            double CDF(const double & x) override;
             double quantile(const double & p) override;
             double sample(std::default_random_engine &rng) override;
 
-            void set_alpha(double alpha){m_alpha = alpha;};
-            void set_beta(double beta){m_beta = beta;};
+            void setAlpha(double alpha){alpha_ = alpha;};
+            void setBeta(double beta){beta_ = beta;};
+
+            static std::shared_ptr<UnivariateDistribution> make(double alpha, double beta) {
+                return std::make_shared<InverseGammaDistribution>(alpha,beta);
+            };
     };
 
     // Multivariate normal distribution
-    class multivariate_t_distribution: public proposal_distribution {
+    class MultivariateStudentDistribution: public ProposalDistribution {
         private:
-            Eigen::VectorXd m_mean;
-            Eigen::LDLT<Eigen::MatrixXd> m_ldlt;
-            double m_nu;
-            std::normal_distribution<double> m_dist;
+            Eigen::VectorXd mean_;
+            Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition_;
+            double dofs_;
+            std::normal_distribution<double> distN_;
         public:
 
-            multivariate_t_distribution(Eigen::VectorXd mean, Eigen::LDLT<Eigen::MatrixXd> cov_ldlt, double nu): m_mean(mean), m_ldlt(cov_ldlt), m_nu(nu), m_dist(0., 1.) {}
-            multivariate_t_distribution() = default;
+            MultivariateStudentDistribution(Eigen::VectorXd mean, Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition, double nu): mean_(mean), ldltDecomposition_(ldltDecomposition), dofs_(nu), distN_(0., 1.) {}
+            MultivariateStudentDistribution() = default;
 
-            double log_pdf(const Eigen::VectorXd &x) override;
-            static double log_pdf(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &cov_ldlt, const double &nu);
+            // Destructor
+            ~MultivariateStudentDistribution() = default;
+
+            // Assignment operators
+            MultivariateStudentDistribution &operator=(const MultivariateStudentDistribution &other) = default;
+            MultivariateStudentDistribution &operator=(MultivariateStudentDistribution &&other) = default;
+
+            double logPDF(const Eigen::VectorXd &x) override;
+            static double logPDF(const Eigen::VectorXd &res, const Eigen::LDLT<Eigen::MatrixXd> &ldltDecomposition, const double &nu);
 
             Eigen::VectorXd sample(std::default_random_engine &rng, const double &gamma=1.0) override;
             
-            void set_mean(Eigen::VectorXd mean){m_mean = mean;};
-            void set_cov_ldlt(Eigen::LDLT<Eigen::MatrixXd> cov_ldlt){m_ldlt = cov_ldlt;};
-            void set_nu(double nu){m_nu = nu;};
+            void setMean(Eigen::VectorXd mean){mean_ = mean;};
+            void setLdltDecomposition(Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition){ldltDecomposition_ = ldltDecomposition;};
+            void setDoFs(double nu){dofs_ = nu;};
 
             Eigen::VectorXd get() override;
             void set(const Eigen::VectorXd &x) override;
-            double log_jump_pdf(const Eigen::VectorXd &jump) override;
+            double logJumpPDF(const Eigen::VectorXd &jump) override;
 
     };
 
     // Multivariate uniform distribution
 
-    class multivariate_uniform_distribution: public proposal_distribution {
+    class MultivariateUniformDistribution: public ProposalDistribution {
         private:
-            Eigen::VectorXd m_mean;
-            Eigen::VectorXd m_eps;
-            std::uniform_real_distribution<double> m_dist;
+            Eigen::VectorXd mean_;
+            Eigen::VectorXd size_;
+            std::uniform_real_distribution<double> distN_;
         public:
-            multivariate_uniform_distribution(Eigen::VectorXd mean, Eigen::VectorXd eps): m_mean(mean), m_eps(eps), m_dist(0,1) {}
-            multivariate_uniform_distribution() = default;
+            MultivariateUniformDistribution(Eigen::VectorXd mean, Eigen::VectorXd size): mean_(mean), size_(size_), distN_(0,1) {}
+            MultivariateUniformDistribution() = default;
 
-            double log_pdf(const Eigen::VectorXd &x) override;
-            double log_jump_pdf(const Eigen::VectorXd &jump) override;
+            // Destructor
+            ~MultivariateUniformDistribution() = default;
+
+            // Assignment operators
+            MultivariateUniformDistribution &operator=(const MultivariateUniformDistribution &other) = default;
+            MultivariateUniformDistribution &operator=(MultivariateUniformDistribution &&other) = default;
+
+            double logPDF(const Eigen::VectorXd &x) override;
+            double logJumpPDF(const Eigen::VectorXd &jump) override;
             Eigen::VectorXd sample(std::default_random_engine &rng, const double &gamma=1.0) override;
 
             Eigen::VectorXd get() override;
@@ -241,138 +329,130 @@ namespace cmp {
 
 
     // Univariate log-normal distribution
-    class log_normal_distribution: public univariate_distribution {
+    class LogNormalDistribution: public UnivariateDistribution {
         private:
-            double m_mu;
-            double m_sigma;
-            std::normal_distribution<double> m_dist;
+            double mean_{0.0};
+            double std_{1.0};
+            std::normal_distribution<double> distN_;
         public:
-            log_normal_distribution(double mu, double sigma): m_mu(mu), m_sigma(sigma), m_dist(0, 1) {}
-            log_normal_distribution() = default;
+            LogNormalDistribution(double mu, double sigma): mean_(mu), std_(sigma), distN_(0, 1) {}
+            LogNormalDistribution() = default;
 
-            double log_pdf(const double & x) override;
-            double d_log_pdf(const double & x);
-            double dd_log_pdf(const double & x);
-            double cdf(const double & x) override;
+            double logPDF(const double & x) override;
+            double dLogPDF(const double & x) override;
+            double ddLogPDF(const double & x) override;
+            double CDF(const double & x) override;
             double quantile(const double & p) override;
             double sample(std::default_random_engine &rng) override;
 
-            void set_mu(double mu){m_mu = mu;};
-            void set_sigma(double sigma){m_sigma = sigma;};
+            void setMean(double mu){mean_ = mu;};
+            void setStd(double sigma){std_ = sigma;};
+
+            static std::shared_ptr<UnivariateDistribution> make(double mu, double sigma) {
+                return std::make_shared<LogNormalDistribution>(mu,sigma);
+            };
     };
 
     // Univariate t distribution
-    class t_distribution: public univariate_distribution {
+    class StudentDistribution: public UnivariateDistribution {
         private:
-            double m_nu;
-            double m_mu;
-            double m_sigma;
-            std::student_t_distribution<double> m_dist;
+            double dofs_;
+            double mean_;
+            double std_;
+            std::student_t_distribution<double> distN_;
         public:
-            t_distribution(double nu, double mu, double sigma): m_nu(nu), m_mu(mu), m_sigma(sigma), m_dist(nu) {}
-            t_distribution() = default;
+            StudentDistribution(double nu, double mu, double sigma): dofs_(nu), mean_(mu), std_(sigma), distN_(nu) {}
+            StudentDistribution() = default;
 
-            double log_pdf(const double & x) override;
-            double d_log_pdf(const double & x);
-            double dd_log_pdf(const double & x);
-            double cdf(const double & x) override;
+            // Destructor
+            ~StudentDistribution() = default;
+
+            // Assignment operators
+            StudentDistribution &operator=(const StudentDistribution &other) = default;
+            StudentDistribution &operator=(StudentDistribution &&other) = default;
+
+            double logPDF(const double & x) override;
+            double dLogPDF(const double & x) override;
+            double ddLogPDF(const double & x) override;
+            double CDF(const double & x) override;
             double quantile(const double & p) override;
             double sample(std::default_random_engine &rng) override;
 
-            void set_nu(double nu){m_nu = nu;};
-            void set_mu(double mu){m_mu = mu;};
-            void set_sigma(double sigma){m_sigma = sigma;};
-    };
+            void setDoFs(double dofs){dofs_ = dofs;};
+            void setMean(double mu){mean_ = mu;};
+            void setStd(double sigma){std_ = sigma;};
 
-    // Univariate Cauchy distribution
-    class cauchy_distribution: public univariate_distribution {
-        private:
-            double m_mu;
-            double m_sigma;
-            std::cauchy_distribution<double> m_dist;
-        public:
-            cauchy_distribution(double mu, double sigma): m_mu(mu), m_sigma(sigma), m_dist(0, 1) {}
-            cauchy_distribution() = default;
-
-            double log_pdf(const double & x) override;
-            double d_log_pdf(const double & x);
-            double dd_log_pdf(const double & x);
-            double cdf(const double & x) override;
-            double quantile(const double & p) override;
-            double sample(std::default_random_engine &rng) override;
-
-            void set_mu(double mu){m_mu = mu;};
-            void set_sigma(double sigma){m_sigma = sigma;};
-    };
-
-
-    // Smooth uniform distribution
-    class smooth_uniform_distribution_sigmoid: public univariate_distribution {
-        private:
-            double m_a;
-            double m_b;
-            double m_k;
-            std::uniform_real_distribution<double> m_dist;
-        public:
-            smooth_uniform_distribution_sigmoid(double a, double b, double k): m_a(a), m_b(b), m_k(k), m_dist(0,1) {}
-            smooth_uniform_distribution_sigmoid() = default;
-
-            double log_pdf(const double & x) override;
-            double d_log_pdf(const double & x);
-            double dd_log_pdf(const double & x);
-            double cdf(const double & x) override;
-            double quantile(const double & p) override;
-            double sample(std::default_random_engine &rng) override;
-
-            void set_a(double a){m_a = a;};
-            void set_b(double b){m_b = b;};
-            void set_k(double k){m_k = k;};
+            static std::shared_ptr<UnivariateDistribution> make(double nu, double mu, double sigma) {
+                return std::make_shared<StudentDistribution>(nu,mu,sigma);
+            };
     };
 
     // Power law distribution
-    class power_law_distribution: public univariate_distribution {
+    class PowerLawDistribution: public UnivariateDistribution {
         private:
-            double m_alpha;
-            double m_tol;
-            std::uniform_real_distribution<double> m_dist;
+            double degree_;
+            double lowerBound_;
+            std::uniform_real_distribution<double> distU_;
             
         public:
-            power_law_distribution(double alpha, double tol = 1.0): m_alpha(alpha), m_dist(0.,1.), m_tol(tol) {}
-            power_law_distribution() = default;
+            PowerLawDistribution(double alpha, double lowerBound = 1.0): degree_(alpha), distU_(0.,1.), lowerBound_(lowerBound) {}
+            PowerLawDistribution() = default;
 
-            double log_pdf(const double & x) override;
-            double d_log_pdf(const double & x);
-            double dd_log_pdf(const double & x);
-            double cdf(const double & x) override;
+            // Destructor
+            ~PowerLawDistribution() = default;
+
+            // Assignment operators
+            PowerLawDistribution &operator=(const PowerLawDistribution &other) = default;
+            PowerLawDistribution &operator=(PowerLawDistribution &&other) = default;
+
+            double logPDF(const double & x) override;
+            double dLogPDF(const double & x) override;
+            double ddLogPDF(const double & x) override;
+            double CDF(const double & x) override;
             double quantile(const double & p) override;
             double sample(std::default_random_engine &rng) override;
 
-            void set_alpha(double alpha){m_alpha = alpha;};
+            void setDegree(double degree){degree_ = degree;};
+
+            static std::shared_ptr<UnivariateDistribution> make(double degree, double lowerBound = 1.0) {
+                return std::make_shared<PowerLawDistribution>(degree,lowerBound);
+            };
     };
 
 
     // Smoothed uniform distribution with normal
-    class smooth_uniform_distribution_normal: public univariate_distribution {
+    class SmoothUniformDistribution: public UnivariateDistribution {
         private:
-            double m_a;
-            double m_b;
-            double m_sigma;
-            std::uniform_real_distribution<double> m_dist_u;
-            std::normal_distribution<double> m_dist_n;
+            double lowerBound_;
+            double upperBound_;
+            double std_;
+            std::uniform_real_distribution<double> distU_;
+            std::normal_distribution<double> distN_;
         public:
-            smooth_uniform_distribution_normal(double a, double b, double sigma): m_a(a), m_b(b), m_sigma(sigma), m_dist_u(0,1), m_dist_n(0,1) {}
-            smooth_uniform_distribution_normal() = default;
+            SmoothUniformDistribution(double lowerBound, double upperBound, double sigma): lowerBound_(lowerBound), upperBound_(upperBound), std_(sigma), distU_(0,1), distN_(0,1) {}
+            SmoothUniformDistribution() = default;
 
-            double log_pdf(const double & x) override;
-            double d_log_pdf(const double & x);
-            double dd_log_pdf(const double & x);
-            double cdf(const double & x) override;
+            // Destructor
+            ~SmoothUniformDistribution() = default;
+
+            // Assignment operators
+            SmoothUniformDistribution &operator=(const SmoothUniformDistribution &other) = default;
+            SmoothUniformDistribution &operator=(SmoothUniformDistribution &&other) = default;
+
+            double logPDF(const double & x) override;
+            double dLogPDF(const double & x) override;
+            double ddLogPDF(const double & x) override;
+            double CDF(const double & x) override;
             double quantile(const double & p) override;
             double sample(std::default_random_engine &rng) override;
 
-            void set_a(double a){m_a = a;};
-            void set_b(double b){m_b = b;};
-            void set_sigma(double sigma){m_sigma = sigma;};
+            void setLowerBound(double a){lowerBound_ = a;};
+            void setUpperBound(double b){upperBound_ = b;};
+            void setStd(double sigma){std_ = sigma;};
+
+            static std::shared_ptr<UnivariateDistribution> make(double a, double b, double sigma) {
+                return std::make_shared<SmoothUniformDistribution>(a,b,sigma);
+            };
     };
 
 }

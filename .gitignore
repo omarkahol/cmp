@@ -6,6 +6,6 @@ docs
 *.dylib
 .DS_Store
 out*
-test_gp_complex
 out.dSYM
 Technical_Doc/**
+.notebook

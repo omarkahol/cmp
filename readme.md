@@ -16,7 +16,6 @@ These instructions will help you compile and link the CMP++ library to your proj
 The library depends on:
 
 - [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
-- [spdlog](https://github.com/gabime/spdlog)
 - [NLopt](https://nlopt.readthedocs.io/en/latest/)
 
 ### Installing
@@ -31,7 +30,7 @@ CMP++ can be compiled into a static library using the provided makefile. Make su
 To run the test, do
 
     cd tests
-    make TESTNAME
+    make testname
     ./out_testname
 
 In order to be able to view the results you should link against matplotlib cpp library. 

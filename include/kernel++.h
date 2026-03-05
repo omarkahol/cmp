@@ -2,361 +2,238 @@
 #define KERNELPP_H
 
 #include "cmp_defines.h"
-#define TOL 1e-8
 
 namespace cmp::kernel {
 
-    class Kernel {
-        public:
-            virtual ~Kernel() = default;
-            virtual double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const = 0;
-            virtual double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const = 0;
-            virtual double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const = 0;
-        };
+constexpr double TOL = 1e-12;
 
-    class Sum : public Kernel {
-        private:
-            std::shared_ptr<Kernel> leftKernel_;
-            std::shared_ptr<Kernel> rightKernel_;
-        public:
 
-            Sum() = default;
-            Sum(const Sum&) = default;
-            Sum(Sum&&) = default;
-            Sum& operator=(const Sum&) = default;
-            Sum& operator=(Sum&&) = default;
+// Implement Bandiwdths
+class Bandwidth {
+  public:
+    virtual ~Bandwidth() = default;
+    virtual Eigen::VectorXd apply(const Eigen::VectorXd& x1, const Eigen::VectorXd& x2) const = 0;
+    virtual double determinant() const = 0;
+    virtual size_t size() const = 0;
 
-            Sum(std::shared_ptr<Kernel> k1, std::shared_ptr<Kernel> k2) : leftKernel_(k1), rightKernel_(k2) {};
-            double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const {
-                return leftKernel_->eval(x1,x2,par) + rightKernel_->eval(x1,x2,par);
-            }
-            double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const {
-                return leftKernel_->evalGradient(x1,x2,par,i) + rightKernel_->evalGradient(x1,x2,par,i);
-            }
-            double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const {
-                return leftKernel_->evalHessian(x1,x2,par,i,j) + rightKernel_->evalHessian(x1,x2,par,i,j);
-            }
+    // Gradient methods
+    virtual Eigen::VectorXd gradientOfApply(const Eigen::VectorXd& x1, const Eigen::VectorXd& x2, const size_t &i) const = 0;
+    virtual double gradientOfLogDeterminant(const size_t &i) const = 0;
 
-            static std::shared_ptr<Kernel> make(std::shared_ptr<Kernel> k1, std::shared_ptr<Kernel> k2) {
-                return std::make_shared<Sum>(k1,k2);
-            }; 
+    // Construct for NLopt routines
+    virtual void setFromVector(const Eigen::VectorXd &params) = 0;
+    virtual Eigen::VectorXd getParams() const = 0;
+
+};
+
+class IsotropicBandwidth : public Bandwidth {
+  private:
+    double h_{1.0};
+    size_t dim_{1};
+  public:
+    IsotropicBandwidth() = delete;
+    IsotropicBandwidth(const double &h, const size_t &dim) : h_(h), dim_(dim) {};
+
+    // This is just a scaling by 1/h to the difference between the two points
+    Eigen::VectorXd apply(const Eigen::VectorXd& x1, const Eigen::VectorXd& x2) const override;
+
+    // Computes the determinant of the transformation x' = (1/h) * x
+    double determinant() const override;
+
+    // Returns the dimension of the data
+    size_t size() const override {
+        return dim_;
     };
 
-    class Product : public Kernel {
-        std::shared_ptr<Kernel> leftKernel_;
-        std::shared_ptr<Kernel> rightKernel_;
+    // Gradient methods
+    Eigen::VectorXd gradientOfApply(const Eigen::VectorXd& x1, const Eigen::VectorXd& x2, const size_t &i) const override;
 
-        public:
+    double gradientOfLogDeterminant(const size_t &i) const override;
 
-            Product(const Product&) = default;
-            Product(Product&&) = default;
-            Product& operator=(const Product&) = default;
-            Product& operator=(Product&&) = default;
-
-            Product(std::shared_ptr<Kernel> k1, std::shared_ptr<Kernel> k2) : leftKernel_(k1), rightKernel_(k2) {};
-            double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const {
-                return leftKernel_->eval(x1,x2,par) * rightKernel_->eval(x1,x2,par);
-            }
-            double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const {
-
-                // Smart eval for first term
-                double d1 = leftKernel_->evalGradient(x1,x2,par,i);
-                if (std::abs(d1) < TOL) {
-                } else {
-                    d1*= rightKernel_->eval(x1,x2,par);
-                }
-
-                // Smart eval for second term
-                double d2 = rightKernel_->evalGradient(x1,x2,par,i);
-                if (std::abs(d2) < TOL) {
-                } else {
-                    d2*= leftKernel_->eval(x1,x2,par);
-                }
-
-                // Return the result
-                return d1 + d2;
-            }
-            double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const {
-                
-                // Smart eval of the first term
-                double d1 = leftKernel_->evalGradient(x1,x2,par,i);
-                if (std::abs(d1) < TOL) {
-                } else {
-                    d1 = (d1+leftKernel_->evalHessian(x1,x2,par,i,j))*rightKernel_->eval(x1,x2,par);
-                }
-                
-                // Smart eval for second term
-                double d2 = rightKernel_->evalGradient(x1,x2,par,i);
-                if (std::abs(d2) < TOL) {
-                } else {
-                    d2 = (d2+rightKernel_->evalHessian(x1,x2,par,i,j))*leftKernel_->eval(x1,x2,par);
-                }
-
-                // Smart eval for the third term
-                return d1 + d2;
-            }
-
-            static std::shared_ptr<Kernel> make(std::shared_ptr<Kernel> k1, std::shared_ptr<Kernel> k2) {
-                return std::make_shared<Product>(k1,k2);
-            };
+    void setFromVector(const Eigen::VectorXd &params) {
+        h_ = params(0);
     };
 
-    class Nugget: public Kernel {
-        private:
-            std::shared_ptr<Kernel> kernel_;
-            double nugget_;
-        public:
-
-            Nugget(const Nugget&) = default;
-            Nugget(Nugget&&) = default;
-            Nugget& operator=(const Nugget&) = default;
-            Nugget& operator=(Nugget&&) = default;
-
-            Nugget(std::shared_ptr<Kernel> k, const double &nugget) : kernel_(k), nugget_(nugget) {};
-            double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const {
-                return kernel_->eval(x1,x2,par) + nugget_*double(x1.isApprox(x2));
-            }
-            double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const {
-                return kernel_->evalGradient(x1,x2,par,i);
-            }
-            double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const {
-                return kernel_->evalHessian(x1,x2,par,i,j);
-            }
-
-            static std::shared_ptr<Kernel> make(std::shared_ptr<Kernel> k, const double &nugget_val=1e-3) {
-                return std::make_shared<Nugget>(k,nugget_val);
-            };
-
+    Eigen::VectorXd getParams() const {
+        return Eigen::VectorXd::Constant(1, h_);
     };
 
-    class Custom : public Kernel {
-        private:
-            std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&)> eval_;
-            std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&, const size_t&)> evalGradient_;
-            std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&, const size_t&, const size_t&)> evalHessian_;
-        public:
-
-            Custom(const Custom&) = default;
-            Custom(Custom&&) = default;
-            Custom& operator=(const Custom&) = default;
-            Custom& operator=(Custom&&) = default;
-
-            Custom(std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&)> eval,
-                   std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&, const size_t&)> evalGradient,
-                   std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&, const size_t&, const size_t&)> evalHessian) : eval_(eval), evalGradient_(evalGradient), evalHessian_(evalHessian) {};
-            double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const {
-                return eval_(x1,x2,par);
-            }
-            double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const {
-                return evalGradient_(x1,x2,par,i);
-            }
-            double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const {
-                return evalHessian_(x1,x2,par,i,j);
-            }
-
-            std::shared_ptr<Custom> make(std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&)> eval,
-                                         std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&, const size_t&)> evalGradient,
-                                         std::function<double(const Eigen::VectorXd&, const Eigen::VectorXd&, const Eigen::VectorXd&, const size_t&, const size_t&)> evalHessian) {
-                return std::make_shared<Custom>(eval,evalGradient,evalHessian);
-            };
+    // Make method
+    static std::shared_ptr<Bandwidth> make(const double &h, const size_t &dim) {
+        return std::make_shared<IsotropicBandwidth>(h, dim);
     };
 
-    class Constant : public Kernel {
-        private:
-            size_t index_;
-        public:
+};
 
-            Constant(const Constant&) = default;
-            Constant(Constant&&) = default;
-            Constant& operator=(const Constant&) = default;
-            Constant& operator=(Constant&&) = default;
-
-            Constant(const size_t &index) : index_(index) {};
-            double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const {
-                return std::pow(par(index_),2);
-            };
-            double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const {
-                if (i == index_) {
-                    return 2*par(index_);
-                } else {
-                    return 0;
-                }
-            };
-            double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const {
-                if (i == index_ && j == index_) {
-                    return 2;
-                } else {
-                    return 0;
-                }
-            };
-            
-            static std::shared_ptr<Kernel> make(const size_t &c) {
-                return std::make_shared<Constant>(c);
-            };
-            
+// Here we implement a very simple diagonal bandwidth (anisotropic)
+class DiagonalBandwidth : public Bandwidth {
+  private:
+    Eigen::VectorXd h_;
+    double det_;
+  public:
+    DiagonalBandwidth() = delete;
+    DiagonalBandwidth(const Eigen::VectorXd &h) : h_(h) {
+        det_ = h_.prod();
     };
 
-    class Linear : public Kernel {
-        private:
-            int indexX_;
-        public:
+    // Simple scaling
+    Eigen::VectorXd apply(const Eigen::VectorXd& x1, const Eigen::VectorXd& x2) const override;
 
-            Linear(const Linear&) = default;
-            Linear(Linear&&) = default;
-            Linear& operator=(const Linear&) = default;
-            Linear& operator=(Linear&&) = default;
+    double determinant() const override;
 
-            Linear(const int &indexX=-1) : indexX_(indexX) {};
-            double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const {
-                if (indexX_ == -1) {
-                    return x1.dot(x2);
-                } else {
-                    return x1(indexX_)*x2(indexX_);
-                }
-            };
 
-            double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const {
-                return 0;
-            };
+    size_t size() const override {
+        return h_.size();
+    };
 
-            double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const {
-                return 0;
-            };
+    // Gradient methods
+    Eigen::VectorXd gradientOfApply(const Eigen::VectorXd& x1, const Eigen::VectorXd& x2, const size_t &i) const override;
 
-            static std::shared_ptr<Kernel> make(const int &i) {
-                return std::make_shared<Linear>(i);
-            };
+    double gradientOfLogDeterminant(const size_t &i) const override;
+
+    void setFromVector(const Eigen::VectorXd &params) override;
+
+    Eigen::VectorXd getParams() const override;
+
+    // Make method
+    static std::shared_ptr<Bandwidth> make(const Eigen::VectorXd &h) {
+        return std::make_shared<DiagonalBandwidth>(h);
+    };
+
+};
+
+// We implement a full bandwidth based on the Cholesky decomposition
+class FullBandwidth : public Bandwidth {
+
+  private:
+    Eigen::LLT<Eigen::MatrixXd> L_;
+    double det_;
+    size_t dim_;
+
+  public:
+    FullBandwidth() = delete;
+
+    FullBandwidth(const Eigen::MatrixXd &LLT) : dim_(LLT.rows()) {
+        if(LLT.rows() != LLT.cols()) {
+            throw std::invalid_argument("Full bandwidth expects a square matrix.");
+        }
+        L_ = Eigen::LLT<Eigen::MatrixXd>(LLT);
+        if(L_.info() != Eigen::Success) {
+            throw std::invalid_argument("The provided matrix is not positive definite.");
+        }
+
+        // Compute determinant as product of diagonal entries of the Cholesky factor
+        // directly to avoid hitting Eigen internals that trigger deprecated enum
+        // bitwise operations.
+        det_ = 1.0;
+        for(size_t i = 0; i < static_cast<size_t>(L_.matrixL().rows()); ++i) {
+            det_ *= L_.matrixL()(i, i);
+        }
+    };
+
+    double determinant() const override;
+
+    size_t size() const {
+        return dim_;
+    };
+
+    std::pair<size_t, size_t> indexToRowCol(const size_t &i) const;
+
+    Eigen::VectorXd apply(const Eigen::VectorXd& x1, const Eigen::VectorXd& x2) const override;
+
+    // Gradient methods
+    Eigen::VectorXd gradientOfApply(const Eigen::VectorXd& x1, const Eigen::VectorXd& x2, const size_t &i) const override;
+
+    double gradientOfLogDeterminant(const size_t &i) const override;
+
+    void setFromVector(const Eigen::VectorXd &params) override;
+
+    Eigen::VectorXd getParams() const override;
+
+    // Make method
+    static std::shared_ptr<Bandwidth> make(const Eigen::MatrixXd &LLT) {
+        return std::make_shared<FullBandwidth>(LLT);
+    };
+
+    // Full matrix
+    Eigen::MatrixXd matrix() const {
+        return L_.matrixL().toDenseMatrix() * L_.matrixL().transpose().toDenseMatrix();
 
     };
 
-    class SquaredExponential : public Kernel {
-        private:
-            size_t index_;
-            int indexX_;
-        public:
+};
 
-            SquaredExponential(const SquaredExponential&) = default;
-            SquaredExponential(SquaredExponential&&) = default;
-            SquaredExponential& operator=(const SquaredExponential&) = default;
-            SquaredExponential& operator=(SquaredExponential&&) = default;
 
-            SquaredExponential(const size_t &index, const int &indexX=-1) : index_(index), indexX_(indexX) {};
-            double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const {
-                double d;
-                if (indexX_ == -1) {
-                    d = (x1-x2).norm();
-                } else {
-                    d = std::abs(x1(indexX_)-x2(indexX_));
-                }
-                return std::exp(-0.5*std::pow(d/par(index_),2));
-            };
 
-            double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const {
-                double d;
-                if (indexX_ == -1) {
-                    d = (x1-x2).norm();
-                } else {
-                    d = std::abs(x1(indexX_)-x2(indexX_));
-                }
+// Implement Kernels
+/**
+ * Now we implement a kernel virtual class and derive a few kernels from it.
+ */
 
-                // Compute the gradient
-                if (i == index_) {
-                    return std::exp(-0.5*std::pow(d/par(index_),2))*std::pow(d,2)/std::pow(par(index_),3);
-                } else {
-                    return 0;
-                }
-            };
+class Kernel {
+  public:
+    virtual ~Kernel() = default;
+    virtual double eval(const Eigen::VectorXd& z) const = 0;
+    virtual double normalizationConstant(const size_t &dim) const = 0;
+    virtual double applyToGradient(const Eigen::VectorXd& z, const Eigen::VectorXd& grad_z_i) const = 0;
 
-            double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const {
-                double d;
-                if (indexX_ == -1) {
-                    d = (x1-x2).norm();
-                } else {
-                    d = std::abs(x1(indexX_)-x2(indexX_));
-                }
 
-                // Compute the hessian
-                if (i == index_ && j == index_) {
-                    return (std::exp(-0.5*std::pow(d/par(index_),2))*std::pow(d,2)/std::pow(par(index_),4))*(-3+std::pow(d,2)/std::pow(par(index_),3));
-                } else {
-                    return 0;
-                }
-            };
+};
 
-            static std::shared_ptr<Kernel> make(const size_t &l, const int &i) {
-                return std::make_shared<SquaredExponential>(l,i);
-            };
+class Gaussian : public Kernel {
+  public:
 
+    Gaussian() = default;
+
+    double eval(const Eigen::VectorXd& z_diff) const override;
+
+    double normalizationConstant(const size_t &dim) const override;
+
+    double applyToGradient(const Eigen::VectorXd& z, const Eigen::VectorXd& grad_z_i) const override;
+
+    // Make method
+    static std::shared_ptr<Kernel> make() {
+        return std::make_shared<Gaussian>();
     };
+};
 
-    class Matern52 : public Kernel {
-        private:
-            size_t index_;
-            int indexX_;
-        public:
+class Epanechnikov : public Kernel {
+  public:
 
-            Matern52(const Matern52&) = default;
-            Matern52(Matern52&&) = default;
-            Matern52& operator=(const Matern52&) = default;
-            Matern52& operator=(Matern52&&) = default;
+    Epanechnikov() = default;
 
-            Matern52(const size_t &l, const int &i=-1) : index_(l), indexX_(i) {};
-            double eval(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par) const {
-                double d;
-                if (indexX_ == -1) {
-                    d = (x1-x2).norm();
-                } else {
-                    d = std::abs(x1(indexX_)-x2(indexX_));
-                }
-                double l = par(index_);
-                double c_1 = sqrt(5.)*d/l;
-                double c_2 = (5./3.)*pow(d/l,2);
-                return (1+c_1+c_2)*exp(-c_1);
-            };
+    double eval(const Eigen::VectorXd& z_diff) const override;
 
-            double evalGradient(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i) const {
-                double d;
-                if (indexX_ == -1) {
-                    d = (x1-x2).norm();
-                } else {
-                    d = std::abs(x1(indexX_)-x2(indexX_));
-                }
+    double normalizationConstant(const size_t &dim) const override;
 
-                // Compute the gradient
-                if (i == index_) {
-                    double l = par(index_);
-                    return (5.*std::pow(d,2)*(std::sqrt(5)*d + l))/(3.*std::exp((std::sqrt(5)*d)/l)*std::pow(l,4));
-                } else {
-                    return 0;
-                }
-            };
+    double applyToGradient(const Eigen::VectorXd& z, const Eigen::VectorXd& grad_z_i) const override;
 
-            double evalHessian(const Eigen::VectorXd& x1, const Eigen::VectorXd &x2, const Eigen::VectorXd& par, const size_t &i, const size_t &j) const {
-                double d;
-                if (indexX_ == -1) {
-                    d = (x1-x2).norm();
-                } else {
-                    d = std::abs(x1(indexX_)-x2(indexX_));
-                }
-
-                // Compute the hessian
-                if (i == index_ && j == index_) {
-                    double l = par(index_);
-                    return (5*std::pow(d,2)*(5*std::pow(d,2) - 3*std::sqrt(5)*d*l - 3*std::pow(l,2)))/(3.*std::exp(std::sqrt(5)*d/l)*std::pow(l,6));
-                } else {
-                    return 0;
-                }
-            };
-
-            static std::shared_ptr<Kernel> make(const size_t &l, const int &i) {
-                return std::make_shared<Matern52>(l,i);
-            };
+    // Make method
+    static std::shared_ptr<Kernel> make() {
+        return std::make_shared<Epanechnikov>();
     };
+};
+
+// Rectangular (uniform) kernel
+class Uniform : public Kernel {
+  public:
+
+    Uniform() = default;
+
+    double eval(const Eigen::VectorXd& z_diff) const override;
+
+    double normalizationConstant(const size_t &dim) const override;
+
+    double applyToGradient(const Eigen::VectorXd& z, const Eigen::VectorXd& grad_z_i) const override;
+
+    // Make method
+    static std::shared_ptr<Kernel> make() {
+        return std::make_shared<Uniform>();
+    };
+};
 
 
-    std::shared_ptr<Kernel> operator+(std::shared_ptr<Kernel> k1, std::shared_ptr<Kernel> k2);
 
-    std::shared_ptr<Kernel> operator*(std::shared_ptr<Kernel> k1, std::shared_ptr<Kernel> k2);
-}
+} // namespace cmp::kernel
 
 #endif

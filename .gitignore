@@ -5,6 +5,7 @@ docs
 *.a
 *.dylib
 .DS_Store
-out
+out*
 test_gp_complex
 out.dSYM
+Technical_Doc/**

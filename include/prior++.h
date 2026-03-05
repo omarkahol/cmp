@@ -5,109 +5,109 @@
 #include <distribution.h>
 
 namespace cmp::prior {
-    class Prior {
-        public:
-            virtual ~Prior() = default;
-            virtual double eval(const Eigen::VectorXd &par) const = 0;
-            virtual double evalGradient(const Eigen::VectorXd &par, const size_t &i) const = 0;
-            virtual double evalHessian(const Eigen::VectorXd &par, const size_t &i, const size_t &j) const = 0;
-    };
+class Prior {
+  public:
+    virtual ~Prior() = default;
+    virtual double eval(const Eigen::VectorXd &par) const = 0;
+    virtual double evalGradient(const Eigen::VectorXd &par, const size_t &i) const = 0;
+    virtual double evalHessian(const Eigen::VectorXd &par, const size_t &i, const size_t &j) const = 0;
+};
 
-    class FromDistribution : public Prior {
-        private:
-            std::shared_ptr<cmp::distribution::UnivariateDistribution> dist_;
-            std::size_t index_;
-        public:
-            FromDistribution(const FromDistribution&) = default;
-            FromDistribution(FromDistribution&&) = default;
-            FromDistribution& operator=(const FromDistribution&) = default;
-            FromDistribution& operator=(FromDistribution&&) = default;
+class FromDistribution : public Prior {
+  private:
+    std::shared_ptr<cmp::distribution::UnivariateDistribution> dist_;
+    std::size_t index_;
+  public:
+    FromDistribution(const FromDistribution&) = default;
+    FromDistribution(FromDistribution&&) = default;
+    FromDistribution& operator=(const FromDistribution&) = default;
+    FromDistribution& operator=(FromDistribution&&) = default;
 
-            FromDistribution(std::shared_ptr<cmp::distribution::UnivariateDistribution> dist, std::size_t index) : dist_(dist), index_(index) {};
+    FromDistribution(std::shared_ptr<cmp::distribution::UnivariateDistribution> dist, std::size_t index) : dist_(dist), index_(index) {};
 
-            double eval(const Eigen::VectorXd &par) const {
-                return dist_->logPDF(par(index_));
-            }
+    double eval(const Eigen::VectorXd &par) const {
+        return dist_->logPDF(par(index_));
+    }
 
-            double evalGradient(const Eigen::VectorXd &par, const size_t &i) const {
-                if (i == index_) {
-                    return dist_->dLogPDF(par(index_));
-                } else {
-                    return 0;
-                }
-            }
+    double evalGradient(const Eigen::VectorXd &par, const size_t &i) const {
+        if(i == index_) {
+            return dist_->dLogPDF(par(index_));
+        } else {
+            return 0;
+        }
+    }
 
-            double evalHessian(const Eigen::VectorXd &par, const size_t &i, const size_t &j) const {
-                if (i == index_ && j == index_) {
-                    return dist_->ddLogPDF(par(index_));
-                } else {
-                    return 0;
-                }
-            }
-            
-            static std::shared_ptr<Prior> make(std::shared_ptr<cmp::distribution::UnivariateDistribution> dist, std::size_t i) {
-                return std::make_shared<FromDistribution>(dist,i);
-            }
-    };
+    double evalHessian(const Eigen::VectorXd &par, const size_t &i, const size_t &j) const {
+        if(i == index_ && j == index_) {
+            return dist_->ddLogPDF(par(index_));
+        } else {
+            return 0;
+        }
+    }
 
-    class Product : public Prior {
-        private:
-            std::shared_ptr<Prior> leftPrior_;
-            std::shared_ptr<Prior> rightPrior_;
-        public:
+    static std::shared_ptr<Prior> make(std::shared_ptr<cmp::distribution::UnivariateDistribution> dist, std::size_t i) {
+        return std::make_shared<FromDistribution>(dist, i);
+    }
+};
 
-            Product () = default;
-            Product(const Product&) = default;
-            Product(Product&&) = default;
-            Product& operator=(const Product&) = default;
-            Product& operator=(Product&&) = default;
+class Product : public Prior {
+  private:
+    std::shared_ptr<Prior> leftPrior_;
+    std::shared_ptr<Prior> rightPrior_;
+  public:
 
-            Product(std::shared_ptr<Prior> p1, std::shared_ptr<Prior> p2) : leftPrior_(p1), rightPrior_(p2) {};
+    Product() = default;
+    Product(const Product&) = default;
+    Product(Product&&) = default;
+    Product& operator=(const Product&) = default;
+    Product& operator=(Product&&) = default;
 
-            double eval(const Eigen::VectorXd &par) const {
-                return leftPrior_->eval(par) + rightPrior_->eval(par);
-            }
+    Product(std::shared_ptr<Prior> p1, std::shared_ptr<Prior> p2) : leftPrior_(p1), rightPrior_(p2) {};
 
-            double evalGradient(const Eigen::VectorXd &par, const size_t &i) const {
-                return leftPrior_->evalGradient(par,i) + rightPrior_->evalGradient(par,i);
-            }
+    double eval(const Eigen::VectorXd &par) const {
+        return leftPrior_->eval(par) + rightPrior_->eval(par);
+    }
 
-            double evalHessian(const Eigen::VectorXd &par, const size_t &i, const size_t &j) const {
-                return leftPrior_->evalHessian(par,i,j) + rightPrior_->evalHessian(par,i,j);
-            }
+    double evalGradient(const Eigen::VectorXd &par, const size_t &i) const {
+        return leftPrior_->evalGradient(par, i) + rightPrior_->evalGradient(par, i);
+    }
 
-            static std::shared_ptr<Prior> make(std::shared_ptr<Prior> p1, std::shared_ptr<Prior> p2) {
-                return std::make_shared<Product>(p1,p2);
-            }
-    };
+    double evalHessian(const Eigen::VectorXd &par, const size_t &i, const size_t &j) const {
+        return leftPrior_->evalHessian(par, i, j) + rightPrior_->evalHessian(par, i, j);
+    }
 
-    class Uniform : public Prior {
-        public:
-            Uniform(const Uniform&) = default;
-            Uniform(Uniform&&) = default;
-            Uniform& operator=(const Uniform&) = default;
-            Uniform& operator=(Uniform&&) = default;
+    static std::shared_ptr<Prior> make(std::shared_ptr<Prior> p1, std::shared_ptr<Prior> p2) {
+        return std::make_shared<Product>(p1, p2);
+    }
+};
 
-            Uniform() = default;
+class Uniform : public Prior {
+  public:
+    Uniform(const Uniform&) = default;
+    Uniform(Uniform&&) = default;
+    Uniform& operator=(const Uniform&) = default;
+    Uniform& operator=(Uniform&&) = default;
 
-            double eval(const Eigen::VectorXd &par) const {
-                return 0;
-            }
-            
-            double evalGradient(const Eigen::VectorXd &par, const size_t &i) const {
-                return 0;
-            }
+    Uniform() = default;
 
-            double evalHessian(const Eigen::VectorXd &par, const size_t &i, const size_t &j) const {
-                return 0;
-            }
+    double eval(const Eigen::VectorXd &par) const {
+        return 0;
+    }
 
-            static std::shared_ptr<Prior> make() {
-                return std::make_shared<Uniform>();
-            }
-    };
+    double evalGradient(const Eigen::VectorXd &par, const size_t &i) const {
+        return 0;
+    }
 
-    std::shared_ptr<Prior> operator*(std::shared_ptr<Prior> p1, std::shared_ptr<Prior> p2);
+    double evalHessian(const Eigen::VectorXd &par, const size_t &i, const size_t &j) const {
+        return 0;
+    }
+
+    static std::shared_ptr<Prior> make() {
+        return std::make_shared<Uniform>();
+    }
+};
+
+std::shared_ptr<Prior> operator*(std::shared_ptr<Prior> p1, std::shared_ptr<Prior> p2);
 
 }
 

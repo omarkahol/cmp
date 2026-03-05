@@ -30,13 +30,11 @@ CMP++ can be compiled into a static library using the provided makefile. Make su
 
 To run the test, do
 
-    cd test_cmp
-    make
-    ./out
+    cd tests
+    make TESTNAME
+    ./out_testname
 
-It will generate some csv files which can be processed using the plot.py file
-
-    python3 plot.py
+In order to be able to view the results you should link against matplotlib cpp library. 
 
 ## License
 

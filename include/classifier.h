@@ -138,12 +138,10 @@ class KDE : public Classifier {
     double objectiveFunctionCV(const method& method, const cmp::statistics::KFold& kf) const;
 
     /**
-     * @brief Objective function for entropy-based optimization.
-     * This function computes the objective value based on the entropy of the predicted class probabilities.
-     * @param targetEntropy The target entropy value to achieve.
-     * @return The objective value based on the entropy of the predicted class probabilities: (entropy - targetEntropy)^2.
+     * @brief Objective function for efficient leave-one-out optimization.
+     * This function computes mean LOO log-probability over all observations, to be maximized.
      */
-    double objectiveFunctionEntropy(const double &targetEntropy) const;
+    double objectiveFunctionLOO() const;
 
     /**
      * @brief Fit the KDE using cross-validation to optimize the bandwidth.
@@ -162,18 +160,16 @@ class KDE : public Classifier {
 
 
     /**
-     * @brief Fit the KDE using entropy-based optimization.
-     * This method optimizes the bandwidth using the specified optimization algorithm to minimize the difference between the predicted and target entropy.
-     * @param targetEntropy The target entropy value to achieve.
+     * @brief Fit the KDE by maximizing an efficient leave-one-out objective.
+     * This method optimizes bandwidth using mean LOO log-probability over all observations.
      * @param xObs A matrix of observations where each row is an observation and each column is a feature.
      * @param labels A vector of labels corresponding to the observations.
      * @param minBw The minimum bandwidth value for optimization.
      * @param maxBw The maximum bandwidth value for optimization.
      * @param algo The optimization algorithm to use (default is nlopt::LN_SBPLX).
      * @param ftol_rel The relative tolerance for the optimization algorithm (default is 1e-4).
-     *
      */
-    void fit(const double &targetEntropy, const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, const double& minBw, const double& maxBw, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4);
+    void fitLOO(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, const double& minBw, const double& maxBw, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4);
 };
 
 
@@ -331,20 +327,6 @@ class SVM : public Classifier {
 
 
     /**
-     * @brief Fit the SVM using entropy-based optimization to optimize hyperparameters and C.
-     * This method uses the specified optimization algorithm to find the optimal hyperparameters and C that achieves the target entropy.
-     * @param targetEntropy The target entropy value to achieve.
-     * @param xObs A matrix of observations where each row is an observation and each column is a feature.
-     * @param labels A vector of labels corresponding to the observations.
-     * @param lb A vector of lower bounds for the hyperparameters and C.
-     * @param ub A vector of upper bounds for the hyperparameters and C.
-     * @param algo The optimization algorithm to use (default is nlopt::LN_SBPLX).
-     * @param ftol_rel The relative tolerance for the optimization algorithm (default is 1e-4).
-     */
-    void fit(const double & targetEntropy, const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& membershipTable, const Eigen::Ref<const Eigen::VectorXd> &lb, const Eigen::Ref<const Eigen::VectorXd> &ub, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4);
-
-
-    /**
      * @brief Objective function for cross-validation.
      * This function computes the objective value for cross-validation, to be maximized.
      * @param method The method to use for cross-validation (CV_SCORE or CV_PROB_SCORE).
@@ -355,17 +337,9 @@ class SVM : public Classifier {
 
     /**
      * @brief Objective function for span-based optimization.
-     * This function computes the -log(1 + span) to be maximized.
+     * This function returns the negative mean support-vector span so it can be maximized.
      */
     double objectiveFunctionSpan();
-
-    /**
-     * @brief Objective function for entropy-based optimization.
-     * This function computes the objective value based on the entropy of the predicted class probabilities.
-     * @param targetEntropy The target entropy value to achieve.
-     * @return The objective value based on the entropy of the predicted class probabilities: (entropy - targetEntropy)^2.
-     */
-    double objectiveFunctionEntropy(const double & targetEntropy);
 };
 
 

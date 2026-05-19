@@ -66,8 +66,13 @@ class PolynomialExpansion {
     MultiIndex multiIndex_;
     Eigen::VectorXd coefficients_;
     Eigen::MatrixXd coefficientsCovariance_;
+    Eigen::MatrixXd normalMatrixInverse_;
+    Eigen::VectorXd yObs_;
+    double residualVariance_ = 0.0;
     std::shared_ptr<PolynomialBasis> basis_;
     Eigen::MatrixXd xObs_;
+
+    Eigen::VectorXd computeBasisRow(const Eigen::Ref<const Eigen::VectorXd> &x) const;
 
   public:
     PolynomialExpansion() = default;
@@ -86,6 +91,8 @@ class PolynomialExpansion {
     }
 
     std::pair<double, double> predict(const Eigen::Ref<const Eigen::VectorXd> &x) const;
+
+    std::pair<double, double> predictWithObs(const Eigen::Ref<const Eigen::VectorXd> &x, const double &yObs) const;
 
     std::pair<double, double> predictLOO(const size_t &i) const;
 

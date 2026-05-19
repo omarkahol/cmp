@@ -282,6 +282,16 @@ void GaussianProcess::fit(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const E
         cmp::nlopt_max(fun, par_, lb, ub, alg, tol_rel);
         break;
     }
+    case LOO_MSE: {
+        // Create the function and the functor
+        auto obj = [&](const Eigen::Ref<const Eigen::VectorXd> &x, Eigen::Ref<Eigen::VectorXd> grad) {
+            return objectiveFunctionLOOMSE(x, grad, prior);
+        };
+        // Optimize
+        cmp::ObjectiveFunctor fun(obj);
+        cmp::nlopt_max(fun, par_, lb, ub, alg, tol_rel);
+        break;
+    }
     default:
         throw std::runtime_error("Unknown optimization method");
     }
@@ -468,17 +478,28 @@ double GaussianProcess::logLikelihoodLOO(const size_t &i) const {
     return cmp::distribution::NormalDistribution::logPDF(pYObs_.value()(i) - mean, std::sqrt(var));
 }
 
-Eigen::MatrixXd GaussianProcess::expectedVarianceImprovement(const Eigen::Ref<const Eigen::MatrixXd> &x_pts, double nu) const {
+
+Eigen::MatrixXd GaussianProcess::expectedVarianceImprovement(
+    const Eigen::Ref<const Eigen::MatrixXd> &x_pts,
+    const Eigen::Ref<const Eigen::MatrixXd> &x_pending,
+    double nu) const {
 
     // Sizes of the matrices
     size_t n_pts = x_pts.rows();
     size_t n_obs = pXObs_->rows();
+    size_t n_pending = x_pending.rows();
 
-    // Initialize kernel blocks
+    // Initialize kernel blocks for candidate points
     Eigen::MatrixXd Kop(n_obs, n_pts);
     Eigen::MatrixXd Kpp(n_pts, n_pts);
-    Eigen::MatrixXd variance_reduction_matrix(n_pts, n_pts);
 
+    // Initialize kernel blocks for pending batch points
+    Eigen::MatrixXd K_op_pending(n_obs, n_pending);
+    Eigen::MatrixXd K_pending_pts(n_pending, n_pts);
+    Eigen::MatrixXd K_pending_pending(n_pending, n_pending);
+
+    // Initialize output matrix
+    Eigen::MatrixXd variance_reduction_matrix(n_pts, n_pts);
 
     // Fill Kop = K(X_obs, X_pts)
     for(size_t i = 0; i < n_pts; i++) {
@@ -497,217 +518,71 @@ Eigen::MatrixXd GaussianProcess::expectedVarianceImprovement(const Eigen::Ref<co
         }
     }
 
+    // Fill K_op_pending = K(X_obs, X_pending)
+    for(size_t i = 0; i < n_pending; i++) {
+        for(size_t j = 0; j < n_obs; j++) {
+            K_op_pending(j, i) = pKernel_->eval(pXObs_->row(j), x_pending.row(i), par_);
+        }
+    }
+
+    // Fill K_pending_pts = K(X_pending, X_pts)
+    for(size_t i = 0; i < n_pts; i++) {
+        for(size_t j = 0; j < n_pending; j++) {
+            K_pending_pts(j, i) = pKernel_->eval(x_pending.row(j), x_pts.row(i), par_);
+        }
+    }
+
+    // Fill K_pending_pending = K(X_pending, X_pending)
+    for(size_t i = 0; i < n_pending; i++) {
+        for(size_t j = i; j < n_pending; j++) {
+            K_pending_pending(i, j) = pKernel_->eval(x_pending.row(i), x_pending.row(j), par_);
+            if(i != j) {
+                K_pending_pending(j, i) = K_pending_pending(i, j);
+            }
+        }
+    }
+
     // Solve K_oo^{-1} * K_op once for all candidate points
     Eigen::MatrixXd Ksol = covDecomposition_.solve(Kop);
 
     // A = K_po K_oo^{-1} K_op
     Eigen::MatrixXd A = Kop.transpose() * Ksol;
 
-    // Rho matrix for all candidate points
+    // Rho matrix for all candidate points (Prior to pending points)
     Eigen::MatrixXd rho = Kpp - A;
+
+    // Solve K_oo^{-1} * K_op_pending for the pending points
+    Eigen::MatrixXd Ksol_pending = covDecomposition_.solve(K_op_pending);
+
+    // Compute posterior covariances involving the pending points
+    Eigen::MatrixXd Sigma_pending_pts = K_pending_pts - (K_op_pending.transpose() * Ksol);
+    Eigen::MatrixXd Sigma_pending_pending = K_pending_pending - (K_op_pending.transpose() * Ksol_pending);
+
+    // Add observation noise nu to the diagonal of the pending covariance
+    Sigma_pending_pending.diagonal().array() += nu;
+
+    // Decompose the pending covariance matrix once
+    auto pending_decomp = Sigma_pending_pending.ldlt();
+
+    // Pre-calculate the influence of the batch: beta = (Sigma_pending_pending + nu*I)^{-1} * Sigma_pending_pts
+    Eigen::MatrixXd beta = pending_decomp.solve(Sigma_pending_pts);
+
+    // Update rho to rho_tilde: This is the covariance AFTER observing x_pending
+    Eigen::MatrixXd rho_tilde = rho - (Sigma_pending_pts.transpose() * beta);
 
     // Select a point and compute the variance reduction assuming that it is observed
     for(size_t sel = 0; sel < n_pts; sel++) {
 
-        // Compute sigma_n
-        double sigma_n = std::abs(rho(sel, sel)) + nu;
+        // Compute sigma_n using the updated covariance
+        double sigma_n = std::abs(rho_tilde(sel, sel)) + nu;
 
-        // The variance reduction is computed here
-        for(size_t i = 0; i < n_pts; i++) {
-            double rho_i = rho(i, sel);
-            variance_reduction_matrix(sel, i) = rho_i * rho_i / sigma_n;
-        }
+        // The variance reduction is computed here (vectorized for speed)
+        variance_reduction_matrix.row(sel) = rho_tilde.col(sel).array().square() / sigma_n;
     }
 
     return variance_reduction_matrix;
 }
 
-Eigen::VectorXd GaussianProcess::expectedVarianceImprovement(const Eigen::Ref<const Eigen::MatrixXd> &x_pts,
-                                                             const Eigen::Ref<const Eigen::MatrixXd> &new_x_obs,
-                                                             double nu,
-                                                             double screeningCutoff) const {
-
-    // Define the two kernel evaluation matrices
-    size_t n_pts = x_pts.rows();
-    size_t n_new_obs = new_x_obs.rows();
-    size_t n_obs = pXObs_->rows();
-
-    // No new observations means no variance reduction
-    if(n_new_obs == 0) {
-        return Eigen::VectorXd::Zero(n_pts);
-    }
-
-    Eigen::MatrixXd k_no = Eigen::MatrixXd::Zero(n_new_obs, n_obs);
-    Eigen::MatrixXd k_nn = Eigen::MatrixXd::Zero(n_new_obs, n_new_obs);
-
-    // Fill the matrices
-    #pragma omp parallel for schedule(static)
-    for(size_t i = 0; i < n_new_obs; i++) {
-        for(size_t j = 0; j < n_obs; j++) {
-            k_no(i, j) = pKernel_->eval(new_x_obs.row(i), pXObs_->row(j), par_);
-        }
-        for(size_t j = i; j < n_new_obs; j++) {
-            k_nn(i, j) = pKernel_->eval(new_x_obs.row(i), new_x_obs.row(j), par_);
-
-            // The matrix is symmetric
-            if(i != j) {
-                k_nn(j, i) = k_nn(i, j);
-            }
-        }
-    }
-
-    k_nn = k_nn - k_no * covDecomposition_.solve(k_no.transpose()) + nu * Eigen::MatrixXd::Identity(n_new_obs, n_new_obs);
-    Eigen::LDLT<Eigen::MatrixXd> k_nn_ldlt(k_nn);
-
-    // Chunked computation for large x_pts to reduce memory footprint and improve cache locality
-    constexpr size_t blockSize = 1024;
-    Eigen::VectorXd evi = Eigen::VectorXd::Zero(n_pts);
-
-    for(size_t start = 0; start < n_pts; start += blockSize) {
-        size_t b = std::min(blockSize, n_pts - start);
-
-        Eigen::MatrixXd k_np = Eigen::MatrixXd::Zero(n_new_obs, b);
-        std::vector<size_t> activeCols;
-        activeCols.reserve(b);
-
-        #pragma omp parallel for schedule(static)
-        for(size_t ib = 0; ib < b; ib++) {
-            size_t i = start + ib;
-            double maxAbsKnp = 0.0;
-            for(size_t j = 0; j < n_new_obs; j++) {
-                double kij = pKernel_->eval(new_x_obs.row(j), x_pts.row(i), par_);
-                k_np(j, ib) = kij;
-                maxAbsKnp = std::max(maxAbsKnp, std::abs(kij));
-            }
-            if(maxAbsKnp > screeningCutoff) {
-                #pragma omp critical
-                activeCols.push_back(ib);
-            }
-        }
-
-        if(activeCols.empty()) {
-            continue;
-        }
-
-        Eigen::MatrixXd k_op_active(n_obs, activeCols.size());
-        Eigen::MatrixXd k_np_active(n_new_obs, activeCols.size());
-
-        #pragma omp parallel for schedule(static)
-        for(size_t ia = 0; ia < activeCols.size(); ia++) {
-            size_t ib = activeCols[ia];
-            size_t i = start + ib;
-            k_np_active.col(ia) = k_np.col(ib);
-            for(size_t j = 0; j < n_obs; j++) {
-                k_op_active(j, ia) = pKernel_->eval(pXObs_->row(j), x_pts.row(i), par_);
-            }
-        }
-
-        Eigen::MatrixXd k_op_sol = covDecomposition_.solve(k_op_active);
-        Eigen::MatrixXd rho = k_np_active - k_no * k_op_sol;
-        Eigen::MatrixXd rho_sol = k_nn_ldlt.solve(rho);
-
-        // Compute block EVI with vectorized column-wise dot products
-        Eigen::VectorXd evi_active = (rho.array() * rho_sol.array()).colwise().sum().transpose();
-        for(size_t ia = 0; ia < activeCols.size(); ia++) {
-            evi(start + activeCols[ia]) = evi_active(ia);
-        }
-    }
-
-    return evi;
-}
-
-Eigen::VectorXd GaussianProcess::expectedVarianceImprovement(const Eigen::Ref<const Eigen::VectorXd> &x,
-                                                             const Eigen::Ref<const Eigen::MatrixXd> &x_pts,
-                                                             const Eigen::Ref<const Eigen::MatrixXd> &selected_pts,
-                                                             double nu,
-                                                             double screeningCutoff) const {
-    // Number of already selected points
-    size_t n_sel = selected_pts.rows();
-    size_t n_obs = pXObs_->rows();
-    size_t n_pts = x_pts.rows();
-
-    // Build X_aug = [selected_pts; x]
-    Eigen::MatrixXd X_aug(n_sel + 1, x.size());
-    if(n_sel > 0) X_aug.topRows(n_sel) = selected_pts;
-    X_aug.row(n_sel) = x.transpose();
-
-    // K_no: (n_sel+1) x n_obs
-    Eigen::MatrixXd K_no(n_sel + 1, n_obs);
-    for(size_t i = 0; i < n_sel + 1; ++i)
-        for(size_t j = 0; j < n_obs; ++j)
-            K_no(i, j) = pKernel_->eval(X_aug.row(i), pXObs_->row(j), par_);
-
-    // K_nn: (n_sel+1) x (n_sel+1)
-    Eigen::MatrixXd K_nn(n_sel + 1, n_sel + 1);
-    for(size_t i = 0; i < n_sel + 1; ++i)
-        for(size_t j = i; j < n_sel + 1; ++j) {
-            K_nn(i, j) = pKernel_->eval(X_aug.row(i), X_aug.row(j), par_);
-            if(i != j) K_nn(j, i) = K_nn(i, j);
-        }
-
-    // Compute Schur complement: C = K_nn - K_no * S * K_no^T + nu * I
-    Eigen::MatrixXd C = K_nn - K_no * covDecomposition_.solve(K_no.transpose());
-    C.diagonal().array() += nu;
-    Eigen::LDLT<Eigen::MatrixXd> C_ldlt(C);
-
-    // Chunked computation for large x_pts
-    constexpr size_t blockSize = 1024;
-    Eigen::VectorXd evi = Eigen::VectorXd::Zero(n_pts);
-
-    for(size_t start = 0; start < n_pts; start += blockSize) {
-        size_t b = std::min(blockSize, n_pts - start);
-
-        Eigen::MatrixXd K_np(n_sel + 1, b);
-        std::vector<size_t> activeCols;
-        activeCols.reserve(b);
-
-        #pragma omp parallel for schedule(static)
-        for(size_t ib = 0; ib < b; ++ib) {
-            size_t globalCol = start + ib;
-            double maxAbsKnp = 0.0;
-            for(size_t i = 0; i < n_sel + 1; ++i) {
-                double kij = pKernel_->eval(X_aug.row(i), x_pts.row(globalCol), par_);
-                K_np(i, ib) = kij;
-                maxAbsKnp = std::max(maxAbsKnp, std::abs(kij));
-            }
-            if(maxAbsKnp > screeningCutoff) {
-                #pragma omp critical
-                activeCols.push_back(ib);
-            }
-        }
-
-        if(activeCols.empty()) {
-            continue;
-        }
-
-        Eigen::MatrixXd K_op_active(n_obs, activeCols.size());
-        Eigen::MatrixXd K_np_active(n_sel + 1, activeCols.size());
-
-        #pragma omp parallel for schedule(static)
-        for(size_t ia = 0; ia < activeCols.size(); ++ia) {
-            size_t ib = activeCols[ia];
-            size_t globalCol = start + ib;
-            K_np_active.col(ia) = K_np.col(ib);
-            for(size_t i = 0; i < n_obs; ++i) {
-                K_op_active(i, ia) = pKernel_->eval(pXObs_->row(i), x_pts.row(globalCol), par_);
-            }
-        }
-
-        // Compute r = K_np - K_no * K_oo^{-1} * K_op
-        Eigen::MatrixXd r = K_np_active - K_no * covDecomposition_.solve(K_op_active);
-
-        // Solve C * y = r for each column of r
-        Eigen::MatrixXd Cinv_r = C_ldlt.solve(r);
-
-        // EVI at each x_pts: sum over rows of r .* Cinv_r
-        Eigen::VectorXd evi_active = (r.array() * Cinv_r.array()).colwise().sum().transpose();
-        for(size_t ia = 0; ia < activeCols.size(); ++ia) {
-            evi(start + activeCols[ia]) = evi_active(ia);
-        }
-    }
-
-    return evi;
-}
 
 double GaussianProcess::objectiveFunction(const Eigen::Ref<const Eigen::VectorXd> &par, Eigen::Ref<Eigen::VectorXd> grad, const std::shared_ptr<cmp::prior::Prior> &lp) {
 
@@ -811,4 +686,64 @@ double GaussianProcess::objectiveFunctionLOO(const Eigen::Ref<const Eigen::Vecto
 
     // NOTE: if your optimizer *minimizes* (typical), return -total_loo_ll and set grad *= -1.
     return total_loo_ll + lp->eval(par);
+}
+
+double GaussianProcess::objectiveFunctionLOOMSE(const Eigen::Ref<const Eigen::VectorXd> &par, Eigen::Ref<Eigen::VectorXd> grad, const std::shared_ptr<cmp::prior::Prior> &lp) {
+
+    const double eps = 1e-12;
+
+    // Covariance, factorization, sizes
+    Eigen::MatrixXd K = covariance(par);
+    Eigen::LDLT<Eigen::MatrixXd> ldlt = cmp::ldltDecomposition(K);
+    const Eigen::Index n = K.rows();
+
+    // residuals and alpha = K^{-1} res
+    Eigen::VectorXd res = residual(par);
+    Eigen::VectorXd alpha = ldlt.solve(res);
+
+    // Full inverse for diagonal terms and derivatives
+    Eigen::MatrixXd Kinv = ldlt.solve(Eigen::MatrixXd::Identity(n, n));
+    Eigen::VectorXd v = Kinv.diagonal();
+    Eigen::VectorXd v_safe = v.array().max(eps);
+
+    // LOO residuals and variances:
+    // y_i - mu_{-i}(x_i) = alpha_i / v_i, sigma_{-i}^2 = 1 / v_i
+    Eigen::VectorXd loo_residual = (alpha.array() / v_safe.array()).matrix();
+    Eigen::VectorXd loo_var = (1.0 / v_safe.array()).matrix();
+
+    // MSE-like criterion requested by user: sum_i (y_i - mu_{-i}(x_i))^2 + sigma_{-i}^2
+    double loo_mse = loo_residual.squaredNorm() + loo_var.sum();
+
+    if(grad.size() != 0) {
+        const int p = static_cast<int>(par.size());
+        grad.setZero();
+
+        for(int j = 0; j < p; ++j) {
+            Eigen::MatrixXd dK = covarianceGradient(par, j);
+            Eigen::VectorXd dres = -priorMeanGradient(par, j);
+
+            // d alpha = -K^{-1} dK alpha + K^{-1} dres
+            Eigen::VectorXd d_alpha = -(Kinv * (dK * alpha)) + (Kinv * dres);
+
+            // d v_i = -[K^{-1} dK K^{-1}]_{ii}
+            Eigen::MatrixXd M = Kinv * dK * Kinv;
+
+            double d_loo_mse = 0.0;
+            for(Eigen::Index i = 0; i < n; ++i) {
+                const double vi = v_safe[i];
+                const double ri = alpha[i] / vi;
+                const double d_vi = -M(i, i);
+                const double d_ri = (d_alpha[i] * vi - alpha[i] * d_vi) / (vi * vi);
+                const double d_sigma2_i = -d_vi / (vi * vi);
+
+                d_loo_mse += 2.0 * ri * d_ri + d_sigma2_i;
+            }
+
+            // We maximize, so negate the criterion gradient and add prior gradient.
+            grad[j] = -d_loo_mse + lp->evalGradient(par, j);
+        }
+    }
+
+    // We maximize, so negate the criterion value and add log-prior.
+    return -loo_mse + lp->eval(par);
 }

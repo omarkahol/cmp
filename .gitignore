@@ -9,3 +9,4 @@ out*
 out.dSYM
 Technical_Doc/**
 .notebook
+*.d

@@ -30,6 +30,9 @@ class ModelClusterPoly {
     // The labels of the points
     Eigen::VectorXs labels_;
 
+    // Local index of each global point inside its current cluster
+    Eigen::VectorXs localIndexTable_;
+
     // The GPs for each cluster, along with their centroids and fit status
     std::vector<bool> fit_;
     std::vector<Eigen::VectorXd> centroids_;
@@ -94,9 +97,8 @@ class ModelClusterPoly {
 
         // Initialize the containers
         labels_ = labels;
-        for(size_t i = 0; i < nClusters_; i++) {
-            centroids_.emplace_back(Eigen::VectorXd::Zero(dimX_));
-        }
+        localIndexTable_ = Eigen::VectorXs::Zero(nObs_);
+        centroids_ = std::vector<Eigen::VectorXd>(nClusters_, Eigen::VectorXd::Zero(dimX_));
 
         // Call the update model function
         updateModel(std::vector<bool>(nClusters_, true));
@@ -170,14 +172,6 @@ class ModelClusterPoly {
                 continue;
             }
 
-            // Count the number of observations in the cluster
-            size_t nObsCluster = 0;
-            for(size_t j = 0; j < nObs_; j++) {
-                if(labels_[j] >= 0 && static_cast<size_t>(labels_[j]) == i) {
-                    nObsCluster++;
-                }
-            }
-
             // Centroids
             centroids_[i] = Eigen::VectorXd::Zero(dimX_);
 
@@ -193,6 +187,9 @@ class ModelClusterPoly {
 
                     // Set the membership
                     labels_[j] = i;
+
+                    // Set local index for LOO bookkeeping
+                    localIndexTable_[j] = counter;
 
                     // Update the counter
                     counter++;
@@ -252,12 +249,34 @@ class ModelClusterPoly {
     }
 
     /**
-     * This function computes the error for the point with global index \par globalIndex
+     * This function computes the owner-cluster LOO score for point \p globalIndex.
+     */
+    double computeScore(size_t globalIndex) const {
+        size_t owner = labels_[globalIndex];
+        size_t localIndex = localIndexTable_[globalIndex];
+
+        auto [mean, var] = (*polynomials_)[owner].predictLOO(localIndex);
+        return -((yObs_(globalIndex) - mean) * (yObs_(globalIndex) - mean) + gamma_ * (xObs_.row(globalIndex).transpose() - centroids_[owner]).squaredNorm());
+    }
+
+    /**
+     * This function computes the score of cluster \p model on point \p globalIndex.
      */
     double computeScore(size_t model, size_t globalIndex) const {
 
-        // Make a prediction
-        auto [mean, var] = (*polynomials_)[model].predict(xObs_.row(globalIndex));
+        // Check if model owns the point
+        double mean;
+        if(labels_[globalIndex] != model) {
+            // We use the predict with Obs function
+            auto [mean_pred, var] = (*polynomials_)[model].predictWithObs(xObs_.row(globalIndex), yObs_(globalIndex));
+            mean = mean_pred;
+        } else {
+            // If it owns the point we do a LOO estimate with cached local index.
+            size_t localIndex = localIndexTable_[globalIndex];
+            auto [mean_pred, var] = (*polynomials_)[model].predictLOO(localIndex);
+            mean = mean_pred;
+
+        }
 
         // Return the score -(MSE + geometrical regularization)
         return -((yObs_(globalIndex) - mean) * (yObs_(globalIndex) - mean) + gamma_ * (xObs_.row(globalIndex).transpose() - centroids_[model]).squaredNorm());
@@ -282,41 +301,101 @@ class ModelClusterPoly {
             }
         }
 
-        // Sample maxAllowedSwitches from the points
-        std::vector<size_t> candidateSwitches(maxAllowedSwitches, 0);
-        for(size_t i = 0; i < maxAllowedSwitches; i++) {
-
-            // Select a random point according to the switching probabilities
-            std::discrete_distribution<size_t> dist(switchingProbabilities.begin(), switchingProbabilities.end());
-            candidateSwitches[i] = dist(rng_);
-
-            // Do not allow the same point to be selected multiple times
-            switchingProbabilities[candidateSwitches[i]] = 0.0;
-        }
-
-        // Prepare a vector to hold the selected switches
-        std::vector<std::pair<size_t, size_t>> switches;
-
-        // Iterate through the candidate switches
-        for(size_t i = 0; i < candidateSwitches.size(); i++) {
-            size_t globalIndex = candidateSwitches[i];
-
-            // Find the owner of the point
-            size_t owner = labels_[globalIndex];
-
-            // Prepare a discrete distribution for the switching probabilities
-            std::discrete_distribution<size_t> dist(probabilities[globalIndex].begin(), probabilities[globalIndex].end());
-
-            // Sample a new owner
-            size_t newOwner = dist(rng_);
-
-            // If the new owner is different from the current one add the switch
-            if(newOwner != owner) {
-                switches.push_back(std::make_pair(globalIndex, newOwner));
+        // Precompute active indices (non-zero switching mass).
+        std::vector<size_t> activeIndices;
+        activeIndices.reserve(nObs_);
+        for(size_t i = 0; i < nObs_; ++i) {
+            if(switchingProbabilities[i] > 0.0) {
+                activeIndices.push_back(i);
             }
         }
 
-        // Return the switches
+        std::vector<std::pair<size_t, size_t>> switches;
+        switches.reserve(maxAllowedSwitches);
+
+        // Iteratively sample points without replacement from active indices.
+        for(size_t s = 0; s < maxAllowedSwitches && !activeIndices.empty(); ++s) {
+            std::vector<double> weights;
+            weights.reserve(activeIndices.size());
+            for(auto idx : activeIndices) {
+                weights.push_back(switchingProbabilities[idx]);
+            }
+
+            std::discrete_distribution<size_t> dist(weights.begin(), weights.end());
+            size_t sampledPos = dist(rng_);
+            size_t globalIndex = activeIndices[sampledPos];
+
+            // Remove selected point from the active pool.
+            activeIndices[sampledPos] = activeIndices.back();
+            activeIndices.pop_back();
+
+            size_t owner = labels_[globalIndex];
+            const auto &probs = probabilities[globalIndex];
+            std::discrete_distribution<size_t> clusterDist(probs.begin(), probs.end());
+            size_t newOwner = clusterDist(rng_);
+
+            if(newOwner != owner) {
+                switches.emplace_back(globalIndex, newOwner);
+            }
+        }
+
+        return switches;
+    }
+
+    std::vector<std::pair<size_t, size_t>> deterministicSwitchStep(cmp::classifier::Classifier *cls, const size_t &maxAllowedSwitches, const double &minProb) {
+
+        std::vector<std::pair<double, std::pair<size_t, size_t>>> allSwitches;
+        allSwitches.reserve(nObs_);
+
+        // Precompute classifier probabilities once.
+        std::vector<std::vector<double>> classifierProbabilities(nObs_);
+        for(size_t i = 0; i < nObs_; i++) {
+            classifierProbabilities[i] = cls->predictProbabilities(xObs_.row(i));
+        }
+
+        for(size_t i = 0; i < nObs_; i++) {
+            const std::vector<double> &prob = classifierProbabilities[i];
+            size_t owner = labels_[i];
+
+            double looScore = computeScore(i);
+
+            double startingScore = 0.0;
+            if(prob[owner] < minProb) {
+                startingScore = -std::numeric_limits<double>::infinity();
+            }
+
+            std::pair<double, size_t> bestCluster{startingScore, owner};
+            for(size_t c = 0; c < nClusters_; c++) {
+                if(c == owner) {
+                    continue;
+                } else if(prob[c] <= minProb) {
+                    continue;
+                } else {
+                    double predScore = computeScore(c, i);
+                    double deltaScore = predScore - looScore;
+
+                    if(deltaScore > bestCluster.first) {
+                        bestCluster.first = deltaScore;
+                        bestCluster.second = c;
+                    }
+                }
+            }
+
+            if(bestCluster.second != owner) {
+                allSwitches.push_back({bestCluster.first, {i, bestCluster.second}});
+            }
+        }
+
+        std::sort(allSwitches.begin(), allSwitches.end(), [](std::pair<double, std::pair<size_t, size_t>> a, std::pair<double, std::pair<size_t, size_t>> b) {
+            return a.first > b.first;
+        });
+
+        size_t nSwitches = std::min(maxAllowedSwitches, allSwitches.size());
+        std::vector<std::pair<size_t, size_t>> switches(nSwitches);
+        for(size_t i = 0; i < nSwitches; i++) {
+            switches[i] = allSwitches[i].second;
+        }
+
         return switches;
     }
 
@@ -330,16 +409,11 @@ class ModelClusterPoly {
 
         std::vector<bool> affectedClusters(nClusters_, true);
 
-        std::vector<size_t> globalIndicesOfPointsToRedistribute;
-
         // Cycle through the observations
         for(size_t i = 0; i < nObs_; i++) {
 
             // Check if the point is in the cluster to purge
             if(labels_[i] == clusterIndex) {
-
-                // Add the point to the list of points to redistribute
-                globalIndicesOfPointsToRedistribute.push_back(i);
 
                 // We need to redistribute the point
                 std::pair<size_t, double> chosenCluster = std::make_pair(-1, std::numeric_limits<double>::infinity());
@@ -385,25 +459,17 @@ class ModelClusterPoly {
         updateModel(affectedClusters);
     }
 
-    double compactnessScore(const size_t & clusterIndex) {
-        double avgCompactness = 0.0;
-
-        for(size_t i = 0; i < nObs_; i++) {
-            if(labels_[i] == clusterIndex) {
-                avgCompactness += (xObs_.row(i).transpose() - centroids_[clusterIndex]).norm();
-            }
-        }
-        if(clusterSize_[clusterIndex] > 0) {
-            avgCompactness /= double(clusterSize_[clusterIndex]);
-        } else {
-            avgCompactness = std::numeric_limits<double>::infinity();
-        }
-        return avgCompactness;
-    }
-
     std::vector<std::vector<double>> computeProbabilities(const double &T, cmp::classifier::Classifier *classifier, const double &minProb = 0.1) const {
 
         std::vector<std::vector<double>> switchingProbabilities(nObs_, std::vector<double>(nClusters_, 0.0));
+
+        // Precompute classifier probabilities and LOO scores once per point.
+        std::vector<std::vector<double>> classifierProbabilities(nObs_);
+        std::vector<double> looScores(nObs_, 0.0);
+        for(size_t i = 0; i < nObs_; i++) {
+            classifierProbabilities[i] = classifier->predictProbabilities(xObs_.row(i));
+            looScores[i] = computeScore(i);
+        }
 
         // Iterate through the points
         for(size_t i = 0; i < nObs_; i++) {
@@ -412,10 +478,10 @@ class ModelClusterPoly {
             size_t owner = labels_[i];
 
             // Predict the SVM probabilities for the point
-            std::vector<double> svmProbabilities = classifier->predictProbabilities(xObs_.row(i));
+            const std::vector<double> &svmProbabilities = classifierProbabilities[i];
 
             // Compute the score for the current point
-            double looScore = computeScore(owner, i);
+            double looScore = looScores[i];
             switchingProbabilities[i][owner] = svmProbabilities[owner];
 
             for(size_t j = 0; j < nClusters_; j++) {
@@ -441,9 +507,15 @@ class ModelClusterPoly {
                 sum += switchingProbabilities[i][j];
             }
 
-            // Normalize again
-            for(size_t j = 0; j < nClusters_; j++) {
-                switchingProbabilities[i][j] /= sum;
+            // Normalize safely; if scores are degenerate fall back to SVM probabilities.
+            if(sum < 1e-12 || std::isnan(sum) || std::isinf(sum)) {
+                for(size_t j = 0; j < nClusters_; j++) {
+                    switchingProbabilities[i][j] = svmProbabilities[j];
+                }
+            } else {
+                for(size_t j = 0; j < nClusters_; j++) {
+                    switchingProbabilities[i][j] /= sum;
+                }
             }
 
         }
@@ -486,6 +558,8 @@ class ModelClusterPoly {
 
     // Merge two clusters
     void mergeClusters(const size_t &clusterIndex1, const size_t &clusterIndex2, bool hparGuess = false) {
+
+        (void)hparGuess;
 
         // Check if the clusters are the same
         if(clusterIndex1 == clusterIndex2) {

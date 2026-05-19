@@ -15,6 +15,7 @@ namespace cmp::gp {
 enum method {
     MLE,
     LOO,
+    LOO_MSE,
 };
 
 enum type {
@@ -149,6 +150,33 @@ class GaussianProcess {
     const Eigen::LDLT<Eigen::MatrixXd> &getCovDecomposition() const {
         return covDecomposition_;
     }
+
+    const Eigen::VectorXd &getAlpha() const {
+        return alpha_;
+    }
+
+    const Eigen::VectorXd &getDiagCovInverse() const {
+        return diagCovInverse_;
+    }
+
+    const Eigen::VectorXd &getResidualVector() const {
+        return residual_;
+    }
+
+    const Eigen::Ref<const Eigen::MatrixXd> &getXObs() const {
+        return pXObs_.value();
+    }
+
+    const Eigen::Ref<const Eigen::VectorXd> &getYObs() const {
+        return pYObs_.value();
+    }
+
+    size_t nObs() const {
+        if(!pXObs_.has_value()) {
+            return 0;
+        }
+        return static_cast<size_t>(pXObs_->rows());
+    }
     /**
      * * FUNCTIONS FOR THE MEAN
      */
@@ -249,32 +277,9 @@ class GaussianProcess {
      * * FUNCTIONS FOR THE EXPECTED VARIANCE IMPROVEMENT
      */
 
-    /**
-     * @brief Compute the variance reduction matrix after observing a set of points.
-     *
-     * @param x_pts The points where the variance reduction is computed
-     * @return Eigen::MatrixXd The variance reduction matrix
-     */
-    Eigen::MatrixXd expectedVarianceImprovement(const Eigen::Ref<const Eigen::MatrixXd> &x_pts, double nu = 1e-6) const;
-
-    Eigen::VectorXd expectedVarianceImprovement(const Eigen::Ref<const Eigen::MatrixXd> &x_pts,
-                                                const Eigen::Ref<const Eigen::MatrixXd> &new_x_obs,
-                                                double nu = 1e-6,
-                                                double screeningCutoff = 0.0) const;
-
-    /**
-    * @brief Compute the expected variance improvement at x_pts if x (and selected points) are observed
-    * @param x The candidate point to add as an observation
-    * @param x_pts The points at which to compute the EVI
-    * @param selected_pts The matrix of already selected points (can be empty)
-    * @param nu Small regularization parameter
-    * @return Vector of EVI values at x_pts
-    */
-    Eigen::VectorXd expectedVarianceImprovement(const Eigen::Ref<const Eigen::VectorXd> &x,
-                                                const Eigen::Ref<const Eigen::MatrixXd> &x_pts,
-                                                const Eigen::Ref<const Eigen::MatrixXd> &selected_pts,
-                                                double nu = 1e-6,
-                                                double screeningCutoff = 0.0) const;
+    Eigen::MatrixXd expectedVarianceImprovement(const Eigen::Ref<const Eigen::MatrixXd> &x_pts,
+                                                const Eigen::Ref<const Eigen::MatrixXd> &x_pending,
+                                                double nu) const;
 
     /**
      * * * OBJECTIVE FUNCTIONS FOR THE OPTIMIZATION
@@ -283,6 +288,8 @@ class GaussianProcess {
     double objectiveFunction(const Eigen::Ref<const Eigen::VectorXd> &x, Eigen::Ref<Eigen::VectorXd> grad, const std::shared_ptr<cmp::prior::Prior> &prior);
 
     double objectiveFunctionLOO(const Eigen::Ref<const Eigen::VectorXd> &x, Eigen::Ref<Eigen::VectorXd> grad, const std::shared_ptr<cmp::prior::Prior> &prior);
+
+    double objectiveFunctionLOOMSE(const Eigen::Ref<const Eigen::VectorXd> &x, Eigen::Ref<Eigen::VectorXd> grad, const std::shared_ptr<cmp::prior::Prior> &prior);
 };
 }
 

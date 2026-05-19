@@ -261,7 +261,150 @@ class ModelCluster {
     }
 
     /**
-     * This function computes the cross validation error for each cluster
+     * Compute a single-point LOO log-predictive contribution from the virtual
+     * inverse diagonal and alpha coefficient.
+     */
+    static double looLogContribution(double alpha_i, double q_ii) {
+
+        constexpr double eps = 1e-14;
+        const double qSafe = std::max(q_ii, eps);
+        const double residual = alpha_i / qSafe;
+        const double sigma = std::sqrt(1.0 / qSafe);
+        return cmp::distribution::NormalDistribution::logPDF(residual, sigma);
+    }
+
+    /**
+     * Compute total cluster LOO-LPD for a virtual state represented by
+     * (alpha, diag(Q)).
+     */
+    static double totalClusterLooScore(const Eigen::VectorXd &alpha, const Eigen::VectorXd &diagQ) {
+
+        double score = 0.0;
+        for(Eigen::Index i = 0; i < alpha.size(); ++i) {
+            score += looLogContribution(alpha(i), diagQ(i));
+        }
+        return score;
+    }
+
+    /**
+     * Computes the exact change in total cluster LOO-LPD under a virtual move.
+     *
+     * If isAdding is true, it evaluates adding globalIndex to clusterIndex via a
+     * rank-1 block update (Schur complement).
+     *
+     * If isAdding is false, it evaluates removing globalIndex from clusterIndex
+     * via the inverse downdate identity after deleting one row/column.
+     *
+     * This function never mutates the underlying GP state.
+     */
+    double computeClusterLooDelta(size_t clusterIndex, size_t globalIndex, bool isAdding) const {
+
+        // Guard against invalid what-if calls.
+        if(isAdding && labels_[globalIndex] == clusterIndex) {
+            return 0.0;
+        }
+        if(!isAdding && labels_[globalIndex] != clusterIndex) {
+            return 0.0;
+        }
+
+        const auto &gp = gps_[clusterIndex];
+
+        const auto &alpha = gp.getAlpha();
+        const auto &diagQ = gp.getDiagCovInverse();
+        const size_t n = static_cast<size_t>(alpha.size());
+
+        const double oldTotal = totalClusterLooScore(alpha, diagQ);
+
+        constexpr double eps = 1e-14;
+
+        if(isAdding) {
+
+            // Rank-1 block inverse update:
+            // Q_new = [Q + uu^T/s, -u/s; -u^T/s, 1/s], u = Qk, s = c - k^TQk
+            const Eigen::VectorXd xStar = xObs_.row(globalIndex).transpose();
+            const double yStar = yObs_(globalIndex);
+            const Eigen::VectorXd par = gp.getParameters();
+
+            Eigen::VectorXd k = Eigen::VectorXd::Zero(static_cast<Eigen::Index>(n));
+            if(n > 0) {
+                const auto &xLocal = gp.getXObs();
+                for(size_t i = 0; i < n; ++i) {
+                    k(static_cast<Eigen::Index>(i)) = gp.getKernel()->eval(xLocal.row(static_cast<Eigen::Index>(i)).transpose(), xStar, par);
+                }
+            }
+
+            const double c = gp.getKernel()->eval(xStar, xStar, par) + gp.getNugget();
+            const Eigen::VectorXd u = gp.getCovDecomposition().solve(k);
+            const double s = std::max(c - k.dot(u), eps);
+
+            const double rStar = yStar - gp.getMean()->eval(xStar, par);
+            const Eigen::VectorXd &r = gp.getResidualVector();
+            const double eta = rStar - u.dot(r);
+
+            // From block solve with delta = r* - k^T alpha:
+            // alpha_new(top) = alpha - u * delta / s.
+            Eigen::VectorXd alphaNew = alpha - (u * (eta / s));
+            Eigen::VectorXd diagQNew = diagQ + (u.array().square() / s).matrix();
+
+            // 1) Additive term: contribution of the newly added point.
+            // Use the same predictive log-PDF path as computeScore for consistency.
+            const double deltaNewPoint = computeScore(clusterIndex, globalIndex);
+
+            // 2) Ripple term: sum per-point score changes for all existing points.
+            double deltaOldPoints = 0.0;
+            for(size_t i = 0; i < n; ++i) {
+                const Eigen::Index ii = static_cast<Eigen::Index>(i);
+                const double oldPointScore = looLogContribution(alpha(ii), diagQ(ii));
+                const double newPointScore = looLogContribution(alphaNew(ii), diagQNew(ii));
+                deltaOldPoints += (newPointScore - oldPointScore);
+            }
+
+            return deltaNewPoint + deltaOldPoints;
+        }
+
+        // Rank-1 inverse downdate after removing local index k:
+        // Q' = A - b b^T/d,  alpha' = a - b*alpha_k/d
+        // where [A b; b^T d] is Q with k-th row/column moved to the end.
+        if(n <= 1) {
+            return -oldTotal;
+        }
+
+        const size_t localIndex = static_cast<size_t>(localIndexTable_[globalIndex]);
+        Eigen::VectorXd e = Eigen::VectorXd::Zero(static_cast<Eigen::Index>(n));
+        e(static_cast<Eigen::Index>(localIndex)) = 1.0;
+        const Eigen::VectorXd qCol = gp.getCovDecomposition().solve(e);
+
+        const double qkk = std::max(qCol(static_cast<Eigen::Index>(localIndex)), eps);
+        const double alphaK = alpha(static_cast<Eigen::Index>(localIndex));
+
+        // 1) Additive term: removing a point drops its old LOO contribution.
+        const double deltaRemovedPoint = -computeScore(globalIndex);
+
+        // 2) Ripple term: sum per-point score changes for remaining points.
+        double deltaOldPoints = 0.0;
+        for(size_t i = 0; i < n; ++i) {
+            if(i == localIndex) {
+                continue;
+            }
+
+            const Eigen::Index ii = static_cast<Eigen::Index>(i);
+            const double qi_k = qCol(static_cast<Eigen::Index>(i));
+            const double newDiag = std::max(diagQ(ii) - (qi_k * qi_k) / qkk, eps);
+            const double newAlpha = alpha(ii) - qi_k * alphaK / qkk;
+
+            const double oldPointScore = looLogContribution(alpha(ii), diagQ(ii));
+            const double newPointScore = looLogContribution(newAlpha, newDiag);
+            deltaOldPoints += (newPointScore - oldPointScore);
+        }
+
+        return deltaRemovedPoint + deltaOldPoints;
+    }
+
+    /**
+     * This function computes the score of the point \p globalIndex on its current cluster
+     *
+     * @param globalIndex The global index of the point
+     * @return The LOO log-predictive contribution of the point under its current cluster assignment.
      */
     double computeScore(size_t globalIndex) const {
 
@@ -279,7 +422,6 @@ class ModelCluster {
      *
      * @param clusterIndex The index of the cluster
      * @param globalIndex The global index of the point
-     * @param errorType The type of error to compute
      *
      * @return The error
      */
@@ -287,7 +429,6 @@ class ModelCluster {
 
         auto [mean, var] = gps_[clusterIndex].predict(xObs_.row(globalIndex).transpose());
         return cmp::distribution::NormalDistribution::logPDF(yObs_(globalIndex) - mean, std::sqrt(var));
-
     }
 
     std::vector<std::pair<size_t, size_t>> switchStep(cmp::classifier::Classifier* classifier, size_t maxAllowedSwitches = 10, double minProb = 0.1, double T = 1.0) {
@@ -371,14 +512,23 @@ class ModelCluster {
             // Find the owner
             size_t owner = labels_[i];
 
-            // Compute the LOO score
-            double looScore = computeScore(i);
-
-            // Starting score is -inf if the current cluster has a probability below the threshold, to ensure we switch it if there is any other cluster with a probability above the threshold
-            double startingScore = 0;
-            if(prob[owner] < minProb) {
-                startingScore = -std::numeric_limits<double>::infinity();
+            // Skip expensive delta evaluations if no eligible alternative cluster.
+            bool hasEligibleAlternative = false;
+            for(size_t c = 0; c < nClusters_; ++c) {
+                if(c != owner && prob[c] > minProb) {
+                    hasEligibleAlternative = true;
+                    break;
+                }
             }
+            if(!hasEligibleAlternative) {
+                continue;
+            }
+
+            // Compute remove-from-owner term once.
+            const double ownerRemovalDelta = computeScore(i);
+
+            // Strict monotone mode: only accept positive total move deltas.
+            double startingScore = 0.0;
 
             // Iterate through the clusters
             std::pair<double, size_t> bestCluster{startingScore, owner};
@@ -388,9 +538,8 @@ class ModelCluster {
                 } else if(prob[c] <= minProb) {
                     continue;
                 } else {
-                    // Predict the score
-                    double predScore = computeScore(c, i);
-                    double deltaScore = (predScore - looScore);
+                    // Exact move gain = remove-from-owner delta + add-to-candidate delta.
+                    double deltaScore = computeScore(c, i) - ownerRemovalDelta;
 
                     // Check if it is better than the owner
                     if(deltaScore > bestCluster.first) {
@@ -494,12 +643,10 @@ class ModelCluster {
 
         std::vector<std::vector<double>> switchingProbabilities(nObs_, std::vector<double>(nClusters_, 0.0));
 
-        // Precompute classifier probabilities and leave-one-out scores once per point
+        // Precompute classifier probabilities once per point
         std::vector<std::vector<double>> classifierProbabilities(nObs_);
-        std::vector<double> looScores(nObs_, 0.0);
         for(size_t i = 0; i < nObs_; i++) {
             classifierProbabilities[i] = classifier->predictProbabilities(xObs_.row(i));
-            looScores[i] = computeScore(i);
         }
 
         // Iterate through the points
@@ -507,13 +654,27 @@ class ModelCluster {
 
             // Find the owner of the point
             size_t owner = labels_[i];
-            size_t localIndex = localIndexTable_[i];
 
             // Predict the SVM probabilities for the point
             const std::vector<double> &svmProbabilities = classifierProbabilities[i];
 
-            // Compute the LOO score for the current point
-            double looScore = looScores[i];
+            // Skip expensive LOO-delta computations if no alternative cluster
+            // passes the classifier probability threshold.
+            bool hasEligibleAlternative = false;
+            for(size_t j = 0; j < nClusters_; ++j) {
+                if(j != owner && svmProbabilities[j] > minProb) {
+                    hasEligibleAlternative = true;
+                    break;
+                }
+            }
+
+            if(!hasEligibleAlternative) {
+                switchingProbabilities[i] = svmProbabilities;
+                continue;
+            }
+
+            // Exact cluster-level delta for removing point i from its owner.
+            const double ownerRemovalDelta = computeScore(i);
             switchingProbabilities[i][owner] = svmProbabilities[owner];
 
             for(size_t j = 0; j < nClusters_; j++) {
@@ -526,10 +687,9 @@ class ModelCluster {
                         continue;
                     }
 
-                    // Compute the predictive error
-                    double predictiveScore = computeScore(j, i);
-
-                    switchingProbabilities[i][j] = std::exp((predictiveScore - looScore) / T) * svmProbabilities[j];
+                    // Exact move gain includes the ripple effect in both clusters.
+                    const double deltaMove = computeScore(j, i) - ownerRemovalDelta;
+                    switchingProbabilities[i][j] = std::exp(deltaMove / T) * svmProbabilities[j];
 
                 }
             }
@@ -595,6 +755,11 @@ class ModelCluster {
     // Merge two clusters
     void merge(const size_t &clusterIndex1, const size_t &clusterIndex2) {
 
+        // Guard invalid indices.
+        if(clusterIndex1 >= nClusters_ || clusterIndex2 >= nClusters_) {
+            return;
+        }
+
         // Check if the clusters are the same
         if(clusterIndex1 == clusterIndex2) {
             return;
@@ -612,7 +777,8 @@ class ModelCluster {
         }
 
         // Perform the switches
-        performSwitches(switches, 0);
+        // Use minSize=1 so the emptied source cluster is purged immediately.
+        performSwitches(switches, 1);
     }
 
 };

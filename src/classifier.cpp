@@ -171,23 +171,41 @@ double cmp::classifier::KDE::objectiveFunctionCV(const method& method, const cmp
     return score;
 }
 
-double cmp::classifier::KDE::objectiveFunctionEntropy(const double& targetEntropy) const {
+double cmp::classifier::KDE::objectiveFunctionLOO() const {
+
+    // LOO is undefined if any class has a single sample.
+    for(size_t c = 0; c < nClasses_; ++c) {
+        if(classCounts_(c) <= 1) {
+            return -std::numeric_limits<double>::infinity();
+        }
+    }
 
     double score = 0.0;
     for(size_t i = 0; i < nObs_; i++) {
-        auto probs = predictProbabilities(xObs_.row(i).transpose());
-        double entropy = 0.0;
+        std::vector<double> probs(nClasses_, 0.0);
+        double sum = 0.0;
 
-        for(double p : probs) {
-            if(p > 1e-15) {
-                entropy -= p * std::log(p);
+        for(size_t j = 0; j < nObs_; j++) {
+            if(i == j) {
+                continue;
             }
+
+            const size_t cls = labels_(j);
+            const size_t classCountLOO = classCounts_(cls) - ((labels_(i) == cls) ? 1 : 0);
+            if(classCountLOO == 0) {
+                continue;
+            }
+
+            Eigen::VectorXd z = bandwidth_->apply(xObs_.row(j).transpose(), xObs_.row(i).transpose());
+            double prod = kernel_->eval(z) * bandwidth_->determinant() / double(classCountLOO);
+            probs[cls] += prod;
+            sum += prod;
         }
 
-        score += std::pow(entropy - targetEntropy, 2);
+        score += std::log(probs[labels_(i)] / sum + cmp::TOL);
     }
 
-    return -score / double(nObs_);
+    return score / double(nObs_);
 }
 
 void cmp::classifier::KDE::fit(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, cmp::statistics::KFold kf, const double& minBw, const double& maxBw, const method method, nlopt::algorithm algo, double ftol_rel) {
@@ -211,7 +229,7 @@ void cmp::classifier::KDE::fit(const Eigen::Ref<const Eigen::MatrixXd>& xObs, co
     cmp::nlopt_max(objectiveFunctor, x0, lb, ub, algo, ftol_rel);
 }
 
-void cmp::classifier::KDE::fit(const double& targetEntropy, const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, const double& minBw, const double& maxBw, nlopt::algorithm algo, double ftol_rel) {
+void cmp::classifier::KDE::fitLOO(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, const double& minBw, const double& maxBw, nlopt::algorithm algo, double ftol_rel) {
 
     // Condition FIRST to set up the data
     this->condition(xObs, labels);
@@ -225,7 +243,7 @@ void cmp::classifier::KDE::fit(const double& targetEntropy, const Eigen::Ref<con
     cmp::ObjectiveFunctor objectiveFunctor(
     [&](const Eigen::Ref<const Eigen::VectorXd>& params, Eigen::Ref<Eigen::VectorXd> grad) -> double {
         this->bandwidth_->setFromVector(params);
-        return objectiveFunctionEntropy(targetEntropy);
+        return objectiveFunctionLOO();
     }
     );
 
@@ -384,37 +402,6 @@ void cmp::classifier::SVM::fit(Eigen::Ref<const Eigen::MatrixXd> xObs,
     cmp::nlopt_max(objectiveFunctor, x0, lb, ub, algo, ftol_rel);
 };
 
-void cmp::classifier::SVM::fit(const double& targetEntropy,
-                               const Eigen::Ref<const Eigen::MatrixXd>& xObs,
-                               const Eigen::Ref<const Eigen::VectorXs>& membershipTable,
-                               const Eigen::Ref<const Eigen::VectorXd>& lb,
-                               const Eigen::Ref<const Eigen::VectorXd>& ub, nlopt::algorithm algo,
-                               double ftol_rel)  {
-
-    // Initial guess
-    Eigen::VectorXd x0(hyperparameters_.size() + 1);
-    x0 << hyperparameters_, modelParameters_.C;
-
-    cmp::ObjectiveFunctor objectiveFunctor(
-    [&](const Eigen::Ref<const Eigen::VectorXd>& x) -> double {
-
-        // Extract the hyperparameters and C
-        Eigen::VectorXd hyperparameters = x.head(x.size() - 1);
-        double C = x(x.size() - 1);
-
-        // Set the parameters and condition on the data
-        this->set(covariance_, hyperparameters, C, this->modelParameters_.eps);
-        this->condition(xObs, membershipTable);
-
-        // Evaluate the objective function
-        return objectiveFunctionEntropy(targetEntropy);
-    }
-    );
-
-    // Maximize the objective function
-    cmp::nlopt_max(objectiveFunctor, x0, lb, ub, algo, ftol_rel);
-}
-
 double cmp::classifier::SVM::objectiveFunctionCV(const method& method,
                                                  const cmp::statistics::KFold& kf) {
     // If we are interested in the CV score, we can use LIBSVM's built-in cross-validation function (faster).
@@ -524,68 +511,133 @@ double cmp::classifier::SVM::objectiveFunctionCV(const method& method,
     }
 };
 
-// Assumes that xDim is the number of features in your dataset
-Eigen::VectorXd svmnode_to_eigen(const svm_node* sv, int xDim) {
-    Eigen::VectorXd vec = Eigen::VectorXd::Zero(xDim);
-    for(const svm_node* p = sv; p->index != -1; ++p) { // libsvm sparse format ends with index -1
-        int idx = p->index - 1; // libsvm indices are 1-based
-        if(idx >= 0 && idx < xDim) vec(idx) = p->value;
-    }
-    return vec;
-}
-
-
 double cmp::classifier::SVM::objectiveFunctionSpan() {
-    double score = 0.0;
-
-    // Convert support vectors to Eigen format for easier manipulation
-    std::vector<Eigen::VectorXd> supportVectors(model_->l);
-    for(int i = 0; i < model_->l; ++i) {
-        supportVectors[i] = svmnode_to_eigen(model_->SV[i], xObs_.cols());
+    if(model_ == nullptr || model_->l <= 1 || covariance_ == nullptr) {
+        return -std::numeric_limits<double>::infinity();
     }
 
-    for(size_t i = 0; i < nObs_; i++) {
-        Eigen::VectorXd x = xObs_.row(i).transpose();
-        double minDist = std::numeric_limits<double>::max();
+    const double C = modelParameters_.C;
+    const double alphaTol = std::max(1e-8, modelParameters_.eps);
 
-        // Find the minimum distance to any support vector
-        for(int j = 0; j < model_->l; ++j) {
-            double dist = (x - supportVectors[j]).norm();
-            if(dist < minDist) {
-                minDist = dist;
+    const int nClass = model_->nr_class;
+    const int nSVTot = model_->l;
+    if(nClass < 2 || nSVTot <= 1) {
+        return -std::numeric_limits<double>::infinity();
+    }
+
+    // libsvm keeps support vectors grouped by class; build group offsets.
+    std::vector<int> svStart(nClass + 1, 0);
+    for(int c = 0; c < nClass; ++c) {
+        svStart[c + 1] = svStart[c] + model_->nSV[c];
+    }
+
+    auto pairContribution = [&](int ci, int cj) -> std::pair<double, int> {
+        std::vector<int> pairSV;
+        std::vector<double> pairAlpha;
+        std::vector<double> pairSign;
+        pairSV.reserve(model_->nSV[ci] + model_->nSV[cj]);
+        pairAlpha.reserve(model_->nSV[ci] + model_->nSV[cj]);
+        pairSign.reserve(model_->nSV[ci] + model_->nSV[cj]);
+
+        // For one-vs-one(ci,cj), libsvm stores coefficients:
+        // class ci SVs in row (cj-1), class cj SVs in row ci.
+        for(int s = svStart[ci]; s < svStart[ci + 1]; ++s) {
+            const double a = std::abs(model_->sv_coef[cj - 1][s]);
+            if(a > alphaTol && a < (C - alphaTol)) {
+                pairSV.push_back(s);
+                pairAlpha.push_back(a);
+                pairSign.push_back(+1.0);
+            }
+        }
+        for(int s = svStart[cj]; s < svStart[cj + 1]; ++s) {
+            const double a = std::abs(model_->sv_coef[ci][s]);
+            if(a > alphaTol && a < (C - alphaTol)) {
+                pairSV.push_back(s);
+                pairAlpha.push_back(a);
+                pairSign.push_back(-1.0);
             }
         }
 
-        // Accumulate the span score
-        score += minDist;
-    }
-
-    // Return the average span
-    return score / double(nObs_);
-};
-
-
-double cmp::classifier::SVM::objectiveFunctionEntropy(const double& targetEntropy) {
-    double score = 0.0;
-
-    for(size_t i = 0; i < nObs_; i++) {
-        auto probs = predictProbabilities(xObs_.row(i).transpose());
-        double entropy = 0.0;
-
-        for(double p : probs) {
-            if(p > 1e-15) {
-
-                // Compute the entropy
-                entropy -= p * std::log(p);
+        // Fallback: if no free pair-SV, use all active pair-SV.
+        if(pairSV.empty()) {
+            for(int s = svStart[ci]; s < svStart[ci + 1]; ++s) {
+                const double a = std::abs(model_->sv_coef[cj - 1][s]);
+                if(a > alphaTol) {
+                    pairSV.push_back(s);
+                    pairAlpha.push_back(a);
+                    pairSign.push_back(+1.0);
+                }
+            }
+            for(int s = svStart[cj]; s < svStart[cj + 1]; ++s) {
+                const double a = std::abs(model_->sv_coef[ci][s]);
+                if(a > alphaTol) {
+                    pairSV.push_back(s);
+                    pairAlpha.push_back(a);
+                    pairSign.push_back(-1.0);
+                }
             }
         }
 
-        // L2 penalty on the difference
-        score += std::pow(entropy - targetEntropy, 2);
+        const int m = static_cast<int>(pairSV.size());
+        if(m <= 1) {
+            return {0.0, 0};
+        }
+
+        Eigen::MatrixXd Q = Eigen::MatrixXd::Zero(m, m);
+        for(int a = 0; a < m; ++a) {
+            const int svA = pairSV[a];
+            const int idxA = model_->sv_indices[svA] - 1;
+            for(int b = a; b < m; ++b) {
+                const int svB = pairSV[b];
+                const int idxB = model_->sv_indices[svB] - 1;
+                const double kij = covariance_->eval(xObs_.row(idxA).transpose(), xObs_.row(idxB).transpose(), hyperparameters_);
+                const double qij = pairSign[a] * pairSign[b] * kij;
+                Q(a, b) = qij;
+                Q(b, a) = qij;
+            }
+        }
+
+        const double avgDiag = std::max(Q.diagonal().mean(), cmp::TOL);
+        Q.diagonal().array() += 1e-8 * avgDiag;
+
+        Eigen::LDLT<Eigen::MatrixXd> ldlt(Q);
+        if(ldlt.info() != Eigen::Success) {
+            return {0.0, 0};
+        }
+
+        const Eigen::MatrixXd invQ = ldlt.solve(Eigen::MatrixXd::Identity(m, m));
+        if(ldlt.info() != Eigen::Success) {
+            return {0.0, 0};
+        }
+
+        double weightedSpan = 0.0;
+        for(int i = 0; i < m; ++i) {
+            const double invDiag = std::max(invQ(i, i), cmp::TOL);
+            const double spanSq = 1.0 / invDiag;
+            weightedSpan += pairAlpha[i] * std::max(spanSq, 0.0);
+        }
+        weightedSpan /= static_cast<double>(m);
+        return {weightedSpan, m};
+    };
+
+    double aggregate = 0.0;
+    int aggregateWeight = 0;
+    for(int ci = 0; ci < nClass; ++ci) {
+        for(int cj = ci + 1; cj < nClass; ++cj) {
+            auto [pairSpan, weight] = pairContribution(ci, cj);
+            if(weight > 0) {
+                aggregate += pairSpan * static_cast<double>(weight);
+                aggregateWeight += weight;
+            }
+        }
     }
 
-    // Return the negative score to convert to a maximization problem
-    return - score / double(nObs_);
+    if(aggregateWeight == 0) {
+        return -std::numeric_limits<double>::infinity();
+    }
+
+    const double meanPairwiseSpan = aggregate / static_cast<double>(aggregateWeight);
+    return -meanPairwiseSpan;
 };
 
 void cmp::classifier::Dummy::condition(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels) {

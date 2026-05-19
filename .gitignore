@@ -10,3 +10,4 @@ out.dSYM
 Technical_Doc/**
 .notebook
 *.d
+tests/obj/**

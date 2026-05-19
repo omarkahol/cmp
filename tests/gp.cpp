@@ -91,7 +91,7 @@ int main() {
      */
     auto kernel = cmp::covariance::Constant::make(0) * cmp::covariance::SquaredExponential::make(1, -1);
     auto mean = cmp::mean::Constant::make(2);
-    Eigen::VectorXd param = 0.1 * Eigen::VectorXd::Ones(3); // Initial guess for the hyperparameters
+    Eigen::VectorXd param = 0.01 * Eigen::VectorXd::Ones(3); // Initial guess for the hyperparameters
 
 
     // Create the GP object and set it, for now the hyperparameters are just a guess
@@ -179,7 +179,7 @@ int main() {
     auto prior = cmp::prior::FromDistribution::make(cmp::distribution::PowerLawDistribution::make(2), 0); // 2 refers to the degree of the power-law, 0 to the par index
 
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-    gp.fit(x_obs, y_obs, lb, ub, cmp::gp::LOO, nlopt::LD_TNEWTON, 1e-5, true, prior);
+    gp.fit(x_obs, y_obs, lb, ub, cmp::gp::LOO_MSE, nlopt::LN_SBPLX, 1e-5, true);
     std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);

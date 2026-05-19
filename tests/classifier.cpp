@@ -57,7 +57,7 @@ int main() {
 
     // Create two multivariate normal distributions in 2D
     int n_samples_per_class = 100;
-    auto [samples, labels] = make_moons(2 * n_samples_per_class, 0.1, 42);
+    auto [samples, labels] = make_moons(2 * n_samples_per_class, 0.4, 42);
 
     // Make a uniform grid in x to evaluate the classifier
     int x_db_size = 500;
@@ -116,7 +116,7 @@ int main() {
     kde.set(kernel, bandwidth);
     kde.condition(samples, labels);
     std::cout << "Initial bandwidth:\n" << bandwidth->getParams().transpose() << std::endl;
-    kde.fit(0.1, samples, labels, -1, 1.0, nlopt::LN_SBPLX, 1e-3);
+    kde.fitLOO(samples, labels, -1, 1.0, nlopt::LN_SBPLX, 1e-3);
     std::cout << "Optimized bandwidth:\n" << bandwidth->getParams().transpose() << std::endl;
 
 
@@ -127,6 +127,16 @@ int main() {
     hpar(0) = 1.0;
     svm.set(kernel_svm, hpar, 100, 1e-3);
     svm.condition(samples, labels);
+
+    Eigen::VectorXd lb(2), ub(2);
+    lb << 5e-2, 1.0;    // [lengthscale, C]
+    ub << 5.0, 5e2;
+    svm.fit(samples, labels, lb, ub, nlopt::LN_SBPLX, 1e-4);
+    svm.condition(samples, labels);
+
+    auto [hpar1, c1] = svm.getHyperparameters();
+    std::cout << "SVM after span-LOO optimization:\n";
+    std::cout << "  hyperparameters = " << hpar1.transpose() << ", C = " << c1 << "\n";
 
     // Make a vector of classifier  and their names
     std::vector<cmp::classifier::Classifier *> classifiers = {&kde, &svm};
@@ -161,18 +171,6 @@ int main() {
 
         plt::title(clf_name + " Classifier Decision Boundary");
         plt::show();
-    }
-
-
-    // Now I want to make a stupid 1D example
-    Eigen::VectorXd x1d = Eigen::VectorXd::LinSpaced(20, 0, 1);
-    Eigen::VectorXs y(x1d.size());
-    for(int i = 0; i < x1d.size(); ++i) {
-        if(x1d(i) < 0.5) {
-            y(i) = 0;
-        } else {
-            y(i) = 1;
-        }
     }
 
     return 0;

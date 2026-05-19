@@ -68,8 +68,33 @@ int main() {
     model_error.set(kernel, mean, gp_hyper_guess, observation_noise);
     model_error.condition(x_data, compute_residuals(model_scale_guess), true);
 
+    Eigen::MatrixXd model_jacobian(n_data, 1);
+    for(size_t i = 0; i < n_data; ++i) {
+        model_jacobian(i, 0) = x_data(i) * x_data(i);
+    }
+
     auto compute_cov_matrix = [&](const Eigen::VectorXd & gp_hyper) {
-        return model_error.covariance(gp_hyper);
+        Eigen::MatrixXd cov = model_error.covariance(gp_hyper);
+
+        // Plumlee-style kernel-metric orthogonality projector:
+        // P_K = I - J (J^T K^{-1} J)^(-1) J^T K^{-1}
+        Eigen::LDLT<Eigen::MatrixXd> cov_ldlt = cov.ldlt();
+        Eigen::MatrixXd cov_inv_jacobian = cov_ldlt.solve(model_jacobian);
+        Eigen::MatrixXd jacobian_gram = model_jacobian.transpose() * cov_inv_jacobian;
+        Eigen::MatrixXd jacobian_gram_inverse = jacobian_gram
+                                                .completeOrthogonalDecomposition()
+                                                .pseudoInverse();
+        Eigen::MatrixXd projector = Eigen::MatrixXd::Identity(n_data, n_data) -
+                                    model_jacobian * jacobian_gram_inverse * cov_inv_jacobian.transpose();
+
+        Eigen::MatrixXd cov_orth = projector * cov * projector.transpose();
+
+        // Keep observation noise in all directions and stabilize the factorization.
+        cov_orth += observation_noise * Eigen::MatrixXd::Identity(n_data, n_data);
+        cov_orth = 0.5 * (cov_orth + cov_orth.transpose());
+        cov_orth += 1e-10 * Eigen::MatrixXd::Identity(n_data, n_data);
+
+        return cov_orth;
     };
 
     // Define the log-posterior function

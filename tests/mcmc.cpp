@@ -39,21 +39,24 @@ int main() {
     // Initialize a proposal distribution, here a multivariate t-distribution with 1 degree of freedom (Cauchy distribution)
     Eigen::VectorXd xInit = Eigen::VectorXd::Zero(1);             // Initial position
     Eigen::MatrixXd covInit = Eigen::MatrixXd::Identity(1, 1);    // Initial covariance matrix
-    cmp::distribution::MultivariateStudentDistribution proposal(xInit, covInit, 1);
+    cmp::distribution::MultivariateNormalDistribution proposal(xInit, covInit);
 
     // Create the MCMC chain object
-    cmp::mcmc::MarkovChain chain(&proposal, rng);
+    cmp::mcmc::MarkovChain chain(&proposal, rng, 0.06);
 
     // Burn-in phase, step with no adaptation
     for(size_t i = 0; i < n_burn; i++) {
         chain.step(score);
+
+        // Every 100 steps we can update the proposal distribution
+        if((i + 1) % 100 == 0 && i > 0) {
+            proposal.setLdltDecomposition(Eigen::LDLT<Eigen::MatrixXd>(chain.getAdaptedCovariance()));
+            std::cout << "Sigma Prop: " << chain.getAdaptedCovariance() << std::endl;
+        }
     }
 
     // Print info
     chain.info();
-
-    // Set the proposal covariance to the adapted covariance
-    proposal.setLdltDecomposition(chain.getAdaptedCovariance().ldlt());
 
     // Reset the chain (mean, cov, steps, accepts)
     chain.reset();
@@ -65,7 +68,7 @@ int main() {
 
         // Take n_subsample steps between each sample
         for(size_t j = 0; j < n_subsample; j++) {
-            chain.step(score, {0.5, 0.25, 0.125});  // DRAM step with gamma=0.5, 0.25, and 0.125
+            chain.step(score);
         }
     }
 

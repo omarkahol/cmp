@@ -59,6 +59,10 @@ double cmp::distribution::MultivariateNormalDistribution::logJumpPDF(const Eigen
     return logPDF(jump, ldltDecomposition_);
 }
 
+double cmp::distribution::MultivariateNormalDistribution::squaredMahalanobis(const Eigen::Ref<const Eigen::VectorXd> &jump) const {
+    Eigen::VectorXd alpha = ldltDecomposition_.solve(jump);
+    return jump.dot(alpha);
+}
 double cmp::distribution::MultivariateNormalDistribution::logPDF(const Eigen::Ref<const Eigen::VectorXd> &res, const Eigen::LDLT<Eigen::MatrixXd> &ldltDecomposition) {
     // Solve linear system
     Eigen::VectorXd alpha = ldltDecomposition.solve(res);
@@ -203,6 +207,11 @@ double cmp::distribution::MultivariateStudentDistribution::logJumpPDF(const Eige
     return logPDF(jump, ldltDecomposition_, dofs_);
 }
 
+double cmp::distribution::MultivariateStudentDistribution::squaredMahalanobis(const Eigen::Ref<const Eigen::VectorXd> &jump) const {
+    Eigen::VectorXd alpha = ldltDecomposition_.solve(jump);
+    return jump.dot(alpha);
+}
+
 Eigen::VectorXd cmp::distribution::MultivariateStudentDistribution::sample(std::default_random_engine &rng, const double &gamma) {
     // Sample from a T distribution
     Eigen::VectorXd z = Eigen::VectorXd::Zero(mean_.size());
@@ -335,6 +344,14 @@ double cmp::distribution::MultivariateUniformDistribution::logJumpPDF(const Eige
     }
     return 0.0;
 }
+
+double cmp::distribution::MultivariateUniformDistribution::squaredMahalanobis(const Eigen::Ref<const Eigen::VectorXd> &jump) const {
+    // For a uniform distribution, the squared Mahalanobis distance is not defined in the same way as for Gaussian distributions.
+    // However, we can define it as the squared distance from the mean normalized by the size of the distribution.
+    Eigen::VectorXd normalized_jump = jump.cwiseQuotient(size_);
+    return normalized_jump.squaredNorm();
+}
+
 Eigen::VectorXd cmp::distribution::MultivariateUniformDistribution::sample(std::default_random_engine &rng, const double &gamma) {
     Eigen::VectorXd rv(mean_.size());
     for(size_t i = 0; i < mean_.size(); i++) {

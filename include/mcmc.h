@@ -30,6 +30,8 @@ class MarkovChain {
     cmp::distribution::ProposalDistribution *proposal_;
     std::uniform_real_distribution<double> distU_{0, 1};
     std::default_random_engine rng_;
+    double scale_{5.6644}; // Scaling factor for a 1D distribution
+    double targetAcceptanceRatio_{0.234}; // Target acceptance ratio for the adaptive MCMC
 
     //constructors
   public:
@@ -38,8 +40,9 @@ class MarkovChain {
      * @brief Construct a new mcmc chain object
      *
      * @param rng the random number generator
+     * @param targetAcceptanceRatio the target acceptance ratio (default is 0.234, optimal for high-dimensional distributions)
      */
-    MarkovChain(cmp::distribution::ProposalDistribution *proposal, std::default_random_engine &rng, const double &score = -std::numeric_limits<double>::infinity());
+    MarkovChain(cmp::distribution::ProposalDistribution *proposal, std::default_random_engine &rng, const double &targetAcceptanceRatio = 0.234);
 
     MarkovChain() = default;
 
@@ -57,9 +60,13 @@ class MarkovChain {
     /**
      * @brief Perform a single MCMC step (without updating the mean and cov)
      *
+     *
      * @param getScore The score function
+     * @param delayedRejection Whether to use delayed rejection or not
+     * @param gamma The scaling factor for the covariance of the proposal distribution in the delayed rejection step
+     * @note If delayedRejection is true, the function will perform a delayed rejection step
      */
-    void step(const score_t &getScore, const std::vector<double> &gammas = {});
+    void step(const score_t &getScore, const bool &delayedRejection = false, const double& gamma = 0.1);
 
     /**
      * @brief Accept or reject a candidate

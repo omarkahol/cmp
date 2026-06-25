@@ -253,9 +253,7 @@ class ModelClusterPoly {
      */
     double computeScore(size_t globalIndex) const {
         size_t owner = labels_[globalIndex];
-        size_t localIndex = localIndexTable_[globalIndex];
-
-        auto [mean, var] = (*polynomials_)[owner].predictLOO(localIndex);
+        auto [mean, var] = (*polynomials_)[owner].predict(xObs_.row(globalIndex));
         return -((yObs_(globalIndex) - mean) * (yObs_(globalIndex) - mean) + gamma_ * (xObs_.row(globalIndex).transpose() - centroids_[owner]).squaredNorm());
     }
 
@@ -264,21 +262,7 @@ class ModelClusterPoly {
      */
     double computeScore(size_t model, size_t globalIndex) const {
 
-        // Check if model owns the point
-        double mean;
-        if(labels_[globalIndex] != model) {
-            // We use the predict with Obs function
-            auto [mean_pred, var] = (*polynomials_)[model].predictWithObs(xObs_.row(globalIndex), yObs_(globalIndex));
-            mean = mean_pred;
-        } else {
-            // If it owns the point we do a LOO estimate with cached local index.
-            size_t localIndex = localIndexTable_[globalIndex];
-            auto [mean_pred, var] = (*polynomials_)[model].predictLOO(localIndex);
-            mean = mean_pred;
-
-        }
-
-        // Return the score -(MSE + geometrical regularization)
+        auto [mean, var] = (*polynomials_)[model].predict(xObs_.row(globalIndex));
         return -((yObs_(globalIndex) - mean) * (yObs_(globalIndex) - mean) + gamma_ * (xObs_.row(globalIndex).transpose() - centroids_[model]).squaredNorm());
     }
 

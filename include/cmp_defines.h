@@ -60,9 +60,10 @@ const Eigen::VectorXd ScalarOne =  Eigen::VectorXd::Ones(1);
 /**
  * @brief The score_t type
  * A function that takes a const reference to an  Eigen::VectorXd and returns a double
- *
+ * And also its gradient counterpart, gradient_t, which takes a const reference to an  Eigen::Ref<const Eigen::VectorXd> and returns an  Eigen::VectorXd
  */
 using score_t = std::function<double(const Eigen::VectorXd &)>;
+using gradient_t = std::function<Eigen::VectorXd(const Eigen::Ref<const Eigen::VectorXd>&)>;
 
 
 /**

@@ -91,9 +91,14 @@ class ProposalDistribution : public MultivariateDistribution {
      */
     virtual Eigen::VectorXd sample(std::default_random_engine &rng, const double &gamma) = 0;
 
+    // Evaluate the squared Mahalanobis distance of a jump vector
+    virtual double squaredMahalanobis(const Eigen::Ref<const Eigen::VectorXd> &jump) const = 0;
+
     Eigen::VectorXd sample(std::default_random_engine &rng) override {
         return sample(rng, 1.0);
     }
+
+
 
     virtual Eigen::VectorXd get() = 0;
 
@@ -227,6 +232,7 @@ class MultivariateNormalDistribution: public ProposalDistribution {
     Eigen::VectorXd get() override;
     void set(const Eigen::Ref<const Eigen::VectorXd> &x) override;
     double logJumpPDF(const Eigen::Ref<const Eigen::VectorXd> &jump) override;
+    double squaredMahalanobis(const Eigen::Ref<const Eigen::VectorXd> &jump) const override;
 
 };
 
@@ -385,6 +391,7 @@ class MultivariateStudentDistribution: public ProposalDistribution {
     Eigen::VectorXd get() override;
     void set(const Eigen::Ref<const Eigen::VectorXd> &x) override;
     double logJumpPDF(const Eigen::Ref<const Eigen::VectorXd> &jump) override;
+    double squaredMahalanobis(const Eigen::Ref<const Eigen::VectorXd> &jump) const override;
 
 };
 
@@ -412,6 +419,7 @@ class MultivariateUniformDistribution: public ProposalDistribution {
 
     Eigen::VectorXd get() override;
     void set(const Eigen::Ref<const Eigen::VectorXd> &x) override;
+    double squaredMahalanobis(const Eigen::Ref<const Eigen::VectorXd> &jump) const override;
 };
 
 

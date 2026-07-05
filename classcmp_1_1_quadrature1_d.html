@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -104,6 +106,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1_quadrature1_d.html',''); 
 </div><!--header-->
 <div class="contents">
 
+<p>One-dimensional quadrature rule generator and integrator.  
+ <a href="classcmp_1_1_quadrature1_d.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="integrator_8h_source.html">integrator.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -120,7 +125,41 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:af795366d89e6f9c72d97393ff0e2adf0" id="r_af795366d89e6f9c72d97393ff0e2adf0"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_quadrature1_d.html#af795366d89e6f9c72d97393ff0e2adf0">weights</a></td></tr>
 <tr class="separator:af795366d89e6f9c72d97393ff0e2adf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename BasisType&gt;<br />
+class cmp::Quadrature1D&lt; BasisType &gt;</div><p>One-dimensional quadrature rule generator and integrator. </p>
+<p>Mathematical Formulation: A 1D quadrature rule approximates the integral of a function $f(x)$ over an interval $[a, b]$ with a weight function $w(x)$ as:  </p><p class="formulaDsp">
+\[
+\int_{a}^{b} w(x) f(x) \, dx \approx \sum_{i=0}^{N-1} w_i f(x_i)
+\]
+</p>
+<p> where $x_i$ are the quadrature nodes (roots of the $N$-th order orthogonal polynomial associated with $w(x)$) and $w_i$ are the corresponding quadrature weights. Using the Golub-Welsch algorithm, the nodes $x_i$ and weights $w_i$ are computed from the symmetric tridiagonal Jacobi matrix $J$ for the orthogonal polynomial sequence:  </p><p class="formulaDsp">
+\[
+J = \begin{pmatrix}
+a_0 &amp; b_1 &amp; 0 &amp; \cdots &amp; 0 \\
+b_1 &amp; a_1 &amp; b_2 &amp; \cdots &amp; 0 \\
+0 &amp; b_2 &amp; a_2 &amp; \ddots &amp; \vdots \\
+\vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; b_{N-1} \\
+0 &amp; 0 &amp; \cdots &amp; b_{N-1} &amp; a_{N-1}
+\end{pmatrix}
+\]
+</p>
+<p> The nodes $x_i$ are the eigenvalues of $J$. The weights $w_i$ are computed as:  </p><p class="formulaDsp">
+\[
+w_i = \mu_0 v_{i,0}^2
+\]
+</p>
+<p> where $v_{i,0}$ is the first component of the normalized $i$-th eigenvector of $J$, and $\mu_0 = \int_{a}^{b} w(x) \, dx$ is the total mass/zeroth moment of the weight function.</p>
+<p>Implementation Algorithm:</p><ol type="1">
+<li>Checks if the requested number of points $N$ is less than 1 (throwing std::invalid_argument).</li>
+<li>If $N == 1$, sets node $x_0 = 0.0$ and weight $w_0 = 1.0$.</li>
+<li>Otherwise, requests the Jacobi matrix $J$ of size $N \times N$ from <code>BasisType::getJacobiMatrix(numPoints)</code>.</li>
+<li>Computes the spectral decomposition of $J$ using <code>Eigen::SelfAdjointEigenSolver</code>.</li>
+<li>Assigns the resulting eigenvalues directly to <code>nodes</code>.</li>
+<li>Computes the weights <code><a class="el" href="classcmp_1_1_quadrature1_d.html#af795366d89e6f9c72d97393ff0e2adf0">weights(i)</a></code> by squaring the first component of the $i$-th eigenvector (<code>solver.eigenvectors()(0, i)</code>).</li>
+<li>Provides <code>integrate(f)</code> which evaluates $\sum_i w_i f(x_i)$. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4f69cd5cb720d2040cd0c0d54f0e7717" name="a4f69cd5cb720d2040cd0c0d54f0e7717"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4f69cd5cb720d2040cd0c0d54f0e7717">&#9670;&#160;</a></span>Quadrature1D()</h2>
 

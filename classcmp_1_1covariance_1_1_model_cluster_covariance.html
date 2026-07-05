@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,6 +108,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1covariance_1_1_model_clust
 </div><!--header-->
 <div class="contents">
 
+<p>Blended covariance kernel that interpolates local GP kernels using classifier probabilities.  
+ <a href="classcmp_1_1covariance_1_1_model_cluster_covariance.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="model__cluster_8h_source.html">model_cluster.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::covariance::ModelClusterCovariance:</div>
@@ -157,7 +162,19 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a82231470753b9f972925345fd3f274df" id="r_a82231470753b9f972925345fd3f274df"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_model_cluster_covariance.html#a82231470753b9f972925345fd3f274df">probabilityCache_</a></td></tr>
 <tr class="separator:a82231470753b9f972925345fd3f274df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Blended covariance kernel that interpolates local GP kernels using classifier probabilities. </p>
+<p>Mathematical Formulation The covariance function between two inputs $x$ and $x'$ is computed as:  </p><p class="formulaDsp">
+\[
+K(x, x&#39;) = \sum_{k=1}^K \sqrt{P(C=k \mid x) P(C=k \mid x&#39;)} k_k(x, x&#39;; \theta_k)
+\]
+</p>
+<p> where $P(C=k \mid x)$ represents the probability that input $x$ belongs to cluster $k$ (evaluated by the classifier), and $k_k$ is the kernel of the $k$-th cluster's GP.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>**Cache Lookups (<code>getCachedProbabilities</code>)**: Generates a binary string key representing the coordinates of the input vector and queries the cache <code>probabilityCache_</code> to avoid redundant classifier evaluations.</li>
+<li>**Covariance Evaluation (<code>eval</code>)**: Fetches membership probabilities for both inputs, loops over all clusters to evaluate their respective covariance kernels, and sums the scaled products. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0e0918ae7b08e9c01b37c0e644aa2540" name="a0e0918ae7b08e9c01b37c0e644aa2540"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e0918ae7b08e9c01b37c0e644aa2540">&#9670;&#160;</a></span>ModelClusterCovariance()</h2>
 

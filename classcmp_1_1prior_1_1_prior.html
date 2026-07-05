@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -103,6 +105,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1prior_1_1_prior.html','');
 </div><!--header-->
 <div class="contents">
 
+<p>Base class for prior probability distributions.  
+ <a href="classcmp_1_1prior_1_1_prior.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="prior_09_09_8h_source.html">prior++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::prior::Prior:</div>
@@ -121,7 +126,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad047a6a9bf982743897f4e42529ada63" id="r_ad047a6a9bf982743897f4e42529ada63"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1prior_1_1_prior.html#ad047a6a9bf982743897f4e42529ada63">evalHessian</a> (const Eigen::VectorXd &amp;par, const size_t &amp;i, const size_t &amp;j) const =0</td></tr>
 <tr class="separator:ad047a6a9bf982743897f4e42529ada63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class for prior probability distributions. </p>
+<p><b>Mathematical</b> <b>Formulation</b> Represents a log-prior probability density function \( \log p(\theta) \) over parameters \( \theta \in \mathbb{R}^d \). Provides virtual interfaces for evaluation, gradient, and Hessian computation:</p><ul>
+<li>Value: \( f(\theta) = \log p(\theta) \)</li>
+<li>Gradient: \( \nabla_i f(\theta) = \frac{\partial \log p(\theta)}{\partial \theta_i} \)</li>
+<li><p class="startli">Hessian: \( \mathcal{H}_{ij} f(\theta) = \frac{\partial^2 \log p(\theta)}{\partial \theta_i \partial \theta_j} \)</p>
+<p class="startli"><b>Implementation</b> <b>Algorithm</b> Pure virtual interface specifying the contract for prior evaluation. Concrete subclasses must implement <code>eval</code>, <code>evalGradient</code>, and <code>evalHessian</code>. </p>
+</li>
+</ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a32b126d443e54e0c933eac638626acfa" name="a32b126d443e54e0c933eac638626acfa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32b126d443e54e0c933eac638626acfa">&#9670;&#160;</a></span>~Prior()</h2>
 

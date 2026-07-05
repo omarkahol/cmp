@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -104,6 +106,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1scaler_1_1_standard_scaler
 </div><!--header-->
 <div class="contents">
 
+<p>Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition).  
+ <a href="classcmp_1_1scaler_1_1_standard_scaler.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="scaler_8h_source.html">scaler.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::scaler::StandardScaler:</div>
@@ -152,7 +157,23 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a636d5f6b5e1e50a5b2bfa6bf391791ee" id="r_a636d5f6b5e1e50a5b2bfa6bf391791ee"><td class="memItemLeft" align="right" valign="top">Eigen::LLT&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a636d5f6b5e1e50a5b2bfa6bf391791ee">lltDecomposition_</a></td></tr>
 <tr class="separator:a636d5f6b5e1e50a5b2bfa6bf391791ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition). </p>
+<p><b>Mathematical</b> <b>Formulation</b> Given data matrix \( X \in \mathbb{R}^{n \times d} \), let \( \mu \in \mathbb{R}^d \) be the column-wise mean and \( \Sigma \in \mathbb{R}^{d \times d} \) be the covariance matrix. We decompose the covariance matrix via the lower Cholesky factor \( L \) such that: </p><p class="formulaDsp">
+\[ \Sigma = L L^T \]
+</p>
+<p> The transformation maps: </p><p class="formulaDsp">
+\[ y = L^{-1}(x - \mu) \]
+</p>
+<p> The inverse transformation maps: </p><p class="formulaDsp">
+\[ x = L y + \mu \]
+</p>
+<p><b>Implementation</b> <b>Algorithm</b> </p><ol type="1">
+<li><b>Fit:</b> Calculate mean vector \( \mu \) and covariance matrix \( \Sigma \) of \( X \), then perform Cholesky LLT decomposition to obtain \( L \).</li>
+<li><b>Transform:</b> Solve the lower triangular system \( L y = x - \mu \) to compute standardized data.</li>
+<li><b>Inverse</b> <b>Transform:</b> Compute \( L y + \mu \) via matrix multiplication and vector addition. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a16833680d40ba0835aecc0b1cbe81b2d" name="a16833680d40ba0835aecc0b1cbe81b2d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a16833680d40ba0835aecc0b1cbe81b2d">&#9670;&#160;</a></span>StandardScaler() <span class="overload">[1/4]</span></h2>
 

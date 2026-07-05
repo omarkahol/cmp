@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -104,6 +106,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1prior_1_1_uniform.html',''
 </div><!--header-->
 <div class="contents">
 
+<p>Represents an improper flat (uniform) prior.  
+ <a href="classcmp_1_1prior_1_1_uniform.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="prior_09_09_8h_source.html">prior++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::prior::Uniform:</div>
@@ -143,7 +148,19 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a590315123014d98b0d574c35823f0c15" id="r_a590315123014d98b0d574c35823f0c15"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classcmp_1_1prior_1_1_prior.html">Prior</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1prior_1_1_uniform.html#a590315123014d98b0d574c35823f0c15">make</a> ()</td></tr>
 <tr class="separator:a590315123014d98b0d574c35823f0c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents an improper flat (uniform) prior. </p>
+<p><b>Mathematical</b> <b>Formulation</b> A uniform prior assumes constant probability density: </p><p class="formulaDsp">
+\[ p(\theta) \propto 1 \implies \log p(\theta) = C \]
+</p>
+<p> For convenience, the constant \( C \) is set to 0. All derivatives are zero: </p><p class="formulaDsp">
+\[ \nabla_i \log p(\theta) = 0 \]
+</p>
+ <p class="formulaDsp">
+\[ \mathcal{H}_{ij} \log p(\theta) = 0 \]
+</p>
+<p><b>Implementation</b> <b>Algorithm</b> Returns constant 0.0 for all evaluation, gradient, and Hessian queries. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a10752b7eb718ffd68c70737c3869d269" name="a10752b7eb718ffd68c70737c3869d269"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a10752b7eb718ffd68c70737c3869d269">&#9670;&#160;</a></span>Uniform() <span class="overload">[1/3]</span></h2>
 

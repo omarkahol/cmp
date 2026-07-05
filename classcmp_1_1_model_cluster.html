@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -103,6 +105,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1_model_cluster.html',''); 
   <div class="headertitle"><div class="title">cmp::ModelCluster Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Manages a clustered set of Gaussian Processes for localized regression.  
+ <a href="classcmp_1_1_model_cluster.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="model__cluster_8h_source.html">model_cluster.h</a>&gt;</code></p>
 <table class="memberdecls">
@@ -194,7 +199,36 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:adeeac837c7bd0c4c9f871bd089c058ca" id="r_adeeac837c7bd0c4c9f871bd089c058ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_model_cluster.html#adeeac837c7bd0c4c9f871bd089c058ca">nugget_</a> {1<a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">e</a>-8}</td></tr>
 <tr class="separator:adeeac837c7bd0c4c9f871bd089c058ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Manages a clustered set of Gaussian Processes for localized regression. </p>
+<p>$.</p>
+<p>For a query point $x^*$, a classifier predicts the probability of cluster membership $P(C = k \mid x^*)$. The blended prediction is given by:  </p><p class="formulaDsp">
+\[
+\mu(x^*) = \sum_{k=1}^K P(C = k \mid x^*) \mu_k(x^*)
+\]
+</p>
+  <p class="formulaDsp">
+\[
+\sigma^2(x^*) = \sum_{k=1}^K P(C = k \mid x^*)^2 \sigma_k^2(x^*)
+\]
+</p>
+<p> where $\mu_k(x^*)$ and $\sigma_k^2(x^*)$ are the mean and variance predictions of the $k$-th GP.</p>
+<p>Switching steps evaluate the change in predictive log-likelihood (LOO error for current cluster, or standard predictive log-likelihood for candidate clusters). The stochastic switching probability for point $i$ to cluster $j$ is computed as:  </p><p class="formulaDsp">
+\[
+p_{ij} \propto P(C = j \mid x_i) \exp\left( \frac{\Delta_{ij}}{T} \right)
+\]
+</p>
+<p> where $\Delta_{ij}$ represents the log-predictive score difference if point $i$ is moved to cluster $j$, and $T$ is the temperature parameter.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>**Initialization (<code>condition</code>)**: Groups the input observations according to their labels, instantiates the GP models, computes initial cluster centroids, and sets up index lookup tables.</li>
+<li>**Blended Prediction (<code>predict</code>)**: Obtains probabilities from the classifier, queries predictions from each local GP, and performs the weighted combination.</li>
+<li>**Stochastic Switching (<code>switchStep</code>)**: Precomputes probability distributions for all points based on likelihood shifts, filters active points, and samples switches up to <code>maxAllowedSwitches</code>.</li>
+<li>**Deterministic Switching (<code>deterministicSwitchStep</code>)**: Calculates the log-likelihood gain for all possible re-assignments, sorts them, and executes the top beneficial moves.</li>
+<li><p class="startli"><b>Purging / Merging</b>: Reassigns points from a dissolved cluster to their nearest centroids, shrinks the list of active GPs, and shifts all cluster labels to maintain contiguous indices.</p>
+<p class="startli">Mathematical Formulation Let the dataset be composed of $N$ observations $(x_i, y_i) \in \mathbb{R}^d \times \mathbb{R}$. The data is partitioned into $K$ clusters. Each cluster $k \in 1, \ldots, K </p>
+</li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3c99c6842800bbba6e54f984ca675f88" name="a3c99c6842800bbba6e54f984ca675f88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c99c6842800bbba6e54f984ca675f88">&#9670;&#160;</a></span>ModelCluster()</h2>
 

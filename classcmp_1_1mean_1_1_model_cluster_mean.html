@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,6 +107,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1mean_1_1_model_cluster_mea
 </div><!--header-->
 <div class="contents">
 
+<p>Blended mean function that interpolates local GP means using classifier probabilities.  
+ <a href="classcmp_1_1mean_1_1_model_cluster_mean.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="model__cluster_8h_source.html">model_cluster.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::mean::ModelClusterMean:</div>
@@ -143,7 +148,20 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aa229a15fd561f3dc9cc2fa620791023f" id="r_aa229a15fd561f3dc9cc2fa620791023f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1classifier_1_1_classifier.html">cmp::classifier::Classifier</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mean_1_1_model_cluster_mean.html#aa229a15fd561f3dc9cc2fa620791023f">pClassifier_</a></td></tr>
 <tr class="separator:aa229a15fd561f3dc9cc2fa620791023f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Blended mean function that interpolates local GP means using classifier probabilities. </p>
+<p>Mathematical Formulation The blended mean function at input $x$ is evaluated as:  </p><p class="formulaDsp">
+\[
+M(x) = \sum_{k=1}^K P(C=k \mid x) m_k(x; \theta_k)
+\]
+</p>
+<p> where $P(C=k \mid x)$ is the classifier-derived probability that $x$ belongs to cluster $k$, and $m_k$ is the mean function of the $k$-th cluster's GP.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Queries the classifier for the cluster membership probability vector at input $x$.</li>
+<li>Evaluates the local mean function for each cluster GP at $x$.</li>
+<li>Returns the dot product of the probability vector and the local GP mean vector. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3be5e6fdef6734b89d40ba1a594bc06a" name="a3be5e6fdef6734b89d40ba1a594bc06a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3be5e6fdef6734b89d40ba1a594bc06a">&#9670;&#160;</a></span>ModelClusterMean()</h2>
 

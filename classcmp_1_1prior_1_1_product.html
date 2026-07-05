@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,6 +107,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1prior_1_1_product.html',''
 </div><!--header-->
 <div class="contents">
 
+<p>Represents the product (sum of logs) of two independent prior distributions.  
+ <a href="classcmp_1_1prior_1_1_product.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="prior_09_09_8h_source.html">prior++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::prior::Product:</div>
@@ -153,7 +158,19 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a64eefe7b3f70076bc724dd1850875353" id="r_a64eefe7b3f70076bc724dd1850875353"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1prior_1_1_prior.html">Prior</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1prior_1_1_product.html#a64eefe7b3f70076bc724dd1850875353">rightPrior_</a></td></tr>
 <tr class="separator:a64eefe7b3f70076bc724dd1850875353"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the product (sum of logs) of two independent prior distributions. </p>
+<p><b>Mathematical</b> <b>Formulation</b> For independent priors \( p_1(\theta) \) and \( p_2(\theta) \), the joint prior is: </p><p class="formulaDsp">
+\[ \log p(\theta) = \log p_1(\theta) + \log p_2(\theta) \]
+</p>
+<p> Derivatives are additive due to the linearity of differentiation: </p><p class="formulaDsp">
+\[ \nabla_i \log p(\theta) = \nabla_i \log p_1(\theta) + \nabla_i \log p_2(\theta) \]
+</p>
+ <p class="formulaDsp">
+\[ \mathcal{H}_{ij} \log p(\theta) = \mathcal{H}_{ij} \log p_1(\theta) + \mathcal{H}_{ij} \log p_2(\theta) \]
+</p>
+<p><b>Implementation</b> <b>Algorithm</b> Evaluates the log-prior, gradient, and Hessian by summing the results of the <code>leftPrior_</code> and <code>rightPrior_</code> objects. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1922c8ccf7d55d7de1bece4c13d2f0c4" name="a1922c8ccf7d55d7de1bece4c13d2f0c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1922c8ccf7d55d7de1bece4c13d2f0c4">&#9670;&#160;</a></span>Product() <span class="overload">[1/4]</span></h2>
 

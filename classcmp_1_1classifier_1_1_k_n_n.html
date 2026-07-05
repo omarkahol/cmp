@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -104,6 +106,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1classifier_1_1_k_n_n.html'
 </div><!--header-->
 <div class="contents">
 
+<p>K-Nearest Neighbors classifier helper class.  
+ <a href="classcmp_1_1classifier_1_1_k_n_n.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="classifier_8h_source.html">classifier.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -128,7 +133,13 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ae0840d7055a75035523eb166b6ad6944" id="r_ae0840d7055a75035523eb166b6ad6944"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#ae0840d7055a75035523eb166b6ad6944">nPoints_</a></td></tr>
 <tr class="separator:ae0840d7055a75035523eb166b6ad6944"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>K-Nearest Neighbors classifier helper class. </p>
+<p>Mathematical Formulation For a query point \(\mathbf{x}\), K-Nearest Neighbors identifies the set of \(k\) closest points \(\mathcal{N}_k(\mathbf{x})\) in the reference dataset \(\mathcal{D} = \{\mathbf{x}_i\}_{i=1}^N\) under a chosen distance metric \(d(\mathbf{x}, \mathbf{x}_i)\) (typically Euclidean distance): </p><p class="formulaDsp">
+\[ d(\mathbf{x}, \mathbf{x}_i) = \|\mathbf{x} - \mathbf{x}_i\|_2 \]
+</p>
+<p>Implementation Algorithm The <code>compute</code> method builds an indexing/neighbour structure. For each point in the dataset, it searches and stores the indices of its \(k\) nearest neighbors. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9ed1aca7714da899b0261d93ae84b38f" name="a9ed1aca7714da899b0261d93ae84b38f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ed1aca7714da899b0261d93ae84b38f">&#9670;&#160;</a></span>KNN()</h2>
 

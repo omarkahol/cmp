@@ -5,11 +5,11 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="cmp::prior::Prior",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1prior_1_1_prior.html",tooltip=" "];
+  Node0 [id="Node000000",label="cmp::prior::Prior",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1prior_1_1_prior.html",tooltip="Base class for prior probability distributions."];
   Node0 -> Node1 [id="edge49_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 [id="Node000001",label="cmp::prior::FromDistribution\l\< DistType \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1prior_1_1_from_distribution.html",tooltip=" "];
+  Node1 [id="Node000001",label="cmp::prior::FromDistribution\l\< DistType \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1prior_1_1_from_distribution.html",tooltip="Adapts a univariate probability distribution to act as a prior on a single coordinate."];
   Node0 -> Node2 [id="edge50_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="cmp::prior::Product",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1prior_1_1_product.html",tooltip=" "];
+  Node2 [id="Node000002",label="cmp::prior::Product",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1prior_1_1_product.html",tooltip="Represents the product (sum of logs) of two independent prior distributions."];
   Node0 -> Node3 [id="edge51_Node000000_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="cmp::prior::Uniform",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1prior_1_1_uniform.html",tooltip=" "];
+  Node3 [id="Node000003",label="cmp::prior::Uniform",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1prior_1_1_uniform.html",tooltip="Represents an improper flat (uniform) prior."];
 }

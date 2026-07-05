@@ -19,7 +19,7 @@ digraph "Graphical Class Hierarchy"
   Node0 -> Node6 [id="edge9_Node000000_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node6 [id="Node000006",label="cmp::covariance::Matern52",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1covariance_1_1_matern52.html",tooltip=" "];
   Node0 -> Node7 [id="edge10_Node000000_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node7 [id="Node000007",label="cmp::covariance::ModelCluster\lCovariance",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1covariance_1_1_model_cluster_covariance.html",tooltip=" "];
+  Node7 [id="Node000007",label="cmp::covariance::ModelCluster\lCovariance",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1covariance_1_1_model_cluster_covariance.html",tooltip="Blended covariance kernel that interpolates local GP kernels using classifier probabilities."];
   Node0 -> Node8 [id="edge11_Node000000_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="cmp::covariance::Product",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1covariance_1_1_product.html",tooltip=" "];
   Node0 -> Node9 [id="edge12_Node000000_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];

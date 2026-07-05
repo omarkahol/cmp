@@ -9,7 +9,7 @@ digraph "Graphical Class Hierarchy"
   Node0 -> Node1 [id="edge46_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node1 [id="Node000001",label="cmp::mean::Constant",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1mean_1_1_constant.html",tooltip=" "];
   Node0 -> Node2 [id="edge47_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="cmp::mean::ModelClusterMean",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1mean_1_1_model_cluster_mean.html",tooltip=" "];
+  Node2 [id="Node000002",label="cmp::mean::ModelClusterMean",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1mean_1_1_model_cluster_mean.html",tooltip="Blended mean function that interpolates local GP means using classifier probabilities."];
   Node0 -> Node3 [id="edge48_Node000000_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="cmp::mean::Zero",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1mean_1_1_zero.html",tooltip=" "];
 }

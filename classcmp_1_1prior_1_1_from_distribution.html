@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,6 +107,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1prior_1_1_from_distributio
 </div><!--header-->
 <div class="contents">
 
+<p>Adapts a univariate probability distribution to act as a prior on a single coordinate.  
+ <a href="classcmp_1_1prior_1_1_from_distribution.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="prior_09_09_8h_source.html">prior++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::prior::FromDistribution&lt; DistType &gt;:</div>
@@ -130,7 +135,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4a700f25ef677a3cbc61ece5893fc58f" id="r_a4a700f25ef677a3cbc61ece5893fc58f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1prior_1_1_from_distribution.html">FromDistribution</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1prior_1_1_from_distribution.html#a4a700f25ef677a3cbc61ece5893fc58f">operator=</a> (<a class="el" href="classcmp_1_1prior_1_1_from_distribution.html">FromDistribution</a> &amp;&amp;)=default</td></tr>
 <tr class="separator:a4a700f25ef677a3cbc61ece5893fc58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8755c4c644a464b65fe75335155a646f" id="r_a8755c4c644a464b65fe75335155a646f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1prior_1_1_from_distribution.html#a8755c4c644a464b65fe75335155a646f">FromDistribution</a> (const DistType &amp;dist, size_t paramIndex)</td></tr>
-<tr class="memdesc:a8755c4c644a464b65fe75335155a646f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1prior_1_1_prior.html">Prior</a> from a Univariate Distribution.  <br /></td></tr>
+<tr class="memdesc:a8755c4c644a464b65fe75335155a646f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1prior_1_1_prior.html" title="Base class for prior probability distributions.">Prior</a> from a Univariate Distribution.  <br /></td></tr>
 <tr class="separator:a8755c4c644a464b65fe75335155a646f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab14d55841780cd18c5b17ad447481ff0" id="r_ab14d55841780cd18c5b17ad447481ff0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1prior_1_1_from_distribution.html#ab14d55841780cd18c5b17ad447481ff0">eval</a> (const Eigen::VectorXd &amp;par) const override</td></tr>
 <tr class="separator:ab14d55841780cd18c5b17ad447481ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,7 +159,20 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ada47df923a76e1d21b2dd346bd38371d" id="r_ada47df923a76e1d21b2dd346bd38371d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1prior_1_1_from_distribution.html#ada47df923a76e1d21b2dd346bd38371d">paramIndex_</a></td></tr>
 <tr class="separator:ada47df923a76e1d21b2dd346bd38371d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename DistType&gt;<br />
+class cmp::prior::FromDistribution&lt; DistType &gt;</div><p>Adapts a univariate probability distribution to act as a prior on a single coordinate. </p>
+<p><b>Mathematical</b> <b>Formulation</b> Applies a univariate distribution \( \mathcal{D} \) to a specific parameter dimension \( k \): </p><p class="formulaDsp">
+\[ \log p(\theta) = \log p_{\mathcal{D}}(\theta_k) \]
+</p>
+<p> The gradient is non-zero only for coordinate \( k \): </p><p class="formulaDsp">
+\[ \frac{\partial \log p(\theta)}{\partial \theta_i} = \begin{cases} \frac{d \log p_{\mathcal{D}}(\theta_k)}{d \theta_k} &amp; \text{if } i = k \\ 0 &amp; \text{otherwise} \end{cases} \]
+</p>
+<p> The Hessian is non-zero only for diagonal entry \( (k, k) \): </p><p class="formulaDsp">
+\[ \frac{\partial^2 \log p(\theta)}{\partial \theta_i \partial \theta_j} = \begin{cases} \frac{d^2 \log p_{\mathcal{D}}(\theta_k)}{d \theta_k^2} &amp; \text{if } i = j = k \\ 0 &amp; \text{otherwise} \end{cases} \]
+</p>
+<p><b>Implementation</b> <b>Algorithm</b> Accesses parameter coordinate \( \theta_k \) and delegates log-PDF and its first/second derivative calculations to the underlying <code>dist_</code> object. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af2b70c1a2e303f35805cd4b96a41bcd9" name="af2b70c1a2e303f35805cd4b96a41bcd9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af2b70c1a2e303f35805cd4b96a41bcd9">&#9670;&#160;</a></span>FromDistribution() <span class="overload">[1/4]</span></h2>
 
@@ -274,7 +292,7 @@ template&lt;typename DistType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs a <a class="el" href="classcmp_1_1prior_1_1_prior.html">Prior</a> from a Univariate Distribution. </p>
+<p>Constructs a <a class="el" href="classcmp_1_1prior_1_1_prior.html" title="Base class for prior probability distributions.">Prior</a> from a Univariate Distribution. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dist</td><td>The distribution instance (e.g., NormalDistribution) </td></tr>

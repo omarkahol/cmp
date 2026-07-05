@@ -5,7 +5,7 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="cmp::scaler::Scaler",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1scaler_1_1_scaler.html",tooltip=" "];
+  Node0 [id="Node000000",label="cmp::scaler::Scaler",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1scaler_1_1_scaler.html",tooltip="Template virtual base class for feature scaling and transformation."];
   Node0 -> Node1 [id="edge52_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node1 [id="Node000001",label="cmp::scaler::DummyScaler",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1scaler_1_1_dummy_scaler.html",tooltip=" "];
   Node0 -> Node2 [id="edge53_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
@@ -15,5 +15,5 @@ digraph "Graphical Class Hierarchy"
   Node0 -> Node4 [id="edge55_Node000000_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node4 [id="Node000004",label="cmp::scaler::PCA",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1scaler_1_1_p_c_a.html",tooltip=" "];
   Node0 -> Node5 [id="edge56_Node000000_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="cmp::scaler::StandardScaler",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1scaler_1_1_standard_scaler.html",tooltip=" "];
+  Node5 [id="Node000005",label="cmp::scaler::StandardScaler",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classcmp_1_1scaler_1_1_standard_scaler.html",tooltip="Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition..."];
 }

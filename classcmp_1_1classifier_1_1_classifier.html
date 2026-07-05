@@ -24,6 +24,8 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -103,6 +105,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1classifier_1_1_classifier.
 </div><!--header-->
 <div class="contents">
 
+<p>Abstract base class for all classifiers.  
+ <a href="classcmp_1_1classifier_1_1_classifier.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="classifier_8h_source.html">classifier.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::classifier::Classifier:</div>
@@ -119,7 +124,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2fbf78b38db8cc851a433caa9b87e758" id="r_a2fbf78b38db8cc851a433caa9b87e758"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_classifier.html#a2fbf78b38db8cc851a433caa9b87e758">predict</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;x) const =0</td></tr>
 <tr class="separator:a2fbf78b38db8cc851a433caa9b87e758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract base class for all classifiers. </p>
+<p>Mathematical Formulation A classifier maps an input vector \(\mathbf{x} \in \mathbb{R}^D\) to a class label \(y \in \{0, 1, \dots, C-1\}\), or estimates the class posterior probabilities \(P(y = c \mid \mathbf{x})\) for \(c = 0, \dots, C-1\).</p>
+<p>Implementation Algorithm Provides a pure virtual interface defining:</p><ul>
+<li><code>predictProbabilities(x)</code>: Returns a vector of probability estimates.</li>
+<li><code>predict(x)</code>: Returns the class label with the highest probability. </li>
+</ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7dd8540cf402dfb9b5f3b83b2de9d17d" name="a7dd8540cf402dfb9b5f3b83b2de9d17d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7dd8540cf402dfb9b5f3b83b2de9d17d">&#9670;&#160;</a></span>~Classifier()</h2>
 

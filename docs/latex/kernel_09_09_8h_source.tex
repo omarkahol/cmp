@@ -1,0 +1,229 @@
+\doxysection{kernel++.h}
+\hypertarget{kernel_09_09_8h_source}{}\label{kernel_09_09_8h_source}\index{include/kernel++.h@{include/kernel++.h}}
+\mbox{\hyperlink{kernel_09_09_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ KERNELPP\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ KERNELPP\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1kernel}{cmp::kernel}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1kernel_aad2724345576b3da338b77d2d4e8fbe8}{TOL}}\ =\ 1e-\/12;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}}\ \{}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2bcf9c9c28c36fa4f5c38a779d8f2ae8}{\string~Bandwidth}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a7b59faf763ae6808acd9ec5cf93f2663}{apply}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ x2)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a718d366c32b080389cae1e844f126002}{determinant}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a873ddb11a78e7adc920d31aa2c9cbeae}{size}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Gradient\ methods}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2e95090dd6f3648c895b3763bc23f519}{gradientOfApply}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ x2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a8e0152653d956a81f9ee555ab83c8e1b}{gradientOfLogDeterminant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Construct\ for\ NLopt\ routines}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_af901feed1ed1e7bd7b44ecd12152b1d4}{setFromVector}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&params)\ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a1c1ec89f8c2823ade415bfc22c46ff11}{getParams}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a921f82543599d3e5157f00a2eedbb640}{IsotropicBandwidth}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}}\ \{}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74}{h\_}}\{1.0\};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae805f0f988d554c6d838382dbf13a414}{dim\_}}\{1\};}
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a921f82543599d3e5157f00a2eedbb640}{IsotropicBandwidth}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae70a1d45aa44d2e872920520fa2bc26a}{IsotropicBandwidth}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&h,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&dim)\ :\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74}{h\_}}(h),\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae805f0f988d554c6d838382dbf13a414}{dim\_}}(dim)\ \{\};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00073\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_aea28c87837336c8b92f9f2ac72a05732}{apply}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ x2)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1bb3d7bb11263f5f5e8855058dcae925}{determinant}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a2437b9b8ab2a2bb38061b12d1ffbd26a}{size}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae805f0f988d554c6d838382dbf13a414}{dim\_}};}
+\DoxyCodeLine{00085\ \ \ \ \ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1488b76345f17b9734541286352ce1b0}{gradientOfApply}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ x2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ac00a69937e7c21f4f8e92878677a468d}{gradientOfLogDeterminant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1f92d3692e30b40ed949de29c6f3ecd9}{setFromVector}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&params)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74}{h\_}}\ =\ params(0);}
+\DoxyCodeLine{00102\ \ \ \ \ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a6bf07056ff72df4eabe935d63919b6f2}{getParams}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::VectorXd::Constant(1,\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74}{h\_}});}
+\DoxyCodeLine{00109\ \ \ \ \ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Bandwidth>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a916e66a9f2be9a3e17da61ea0f03ee3c}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&h,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&dim)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<IsotropicBandwidth>(h,\ dim);}
+\DoxyCodeLine{00116\ \ \ \ \ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a5ca9a18310308d0181a78db8efa62396}{DiagonalBandwidth}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}}\ \{}
+\DoxyCodeLine{00132\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00133\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5}{h\_}};}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_aff91c96966828ae18b71232d50de1078}{det\_}};}
+\DoxyCodeLine{00135\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a5ca9a18310308d0181a78db8efa62396}{DiagonalBandwidth}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a906a60d34379b56b2c61a7e124ba7d32}{DiagonalBandwidth}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&h)\ :\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5}{h\_}}(h)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_aff91c96966828ae18b71232d50de1078}{det\_}}\ =\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5}{h\_}}.prod();}
+\DoxyCodeLine{00143\ \ \ \ \ \};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00148\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a30cdee5966d0c041a02b1bb5799bfcb0}{apply}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ x2)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a1ca633e2913ffe602d1f2726260d01cf}{determinant}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_aade0fa1151a3cf6ffd54374fa9a743f8}{size}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5}{h\_}}.size();}
+\DoxyCodeLine{00161\ \ \ \ \ \};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{//\ Gradient\ methods}}
+\DoxyCodeLine{00164\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_ab233586f447b5cb6888eaa18a4ed218d}{gradientOfApply}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ x2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a445ac377661391b0089c64a6271b58c6}{gradientOfLogDeterminant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a0576664d48583c59df9385f2bbb21325}{setFromVector}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&params)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a95d0e03300a71ace8fe87fb8e6634636}{getParams}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ Make\ method}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Bandwidth>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a686d387930d6676fc1f0515a42d33cb1}{make}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&h)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<DiagonalBandwidth>(h);}
+\DoxyCodeLine{00175\ \ \ \ \ \};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{comment}{//\ We\ implement\ a\ full\ bandwidth\ based\ on\ the\ Cholesky\ decomposition}}
+\DoxyCodeLine{00197\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a7ddf096ebf1acfe67beed015cf2d08a0}{FullBandwidth}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}}\ \{}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00200\ \ \ \ \ Eigen::LLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\_}};}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38}{det\_}};}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}{dim\_}};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a7ddf096ebf1acfe67beed015cf2d08a0}{FullBandwidth}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00210\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a8843ec4c6b914ff1057dc979c2715a49}{FullBandwidth}}(\textcolor{keyword}{const}\ Eigen::MatrixXd\ \&LLT)\ :\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}{dim\_}}(LLT.rows())\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(LLT.rows()\ !=\ LLT.cols())\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ throw\ std::invalid\_argument(\textcolor{stringliteral}{"{}Full\ bandwidth\ expects\ a\ square\ matrix."{}});}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\_}}\ =\ Eigen::LLT<Eigen::MatrixXd>(LLT);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\_}}.info()\ !=\ Eigen::Success)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ throw\ std::invalid\_argument(\textcolor{stringliteral}{"{}The\ provided\ matrix\ is\ not\ positive\ definite."{}});}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ determinant\ as\ product\ of\ diagonal\ entries\ of\ the\ Cholesky\ factor}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ directly\ to\ avoid\ hitting\ Eigen\ internals\ that\ trigger\ deprecated\ enum}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bitwise\ operations.}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38}{det\_}}\ =\ 1.0;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\_}}.matrixL().rows());\ ++i)\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ det\_\ *=\ L\_.matrixL()(i,\ i);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \};}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab10e0d03356a1216a70bb4550bf541a4}{determinant}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a0ee84d8b42b8488a266408649506400b}{size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}{dim\_}};}
+\DoxyCodeLine{00238\ \ \ \ \ \};}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00243\ \ \ \ \ std::pair<size\_t,\ size\_t>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ad09d7dde73c614d9d9d14c79379562e3}{indexToRowCol}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00248\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a6259f9454ca705178e15350750a1eb23}{apply}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ x2)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00253\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a2f0390182b2293ab011726d6590c5aef}{gradientOfApply}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ x2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a4abd245fbba3514679bc8cc9f54968f2}{gradientOfLogDeterminant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a0f53f06e7579d8c07d8284c0bb15de45}{setFromVector}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&params)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00268\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a62bfa6bf98fab34a92ae2cb0b7407345}{getParams}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Bandwidth>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a66e3bf8eab7e67fa871495f2358b4d4f}{make}}(\textcolor{keyword}{const}\ Eigen::MatrixXd\ \&LLT)\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<FullBandwidth>(LLT);}
+\DoxyCodeLine{00275\ \ \ \ \ \};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00280\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_aaf91cd1d8e2ea8f7a5340dab9d1e9d6b}{matrix}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\_}}.matrixL().toDenseMatrix()\ *\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\_}}.matrixL().transpose().toDenseMatrix();}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \};}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \};}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \textcolor{comment}{//\ Implement\ Kernels}}
+\DoxyCodeLine{00302\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}}\ \{}
+\DoxyCodeLine{00303\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad1d785fbdc3a74aedfa575053b09bb0}{\string~Kernel}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a93a0f6bc1b69f2398d9fdc0f36bd01bb}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ z)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a8e73dd33c293a97bb12cb3dc1b22725a}{normalizationConstant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&dim)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad7b69ab20fe331b1b9e64ca9afa10ad}{applyToGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ z,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ grad\_z\_i)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \};}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00321\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a8e9f7bd5513c1c92df9021315297fe55}{Gaussian}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}}\ \{}
+\DoxyCodeLine{00322\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a8e9f7bd5513c1c92df9021315297fe55}{Gaussian}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a45c5037253b8b75056a5dbdbac8eacea}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ z\_diff)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_aca2277b5c630a150e95a1401576d90a4}{normalizationConstant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&dim)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a28505136011d51c47cf5a545d5e7fda8}{applyToGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ z,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ grad\_z\_i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Kernel>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a2ad6859667a4598245cb917eb4ce4d0c}{make}}()\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Gaussian>();}
+\DoxyCodeLine{00346\ \ \ \ \ \};}
+\DoxyCodeLine{00347\ \};}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00358\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a9478a3763346d37fa3576398afe3ce0d}{Epanechnikov}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}}\ \{}
+\DoxyCodeLine{00359\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a9478a3763346d37fa3576398afe3ce0d}{Epanechnikov}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_aee71c6de645381a8262c5a86b9969c0c}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ z\_diff)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a96c071d4b783b7e3cc73038e0df45c35}{normalizationConstant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&dim)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a609c5f59d390ef31f60980fdf63b8227}{applyToGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ z,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ grad\_z\_i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Kernel>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_af3171106e52bfff69338f17f2684cc4c}{make}}()\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Epanechnikov>();}
+\DoxyCodeLine{00383\ \ \ \ \ \};}
+\DoxyCodeLine{00384\ \};}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00395\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a34a9cfeb755cc6ae2435dfd8928f0353}{Uniform}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}}\ \{}
+\DoxyCodeLine{00396\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a34a9cfeb755cc6ae2435dfd8928f0353}{Uniform}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_af6b7a2c0dc2c0eccc339da1cd77f51e4}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ z\_diff)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a2c9ecbd90297949b3a0960ac71720b50}{normalizationConstant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&dim)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a4d19bf5e8fa6c259cf1b60259700755f}{applyToGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ z,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ grad\_z\_i)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Kernel>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a6397931e0c750db84f207445e2b727ae}{make}}()\ \{}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Uniform>();}
+\DoxyCodeLine{00420\ \ \ \ \ \};}
+\DoxyCodeLine{00421\ \};}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \}\ \textcolor{comment}{//\ namespace\ cmp::kernel}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,129 @@
+\doxysection{cmp\+::statistics\+::Pairwise\+Distance\+Stats Class Reference}
+\hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats}{}\label{classcmp_1_1statistics_1_1_pairwise_distance_stats}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+
+
+{\ttfamily \#include $<$statistics.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a789a5d073bf155843731ce4ebe860315}{Pairwise\+Distance\+Stats}} ()
+\item 
+void \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a4826cca144c0e61c2d716f946731f30c}{compute}} (const Eigen\+::\+Matrix\+Xd \&data)
+\begin{DoxyCompactList}\small\item\em Computes the upper triangle of the pairwise distance matrix. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac122248b444427527b77fb4b21cfb219}{mean}} () const
+\item 
+double \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a098ad18d3bfbeb1d17475ac0cab8607e}{quantile}} (double q)
+\begin{DoxyCompactList}\small\item\em Fast quantile retrieval without a full sort. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a4ca8d9a6d6cd8b06535502f4291d1ea2}{correlation\+\_\+integral}} (const std\+::vector$<$ double $>$ \&r\+\_\+thresholds) const
+\begin{DoxyCompactList}\small\item\em Computes the spatial Correlation Integral C(r) for a grid of thresholds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92}{mean\+\_\+val}}
+\item 
+bool \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc}{is\+\_\+computed}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_a789a5d073bf155843731ce4ebe860315}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}!PairwiseDistanceStats@{PairwiseDistanceStats}}
+\index{PairwiseDistanceStats@{PairwiseDistanceStats}!cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+\doxysubsubsection{\texorpdfstring{PairwiseDistanceStats()}{PairwiseDistanceStats()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_pairwise_distance_stats_a789a5d073bf155843731ce4ebe860315} 
+cmp\+::statistics\+::\+Pairwise\+Distance\+Stats\+::\+Pairwise\+Distance\+Stats (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_a4826cca144c0e61c2d716f946731f30c}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}!compute@{compute}}
+\index{compute@{compute}!cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_pairwise_distance_stats_a4826cca144c0e61c2d716f946731f30c} 
+void cmp\+::statistics\+::\+Pairwise\+Distance\+Stats\+::compute (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the upper triangle of the pairwise distance matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Matrix of size (N, D) where N is number of points, D is dimensions. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_a4ca8d9a6d6cd8b06535502f4291d1ea2}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}!correlation\_integral@{correlation\_integral}}
+\index{correlation\_integral@{correlation\_integral}!cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+\doxysubsubsection{\texorpdfstring{correlation\_integral()}{correlation\_integral()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_pairwise_distance_stats_a4ca8d9a6d6cd8b06535502f4291d1ea2} 
+std\+::vector$<$ double $>$ cmp\+::statistics\+::\+Pairwise\+Distance\+Stats\+::correlation\+\_\+integral (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{r\+\_\+thresholds}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the spatial Correlation Integral C(r) for a grid of thresholds. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em r\+\_\+thresholds} & A vector of spatial distances (r). Does not need to be pre-\/sorted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$double$>$ The fraction of pairwise distances less than each r. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac122248b444427527b77fb4b21cfb219}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}!mean@{mean}}
+\index{mean@{mean}!cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac122248b444427527b77fb4b21cfb219} 
+double cmp\+::statistics\+::\+Pairwise\+Distance\+Stats\+::mean (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_a098ad18d3bfbeb1d17475ac0cab8607e}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}!quantile@{quantile}}
+\index{quantile@{quantile}!cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_pairwise_distance_stats_a098ad18d3bfbeb1d17475ac0cab8607e} 
+double cmp\+::statistics\+::\+Pairwise\+Distance\+Stats\+::quantile (\begin{DoxyParamCaption}\item[{double}]{q}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Fast quantile retrieval without a full sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Quantile to retrieve in \mbox{[}0.\+0, 1.\+0\mbox{]} (e.\+g., 0.\+5 for median) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}!distances@{distances}}
+\index{distances@{distances}!cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+\doxysubsubsection{\texorpdfstring{distances}{distances}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215} 
+std\+::vector$<$double$>$ cmp\+::statistics\+::\+Pairwise\+Distance\+Stats\+::distances\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}!is\_computed@{is\_computed}}
+\index{is\_computed@{is\_computed}!cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+\doxysubsubsection{\texorpdfstring{is\_computed}{is\_computed}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc} 
+bool cmp\+::statistics\+::\+Pairwise\+Distance\+Stats\+::is\+\_\+computed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92}\index{cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}!mean\_val@{mean\_val}}
+\index{mean\_val@{mean\_val}!cmp::statistics::PairwiseDistanceStats@{cmp::statistics::PairwiseDistanceStats}}
+\doxysubsubsection{\texorpdfstring{mean\_val}{mean\_val}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92} 
+double cmp\+::statistics\+::\+Pairwise\+Distance\+Stats\+::mean\+\_\+val\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{statistics_8h}{statistics.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,156 @@
+\doxysection{multivariate\+\_\+normal\+\_\+distribution Class Reference}
+\hypertarget{classcmp_1_1multivariate__normal__distribution}{}\label{classcmp_1_1multivariate__normal__distribution}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for multivariate\+\_\+normal\+\_\+distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1multivariate__normal__distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a42218b95242dd1400b6e71e88510b166}{multivariate\+\_\+normal\+\_\+distribution}} (Eigen\+::\+Vector\+Xd mean, Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ cov\+\_\+ldlt, std\+::default\+\_\+random\+\_\+engine rng)
+\item 
+\mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a3c70c061e51e3a5e27bd99e0edb63ab9}{multivariate\+\_\+normal\+\_\+distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a5222b223cf3fcf42150ada3545a8a686}{log\+\_\+pdf}} (const Eigen\+::\+Vector\+Xd \&x) override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_ad740f3e010f90c01130f25de855fe219}{sample}} () override
+\begin{DoxyCompactList}\small\item\em Generate a sample from the distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a63c24909fb58e79960dbb10dc19c1603}{jump}} (const Eigen\+::\+Vector\+Xd \&x, double gamma=1.\+0) override
+\begin{DoxyCompactList}\small\item\em Jump to a new point in the parameter space centered at x. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a402b12ccb90b00424db73eb9f7a2d71a}{log\+\_\+jump\+\_\+prob}} (const Eigen\+::\+Vector\+Xd \&\mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a63c24909fb58e79960dbb10dc19c1603}{jump}}, double gamma=1.\+0) override
+\item 
+void \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a1df8892dd44e4b787f566ddab6e9d286}{set\+\_\+mean}} (Eigen\+::\+Vector\+Xd mean)
+\item 
+void \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a7a46de7495e9a2c6f92c77a797bc5036}{set\+\_\+cov\+\_\+ldlt}} (Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ cov\+\_\+ldlt)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1multivariate__distribution}{multivariate\+\_\+distribution}}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a41861f7dc70347c3bceec51a68f20d0a}{log\+\_\+pdf}} (const Eigen\+::\+Vector\+Xd \&res, const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&cov\+\_\+ldlt)
+\item 
+static double \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a72304259b5f9045aab957f39dd8b1a3a}{log\+\_\+pdf\+\_\+gradient}} (const Eigen\+::\+Vector\+Xd \&res, const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&cov\+\_\+ldlt, const Eigen\+::\+Matrix\+Xd \&cov\+\_\+gradient, const Eigen\+::\+Vector\+Xd \&mean\+\_\+gradient)
+\item 
+static double \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_aee226a7f38c2abe5682fa6f018e2ea31}{log\+\_\+pdf\+\_\+hessian}} (const Eigen\+::\+Vector\+Xd \&res, const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&cov\+\_\+ldlt, const Eigen\+::\+Matrix\+Xd \&cov\+\_\+gradient\+\_\+l, const Eigen\+::\+Matrix\+Xd \&cov\+\_\+gradient\+\_\+k, const Eigen\+::\+Matrix\+Xd \&cov\+\_\+hessian)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a42218b95242dd1400b6e71e88510b166}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{multivariate\_normal\_distribution()}{multivariate\_normal\_distribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a42218b95242dd1400b6e71e88510b166} 
+\mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution}{multivariate\+\_\+normal\+\_\+distribution}} (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{mean}{, }\item[{Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$}]{cov\+\_\+ldlt}{, }\item[{std\+::default\+\_\+random\+\_\+engine}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a3c70c061e51e3a5e27bd99e0edb63ab9}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{multivariate\_normal\_distribution()}{multivariate\_normal\_distribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a3c70c061e51e3a5e27bd99e0edb63ab9} 
+\mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution}{multivariate\+\_\+normal\+\_\+distribution}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a63c24909fb58e79960dbb10dc19c1603}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!jump@{jump}}
+\index{jump@{jump}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{jump()}{jump()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a63c24909fb58e79960dbb10dc19c1603} 
+Eigen\+::\+Vector\+Xd jump (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{double}]{gamma}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Jump to a new point in the parameter space centered at x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The center of the jump \\
+\hline
+{\em gamma} & The size of the jump \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eigen\+::\+Vector\+Xd 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1multivariate__distribution_a264ed03b4a95f8b58abbcef9e0914cae}{multivariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a402b12ccb90b00424db73eb9f7a2d71a}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!log\_jump\_prob@{log\_jump\_prob}}
+\index{log\_jump\_prob@{log\_jump\_prob}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_jump\_prob()}{log\_jump\_prob()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a402b12ccb90b00424db73eb9f7a2d71a} 
+double log\+\_\+jump\+\_\+prob (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{jump}{, }\item[{double}]{gamma}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1multivariate__distribution_a8fa621d26a3333ee24889e18381110d6}{multivariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a41861f7dc70347c3bceec51a68f20d0a}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!log\_pdf@{log\_pdf}}
+\index{log\_pdf@{log\_pdf}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_pdf()}{log\_pdf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a41861f7dc70347c3bceec51a68f20d0a} 
+double log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{res}{, }\item[{const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{cov\+\_\+ldlt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a5222b223cf3fcf42150ada3545a8a686}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!log\_pdf@{log\_pdf}}
+\index{log\_pdf@{log\_pdf}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_pdf()}{log\_pdf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a5222b223cf3fcf42150ada3545a8a686} 
+double log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1multivariate__distribution_ae38de544833816032d8b9c000daa1ba4}{multivariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a72304259b5f9045aab957f39dd8b1a3a}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!log\_pdf\_gradient@{log\_pdf\_gradient}}
+\index{log\_pdf\_gradient@{log\_pdf\_gradient}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_pdf\_gradient()}{log\_pdf\_gradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a72304259b5f9045aab957f39dd8b1a3a} 
+double log\+\_\+pdf\+\_\+gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{res}{, }\item[{const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{cov\+\_\+ldlt}{, }\item[{const Eigen\+::\+Matrix\+Xd \&}]{cov\+\_\+gradient}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{mean\+\_\+gradient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_aee226a7f38c2abe5682fa6f018e2ea31}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!log\_pdf\_hessian@{log\_pdf\_hessian}}
+\index{log\_pdf\_hessian@{log\_pdf\_hessian}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_pdf\_hessian()}{log\_pdf\_hessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_aee226a7f38c2abe5682fa6f018e2ea31} 
+double log\+\_\+pdf\+\_\+hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{res}{, }\item[{const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{cov\+\_\+ldlt}{, }\item[{const Eigen\+::\+Matrix\+Xd \&}]{cov\+\_\+gradient\+\_\+l}{, }\item[{const Eigen\+::\+Matrix\+Xd \&}]{cov\+\_\+gradient\+\_\+k}{, }\item[{const Eigen\+::\+Matrix\+Xd \&}]{cov\+\_\+hessian}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_ad740f3e010f90c01130f25de855fe219}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!sample@{sample}}
+\index{sample@{sample}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_ad740f3e010f90c01130f25de855fe219} 
+Eigen\+::\+Vector\+Xd sample (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Generate a sample from the distribution. 
+
+\begin{DoxyReturn}{Returns}
+Eigen\+::\+Vector\+Xd 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1multivariate__distribution_a9dbdcfdafd087d9499b225744f3ccd0f}{multivariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a7a46de7495e9a2c6f92c77a797bc5036}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!set\_cov\_ldlt@{set\_cov\_ldlt}}
+\index{set\_cov\_ldlt@{set\_cov\_ldlt}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{set\_cov\_ldlt()}{set\_cov\_ldlt()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a7a46de7495e9a2c6f92c77a797bc5036} 
+void set\+\_\+cov\+\_\+ldlt (\begin{DoxyParamCaption}\item[{Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$}]{cov\+\_\+ldlt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1multivariate__normal__distribution_a1df8892dd44e4b787f566ddab6e9d286}\index{multivariate\_normal\_distribution@{multivariate\_normal\_distribution}!set\_mean@{set\_mean}}
+\index{set\_mean@{set\_mean}!multivariate\_normal\_distribution@{multivariate\_normal\_distribution}}
+\doxysubsubsection{\texorpdfstring{set\_mean()}{set\_mean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__normal__distribution_a1df8892dd44e4b787f566ddab6e9d286} 
+void set\+\_\+mean (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{mean}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\item 
+src/\mbox{\hyperlink{distribution_8cpp}{distribution.\+cpp}}\end{DoxyCompactItemize}

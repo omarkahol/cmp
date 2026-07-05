@@ -1,0 +1,779 @@
+\doxysection{cmp\+::gp\+::Gaussian\+Process Class Reference}
+\hypertarget{classcmp_1_1gp_1_1_gaussian_process}{}\label{classcmp_1_1gp_1_1_gaussian_process}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+
+
+This class implements a Gaussian Process (GP) regression model for non-\/parametric Bayesian regression.  
+
+
+
+
+{\ttfamily \#include $<$gp.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{Gaussian\+Process}} ()
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a86813325c4394c3822f67add8354253a}{\texorpdfstring{$\sim$}{\string~}\+Gaussian\+Process}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_af6a110fcee0b97bf5fd79a03bc497241}{Gaussian\+Process}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \&kernel, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \&mean, Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ params, double nugget=1e-\/8)
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae3723a6f92a900dbefdc2277143a75d9}{Gaussian\+Process}} (const \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \&other)
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \& \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a2e46d3ac82ee147eb1bf5663a80d696c}{operator=}} (const \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \&other)
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a3063adb5fb290c195fb963e455fb85ea}{Gaussian\+Process}} (\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \&\&other) noexcept
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \& \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aed799faa6b3a16a83e42d085acfabd52}{operator=}} (\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \&\&other) noexcept
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a50f9449412e91c05f3d62449715ff62f}{set}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \&kernel, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \&mean, Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ params, double nugget=1e-\/8)
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ab49c381cf0027f77e8a493b94c55e138}{condition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&y\+Obs, bool copy\+Data=true, bool normalizeY=false)
+\begin{DoxyCompactList}\small\item\em Condition the GP on a set of observations (allow predictive posterior computation) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a8153df0fcf63902d8f99e13aa3c8501c}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&y\+Obs, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lb, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&ub, const \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}} \&\mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}}, const nlopt\+::algorithm \&alg, const double \&tol\+\_\+rel, bool copy\+Data=true, bool normalizeY=false, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&prior=\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15}{cmp\+::prior\+::\+Uniform\+::make}}(), const std\+::vector$<$ bool $>$ \&log\+Scale=\{\})
+\begin{DoxyCompactList}\small\item\em Fit the Gaussian Process to the observations. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_add352029266a5297021f045e021a27a4}{get\+Parameters}} () const
+\begin{DoxyCompactList}\small\item\em Get the hyperparameters of the Gaussian Process. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{cmp\+::mean\+::\+Mean}} $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a1ede6e7dc5c732b7e215931ebde95779}{get\+Mean}} () const
+\begin{DoxyCompactList}\small\item\em Gets the shared pointer to the GP prior mean function. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a92a2f833d0fe1024b359bc1ed40d9da7}{get\+Kernel}} () const
+\begin{DoxyCompactList}\small\item\em Gets the shared pointer to the GP covariance kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4f270f1d0734ce7e266cb24262b61528}{get\+Nugget}} () const
+\begin{DoxyCompactList}\small\item\em Gets the observation noise variance (nugget). \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a20896339bc48c4de5ffadfa309610c0c}{covariance}} (Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the covariance matrix of the Kernel. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ab2b9ccaacf6747926fb36dc718890039}{covariance\+Gradient}} (Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ par, const int \&i) const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4ad088783f49d3780530b513ccf87a61}{covariance\+Hessian}} (Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\item 
+const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \& \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a5203b3c60c69754fb70ab44a1cc8a924}{get\+Cov\+Decomposition}} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a57962eba46dcc49bf1561a2f167ce066}{get\+Alpha}} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a3816691896083bb0fd8cb8271083ffcc}{get\+Diag\+Cov\+Inverse}} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aadcb981d80ef084ef659d492706075de}{get\+Residual\+Vector}} () const
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \& \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a143608cb42b51a873ee9fce4d074bdc7}{get\+XObs}} () const
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \& \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a26da96ffcedd0219d7982abcaecf23b9}{get\+YObs}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ac2ab783f98785f652bd5d890ef72783e}{n\+Obs}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of training observations. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a1856da5ad122dca3219b03128e5b48ac}{prior\+Mean}} (Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the mean on the observations. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aa1858251cb0d8903a1eecad43908d712}{prior\+Mean\+Gradient}} (Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ par, const int \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluate the gradient of the mean function. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4d1d78422865a6f868effe028cc6c87c}{residual}} (Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ par) const
+\begin{DoxyCompactList}\small\item\em Evaluate the difference between the observation and the mean function. \end{DoxyCompactList}\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a2743af1cce11ba987ab7f2c9fbccacd7}{predict}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} prediction\+Type=\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}) const
+\begin{DoxyCompactList}\small\item\em Compute the predictive mean and variance at a new point. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a0b8db73744a4f762c523d34261df015a}{predict\+Mean}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} prediction\+Type=\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}) const
+\begin{DoxyCompactList}\small\item\em Compute the predictive mean at a new point. \end{DoxyCompactList}\item 
+std\+::pair$<$ Eigen\+::\+Vector\+Xd, Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a178fc2ad5579efa76961dcc1f0eb98d9}{predict\+Multiple}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+\_\+pts, \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} prediction\+Type=\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}) const
+\begin{DoxyCompactList}\small\item\em Compute the predictive variance at a new set of points. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aaf2426664ad51d6c826bddd505b931fe}{predict\+Mean\+Multiple}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+\_\+pts, \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} prediction\+Type=\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}) const
+\begin{DoxyCompactList}\small\item\em Compute the predictive mean at a new set of points. \end{DoxyCompactList}\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a3f6e80990413da57ec26e1979c0ae87b}{predict\+LOO}} (const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Compute the leave-\/one-\/out predictive mean and variance at the i-\/th observation point. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a78cb7b0ae4f15efacef96e4786e90048}{log\+Likelihood}} () const
+\begin{DoxyCompactList}\small\item\em Compute the log-\/likelihood of the observations given the hyperparameters. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a378a76dca17b76ad357a44fc106f410e}{log\+Likelihood\+LOO}} (const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Compute the leave-\/one-\/out log-\/likelihood of the observations given the hyperparameters. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_add94222d3fb955c643ab30605bab2ae4}{expected\+Variance\+Improvement}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+\_\+pts, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+\_\+pending, double nu) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae9b5587f0ed81f578c98ab7a5caeed61}{objective\+Function}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ grad, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&prior)
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ad22dd46bd5be7763735c938065bd06b3}{objective\+Function\+LOO}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ grad, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&prior)
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aedcef6ce567c447f29871f4fbb3b20ce}{objective\+Function\+LOOMSE}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ grad, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&prior)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a2c887aa1537dbb4e914f29eb545c47b0}{compute}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&par)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d}{par\+\_\+}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3}{p\+Kernel\+\_\+}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09}{p\+Mean\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7}{nugget\+\_\+}}
+\item 
+std\+::optional$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb}{x\+Obs\+\_\+}}
+\item 
+std\+::optional$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913}{y\+Obs\+\_\+}}
+\item 
+std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}{p\+XObs\+\_\+}}
+\item 
+std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb}{p\+YObs\+\_\+}}
+\item 
+Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0}{cov\+Decomposition\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf}{alpha\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8}{diag\+Cov\+Inverse\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed}{residual\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572}{normalize\+Y\+\_\+}} = false
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{cmp\+::scaler\+::\+Standard\+Scaler}} \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f}{y\+Scaler\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class implements a Gaussian Process (GP) regression model for non-\/parametric Bayesian regression. 
+
+\hypertarget{classcmp_1_1gp_1_1_gaussian_process_autotoc_md3}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Foundations}{Mathematical Foundations}}\label{classcmp_1_1gp_1_1_gaussian_process_autotoc_md3}
+A Gaussian Process is a collection of random variables, any finite number of which have a joint Gaussian distribution. It is completely specified by its mean function $m(\mathbf{x})$ and covariance (kernel) function $k(\mathbf{x}, \mathbf{x}\textnormal{\textquotesingle})$\+: \[ f(\mathbf{x}) \sim \mathcal{GP}\left(m(\mathbf{x}), k(\mathbf{x}, \mathbf{x}\textnormal{\textquotesingle})\right) \]
+
+Given a training dataset $\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N$ where $\mathbf{X} \in \mathbb{R}^{N \times D}$ and $\mathbf{y} \in \mathbb{R}^N$, the joint distribution of the training outputs and the predictive function value $f(\mathbf{x}_*)$ at a test point $\mathbf{x}_*$ is\+:      \[\begin{bmatrix} \mathbf{y} \\ f(\mathbf{x}_*) \end{bmatrix} \sim \mathcal{N}\left(
+\begin{bmatrix} \mathbf{m}(\mathbf{X}) \\ m(\mathbf{x}_*) \end{bmatrix},
+\begin{bmatrix} \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I} & \mathbf{k}(\mathbf{X}, \mathbf{x}_*) \\ \mathbf{k}(\mathbf{x}_*, \mathbf{X}) & k(\mathbf{x}_*, \mathbf{x}_*) \end{bmatrix}
+\right)
+\] where $\sigma_n^2$ is the nugget (representing the observation noise variance).
+
+The conditional posterior distribution at the test point $\mathbf{x}_*$ is given by\+: \[ f(\mathbf{x}_*) | \mathbf{X}, \mathbf{y}, \mathbf{x}_* \sim \mathcal{N}(\mu_*, \sigma_*^2) \] where the posterior mean $\mu_*$ and variance $\sigma_*^2$ are calculated as\+: \[ \mu_* = m(\mathbf{x}_*) + \mathbf{k}(\mathbf{x}_*, \mathbf{X}) \left[ \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I} \right]^{-1} (\mathbf{y} - \mathbf{m}(\mathbf{X})) \] \[ \sigma_*^2 = k(\mathbf{x}_*, \mathbf{x}_*) - \mathbf{k}(\mathbf{x}_*, \mathbf{X}) \left[ \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I} \right]^{-1} \mathbf{k}(\mathbf{X}, \mathbf{x}_*) \]\hypertarget{classcmp_1_1gp_1_1_gaussian_process_autotoc_md4}{}\doxysubsubsubsection{\texorpdfstring{Implementation Algorithms}{Implementation Algorithms}}\label{classcmp_1_1gp_1_1_gaussian_process_autotoc_md4}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{LDLT Decomposition}}\+: Directly inverting $\mathbf{K}_y = \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I}$ is numerically unstable and computationally expensive ( $O(N^3)$). We construct $\mathbf{K}_y$ and compute its LDLT decomposition\+: \[ \mathbf{K}_y = \mathbf{L} \mathbf{D} \mathbf{L}^T \]
+\item {\bfseries{Backsubstitution}}\+: We precompute the weight vector $\boldsymbol{\alpha}$ by solving\+: \[ \mathbf{L} \mathbf{D} \mathbf{L}^T \boldsymbol{\alpha} = \mathbf{y} - \mathbf{m}(\mathbf{X}) \] The predictive posterior mean is then efficiently evaluated as\+: \[ \mu_* = m(\mathbf{x}_*) + \mathbf{k}(\mathbf{x}_*, \mathbf{X}) \boldsymbol{\alpha} \]
+\item {\bfseries{Hyperparameter Optimization}}\+: The hyperparameters $\boldsymbol{\theta}$ of the covariance and mean functions are optimized by maximizing the marginal log-\/likelihood\+: \[ \log p(\mathbf{y} | \mathbf{X}, \boldsymbol{\theta}) = -\frac{1}{2} (\mathbf{y} - \mathbf{m}(\mathbf{X}))^T \mathbf{K}_y^{-1} (\mathbf{y} - \mathbf{m}(\mathbf{X})) - \frac{1}{2} \log |\mathbf{K}_y| - \frac{N}{2} \log (2\pi) \] using gradient-\/free (e.\+g., Subplex) or gradient-\/based NLopt algorithms.
+\end{DoxyEnumerate}\hypertarget{classcmp_1_1gp_1_1_gaussian_process_autotoc_md5}{}\doxysubsubsubsection{\texorpdfstring{Constraints \& Invariants}{Constraints \& Invariants}}\label{classcmp_1_1gp_1_1_gaussian_process_autotoc_md5}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Nugget ( $\sigma_n^2$)\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: Must be strictly positive ( $\ge 10^{-12}$, default $10^{-8}$) to ensure the covariance matrix remains strictly positive-\/definite.
+\item {\bfseries{Training Inputs}}\+: Pre-\/conditions require that the dataset is non-\/empty ( $N \ge 1$).
+\item {\bfseries{Hyperparameter bounds}}\+: Must satisfy the user-\/specified bounds $\mathbf{lb} \le \boldsymbol{\theta} \le \mathbf{ub}$. 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!GaussianProcess@{GaussianProcess}}
+\index{GaussianProcess@{GaussianProcess}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{GaussianProcess()}{GaussianProcess()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360} 
+cmp\+::gp\+::\+Gaussian\+Process\+::\+Gaussian\+Process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a86813325c4394c3822f67add8354253a}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!````~GaussianProcess@{\texorpdfstring{$\sim$}{\string~}GaussianProcess}}
+\index{````~GaussianProcess@{\texorpdfstring{$\sim$}{\string~}GaussianProcess}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GaussianProcess()}{\string~GaussianProcess()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a86813325c4394c3822f67add8354253a} 
+cmp\+::gp\+::\+Gaussian\+Process\+::\texorpdfstring{$\sim$}{\string~}\+Gaussian\+Process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_af6a110fcee0b97bf5fd79a03bc497241}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!GaussianProcess@{GaussianProcess}}
+\index{GaussianProcess@{GaussianProcess}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{GaussianProcess()}{GaussianProcess()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_af6a110fcee0b97bf5fd79a03bc497241} 
+cmp\+::gp\+::\+Gaussian\+Process\+::\+Gaussian\+Process (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \&}]{kernel}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \&}]{mean}{, }\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{params}{, }\item[{double}]{nugget}{ = {\ttfamily 1e-\/8}}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_ae3723a6f92a900dbefdc2277143a75d9}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!GaussianProcess@{GaussianProcess}}
+\index{GaussianProcess@{GaussianProcess}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{GaussianProcess()}{GaussianProcess()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_ae3723a6f92a900dbefdc2277143a75d9} 
+cmp\+::gp\+::\+Gaussian\+Process\+::\+Gaussian\+Process (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \&}]{other}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a3063adb5fb290c195fb963e455fb85ea}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!GaussianProcess@{GaussianProcess}}
+\index{GaussianProcess@{GaussianProcess}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{GaussianProcess()}{GaussianProcess()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a3063adb5fb290c195fb963e455fb85ea} 
+cmp\+::gp\+::\+Gaussian\+Process\+::\+Gaussian\+Process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a2c887aa1537dbb4e914f29eb545c47b0}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!compute@{compute}}
+\index{compute@{compute}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a2c887aa1537dbb4e914f29eb545c47b0} 
+void Gaussian\+Process\+::compute (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{par}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_ab49c381cf0027f77e8a493b94c55e138}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!condition@{condition}}
+\index{condition@{condition}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{condition()}{condition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_ab49c381cf0027f77e8a493b94c55e138} 
+void cmp\+::gp\+::\+Gaussian\+Process\+::condition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{y\+Obs}{, }\item[{bool}]{copy\+Data}{ = {\ttfamily true}, }\item[{bool}]{normalizeY}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Condition the GP on a set of observations (allow predictive posterior computation) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & The observation points \\
+\hline
+{\em y\+Obs} & The observation values \\
+\hline
+{\em copy\+Data} & Decide whether or not to make a deep copy of the data \\
+\hline
+{\em normalizeY} & Whether to normalize the observation values\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+if copy\+Data is false, and normalizeY is true the function will throw an exception, since it cannot normalize the data without owning it. 
+\end{DoxyNote}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a20896339bc48c4de5ffadfa309610c0c}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!covariance@{covariance}}
+\index{covariance@{covariance}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a20896339bc48c4de5ffadfa309610c0c} 
+Eigen\+::\+Matrix\+Xd Gaussian\+Process\+::covariance (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{par}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluates the covariance matrix of the Kernel. 
+
+
+\begin{DoxyItemize}
+\item FUNCTIONS FOR THE KERNEL 
+\begin{DoxyParams}{Parameters}
+{\em par} & The vector of hyperparameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a matrix containing the evaluation of the Kernel on the observation points 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_ab2b9ccaacf6747926fb36dc718890039}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!covarianceGradient@{covarianceGradient}}
+\index{covarianceGradient@{covarianceGradient}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{covarianceGradient()}{covarianceGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_ab2b9ccaacf6747926fb36dc718890039} 
+Eigen\+::\+Matrix\+Xd Gaussian\+Process\+::covariance\+Gradient (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{par}{, }\item[{const int \&}]{i}{}\end{DoxyParamCaption}) const}
+
+Evaluate the i-\/th component of the gradient of the covariance matrix. 
+\begin{DoxyParams}{Parameters}
+{\em par} & The vector of hyperparameters \\
+\hline
+{\em i} & The component of the gradient required \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a4ad088783f49d3780530b513ccf87a61}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!covarianceHessian@{covarianceHessian}}
+\index{covarianceHessian@{covarianceHessian}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{covarianceHessian()}{covarianceHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a4ad088783f49d3780530b513ccf87a61} 
+Eigen\+::\+Matrix\+Xd Gaussian\+Process\+::covariance\+Hessian (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const}
+
+Evaluate the ij component of the hessian of the covariance matrix. 
+\begin{DoxyParams}{Parameters}
+{\em par} & The vector of hyperparameters \\
+\hline
+{\em i} & row of the hessian matrix \\
+\hline
+{\em j} & colum of the hessian matrix \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_add94222d3fb955c643ab30605bab2ae4}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!expectedVarianceImprovement@{expectedVarianceImprovement}}
+\index{expectedVarianceImprovement@{expectedVarianceImprovement}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{expectedVarianceImprovement()}{expectedVarianceImprovement()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_add94222d3fb955c643ab30605bab2ae4} 
+Eigen\+::\+Matrix\+Xd Gaussian\+Process\+::expected\+Variance\+Improvement (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+\_\+pts}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+\_\+pending}{, }\item[{double}]{nu}{}\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyItemize}
+\item FUNCTIONS FOR THE EXPECTED VARIANCE IMPROVEMENT 
+\end{DoxyItemize}\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a8153df0fcf63902d8f99e13aa3c8501c}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!fit@{fit}}
+\index{fit@{fit}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a8153df0fcf63902d8f99e13aa3c8501c} 
+void Gaussian\+Process\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{y\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lb}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{ub}{, }\item[{const \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}} \&}]{method}{, }\item[{const nlopt\+::algorithm \&}]{alg}{, }\item[{const double \&}]{tol\+\_\+rel}{, }\item[{bool}]{copy\+Data}{ = {\ttfamily true}, }\item[{bool}]{normalizeY}{ = {\ttfamily false}, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&}]{prior}{ = {\ttfamily \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15}{cmp\+::prior\+::\+Uniform\+::make}}()}, }\item[{const std\+::vector$<$ bool $>$ \&}]{log\+Scale}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+
+
+Fit the Gaussian Process to the observations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & the observation points \\
+\hline
+{\em y\+Obs} & the observation values \\
+\hline
+{\em lb} & the lower bound for the hyperparameters \\
+\hline
+{\em ub} & the upper bound for the hyperparameters \\
+\hline
+{\em method} & the method to be used for the optimization \\
+\hline
+{\em alg} & the algorithm to be used for the optimization \\
+\hline
+{\em tol\+\_\+rel} & the relative tolerance for the optimization \\
+\hline
+{\em copy\+Data} & whether to copy the observation data internally (default is true) \\
+\hline
+{\em normalizeY} & whether to normalize the observation values (default is false) \\
+\hline
+{\em prior} & the prior distribution for the hyperparameters (default is uniform prior) \\
+\hline
+{\em log\+Scale} & a vector indicating which hyperparameters should be optimized in log scale (default is all false)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item FIT THE GP 
+\end{DoxyItemize}\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a57962eba46dcc49bf1561a2f167ce066}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getAlpha@{getAlpha}}
+\index{getAlpha@{getAlpha}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getAlpha()}{getAlpha()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a57962eba46dcc49bf1561a2f167ce066} 
+const Eigen\+::\+Vector\+Xd \& cmp\+::gp\+::\+Gaussian\+Process\+::get\+Alpha (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a5203b3c60c69754fb70ab44a1cc8a924}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getCovDecomposition@{getCovDecomposition}}
+\index{getCovDecomposition@{getCovDecomposition}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getCovDecomposition()}{getCovDecomposition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a5203b3c60c69754fb70ab44a1cc8a924} 
+const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \& cmp\+::gp\+::\+Gaussian\+Process\+::get\+Cov\+Decomposition (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a3816691896083bb0fd8cb8271083ffcc}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getDiagCovInverse@{getDiagCovInverse}}
+\index{getDiagCovInverse@{getDiagCovInverse}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getDiagCovInverse()}{getDiagCovInverse()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a3816691896083bb0fd8cb8271083ffcc} 
+const Eigen\+::\+Vector\+Xd \& cmp\+::gp\+::\+Gaussian\+Process\+::get\+Diag\+Cov\+Inverse (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a92a2f833d0fe1024b359bc1ed40d9da7}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getKernel@{getKernel}}
+\index{getKernel@{getKernel}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getKernel()}{getKernel()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a92a2f833d0fe1024b359bc1ed40d9da7} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}} $>$ cmp\+::gp\+::\+Gaussian\+Process\+::get\+Kernel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the shared pointer to the GP covariance kernel. 
+
+\begin{DoxyReturn}{Returns}
+Shared pointer to the Covariance object. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a1ede6e7dc5c732b7e215931ebde95779}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getMean@{getMean}}
+\index{getMean@{getMean}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getMean()}{getMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a1ede6e7dc5c732b7e215931ebde95779} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{cmp\+::mean\+::\+Mean}} $>$ cmp\+::gp\+::\+Gaussian\+Process\+::get\+Mean (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the shared pointer to the GP prior mean function. 
+
+\begin{DoxyReturn}{Returns}
+Shared pointer to the Mean object. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a4f270f1d0734ce7e266cb24262b61528}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getNugget@{getNugget}}
+\index{getNugget@{getNugget}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getNugget()}{getNugget()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a4f270f1d0734ce7e266cb24262b61528} 
+double cmp\+::gp\+::\+Gaussian\+Process\+::get\+Nugget (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the observation noise variance (nugget). 
+
+\begin{DoxyReturn}{Returns}
+Nugget value. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_add352029266a5297021f045e021a27a4}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getParameters@{getParameters}}
+\index{getParameters@{getParameters}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getParameters()}{getParameters()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_add352029266a5297021f045e021a27a4} 
+Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::get\+Parameters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the hyperparameters of the Gaussian Process. 
+
+\begin{DoxyReturn}{Returns}
+the value of the hyperparameters 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_aadcb981d80ef084ef659d492706075de}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getResidualVector@{getResidualVector}}
+\index{getResidualVector@{getResidualVector}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getResidualVector()}{getResidualVector()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_aadcb981d80ef084ef659d492706075de} 
+const Eigen\+::\+Vector\+Xd \& cmp\+::gp\+::\+Gaussian\+Process\+::get\+Residual\+Vector (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a143608cb42b51a873ee9fce4d074bdc7}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getXObs@{getXObs}}
+\index{getXObs@{getXObs}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getXObs()}{getXObs()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a143608cb42b51a873ee9fce4d074bdc7} 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \& cmp\+::gp\+::\+Gaussian\+Process\+::get\+XObs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a26da96ffcedd0219d7982abcaecf23b9}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!getYObs@{getYObs}}
+\index{getYObs@{getYObs}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{getYObs()}{getYObs()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a26da96ffcedd0219d7982abcaecf23b9} 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \& cmp\+::gp\+::\+Gaussian\+Process\+::get\+YObs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a78cb7b0ae4f15efacef96e4786e90048}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!logLikelihood@{logLikelihood}}
+\index{logLikelihood@{logLikelihood}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{logLikelihood()}{logLikelihood()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a78cb7b0ae4f15efacef96e4786e90048} 
+double Gaussian\+Process\+::log\+Likelihood (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Compute the log-\/likelihood of the observations given the hyperparameters. 
+
+
+\begin{DoxyItemize}
+\item LOG LIKELIHOOD FUNCTIONS \begin{DoxyReturn}{Returns}
+The value of the log-\/likelihood 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+error} & if the GP is not conditioned \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyItemize}\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a378a76dca17b76ad357a44fc106f410e}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!logLikelihoodLOO@{logLikelihoodLOO}}
+\index{logLikelihoodLOO@{logLikelihoodLOO}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{logLikelihoodLOO()}{logLikelihoodLOO()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a378a76dca17b76ad357a44fc106f410e} 
+double Gaussian\+Process\+::log\+Likelihood\+LOO (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Compute the leave-\/one-\/out log-\/likelihood of the observations given the hyperparameters. 
+
+\begin{DoxyReturn}{Returns}
+The value of the leave-\/one-\/out log-\/likelihood 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+error} & if the GP is not conditioned or out\+\_\+of\+\_\+range if i is out of range \mbox{[}0, n\+Obs\+\_\+) \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_ac2ab783f98785f652bd5d890ef72783e}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!nObs@{nObs}}
+\index{nObs@{nObs}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{nObs()}{nObs()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_ac2ab783f98785f652bd5d890ef72783e} 
+size\+\_\+t cmp\+::gp\+::\+Gaussian\+Process\+::n\+Obs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the number of training observations. 
+
+\begin{DoxyReturn}{Returns}
+Number of training data rows. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_ae9b5587f0ed81f578c98ab7a5caeed61}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!objectiveFunction@{objectiveFunction}}
+\index{objectiveFunction@{objectiveFunction}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{objectiveFunction()}{objectiveFunction()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_ae9b5587f0ed81f578c98ab7a5caeed61} 
+double Gaussian\+Process\+::objective\+Function (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$}]{grad}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&}]{prior}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*} OBJECTIVE FUNCTIONS FOR THE OPTIMIZATION 
+\end{DoxyItemize}\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_ad22dd46bd5be7763735c938065bd06b3}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!objectiveFunctionLOO@{objectiveFunctionLOO}}
+\index{objectiveFunctionLOO@{objectiveFunctionLOO}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{objectiveFunctionLOO()}{objectiveFunctionLOO()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_ad22dd46bd5be7763735c938065bd06b3} 
+double Gaussian\+Process\+::objective\+Function\+LOO (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$}]{grad}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&}]{prior}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_aedcef6ce567c447f29871f4fbb3b20ce}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!objectiveFunctionLOOMSE@{objectiveFunctionLOOMSE}}
+\index{objectiveFunctionLOOMSE@{objectiveFunctionLOOMSE}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{objectiveFunctionLOOMSE()}{objectiveFunctionLOOMSE()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_aedcef6ce567c447f29871f4fbb3b20ce} 
+double Gaussian\+Process\+::objective\+Function\+LOOMSE (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$}]{grad}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&}]{prior}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a2e46d3ac82ee147eb1bf5663a80d696c}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a2e46d3ac82ee147eb1bf5663a80d696c} 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \& cmp\+::gp\+::\+Gaussian\+Process\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \&}]{other}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_aed799faa6b3a16a83e42d085acfabd52}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_aed799faa6b3a16a83e42d085acfabd52} 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \& cmp\+::gp\+::\+Gaussian\+Process\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a2743af1cce11ba987ab7f2c9fbccacd7}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!predict@{predict}}
+\index{predict@{predict}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a2743af1cce11ba987ab7f2c9fbccacd7} 
+std\+::pair$<$ double, double $>$ Gaussian\+Process\+::predict (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}}]{prediction\+Type}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}}}\end{DoxyParamCaption}) const}
+
+
+
+Compute the predictive mean and variance at a new point. 
+
+FUNCTIONS FOR THE PREDICTIVE DISTRIBUTION 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The new prediction point \\
+\hline
+{\em prediction\+Type} & The type of prediction (prior or posterior) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pair containing the mean and variance of the prediction
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item MAKING PREDICTIONS 
+\end{DoxyItemize}\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a3f6e80990413da57ec26e1979c0ae87b}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!predictLOO@{predictLOO}}
+\index{predictLOO@{predictLOO}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{predictLOO()}{predictLOO()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a3f6e80990413da57ec26e1979c0ae87b} 
+std\+::pair$<$ double, double $>$ cmp\+::gp\+::\+Gaussian\+Process\+::predict\+LOO (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Compute the leave-\/one-\/out predictive mean and variance at the i-\/th observation point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The index of the observation point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pair containing the mean and variance of the leave-\/one-\/out prediction 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & if i is out of range \mbox{[}0, n\+Obs\+\_\+) and runtime error if the GP is not conditioned \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a0b8db73744a4f762c523d34261df015a}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!predictMean@{predictMean}}
+\index{predictMean@{predictMean}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{predictMean()}{predictMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a0b8db73744a4f762c523d34261df015a} 
+double Gaussian\+Process\+::predict\+Mean (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}}]{prediction\+Type}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}}}\end{DoxyParamCaption}) const}
+
+
+
+Compute the predictive mean at a new point. 
+
+\begin{DoxyNote}{Note}
+The predictive mean can be computed in O(n) time for the posterior and O(1) time for the prior. Hence it is better to use this function if only the mean is required.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The new prediction point \\
+\hline
+{\em prediction\+Type} & The type of prediction (prior or posterior) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The predictive mean 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_aaf2426664ad51d6c826bddd505b931fe}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!predictMeanMultiple@{predictMeanMultiple}}
+\index{predictMeanMultiple@{predictMeanMultiple}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{predictMeanMultiple()}{predictMeanMultiple()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_aaf2426664ad51d6c826bddd505b931fe} 
+Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::predict\+Mean\+Multiple (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+\_\+pts}{, }\item[{\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}}]{prediction\+Type}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}}}\end{DoxyParamCaption}) const}
+
+
+
+Compute the predictive mean at a new set of points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+pts} & The new prediction points \\
+\hline
+{\em prediction\+Type} & The type of prediction (prior or posterior) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The predictive mean 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The predictive mean can be computed in O(n\texorpdfstring{$\ast$}{*}m) time for the posterior and O(m) time for the prior, where n is the number of observations and m is the number of prediction points. Hence it is better to use this function if only the mean is required. 
+\end{DoxyNote}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a178fc2ad5579efa76961dcc1f0eb98d9}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!predictMultiple@{predictMultiple}}
+\index{predictMultiple@{predictMultiple}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{predictMultiple()}{predictMultiple()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a178fc2ad5579efa76961dcc1f0eb98d9} 
+std\+::pair$<$ Eigen\+::\+Vector\+Xd, Eigen\+::\+Matrix\+Xd $>$ cmp\+::gp\+::\+Gaussian\+Process\+::predict\+Multiple (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+\_\+pts}{, }\item[{\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}}]{prediction\+Type}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}}}\end{DoxyParamCaption}) const}
+
+
+
+Compute the predictive variance at a new set of points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+pts} & The new prediction points \\
+\hline
+{\em prediction\+Type} & The type of prediction (prior or posterior) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pair containing the mean and variance of the predictions 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a1856da5ad122dca3219b03128e5b48ac}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!priorMean@{priorMean}}
+\index{priorMean@{priorMean}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{priorMean()}{priorMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a1856da5ad122dca3219b03128e5b48ac} 
+Eigen\+::\+Vector\+Xd Gaussian\+Process\+::prior\+Mean (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{par}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluates the mean on the observations. 
+
+
+\begin{DoxyItemize}
+\item FUNCTIONS FOR THE MEAN 
+\begin{DoxyParams}{Parameters}
+{\em par} & The vector of hyperparameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The mean of the points. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_aa1858251cb0d8903a1eecad43908d712}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!priorMeanGradient@{priorMeanGradient}}
+\index{priorMeanGradient@{priorMeanGradient}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{priorMeanGradient()}{priorMeanGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_aa1858251cb0d8903a1eecad43908d712} 
+Eigen\+::\+Vector\+Xd Gaussian\+Process\+::prior\+Mean\+Gradient (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{par}{, }\item[{const int \&}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluate the gradient of the mean function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & The vector of hyperparameters \\
+\hline
+{\em i} & the index of the hyperparameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector containing the computation of the gradient 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a4d1d78422865a6f868effe028cc6c87c}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!residual@{residual}}
+\index{residual@{residual}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{residual()}{residual()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a4d1d78422865a6f868effe028cc6c87c} 
+Eigen\+::\+Vector\+Xd Gaussian\+Process\+::residual (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{par}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluate the difference between the observation and the mean function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & The vector of hyperparameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector containing the computation of the residual 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a50f9449412e91c05f3d62449715ff62f}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!set@{set}}
+\index{set@{set}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a50f9449412e91c05f3d62449715ff62f} 
+void cmp\+::gp\+::\+Gaussian\+Process\+::set (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \&}]{kernel}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \&}]{mean}{, }\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{params}{, }\item[{double}]{nugget}{ = {\ttfamily 1e-\/8}}\end{DoxyParamCaption})}
+
+A GP is defined by a Kernel function, a mean function, a nugget and its hyperparameters. 
+\begin{DoxyParams}{Parameters}
+{\em kernel} & The Kernel function \\
+\hline
+{\em mean} & The mean function \\
+\hline
+{\em params} & The vector of hyperparameters \\
+\hline
+{\em nugget} & The nugget value (default is 1e-\/8)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function is used to set the Kernel and mean functions of the GP. 
+\end{DoxyNote}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!alpha\_@{alpha\_}}
+\index{alpha\_@{alpha\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{alpha\_}{alpha\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf} 
+Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::alpha\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!covDecomposition\_@{covDecomposition\_}}
+\index{covDecomposition\_@{covDecomposition\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{covDecomposition\_}{covDecomposition\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0} 
+Eigen\+::\+LDLT$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::gp\+::\+Gaussian\+Process\+::cov\+Decomposition\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!diagCovInverse\_@{diagCovInverse\_}}
+\index{diagCovInverse\_@{diagCovInverse\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{diagCovInverse\_}{diagCovInverse\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8} 
+Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::diag\+Cov\+Inverse\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!normalizeY\_@{normalizeY\_}}
+\index{normalizeY\_@{normalizeY\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{normalizeY\_}{normalizeY\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572} 
+bool cmp\+::gp\+::\+Gaussian\+Process\+::normalize\+Y\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!nugget\_@{nugget\_}}
+\index{nugget\_@{nugget\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{nugget\_}{nugget\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7} 
+double cmp\+::gp\+::\+Gaussian\+Process\+::nugget\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!par\_@{par\_}}
+\index{par\_@{par\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{par\_}{par\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d} 
+Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::par\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!pKernel\_@{pKernel\_}}
+\index{pKernel\_@{pKernel\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{pKernel\_}{pKernel\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}}$>$ cmp\+::gp\+::\+Gaussian\+Process\+::p\+Kernel\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!pMean\_@{pMean\_}}
+\index{pMean\_@{pMean\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{pMean\_}{pMean\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}}$>$ cmp\+::gp\+::\+Gaussian\+Process\+::p\+Mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!pXObs\_@{pXObs\_}}
+\index{pXObs\_@{pXObs\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{pXObs\_}{pXObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18} 
+std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ $>$ cmp\+::gp\+::\+Gaussian\+Process\+::p\+XObs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!pYObs\_@{pYObs\_}}
+\index{pYObs\_@{pYObs\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{pYObs\_}{pYObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb} 
+std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$ $>$ cmp\+::gp\+::\+Gaussian\+Process\+::p\+YObs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!residual\_@{residual\_}}
+\index{residual\_@{residual\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{residual\_}{residual\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed} 
+Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::residual\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!xObs\_@{xObs\_}}
+\index{xObs\_@{xObs\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb} 
+std\+::optional$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::gp\+::\+Gaussian\+Process\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!yObs\_@{yObs\_}}
+\index{yObs\_@{yObs\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{yObs\_}{yObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913} 
+std\+::optional$<$Eigen\+::\+Vector\+Xd$>$ cmp\+::gp\+::\+Gaussian\+Process\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!yScaler\_@{yScaler\_}}
+\index{yScaler\_@{yScaler\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
+\doxysubsubsection{\texorpdfstring{yScaler\_}{yScaler\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f} 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{cmp\+::scaler\+::\+Standard\+Scaler}} cmp\+::gp\+::\+Gaussian\+Process\+::y\+Scaler\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{gp_8h}{gp.\+h}}\item 
+src/\mbox{\hyperlink{gp_8cpp}{gp.\+cpp}}\end{DoxyCompactItemize}

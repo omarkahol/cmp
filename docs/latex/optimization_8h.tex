@@ -1,0 +1,34 @@
+\doxysection{include/optimization.h File Reference}
+\hypertarget{optimization_8h}{}\label{optimization_8h}\index{include/optimization.h@{include/optimization.h}}
+
+
+Functor wrapper for NLopt with automatic, transparent log-\/scaling.  
+
+
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$nlopt.\+hpp$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1_objective_functor}{cmp\+::\+Objective\+Functor}}
+\begin{DoxyCompactList}\small\item\em Functor wrapper for NLopt with automatic, transparent parameter space mapping (e.\+g., log-\/scaling). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcmp_1_1_objective_functor_1_1_constraint_context}{cmp\+::\+Objective\+Functor\+::\+Constraint\+Context}}
+\begin{DoxyCompactList}\small\item\em Context struct for NLopt constraint evaluation callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacecmp_ad81c50ed5f55159cbd1d893f599ba74e}{cmp\+::nlopt\+\_\+max}} (\mbox{\hyperlink{classcmp_1_1_objective_functor}{cmp\+::\+Objective\+Functor}} \&f, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ x0, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lb, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&ub, nlopt\+::algorithm alg=nlopt\+::\+LN\+\_\+\+SBPLX, double ftol\+\_\+rel=1e-\/6)
+\begin{DoxyCompactList}\small\item\em Global helper function to execute NLopt maximization, managing the log-\/scaling wrapper. Users pass physical, real-\/world bounds and initial guesses. The function manages the log translations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functor wrapper for NLopt with automatic, transparent log-\/scaling. 
+

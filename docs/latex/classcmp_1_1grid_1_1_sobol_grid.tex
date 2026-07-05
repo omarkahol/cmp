@@ -1,0 +1,133 @@
+\doxysection{cmp\+::grid\+::Sobol\+Grid Class Reference}
+\hypertarget{classcmp_1_1grid_1_1_sobol_grid}{}\label{classcmp_1_1grid_1_1_sobol_grid}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+
+
+Sobol low-\/discrepancy sequence grid generator.  
+
+
+
+
+{\ttfamily \#include $<$grid.\+h$>$}
+
+Inheritance diagram for cmp\+::grid\+::Sobol\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1grid_1_1_sobol_grid}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad4895def5371c3f3eb22b5ae68785b13}{Sobol\+Grid}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lower\+Bound, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&upper\+Bound)
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acb8d1bf35f8934dd3c22468d47995fe7}{construct}} (const size\+\_\+t \&n\+Points) override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a24fc446f1ec159d901cae3c7fa2cdd9c}{operator()}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ae78194e7d58008019ccaa037e56650ef}{dim}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{cmp\+::grid\+::\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\texorpdfstring{$\sim$}{\string~}\+Grid}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::random\+::sobol \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5}{lower\+Bound\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_afdf04d200badf8c27aa11930c3ef781b}{upper\+Bound\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Sobol low-\/discrepancy sequence grid generator. 
+
+Mathematical Formulation Generates points using the quasi-\/random Sobol sequence to minimize star discrepancy\+:   \[D_N^*(\mathcal{P}) = O\left( \frac{\log^D N}{N} \right)
+\] ensuring faster convergence of multi-\/dimensional integrals compared to standard Monte Carlo.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Invokes Boost\textquotesingle{}s Sobol generator.
+\item Multiplies generated uniform fractions by dimension bounds $[a_d, b_d]$.
+\item Shuffles output coordinates to break spatial correlations in short prefixes. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_ad4895def5371c3f3eb22b5ae68785b13}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}!SobolGrid@{SobolGrid}}
+\index{SobolGrid@{SobolGrid}!cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+\doxysubsubsection{\texorpdfstring{SobolGrid()}{SobolGrid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_sobol_grid_ad4895def5371c3f3eb22b5ae68785b13} 
+cmp\+::grid\+::\+Sobol\+Grid\+::\+Sobol\+Grid (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lower\+Bound}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{upper\+Bound}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_acb8d1bf35f8934dd3c22468d47995fe7}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}!construct@{construct}}
+\index{construct@{construct}!cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_sobol_grid_acb8d1bf35f8934dd3c22468d47995fe7} 
+Eigen\+::\+Matrix\+Xd cmp\+::grid\+::\+Sobol\+Grid\+::construct (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_ae78194e7d58008019ccaa037e56650ef}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}!dim@{dim}}
+\index{dim@{dim}!cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_sobol_grid_ae78194e7d58008019ccaa037e56650ef} 
+size\+\_\+t cmp\+::grid\+::\+Sobol\+Grid\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_a24fc446f1ec159d901cae3c7fa2cdd9c}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}!operator()@{operator()}}
+\index{operator()@{operator()}!cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_sobol_grid_a24fc446f1ec159d901cae3c7fa2cdd9c} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Sobol\+Grid\+::operator() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}!dimension\_@{dimension\_}}
+\index{dimension\_@{dimension\_}!cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+\doxysubsubsection{\texorpdfstring{dimension\_}{dimension\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540} 
+size\+\_\+t cmp\+::grid\+::\+Sobol\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}!gen\_@{gen\_}}
+\index{gen\_@{gen\_}!cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+\doxysubsubsection{\texorpdfstring{gen\_}{gen\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d} 
+boost\+::random\+::sobol cmp\+::grid\+::\+Sobol\+Grid\+::gen\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Sobol\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_sobol_grid_afdf04d200badf8c27aa11930c3ef781b}\index{cmp::grid::SobolGrid@{cmp::grid::SobolGrid}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::grid::SobolGrid@{cmp::grid::SobolGrid}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_sobol_grid_afdf04d200badf8c27aa11930c3ef781b} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Sobol\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{grid_8h}{grid.\+h}}\end{DoxyCompactItemize}

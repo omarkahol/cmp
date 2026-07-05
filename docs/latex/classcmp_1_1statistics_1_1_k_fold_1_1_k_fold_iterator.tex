@@ -1,0 +1,114 @@
+\doxysection{cmp\+::statistics\+::KFold\+::KFold\+Iterator Class Reference}
+\hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{}\label{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}\index{cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}}
+
+
+Iterator class to traverse folds for K-\/\+Fold cross-\/validation.  
+
+
+
+
+{\ttfamily \#include $<$statistics.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a6e3a816cd0afe3290d4b44b678ddebf1}{KFold\+Iterator}} (const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{KFold}} \&kf, Eigen\+::\+Index split)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_af62ee2692c2dc7286f2e542276ed7772}{operator!=}} (const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}} \&other) const
+\begin{DoxyCompactList}\small\item\em Checks inequality with another iterator. \end{DoxyCompactList}\item 
+std\+::pair$<$ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}, \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a9c1a24c70d594a3b48af46614f5a513f}{operator\texorpdfstring{$\ast$}{*}}} () const
+\begin{DoxyCompactList}\small\item\em Dereferences the iterator to compute training and test index sets for the current fold. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}} \& \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa367728d4a1ae929534e3c876060819e}{operator++}} ()
+\begin{DoxyCompactList}\small\item\em Increments the iterator to point to the next fold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Index \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}{current\+Split\+\_\+}}
+\item 
+const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{KFold}} \& \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Iterator class to traverse folds for K-\/\+Fold cross-\/validation. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a6e3a816cd0afe3290d4b44b678ddebf1}\index{cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}!KFoldIterator@{KFoldIterator}}
+\index{KFoldIterator@{KFoldIterator}!cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}}
+\doxysubsubsection{\texorpdfstring{KFoldIterator()}{KFoldIterator()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a6e3a816cd0afe3290d4b44b678ddebf1} 
+cmp\+::statistics\+::\+KFold\+::\+KFold\+Iterator\+::\+KFold\+Iterator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{KFold}} \&}]{kf}{, }\item[{Eigen\+::\+Index}]{split}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kf} & Reference to the parent \doxylink{classcmp_1_1statistics_1_1_k_fold}{KFold} object. \\
+\hline
+{\em split} & Index of the current split/fold. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_af62ee2692c2dc7286f2e542276ed7772}\index{cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_af62ee2692c2dc7286f2e542276ed7772} 
+bool cmp\+::statistics\+::\+KFold\+::\+KFold\+Iterator\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}} \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks inequality with another iterator. 
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a9c1a24c70d594a3b48af46614f5a513f}\index{cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a9c1a24c70d594a3b48af46614f5a513f} 
+std\+::pair$<$ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}, \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ cmp\+::statistics\+::\+KFold\+::\+KFold\+Iterator\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dereferences the iterator to compute training and test index sets for the current fold. 
+
+\begin{DoxyReturn}{Returns}
+A pair containing \{train\+\_\+indices, test\+\_\+indices\}. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa367728d4a1ae929534e3c876060819e}\index{cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}!operator++@{operator++}}
+\index{operator++@{operator++}!cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa367728d4a1ae929534e3c876060819e} 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}} \& cmp\+::statistics\+::\+KFold\+::\+KFold\+Iterator\+::operator++ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Increments the iterator to point to the next fold. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}\index{cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}!currentSplit\_@{currentSplit\_}}
+\index{currentSplit\_@{currentSplit\_}!cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}}
+\doxysubsubsection{\texorpdfstring{currentSplit\_}{currentSplit\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682} 
+Eigen\+::\+Index cmp\+::statistics\+::\+KFold\+::\+KFold\+Iterator\+::current\+Split\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}\index{cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}!parent\_@{parent\_}}
+\index{parent\_@{parent\_}!cmp::statistics::KFold::KFoldIterator@{cmp::statistics::KFold::KFoldIterator}}
+\doxysubsubsection{\texorpdfstring{parent\_}{parent\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0} 
+const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{KFold}}\& cmp\+::statistics\+::\+KFold\+::\+KFold\+Iterator\+::parent\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{statistics_8h}{statistics.\+h}}\end{DoxyCompactItemize}

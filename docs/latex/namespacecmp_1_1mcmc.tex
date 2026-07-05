@@ -1,0 +1,46 @@
+\doxysection{cmp\+::mcmc Namespace Reference}
+\hypertarget{namespacecmp_1_1mcmc}{}\label{namespacecmp_1_1mcmc}\index{cmp::mcmc@{cmp::mcmc}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain}{Evolutionary\+Markov\+Chain}}
+\begin{DoxyCompactList}\small\item\em Implements an Evolutionary Markov Chain Monte Carlo sampler. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain}{Hamiltonian\+Markov\+Chain}}
+\begin{DoxyCompactList}\small\item\em Implements the Hamiltonian Monte Carlo (HMC) algorithm with the No-\/\+U-\/\+Turn Sampler (NUTS) and Dual Averaging. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{Markov\+Chain}}
+\begin{DoxyCompactList}\small\item\em Represents a single Markov Chain utilizing Delayed Rejection Adaptive Metropolis (DRAM) for sampling. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacecmp_1_1mcmc_a45523db96e65cb76028af79f8a3b319f}{log1m}} (double a)
+\item 
+{\footnotesize template$<$typename Proposal\+Type$>$ }\\double \mbox{\hyperlink{namespacecmp_1_1mcmc_a5f3e921a004b7fa12216fe92d9e2dfc2}{multi\+Chain\+Diagnosis}} (const std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{Markov\+Chain}}$<$ Proposal\+Type $>$ $>$ \&chains)
+\begin{DoxyCompactList}\small\item\em Computes the Gelman-\/\+Rubin convergence diagnostic metric (R-\/hat). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacecmp_1_1mcmc_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecmp_1_1mcmc_a45523db96e65cb76028af79f8a3b319f}\index{cmp::mcmc@{cmp::mcmc}!log1m@{log1m}}
+\index{log1m@{log1m}!cmp::mcmc@{cmp::mcmc}}
+\doxysubsubsection{\texorpdfstring{log1m()}{log1m()}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1mcmc_a45523db96e65cb76028af79f8a3b319f} 
+double cmp\+::mcmc\+::log1m (\begin{DoxyParamCaption}\item[{double}]{a}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespacecmp_1_1mcmc_a5f3e921a004b7fa12216fe92d9e2dfc2}\index{cmp::mcmc@{cmp::mcmc}!multiChainDiagnosis@{multiChainDiagnosis}}
+\index{multiChainDiagnosis@{multiChainDiagnosis}!cmp::mcmc@{cmp::mcmc}}
+\doxysubsubsection{\texorpdfstring{multiChainDiagnosis()}{multiChainDiagnosis()}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1mcmc_a5f3e921a004b7fa12216fe92d9e2dfc2} 
+template$<$typename Proposal\+Type$>$ \\
+double cmp\+::mcmc\+::multi\+Chain\+Diagnosis (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{Markov\+Chain}}$<$ Proposal\+Type $>$ $>$ \&}]{chains}{}\end{DoxyParamCaption})}
+
+
+
+Computes the Gelman-\/\+Rubin convergence diagnostic metric (R-\/hat). 
+
+Mathematical Formulation For $M$ chains of length $N$, it computes within-\/chain variance $W$ and between-\/chain variance $B$\+:   \[W = \frac{1}{M} \sum_{m=1}^M s_m^2, \quad B = \frac{N}{M-1} \sum_{m=1}^M (\bar{\theta}_{m} - \bar{\theta}_{\cdot})^2
+\] The posterior marginal variance is estimated as\+:   \[\widehat{\text{Var}}(\theta \mid y) = \frac{N-1}{N} W + \frac{1}{N} B
+\] The potential scale reduction factor (PSRF or $\hat{R}$) is\+:   \[\hat{R} = \sqrt{\frac{\widehat{\text{Var}}(\theta \mid y)}{W}}
+\] An $\hat{R} \to 1.0$ indicates successful convergence.
+
+Implementation Algorithm Computes coordinate-\/wise mean and variance vectors across all active chains, calculates the within-\/chain and between-\/chain variances, and returns the maximum coordinate value of $\hat{R}$. 

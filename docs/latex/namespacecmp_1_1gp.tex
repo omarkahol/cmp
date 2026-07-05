@@ -1,0 +1,70 @@
+\doxysection{cmp\+::gp Namespace Reference}
+\hypertarget{namespacecmp_1_1gp}{}\label{namespacecmp_1_1gp}\index{cmp::gp@{cmp::gp}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}}
+\begin{DoxyCompactList}\small\item\em This class implements a Gaussian Process (GP) regression model for non-\/parametric Bayesian regression. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}}
+\begin{DoxyCompactList}\small\item\em Manages a collection of independent Gaussian Processes for multi-\/output regression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}} \{ \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7}{MLE}}
+, \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60}{LOO}}
+, \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03}{LOO\+\_\+\+MSE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Optimization method for GP hyperparameters. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} \{ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11}{PRIOR}}
+, \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{POSTERIOR}}
+ \}
+\begin{DoxyCompactList}\small\item\em GP evaluation type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{namespacecmp_1_1gp_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}\index{cmp::gp@{cmp::gp}!method@{method}}
+\index{method@{method}!cmp::gp@{cmp::gp}}
+\doxysubsubsection{\texorpdfstring{method}{method}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf} 
+enum \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{cmp\+::gp\+::method}}}
+
+
+
+Optimization method for GP hyperparameters. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MLE@{MLE}!cmp::gp@{cmp::gp}}\index{cmp::gp@{cmp::gp}!MLE@{MLE}}}\Hypertarget{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7}\label{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7} 
+MLE&Maximum Likelihood Estimation (maximizing marginal likelihood) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOO@{LOO}!cmp::gp@{cmp::gp}}\index{cmp::gp@{cmp::gp}!LOO@{LOO}}}\Hypertarget{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60}\label{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60} 
+LOO&Leave-\/\+One-\/\+Out cross-\/validation predictive probability optimization. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOO\_MSE@{LOO\_MSE}!cmp::gp@{cmp::gp}}\index{cmp::gp@{cmp::gp}!LOO\_MSE@{LOO\_MSE}}}\Hypertarget{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03}\label{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03} 
+LOO\+\_\+\+MSE&Leave-\/\+One-\/\+Out Mean Squared Error minimization. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}\index{cmp::gp@{cmp::gp}!type@{type}}
+\index{type@{type}!cmp::gp@{cmp::gp}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27} 
+enum \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{cmp\+::gp\+::type}}}
+
+
+
+GP evaluation type. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRIOR@{PRIOR}!cmp::gp@{cmp::gp}}\index{cmp::gp@{cmp::gp}!PRIOR@{PRIOR}}}\Hypertarget{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11}\label{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11} 
+PRIOR&Prior GP response (before conditioning on training data) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POSTERIOR@{POSTERIOR}!cmp::gp@{cmp::gp}}\index{cmp::gp@{cmp::gp}!POSTERIOR@{POSTERIOR}}}\Hypertarget{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}\label{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43} 
+POSTERIOR&Posterior GP response (conditioned on training data) \\
+\hline
+
+\end{DoxyEnumFields}

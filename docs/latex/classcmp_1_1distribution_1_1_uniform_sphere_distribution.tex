@@ -1,0 +1,123 @@
+\doxysection{cmp\+::distribution\+::Uniform\+Sphere\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution}{}\label{classcmp_1_1distribution_1_1_uniform_sphere_distribution}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Uniform\+Sphere\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_uniform_sphere_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0b235b26d0dde66463a734b9e19f01c1}{Uniform\+Sphere\+Distribution}} (size\+\_\+t dim)
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_ab1836954aeb1e9aa205bf0d0bac3d8be}{Uniform\+Sphere\+Distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a7192c2bc16a4d08ad377c9db8030eea4}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec98183efa21cc693b8dd752dbd22a9e}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a5307581fdaf98a7073edd96d2634c8ec}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a89b92ecec3248dfbc2f44a9354e3d621}{to\+Physical}} (const Eigen\+::\+Matrix\+Xd \&z) const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a5564cc5a304ba7a38e8facbdac6b0780}{dimension}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution$<$ Uniform\+Sphere\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_adf3b1409c78a9180147df5ff4d9c65cd}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the joint log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_a11d88504b8e41a0d7cf53407a851ddc2}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single vector sample from the joint distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_aab20c160e414e53d0082fa02b6bfa90a}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms physical samples to standard canonical space. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ad9cfbac42c99982f2abe4f8b46bca784}{from\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms standard canonical samples back to physical space. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ae7af8e6314ab5158173f1c7809c3c9aa}{dimension}} () const
+\begin{DoxyCompactList}\small\item\em Returns the dimensionality of the multivariate space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0a1069df4a4450aaed8b18de3d602309}{dist\+N\+\_\+}} \{0., 1.\}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec5f74820f81babbf6daed1e6d2239e2}{dim\+\_\+}} \{1\}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0b235b26d0dde66463a734b9e19f01c1}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!UniformSphereDistribution@{UniformSphereDistribution}}
+\index{UniformSphereDistribution@{UniformSphereDistribution}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{UniformSphereDistribution()}{UniformSphereDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0b235b26d0dde66463a734b9e19f01c1} 
+cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::\+Uniform\+Sphere\+Distribution (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_ab1836954aeb1e9aa205bf0d0bac3d8be}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!UniformSphereDistribution@{UniformSphereDistribution}}
+\index{UniformSphereDistribution@{UniformSphereDistribution}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{UniformSphereDistribution()}{UniformSphereDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_ab1836954aeb1e9aa205bf0d0bac3d8be} 
+cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::\+Uniform\+Sphere\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a5564cc5a304ba7a38e8facbdac6b0780}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!dimension@{dimension}}
+\index{dimension@{dimension}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{dimension()}{dimension()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a5564cc5a304ba7a38e8facbdac6b0780} 
+size\+\_\+t cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::dimension (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a7192c2bc16a4d08ad377c9db8030eea4}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a7192c2bc16a4d08ad377c9db8030eea4} 
+double cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::log\+PDF (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec98183efa21cc693b8dd752dbd22a9e}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec98183efa21cc693b8dd752dbd22a9e} 
+Eigen\+::\+Vector\+Xd cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a5307581fdaf98a7073edd96d2634c8ec}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!toCanonical@{toCanonical}}
+\index{toCanonical@{toCanonical}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{toCanonical()}{toCanonical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a5307581fdaf98a7073edd96d2634c8ec} 
+Eigen\+::\+Matrix\+Xd cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::to\+Canonical (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a89b92ecec3248dfbc2f44a9354e3d621}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!toPhysical@{toPhysical}}
+\index{toPhysical@{toPhysical}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{toPhysical()}{toPhysical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a89b92ecec3248dfbc2f44a9354e3d621} 
+Eigen\+::\+Matrix\+Xd cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::to\+Physical (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{z}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec5f74820f81babbf6daed1e6d2239e2}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec5f74820f81babbf6daed1e6d2239e2} 
+std\+::size\+\_\+t cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::dim\+\_\+ \{1\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0a1069df4a4450aaed8b18de3d602309}\index{cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}!distN\_@{distN\_}}
+\index{distN\_@{distN\_}!cmp::distribution::UniformSphereDistribution@{cmp::distribution::UniformSphereDistribution}}
+\doxysubsubsection{\texorpdfstring{distN\_}{distN\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0a1069df4a4450aaed8b18de3d602309} 
+std\+::normal\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Uniform\+Sphere\+Distribution\+::dist\+N\+\_\+ \{0., 1.\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

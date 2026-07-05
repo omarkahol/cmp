@@ -1,0 +1,78 @@
+\doxysection{cmp\+::classifier\+::Classifier Class Reference}
+\hypertarget{classcmp_1_1classifier_1_1_classifier}{}\label{classcmp_1_1classifier_1_1_classifier}\index{cmp::classifier::Classifier@{cmp::classifier::Classifier}}
+
+
+Abstract base class for all classifiers.  
+
+
+
+
+{\ttfamily \#include $<$classifier.\+h$>$}
+
+Inheritance diagram for cmp\+::classifier\+::Classifier\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1classifier_1_1_classifier}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a7dd8540cf402dfb9b5f3b83b2de9d17d}{\texorpdfstring{$\sim$}{\string~}\+Classifier}} ()=default
+\item 
+virtual std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_af91c87a6c6a2261f74333847e6f6d68a}{predict\+Probabilities}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const =0
+\item 
+virtual size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a2fbf78b38db8cc851a433caa9b87e758}{predict}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for all classifiers. 
+
+Mathematical Formulation A classifier maps an input vector $\mathbf{x} \in \mathbb{R}^D$ to a class label $y \in \{0, 1, \dots, C-1\}$, or estimates the class posterior probabilities $P(y = c \mid \mathbf{x})$ for $c = 0, \dots, C-1$.
+
+Implementation Algorithm Provides a pure virtual interface defining\+:
+\begin{DoxyItemize}
+\item {\ttfamily predict\+Probabilities(x)}\+: Returns a vector of probability estimates.
+\item {\ttfamily predict(x)}\+: Returns the class label with the highest probability. 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1classifier_1_1_classifier_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_classifier_a7dd8540cf402dfb9b5f3b83b2de9d17d}\index{cmp::classifier::Classifier@{cmp::classifier::Classifier}!````~Classifier@{\texorpdfstring{$\sim$}{\string~}Classifier}}
+\index{````~Classifier@{\texorpdfstring{$\sim$}{\string~}Classifier}!cmp::classifier::Classifier@{cmp::classifier::Classifier}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Classifier()}{\string~Classifier()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_classifier_a7dd8540cf402dfb9b5f3b83b2de9d17d} 
+virtual cmp\+::classifier\+::\+Classifier\+::\texorpdfstring{$\sim$}{\string~}\+Classifier (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1classifier_1_1_classifier_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_classifier_a2fbf78b38db8cc851a433caa9b87e758}\index{cmp::classifier::Classifier@{cmp::classifier::Classifier}!predict@{predict}}
+\index{predict@{predict}!cmp::classifier::Classifier@{cmp::classifier::Classifier}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_classifier_a2fbf78b38db8cc851a433caa9b87e758} 
+virtual size\+\_\+t cmp\+::classifier\+::\+Classifier\+::predict (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a38f25279d0a890bcde125c2844b7dcd2}{cmp\+::classifier\+::\+Dummy}}, \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_afc69aee2a558b1f14580e53d694968e3}{cmp\+::classifier\+::\+KDE}}, and \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_aa892d97d4fd879e9d7e9467f72748aa1}{cmp\+::classifier\+::\+SVM}}.
+
+\Hypertarget{classcmp_1_1classifier_1_1_classifier_af91c87a6c6a2261f74333847e6f6d68a}\index{cmp::classifier::Classifier@{cmp::classifier::Classifier}!predictProbabilities@{predictProbabilities}}
+\index{predictProbabilities@{predictProbabilities}!cmp::classifier::Classifier@{cmp::classifier::Classifier}}
+\doxysubsubsection{\texorpdfstring{predictProbabilities()}{predictProbabilities()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_classifier_af91c87a6c6a2261f74333847e6f6d68a} 
+virtual std\+::vector$<$ double $>$ cmp\+::classifier\+::\+Classifier\+::predict\+Probabilities (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a5d56e78020cbf38ab2d1dac2b898ffb0}{cmp\+::classifier\+::\+Dummy}}, \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a6d22b13a7d6b3a4945cb59798ef34d26}{cmp\+::classifier\+::\+KDE}}, and \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ad8f549d860b2677573184e6a7bf50833}{cmp\+::classifier\+::\+SVM}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{classifier_8h}{classifier.\+h}}\end{DoxyCompactItemize}

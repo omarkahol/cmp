@@ -1,0 +1,164 @@
+\doxysection{cmp\+::grid\+::Monte\+Carlo\+Grid Class Reference}
+\hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid}{}\label{classcmp_1_1grid_1_1_monte_carlo_grid}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+
+
+Standard Monte Carlo random grid generator.  
+
+
+
+
+{\ttfamily \#include $<$grid.\+h$>$}
+
+Inheritance diagram for cmp\+::grid\+::Monte\+Carlo\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1grid_1_1_monte_carlo_grid}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_ab770e33976b9a444c6144c2fcc3d6bc0}{Monte\+Carlo\+Grid}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lower\+Bound, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&upper\+Bound, unsigned int seed=42)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1grid_1_1_monte_carlo_grid}{Monte\+Carlo\+Grid} generator. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a0afe702679d6e5aae6a086ec961fd483}{construct}} (const size\+\_\+t \&n\+Points) override
+\begin{DoxyCompactList}\small\item\em Constructs a matrix of random Monte Carlo samples. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_af0eb9f14154a48b03ed37ea87aad1d71}{operator()}} ()
+\begin{DoxyCompactList}\small\item\em Evaluates a single random Monte Carlo sample. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_ad99f8459f435c900dd6a414e5e7661a8}{dim}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{cmp\+::grid\+::\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\texorpdfstring{$\sim$}{\string~}\+Grid}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\+\_\+}}
+\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286}{rng\+\_\+}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553}{dist\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}{lower\+Bound\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707}{upper\+Bound\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Standard Monte Carlo random grid generator. 
+
+Mathematical Formulation Generates independent and identically distributed (i.\+i.\+d.) samples drawn uniformly from the design space\+:   \[\mathbf{x}_i \sim \mathcal{U}\left( \prod_{d=1}^D [a_d, b_d] \right)
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_ab770e33976b9a444c6144c2fcc3d6bc0}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!MonteCarloGrid@{MonteCarloGrid}}
+\index{MonteCarloGrid@{MonteCarloGrid}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{MonteCarloGrid()}{MonteCarloGrid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_ab770e33976b9a444c6144c2fcc3d6bc0} 
+cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::\+Monte\+Carlo\+Grid (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lower\+Bound}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{upper\+Bound}{, }\item[{unsigned int}]{seed}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1grid_1_1_monte_carlo_grid}{Monte\+Carlo\+Grid} generator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower\+Bound} & The lower bounds of the hyperrectangle. \\
+\hline
+{\em upper\+Bound} & The upper bounds of the hyperrectangle. \\
+\hline
+{\em seed} & Seed for the pseudo-\/random number generator. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_a0afe702679d6e5aae6a086ec961fd483}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!construct@{construct}}
+\index{construct@{construct}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a0afe702679d6e5aae6a086ec961fd483} 
+Eigen\+::\+Matrix\+Xd cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::construct (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Constructs a matrix of random Monte Carlo samples. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Points} & Number of points to generate. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_ad99f8459f435c900dd6a414e5e7661a8}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!dim@{dim}}
+\index{dim@{dim}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_ad99f8459f435c900dd6a414e5e7661a8} 
+size\+\_\+t cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the dimension of the domain. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_af0eb9f14154a48b03ed37ea87aad1d71}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!operator()@{operator()}}
+\index{operator()@{operator()}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_af0eb9f14154a48b03ed37ea87aad1d71} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::operator() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Evaluates a single random Monte Carlo sample. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!dimension\_@{dimension\_}}
+\index{dimension\_@{dimension\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{dimension\_}{dimension\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921} 
+size\+\_\+t cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!dist\_@{dist\_}}
+\index{dist\_@{dist\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{dist\_}{dist\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553} 
+std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::dist\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286} 
+std\+::default\+\_\+random\+\_\+engine cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{grid_8h}{grid.\+h}}\end{DoxyCompactItemize}

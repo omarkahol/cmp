@@ -1,0 +1,191 @@
+\doxysection{cmp\+::covariance\+::Custom Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_custom}{}\label{classcmp_1_1covariance_1_1_custom}\index{cmp::covariance::Custom@{cmp::covariance::Custom}}
+
+
+Represents a custom user-\/defined covariance function using std\+::function wrappers.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Custom\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_custom}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a4ad660d554dea9d53059d140fc5042fa}{Custom}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a313a4ce5566393608dd4bc56829d9ed6}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a3c42ee65967104726ff0a6855cab5752}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a9ecf41579b32af24bdac8a70ee1fd8ae}{Custom}} (std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{eval}}, std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{eval\+Gradient}}, std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&, const size\+\_\+t \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{eval\+Hessian}})
+\begin{DoxyCompactList}\small\item\em Constructs a custom covariance kernel with evaluation, gradient, and Hessian functions. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the custom kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the custom kernel\textquotesingle{}s gradient. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Evaluates the custom kernel\textquotesingle{}s Hessian. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a9eb1e92e7f789bceaac52835cc2ca759}{make}} (std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{eval}}, std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{eval\+Gradient}}, std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&, const size\+\_\+t \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{eval\+Hessian}})
+\begin{DoxyCompactList}\small\item\em Factory method for creating a shared pointer to a custom covariance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a1f8114e2463de8cb7942b51ed9092fd2}{eval\+\_\+}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1covariance_1_1_custom}{Custom} kernel evaluation function. \end{DoxyCompactList}\item 
+std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a3f679b090086b573fb9789ec68653d49}{eval\+Gradient\+\_\+}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1covariance_1_1_custom}{Custom} gradient evaluation function. \end{DoxyCompactList}\item 
+std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&, const size\+\_\+t \&)$>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a793877d17782f27dc0acc26d8d18f399}{eval\+Hessian\+\_\+}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1covariance_1_1_custom}{Custom} Hessian evaluation function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a custom user-\/defined covariance function using std\+::function wrappers. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_custom_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!Custom@{Custom}}
+\index{Custom@{Custom}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{Custom()}{Custom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0} 
+cmp\+::covariance\+::\+Custom\+::\+Custom (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a4ad660d554dea9d53059d140fc5042fa}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!Custom@{Custom}}
+\index{Custom@{Custom}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{Custom()}{Custom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a4ad660d554dea9d53059d140fc5042fa} 
+cmp\+::covariance\+::\+Custom\+::\+Custom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a9ecf41579b32af24bdac8a70ee1fd8ae}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!Custom@{Custom}}
+\index{Custom@{Custom}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{Custom()}{Custom()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a9ecf41579b32af24bdac8a70ee1fd8ae} 
+cmp\+::covariance\+::\+Custom\+::\+Custom (\begin{DoxyParamCaption}\item[{std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&)$>$}]{eval}{, }\item[{std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&)$>$}]{eval\+Gradient}{, }\item[{std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&, const size\+\_\+t \&)$>$}]{eval\+Hessian}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a custom covariance kernel with evaluation, gradient, and Hessian functions. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_custom_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d} 
+double cmp\+::covariance\+::\+Custom\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the custom kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5} 
+double cmp\+::covariance\+::\+Custom\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the custom kernel\textquotesingle{}s gradient. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038} 
+double cmp\+::covariance\+::\+Custom\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the custom kernel\textquotesingle{}s Hessian. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a9eb1e92e7f789bceaac52835cc2ca759}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!make@{make}}
+\index{make@{make}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a9eb1e92e7f789bceaac52835cc2ca759} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} $>$ cmp\+::covariance\+::\+Custom\+::make (\begin{DoxyParamCaption}\item[{std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&)$>$}]{eval}{, }\item[{std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&)$>$}]{eval\+Gradient}{, }\item[{std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const Eigen\+::\+Vector\+Xd \&, const size\+\_\+t \&, const size\+\_\+t \&)$>$}]{eval\+Hessian}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Factory method for creating a shared pointer to a custom covariance. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a313a4ce5566393608dd4bc56829d9ed6}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a313a4ce5566393608dd4bc56829d9ed6} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \& cmp\+::covariance\+::\+Custom\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a3c42ee65967104726ff0a6855cab5752}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a3c42ee65967104726ff0a6855cab5752} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \& cmp\+::covariance\+::\+Custom\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_custom_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a1f8114e2463de8cb7942b51ed9092fd2}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!eval\_@{eval\_}}
+\index{eval\_@{eval\_}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{eval\_}{eval\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a1f8114e2463de8cb7942b51ed9092fd2} 
+std\+::function$<$double(const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&)$>$ cmp\+::covariance\+::\+Custom\+::eval\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classcmp_1_1covariance_1_1_custom}{Custom} kernel evaluation function. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a3f679b090086b573fb9789ec68653d49}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!evalGradient\_@{evalGradient\_}}
+\index{evalGradient\_@{evalGradient\_}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{evalGradient\_}{evalGradient\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a3f679b090086b573fb9789ec68653d49} 
+std\+::function$<$double(const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&, const size\+\_\+t\&)$>$ cmp\+::covariance\+::\+Custom\+::eval\+Gradient\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classcmp_1_1covariance_1_1_custom}{Custom} gradient evaluation function. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_custom_a793877d17782f27dc0acc26d8d18f399}\index{cmp::covariance::Custom@{cmp::covariance::Custom}!evalHessian\_@{evalHessian\_}}
+\index{evalHessian\_@{evalHessian\_}!cmp::covariance::Custom@{cmp::covariance::Custom}}
+\doxysubsubsection{\texorpdfstring{evalHessian\_}{evalHessian\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_custom_a793877d17782f27dc0acc26d8d18f399} 
+std\+::function$<$double(const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&, const size\+\_\+t\&, const size\+\_\+t\&)$>$ cmp\+::covariance\+::\+Custom\+::eval\+Hessian\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classcmp_1_1covariance_1_1_custom}{Custom} Hessian evaluation function. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

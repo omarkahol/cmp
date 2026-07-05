@@ -1,0 +1,120 @@
+\chapter{CMP++\+: Scientific Uncertainty Quantification and Bayesian Calibration Library }
+\hypertarget{index}{}\label{index}\index{CMP++: Scientific Uncertainty Quantification and Bayesian Calibration Library@{CMP++: Scientific Uncertainty Quantification and Bayesian Calibration Library}}
+\hypertarget{index_intro_sec}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_intro_sec}
+Welcome to the official API documentation for {\bfseries{CMP++}}, a high-\/performance, template-\/driven C++ library specifically engineered for {\bfseries{Uncertainty Quantification (UQ)}}, {\bfseries{Bayesian Calibration}}, and {\bfseries{Machine Learning}} in complex scientific computing environments.\hypertarget{index_overview_sec}{}\doxysection{\texorpdfstring{Architectural \& Scientific Overview}{Architectural \& Scientific Overview}}\label{index_overview_sec}
+Rather than solving a single model calibration equation, CMP++ implements a cohesive, modular ecosystem of algorithms that connect experimental data, high-\/fidelity simulators, statistical surrogate models, and global sensitivity evaluations\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Bayesian Calibration with Discrepancy Modeling}}\+: Solves the general computer model calibration problem by integrating physical simulator runs with experimental observations. It accounts for simulator inaccuracies using non-\/parametric discrepancy modeling. The discrepancy function is represented as a Gaussian Process that learns systemic errors directly from the residuals of physical simulator predictions.
+\item {\bfseries{Surrogate Modeling Pipeline}}\+: To accelerate computationally expensive physical model evaluations, CMP++ constructs either global or localized statistical surrogate models\+:
+\begin{DoxyItemize}
+\item {\bfseries{Gaussian Processes (Kriging)}}\+: Approximates smooth physical responses with robust posterior confidence bounds and statistical variance envelopes.
+\item {\bfseries{Polynomial Chaos Expansion (PCE)}}\+: Projects stochastic responses onto orthogonal polynomial bases (Hermite, Legendre, Chebyshev, Laguerre) using regression or spectral quadrature.
+\item {\bfseries{Localized Mixtures (Model Clustering)}}\+: Partitions the design space using K-\/\+Means or Dirichlet Process Mixture Models (DPMM) and blends local GP/\+PCE models through probabilistic weights.
+\end{DoxyItemize}
+\item {\bfseries{Global Sensitivity Analysis}}\+: Decomposes total simulator variance into main and joint parameter interactions. CMP++ calculates Saltelli-\/\+Sobol sensitivity indices to determine which input parameters dominate output variance and which parameter interactions are negligible.
+\item {\bfseries{MCMC \& HMC/\+NUTS Bayesian Inference}}\+: Performs posterior parameter sampling using adaptive step sizing, delayed rejection, and Hamiltonian dynamics. It offers both classical Metropolis-\/\+Hastings (DRAM) and state-\/of-\/the-\/art Hamiltonian Monte Carlo using the No-\/\+U-\/\+Turn Sampler (NUTS) with dual-\/averaging adaptation.
+\end{DoxyEnumerate}\hypertarget{index_categories_sec}{}\doxysection{\texorpdfstring{Architectural Components \& Component Mapping}{Architectural Components \& Component Mapping}}\label{index_categories_sec}
+\hypertarget{index_surrogate_mod}{}\doxysubsection{\texorpdfstring{Surrogate Modeling \& Dimensionality Reduction}{Surrogate Modeling \& Dimensionality Reduction}}\label{index_surrogate_mod}
+
+\begin{DoxyItemize}
+\item {\bfseries{Gaussian Process Regression}}\+: \doxylink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process} -\/ Non-\/parametric Bayesian regression modeling that provides predictive distributions, prior mean functions, and kernel covariances.
+\item {\bfseries{Multi-\/\+Output GP}}\+: \doxylink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process} -\/ Independent Gaussian Processes designed for multi-\/column output dimensions.
+\item {\bfseries{Polynomial Chaos Expansion}}\+: \doxylink{classcmp_1_1_polynomial_expansion}{Polynomial\+Expansion} -\/ Spectral projection representing stochastic models via orthonormal polynomials.
+\item {\bfseries{Clustered Local GP}}\+: \doxylink{classcmp_1_1_model_cluster}{Model\+Cluster} -\/ Localized Gaussian Process surrogates blended via classifier posterior probabilities.
+\item {\bfseries{Clustered Local PCE}}\+: \doxylink{classcmp_1_1_model_cluster_poly}{Model\+Cluster\+Poly} -\/ Localized Polynomial Chaos Expansions blended via classifier posterior probabilities.
+\item {\bfseries{Principal Component Analysis}}\+: \doxylink{classcmp_1_1scaler_1_1_p_c_a}{PCA} -\/ Covariance eigen-\/decomposition to map high-\/dimensional datasets to lower-\/dimensional latent spaces.
+\end{DoxyItemize}\hypertarget{index_sensitivity_anal}{}\doxysubsection{\texorpdfstring{Sensitivity Analysis}{Sensitivity Analysis}}\label{index_sensitivity_anal}
+
+\begin{DoxyItemize}
+\item {\bfseries{Saltelli Sobol Indices}}\+: \doxylink{classcmp_1_1sobol_1_1_sobol_saltelli}{Sobol\+Saltelli} -\/ Variance decomposition scheme to evaluate first, second, and total order Sobol sensitivity indices.
+\end{DoxyItemize}\hypertarget{index_sampling_inf}{}\doxysubsection{\texorpdfstring{Sampling \& Inference Methods}{Sampling \& Inference Methods}}\label{index_sampling_inf}
+
+\begin{DoxyItemize}
+\item {\bfseries{Markov Chain Monte Carlo}}\+: \doxylink{classcmp_1_1mcmc_1_1_markov_chain}{Markov\+Chain} -\/ Metropolis-\/\+Hastings chain simulation implementing Delayed Rejection Adaptive Metropolis (DRAM).
+\item {\bfseries{Evolutionary MCMC}}\+: \doxylink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain}{Evolutionary\+Markov\+Chain} -\/ Multi-\/chain MCMC utilizing differential evolution crossover and mutations.
+\item {\bfseries{Hamiltonian Monte Carlo}}\+: \doxylink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain}{Hamiltonian\+Markov\+Chain} -\/ HMC sampler utilizing the No-\/\+U-\/\+Turn Sampler (NUTS) algorithm and dual-\/averaging step-\/size adaptation.
+\end{DoxyItemize}\hypertarget{index_probability_dist}{}\doxysubsection{\texorpdfstring{Probability Distributions, Priors, \& Kernels}{Probability Distributions, Priors, \& Kernels}}\label{index_probability_dist}
+
+\begin{DoxyItemize}
+\item {\bfseries{CRTP Univariate Distribution}}\+: \doxylink{classcmp_1_1distribution_1_1_univariate_distribution}{Univariate\+Distribution} -\/ CRTP base class representing continuous 1D probability density functions.
+\item {\bfseries{CRTP Multivariate Distribution}}\+: \doxylink{classcmp_1_1distribution_1_1_multivariate_distribution}{Multivariate\+Distribution} -\/ CRTP base class representing joint continuous multi-\/dimensional probability density functions.
+\item {\bfseries{Prior Distributions}}\+: \doxylink{classcmp_1_1prior_1_1_prior}{Prior} -\/ Interface for prior probability densities supporting joint product, uniform, and distribution-\/mapped priors.
+\item {\bfseries{Covariance Kernels}}\+: \doxylink{classcmp_1_1covariance_1_1_covariance}{Covariance} -\/ Interface for GP kernels (Squared\+Exponential, Matern52, Matern, White\+Noise, Sum, Product).
+\item {\bfseries{GP Mean Functions}}\+: \doxylink{classcmp_1_1mean_1_1_mean}{Mean} -\/ Interface for GP prior mean functions (Constant, Zero).
+\item {\bfseries{Density Kernels}}\+: \doxylink{classcmp_1_1kernel_1_1_kernel}{Kernel} -\/ Evaluates local smoothing kernels (Gaussian, Epanechnikov, Uniform) for density estimations.
+\item {\bfseries{Density Bandwidths}}\+: \doxylink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth} -\/ Computes matrix transformations (Isotropic, Diagonal, Full) scaling multivariate distances in KDEs.
+\end{DoxyItemize}\hypertarget{index_classifiers_sec}{}\doxysubsection{\texorpdfstring{Classifiers}{Classifiers}}\label{index_classifiers_sec}
+
+\begin{DoxyItemize}
+\item {\bfseries{Classifier Base}}\+: \doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} -\/ Common interface defining discrete classification and class probability estimation.
+\item {\bfseries{Support Vector Classifier}}\+: \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} -\/ Classifier constructing optimal separating hyperplanes via LIBSVM with custom kernels.
+\item {\bfseries{Kernel Density Classifier}}\+: \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE} -\/ Non-\/parametric Bayes classifier estimating class densities using Kernel Density Estimation.
+\item {\bfseries{K-\/\+Nearest Neighbors}}\+: \doxylink{classcmp_1_1classifier_1_1_k_n_n}{KNN} -\/ Neighborhood helper model identifying adjacent points in design space.
+\item {\bfseries{Baseline Classifier}}\+: \doxylink{classcmp_1_1classifier_1_1_dummy}{Dummy} -\/ Simple classifier predicting classes based on empirical training frequencies.
+\end{DoxyItemize}\hypertarget{index_clustering_sec}{}\doxysubsection{\texorpdfstring{Clustering Methods}{Clustering Methods}}\label{index_clustering_sec}
+
+\begin{DoxyItemize}
+\item {\bfseries{Dirichlet Process Mixture Model}}\+: \doxylink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model}{Dirichlet\+Process\+Mixture\+Model} -\/ Infinite Gaussian Mixture Model clustering using collapsed Gibbs sampling.
+\item {\bfseries{Geometric Clustering}}\+: \doxylink{classcmp_1_1cluster_1_1_geometric_cluster}{Geometric\+Cluster} -\/ K-\/means clustering partitioning sample points to minimize within-\/cluster sum of squares.
+\item {\bfseries{Uniform Random Clustering}}\+: \doxylink{classcmp_1_1cluster_1_1_dummy_cluster}{Dummy\+Cluster} -\/ Baseline clusterer assigning points to partitions uniformly at random.
+\end{DoxyItemize}\hypertarget{index_core_util}{}\doxysubsection{\texorpdfstring{Core Utilities \& Integration}{Core Utilities \& Integration}}\label{index_core_util}
+
+\begin{DoxyItemize}
+\item {\bfseries{1D Quadrature}}\+: \doxylink{classcmp_1_1_quadrature1_d}{Quadrature1D} -\/ Generates quadrature weights and nodes using the Golub-\/\+Welsch symmetric tridiagonal eigenvalue algorithm.
+\item {\bfseries{Tensor Integration}}\+: \doxylink{classcmp_1_1_tensor_integrator}{Tensor\+Integrator} -\/ Multi-\/dimensional integration using tensor-\/product quadrature rules mapped to canonical/physical domains.
+\item {\bfseries{K-\/\+Fold CV Partitioning}}\+: \doxylink{classcmp_1_1statistics_1_1_k_fold}{KFold} -\/ Partitions datasets into training/testing folds for parameter cross-\/validation.
+\item {\bfseries{Bootstrap Resampling}}\+: \doxylink{classcmp_1_1statistics_1_1_bootstrap}{Bootstrap} -\/ Resamples datasets with or without replacement to evaluate bootstrap estimator variance.
+\item {\bfseries{Wasserstein Distances}}\+: \doxylink{namespacecmp_afd4351ddf3bb25c5d954baa0b88d580c}{wasserstein1D} and \doxylink{namespacecmp_a4676deee482c16dcbe067f72925e9cf8}{sliced\+Wasserstein\+Distance} -\/ Evaluates optimal transport distances between distributions.
+\item {\bfseries{Finite Differences}}\+: \doxylink{namespacecmp_accafa4931504d0ddd35567ea0667eda4}{fd\+\_\+gradient} and \doxylink{namespacecmp_a8bde7a7cabe126e1e77fa22771f3477f}{fd\+\_\+hessian} -\/ Central difference stencils to approximate objective function gradients and Hessians.
+\item {\bfseries{IO Serialization}}\+: \doxylink{namespacecmp_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc}{read\+\_\+vector} and \doxylink{namespacecmp_af85e70639980f381b7c0e708ad9b9c4d}{write\+\_\+vector} -\/ Text file streaming and CSV data reading/writing utilities.
+\end{DoxyItemize}\hypertarget{index_quickstart_sec}{}\doxysection{\texorpdfstring{File Organization \& Source Headers}{File Organization \& Source Headers}}\label{index_quickstart_sec}
+
+\begin{DoxyItemize}
+\item {\bfseries{Surrogates}}\+:
+\begin{DoxyItemize}
+\item \doxylink{gp_8h}{gp.h} -\/ Main Gaussian Process regression.
+\item \doxylink{multi__gp_8h}{multi\+\_\+gp.h} -\/ Independent multi-\/output GPs.
+\item \doxylink{poly_8h}{poly.h} -\/ PCE expansion surrogates.
+\item \doxylink{model__cluster_8h}{model\+\_\+cluster.h} -\/ Clustered local GP mixtures.
+\item \doxylink{model__cluster__poly_8h}{model\+\_\+cluster\+\_\+poly.h} -\/ Clustered local PCE mixtures.
+\end{DoxyItemize}
+\item {\bfseries{Samplers \& Optimization}}\+:
+\begin{DoxyItemize}
+\item \doxylink{mcmc_8h}{mcmc.h} -\/ DRAM and Evolutionary MCMC.
+\item \doxylink{hmc_8h}{hmc.h} -\/ Hamiltonian Monte Carlo (NUTS).
+\item \doxylink{optimization_8h}{optimization.h} -\/ NLopt optimization wrappers.
+\end{DoxyItemize}
+\item {\bfseries{Probability \& Math}}\+:
+\begin{DoxyItemize}
+\item \doxylink{distribution_8h}{distribution.h} -\/ Probability distributions.
+\item \doxylink{prior_09_09_8h}{prior++.h} -\/ Joint prior distributions.
+\item \doxylink{covariance_8h}{covariance.h} -\/ Kernel covariance functions.
+\item \doxylink{mean_09_09_8h}{mean++.h} -\/ GP prior mean functions.
+\item \doxylink{kernel_09_09_8h}{kernel++.h} -\/ KDE kernels and bandwidths.
+\item \doxylink{kde_8h}{kde.h} -\/ Kernel Density Estimation models.
+\item \doxylink{integrator_8h}{integrator.h} -\/ Quadrature rules and tensor integration.
+\end{DoxyItemize}
+\item {\bfseries{Sensitivity, Statistics \& Utilities}}\+:
+\begin{DoxyItemize}
+\item \doxylink{sobol_8h}{sobol.h} -\/ Saltelli-\/\+Sobol sensitivity index calculator.
+\item \doxylink{statistics_8h}{statistics.h} -\/ K-\/\+Fold, Bootstrap, and correlation.
+\item \doxylink{wasserstein_8h}{wasserstein.h} -\/ Sliced Wasserstein distances.
+\item \doxylink{finite__diff_8h}{finite\+\_\+diff.h} -\/ Numerical gradient and Hessian stencils.
+\item \doxylink{classifier_8h}{classifier.h} -\/ KDE, SVM, and Dummy classifiers.
+\item \doxylink{cluster_8h}{cluster.h} -\/ K-\/means and Dirichlet Process Mixture Model clustering.
+\item \doxylink{io_8h}{io.h} -\/ File read/write serialization helpers.
+\item \doxylink{cmp__defines_8h}{cmp\+\_\+defines.h} -\/ Global templates and LDLT utility functions.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_verification_sec}{}\doxysection{\texorpdfstring{Verification \& Testing Suite}{Verification \& Testing Suite}}\label{index_verification_sec}
+Access these files in {\ttfamily /tests} to see exact usage examples\+:
+\begin{DoxyItemize}
+\item {\ttfamily tests/distribution.\+cpp}\+: Bivariate sampling and Sliced-\/\+Wasserstein verification.
+\item {\ttfamily tests/mcmc.\+cpp}\+: DRAM sampling on bimodal targets.
+\item {\ttfamily tests/gp.\+cpp}\+: GP training and cross-\/validation verification.
+\item {\ttfamily tests/multi\+\_\+gp.\+cpp}\+: Dimensionality reduction using PCA followed by multi-\/output GP fitting.
+\item {\ttfamily tests/sobol.\+cpp}\+: Sobol sensitivity analysis on the Ishigami function.
+\item {\ttfamily tests/calibration.\+cpp}\+: Full model calibration with discrepancy GP.
+\end{DoxyItemize}\hypertarget{index_eu_funding}{}\doxysection{\texorpdfstring{Funding \& Acknowledgement}{Funding \& Acknowledgement}}\label{index_eu_funding}
+ 

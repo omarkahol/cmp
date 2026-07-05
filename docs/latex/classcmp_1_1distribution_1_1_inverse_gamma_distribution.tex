@@ -1,0 +1,169 @@
+\doxysection{cmp\+::distribution\+::Inverse\+Gamma\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution}{}\label{classcmp_1_1distribution_1_1_inverse_gamma_distribution}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Inverse\+Gamma\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_inverse_gamma_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_aa3605dabc3b428b81445852b3588bcf0}{Inverse\+Gamma\+Distribution}} (double alpha, double beta)
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_af55d5c60008dd4f6796426eb586388c4}{Inverse\+Gamma\+Distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_ab8b95d4f9278a1c51506c7fd792f4fff}{log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a0fee0ae1a710df9d168b686c24d3b95d}{d\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a34823b085126369fc583b2c9e6d635ea}{dd\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a9dcd27023edee1963ce8272a1f821bb1}{CDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a96dfa9d9c02cc71d93ffc42fcac2ccc3}{quantile}} (const double \&p) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_ac37da7ccdac9e02d981f757045a94462}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a9708d9f56e5a77e20957f6424cf635f2}{set\+Alpha}} (double alpha)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_aba9456828839b95ed01b6e0472db0308}{set\+Beta}} (double beta)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution$<$ Inverse\+Gamma\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9931f4f984317ac7bd92e0cefa5162ea}{log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a0e2fb25e16d8a5be4e07aaaf7176baf3}{d\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the first derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9007089eadc69399bd8a7439a0f23daf}{dd\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the second derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a8bbc084f54acc7b70441727ed118f4aa}{CDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the cumulative distribution function (CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a01a92715e42ea2aaf4cb459f88370667}{quantile}} (const double \&p) const
+\begin{DoxyCompactList}\small\item\em Computes the quantile function (inverse CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a476afdc57d8b5855586323f45488ed96}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single pseudo-\/random sample from the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a5264f4f8352b30ca34748bc007cc2495}{alpha\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Shape parameter alpha. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_af2fb3020caee174a2cfa050c966ff5c2}{beta\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Scale parameter beta. \end{DoxyCompactList}\item 
+std\+::gamma\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a79efb37eeff5ab338a0cb467c88c2143}{dist\+Gamma\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Gamma distribution helper for sampling. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_aa3605dabc3b428b81445852b3588bcf0}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!InverseGammaDistribution@{InverseGammaDistribution}}
+\index{InverseGammaDistribution@{InverseGammaDistribution}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{InverseGammaDistribution()}{InverseGammaDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_aa3605dabc3b428b81445852b3588bcf0} 
+cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::\+Inverse\+Gamma\+Distribution (\begin{DoxyParamCaption}\item[{double}]{alpha}{, }\item[{double}]{beta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_af55d5c60008dd4f6796426eb586388c4}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!InverseGammaDistribution@{InverseGammaDistribution}}
+\index{InverseGammaDistribution@{InverseGammaDistribution}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{InverseGammaDistribution()}{InverseGammaDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_af55d5c60008dd4f6796426eb586388c4} 
+cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::\+Inverse\+Gamma\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a9dcd27023edee1963ce8272a1f821bb1}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!CDF@{CDF}}
+\index{CDF@{CDF}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{CDF()}{CDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a9dcd27023edee1963ce8272a1f821bb1} 
+double cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::\+CDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a34823b085126369fc583b2c9e6d635ea}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!ddLogPDF@{ddLogPDF}}
+\index{ddLogPDF@{ddLogPDF}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{ddLogPDF()}{ddLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a34823b085126369fc583b2c9e6d635ea} 
+double cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::dd\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a0fee0ae1a710df9d168b686c24d3b95d}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!dLogPDF@{dLogPDF}}
+\index{dLogPDF@{dLogPDF}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{dLogPDF()}{dLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a0fee0ae1a710df9d168b686c24d3b95d} 
+double cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::d\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_ab8b95d4f9278a1c51506c7fd792f4fff}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_ab8b95d4f9278a1c51506c7fd792f4fff} 
+double cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a96dfa9d9c02cc71d93ffc42fcac2ccc3}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!quantile@{quantile}}
+\index{quantile@{quantile}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a96dfa9d9c02cc71d93ffc42fcac2ccc3} 
+double cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::quantile (\begin{DoxyParamCaption}\item[{const double \&}]{p}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_ac37da7ccdac9e02d981f757045a94462}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_ac37da7ccdac9e02d981f757045a94462} 
+double cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a9708d9f56e5a77e20957f6424cf635f2}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!setAlpha@{setAlpha}}
+\index{setAlpha@{setAlpha}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{setAlpha()}{setAlpha()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a9708d9f56e5a77e20957f6424cf635f2} 
+void cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::set\+Alpha (\begin{DoxyParamCaption}\item[{double}]{alpha}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_aba9456828839b95ed01b6e0472db0308}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!setBeta@{setBeta}}
+\index{setBeta@{setBeta}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{setBeta()}{setBeta()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_aba9456828839b95ed01b6e0472db0308} 
+void cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::set\+Beta (\begin{DoxyParamCaption}\item[{double}]{beta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a5264f4f8352b30ca34748bc007cc2495}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!alpha\_@{alpha\_}}
+\index{alpha\_@{alpha\_}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{alpha\_}{alpha\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a5264f4f8352b30ca34748bc007cc2495} 
+double cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::alpha\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Shape parameter alpha. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_af2fb3020caee174a2cfa050c966ff5c2}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!beta\_@{beta\_}}
+\index{beta\_@{beta\_}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{beta\_}{beta\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_af2fb3020caee174a2cfa050c966ff5c2} 
+double cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::beta\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Scale parameter beta. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a79efb37eeff5ab338a0cb467c88c2143}\index{cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}!distGamma\_@{distGamma\_}}
+\index{distGamma\_@{distGamma\_}!cmp::distribution::InverseGammaDistribution@{cmp::distribution::InverseGammaDistribution}}
+\doxysubsubsection{\texorpdfstring{distGamma\_}{distGamma\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_inverse_gamma_distribution_a79efb37eeff5ab338a0cb467c88c2143} 
+std\+::gamma\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Inverse\+Gamma\+Distribution\+::dist\+Gamma\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gamma distribution helper for sampling. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

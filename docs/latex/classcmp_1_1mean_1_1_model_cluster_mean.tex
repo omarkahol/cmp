@@ -1,0 +1,132 @@
+\doxysection{cmp\+::mean\+::Model\+Cluster\+Mean Class Reference}
+\hypertarget{classcmp_1_1mean_1_1_model_cluster_mean}{}\label{classcmp_1_1mean_1_1_model_cluster_mean}\index{cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}}
+
+
+Blended mean function that interpolates local GP means using classifier probabilities.  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+cluster.\+h$>$}
+
+Inheritance diagram for cmp\+::mean\+::Model\+Cluster\+Mean\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1mean_1_1_model_cluster_mean}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a3be5e6fdef6734b89d40ba1a594bc06a}{Model\+Cluster\+Mean}} (\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*}model\+Cluster, \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}classifier)
+\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_ab4ca32b2846fd9f6e15983da7a4e1f0c}{eval}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_aaacb14230bb6d11845815d14457ff594}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a28456bcb8d174af1ed3b4af1ba912f9a}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{cmp\+::mean\+::\+Mean}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_afa5d512bd5c31b2a646c603e5300fd88}{\texorpdfstring{$\sim$}{\string~}\+Mean}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}} $>$ \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a31c9835989380c878eb60ca558fb0ee4}{make}} (\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*}model\+Cluster, \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}classifier)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a0c73fc162a29ddd1657446f449560e5a}{p\+Model\+Cluster\+\_\+}}
+\item 
+\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_aa229a15fd561f3dc9cc2fa620791023f}{p\+Classifier\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Blended mean function that interpolates local GP means using classifier probabilities. 
+
+Mathematical Formulation The blended mean function at input \$x\$ is evaluated as\+:   \[M(x) = \sum_{k=1}^K P(C=k | x) m_k(x; \theta_k)
+\] where \$P(C=k \texorpdfstring{$\vert$}{|} x)\$ is the classifier-\/derived probability that \$x\$ belongs to cluster \$k\$, and \$m\+\_\+k\$ is the mean function of the \$k\$-\/th cluster\textquotesingle{}s GP.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Queries the classifier for the cluster membership probability vector at input \$x\$.
+\item Evaluates the local mean function for each cluster GP at \$x\$.
+\item Returns the dot product of the probability vector and the local GP mean vector. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_a3be5e6fdef6734b89d40ba1a594bc06a}\index{cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}!ModelClusterMean@{ModelClusterMean}}
+\index{ModelClusterMean@{ModelClusterMean}!cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}}
+\doxysubsubsection{\texorpdfstring{ModelClusterMean()}{ModelClusterMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_model_cluster_mean_a3be5e6fdef6734b89d40ba1a594bc06a} 
+cmp\+::mean\+::\+Model\+Cluster\+Mean\+::\+Model\+Cluster\+Mean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*}}]{model\+Cluster}{, }\item[{\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}}]{classifier}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_ab4ca32b2846fd9f6e15983da7a4e1f0c}\index{cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}!eval@{eval}}
+\index{eval@{eval}!cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_model_cluster_mean_ab4ca32b2846fd9f6e15983da7a4e1f0c} 
+double cmp\+::mean\+::\+Model\+Cluster\+Mean\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a9baba3a56a23dadca372c919287e7e3e}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_aaacb14230bb6d11845815d14457ff594}\index{cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_model_cluster_mean_aaacb14230bb6d11845815d14457ff594} 
+double cmp\+::mean\+::\+Model\+Cluster\+Mean\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a3a961125a9875efd2fc0cde26430245f}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_a28456bcb8d174af1ed3b4af1ba912f9a}\index{cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_model_cluster_mean_a28456bcb8d174af1ed3b4af1ba912f9a} 
+double cmp\+::mean\+::\+Model\+Cluster\+Mean\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_ac07ce7fda90ebaaa9bfc282a43947c46}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_a31c9835989380c878eb60ca558fb0ee4}\index{cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}!make@{make}}
+\index{make@{make}!cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_model_cluster_mean_a31c9835989380c878eb60ca558fb0ee4} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}} $>$ cmp\+::mean\+::\+Model\+Cluster\+Mean\+::make (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*}}]{model\+Cluster}{, }\item[{\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}}]{classifier}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_aa229a15fd561f3dc9cc2fa620791023f}\index{cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}!pClassifier\_@{pClassifier\_}}
+\index{pClassifier\_@{pClassifier\_}!cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}}
+\doxysubsubsection{\texorpdfstring{pClassifier\_}{pClassifier\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_model_cluster_mean_aa229a15fd561f3dc9cc2fa620791023f} 
+\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}}\texorpdfstring{$\ast$}{*} cmp\+::mean\+::\+Model\+Cluster\+Mean\+::p\+Classifier\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mean_1_1_model_cluster_mean_a0c73fc162a29ddd1657446f449560e5a}\index{cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}!pModelCluster\_@{pModelCluster\_}}
+\index{pModelCluster\_@{pModelCluster\_}!cmp::mean::ModelClusterMean@{cmp::mean::ModelClusterMean}}
+\doxysubsubsection{\texorpdfstring{pModelCluster\_}{pModelCluster\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_model_cluster_mean_a0c73fc162a29ddd1657446f449560e5a} 
+\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}}\texorpdfstring{$\ast$}{*} cmp\+::mean\+::\+Model\+Cluster\+Mean\+::p\+Model\+Cluster\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{model__cluster_8h}{model\+\_\+cluster.\+h}}\end{DoxyCompactItemize}

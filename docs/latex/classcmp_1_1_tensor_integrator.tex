@@ -1,0 +1,124 @@
+\doxysection{cmp\+::Tensor\+Integrator\texorpdfstring{$<$}{<} Basis\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcmp_1_1_tensor_integrator}{}\label{classcmp_1_1_tensor_integrator}\index{cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}}
+
+
+Multi-\/dimensional tensor product quadrature integrator.  
+
+
+
+
+{\ttfamily \#include $<$integrator.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1_tensor_integrator_aa3589f5894202c8a97d57d6e44796de1}{Tensor\+Integrator}} (int dim, int points\+Per\+Dim)
+\item 
+double \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ab63661144c4190470b2f2d3a56ee0212}{integrate}} (const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ \&f) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a938e04b94791771eced7199e12507069}{integrate}} (const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ \&f, const Eigen\+::\+Vector\+Xd \&p1, const Eigen\+::\+Vector\+Xd \&p2) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{grid\+Nodes}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{grid\+Weights}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Basis\+Type$>$\newline
+class cmp\+::\+Tensor\+Integrator$<$ Basis\+Type $>$}
+Multi-\/dimensional tensor product quadrature integrator. 
+
+Mathematical Formulation\+: A multi-\/dimensional integral over a tensor-\/product domain \$\textbackslash{}\+Omega = \mbox{[}a\+\_\+1, b\+\_\+1\mbox{]} \textbackslash{}times \textbackslash{}dots \textbackslash{}times \mbox{[}a\+\_\+d, b\+\_\+d\mbox{]}\$ is approximated by the tensor product of 1D quadrature rules\+:   \[\int_{\Omega} f(\mathbf{x}) \, d\mathbf{x} \approx \sum_{i_1=0}^{N-1} \dots \sum_{i_d=0}^{N-1} \left( \prod_{j=1}^{d} w_{i_j} \right) f(x_{i_1}, \dots, x_{i_d})
+\] where \$w\+\_\+\{i\+\_\+j\}\$ and \$x\+\_\+\{i\+\_\+j\}\$ are the 1D quadrature weights and nodes along dimension \$j\$. For physical domain integration over custom bounds \$\mbox{[}p\+\_\+\{1,d\}, p\+\_\+\{2,d\}\mbox{]}\$, a coordinate transformation maps the canonical nodes \$\textbackslash{}xi \textbackslash{}in \mbox{[}-\/1, 1\mbox{]}\$ (or the canonical domain of the basis) to \$x \textbackslash{}in \mbox{[}p\+\_\+\{1,d\}, p\+\_\+\{2,d\}\mbox{]}\$ via\+:   \[x = \text{mapToPhysical}(\xi, p_{1,d}, p_{2,d})
+\] The integration automatically incorporates any scaling factors (Jacobian of the transformation) if required by the basis.
+
+Implementation Algorithm\+:
+\begin{DoxyEnumerate}
+\item Instantiates a 1D quadrature rule {\ttfamily \doxylink{classcmp_1_1_quadrature1_d}{Quadrature1D}\texorpdfstring{$<$}{<}Basis\+Type\texorpdfstring{$>$}{>}} with the specified {\ttfamily points\+Per\+Dim}.
+\item Allocates a grid node matrix of size \$N\texorpdfstring{$^\wedge$}{\string^}d \textbackslash{}times d\$ and a weight vector of size \$N\texorpdfstring{$^\wedge$}{\string^}d\$, where \$\+N\$ is {\ttfamily points\+Per\+Dim} and \$d\$ is {\ttfamily dim}.
+\item Iterates through all \$N\texorpdfstring{$^\wedge$}{\string^}d\$ combinations using base-\/\$\+N\$ digit decomposition to reconstruct the index tuple \$(i\+\_\+0, \textbackslash{}dots, i\+\_\+\{d-\/1\})\$.
+\item For each joint grid point \$i\$, assigns the \$d\$-\/th dimension coordinate to the corresponding 1D node, and multiplies the 1D weights to form the joint weight \$\+W\+\_\+i = \textbackslash{}prod\+\_\+\{j=0\}\texorpdfstring{$^\wedge$}{\string^}\{d-\/1\} w\+\_\+\{i\+\_\+j\}\$.
+\item Provides two {\ttfamily integrate} overloads\+:
+\begin{DoxyItemize}
+\item Canonical {\ttfamily integrate(f)}\+: computes \$\textbackslash{}sum\+\_\+\{i\} W\+\_\+i f(\textbackslash{}mathbf\{x\}\+\_\+i)\$.
+\item Physical {\ttfamily integrate(f, p1, p2)}\+: maps canonical nodes to physical coordinates using {\ttfamily Basis\+Type\+::map\+To\+Physical} for each dimension before evaluating \$f\$ and summing with weights. 
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1_tensor_integrator_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1_tensor_integrator_aa3589f5894202c8a97d57d6e44796de1}\index{cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}!TensorIntegrator@{TensorIntegrator}}
+\index{TensorIntegrator@{TensorIntegrator}!cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{TensorIntegrator()}{TensorIntegrator()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_tensor_integrator_aa3589f5894202c8a97d57d6e44796de1} 
+template$<$typename Basis\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1_tensor_integrator}{cmp\+::\+Tensor\+Integrator}}$<$ Basis\+Type $>$\+::\+Tensor\+Integrator (\begin{DoxyParamCaption}\item[{int}]{dim}{, }\item[{int}]{points\+Per\+Dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1_tensor_integrator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1_tensor_integrator_ab63661144c4190470b2f2d3a56ee0212}\index{cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}!integrate@{integrate}}
+\index{integrate@{integrate}!cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{integrate()}{integrate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1_tensor_integrator_ab63661144c4190470b2f2d3a56ee0212} 
+template$<$typename Basis\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1_tensor_integrator}{cmp\+::\+Tensor\+Integrator}}$<$ Basis\+Type $>$\+::integrate (\begin{DoxyParamCaption}\item[{const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ \&}]{f}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Canonical Integration\+: Integrates a function defined in the canonical domain using tensor product quadrature. 
+\begin{DoxyParams}{Parameters}
+{\em f} & Function to integrate, defined in the canonical domain. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: The integral of the function over the canonical domain. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1_tensor_integrator_a938e04b94791771eced7199e12507069}\index{cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}!integrate@{integrate}}
+\index{integrate@{integrate}!cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{integrate()}{integrate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1_tensor_integrator_a938e04b94791771eced7199e12507069} 
+template$<$typename Basis\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1_tensor_integrator}{cmp\+::\+Tensor\+Integrator}}$<$ Basis\+Type $>$\+::integrate (\begin{DoxyParamCaption}\item[{const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ \&}]{f}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{p1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{p2}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Physical Integration\+: Integrates a function defined in the physical domain by automatically mapping to the canonical domain. 
+\begin{DoxyParams}{Parameters}
+{\em f} & Function to integrate, defined in the physical domain. \\
+\hline
+{\em p1} & Lower bounds of the physical domain for each dimension. \\
+\hline
+{\em p2} & Upper bounds of the physical domain for each dimension. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: The integral of the function over the specified physical domain. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1_tensor_integrator_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}\index{cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}!gridNodes@{gridNodes}}
+\index{gridNodes@{gridNodes}!cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{gridNodes}{gridNodes}}
+{\footnotesize\ttfamily \label{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5} 
+template$<$typename Basis\+Type$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_tensor_integrator}{cmp\+::\+Tensor\+Integrator}}$<$ Basis\+Type $>$\+::grid\+Nodes}
+
+\Hypertarget{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}\index{cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}!gridWeights@{gridWeights}}
+\index{gridWeights@{gridWeights}!cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{gridWeights}{gridWeights}}
+{\footnotesize\ttfamily \label{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618} 
+template$<$typename Basis\+Type$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_tensor_integrator}{cmp\+::\+Tensor\+Integrator}}$<$ Basis\+Type $>$\+::grid\+Weights}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{integrator_8h}{integrator.\+h}}\end{DoxyCompactItemize}

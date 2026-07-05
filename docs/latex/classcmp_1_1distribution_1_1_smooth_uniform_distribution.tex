@@ -1,0 +1,201 @@
+\doxysection{cmp\+::distribution\+::Smooth\+Uniform\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution}{}\label{classcmp_1_1distribution_1_1_smooth_uniform_distribution}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Smooth\+Uniform\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_smooth_uniform_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a0a5a1bff0405107a3c18dc66b7cda292}{Smooth\+Uniform\+Distribution}} (double lower\+Bound, double upper\+Bound, double sigma)
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a3bd324b2ff316955fee910ce34774855}{Smooth\+Uniform\+Distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a4d2bfb723eef2af720a649574805135a}{log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a76b19833af17b47e1152086b895e0a23}{d\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ac560d80ed51006fc153f17be1abf3f63}{dd\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a819adb33872d6effbe25c2c5943982c7}{CDF}} (const double \&t) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_aaa2de1073595c31c323d755ed506a9e5}{quantile}} (const double \&p) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a98d1aa2616ef55f9f1a938f1db5433ba}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a27c16a96fc56c8cde354a0bdee178085}{set\+Lower\+Bound}} (double a)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a716b4eecbcb75c66b7fdf5c194ac0e16}{set\+Upper\+Bound}} (double b)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a31e4c20aabe5abcad2de017ede49a17e}{set\+Std}} (double sigma)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution$<$ Smooth\+Uniform\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9931f4f984317ac7bd92e0cefa5162ea}{log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a0e2fb25e16d8a5be4e07aaaf7176baf3}{d\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the first derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9007089eadc69399bd8a7439a0f23daf}{dd\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the second derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a8bbc084f54acc7b70441727ed118f4aa}{CDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the cumulative distribution function (CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a01a92715e42ea2aaf4cb459f88370667}{quantile}} (const double \&p) const
+\begin{DoxyCompactList}\small\item\em Computes the quantile function (inverse CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a476afdc57d8b5855586323f45488ed96}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single pseudo-\/random sample from the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a961ca7d593267ce5cb1afa8d8fcd3930}{lower\+Bound\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Lower boundary. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ad7686c99d03c443d0b5def3243859e49}{upper\+Bound\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Upper boundary. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a442f12c46bb47debc7dc2f0791d885ec}{std\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Standard deviation of smoothing Gaussian. \end{DoxyCompactList}\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a052d41de00c885ecd11001ca9a376142}{dist\+U\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Uniform generator helper. \end{DoxyCompactList}\item 
+std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ab2063af6533b08b7db8b22964aad6be0}{dist\+N\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Normal generator helper. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a0a5a1bff0405107a3c18dc66b7cda292}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!SmoothUniformDistribution@{SmoothUniformDistribution}}
+\index{SmoothUniformDistribution@{SmoothUniformDistribution}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{SmoothUniformDistribution()}{SmoothUniformDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a0a5a1bff0405107a3c18dc66b7cda292} 
+cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::\+Smooth\+Uniform\+Distribution (\begin{DoxyParamCaption}\item[{double}]{lower\+Bound}{, }\item[{double}]{upper\+Bound}{, }\item[{double}]{sigma}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a3bd324b2ff316955fee910ce34774855}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!SmoothUniformDistribution@{SmoothUniformDistribution}}
+\index{SmoothUniformDistribution@{SmoothUniformDistribution}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{SmoothUniformDistribution()}{SmoothUniformDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a3bd324b2ff316955fee910ce34774855} 
+cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::\+Smooth\+Uniform\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a819adb33872d6effbe25c2c5943982c7}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!CDF@{CDF}}
+\index{CDF@{CDF}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{CDF()}{CDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a819adb33872d6effbe25c2c5943982c7} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::\+CDF (\begin{DoxyParamCaption}\item[{const double \&}]{t}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ac560d80ed51006fc153f17be1abf3f63}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!ddLogPDF@{ddLogPDF}}
+\index{ddLogPDF@{ddLogPDF}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{ddLogPDF()}{ddLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ac560d80ed51006fc153f17be1abf3f63} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::dd\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a76b19833af17b47e1152086b895e0a23}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!dLogPDF@{dLogPDF}}
+\index{dLogPDF@{dLogPDF}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{dLogPDF()}{dLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a76b19833af17b47e1152086b895e0a23} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::d\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a4d2bfb723eef2af720a649574805135a}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a4d2bfb723eef2af720a649574805135a} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_aaa2de1073595c31c323d755ed506a9e5}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!quantile@{quantile}}
+\index{quantile@{quantile}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_aaa2de1073595c31c323d755ed506a9e5} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::quantile (\begin{DoxyParamCaption}\item[{const double \&}]{p}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a98d1aa2616ef55f9f1a938f1db5433ba}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a98d1aa2616ef55f9f1a938f1db5433ba} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a27c16a96fc56c8cde354a0bdee178085}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!setLowerBound@{setLowerBound}}
+\index{setLowerBound@{setLowerBound}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{setLowerBound()}{setLowerBound()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a27c16a96fc56c8cde354a0bdee178085} 
+void cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::set\+Lower\+Bound (\begin{DoxyParamCaption}\item[{double}]{a}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a31e4c20aabe5abcad2de017ede49a17e}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!setStd@{setStd}}
+\index{setStd@{setStd}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{setStd()}{setStd()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a31e4c20aabe5abcad2de017ede49a17e} 
+void cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::set\+Std (\begin{DoxyParamCaption}\item[{double}]{sigma}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a716b4eecbcb75c66b7fdf5c194ac0e16}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!setUpperBound@{setUpperBound}}
+\index{setUpperBound@{setUpperBound}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{setUpperBound()}{setUpperBound()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a716b4eecbcb75c66b7fdf5c194ac0e16} 
+void cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::set\+Upper\+Bound (\begin{DoxyParamCaption}\item[{double}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ab2063af6533b08b7db8b22964aad6be0}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!distN\_@{distN\_}}
+\index{distN\_@{distN\_}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{distN\_}{distN\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ab2063af6533b08b7db8b22964aad6be0} 
+std\+::normal\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::dist\+N\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Normal generator helper. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a052d41de00c885ecd11001ca9a376142}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!distU\_@{distU\_}}
+\index{distU\_@{distU\_}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{distU\_}{distU\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a052d41de00c885ecd11001ca9a376142} 
+std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::dist\+U\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Uniform generator helper. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a961ca7d593267ce5cb1afa8d8fcd3930}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a961ca7d593267ce5cb1afa8d8fcd3930} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Lower boundary. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a442f12c46bb47debc7dc2f0791d885ec}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!std\_@{std\_}}
+\index{std\_@{std\_}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{std\_}{std\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_a442f12c46bb47debc7dc2f0791d885ec} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::std\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Standard deviation of smoothing Gaussian. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ad7686c99d03c443d0b5def3243859e49}\index{cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::distribution::SmoothUniformDistribution@{cmp::distribution::SmoothUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_smooth_uniform_distribution_ad7686c99d03c443d0b5def3243859e49} 
+double cmp\+::distribution\+::\+Smooth\+Uniform\+Distribution\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Upper boundary. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,68 @@
+\doxysection{cmp\+::density Namespace Reference}
+\hypertarget{namespacecmp_1_1density}{}\label{namespacecmp_1_1density}\index{cmp::density@{cmp::density}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}}
+\begin{DoxyCompactList}\small\item\em Multivariate Kernel Density Estimation (\doxylink{classcmp_1_1density_1_1_k_d_e}{KDE}) class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_1_1density_a8f9b2df230a3e644c2b72b77d7a11edd}{bandwidth\+Selection\+Rule}} (const \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188}{KDE\+::\+Band\+Width\+Selection\+Method}} \&method, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ x\+Obs)
+\begin{DoxyCompactList}\small\item\em Computes the bandwidth matrix using standard rules of thumb. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_1_1density_a012d8e2e86d97caec305fb1d3bf3a2ab}{bandwidth\+Optimization\+Cross\+Validation}} (const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&kf, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ x\+Obs, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{cmp\+::kernel\+::\+Kernel}} $>$ kernel, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}} $>$ initial\+Bandwidth, const double \&min, const double \&max, nlopt\+::algorithm alg, const double \&tol=1e-\/4)
+\begin{DoxyCompactList}\small\item\em Optimizes the bandwidth matrix using K-\/\+Fold cross-\/validation over the observations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacecmp_1_1density_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecmp_1_1density_a012d8e2e86d97caec305fb1d3bf3a2ab}\index{cmp::density@{cmp::density}!bandwidthOptimizationCrossValidation@{bandwidthOptimizationCrossValidation}}
+\index{bandwidthOptimizationCrossValidation@{bandwidthOptimizationCrossValidation}!cmp::density@{cmp::density}}
+\doxysubsubsection{\texorpdfstring{bandwidthOptimizationCrossValidation()}{bandwidthOptimizationCrossValidation()}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1density_a012d8e2e86d97caec305fb1d3bf3a2ab} 
+void cmp\+::density\+::bandwidth\+Optimization\+Cross\+Validation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&}]{kf}{, }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{x\+Obs}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{cmp\+::kernel\+::\+Kernel}} $>$}]{kernel}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}} $>$}]{initial\+Bandwidth}{, }\item[{const double \&}]{min}{, }\item[{const double \&}]{max}{, }\item[{nlopt\+::algorithm}]{alg}{, }\item[{const double \&}]{tol}{ = {\ttfamily 1e-\/4}}\end{DoxyParamCaption})}
+
+
+
+Optimizes the bandwidth matrix using K-\/\+Fold cross-\/validation over the observations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kf} & KFold cross-\/validation partitioning helper. \\
+\hline
+{\em x\+Obs} & Observation data matrix. \\
+\hline
+{\em kernel} & The density kernel to use. \\
+\hline
+{\em initial\+Bandwidth} & Input/output bandwidth object to optimize. \\
+\hline
+{\em min} & Minimum bounds for bandwidth parameters. \\
+\hline
+{\em max} & Maximum bounds for bandwidth parameters. \\
+\hline
+{\em alg} & The optimization algorithm. \\
+\hline
+{\em tol} & Optimization relative tolerance. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacecmp_1_1density_a8f9b2df230a3e644c2b72b77d7a11edd}\index{cmp::density@{cmp::density}!bandwidthSelectionRule@{bandwidthSelectionRule}}
+\index{bandwidthSelectionRule@{bandwidthSelectionRule}!cmp::density@{cmp::density}}
+\doxysubsubsection{\texorpdfstring{bandwidthSelectionRule()}{bandwidthSelectionRule()}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1density_a8f9b2df230a3e644c2b72b77d7a11edd} 
+Eigen\+::\+Matrix\+Xd cmp\+::density\+::bandwidth\+Selection\+Rule (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188}{KDE\+::\+Band\+Width\+Selection\+Method}} \&}]{method}{, }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{x\+Obs}{}\end{DoxyParamCaption})}
+
+
+
+Computes the bandwidth matrix using standard rules of thumb. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em method} & Selection rule (SCOTT or SILVERMAN). \\
+\hline
+{\em x\+Obs} & Observation data matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculated bandwidth matrix. 
+\end{DoxyReturn}

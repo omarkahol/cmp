@@ -1,0 +1,304 @@
+\doxysection{cmp\+::Polynomial\+Expansion\texorpdfstring{$<$}{<} Basis \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcmp_1_1_polynomial_expansion}{}\label{classcmp_1_1_polynomial_expansion}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+
+
+Implements multi-\/dimensional Polynomial Chaos Expansion (PCE) for spectral surrogate modeling.  
+
+
+
+
+{\ttfamily \#include $<$poly.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac832b21a877ab12b8394e6e74677a780}{Polynomial\+Expansion}} ()=default
+\item 
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_adec4bbcf651b5dba30e8732c16bad1e3}{set}} (size\+\_\+t dimension, size\+\_\+t total\+Degree, const Eigen\+::\+Vector\+Xd \&p1, const Eigen\+::\+Vector\+Xd \&p2, double q=1.\+0)
+\item 
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a3dc2f439b409f5d1459f6e21a6a9d456}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&samples, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&values)
+\item 
+double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_adffa574ee81bf970e22e028ce0159610}{get\+Analytical\+Mean}} () const
+\item 
+double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9b8260b928fc488e9378d87a6d8cb508}{get\+Analytical\+Variance}} () const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ad4df7a4ab2794b64051c9cbbe7243131}{get\+Sobol\+Main\+Indices}} () const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a18d52b24ec1be031ef402b5d337cfda1}{predict\+Batch}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&X) const
+\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_afbe173ea6e02cf457ff816c0aacc1870}{predict}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae9a621fdaec28e1f966f060db9d17d30}{predict\+With\+Obs}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, const double \&y\+Obs) const
+\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a6a64434895c872468d6940eb5494e9de}{predict\+LOO}} (const size\+\_\+t \&i) const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9c450b82e829e7197d57d7d1eb8c8ada}{compute\+Basis\+Row}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\item 
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a8efec28ad3c35e34ab807f377ec10f9c}{save}} (const std\+::string \&filename) const
+\item 
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_abaf0ca355c7d0a94c7f47c9a52a00060}{load}} (const std\+::string \&filename)
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4e475afdee373ace0d97a8f49fba9a25}{get\+Num\+Basis\+Functions}} () const
+\item 
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a67be2b8735ba9ed0969dc32218d4995b}{project}} (const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ \&model, int points\+Per\+Dim)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac9ef4c50866c08b2d4dc9eaa073c4308}{compute\+Design\+Matrix}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&X) const
+\item 
+{\footnotesize template$<$typename Matrix\+Type$>$ }\\void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_afb309970f54738b9ad50ddb62322e19b}{write\+Eigen\+Matrix}} (std\+::ofstream \&out, const Matrix\+Type \&mat) const
+\item 
+{\footnotesize template$<$typename Matrix\+Type$>$ }\\void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a15e94105b443278be7468e72174b074f}{read\+Eigen\+Matrix}} (std\+::ifstream \&in, Matrix\+Type \&mat)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1_multi_index}{Multi\+Index}} \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multi\+Index\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normal\+Matrix\+Inverse\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{x\+Obs\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{y\+Obs\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residual\+Variance\+\_\+}} = 0.\+0
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Basis$>$\newline
+class cmp\+::\+Polynomial\+Expansion$<$ Basis $>$}
+Implements multi-\/dimensional Polynomial Chaos Expansion (PCE) for spectral surrogate modeling. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Basis} & The orthogonal polynomial basis type (e.\+g., \doxylink{structcmp_1_1_hermite_basis}{Hermite\+Basis} for Gaussians, \doxylink{structcmp_1_1_legendre_basis}{Legendre\+Basis} for Uniforms).\\
+\hline
+\end{DoxyTemplParams}
+\hypertarget{classcmp_1_1_polynomial_expansion_autotoc_md12}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Foundations}{Mathematical Foundations}}\label{classcmp_1_1_polynomial_expansion_autotoc_md12}
+Polynomial Chaos Expansion represents a stochastic model output $Y = f(\mathbf{X})$ as a spectral expansion of multivariate orthogonal polynomials mapping canonical variables $\boldsymbol{\xi}$\+: \[ Y \approx \sum_{j=0}^{P-1} c_j \Psi_j(\boldsymbol{\xi}) \]
+
+The multivariate polynomials $\Psi_j(\boldsymbol{\xi})$ are tensor products of univariate orthogonal polynomials\+: \[ \Psi_j(\boldsymbol{\xi}) = \prod_{i=1}^d \psi_{\alpha_i^{(j)}}(\xi_i) \] where $\boldsymbol{\alpha}^{(j)} = (\alpha_1^{(j)}, \dots, \alpha_d^{(j)})$ is the multi-\/index of polynomial degrees.
+
+Uni-\/dimensional orthogonal bases satisfy\+: \[ \int_{\Omega} \psi_k(x) \psi_l(x) w(x) dx = \gamma_k \delta_{kl} \] where $w(x)$ is the probability density function (PDF) weight of the canonical distribution.\hypertarget{classcmp_1_1_polynomial_expansion_autotoc_md13}{}\doxysubsubsubsection{\texorpdfstring{Implementation Algorithms}{Implementation Algorithms}}\label{classcmp_1_1_polynomial_expansion_autotoc_md13}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Canonical Mapping}}\+: Physical samples $\mathbf{x}$ are mapped to canonical space $\boldsymbol{\xi}$ using the basis-\/specific mappings ({\ttfamily map\+To\+Canonical}).
+\item {\bfseries{Design Matrix Construction}}\+: Computes the regression matrix $\mathbf{A} \in \mathbb{R}^{N \times P}$ where\+: \[ A_{ij} = \Psi_j(\boldsymbol{\xi}^{(i)}) \]
+\item {\bfseries{Ordinary Least Squares (OLS) Regression}}\+: The expansion coefficients $\mathbf{c}$ are found by solving the linear least-\/squares problem $\mathbf{A}\mathbf{c} \approx \mathbf{y}$\+: \[ \mathbf{c} = \left(\mathbf{A}^T \mathbf{A}\right)^{-1} \mathbf{A}^T \mathbf{y} \] We solve this system robustly using Column-\/\+Pivoted Householder QR decomposition ({\ttfamily Col\+Piv\+Householder\+QR}).
+\end{DoxyEnumerate}\hypertarget{classcmp_1_1_polynomial_expansion_autotoc_md14}{}\doxysubsubsubsection{\texorpdfstring{Constraints \& Invariants}{Constraints \& Invariants}}\label{classcmp_1_1_polynomial_expansion_autotoc_md14}
+
+\begin{DoxyItemize}
+\item {\bfseries{Sample Size}}\+: The number of samples $N$ must satisfy $N > P$ (where $P = \text{multiIndex\_.size()}$) to avoid an underdetermined system and severe overfitting.
+\item {\bfseries{Parameter Ranges}}\+: Bounding parameter vectors (e.\+g., mean/standard deviation or lower/upper bounds) must match the dimensionality of the input space. 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1_polynomial_expansion_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1_polynomial_expansion_ac832b21a877ab12b8394e6e74677a780}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!PolynomialExpansion@{PolynomialExpansion}}
+\index{PolynomialExpansion@{PolynomialExpansion}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{PolynomialExpansion()}{PolynomialExpansion()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_ac832b21a877ab12b8394e6e74677a780} 
+template$<$typename Basis$>$ \\
+\mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::\+Polynomial\+Expansion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1_polynomial_expansion_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1_polynomial_expansion_a9c450b82e829e7197d57d7d1eb8c8ada}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!computeBasisRow@{computeBasisRow}}
+\index{computeBasisRow@{computeBasisRow}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{computeBasisRow()}{computeBasisRow()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a9c450b82e829e7197d57d7d1eb8c8ada} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::compute\+Basis\+Row (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_ac9ef4c50866c08b2d4dc9eaa073c4308}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!computeDesignMatrix@{computeDesignMatrix}}
+\index{computeDesignMatrix@{computeDesignMatrix}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{computeDesignMatrix()}{computeDesignMatrix()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_ac9ef4c50866c08b2d4dc9eaa073c4308} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::compute\+Design\+Matrix (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{X}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a3dc2f439b409f5d1459f6e21a6a9d456}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!fit@{fit}}
+\index{fit@{fit}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a3dc2f439b409f5d1459f6e21a6a9d456} 
+template$<$typename Basis$>$ \\
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{samples}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{values}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_adffa574ee81bf970e22e028ce0159610}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!getAnalyticalMean@{getAnalyticalMean}}
+\index{getAnalyticalMean@{getAnalyticalMean}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{getAnalyticalMean()}{getAnalyticalMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_adffa574ee81bf970e22e028ce0159610} 
+template$<$typename Basis$>$ \\
+double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::get\+Analytical\+Mean (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a9b8260b928fc488e9378d87a6d8cb508}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!getAnalyticalVariance@{getAnalyticalVariance}}
+\index{getAnalyticalVariance@{getAnalyticalVariance}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{getAnalyticalVariance()}{getAnalyticalVariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a9b8260b928fc488e9378d87a6d8cb508} 
+template$<$typename Basis$>$ \\
+double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::get\+Analytical\+Variance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a4e475afdee373ace0d97a8f49fba9a25}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!getNumBasisFunctions@{getNumBasisFunctions}}
+\index{getNumBasisFunctions@{getNumBasisFunctions}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{getNumBasisFunctions()}{getNumBasisFunctions()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a4e475afdee373ace0d97a8f49fba9a25} 
+template$<$typename Basis$>$ \\
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::get\+Num\+Basis\+Functions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_ad4df7a4ab2794b64051c9cbbe7243131}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!getSobolMainIndices@{getSobolMainIndices}}
+\index{getSobolMainIndices@{getSobolMainIndices}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{getSobolMainIndices()}{getSobolMainIndices()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_ad4df7a4ab2794b64051c9cbbe7243131} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::get\+Sobol\+Main\+Indices (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_abaf0ca355c7d0a94c7f47c9a52a00060}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!load@{load}}
+\index{load@{load}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_abaf0ca355c7d0a94c7f47c9a52a00060} 
+template$<$typename Basis$>$ \\
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_afbe173ea6e02cf457ff816c0aacc1870}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!predict@{predict}}
+\index{predict@{predict}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_afbe173ea6e02cf457ff816c0aacc1870} 
+template$<$typename Basis$>$ \\
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::predict (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a18d52b24ec1be031ef402b5d337cfda1}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!predictBatch@{predictBatch}}
+\index{predictBatch@{predictBatch}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{predictBatch()}{predictBatch()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a18d52b24ec1be031ef402b5d337cfda1} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::predict\+Batch (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{X}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a6a64434895c872468d6940eb5494e9de}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!predictLOO@{predictLOO}}
+\index{predictLOO@{predictLOO}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{predictLOO()}{predictLOO()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a6a64434895c872468d6940eb5494e9de} 
+template$<$typename Basis$>$ \\
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::predict\+LOO (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_ae9a621fdaec28e1f966f060db9d17d30}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!predictWithObs@{predictWithObs}}
+\index{predictWithObs@{predictWithObs}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{predictWithObs()}{predictWithObs()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_ae9a621fdaec28e1f966f060db9d17d30} 
+template$<$typename Basis$>$ \\
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::predict\+With\+Obs (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{const double \&}]{y\+Obs}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a67be2b8735ba9ed0969dc32218d4995b}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!project@{project}}
+\index{project@{project}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{project()}{project()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a67be2b8735ba9ed0969dc32218d4995b} 
+template$<$typename Basis$>$ \\
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::project (\begin{DoxyParamCaption}\item[{const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ \&}]{model}{, }\item[{int}]{points\+Per\+Dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a15e94105b443278be7468e72174b074f}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!readEigenMatrix@{readEigenMatrix}}
+\index{readEigenMatrix@{readEigenMatrix}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{readEigenMatrix()}{readEigenMatrix()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a15e94105b443278be7468e72174b074f} 
+template$<$typename Basis$>$ \\
+template$<$typename Matrix\+Type$>$ \\
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::read\+Eigen\+Matrix (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{in}{, }\item[{Matrix\+Type \&}]{mat}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a8efec28ad3c35e34ab807f377ec10f9c}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!save@{save}}
+\index{save@{save}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a8efec28ad3c35e34ab807f377ec10f9c} 
+template$<$typename Basis$>$ \\
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::save (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_adec4bbcf651b5dba30e8732c16bad1e3}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!set@{set}}
+\index{set@{set}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_adec4bbcf651b5dba30e8732c16bad1e3} 
+template$<$typename Basis$>$ \\
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::set (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{dimension}{, }\item[{size\+\_\+t}]{total\+Degree}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{p1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{p2}{, }\item[{double}]{q}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_afb309970f54738b9ad50ddb62322e19b}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!writeEigenMatrix@{writeEigenMatrix}}
+\index{writeEigenMatrix@{writeEigenMatrix}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{writeEigenMatrix()}{writeEigenMatrix()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_afb309970f54738b9ad50ddb62322e19b} 
+template$<$typename Basis$>$ \\
+template$<$typename Matrix\+Type$>$ \\
+void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::write\+Eigen\+Matrix (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{out}{, }\item[{const Matrix\+Type \&}]{mat}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1_polynomial_expansion_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!coefficients\_@{coefficients\_}}
+\index{coefficients\_@{coefficients\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{coefficients\_}{coefficients\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::coefficients\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!multiIndex\_@{multiIndex\_}}
+\index{multiIndex\_@{multiIndex\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{multiIndex\_}{multiIndex\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa} 
+template$<$typename Basis$>$ \\
+\mbox{\hyperlink{classcmp_1_1_multi_index}{Multi\+Index}} \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::multi\+Index\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!normalMatrixInverse\_@{normalMatrixInverse\_}}
+\index{normalMatrixInverse\_@{normalMatrixInverse\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{normalMatrixInverse\_}{normalMatrixInverse\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::normal\+Matrix\+Inverse\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!p1\_@{p1\_}}
+\index{p1\_@{p1\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{p1\_}{p1\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::p1\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!p2\_@{p2\_}}
+\index{p2\_@{p2\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{p2\_}{p2\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::p2\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!residualVariance\_@{residualVariance\_}}
+\index{residualVariance\_@{residualVariance\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{residualVariance\_}{residualVariance\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1} 
+template$<$typename Basis$>$ \\
+double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::residual\+Variance\+\_\+ = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!xObs\_@{xObs\_}}
+\index{xObs\_@{xObs\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!yObs\_@{yObs\_}}
+\index{yObs\_@{yObs\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
+\doxysubsubsection{\texorpdfstring{yObs\_}{yObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d} 
+template$<$typename Basis$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{poly_8h}{poly.\+h}}\end{DoxyCompactItemize}

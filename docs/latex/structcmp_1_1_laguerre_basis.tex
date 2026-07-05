@@ -1,0 +1,76 @@
+\doxysection{cmp\+::Laguerre\+Basis Struct Reference}
+\hypertarget{structcmp_1_1_laguerre_basis}{}\label{structcmp_1_1_laguerre_basis}\index{cmp::LaguerreBasis@{cmp::LaguerreBasis}}
+
+
+Laguerre orthogonal polynomial basis.  
+
+
+
+
+{\ttfamily \#include $<$poly.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_laguerre_basis_abf7e42f89027ae10f7d230f9b2cfca58}{evaluate}} (size\+\_\+t deg, double xi)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_laguerre_basis_aad9a8373c0760d1d8af8799f62e41348}{norm\+Squared}} (size\+\_\+t deg)
+\item 
+static Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{structcmp_1_1_laguerre_basis_aa0857f3c75f48067c08ed2c3a2453502}{get\+Jacobi\+Matrix}} (int num\+Points)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_laguerre_basis_ab7369df783aced906b3631e3848d8c0d}{map\+To\+Physical}} (double xi, double location, double scale)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_laguerre_basis_a6d0391f30553a1d3b2ec3053a5de44f3}{map\+To\+Canonical}} (double x, double location, double scale)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Laguerre orthogonal polynomial basis. 
+
+Mathematical Formulation Laguerre polynomials $L_n(\xi)$ are orthogonal with respect to the exponential weight function $w(\xi) = e^{-\xi}$ on $[0, \infty)$. The recurrence relation is\+:   \[(n+1) L_{n+1}(\xi) = (2n + 1 - \xi) L_n(\xi) - n L_{n-1}(\xi)
+\]
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{structcmp_1_1_laguerre_basis_abf7e42f89027ae10f7d230f9b2cfca58}{evaluate()}} computes polynomial values using the standard Laguerre recurrence relation.
+\item {\ttfamily \doxylink{structcmp_1_1_laguerre_basis_aa0857f3c75f48067c08ed2c3a2453502}{get\+Jacobi\+Matrix()}} constructs the symmetric tridiagonal Jacobi matrix $\mathbf{J}$ with diagonal $\alpha_i = 2i + 1$ and off-\/diagonal $\beta_i = i + 1$. 
+\end{DoxyEnumerate}
+
+\label{doc-func-members}
+\Hypertarget{structcmp_1_1_laguerre_basis_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structcmp_1_1_laguerre_basis_abf7e42f89027ae10f7d230f9b2cfca58}\index{cmp::LaguerreBasis@{cmp::LaguerreBasis}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!cmp::LaguerreBasis@{cmp::LaguerreBasis}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_laguerre_basis_abf7e42f89027ae10f7d230f9b2cfca58} 
+double cmp\+::\+Laguerre\+Basis\+::evaluate (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{deg}{, }\item[{double}]{xi}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_laguerre_basis_aa0857f3c75f48067c08ed2c3a2453502}\index{cmp::LaguerreBasis@{cmp::LaguerreBasis}!getJacobiMatrix@{getJacobiMatrix}}
+\index{getJacobiMatrix@{getJacobiMatrix}!cmp::LaguerreBasis@{cmp::LaguerreBasis}}
+\doxysubsubsection{\texorpdfstring{getJacobiMatrix()}{getJacobiMatrix()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_laguerre_basis_aa0857f3c75f48067c08ed2c3a2453502} 
+Eigen\+::\+Matrix\+Xd cmp\+::\+Laguerre\+Basis\+::get\+Jacobi\+Matrix (\begin{DoxyParamCaption}\item[{int}]{num\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_laguerre_basis_a6d0391f30553a1d3b2ec3053a5de44f3}\index{cmp::LaguerreBasis@{cmp::LaguerreBasis}!mapToCanonical@{mapToCanonical}}
+\index{mapToCanonical@{mapToCanonical}!cmp::LaguerreBasis@{cmp::LaguerreBasis}}
+\doxysubsubsection{\texorpdfstring{mapToCanonical()}{mapToCanonical()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_laguerre_basis_a6d0391f30553a1d3b2ec3053a5de44f3} 
+double cmp\+::\+Laguerre\+Basis\+::map\+To\+Canonical (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{location}{, }\item[{double}]{scale}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_laguerre_basis_ab7369df783aced906b3631e3848d8c0d}\index{cmp::LaguerreBasis@{cmp::LaguerreBasis}!mapToPhysical@{mapToPhysical}}
+\index{mapToPhysical@{mapToPhysical}!cmp::LaguerreBasis@{cmp::LaguerreBasis}}
+\doxysubsubsection{\texorpdfstring{mapToPhysical()}{mapToPhysical()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_laguerre_basis_ab7369df783aced906b3631e3848d8c0d} 
+double cmp\+::\+Laguerre\+Basis\+::map\+To\+Physical (\begin{DoxyParamCaption}\item[{double}]{xi}{, }\item[{double}]{location}{, }\item[{double}]{scale}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_laguerre_basis_aad9a8373c0760d1d8af8799f62e41348}\index{cmp::LaguerreBasis@{cmp::LaguerreBasis}!normSquared@{normSquared}}
+\index{normSquared@{normSquared}!cmp::LaguerreBasis@{cmp::LaguerreBasis}}
+\doxysubsubsection{\texorpdfstring{normSquared()}{normSquared()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_laguerre_basis_aad9a8373c0760d1d8af8799f62e41348} 
+double cmp\+::\+Laguerre\+Basis\+::norm\+Squared (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{deg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{poly_8h}{poly.\+h}}\end{DoxyCompactItemize}

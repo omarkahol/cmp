@@ -1,0 +1,135 @@
+\doxysection{cmp\+::classifier\+::Dummy Class Reference}
+\hypertarget{classcmp_1_1classifier_1_1_dummy}{}\label{classcmp_1_1classifier_1_1_dummy}\index{cmp::classifier::Dummy@{cmp::classifier::Dummy}}
+
+
+Baseline classifier predicting class labels based on training frequency distributions.  
+
+
+
+
+{\ttfamily \#include $<$classifier.\+h$>$}
+
+Inheritance diagram for cmp\+::classifier\+::Dummy\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1classifier_1_1_dummy}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a0c1afa5f6e024a4582ba03d82c52a1f6}{condition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&labels)
+\begin{DoxyCompactList}\small\item\em Computes the class frequencies from training labels. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a38f25279d0a890bcde125c2844b7dcd2}{predict}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const override
+\begin{DoxyCompactList}\small\item\em Predicts the class label with the highest prior frequency. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a5d56e78020cbf38ab2d1dac2b898ffb0}{predict\+Probabilities}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const override
+\begin{DoxyCompactList}\small\item\em Estimates the class prior probabilities based on training frequencies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a7dd8540cf402dfb9b5f3b83b2de9d17d}{\texorpdfstring{$\sim$}{\string~}\+Classifier}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a0a6469a29493976634805e354bb52ac2}{n\+Classes\+\_\+}} \{1\}
+\begin{DoxyCompactList}\small\item\em Total number of class labels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Baseline classifier predicting class labels based on training frequency distributions. 
+
+Mathematical Formulation The predicted probability for class $c$ at any input point $\mathbf{x}$ is equal to the class prior\+:   \[P(y=c \mid \mathbf{x}) = \frac{N_c}{N}
+\] where $N_c$ is the number of occurrences of class $c$ in the training set and $N$ is the total number of training observations.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{classcmp_1_1classifier_1_1_dummy_a0c1afa5f6e024a4582ba03d82c52a1f6}{condition()}} computes class counts $N_c$ from the labels training vector.
+\item {\ttfamily \doxylink{classcmp_1_1classifier_1_1_dummy_a5d56e78020cbf38ab2d1dac2b898ffb0}{predict\+Probabilities()}} returns a vector of class proportions. 
+\end{DoxyEnumerate}
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1classifier_1_1_dummy_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_dummy_a0c1afa5f6e024a4582ba03d82c52a1f6}\index{cmp::classifier::Dummy@{cmp::classifier::Dummy}!condition@{condition}}
+\index{condition@{condition}!cmp::classifier::Dummy@{cmp::classifier::Dummy}}
+\doxysubsubsection{\texorpdfstring{condition()}{condition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_dummy_a0c1afa5f6e024a4582ba03d82c52a1f6} 
+void cmp\+::classifier\+::\+Dummy\+::condition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&}]{labels}{}\end{DoxyParamCaption})}
+
+
+
+Computes the class frequencies from training labels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & A matrix of training observations (unused). \\
+\hline
+{\em labels} & A vector of training labels. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1classifier_1_1_dummy_a38f25279d0a890bcde125c2844b7dcd2}\index{cmp::classifier::Dummy@{cmp::classifier::Dummy}!predict@{predict}}
+\index{predict@{predict}!cmp::classifier::Dummy@{cmp::classifier::Dummy}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_dummy_a38f25279d0a890bcde125c2844b7dcd2} 
+size\+\_\+t cmp\+::classifier\+::\+Dummy\+::predict (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Predicts the class label with the highest prior frequency. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The query point (unused). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The most frequent class label. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a2fbf78b38db8cc851a433caa9b87e758}{cmp\+::classifier\+::\+Classifier}}.
+
+\Hypertarget{classcmp_1_1classifier_1_1_dummy_a5d56e78020cbf38ab2d1dac2b898ffb0}\index{cmp::classifier::Dummy@{cmp::classifier::Dummy}!predictProbabilities@{predictProbabilities}}
+\index{predictProbabilities@{predictProbabilities}!cmp::classifier::Dummy@{cmp::classifier::Dummy}}
+\doxysubsubsection{\texorpdfstring{predictProbabilities()}{predictProbabilities()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_dummy_a5d56e78020cbf38ab2d1dac2b898ffb0} 
+std\+::vector$<$ double $>$ cmp\+::classifier\+::\+Dummy\+::predict\+Probabilities (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Estimates the class prior probabilities based on training frequencies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The query point (unused). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of class prior probabilities. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_af91c87a6c6a2261f74333847e6f6d68a}{cmp\+::classifier\+::\+Classifier}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1classifier_1_1_dummy_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_dummy_a0a6469a29493976634805e354bb52ac2}\index{cmp::classifier::Dummy@{cmp::classifier::Dummy}!nClasses\_@{nClasses\_}}
+\index{nClasses\_@{nClasses\_}!cmp::classifier::Dummy@{cmp::classifier::Dummy}}
+\doxysubsubsection{\texorpdfstring{nClasses\_}{nClasses\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_dummy_a0a6469a29493976634805e354bb52ac2} 
+size\+\_\+t cmp\+::classifier\+::\+Dummy\+::n\+Classes\+\_\+ \{1\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Total number of class labels. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{classifier_8h}{classifier.\+h}}\item 
+src/\mbox{\hyperlink{classifier_8cpp}{classifier.\+cpp}}\end{DoxyCompactItemize}

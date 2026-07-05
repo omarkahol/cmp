@@ -1,0 +1,47 @@
+\doxysection{include/kernel.h File Reference}
+\hypertarget{kernel_8h}{}\label{kernel_8h}\index{include/kernel.h@{include/kernel.h}}
+{\ttfamily \#include "{}cmp\+\_\+defines.\+h"{}}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacecmp_af1d329e97ac8ac65a977c1b7c802c635}{squared\+\_\+kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l)
+\begin{DoxyCompactList}\small\item\em squared exponential kernel. Evaluates the squared exponential kernel on two points {\ttfamily x} and {\ttfamily y} \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_acb8ed9b26fc46ca2d380514d113232c0}{white\+\_\+noise\+\_\+kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s)
+\begin{DoxyCompactList}\small\item\em White noise kernel. Evaluates the white noise kernel on two points {\ttfamily x} and {\ttfamily y}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a71a2b85afd7c43b65b757ca11b6c5cde}{squared\+\_\+kernel\+\_\+grad}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l, const int \&i)
+\begin{DoxyCompactList}\small\item\em squared exponential kernel gradient. Evaluates the gradient of the squared exponential kernel on two points {\ttfamily x} and {\ttfamily y} \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_aa52ee4892152aa878109b825df8315d1}{white\+\_\+noise\+\_\+kernel\+\_\+grad}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const int \&i)
+\begin{DoxyCompactList}\small\item\em White noise kernel gradient. Evaluates the gradient of white noise kernel on two points {\ttfamily x} and {\ttfamily y}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a790bf38a1d6a2a8257de4904a728ff6a}{squared\+\_\+kernel\+\_\+hess}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l, const int \&i, const int \&j)
+\begin{DoxyCompactList}\small\item\em squared exponential kernel hessian. Evaluates the gradient of the squared exponential kernel on two points {\ttfamily x} and {\ttfamily y} \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a088d77a41c8c6ab196f5ae31d9041f88}{white\+\_\+noise\+\_\+kernel\+\_\+hess}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const int \&i, const int \&j)
+\begin{DoxyCompactList}\small\item\em White noise kernel gradient. Evaluates the gradient of white noise kernel on two points {\ttfamily x} and {\ttfamily y}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_abcc3f53bb9628178574e7b87cc056470}{rational\+\_\+quadratic\+\_\+kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l, const double \&a)
+\begin{DoxyCompactList}\small\item\em Rational Quadratic kernel Evaluates the rational quadratic kernel at two points {\ttfamily x} and {\ttfamily y}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_adf8ec4f9842e6cf0ca79a68c2fc7a915}{periodic\+\_\+kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l, const double \&p)
+\begin{DoxyCompactList}\small\item\em Periodic kernel Evaluates the periodic kernel at two points {\ttfamily x} and {\ttfamily y}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a8e01ded138c08965446bbfa257c17059}{locally\+\_\+periodic\+\_\+kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l, const double \&p)
+\begin{DoxyCompactList}\small\item\em Locally periodic kernel Evaluates the locally periodic kernel at two points {\ttfamily x} and {\ttfamily y}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_acddd68dd2a5a215ad64ac30a2c94de91}{se\+\_\+kernel\+\_\+corr}} (const double \&d, const double \&l)
+\begin{DoxyCompactList}\small\item\em Calculates the squared exponential kernel correlation. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_ad83bbf9c9f51272a44c404e91d1b7eea}{d\+\_\+se\+\_\+kernel\+\_\+corr}} (const double \&d, const double \&l)
+\item 
+double \mbox{\hyperlink{namespacecmp_a0be4e761046e9645380e703e2915c199}{dd\+\_\+se\+\_\+kernel\+\_\+corr}} (const double \&d, const double \&l)
+\item 
+double \mbox{\hyperlink{namespacecmp_abf604abaf9ebbbdb57c5259c28d5a49d}{matern\+\_\+12\+\_\+kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l)
+\item 
+double \mbox{\hyperlink{namespacecmp_af78c2d66678bbf4eb3208f4ce00938a8}{matern\+\_\+32\+\_\+kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l)
+\item 
+double \mbox{\hyperlink{namespacecmp_abba41ff34332e7ef3072b4a000a44eed}{matern\+\_\+52\+\_\+kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const double \&s, const double \&l)
+\item 
+double \mbox{\hyperlink{namespacecmp_adf6d7e74239b6808ef9a7db82a685006}{matern\+\_\+12\+\_\+corr}} (const double \&d, const double \&l)
+\item 
+double \mbox{\hyperlink{namespacecmp_a4479b63b265ebb50ccdf13d11994d06b}{matern\+\_\+32\+\_\+corr}} (const double \&d, const double \&l)
+\item 
+double \mbox{\hyperlink{namespacecmp_a94ba304a4c775659a51f8f64f4d75e15}{matern\+\_\+52\+\_\+corr}} (const double \&d, const double \&l)
+\end{DoxyCompactItemize}

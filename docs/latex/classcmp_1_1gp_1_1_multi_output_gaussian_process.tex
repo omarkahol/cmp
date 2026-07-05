@@ -1,0 +1,281 @@
+\doxysection{cmp\+::gp\+::Multi\+Output\+Gaussian\+Process Class Reference}
+\hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process}{}\label{classcmp_1_1gp_1_1_multi_output_gaussian_process}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+
+
+Manages a collection of independent Gaussian Processes for multi-\/output regression.  
+
+
+
+
+{\ttfamily \#include $<$multi\+\_\+gp.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a4b0358b1679d25d1db4654cff3c527d4}{Multi\+Output\+Gaussian\+Process}} ()
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8f6f8d943e3daaa233b10acd3cd15cd1}{Multi\+Output\+Gaussian\+Process}} (const size\+\_\+t \&n\+Gps, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \&kernel, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \&mean, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&params, double nugget=1e-\/8)
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a285cee3426a28471c053523aef0b3f35}{\texorpdfstring{$\sim$}{\string~}\+Multi\+Output\+Gaussian\+Process}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a68e63518fd966f3cadfd4f1c0daaa924}{Multi\+Output\+Gaussian\+Process}} (const \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \& \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a2bcc9a30c7ffa1779fe5ac510a758da9}{operator=}} (const \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a503db288812b54015d32b0baaa0c8f26}{Multi\+Output\+Gaussian\+Process}} (\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \&\&other) noexcept=default
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \& \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a0e10594679ce5d6f8aba3a6247858d48}{operator=}} (\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \&\&other) noexcept=default
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_abacf63f0465478e66c35e03cbd583639}{set}} (const size\+\_\+t \&n\+Gps, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \&kernel, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \&mean, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&params, double nugget=1e-\/8)
+\begin{DoxyCompactList}\small\item\em Set the number of Gaussian Processes and their parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a893521abd7e6c2a477c14ef614397529}{condition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&y\+Obs, bool copy\+Data=true)
+\begin{DoxyCompactList}\small\item\em Set the values of the observations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a332d6b952925a94c6bfa23caa95e9df7}{fit}} (const Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \&y\+Obs, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lb, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&ub, const \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}} \&\mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}}=\mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7}{MLE}}, const nlopt\+::algorithm \&alg=nlopt\+::\+LN\+\_\+\+SBPLX, const double \&tol\+\_\+rel=1e-\/3, bool copy\+Data=true, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&prior=\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15}{cmp\+::prior\+::\+Uniform\+::make}}(), const std\+::vector$<$ bool $>$ \&log\+Scale=\{\})
+\begin{DoxyCompactList}\small\item\em Fit the Gaussian Process to the observations. \end{DoxyCompactList}\item 
+std\+::pair$<$ Eigen\+::\+Vector\+Xd, Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_aec6b463e12fc0be10c11b81758725182}{predict}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, const \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} \&t=\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}) const
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \& \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_ae557729de3199b26db41742eb48644d7}{operator\mbox{[}$\,$\mbox{]}}} (const int \&i)
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a621db0861d8b294708ebd89f5656c6c0}{size}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of output dimensions (the number of GP models). \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a91ce2f2bc5de2472e34be588e48ab0f2}{predict\+Mean}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, const \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} \&t=\mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}) const
+\begin{DoxyCompactList}\small\item\em Predicts the output mean vector at the test point x. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_af2ee66ad8f68d2eb1c741b90f0d220a4}{gps\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8eb4813cb0a1e5391445355877e83389}{x\+Obs\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_aaf57ca6f4251c2eb7dd725352b09426f}{y\+Obs\+\_\+}}
+\item 
+std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a90bec24e0a05d81938d52952ec25f530}{p\+XObs\+\_\+}}
+\item 
+std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_aee02ee50d007bd0857053a563722e47d}{p\+YObs\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages a collection of independent Gaussian Processes for multi-\/output regression. 
+
+Mathematical Formulation Models a vector-\/valued function $\mathbf{f}: \mathbb{R}^D \to \mathbb{R}^M$ using $M$ independent Gaussian Processes\+:   \[f_j(\mathbf{x}) \sim \mathcal{GP}\left(m_j(\mathbf{x}), k_j(\mathbf{x}, \mathbf{x}\textnormal{\textquotesingle})\right), \quad j = 0, \dots, M-1
+\] Often used in combination with PCA dimension reduction, where the high-\/dimensional response vector $\mathbf{y} \in \mathbb{R}^Q$ is projected onto $M$ principal components, and each component is modeled by a separate GP.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a893521abd7e6c2a477c14ef614397529}{condition()}} partitions the multi-\/column target matrix $\mathbf{Y}$ to condition each internal {\ttfamily \doxylink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} object.
+\item {\ttfamily \doxylink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a332d6b952925a94c6bfa23caa95e9df7}{fit()}} sequentially optimizes hyperparameters for each GP in the collection using the specified MLE/\+LOO objectives.
+\item {\ttfamily \doxylink{classcmp_1_1gp_1_1_multi_output_gaussian_process_aec6b463e12fc0be10c11b81758725182}{predict()}} queries predictions from each internal GP to reconstruct the multivariate output mean and variance vectors. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a4b0358b1679d25d1db4654cff3c527d4}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!MultiOutputGaussianProcess@{MultiOutputGaussianProcess}}
+\index{MultiOutputGaussianProcess@{MultiOutputGaussianProcess}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{MultiOutputGaussianProcess()}{MultiOutputGaussianProcess()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a4b0358b1679d25d1db4654cff3c527d4} 
+cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::\+Multi\+Output\+Gaussian\+Process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8f6f8d943e3daaa233b10acd3cd15cd1}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!MultiOutputGaussianProcess@{MultiOutputGaussianProcess}}
+\index{MultiOutputGaussianProcess@{MultiOutputGaussianProcess}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{MultiOutputGaussianProcess()}{MultiOutputGaussianProcess()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8f6f8d943e3daaa233b10acd3cd15cd1} 
+cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::\+Multi\+Output\+Gaussian\+Process (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Gps}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \&}]{kernel}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \&}]{mean}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{params}{, }\item[{double}]{nugget}{ = {\ttfamily 1e-\/8}}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a285cee3426a28471c053523aef0b3f35}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!````~MultiOutputGaussianProcess@{\texorpdfstring{$\sim$}{\string~}MultiOutputGaussianProcess}}
+\index{````~MultiOutputGaussianProcess@{\texorpdfstring{$\sim$}{\string~}MultiOutputGaussianProcess}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MultiOutputGaussianProcess()}{\string~MultiOutputGaussianProcess()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a285cee3426a28471c053523aef0b3f35} 
+cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::\texorpdfstring{$\sim$}{\string~}\+Multi\+Output\+Gaussian\+Process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a68e63518fd966f3cadfd4f1c0daaa924}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!MultiOutputGaussianProcess@{MultiOutputGaussianProcess}}
+\index{MultiOutputGaussianProcess@{MultiOutputGaussianProcess}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{MultiOutputGaussianProcess()}{MultiOutputGaussianProcess()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a68e63518fd966f3cadfd4f1c0daaa924} 
+cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::\+Multi\+Output\+Gaussian\+Process (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a503db288812b54015d32b0baaa0c8f26}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!MultiOutputGaussianProcess@{MultiOutputGaussianProcess}}
+\index{MultiOutputGaussianProcess@{MultiOutputGaussianProcess}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{MultiOutputGaussianProcess()}{MultiOutputGaussianProcess()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a503db288812b54015d32b0baaa0c8f26} 
+cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::\+Multi\+Output\+Gaussian\+Process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a893521abd7e6c2a477c14ef614397529}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!condition@{condition}}
+\index{condition@{condition}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{condition()}{condition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a893521abd7e6c2a477c14ef614397529} 
+void cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::condition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{y\+Obs}{, }\item[{bool}]{copy\+Data}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Set the values of the observations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & the observation points \\
+\hline
+{\em y\+Obs} & the observation values (each column corresponds to a different output dimension) \\
+\hline
+{\em copy\+Data} & whether to copy the observation data internally (default is true) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a332d6b952925a94c6bfa23caa95e9df7}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!fit@{fit}}
+\index{fit@{fit}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a332d6b952925a94c6bfa23caa95e9df7} 
+void cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{y\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lb}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{ub}{, }\item[{const \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}} \&}]{method}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7}{MLE}}}, }\item[{const nlopt\+::algorithm \&}]{alg}{ = {\ttfamily nlopt\+:\+:LN\+\_\+SBPLX}, }\item[{const double \&}]{tol\+\_\+rel}{ = {\ttfamily 1e-\/3}, }\item[{bool}]{copy\+Data}{ = {\ttfamily true}, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ \&}]{prior}{ = {\ttfamily \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15}{cmp\+::prior\+::\+Uniform\+::make}}()}, }\item[{const std\+::vector$<$ bool $>$ \&}]{log\+Scale}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+
+
+Fit the Gaussian Process to the observations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & the observation points \\
+\hline
+{\em y\+Obs} & the observation values \\
+\hline
+{\em lb} & the lower bounds for the hyperparameters \\
+\hline
+{\em ub} & the upper bounds for the hyperparameters \\
+\hline
+{\em method} & the fitting method (default is MLE) \\
+\hline
+{\em alg} & the optimization algorithm (default is nlopt\+::\+LN\+\_\+\+SBPLX) \\
+\hline
+{\em tol\+\_\+rel} & the relative tolerance for the optimization (default is 1e-\/3) \\
+\hline
+{\em copy\+Data} & whether to copy the observation data internally (default is true) \\
+\hline
+{\em prior} & the prior distribution for the hyperparameters (default is uniform prior) \\
+\hline
+{\em log\+Scale} & a vector indicating which hyperparameters should be optimized in log scale (default is all false) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a2bcc9a30c7ffa1779fe5ac510a758da9}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a2bcc9a30c7ffa1779fe5ac510a758da9} 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \& cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a0e10594679ce5d6f8aba3a6247858d48}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a0e10594679ce5d6f8aba3a6247858d48} 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \& cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process}{Multi\+Output\+Gaussian\+Process}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_ae557729de3199b26db41742eb48644d7}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_ae557729de3199b26db41742eb48644d7} 
+\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} \& cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const int \&}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_aec6b463e12fc0be10c11b81758725182}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!predict@{predict}}
+\index{predict@{predict}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_aec6b463e12fc0be10c11b81758725182} 
+std\+::pair$<$ Eigen\+::\+Vector\+Xd, Eigen\+::\+Matrix\+Xd $>$ cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::predict (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{const \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} \&}]{t}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}}}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a91ce2f2bc5de2472e34be588e48ab0f2}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!predictMean@{predictMean}}
+\index{predictMean@{predictMean}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{predictMean()}{predictMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a91ce2f2bc5de2472e34be588e48ab0f2} 
+Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::predict\+Mean (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{const \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}} \&}]{t}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type\+::\+POSTERIOR}}}}\end{DoxyParamCaption}) const}
+
+
+
+Predicts the output mean vector at the test point x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The test point. \\
+\hline
+{\em t} & Evaluation type (PRIOR or POSTERIOR). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Predictive mean vector. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_abacf63f0465478e66c35e03cbd583639}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!set@{set}}
+\index{set@{set}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_abacf63f0465478e66c35e03cbd583639} 
+void cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::set (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Gps}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \&}]{kernel}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \&}]{mean}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{params}{, }\item[{double}]{nugget}{ = {\ttfamily 1e-\/8}}\end{DoxyParamCaption})}
+
+
+
+Set the number of Gaussian Processes and their parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Gps} & the number of Gaussian Processes \\
+\hline
+{\em kernel} & the covariance function \\
+\hline
+{\em mean} & the mean function \\
+\hline
+{\em params} & the hyperparameters \\
+\hline
+{\em nugget} & the nugget value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a621db0861d8b294708ebd89f5656c6c0}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!size@{size}}
+\index{size@{size}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a621db0861d8b294708ebd89f5656c6c0} 
+size\+\_\+t cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the number of output dimensions (the number of GP models). 
+
+\begin{DoxyReturn}{Returns}
+Size of the GP collection. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_af2ee66ad8f68d2eb1c741b90f0d220a4}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!gps\_@{gps\_}}
+\index{gps\_@{gps\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{gps\_}{gps\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_af2ee66ad8f68d2eb1c741b90f0d220a4} 
+std\+::vector$<$\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}}$>$ cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::gps\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a90bec24e0a05d81938d52952ec25f530}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!pXObs\_@{pXObs\_}}
+\index{pXObs\_@{pXObs\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{pXObs\_}{pXObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a90bec24e0a05d81938d52952ec25f530} 
+std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ $>$ cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::p\+XObs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_aee02ee50d007bd0857053a563722e47d}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!pYObs\_@{pYObs\_}}
+\index{pYObs\_@{pYObs\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{pYObs\_}{pYObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_aee02ee50d007bd0857053a563722e47d} 
+std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ $>$ cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::p\+YObs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8eb4813cb0a1e5391445355877e83389}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!xObs\_@{xObs\_}}
+\index{xObs\_@{xObs\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8eb4813cb0a1e5391445355877e83389} 
+Eigen\+::\+Matrix\+Xd cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_aaf57ca6f4251c2eb7dd725352b09426f}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!yObs\_@{yObs\_}}
+\index{yObs\_@{yObs\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
+\doxysubsubsection{\texorpdfstring{yObs\_}{yObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_aaf57ca6f4251c2eb7dd725352b09426f} 
+Eigen\+::\+Matrix\+Xd cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{multi__gp_8h}{multi\+\_\+gp.\+h}}\item 
+src/\mbox{\hyperlink{multi__gp_8cpp}{multi\+\_\+gp.\+cpp}}\end{DoxyCompactItemize}

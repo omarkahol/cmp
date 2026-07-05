@@ -1,0 +1,87 @@
+\doxysection{cmp\+::kernel\+::Kernel Class Reference}
+\hypertarget{classcmp_1_1kernel_1_1_kernel}{}\label{classcmp_1_1kernel_1_1_kernel}\index{cmp::kernel::Kernel@{cmp::kernel::Kernel}}
+
+
+Abstract base class for KDE density kernel functions.  
+
+
+
+
+{\ttfamily \#include $<$kernel++.\+h$>$}
+
+Inheritance diagram for cmp\+::kernel\+::Kernel\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1kernel_1_1_kernel}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad1d785fbdc3a74aedfa575053b09bb0}{\texorpdfstring{$\sim$}{\string~}\+Kernel}} ()=default
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a93a0f6bc1b69f2398d9fdc0f36bd01bb}{eval}} (const Eigen\+::\+Vector\+Xd \&z) const =0
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a8e73dd33c293a97bb12cb3dc1b22725a}{normalization\+Constant}} (const size\+\_\+t \&dim) const =0
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad7b69ab20fe331b1b9e64ca9afa10ad}{apply\+To\+Gradient}} (const Eigen\+::\+Vector\+Xd \&z, const Eigen\+::\+Vector\+Xd \&grad\+\_\+z\+\_\+i) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for KDE density kernel functions. 
+
+Mathematical Formulation A multivariate kernel $K: \mathbb{R}^D \to [0,\infty)$ defines localized weights for smoothing observations, satisfying\+:   \[\int_{\mathbb{R}^D} K(\mathbf{z}) d\mathbf{z} = 1.0, \quad \int_{\mathbb{R}^D} \mathbf{z} K(\mathbf{z}) d\mathbf{z} = \mathbf{0}
+\]
+
+Implementation Algorithm Defines virtual methods for evaluating the kernel value ({\ttfamily eval}), computing the dimension-\/dependent normalizing scalar ({\ttfamily normalization\+Constant}), and calculating gradients ({\ttfamily apply\+To\+Gradient}). 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1kernel_1_1_kernel_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_kernel_aad1d785fbdc3a74aedfa575053b09bb0}\index{cmp::kernel::Kernel@{cmp::kernel::Kernel}!````~Kernel@{\texorpdfstring{$\sim$}{\string~}Kernel}}
+\index{````~Kernel@{\texorpdfstring{$\sim$}{\string~}Kernel}!cmp::kernel::Kernel@{cmp::kernel::Kernel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Kernel()}{\string~Kernel()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_kernel_aad1d785fbdc3a74aedfa575053b09bb0} 
+virtual cmp\+::kernel\+::\+Kernel\+::\texorpdfstring{$\sim$}{\string~}\+Kernel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1kernel_1_1_kernel_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_kernel_aad7b69ab20fe331b1b9e64ca9afa10ad}\index{cmp::kernel::Kernel@{cmp::kernel::Kernel}!applyToGradient@{applyToGradient}}
+\index{applyToGradient@{applyToGradient}!cmp::kernel::Kernel@{cmp::kernel::Kernel}}
+\doxysubsubsection{\texorpdfstring{applyToGradient()}{applyToGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_kernel_aad7b69ab20fe331b1b9e64ca9afa10ad} 
+virtual double cmp\+::kernel\+::\+Kernel\+::apply\+To\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{z}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{grad\+\_\+z\+\_\+i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a609c5f59d390ef31f60980fdf63b8227}{cmp\+::kernel\+::\+Epanechnikov}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a28505136011d51c47cf5a545d5e7fda8}{cmp\+::kernel\+::\+Gaussian}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a4d19bf5e8fa6c259cf1b60259700755f}{cmp\+::kernel\+::\+Uniform}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_kernel_a93a0f6bc1b69f2398d9fdc0f36bd01bb}\index{cmp::kernel::Kernel@{cmp::kernel::Kernel}!eval@{eval}}
+\index{eval@{eval}!cmp::kernel::Kernel@{cmp::kernel::Kernel}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_kernel_a93a0f6bc1b69f2398d9fdc0f36bd01bb} 
+virtual double cmp\+::kernel\+::\+Kernel\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{z}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_aee71c6de645381a8262c5a86b9969c0c}{cmp\+::kernel\+::\+Epanechnikov}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a45c5037253b8b75056a5dbdbac8eacea}{cmp\+::kernel\+::\+Gaussian}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_af6b7a2c0dc2c0eccc339da1cd77f51e4}{cmp\+::kernel\+::\+Uniform}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_kernel_a8e73dd33c293a97bb12cb3dc1b22725a}\index{cmp::kernel::Kernel@{cmp::kernel::Kernel}!normalizationConstant@{normalizationConstant}}
+\index{normalizationConstant@{normalizationConstant}!cmp::kernel::Kernel@{cmp::kernel::Kernel}}
+\doxysubsubsection{\texorpdfstring{normalizationConstant()}{normalizationConstant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_kernel_a8e73dd33c293a97bb12cb3dc1b22725a} 
+virtual double cmp\+::kernel\+::\+Kernel\+::normalization\+Constant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{dim}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a96c071d4b783b7e3cc73038e0df45c35}{cmp\+::kernel\+::\+Epanechnikov}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_aca2277b5c630a150e95a1401576d90a4}{cmp\+::kernel\+::\+Gaussian}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a2c9ecbd90297949b3a0960ac71720b50}{cmp\+::kernel\+::\+Uniform}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kernel_09_09_8h}{kernel++.\+h}}\end{DoxyCompactItemize}

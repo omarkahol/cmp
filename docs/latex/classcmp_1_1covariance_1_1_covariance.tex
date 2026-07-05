@@ -1,0 +1,88 @@
+\doxysection{cmp\+::covariance\+::Covariance Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_covariance}{}\label{classcmp_1_1covariance_1_1_covariance}\index{cmp::covariance::Covariance@{cmp::covariance::Covariance}}
+
+
+Abstract base class for all covariance (kernel) functions.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Covariance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classcmp_1_1covariance_1_1_covariance}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const =0
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const =0
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for all covariance (kernel) functions. 
+
+Mathematical Formulation A covariance function (kernel) $k: \mathbb{R}^D \times \mathbb{R}^D \to \mathbb{R}$ defines the covariance between GP values at any two inputs $\mathbf{x}_1, \mathbf{x}_2$\+:   \[\text{Cov}(f(\mathbf{x}_1), f(\mathbf{x}_2)) = k(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta})
+\] where $\boldsymbol{\theta}$ is the vector of kernel hyperparameters. The function must be symmetric and positive semi-\/definite\+:   \[\sum_{i=1}^n \sum_{j=1}^n c_i c_j k(\mathbf{x}_i, \mathbf{x}_j) \ge 0 \quad \forall c_i \in \mathbb{R}
+\]
+
+Implementation Algorithm Provides a virtual interface for evaluating the covariance value ({\ttfamily eval}), its first-\/order gradient ({\ttfamily eval\+Gradient}) with respect to a hyperparameter $\theta_i$, and its second-\/order Hessian ({\ttfamily eval\+Hessian}) with respect to hyperparameters $\theta_i, \theta_j$. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_covariance_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}\index{cmp::covariance::Covariance@{cmp::covariance::Covariance}!````~Covariance@{\texorpdfstring{$\sim$}{\string~}Covariance}}
+\index{````~Covariance@{\texorpdfstring{$\sim$}{\string~}Covariance}!cmp::covariance::Covariance@{cmp::covariance::Covariance}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Covariance()}{\string~Covariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404} 
+virtual cmp\+::covariance\+::\+Covariance\+::\texorpdfstring{$\sim$}{\string~}\+Covariance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_covariance_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}\index{cmp::covariance::Covariance@{cmp::covariance::Covariance}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::Covariance@{cmp::covariance::Covariance}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c} 
+virtual double cmp\+::covariance\+::\+Covariance\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a40031da132576e3dcb60d334debd812f}{cmp\+::covariance\+::\+Constant}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{cmp\+::covariance\+::\+Custom}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_abeedd44401576e4db9ac3a4253f53598}{cmp\+::covariance\+::\+Inverse}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_ac1eab08ceece4131f7ca699bb290246b}{cmp\+::covariance\+::\+Linear}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a753982b98b4819c5eecef396fc8cd624}{cmp\+::covariance\+::\+Matern52}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a0f41db54466903f5ee6caa69d86e7b57}{cmp\+::covariance\+::\+Matern}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_ae8797e2da51acd77e74cbff43769ef21}{cmp\+::covariance\+::\+Model\+Cluster\+Covariance}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a71f338da32e83d06d5dfaf4b464ae91a}{cmp\+::covariance\+::\+Product}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a6b9904d54e0e320142c1aae74c0fdd49}{cmp\+::covariance\+::\+Squared\+Exponential}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a0ede71a4a41c1d532a4da3c1d0a4d315}{cmp\+::covariance\+::\+Sum}}, and \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aef11287ef98ee7540b338e87c3ca0927}{cmp\+::covariance\+::\+White\+Noise}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}\index{cmp::covariance::Covariance@{cmp::covariance::Covariance}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::Covariance@{cmp::covariance::Covariance}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f} 
+virtual double cmp\+::covariance\+::\+Covariance\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_aa9d5e57f97450328808a3ad3ca21e5c6}{cmp\+::covariance\+::\+Constant}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{cmp\+::covariance\+::\+Custom}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_aa9b2bd41b8175dc7195dcc84f78c3bc0}{cmp\+::covariance\+::\+Inverse}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_ae56c5efc71057448b48b5b9e65ace531}{cmp\+::covariance\+::\+Linear}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a315d4405b4093ea6ad5683bba0d1627c}{cmp\+::covariance\+::\+Matern52}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a7474291168c99b7f49d2e2a1356f1017}{cmp\+::covariance\+::\+Matern}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a39a4e366901855a42502bb38e55dd3b9}{cmp\+::covariance\+::\+Model\+Cluster\+Covariance}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a1b39679581a6beb1a839798500f819db}{cmp\+::covariance\+::\+Product}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a5b9bf2c25915b125ebdd7d03fc8a30b5}{cmp\+::covariance\+::\+Squared\+Exponential}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_abdc331300b2d41565c53373593aa3176}{cmp\+::covariance\+::\+Sum}}, and \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a213147357af292f75a8c29b14282d73b}{cmp\+::covariance\+::\+White\+Noise}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}\index{cmp::covariance::Covariance@{cmp::covariance::Covariance}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::Covariance@{cmp::covariance::Covariance}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e} 
+virtual double cmp\+::covariance\+::\+Covariance\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a1bbf443134639f6b82b70d2634108c82}{cmp\+::covariance\+::\+Constant}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{cmp\+::covariance\+::\+Custom}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a5d012a66b21a29004a7903ff405213ce}{cmp\+::covariance\+::\+Inverse}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_aae33ab7ccf24090f6e512f1e7de651a3}{cmp\+::covariance\+::\+Linear}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a4b09c22fe37b132417d85b303fbbda03}{cmp\+::covariance\+::\+Matern52}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8f3a41de0598868563fb9383ec6c14cd}{cmp\+::covariance\+::\+Matern}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a6ef91ccc84f3f074386ce9a4527a8f5d}{cmp\+::covariance\+::\+Model\+Cluster\+Covariance}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ac1d296220917092b4ce477804a585fcd}{cmp\+::covariance\+::\+Product}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a229e7ba4789f380e0d6a4c5b18f15f1c}{cmp\+::covariance\+::\+Squared\+Exponential}}, \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_ae8e5c9319ad82ff2b8b5d22b62b68361}{cmp\+::covariance\+::\+Sum}}, and \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a104bda4913a681622472380eb58117d6}{cmp\+::covariance\+::\+White\+Noise}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

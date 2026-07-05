@@ -1,0 +1,74 @@
+\doxysection{cmp\+::grid\+::Grid Class Reference}
+\hypertarget{classcmp_1_1grid_1_1_grid}{}\label{classcmp_1_1grid_1_1_grid}\index{cmp::grid::Grid@{cmp::grid::Grid}}
+
+
+Abstract base class for numerical integration grids and space-\/filling designs.  
+
+
+
+
+{\ttfamily \#include $<$grid.\+h$>$}
+
+Inheritance diagram for cmp\+::grid\+::Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.829015cm]{classcmp_1_1grid_1_1_grid}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{construct}} (const size\+\_\+t \&n\+Points)=0
+\item 
+virtual size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{dim}} () const =0
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\texorpdfstring{$\sim$}{\string~}\+Grid}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for numerical integration grids and space-\/filling designs. 
+
+Mathematical Formulation Defines a mapping that generates a point set $\mathcal{P} = \{\mathbf{x}_i\}_{i=1}^N$ in a hyperrectangle $\prod_{d=1}^D [a_d, b_d]$ to represent the design of experiments or coordinate nodes.
+
+Implementation Algorithm Provides pure virtual interfaces {\ttfamily \doxylink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{construct()}} to construct a matrix of coordinates, and {\ttfamily \doxylink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{dim()}} to query the dimensionality. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1grid_1_1_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}\index{cmp::grid::Grid@{cmp::grid::Grid}!````~Grid@{\texorpdfstring{$\sim$}{\string~}Grid}}
+\index{````~Grid@{\texorpdfstring{$\sim$}{\string~}Grid}!cmp::grid::Grid@{cmp::grid::Grid}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Grid()}{\string~Grid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf} 
+virtual cmp\+::grid\+::\+Grid\+::\texorpdfstring{$\sim$}{\string~}\+Grid (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1grid_1_1_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}\index{cmp::grid::Grid@{cmp::grid::Grid}!construct@{construct}}
+\index{construct@{construct}!cmp::grid::Grid@{cmp::grid::Grid}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77} 
+virtual Eigen\+::\+Matrix\+Xd cmp\+::grid\+::\+Grid\+::construct (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a7396f2455fcd4b0fe7c25c3644d22b44}{cmp\+::grid\+::\+Faure\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_aeb0f180fe3a8928cc373d132c1a9f084}{cmp\+::grid\+::\+Latin\+Hypercube\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_af404de350b5639c0ac250e00d4a4f6a9}{cmp\+::grid\+::\+Linspaced\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a0afe702679d6e5aae6a086ec961fd483}{cmp\+::grid\+::\+Monte\+Carlo\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a70c25c779cde7125df09c8887db42c50}{cmp\+::grid\+::\+Niederreiter\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a4217b3651d34e52703221085eb6887fa}{cmp\+::grid\+::\+Scrambled\+Sobol\+Grid}}, and \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acb8d1bf35f8934dd3c22468d47995fe7}{cmp\+::grid\+::\+Sobol\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}\index{cmp::grid::Grid@{cmp::grid::Grid}!dim@{dim}}
+\index{dim@{dim}!cmp::grid::Grid@{cmp::grid::Grid}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b} 
+virtual size\+\_\+t cmp\+::grid\+::\+Grid\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a2db7c0ec848c430be37b62b1c4004601}{cmp\+::grid\+::\+Faure\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_ad7c69c621e2cca950944639a11784010}{cmp\+::grid\+::\+Latin\+Hypercube\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_ae97d1965714989ceb67f900c0430f76a}{cmp\+::grid\+::\+Linspaced\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_ad99f8459f435c900dd6a414e5e7661a8}{cmp\+::grid\+::\+Monte\+Carlo\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a7afa6391e5e4959d19a384625956d9b9}{cmp\+::grid\+::\+Niederreiter\+Grid}}, \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ad8710b483a2302c1a4d0446410e7b33b}{cmp\+::grid\+::\+Scrambled\+Sobol\+Grid}}, and \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ae78194e7d58008019ccaa037e56650ef}{cmp\+::grid\+::\+Sobol\+Grid}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{grid_8h}{grid.\+h}}\end{DoxyCompactItemize}

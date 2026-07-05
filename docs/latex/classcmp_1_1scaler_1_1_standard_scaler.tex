@@ -1,0 +1,200 @@
+\doxysection{cmp\+::scaler\+::Standard\+Scaler Class Reference}
+\hypertarget{classcmp_1_1scaler_1_1_standard_scaler}{}\label{classcmp_1_1scaler_1_1_standard_scaler}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+
+
+Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition).  
+
+
+
+
+{\ttfamily \#include $<$scaler.\+h$>$}
+
+Inheritance diagram for cmp\+::scaler\+::Standard\+Scaler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1scaler_1_1_standard_scaler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{Standard\+Scaler}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a9e124d2325b2a1eca68bc2fe3f0abbf2}{Standard\+Scaler}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&mean, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&scale)
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a8871e433618e9142df29ea62a55113ed}{Standard\+Scaler}} (const \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a1372603d4adbb2e7823300e3fb0213cf}{Standard\+Scaler}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a437c2dafb5c075992da2008a246cda09}{\texorpdfstring{$\sim$}{\string~}\+Standard\+Scaler}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \& \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_aa83cf60dd899f8ba81c3edfcc44ec528}{operator=}} (const \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \& \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_adbf6d2d6fe03a6668505994a7a4c7dbf}{operator=}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \&\&other)=default
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a3dd61167cf9075fa3f8d0fd45cc8e2a6}{transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a2a046cbb08c243e8868294262e27813a}{inverse\+Transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_acda4e311222fcc745291601835a0638b}{get\+Intercept}} () const override
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a0d7e7ed5d867b05ee97d24f6aa30b20d}{get\+Scale}} () const override
+\item 
+void \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a2c4b2d2e676396a3a31c32e303558184}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_af29bd017ea8f164dd58c3e226a4c345e}{fit\+\_\+transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2}{mean\+\_\+}}
+\item 
+Eigen\+::\+LLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee}{llt\+Decomposition\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition). 
+
+{\bfseries{Mathematical}} {\bfseries{Formulation}} Given data matrix $ X \in \mathbb{R}^{n \times d} $, let $ \mu \in \mathbb{R}^d $ be the column-\/wise mean and $ \Sigma \in \mathbb{R}^{d \times d} $ be the covariance matrix. We decompose the covariance matrix via the lower Cholesky factor $ L $ such that\+: \[ \Sigma = L L^T \] The transformation maps\+: \[ y = L^{-1}(x - \mu) \] The inverse transformation maps\+: \[ x = L y + \mu \]
+
+{\bfseries{Implementation}} {\bfseries{Algorithm}} 
+\begin{DoxyEnumerate}
+\item {\bfseries{Fit\+:}} Calculate mean vector $ \mu $ and covariance matrix $ \Sigma $ of $ X $, then perform Cholesky LLT decomposition to obtain $ L $.
+\item {\bfseries{Transform\+:}} Solve the lower triangular system $ L y = x - \mu $ to compute standardized data.
+\item {\bfseries{Inverse}} {\bfseries{Transform\+:}} Compute $ L y + \mu $ via matrix multiplication and vector addition. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!StandardScaler@{StandardScaler}}
+\index{StandardScaler@{StandardScaler}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{StandardScaler()}{StandardScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d} 
+cmp\+::scaler\+::\+Standard\+Scaler\+::\+Standard\+Scaler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a9e124d2325b2a1eca68bc2fe3f0abbf2}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!StandardScaler@{StandardScaler}}
+\index{StandardScaler@{StandardScaler}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{StandardScaler()}{StandardScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a9e124d2325b2a1eca68bc2fe3f0abbf2} 
+cmp\+::scaler\+::\+Standard\+Scaler\+::\+Standard\+Scaler (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{mean}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{scale}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a8871e433618e9142df29ea62a55113ed}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!StandardScaler@{StandardScaler}}
+\index{StandardScaler@{StandardScaler}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{StandardScaler()}{StandardScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a8871e433618e9142df29ea62a55113ed} 
+cmp\+::scaler\+::\+Standard\+Scaler\+::\+Standard\+Scaler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a1372603d4adbb2e7823300e3fb0213cf}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!StandardScaler@{StandardScaler}}
+\index{StandardScaler@{StandardScaler}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{StandardScaler()}{StandardScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a1372603d4adbb2e7823300e3fb0213cf} 
+cmp\+::scaler\+::\+Standard\+Scaler\+::\+Standard\+Scaler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a437c2dafb5c075992da2008a246cda09}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!````~StandardScaler@{\texorpdfstring{$\sim$}{\string~}StandardScaler}}
+\index{````~StandardScaler@{\texorpdfstring{$\sim$}{\string~}StandardScaler}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}StandardScaler()}{\string~StandardScaler()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a437c2dafb5c075992da2008a246cda09} 
+cmp\+::scaler\+::\+Standard\+Scaler\+::\texorpdfstring{$\sim$}{\string~}\+Standard\+Scaler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a2c4b2d2e676396a3a31c32e303558184}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!fit@{fit}}
+\index{fit@{fit}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a2c4b2d2e676396a3a31c32e303558184} 
+void cmp\+::scaler\+::\+Standard\+Scaler\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a034490dc8b97ab47a73ca3ffb3b6db66}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_af29bd017ea8f164dd58c3e226a4c345e}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!fit\_transform@{fit\_transform}}
+\index{fit\_transform@{fit\_transform}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{fit\_transform()}{fit\_transform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_af29bd017ea8f164dd58c3e226a4c345e} 
+Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Standard\+Scaler\+::fit\+\_\+transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_acda4e311222fcc745291601835a0638b}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!getIntercept@{getIntercept}}
+\index{getIntercept@{getIntercept}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{getIntercept()}{getIntercept()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_acda4e311222fcc745291601835a0638b} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Standard\+Scaler\+::get\+Intercept (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9cebf0f6c04f}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a0d7e7ed5d867b05ee97d24f6aa30b20d}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!getScale@{getScale}}
+\index{getScale@{getScale}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{getScale()}{getScale()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a0d7e7ed5d867b05ee97d24f6aa30b20d} 
+Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Standard\+Scaler\+::get\+Scale (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a2a046cbb08c243e8868294262e27813a}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!inverseTransform@{inverseTransform}}
+\index{inverseTransform@{inverseTransform}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{inverseTransform()}{inverseTransform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a2a046cbb08c243e8868294262e27813a} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Standard\+Scaler\+::inverse\+Transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a34c7739c949f4603ec1a430daf405dec}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_aa83cf60dd899f8ba81c3edfcc44ec528}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_aa83cf60dd899f8ba81c3edfcc44ec528} 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \& cmp\+::scaler\+::\+Standard\+Scaler\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_adbf6d2d6fe03a6668505994a7a4c7dbf}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_adbf6d2d6fe03a6668505994a7a4c7dbf} 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \& cmp\+::scaler\+::\+Standard\+Scaler\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a3dd61167cf9075fa3f8d0fd45cc8e2a6}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!transform@{transform}}
+\index{transform@{transform}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a3dd61167cf9075fa3f8d0fd45cc8e2a6} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Standard\+Scaler\+::transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}{cmp\+::scaler\+::\+Scaler}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!lltDecomposition\_@{lltDecomposition\_}}
+\index{lltDecomposition\_@{lltDecomposition\_}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{lltDecomposition\_}{lltDecomposition\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee} 
+Eigen\+::\+LLT$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::scaler\+::\+Standard\+Scaler\+::llt\+Decomposition\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2}\index{cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!cmp::scaler::StandardScaler@{cmp::scaler::StandardScaler}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Standard\+Scaler\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{scaler_8h}{scaler.\+h}}\item 
+src/\mbox{\hyperlink{scaler_8cpp}{scaler.\+cpp}}\end{DoxyCompactItemize}

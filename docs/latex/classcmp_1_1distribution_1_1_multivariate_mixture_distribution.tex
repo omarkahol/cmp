@@ -1,0 +1,107 @@
+\doxysection{cmp\+::distribution\+::Multivariate\+Mixture\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution}{}\label{classcmp_1_1distribution_1_1_multivariate_mixture_distribution}\index{cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Multivariate\+Mixture\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_multivariate_mixture_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ad4cefaf93cd658830b579cb88d8cbb1c}{Multivariate\+Mixture\+Distribution}} (const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_normal_distribution}{Multivariate\+Normal\+Distribution}} $>$ $>$ \&components, const std\+::vector$<$ double $>$ \&weights)
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_af0bcea2706f2cbb9d94d50859e1f3d07}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_a3e11188bcb8f43f970d038e1ce3db320}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ae3f64194cfe6af26d496b3c393f457a6}{dimension}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution$<$ Multivariate\+Mixture\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_adf3b1409c78a9180147df5ff4d9c65cd}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the joint log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_a11d88504b8e41a0d7cf53407a851ddc2}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single vector sample from the joint distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_aab20c160e414e53d0082fa02b6bfa90a}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms physical samples to standard canonical space. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ad9cfbac42c99982f2abe4f8b46bca784}{from\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms standard canonical samples back to physical space. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ae7af8e6314ab5158173f1c7809c3c9aa}{dimension}} () const
+\begin{DoxyCompactList}\small\item\em Returns the dimensionality of the multivariate space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_normal_distribution}{Multivariate\+Normal\+Distribution}} $>$ $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ad7b3f2e483c5bab41a3b184d7aa827f9}{components\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Gaussian components of the mixture. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_abc94483a2772a5c9d46b8755e528e640}{weights\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Mixing weights for each component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ad4cefaf93cd658830b579cb88d8cbb1c}\index{cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}!MultivariateMixtureDistribution@{MultivariateMixtureDistribution}}
+\index{MultivariateMixtureDistribution@{MultivariateMixtureDistribution}!cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}}
+\doxysubsubsection{\texorpdfstring{MultivariateMixtureDistribution()}{MultivariateMixtureDistribution()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ad4cefaf93cd658830b579cb88d8cbb1c} 
+cmp\+::distribution\+::\+Multivariate\+Mixture\+Distribution\+::\+Multivariate\+Mixture\+Distribution (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_normal_distribution}{Multivariate\+Normal\+Distribution}} $>$ $>$ \&}]{components}{, }\item[{const std\+::vector$<$ double $>$ \&}]{weights}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ae3f64194cfe6af26d496b3c393f457a6}\index{cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}!dimension@{dimension}}
+\index{dimension@{dimension}!cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}}
+\doxysubsubsection{\texorpdfstring{dimension()}{dimension()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ae3f64194cfe6af26d496b3c393f457a6} 
+size\+\_\+t cmp\+::distribution\+::\+Multivariate\+Mixture\+Distribution\+::dimension (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_a3e11188bcb8f43f970d038e1ce3db320}\index{cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_a3e11188bcb8f43f970d038e1ce3db320} 
+double cmp\+::distribution\+::\+Multivariate\+Mixture\+Distribution\+::log\+PDF (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_af0bcea2706f2cbb9d94d50859e1f3d07}\index{cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_af0bcea2706f2cbb9d94d50859e1f3d07} 
+Eigen\+::\+Vector\+Xd cmp\+::distribution\+::\+Multivariate\+Mixture\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ad7b3f2e483c5bab41a3b184d7aa827f9}\index{cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}!components\_@{components\_}}
+\index{components\_@{components\_}!cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}}
+\doxysubsubsection{\texorpdfstring{components\_}{components\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_ad7b3f2e483c5bab41a3b184d7aa827f9} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_normal_distribution}{Multivariate\+Normal\+Distribution}}$>$ $>$ cmp\+::distribution\+::\+Multivariate\+Mixture\+Distribution\+::components\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gaussian components of the mixture. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_abc94483a2772a5c9d46b8755e528e640}\index{cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}!weights\_@{weights\_}}
+\index{weights\_@{weights\_}!cmp::distribution::MultivariateMixtureDistribution@{cmp::distribution::MultivariateMixtureDistribution}}
+\doxysubsubsection{\texorpdfstring{weights\_}{weights\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_mixture_distribution_abc94483a2772a5c9d46b8755e528e640} 
+std\+::vector$<$double$>$ cmp\+::distribution\+::\+Multivariate\+Mixture\+Distribution\+::weights\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mixing weights for each component. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,565 @@
+\doxysection{model\+\_\+cluster\+\_\+poly.\+h}
+\hypertarget{model__cluster__poly_8h_source}{}\label{model__cluster__poly_8h_source}\index{include/model\_cluster\_poly.h@{include/model\_cluster\_poly.h}}
+\mbox{\hyperlink{model__cluster__poly_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MODEL\_CLUSTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MODEL\_CLUSTER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{distribution_8h}{distribution.h}}>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{grid_8h}{grid.h}}>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cluster_8h}{cluster.h}}>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{classifier_8h}{classifier.h}}>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{poly_8h}{poly.h}}>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <svm.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_afd09bdae0789e2e967ecb7e46db7c794}{ModelClusterPoly}}\ \{}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}{rng\_}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}};}
+\DoxyCodeLine{00048\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dimX\_}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ The\ labels\ of\ the\ points}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Local\ index\ of\ each\ global\ point\ inside\ its\ current\ cluster}}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}{localIndexTable\_}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ The\ GPs\ for\ each\ cluster,\ along\ with\ their\ centroids\ and\ fit\ status}}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}};}
+\DoxyCodeLine{00062\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}};}
+\DoxyCodeLine{00063\ \ \ \ \ std::vector<cmp::PolynomialExpansion>\ *\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\_}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ The\ cluster\ sizes}}
+\DoxyCodeLine{00066\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ The\ Gamma\ parameter}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}{gamma\_}}\{1.0\};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_afd09bdae0789e2e967ecb7e46db7c794}{ModelClusterPoly}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1cd901d9b5f7fe476b20c17dfbb11c47}{\string~ModelClusterPoly}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1691f2f9f3f0bf58b5687dbf02b013a6}{set}}(std::vector<cmp::PolynomialExpansion>\ *polynomials,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&gamma\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&seed\ =\ 42)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\_}}\ =\ polynomials;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}}\ =\ polynomials-\/>size();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}}\ =\ std::vector<bool>(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}}\ =\ std::vector<size\_t>(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ 0);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}{gamma\_}}\ =\ gamma;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}{rng\_}}.seed(seed);}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa15e6acc2aebc488071b77ba0c183465}{condition}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&yObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXs>\ \&labels)\ \{}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ only\ the\ unique\ labels}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ std::set<int>\ uniqueLabels;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ labels.size();\ i++)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ uniqueLabels.insert(labels(i));}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(uniqueLabels.size()\ !=\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}})\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}The\ number\ of\ unique\ labels\ in\ the\ labels\ vector\ does\ not\ match\ the\ number\ of\ clusters."{}});}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(xObs.rows()\ !=\ yObs.size()\ ||\ xObs.rows()\ !=\ labels.size())\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}The\ number\ of\ observations\ in\ xObs,\ yObs\ and\ labels\ must\ be\ the\ same."{}});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remap\ the\ labels\ to\ be\ in\ the\ range\ [0,\ nClusters\_-\/1]}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*uniqueLabels.begin()\ !=\ 0\ ||\ *uniqueLabels.rbegin()\ !=\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}}\ -\/\ 1)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Remapping\ labels\ to\ be\ in\ the\ range\ [0,\ "{}}\ <<\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}}\ -\/\ 1\ <<\ \textcolor{stringliteral}{"{}]"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ remappedLabels\ =\ Eigen::VectorXs::Zero(labels.size());}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ std::map<int,\ int>\ labelMap;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newLabel\ =\ 0;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&label\ :\ uniqueLabels)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ labelMap[label]\ =\ newLabel++;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ labels.size();\ i++)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remappedLabels(i)\ =\ labelMap[labels(i)];}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa15e6acc2aebc488071b77ba0c183465}{condition}}(xObs,\ yObs,\ remappedLabels);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ members}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}}\ =\ xObs.rows();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dimX\_}}\ =\ xObs.cols();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}\ =\ xObs;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}}\ =\ yObs;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ containers}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}\ =\ labels;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}{localIndexTable\_}}\ =\ Eigen::VectorXs::Zero(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}\ =\ std::vector<Eigen::VectorXd>(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ Eigen::VectorXd::Zero(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dimX\_}}));}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ the\ update\ model\ function}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ae566968ca096ece6e22fd563a1e74caa}{updateModel}}(std::vector<bool>(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a60716eb20a053bbbab42720c658ce1ca}{nClusters}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a55a012b15c93cba5aa6d484123559b7e}{fit}}()\ \{}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ omp\ parallel\ for}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a60716eb20a053bbbab42720c658ce1ca}{nClusters}}();\ i++)\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}}[i])\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ index\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af5248a09766a72138ea89551b7f4c16d}{getIndices}}(i);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ xObsi\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}(index,\ Eigen::all);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ yObsi\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}}(index);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*polynomials\_)[i].fit(xObsi,\ yObsi);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}}[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa71a85e82c31b952cbafcb6b07f69178}{nPoints}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ad265da2ad78381dd47b7d0ca187effc3}{dim}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dimX\_}};}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a2a95e75a7d9e81e151b84d1d1ab7a0ea}{getMembership}}(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i];}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \&\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a42b4d31622f8c86823afc63532d0440d}{getLabels}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}};}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af34ca12ee9ea75ea49dd04e4c24ed67f}{getClusterSize}}(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}}[i];}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp::PolynomialExpansion}}\ \&\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ad68921c5cc117d9a5a1f208f15ec4720}{operator[]}}(\textcolor{keywordtype}{size\_t}\ i)\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\_}})[i];}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a3b03ff03b78423ebc7506a9e33cb996e}{centroid}}(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}[i];}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af5248a09766a72138ea89551b7f4c16d}{getIndices}}(\textcolor{keywordtype}{size\_t}\ clusterIndex)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ indices\ =\ Eigen::VectorXs::Zero(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}}[clusterIndex]);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ counter\ =\ 0;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ j++)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[j]\ ==\ clusterIndex)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices[counter]\ =\ j;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ counter++;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ indices;}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ae566968ca096ece6e22fd563a1e74caa}{updateModel}}(\textcolor{keyword}{const}\ std::vector<bool>\ \&affectedClusters)\ \{}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ observations}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ i++)\ \{}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ cluster\ is\ affected}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!affectedClusters[i])\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Centroids}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}[i]\ =\ Eigen::VectorXd::Zero(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dimX\_}});}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Counter\ for\ the\ cluster\ size}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ counter\ =\ 0;}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ observations}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ j++)\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[j]\ >=\ 0\ \&\&\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[j])\ ==\ i)\ \{}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ centroid}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}[i]\ +=\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}.row(j);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ membership}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[j]\ =\ i;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ local\ index\ for\ LOO\ bookkeeping}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}{localIndexTable\_}}[j]\ =\ counter;}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ counter}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ counter++;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ centroid}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}[i]\ /=\ double(counter);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ cluster\ size}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}}[i]\ =\ counter;}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GP\ is\ not\ fit}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}}[i]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a51a0d61d8f710bbc3b00dcbecb3b9099}{performSwitches}}(\textcolor{keyword}{const}\ std::vector<std::pair<size\_t,\ size\_t>>\ \&newOwners)\ \{}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Affected\ clusters}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ std::vector<bool>\ affectedClusters(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ the\ points}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ newOwners.size();\ i++)\ \{}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ global\ index}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ globalIndex\ =\ newOwners[i].first;}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ new\ and\ old\ owners}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ newOwner\ =\ newOwners[i].second;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ oldOwner\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[globalIndex];}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ clusters\ are\ affected}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ affectedClusters[oldOwner]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ affectedClusters[newOwner]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ membership}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[globalIndex]\ =\ newOwner;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ the\ update\ model\ function}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ae566968ca096ece6e22fd563a1e74caa}{updateModel}}(affectedClusters);}
+\DoxyCodeLine{00263\ \ \ \ \ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af44fb7c39e80f5f613e43ba080816cdd}{isFit}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&clusterIndex)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}}[clusterIndex];}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aaeb1c102ee76ae915fff22d1135cd6b4}{setFit}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&clusterIndex,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \&\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a55a012b15c93cba5aa6d484123559b7e}{fit}})\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}}[clusterIndex]\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a55a012b15c93cba5aa6d484123559b7e}{fit}};}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925}{computeScore}}(\textcolor{keywordtype}{size\_t}\ globalIndex)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ owner\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[globalIndex];}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ [\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ var]\ =\ (*polynomials\_)[owner].predict(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}.row(globalIndex));}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/((\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}}(globalIndex)\ -\/\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}})\ *\ (\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}}(globalIndex)\ -\/\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}})\ +\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}{gamma\_}}\ *\ (\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}.row(globalIndex).transpose()\ -\/\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}[owner]).squaredNorm());}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a3fd6a887335a3f83e35832a8fbf7310d}{computeScore}}(\textcolor{keywordtype}{size\_t}\ model,\ \textcolor{keywordtype}{size\_t}\ globalIndex)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ [\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ var]\ =\ (*polynomials\_)[model].predict(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}.row(globalIndex));}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/((\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}}(globalIndex)\ -\/\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}})\ *\ (\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}}(globalIndex)\ -\/\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}})\ +\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}{gamma\_}}\ *\ (\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}.row(globalIndex).transpose()\ -\/\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}[model]).squaredNorm());}
+\DoxyCodeLine{00291\ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ std::vector<std::pair<size\_t,\ size\_t>>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a6cb0463b49c63e4a9da20463bb7d82fa}{switchStep}}(\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp::classifier::Classifier}}\ *\mbox{\hyperlink{namespacecmp_1_1classifier}{classifier}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&T\ =\ 1.0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&maxAllowedSwitches\ =\ 10,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&minProb\ =\ 0.1)\ \{}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ probabilities\ for\ each\ point\ to\ switch\ to\ each\ cluster}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ std::vector<std::vector<double>>\ probabilities\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aec8b7c546e030b3b061559f9f144cc2f}{computeProbabilities}}(T,\ \mbox{\hyperlink{namespacecmp_1_1classifier}{classifier}},\ minProb);}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ probabilities\ of\ switching\ for\ each\ point}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ std::vector<double>\ switchingProbabilities(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}},\ 0.0);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ owner\ of\ the\ point}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ owner\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i];}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ switching\ probabilities}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ j++)\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(j\ !=\ owner)\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ switchingProbabilities[i]\ +=\ probabilities[i][j];}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Precompute\ active\ indices\ (non-\/zero\ switching\ mass).}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ activeIndices;}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ activeIndices.reserve(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}});}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ ++i)\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(switchingProbabilities[i]\ >\ 0.0)\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ activeIndices.push\_back(i);}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ std::vector<std::pair<size\_t,\ size\_t>>\ switches;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ switches.reserve(maxAllowedSwitches);}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iteratively\ sample\ points\ without\ replacement\ from\ active\ indices.}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ s\ =\ 0;\ s\ <\ maxAllowedSwitches\ \&\&\ !activeIndices.empty();\ ++s)\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<double>\ weights;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ weights.reserve(activeIndices.size());}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ idx\ :\ activeIndices)\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weights.push\_back(switchingProbabilities[idx]);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ std::discrete\_distribution<size\_t>\ dist(weights.begin(),\ weights.end());}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ sampledPos\ =\ dist(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}{rng\_}});}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ globalIndex\ =\ activeIndices[sampledPos];}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ selected\ point\ from\ the\ active\ pool.}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ activeIndices[sampledPos]\ =\ activeIndices.back();}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ activeIndices.pop\_back();}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ owner\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[globalIndex];}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&probs\ =\ probabilities[globalIndex];}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ std::discrete\_distribution<size\_t>\ clusterDist(probs.begin(),\ probs.end());}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ newOwner\ =\ clusterDist(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}{rng\_}});}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(newOwner\ !=\ owner)\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ switches.emplace\_back(globalIndex,\ newOwner);}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switches;}
+\DoxyCodeLine{00351\ \ \ \ \ \}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ std::vector<std::pair<size\_t,\ size\_t>>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a31ddd2c25ac9cba525d68b36c9b93847}{deterministicSwitchStep}}(\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp::classifier::Classifier}}\ *cls,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&maxAllowedSwitches,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&minProb)\ \{}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ std::vector<std::pair<double,\ std::pair<size\_t,\ size\_t>>>\ allSwitches;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ allSwitches.reserve(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}});}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Precompute\ classifier\ probabilities\ once.}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ std::vector<std::vector<double>>\ classifierProbabilities(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}});}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ classifierProbabilities[i]\ =\ cls-\/>\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_af91c87a6c6a2261f74333847e6f6d68a}{predictProbabilities}}(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}.row(i));}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<double>\ \&prob\ =\ classifierProbabilities[i];}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ owner\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i];}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ looScore\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925}{computeScore}}(i);}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ startingScore\ =\ 0.0;}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(prob[owner]\ <\ minProb)\ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startingScore\ =\ -\/std::numeric\_limits<double>::infinity();}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ std::pair<double,\ size\_t>\ bestCluster\{startingScore,\ owner\};}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ c\ =\ 0;\ c\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ c++)\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(c\ ==\ owner)\ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(prob[c]\ <=\ minProb)\ \{}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ predScore\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925}{computeScore}}(c,\ i);}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ deltaScore\ =\ predScore\ -\/\ looScore;}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deltaScore\ >\ bestCluster.first)\ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bestCluster.first\ =\ deltaScore;}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bestCluster.second\ =\ c;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bestCluster.second\ !=\ owner)\ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allSwitches.push\_back(\{bestCluster.first,\ \{i,\ bestCluster.second\}\});}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ std::sort(allSwitches.begin(),\ allSwitches.end(),\ [](std::pair<\textcolor{keywordtype}{double},\ std::pair<size\_t,\ size\_t>>\ a,\ std::pair<\textcolor{keywordtype}{double},\ std::pair<size\_t,\ size\_t>>\ b)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.first\ >\ b.first;}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nSwitches\ =\ std::min(maxAllowedSwitches,\ allSwitches.size());}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ std::vector<std::pair<size\_t,\ size\_t>>\ switches(nSwitches);}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nSwitches;\ i++)\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ switches[i]\ =\ allSwitches[i].second;}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switches;}
+\DoxyCodeLine{00408\ \ \ \ \ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ab53c8a894a3215ecb5f99abd1d685767}{purgeStep}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&clusterIndex)\ \{}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ std::vector<bool>\ affectedClusters(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cycle\ through\ the\ observations}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ point\ is\ in\ the\ cluster\ to\ purge}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i]\ ==\ clusterIndex)\ \{}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ need\ to\ redistribute\ the\ point}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pair<size\_t,\ double>\ chosenCluster\ =\ std::make\_pair(-\/1,\ std::numeric\_limits<double>::infinity());}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ j++)\ \{}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ the\ current\ cluster}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(j\ ==\ clusterIndex)\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ error}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ error\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925}{computeScore}}(j,\ i);}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ have\ a\ new\ minimum}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(error\ <\ chosenCluster.second)\ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chosenCluster\ =\ std::make\_pair(j,\ error);}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ the\ switch}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i]\ =\ chosenCluster.first;}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ affectedClusters[chosenCluster.first]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Purge\ the\ cluster}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\_}}-\/>erase(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\_}}-\/>begin()\ +\ clusterIndex);}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}}.erase(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}}.begin()\ +\ clusterIndex);}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}}.erase(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}}.begin()\ +\ clusterIndex);}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}.erase(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}}.begin()\ +\ clusterIndex);}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ affectedClusters.erase(affectedClusters.begin()\ +\ clusterIndex);}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}}-\/-\/;}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ we\ need\ to\ decrease\ the\ cluster\ index\ of\ the\ points}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i]\ >\ clusterIndex)\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i]-\/-\/;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ we\ need\ to\ update\ the\ model}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ae566968ca096ece6e22fd563a1e74caa}{updateModel}}(affectedClusters);}
+\DoxyCodeLine{00468\ \ \ \ \ \}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ std::vector<std::vector<double>>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aec8b7c546e030b3b061559f9f144cc2f}{computeProbabilities}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&T,\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp::classifier::Classifier}}\ *\mbox{\hyperlink{namespacecmp_1_1classifier}{classifier}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&minProb\ =\ 0.1)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ std::vector<std::vector<double>>\ switchingProbabilities(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}},\ std::vector<double>(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ 0.0));}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Precompute\ classifier\ probabilities\ and\ LOO\ scores\ once\ per\ point.}}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ std::vector<std::vector<double>>\ classifierProbabilities(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}});}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ std::vector<double>\ looScores(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}},\ 0.0);}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ classifierProbabilities[i]\ =\ \mbox{\hyperlink{namespacecmp_1_1classifier}{classifier}}-\/>predictProbabilities(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}}.row(i));}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ looScores[i]\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925}{computeScore}}(i);}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ the\ points}}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ owner\ of\ the\ point}}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ owner\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i];}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Predict\ the\ SVM\ probabilities\ for\ the\ point}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<double>\ \&svmProbabilities\ =\ classifierProbabilities[i];}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ score\ for\ the\ current\ point}}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ looScore\ =\ looScores[i];}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ switchingProbabilities[i][owner]\ =\ svmProbabilities[owner];}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ j++)\ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(j\ ==\ owner)\ \{}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ predictive\ error}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ predictiveScore\ =\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925}{computeScore}}(j,\ i);}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(svmProbabilities[j]\ >\ minProb)\ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ switchingProbabilities[i][j]\ =\ std::exp((predictiveScore\ -\/\ looScore)\ /\ T)\ *\ svmProbabilities[j];}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ switchingProbabilities[i][j]\ =\ 0;}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ sum\ of\ the\ probabilities}}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =\ 0.0;}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ j++)\ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ switchingProbabilities[i][j];}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normalize\ safely;\ if\ scores\ are\ degenerate\ fall\ back\ to\ SVM\ probabilities.}}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sum\ <\ 1e-\/12\ ||\ std::isnan(sum)\ ||\ std::isinf(sum))\ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ j++)\ \{}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ switchingProbabilities[i][j]\ =\ svmProbabilities[j];}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ j++)\ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ switchingProbabilities[i][j]\ /=\ sum;}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ we\ return\ the\ probabilities}}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switchingProbabilities;}
+\DoxyCodeLine{00533\ \ \ \ \ \}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af924313af6846a8188f61ec676625c8f}{confusionMatrix}}(std::vector<std::vector<double>>\ switchingProbability)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ confusion\_num(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}});}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ confusion\_den(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}},\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}});}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ confusion\_num.setZero();}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ confusion\_den.setZero();}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ j++)\ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ k++)\ \{}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ consider\ points\ that\ are\ in\ cluster\ j}}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i]\ ==\ j)\ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ confusion\_num(j,\ k)\ +=\ std::abs(switchingProbability[i][j]\ -\/\ switchingProbability[i][k]);}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ confusion\_den(j,\ k)\ +=\ switchingProbability[i][j]\ +\ switchingProbability[i][k];}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Divide\ the\ matrices\ elementwise}}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ i++)\ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ j++)\ \{}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(confusion\_den(i,\ j)\ !=\ 0)\ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ confusion\_num(i,\ j)\ /=\ confusion\_den(i,\ j);}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ we\ return\ the\ confusion\ matrix}}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ confusion\_num;}
+\DoxyCodeLine{00565\ \ \ \ \ \}}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{comment}{//\ Merge\ two\ clusters}}
+\DoxyCodeLine{00568\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ad94f74314b04b2f523ab6641638c2dd1}{mergeClusters}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&clusterIndex1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&clusterIndex2,\ \textcolor{keywordtype}{bool}\ hparGuess\ =\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ (void)hparGuess;}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ clusters\ are\ the\ same}}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(clusterIndex1\ ==\ clusterIndex2)\ \{}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ std::vector<std::pair<size\_t,\ size\_t>>\ switches;}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cycle\ through\ the\ observations}}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ point\ is\ in\ the\ cluster\ to\ purge}}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}}[i]\ ==\ clusterIndex2)\ \{}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ switches.push\_back(std::make\_pair(i,\ clusterIndex1));}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ the\ switches}}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a51a0d61d8f710bbc3b00dcbecb3b9099}{performSwitches}}(switches);}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Purge\ the\ cluster}}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ab53c8a894a3215ecb5f99abd1d685767}{purgeStep}}(clusterIndex2);}
+\DoxyCodeLine{00593\ \ \ \ \ \}}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \};}
+\DoxyCodeLine{00596\ }
+\DoxyCodeLine{00597\ \}\ \textcolor{comment}{//\ namespace\ cmp}}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\doxysection{include/covariance.h File Reference}
+\hypertarget{covariance_8h}{}\label{covariance_8h}\index{include/covariance.h@{include/covariance.h}}
+{\ttfamily \#include $<$cmp\+\_\+defines.\+h$>$}\newline
+{\ttfamily \#include $<$boost/math/special\+\_\+functions/gamma.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/math/special\+\_\+functions/beta.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/math/special\+\_\+functions/bessel.\+hpp$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}
+\begin{DoxyCompactList}\small\item\em Abstract base class for all covariance (kernel) functions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{cmp\+::covariance\+::\+Sum}}
+\begin{DoxyCompactList}\small\item\em Represents the sum of two covariance functions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{cmp\+::covariance\+::\+Product}}
+\begin{DoxyCompactList}\small\item\em Represents the product of two covariance functions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{cmp\+::covariance\+::\+Custom}}
+\begin{DoxyCompactList}\small\item\em Represents a custom user-\/defined covariance function using std\+::function wrappers. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{cmp\+::covariance\+::\+Constant}}
+\begin{DoxyCompactList}\small\item\em Represents a constant scale covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{cmp\+::covariance\+::\+Linear}}
+\begin{DoxyCompactList}\small\item\em Represents a \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{cmp\+::covariance\+::\+Inverse}}
+\begin{DoxyCompactList}\small\item\em Represents an \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{cmp\+::covariance\+::\+Squared\+Exponential}}
+\begin{DoxyCompactList}\small\item\em Squared Exponential (RBF / Gaussian) covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52}{cmp\+::covariance\+::\+Matern52}}
+\begin{DoxyCompactList}\small\item\em Matérn covariance function with parameter nu = 5/2. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{cmp\+::covariance\+::\+Matern}}
+\begin{DoxyCompactList}\small\item\em General Matérn covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{cmp\+::covariance\+::\+White\+Noise}}
+\begin{DoxyCompactList}\small\item\em White noise covariance function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1covariance}{cmp\+::covariance}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{namespacecmp_1_1covariance_afc6771328575da3b1d88c7d99f12cde8}{cmp\+::covariance\+::operator+}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k2)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{namespacecmp_1_1covariance_a4b03e17aa92a3b8a28fa0fd5b3778fd8}{cmp\+::covariance\+::operator\texorpdfstring{$\ast$}{*}}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k2)
+\end{DoxyCompactItemize}

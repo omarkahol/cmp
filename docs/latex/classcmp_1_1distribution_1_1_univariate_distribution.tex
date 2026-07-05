@@ -1,0 +1,166 @@
+\doxysection{cmp\+::distribution\+::Univariate\+Distribution\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcmp_1_1distribution_1_1_univariate_distribution}{}\label{classcmp_1_1distribution_1_1_univariate_distribution}\index{cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}}
+
+
+CRTP base class for all univariate probability distributions.  
+
+
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9931f4f984317ac7bd92e0cefa5162ea}{log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a0e2fb25e16d8a5be4e07aaaf7176baf3}{d\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the first derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9007089eadc69399bd8a7439a0f23daf}{dd\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the second derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a8bbc084f54acc7b70441727ed118f4aa}{CDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the cumulative distribution function (CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a01a92715e42ea2aaf4cb459f88370667}{quantile}} (const double \&p) const
+\begin{DoxyCompactList}\small\item\em Computes the quantile function (inverse CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a476afdc57d8b5855586323f45488ed96}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single pseudo-\/random sample from the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class cmp\+::distribution\+::\+Univariate\+Distribution$<$ Derived $>$}
+CRTP base class for all univariate probability distributions. 
+
+Mathematical Formulation Defines a probability distribution over a scalar random variable $X \in \mathbb{R}$ with probability density function $p(x)$. Provides static polymorphic interfaces for\+:
+\begin{DoxyItemize}
+\item Log-\/likelihood\+: $\log p(x)$
+\item First-\/order score\+: $\frac{d}{dx} \log p(x)$
+\item Second-\/order Hessian\+: $\frac{d^2}{dx^2} \log p(x)$
+\item Cumulative distribution function (CDF)\+: $F(x) = \int_{-\infty}^x p(t) dt$
+\item Quantile function\+: $F^{-1}(p)$ for $p \in [0, 1]$
+\end{DoxyItemize}
+
+Implementation Algorithm Uses the Curiously Recurring Template Pattern (CRTP) for compile-\/time devirtualization of statistical calls. 
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_univariate_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_univariate_distribution_a8bbc084f54acc7b70441727ed118f4aa}\index{cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}!CDF@{CDF}}
+\index{CDF@{CDF}!cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{CDF()}{CDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_univariate_distribution_a8bbc084f54acc7b70441727ed118f4aa} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution}}$<$ Derived $>$\+::\+CDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the cumulative distribution function (CDF). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Point at which to evaluate the CDF. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluated CDF value in \mbox{[}0, 1\mbox{]}. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_univariate_distribution_a9007089eadc69399bd8a7439a0f23daf}\index{cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}!ddLogPDF@{ddLogPDF}}
+\index{ddLogPDF@{ddLogPDF}!cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{ddLogPDF()}{ddLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_univariate_distribution_a9007089eadc69399bd8a7439a0f23daf} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution}}$<$ Derived $>$\+::dd\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the second derivative of the log-\/\+PDF. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Point at which to evaluate the second derivative. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluated second derivative. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_univariate_distribution_a0e2fb25e16d8a5be4e07aaaf7176baf3}\index{cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}!dLogPDF@{dLogPDF}}
+\index{dLogPDF@{dLogPDF}!cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{dLogPDF()}{dLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_univariate_distribution_a0e2fb25e16d8a5be4e07aaaf7176baf3} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution}}$<$ Derived $>$\+::d\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the first derivative of the log-\/\+PDF. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Point at which to evaluate the derivative. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluated first derivative. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_univariate_distribution_a9931f4f984317ac7bd92e0cefa5162ea}\index{cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_univariate_distribution_a9931f4f984317ac7bd92e0cefa5162ea} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution}}$<$ Derived $>$\+::log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the log probability density function (log-\/\+PDF) of the distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Point at which to evaluate the log-\/\+PDF. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluated log-\/\+PDF. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_univariate_distribution_a01a92715e42ea2aaf4cb459f88370667}\index{cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}!quantile@{quantile}}
+\index{quantile@{quantile}!cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_univariate_distribution_a01a92715e42ea2aaf4cb459f88370667} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution}}$<$ Derived $>$\+::quantile (\begin{DoxyParamCaption}\item[{const double \&}]{p}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the quantile function (inverse CDF). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Probability value in \mbox{[}0, 1\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The quantile value x such that CDF(x) = p. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_univariate_distribution_a476afdc57d8b5855586323f45488ed96}\index{cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::UnivariateDistribution$<$ Derived $>$@{cmp::distribution::UnivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_univariate_distribution_a476afdc57d8b5855586323f45488ed96} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution}}$<$ Derived $>$\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Draws a single pseudo-\/random sample from the distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rng} & Random number engine. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random sample. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

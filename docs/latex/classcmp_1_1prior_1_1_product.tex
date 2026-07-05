@@ -1,0 +1,166 @@
+\doxysection{cmp\+::prior\+::Product Class Reference}
+\hypertarget{classcmp_1_1prior_1_1_product}{}\label{classcmp_1_1prior_1_1_product}\index{cmp::prior::Product@{cmp::prior::Product}}
+
+
+Represents the product (sum of logs) of two independent prior distributions.  
+
+
+
+
+{\ttfamily \#include $<$prior++.\+h$>$}
+
+Inheritance diagram for cmp\+::prior\+::Product\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1prior_1_1_product}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_product_a65d5d9629213f441e27c4d4a9a85e514}{Product}} (const \mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_product_a4630c388577876f1f4bc4e2238bd1fff}{Product}} (\mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \& \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a8668bbb243b48bcb2e13753a0678c55d}{operator=}} (const \mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \& \mbox{\hyperlink{classcmp_1_1prior_1_1_product_af5267de45171cd73420ea80cb71f82cf}{operator=}} (\mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_product_a205791a2fae74eea9bc675c530a8e80c}{Product}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ p1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ p2)
+\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a00cd61c4a660a8f15562b6a68d00f3bf}{eval}} (const Eigen\+::\+Vector\+Xd \&par) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_product_ac7f0b4424b6c5d24745c456c3651a5f4}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a0fae3633bd3a46819b394a5dcbfe49f0}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_a32b126d443e54e0c933eac638626acfa}{\texorpdfstring{$\sim$}{\string~}\+Prior}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_addf13819678d313cb28e06925e8a9f96}{make}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ p1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ p2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}{left\+Prior\+\_\+}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}{right\+Prior\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the product (sum of logs) of two independent prior distributions. 
+
+{\bfseries{Mathematical}} {\bfseries{Formulation}} For independent priors $ p_1(\theta) $ and $ p_2(\theta) $, the joint prior is\+: \[ \log p(\theta) = \log p_1(\theta) + \log p_2(\theta) \] Derivatives are additive due to the linearity of differentiation\+: \[ \nabla_i \log p(\theta) = \nabla_i \log p_1(\theta) + \nabla_i \log p_2(\theta) \] \[ \mathcal{H}_{ij} \log p(\theta) = \mathcal{H}_{ij} \log p_1(\theta) + \mathcal{H}_{ij} \log p_2(\theta) \]
+
+{\bfseries{Implementation}} {\bfseries{Algorithm}} Evaluates the log-\/prior, gradient, and Hessian by summing the results of the {\ttfamily left\+Prior\+\_\+} and {\ttfamily right\+Prior\+\_\+} objects. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1prior_1_1_product_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}\index{cmp::prior::Product@{cmp::prior::Product}!Product@{Product}}
+\index{Product@{Product}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{Product()}{Product()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4} 
+cmp\+::prior\+::\+Product\+::\+Product (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_product_a65d5d9629213f441e27c4d4a9a85e514}\index{cmp::prior::Product@{cmp::prior::Product}!Product@{Product}}
+\index{Product@{Product}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{Product()}{Product()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_a65d5d9629213f441e27c4d4a9a85e514} 
+cmp\+::prior\+::\+Product\+::\+Product (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_product_a4630c388577876f1f4bc4e2238bd1fff}\index{cmp::prior::Product@{cmp::prior::Product}!Product@{Product}}
+\index{Product@{Product}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{Product()}{Product()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_a4630c388577876f1f4bc4e2238bd1fff} 
+cmp\+::prior\+::\+Product\+::\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_product_a205791a2fae74eea9bc675c530a8e80c}\index{cmp::prior::Product@{cmp::prior::Product}!Product@{Product}}
+\index{Product@{Product}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{Product()}{Product()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_a205791a2fae74eea9bc675c530a8e80c} 
+cmp\+::prior\+::\+Product\+::\+Product (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$}]{p1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$}]{p2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1prior_1_1_product_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1prior_1_1_product_a00cd61c4a660a8f15562b6a68d00f3bf}\index{cmp::prior::Product@{cmp::prior::Product}!eval@{eval}}
+\index{eval@{eval}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_a00cd61c4a660a8f15562b6a68d00f3bf} 
+double cmp\+::prior\+::\+Product\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_ac983277833189063b62793fbc1c3ebd5}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_product_ac7f0b4424b6c5d24745c456c3651a5f4}\index{cmp::prior::Product@{cmp::prior::Product}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_ac7f0b4424b6c5d24745c456c3651a5f4} 
+double cmp\+::prior\+::\+Product\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_aeb36eaf26c22bdf4049574f7eb254db8}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_product_a0fae3633bd3a46819b394a5dcbfe49f0}\index{cmp::prior::Product@{cmp::prior::Product}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_a0fae3633bd3a46819b394a5dcbfe49f0} 
+double cmp\+::prior\+::\+Product\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_ad047a6a9bf982743897f4e42529ada63}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_product_addf13819678d313cb28e06925e8a9f96}\index{cmp::prior::Product@{cmp::prior::Product}!make@{make}}
+\index{make@{make}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_addf13819678d313cb28e06925e8a9f96} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ cmp\+::prior\+::\+Product\+::make (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$}]{p1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$}]{p2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_product_a8668bbb243b48bcb2e13753a0678c55d}\index{cmp::prior::Product@{cmp::prior::Product}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_a8668bbb243b48bcb2e13753a0678c55d} 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \& cmp\+::prior\+::\+Product\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_product_af5267de45171cd73420ea80cb71f82cf}\index{cmp::prior::Product@{cmp::prior::Product}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_af5267de45171cd73420ea80cb71f82cf} 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \& cmp\+::prior\+::\+Product\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1prior_1_1_product_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}\index{cmp::prior::Product@{cmp::prior::Product}!leftPrior\_@{leftPrior\_}}
+\index{leftPrior\_@{leftPrior\_}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{leftPrior\_}{leftPrior\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}$>$ cmp\+::prior\+::\+Product\+::left\+Prior\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}\index{cmp::prior::Product@{cmp::prior::Product}!rightPrior\_@{rightPrior\_}}
+\index{rightPrior\_@{rightPrior\_}!cmp::prior::Product@{cmp::prior::Product}}
+\doxysubsubsection{\texorpdfstring{rightPrior\_}{rightPrior\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}$>$ cmp\+::prior\+::\+Product\+::right\+Prior\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{prior_09_09_8h}{prior++.\+h}}\end{DoxyCompactItemize}

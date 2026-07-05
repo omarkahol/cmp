@@ -1,0 +1,161 @@
+\doxysection{cmp\+::distribution\+::Power\+Law\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_power_law_distribution}{}\label{classcmp_1_1distribution_1_1_power_law_distribution}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Power\+Law\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_power_law_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_a61dac2a8fe7e0cb83fedd5fabe14afba}{Power\+Law\+Distribution}} (double alpha, double lower\+Bound=1.\+0)
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_afb503148c29c8b54f0e368904bb66efd}{Power\+Law\+Distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_aad758fc182c623cd50dbb329a76ad507}{log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_afea4af98aea457a83b76211b7fe02cea}{d\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_a1e640d7fc3ab1a178866400cc3faf9c5}{dd\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_a0ba87a8271c5781b89b65ca98a01d81b}{CDF}} (const double \&t) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_a3c38984e4fe8345f57f4265219b19751}{quantile}} (const double \&q) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_aaf27129110e35f0f4992e6a82c5f2494}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_a86a6f5725a0b627fe115e5980e829bd1}{set\+Degree}} (double degree)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution$<$ Power\+Law\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9931f4f984317ac7bd92e0cefa5162ea}{log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a0e2fb25e16d8a5be4e07aaaf7176baf3}{d\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the first derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9007089eadc69399bd8a7439a0f23daf}{dd\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the second derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a8bbc084f54acc7b70441727ed118f4aa}{CDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the cumulative distribution function (CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a01a92715e42ea2aaf4cb459f88370667}{quantile}} (const double \&p) const
+\begin{DoxyCompactList}\small\item\em Computes the quantile function (inverse CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a476afdc57d8b5855586323f45488ed96}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single pseudo-\/random sample from the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_a7fb43accdf4946b0a28181623b62ea65}{degree\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Power law degree parameter (exponent). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_a7592c97bd1f46461062a7b5750f25566}{lower\+Bound\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Lower bound parameter. \end{DoxyCompactList}\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_power_law_distribution_abee83e20e9e9cf5e37da252fab90ae10}{dist\+U\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Uniform distribution helper for sampling. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_a61dac2a8fe7e0cb83fedd5fabe14afba}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!PowerLawDistribution@{PowerLawDistribution}}
+\index{PowerLawDistribution@{PowerLawDistribution}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{PowerLawDistribution()}{PowerLawDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_a61dac2a8fe7e0cb83fedd5fabe14afba} 
+cmp\+::distribution\+::\+Power\+Law\+Distribution\+::\+Power\+Law\+Distribution (\begin{DoxyParamCaption}\item[{double}]{alpha}{, }\item[{double}]{lower\+Bound}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_afb503148c29c8b54f0e368904bb66efd}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!PowerLawDistribution@{PowerLawDistribution}}
+\index{PowerLawDistribution@{PowerLawDistribution}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{PowerLawDistribution()}{PowerLawDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_afb503148c29c8b54f0e368904bb66efd} 
+cmp\+::distribution\+::\+Power\+Law\+Distribution\+::\+Power\+Law\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_a0ba87a8271c5781b89b65ca98a01d81b}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!CDF@{CDF}}
+\index{CDF@{CDF}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{CDF()}{CDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_a0ba87a8271c5781b89b65ca98a01d81b} 
+double cmp\+::distribution\+::\+Power\+Law\+Distribution\+::\+CDF (\begin{DoxyParamCaption}\item[{const double \&}]{t}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_a1e640d7fc3ab1a178866400cc3faf9c5}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!ddLogPDF@{ddLogPDF}}
+\index{ddLogPDF@{ddLogPDF}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{ddLogPDF()}{ddLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_a1e640d7fc3ab1a178866400cc3faf9c5} 
+double cmp\+::distribution\+::\+Power\+Law\+Distribution\+::dd\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_afea4af98aea457a83b76211b7fe02cea}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!dLogPDF@{dLogPDF}}
+\index{dLogPDF@{dLogPDF}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{dLogPDF()}{dLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_afea4af98aea457a83b76211b7fe02cea} 
+double cmp\+::distribution\+::\+Power\+Law\+Distribution\+::d\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_aad758fc182c623cd50dbb329a76ad507}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_aad758fc182c623cd50dbb329a76ad507} 
+double cmp\+::distribution\+::\+Power\+Law\+Distribution\+::log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_a3c38984e4fe8345f57f4265219b19751}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!quantile@{quantile}}
+\index{quantile@{quantile}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_a3c38984e4fe8345f57f4265219b19751} 
+double cmp\+::distribution\+::\+Power\+Law\+Distribution\+::quantile (\begin{DoxyParamCaption}\item[{const double \&}]{q}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_aaf27129110e35f0f4992e6a82c5f2494}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_aaf27129110e35f0f4992e6a82c5f2494} 
+double cmp\+::distribution\+::\+Power\+Law\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_a86a6f5725a0b627fe115e5980e829bd1}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!setDegree@{setDegree}}
+\index{setDegree@{setDegree}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{setDegree()}{setDegree()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_a86a6f5725a0b627fe115e5980e829bd1} 
+void cmp\+::distribution\+::\+Power\+Law\+Distribution\+::set\+Degree (\begin{DoxyParamCaption}\item[{double}]{degree}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_a7fb43accdf4946b0a28181623b62ea65}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!degree\_@{degree\_}}
+\index{degree\_@{degree\_}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{degree\_}{degree\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_a7fb43accdf4946b0a28181623b62ea65} 
+double cmp\+::distribution\+::\+Power\+Law\+Distribution\+::degree\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Power law degree parameter (exponent). 
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_abee83e20e9e9cf5e37da252fab90ae10}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!distU\_@{distU\_}}
+\index{distU\_@{distU\_}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{distU\_}{distU\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_abee83e20e9e9cf5e37da252fab90ae10} 
+std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Power\+Law\+Distribution\+::dist\+U\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Uniform distribution helper for sampling. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_power_law_distribution_a7592c97bd1f46461062a7b5750f25566}\index{cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::distribution::PowerLawDistribution@{cmp::distribution::PowerLawDistribution}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_power_law_distribution_a7592c97bd1f46461062a7b5750f25566} 
+double cmp\+::distribution\+::\+Power\+Law\+Distribution\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Lower bound parameter. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

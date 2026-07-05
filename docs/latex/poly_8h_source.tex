@@ -1,0 +1,564 @@
+\doxysection{poly.\+h}
+\hypertarget{poly_8h_source}{}\label{poly_8h_source}\index{include/poly.h@{include/poly.h}}
+\mbox{\hyperlink{poly_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ POLY\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ POLY\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{integrator_8h}{integrator.h}}>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Basis\ for\ polynomial\ chaos\ expansion}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcmp_1_1_hermite_basis}{HermiteBasis}}\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_hermite_basis_a9dc704a947055ad82d002f2ddb158f10}{evaluate}}(\textcolor{keywordtype}{size\_t}\ deg,\ \textcolor{keywordtype}{double}\ xi)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 0)\ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 1)\ \textcolor{keywordflow}{return}\ xi;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hn\_2\ =\ 1.0,\ Hn\_1\ =\ xi,\ Hn\ =\ 0.0;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ n\ =\ 2;\ n\ <=\ deg;\ ++n)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ Hn\ =\ xi\ *\ Hn\_1\ -\/\ (n\ -\/\ 1)\ *\ Hn\_2;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ Hn\_2\ =\ Hn\_1;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ Hn\_1\ =\ Hn;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Hn;}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_hermite_basis_a71d7ac38b7241d775a6daf97b470822a}{normSquared}}(\textcolor{keywordtype}{size\_t}\ deg)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ norm\ =\ 1.0;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 2;\ i\ <=\ deg;\ ++i)\ norm\ *=\ i;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ norm;}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ Eigen::MatrixXd\ \mbox{\hyperlink{structcmp_1_1_hermite_basis_a5f49b695439eec44c7871830c50c0b50}{getJacobiMatrix}}(\textcolor{keywordtype}{int}\ numPoints)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ J\ =\ Eigen::MatrixXd::Zero(numPoints,\ numPoints);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numPoints\ -\/\ 1;\ ++i)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ beta\ =\ std::sqrt(i\ +\ 1.0);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ J(i,\ i\ +\ 1)\ =\ beta;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ J(i\ +\ 1,\ i)\ =\ beta;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ J;}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_hermite_basis_af8b66ccc3b983059fea26f5e0de33d7f}{getPDFWeight}}()\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ Maps\ canonical\ N(0,1)\ root\ to\ physical\ N(mean,\ stdDev)}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_hermite_basis_ace5eade2e36c9f729432d04f5dadbcd6}{mapToPhysical}}(\textcolor{keywordtype}{double}\ xi,\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ \textcolor{keywordtype}{double}\ stdDev)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}}\ +\ stdDev\ *\ xi;}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Maps\ physical\ x\ to\ canonical\ N(0,1)\ root}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_hermite_basis_a27a4c59a054cb3142f5b3fc6f5282ee7}{mapToCanonical}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ \textcolor{keywordtype}{double}\ stdDev)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ -\/\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}})\ /\ stdDev;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcmp_1_1_legendre_basis}{LegendreBasis}}\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_legendre_basis_a367a40281029852ebebe93e1bb038ed0}{evaluate}}(\textcolor{keywordtype}{size\_t}\ deg,\ \textcolor{keywordtype}{double}\ xi)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 0)\ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 1)\ \textcolor{keywordflow}{return}\ xi;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Pn\_2\ =\ 1.0,\ Pn\_1\ =\ xi,\ Pn\ =\ 0.0;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ n\ =\ 2;\ n\ <=\ deg;\ ++n)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ Pn\ =\ ((2\ *\ n\ -\/\ 1)\ *\ xi\ *\ Pn\_1\ -\/\ (n\ -\/\ 1)\ *\ Pn\_2)\ /\ n;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ Pn\_2\ =\ Pn\_1;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ Pn\_1\ =\ Pn;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Pn;}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_legendre_basis_a3e636fa83291f40d849d8e9b47b37560}{normSquared}}(\textcolor{keywordtype}{size\_t}\ deg)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0\ /\ (2.0\ *\ deg\ +\ 1.0);}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ Eigen::MatrixXd\ \mbox{\hyperlink{structcmp_1_1_legendre_basis_a8e98d75858c0f97f1ad2bace3dbac833}{getJacobiMatrix}}(\textcolor{keywordtype}{int}\ numPoints)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ J\ =\ Eigen::MatrixXd::Zero(numPoints,\ numPoints);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numPoints\ -\/\ 1;\ ++i)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ beta\ =\ std::sqrt((i\ +\ 1.0)\ *\ (i\ +\ 1.0)\ /\ ((2\ *\ i\ +\ 1.0)\ *\ (2\ *\ i\ +\ 3.0)));}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ J(i,\ i\ +\ 1)\ =\ beta;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ J(i\ +\ 1,\ i)\ =\ beta;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ J;}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_legendre_basis_a1f84a7acf0c7a3ecd9af94bb260f0967}{getPDFWeight}}()\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ Maps\ canonical\ [-\/1,\ 1]\ root\ to\ physical\ [lowerBound,\ upperBound]}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_legendre_basis_abccd09371bf2a75a1b9d7f34b56a54ad}{mapToPhysical}}(\textcolor{keywordtype}{double}\ xi,\ \textcolor{keywordtype}{double}\ lowerBound,\ \textcolor{keywordtype}{double}\ upperBound)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lowerBound\ +\ (upperBound\ -\/\ lowerBound)\ *\ (xi\ +\ 1.0)\ /\ 2.0;}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ Maps\ physical\ x\ to\ canonical\ [-\/1,\ 1]\ root}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_legendre_basis_a9dc9d7cd5c7be60b600c095185a38710}{mapToCanonical}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ lowerBound,\ \textcolor{keywordtype}{double}\ upperBound)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2.0\ *\ (x\ -\/\ lowerBound)\ /\ (upperBound\ -\/\ lowerBound)\ -\/\ 1.0;}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcmp_1_1_chebyshev_basis}{ChebyshevBasis}}\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_a5f0845652060aae9c4e619b0016159f7}{evaluate}}(\textcolor{keywordtype}{size\_t}\ deg,\ \textcolor{keywordtype}{double}\ xi)\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 0)\ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 1)\ \textcolor{keywordflow}{return}\ xi;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Tn\_2\ =\ 1.0,\ Tn\_1\ =\ xi,\ Tn\ =\ 0.0;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ n\ =\ 2;\ n\ <=\ deg;\ ++n)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ Tn\ =\ 2.0\ *\ xi\ *\ Tn\_1\ -\/\ Tn\_2;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ Tn\_2\ =\ Tn\_1;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ Tn\_1\ =\ Tn;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Tn;}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_a7b6f6cb731abdf07f35eb8d97225ce0d}{normSquared}}(\textcolor{keywordtype}{size\_t}\ deg)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ pi\ =\ 3.14159265358979323846;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 0)\ \textcolor{keywordflow}{return}\ pi;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pi\ /\ 2.0;}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ Eigen::MatrixXd\ \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_adb86c9103354ef2ddfc1859e79cd40f1}{getJacobiMatrix}}(\textcolor{keywordtype}{int}\ numPoints)\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ J\ =\ Eigen::MatrixXd::Zero(numPoints,\ numPoints);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numPoints\ >\ 1)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ J(0,\ 1)\ =\ 1.0\ /\ std::sqrt(2.0);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ J(1,\ 0)\ =\ 1.0\ /\ std::sqrt(2.0);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ numPoints\ -\/\ 1;\ ++i)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ J(i,\ i\ +\ 1)\ =\ 0.5;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ J(i\ +\ 1,\ i)\ =\ 0.5;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ J;}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_a108cc150d74d1a75d17e247562256942}{mapToPhysical}}(\textcolor{keywordtype}{double}\ xi,\ \textcolor{keywordtype}{double}\ lowerBound,\ \textcolor{keywordtype}{double}\ upperBound)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lowerBound\ +\ (upperBound\ -\/\ lowerBound)\ *\ (xi\ +\ 1.0)\ /\ 2.0;}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_a91d4034f3a88e520076cefa9183ad6f2}{mapToCanonical}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ lowerBound,\ \textcolor{keywordtype}{double}\ upperBound)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2.0\ *\ (x\ -\/\ lowerBound)\ /\ (upperBound\ -\/\ lowerBound)\ -\/\ 1.0;}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcmp_1_1_laguerre_basis}{LaguerreBasis}}\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_laguerre_basis_abf7e42f89027ae10f7d230f9b2cfca58}{evaluate}}(\textcolor{keywordtype}{size\_t}\ deg,\ \textcolor{keywordtype}{double}\ xi)\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 0)\ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deg\ ==\ 1)\ \textcolor{keywordflow}{return}\ 1.0\ -\/\ xi;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Ln\_2\ =\ 1.0,\ Ln\_1\ =\ 1.0\ -\/\ xi,\ Ln\ =\ 0.0;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ n\ =\ 1;\ n\ <\ deg;\ ++n)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ Ln\ =\ ((2.0\ *\ n\ +\ 1.0\ -\/\ xi)\ *\ Ln\_1\ -\/\ n\ *\ Ln\_2)\ /\ (n\ +\ 1.0);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ Ln\_2\ =\ Ln\_1;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ Ln\_1\ =\ Ln;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ln;}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_laguerre_basis_aad9a8373c0760d1d8af8799f62e41348}{normSquared}}(\textcolor{keywordtype}{size\_t}\ deg)\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ Eigen::MatrixXd\ \mbox{\hyperlink{structcmp_1_1_laguerre_basis_aa0857f3c75f48067c08ed2c3a2453502}{getJacobiMatrix}}(\textcolor{keywordtype}{int}\ numPoints)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ J\ =\ Eigen::MatrixXd::Zero(numPoints,\ numPoints);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numPoints;\ ++i)\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ J(i,\ i)\ =\ 2.0\ *\ i\ +\ 1.0;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ <\ numPoints\ -\/\ 1)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ off\_diag\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(i\ +\ 1);}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ J(i,\ i\ +\ 1)\ =\ off\_diag;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ J(i\ +\ 1,\ i)\ =\ off\_diag;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ J;}
+\DoxyCodeLine{00231\ \ \ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{comment}{//\ Maps\ canonical\ root\ [0,\ inf)\ to\ physical}}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_laguerre_basis_ab7369df783aced906b3631e3848d8c0d}{mapToPhysical}}(\textcolor{keywordtype}{double}\ xi,\ \textcolor{keywordtype}{double}\ location,\ \textcolor{keywordtype}{double}\ scale)\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ location\ +\ scale\ *\ xi;}
+\DoxyCodeLine{00236\ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{comment}{//\ Maps\ physical\ x\ to\ canonical\ root\ [0,\ inf)}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1_laguerre_basis_a6d0391f30553a1d3b2ec3053a5de44f3}{mapToCanonical}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ location,\ \textcolor{keywordtype}{double}\ scale)\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ -\/\ location)\ /\ scale;}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \};}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_multi_index_abcb409743b315af0b37e32adb4e4b8e4}{MultiIndex}}\ \{}
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}}\ =\ std::vector<size\_t>;}
+\DoxyCodeLine{00247\ \ \ \ \ std::vector<Index>\ \mbox{\hyperlink{classcmp_1_1_multi_index_ad213eabc29c4f0ad221698fd735c36a6}{indices}};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_multi_index_abcb409743b315af0b37e32adb4e4b8e4}{MultiIndex}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_multi_index_ae3852f478a1328638e7e501337e17374}{set}}(\textcolor{keywordtype}{size\_t}\ dimension,\ \textcolor{keywordtype}{size\_t}\ totalDegree,\ \textcolor{keywordtype}{double}\ q\ =\ 1.0);}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classcmp_1_1_multi_index_a0d657b9f43a4043d7f743f3f19f2dce2}{size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_multi_index_ad213eabc29c4f0ad221698fd735c36a6}{indices}}.size();}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}}\&\ \mbox{\hyperlink{classcmp_1_1_multi_index_a8b472dd11eb6f1c47a0207bd139df78d}{operator[]}}(std::size\_t\ i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_multi_index_ad213eabc29c4f0ad221698fd735c36a6}{indices}}[i];}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_multi_index_a6fd990d65dc55976dde559b0f2b936dd}{print}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_multi_index_aff77bb2efa1e2957e085d2e26499a88e}{generateRecursive}}(\mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}}\&\ current,\ \textcolor{keywordtype}{int}\ pos,\ \textcolor{keywordtype}{size\_t}\ remaining,\ \textcolor{keywordtype}{double}\ currentQSum,\ \textcolor{keywordtype}{double}\ maxQSum,\ \textcolor{keywordtype}{double}\ q);}
+\DoxyCodeLine{00262\ \};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00300\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Basis>}
+\DoxyCodeLine{00301\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac832b21a877ab12b8394e6e74677a780}{PolynomialExpansion}}\ \{}
+\DoxyCodeLine{00302\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00303\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_multi_index}{MultiIndex}}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}};}
+\DoxyCodeLine{00304\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}};}
+\DoxyCodeLine{00305\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}};}
+\DoxyCodeLine{00306\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{xObs\_}};}
+\DoxyCodeLine{00307\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{yObs\_}};}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ =\ 0.0;}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{//\ Distribution\ parameters\ for\ each\ dimension}}
+\DoxyCodeLine{00311\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}};}
+\DoxyCodeLine{00312\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}};}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{comment}{//\ Vectorized\ evaluation\ of\ a\ block\ of\ data}}
+\DoxyCodeLine{00315\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac9ef4c50866c08b2d4dc9eaa073c4308}{computeDesignMatrix}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ X)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numSamples\ =\ X.rows();}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numBasis\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size();}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ dim\ =\ X.cols();}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ A(numSamples,\ numBasis);}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ omp\ parallel\ for\ schedule(static)}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numSamples;\ ++i)\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ b\ =\ 0;\ b\ <\ numBasis;\ ++b)\ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ term\ =\ 1.0;}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ d\ =\ 0;\ d\ <\ dim;\ ++d)\ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ the\ physical\ observation\ X\ to\ canonical\ space}}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ xi\ =\ Basis::mapToCanonical(X(i,\ d),\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}}(d),\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}}(d));}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ term\ *=\ Basis::evaluate(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[b][d],\ xi);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A(i,\ b)\ =\ term;}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A;}
+\DoxyCodeLine{00335\ \ \ \ \ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_afb309970f54738b9ad50ddb62322e19b}{writeEigenMatrix}}(std::ofstream\&\ out,\ \textcolor{keyword}{const}\ MatrixType\&\ mat)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ MatrixType::Index\ rows\ =\ mat.rows();}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ MatrixType::Index\ cols\ =\ mat.cols();}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&rows),\ \textcolor{keyword}{sizeof}(rows));}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&cols),\ \textcolor{keyword}{sizeof}(cols));}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(mat.data()),\ rows\ *\ cols\ *\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{typename}\ MatrixType::Scalar));}
+\DoxyCodeLine{00344\ \ \ \ \ \}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a15e94105b443278be7468e72174b074f}{readEigenMatrix}}(std::ifstream\&\ in,\ MatrixType\&\ mat)\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ MatrixType::Index\ rows\ =\ 0,\ cols\ =\ 0;}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&rows),\ \textcolor{keyword}{sizeof}(rows));}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&cols),\ \textcolor{keyword}{sizeof}(cols));}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ mat.resize(rows,\ cols);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(mat.data()),\ rows\ *\ cols\ *\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{typename}\ MatrixType::Scalar));}
+\DoxyCodeLine{00353\ \ \ \ \ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac832b21a877ab12b8394e6e74677a780}{PolynomialExpansion}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{comment}{//\ Updated\ init\ method\ to\ capture\ bounding/distribution\ parameters}}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_adec4bbcf651b5dba30e8732c16bad1e3}{set}}(\textcolor{keywordtype}{size\_t}\ dimension,\ \textcolor{keywordtype}{size\_t}\ totalDegree,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ p1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ p2,\ \textcolor{keywordtype}{double}\ q\ =\ 1.0)\ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(p1.size()\ !=\ dimension\ ||\ p2.size()\ !=\ dimension)\ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Parameter\ vectors\ must\ match\ dimension."{}});}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}}\ =\ p1;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}}\ =\ p2;}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.set(dimension,\ totalDegree,\ q);}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}\ =\ Eigen::VectorXd::Zero(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size());}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a3dc2f439b409f5d1459f6e21a6a9d456}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ samples,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\&\ values)\ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(samples.rows()\ !=\ values.size())\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Dimension\ mismatch."{}});}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{xObs\_}}\ =\ samples;}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{yObs\_}}\ =\ values;}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ A\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac9ef4c50866c08b2d4dc9eaa073c4308}{computeDesignMatrix}}(samples);}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ Eigen::ColPivHouseholderQR<Eigen::MatrixXd>\ qr(A);}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}\ =\ qr.solve(values);}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}\ =\ (A.transpose()\ *\ A).completeOrthogonalDecomposition().pseudoInverse();}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ residuals\ =\ values\ -\/\ A\ *\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}};}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(samples.rows()\ >\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}.size())\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ =\ residuals.squaredNorm()\ /\ (samples.rows()\ -\/\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}.size());}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ \ \ \ \ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_adffa574ee81bf970e22e028ce0159610}{getAnalyticalMean}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}.size()\ ==\ 0)\ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}(0);}
+\DoxyCodeLine{00391\ \ \ \ \ \}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9b8260b928fc488e9378d87a6d8cb508}{getAnalyticalVariance}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ totalVar\ =\ 0.0;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size();\ ++i)\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ basisNormSq\ =\ 1.0;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[i].size();\ ++d)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ basisNormSq\ *=\ Basis::normSquared(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[i][d]);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ totalVar\ +=\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}(i)\ *\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}(i)\ *\ basisNormSq;}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ totalVar;}
+\DoxyCodeLine{00403\ \ \ \ \ \}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ad4df7a4ab2794b64051c9cbbe7243131}{getSobolMainIndices}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ totalVar\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9b8260b928fc488e9378d87a6d8cb508}{getAnalyticalVariance}}();}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dim\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[0].size();}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ sobolIndices\ =\ Eigen::VectorXd::Zero(dim);}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(totalVar\ <\ 1e-\/12)\ \textcolor{keywordflow}{return}\ sobolIndices;}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size();\ ++i)\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ activeDim\ =\ -\/1;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isMainEffect\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ dim;\ ++d)\ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[i][d]\ >\ 0)\ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(activeDim\ ==\ -\/1)\ activeDim\ =\ d;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ isMainEffect\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isMainEffect\ \&\&\ activeDim\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ basisNormSq\ =\ 1.0;}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ dim;\ ++d)\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ basisNormSq\ *=\ Basis::normSquared(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[i][d]);}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sobolIndices(activeDim)\ +=\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}(i)\ *\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}(i)\ *\ basisNormSq;}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sobolIndices\ /\ totalVar;}
+\DoxyCodeLine{00432\ \ \ \ \ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a18d52b24ec1be031ef402b5d337cfda1}{predictBatch}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ X)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ A\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac9ef4c50866c08b2d4dc9eaa073c4308}{computeDesignMatrix}}(X);}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A\ *\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}};}
+\DoxyCodeLine{00437\ \ \ \ \ \}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ std::pair<double,\ double>\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_afbe173ea6e02cf457ff816c0aacc1870}{predict}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ phi\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9c450b82e829e7197d57d7d1eb8c8ada}{computeBasisRow}}(x);}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}}\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}.dot(phi);}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ variance\ =\ 0.0;}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ >\ 0.0\ \&\&\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}.size()\ >\ 0)\ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ variance\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ *\ phi.dot(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}\ *\ phi);}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ variance\};}
+\DoxyCodeLine{00448\ \ \ \ \ \}}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \ \ \ std::pair<double,\ double>\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae9a621fdaec28e1f966f060db9d17d30}{predictWithObs}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&yObs)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}.size()\ ==\ 0\ ||\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{yObs\_}}.size()\ ==\ 0)\ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}predictWithObs\ requires\ a\ fitted\ model."{}});}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ phi\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9c450b82e829e7197d57d7d1eb8c8ada}{computeBasisRow}}(x);}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ influence\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}\ *\ phi;}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ denom\ =\ 1.0\ +\ phi.dot(influence);}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(denom)\ <=\ std::numeric\_limits<double>::epsilon())\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Rank-\/one\ update\ is\ singular."{}});}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ innovation\ =\ yObs\ -\/\ phi.dot(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}});}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ gain\ =\ influence\ /\ denom;}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ coeffsUpdated\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}\ +\ gain\ *\ innovation;}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ normalInvUpdated\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}\ -\/\ (influence\ *\ influence.transpose())\ /\ denom;}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}}\ =\ phi.dot(coeffsUpdated);}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ variance\ =\ 0.0;}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ >\ 0.0)\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ variance\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ *\ phi.dot(normalInvUpdated\ *\ phi);}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ variance\};}
+\DoxyCodeLine{00474\ \ \ \ \ \}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ std::pair<double,\ double>\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a6a64434895c872468d6940eb5494e9de}{predictLOO}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&\ i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >=\ (\textcolor{keywordtype}{size\_t})\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{xObs\_}}.rows())\ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}LOO\ index\ out\ of\ range."{}});}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}.size()\ ==\ 0)\ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}LOO\ prediction\ requires\ a\ fitted\ normal\ matrix\ inverse."{}});}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ x\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{xObs\_}}.row(i).transpose();}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ phi\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9c450b82e829e7197d57d7d1eb8c8ada}{computeBasisRow}}(x);}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ y\_i\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{yObs\_}}(i);}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ residual\_i\ =\ y\_i\ -\/\ phi.dot(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}});}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ influence\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}\ *\ phi;}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ leverage\_i\ =\ phi.dot(influence);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ denom\ =\ 1.0\ -\/\ leverage\_i;}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(denom)\ <=\ std::numeric\_limits<double>::epsilon())\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}LOO\ rank-\/one\ update\ is\ singular."{}});}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ coeffsLOO\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}\ -\/\ influence\ *\ (residual\_i\ /\ denom);}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}}\ =\ phi.dot(coeffsLOO);}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ variance\ =\ 0.0;}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ >\ 0.0)\ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ normalInvLOO\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}}\ +\ (influence\ *\ influence.transpose())\ /\ denom;}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ variance\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ *\ phi.dot(normalInvLOO\ *\ phi);}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ variance\};}
+\DoxyCodeLine{00507\ \ \ \ \ \}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9c450b82e829e7197d57d7d1eb8c8ada}{computeBasisRow}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size()\ ==\ 0)\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Polynomial\ basis\ is\ not\ initialized."{}});}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(x.size()\ !=\ (\textcolor{keywordtype}{int})\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[0].size())\ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Input\ vector\ size\ does\ not\ match\ the\ polynomial\ dimension."{}});}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ phi(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size());}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size();\ ++i)\ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ term\ =\ 1.0;}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ (size\_t)x.size();\ ++d)\ \{}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ the\ physical\ input\ vector\ to\ the\ canonical\ space}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ xi\ =\ Basis::mapToCanonical(x(d),\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}}[d],\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}}[d]);}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ term\ *=\ Basis::evaluate(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[i][d],\ xi);}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ phi(i)\ =\ term;}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ phi;}
+\DoxyCodeLine{00528\ \ \ \ \ \}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a8efec28ad3c35e34ab807f377ec10f9c}{save}}(\textcolor{keyword}{const}\ std::string\&\ filename)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ std::ofstream\ out(filename,\ std::ios::binary);}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!out.is\_open())\ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ open\ file\ for\ writing:\ "{}}\ +\ filename);}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Serialize\ domain\ parameters}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ p\_size\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}}.size();}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&p\_size),\ \textcolor{keyword}{sizeof}(p\_size));}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(p\_size\ >\ 0)\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}}.data()),\ p\_size\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}));}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}}.data()),\ p\_size\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}));}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Serialize\ residual\ variance}}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}));}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Serialize\ MultiIndex}}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ numIndices\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices.size();}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&numIndices),\ \textcolor{keyword}{sizeof}(numIndices));}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ idx\ :\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices)\ \{}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dim\ =\ idx.size();}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&dim),\ \textcolor{keyword}{sizeof}(dim));}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(idx.data()),\ dim\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Serialize\ Eigen\ Objects}}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_afb309970f54738b9ad50ddb62322e19b}{writeEigenMatrix}}(out,\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}});}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_afb309970f54738b9ad50ddb62322e19b}{writeEigenMatrix}}(out,\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}});}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_afb309970f54738b9ad50ddb62322e19b}{writeEigenMatrix}}(out,\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{xObs\_}});}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_afb309970f54738b9ad50ddb62322e19b}{writeEigenMatrix}}(out,\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{yObs\_}});}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ out.close();}
+\DoxyCodeLine{00563\ \ \ \ \ \}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_abaf0ca355c7d0a94c7f47c9a52a00060}{load}}(\textcolor{keyword}{const}\ std::string\&\ filename)\ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ std::ifstream\ in(filename,\ std::ios::binary);}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!in.is\_open())\ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ open\ file\ for\ reading:\ "{}}\ +\ filename);}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Deserialize\ domain\ parameters}}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ p\_size\ =\ 0;}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&p\_size),\ \textcolor{keyword}{sizeof}(p\_size));}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}}.resize(p\_size);}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}}.resize(p\_size);}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(p\_size\ >\ 0)\ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}}.data()),\ p\_size\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}));}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}}.data()),\ p\_size\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}));}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Deserialize\ residual\ variance}}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}));}
+\DoxyCodeLine{00583\ }
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Deserialize\ MultiIndex}}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ numIndices\ =\ 0;}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&numIndices),\ \textcolor{keyword}{sizeof}(numIndices));}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices.clear();}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices.resize(numIndices);}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ numIndices;\ ++i)\ \{}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dim\ =\ 0;}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&dim),\ \textcolor{keyword}{sizeof}(dim));}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[i].resize(dim);}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[i].data()),\ dim\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00596\ }
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Deserialize\ Eigen\ Objects}}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a15e94105b443278be7468e72174b074f}{readEigenMatrix}}(in,\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}});}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a15e94105b443278be7468e72174b074f}{readEigenMatrix}}(in,\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}});}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a15e94105b443278be7468e72174b074f}{readEigenMatrix}}(in,\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{xObs\_}});}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a15e94105b443278be7468e72174b074f}{readEigenMatrix}}(in,\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{yObs\_}});}
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ in.close();}
+\DoxyCodeLine{00604\ \ \ \ \ \}}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4e475afdee373ace0d97a8f49fba9a25}{getNumBasisFunctions}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size();}
+\DoxyCodeLine{00608\ \ \ \ \ \}}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a67be2b8735ba9ed0969dc32218d4995b}{project}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&)>\&\ model,\ \textcolor{keywordtype}{int}\ pointsPerDim)\ \{}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size()\ ==\ 0)\ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Basis\ not\ set."{}});}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dim\ =\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[0].size();}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_tensor_integrator}{cmp::TensorIntegrator<Basis>}}\ integrator(dim,\ pointsPerDim);}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numEvals\ =\ integrator.\mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}.rows();}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ yVals(numEvals);}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numEvals;\ ++i)\ \{}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evaluate\ the\ model\ using\ the\ mapped\ PHYSICAL\ nodes}}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::VectorXd\ physicalPoint(dim);}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ dim;\ ++d)\ \{}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ physicalPoint(d)\ =\ Basis::mapToPhysical(integrator.\mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}(i,\ d),\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}}[d],\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}}[d]);}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ yVals(i)\ =\ model(physicalPoint);}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ coefficients\ via\ Galerkin\ projection}}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.size();\ ++k)\ \{}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ integral\_sum\ =\ 0.0;}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ basis\_norm\_squared\ =\ 1.0;}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ dim;\ ++d)\ \{}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ basis\_norm\_squared\ *=\ Basis::normSquared(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[k][d]);}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numEvals;\ ++i)\ \{}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ psi\_k\ =\ 1.0;}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ dim;\ ++d)\ \{}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Polynomials\ MUST\ be\ evaluated\ on\ the\ CANONICAL\ nodes}}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ psi\_k\ *=\ Basis::evaluate(\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}}.indices[k][d],\ integrator.\mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}(i,\ d));}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ integral\_sum\ +=\ yVals(i)\ *\ psi\_k\ *\ integrator.\mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{gridWeights}}(i);}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}}(k)\ =\ integral\_sum\ /\ basis\_norm\_squared;}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ =\ 0.0;}
+\DoxyCodeLine{00647\ \ \ \ \ \}}
+\DoxyCodeLine{00648\ \};}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \}\ \textcolor{comment}{//\ namespace\ cmp}}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POLY\_H}}
+
+\end{DoxyCode}

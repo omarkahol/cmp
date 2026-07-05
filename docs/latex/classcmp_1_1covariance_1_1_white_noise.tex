@@ -1,0 +1,167 @@
+\doxysection{cmp\+::covariance\+::White\+Noise Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_white_noise}{}\label{classcmp_1_1covariance_1_1_white_noise}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+
+
+White noise covariance function.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::White\+Noise\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_white_noise}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{White\+Noise}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a42c0164a05b1f78bb4c094daa74d2b6f}{White\+Noise}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_abb765a4dbdf12159790ed0216566717d}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_abd38e41d26f939781710cb09c0da61cb}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a1e7fdd112179f94d7fe3126613ce7bce}{White\+Noise}} (const size\+\_\+t \&indexX=-\/1, double tol=1e-\/10)
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aef11287ef98ee7540b338e87c3ca0927}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a213147357af292f75a8c29b14282d73b}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a104bda4913a681622472380eb58117d6}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ae14c3104e841bd710d74e3713d2f5a33}{make}} (const int \&i=-\/1, double tol=1e-\/10)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aca4ca45bc41ea06dcfeeeb22f51017f9}{index\+X\+\_\+}} \{-\/1\}
+\begin{DoxyCompactList}\small\item\em Dimension index to evaluate, or -\/1 for the full isotropic kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a8114c9388de25916ade131570bd5fc0f}{tol\+\_\+}} \{1e-\/10\}
+\begin{DoxyCompactList}\small\item\em Distance tolerance threshold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+White noise covariance function. 
+
+Mathematical Formulation Evaluates the Kronecker delta kernel between two inputs $\mathbf{x}_1, \mathbf{x}_2$\+:   \[k(\mathbf{x}_1, \mathbf{x}_2) = \begin{cases} 1.0 & \text{if } d < \text{tol} \\ 0.0 & \text{otherwise} \end{cases}
+\] where $d$ is the distance between the two points.
+
+Implementation Algorithm Computes distance $d$ and compares it to a small tolerance threshold {\ttfamily tol\+\_\+}. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!WhiteNoise@{WhiteNoise}}
+\index{WhiteNoise@{WhiteNoise}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{WhiteNoise()}{WhiteNoise()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b} 
+cmp\+::covariance\+::\+White\+Noise\+::\+White\+Noise (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_a42c0164a05b1f78bb4c094daa74d2b6f}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!WhiteNoise@{WhiteNoise}}
+\index{WhiteNoise@{WhiteNoise}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{WhiteNoise()}{WhiteNoise()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_a42c0164a05b1f78bb4c094daa74d2b6f} 
+cmp\+::covariance\+::\+White\+Noise\+::\+White\+Noise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_a1e7fdd112179f94d7fe3126613ce7bce}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!WhiteNoise@{WhiteNoise}}
+\index{WhiteNoise@{WhiteNoise}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{WhiteNoise()}{WhiteNoise()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_a1e7fdd112179f94d7fe3126613ce7bce} 
+cmp\+::covariance\+::\+White\+Noise\+::\+White\+Noise (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{indexX}{ = {\ttfamily -\/1}, }\item[{double}]{tol}{ = {\ttfamily 1e-\/10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_aef11287ef98ee7540b338e87c3ca0927}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_aef11287ef98ee7540b338e87c3ca0927} 
+double cmp\+::covariance\+::\+White\+Noise\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_a213147357af292f75a8c29b14282d73b}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_a213147357af292f75a8c29b14282d73b} 
+double cmp\+::covariance\+::\+White\+Noise\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_a104bda4913a681622472380eb58117d6}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_a104bda4913a681622472380eb58117d6} 
+double cmp\+::covariance\+::\+White\+Noise\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_ae14c3104e841bd710d74e3713d2f5a33}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!make@{make}}
+\index{make@{make}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_ae14c3104e841bd710d74e3713d2f5a33} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+White\+Noise\+::make (\begin{DoxyParamCaption}\item[{const int \&}]{i}{ = {\ttfamily -\/1}, }\item[{double}]{tol}{ = {\ttfamily 1e-\/10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_abb765a4dbdf12159790ed0216566717d}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_abb765a4dbdf12159790ed0216566717d} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \& cmp\+::covariance\+::\+White\+Noise\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_abd38e41d26f939781710cb09c0da61cb}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_abd38e41d26f939781710cb09c0da61cb} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \& cmp\+::covariance\+::\+White\+Noise\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_aca4ca45bc41ea06dcfeeeb22f51017f9}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!indexX\_@{indexX\_}}
+\index{indexX\_@{indexX\_}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{indexX\_}{indexX\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_aca4ca45bc41ea06dcfeeeb22f51017f9} 
+int cmp\+::covariance\+::\+White\+Noise\+::index\+X\+\_\+ \{-\/1\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dimension index to evaluate, or -\/1 for the full isotropic kernel. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_white_noise_a8114c9388de25916ade131570bd5fc0f}\index{cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}!tol\_@{tol\_}}
+\index{tol\_@{tol\_}!cmp::covariance::WhiteNoise@{cmp::covariance::WhiteNoise}}
+\doxysubsubsection{\texorpdfstring{tol\_}{tol\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_white_noise_a8114c9388de25916ade131570bd5fc0f} 
+double cmp\+::covariance\+::\+White\+Noise\+::tol\+\_\+ \{1e-\/10\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Distance tolerance threshold. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

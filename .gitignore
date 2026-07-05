@@ -1,5 +1,4 @@
 .vscode
-docs
 *.nb
 *.o
 *.a
@@ -7,9 +6,8 @@ docs
 .DS_Store
 out*
 out.dSYM
-Technical_Doc/*
 !Technical_Doc/main.pdf
 .notebook
+.build
 *.d
 tests/obj/**
-doc_tracking.md

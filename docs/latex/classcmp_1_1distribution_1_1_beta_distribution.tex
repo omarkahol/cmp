@@ -1,0 +1,197 @@
+\doxysection{cmp\+::distribution\+::Beta\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_beta_distribution}{}\label{classcmp_1_1distribution_1_1_beta_distribution}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Beta\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_beta_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_af643ed7dec2e5da41d49771080a1d10b}{Beta\+Distribution}} (double alpha, double beta)
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a1b1db1083100d27d596c52f6863fa9d9}{Beta\+Distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_ad0a890a4b01d93a812919a041e89ba35}{log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a9ae7a17deb566d065cb2f113ab7610c4}{d\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a66de5e0f6070c682d389f63dbb8aec0f}{dd\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_af1b3bc94500daf0149c4dd961904d11b}{CDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a0183145c12b9b5b31d329ab90a00e255}{quantile}} (const double \&p) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a76683486e88eed3bac521c6663e3dd10}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a164d96e2086ce9c8152766bec087c583}{set\+Alpha}} (double alpha)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_ad2ff809e1dd1ab461d311cdc141a95c6}{set\+Beta}} (double beta)
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_aef060a6969adcacc57c70f502cff0c59}{get\+Alpha}} () const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a0428e0cb0e5d383273433b9d640e4f25}{get\+Beta}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution$<$ Beta\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9931f4f984317ac7bd92e0cefa5162ea}{log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a0e2fb25e16d8a5be4e07aaaf7176baf3}{d\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the first derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9007089eadc69399bd8a7439a0f23daf}{dd\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the second derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a8bbc084f54acc7b70441727ed118f4aa}{CDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the cumulative distribution function (CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a01a92715e42ea2aaf4cb459f88370667}{quantile}} (const double \&p) const
+\begin{DoxyCompactList}\small\item\em Computes the quantile function (inverse CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a476afdc57d8b5855586323f45488ed96}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single pseudo-\/random sample from the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_ab7cc6397b4060f7bc28d1416818d9884}{alpha\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Shape parameter alpha. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a7d31ed5bffc07a307545f7ca1125ed8c}{beta\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Scale parameter beta. \end{DoxyCompactList}\item 
+std\+::gamma\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_ac55bf7c65720d69a136fc647ff2b788e}{dist\+Gamma\+Alpha\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Gamma distribution shape-\/alpha helper. \end{DoxyCompactList}\item 
+std\+::gamma\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a16ff60bb7608b81e7579916c041b6d47}{dist\+Gamma\+Beta\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Gamma distribution shape-\/beta helper. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_af643ed7dec2e5da41d49771080a1d10b}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!BetaDistribution@{BetaDistribution}}
+\index{BetaDistribution@{BetaDistribution}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{BetaDistribution()}{BetaDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_af643ed7dec2e5da41d49771080a1d10b} 
+cmp\+::distribution\+::\+Beta\+Distribution\+::\+Beta\+Distribution (\begin{DoxyParamCaption}\item[{double}]{alpha}{, }\item[{double}]{beta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a1b1db1083100d27d596c52f6863fa9d9}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!BetaDistribution@{BetaDistribution}}
+\index{BetaDistribution@{BetaDistribution}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{BetaDistribution()}{BetaDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a1b1db1083100d27d596c52f6863fa9d9} 
+cmp\+::distribution\+::\+Beta\+Distribution\+::\+Beta\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_af1b3bc94500daf0149c4dd961904d11b}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!CDF@{CDF}}
+\index{CDF@{CDF}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{CDF()}{CDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_af1b3bc94500daf0149c4dd961904d11b} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::\+CDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a66de5e0f6070c682d389f63dbb8aec0f}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!ddLogPDF@{ddLogPDF}}
+\index{ddLogPDF@{ddLogPDF}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{ddLogPDF()}{ddLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a66de5e0f6070c682d389f63dbb8aec0f} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::dd\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a9ae7a17deb566d065cb2f113ab7610c4}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!dLogPDF@{dLogPDF}}
+\index{dLogPDF@{dLogPDF}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{dLogPDF()}{dLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a9ae7a17deb566d065cb2f113ab7610c4} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::d\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_aef060a6969adcacc57c70f502cff0c59}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!getAlpha@{getAlpha}}
+\index{getAlpha@{getAlpha}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{getAlpha()}{getAlpha()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_aef060a6969adcacc57c70f502cff0c59} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::get\+Alpha (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a0428e0cb0e5d383273433b9d640e4f25}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!getBeta@{getBeta}}
+\index{getBeta@{getBeta}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{getBeta()}{getBeta()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a0428e0cb0e5d383273433b9d640e4f25} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::get\+Beta (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_ad0a890a4b01d93a812919a041e89ba35}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_ad0a890a4b01d93a812919a041e89ba35} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a0183145c12b9b5b31d329ab90a00e255}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!quantile@{quantile}}
+\index{quantile@{quantile}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a0183145c12b9b5b31d329ab90a00e255} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::quantile (\begin{DoxyParamCaption}\item[{const double \&}]{p}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a76683486e88eed3bac521c6663e3dd10}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a76683486e88eed3bac521c6663e3dd10} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a164d96e2086ce9c8152766bec087c583}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!setAlpha@{setAlpha}}
+\index{setAlpha@{setAlpha}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{setAlpha()}{setAlpha()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a164d96e2086ce9c8152766bec087c583} 
+void cmp\+::distribution\+::\+Beta\+Distribution\+::set\+Alpha (\begin{DoxyParamCaption}\item[{double}]{alpha}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_ad2ff809e1dd1ab461d311cdc141a95c6}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!setBeta@{setBeta}}
+\index{setBeta@{setBeta}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{setBeta()}{setBeta()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_ad2ff809e1dd1ab461d311cdc141a95c6} 
+void cmp\+::distribution\+::\+Beta\+Distribution\+::set\+Beta (\begin{DoxyParamCaption}\item[{double}]{beta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_ab7cc6397b4060f7bc28d1416818d9884}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!alpha\_@{alpha\_}}
+\index{alpha\_@{alpha\_}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{alpha\_}{alpha\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_ab7cc6397b4060f7bc28d1416818d9884} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::alpha\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Shape parameter alpha. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a7d31ed5bffc07a307545f7ca1125ed8c}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!beta\_@{beta\_}}
+\index{beta\_@{beta\_}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{beta\_}{beta\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a7d31ed5bffc07a307545f7ca1125ed8c} 
+double cmp\+::distribution\+::\+Beta\+Distribution\+::beta\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Scale parameter beta. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_ac55bf7c65720d69a136fc647ff2b788e}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!distGammaAlpha\_@{distGammaAlpha\_}}
+\index{distGammaAlpha\_@{distGammaAlpha\_}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{distGammaAlpha\_}{distGammaAlpha\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_ac55bf7c65720d69a136fc647ff2b788e} 
+std\+::gamma\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Beta\+Distribution\+::dist\+Gamma\+Alpha\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gamma distribution shape-\/alpha helper. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_beta_distribution_a16ff60bb7608b81e7579916c041b6d47}\index{cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}!distGammaBeta\_@{distGammaBeta\_}}
+\index{distGammaBeta\_@{distGammaBeta\_}!cmp::distribution::BetaDistribution@{cmp::distribution::BetaDistribution}}
+\doxysubsubsection{\texorpdfstring{distGammaBeta\_}{distGammaBeta\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_beta_distribution_a16ff60bb7608b81e7579916c041b6d47} 
+std\+::gamma\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Beta\+Distribution\+::dist\+Gamma\+Beta\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gamma distribution shape-\/beta helper. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

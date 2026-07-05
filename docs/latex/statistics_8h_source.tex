@@ -1,0 +1,392 @@
+\doxysection{statistics.\+h}
+\hypertarget{statistics_8h_source}{}\label{statistics_8h_source}\index{include/statistics.h@{include/statistics.h}}
+\mbox{\hyperlink{statistics_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ CMP\_STATISTICS\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ CMP\_STATISTICS\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <unsupported/Eigen/FFT>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <complex>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1statistics}{cmp::statistics}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a1f3735ac2d7d52a59a097e4840c496f0}{KFold}}\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ Eigen::Index\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a474bfecec12a9e55bdf965535f56da0a}{nSplits\_}};}
+\DoxyCodeLine{00046\ \ \ \ \ Eigen::Index\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_ac32622bc5444115cbf0e8c68f260f7e1}{nObs\_}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a222f68935675eb0d3eff0219c386f62e}{shuffle\_}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aec6e04d2bbe696cc3b3a9742c3f764da}{rngState\_}};}
+\DoxyCodeLine{00049\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a8007c58d20b3a0f0014718ab872fe204}{rng\_}};}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929}{indices\_}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a1f3735ac2d7d52a59a097e4840c496f0}{KFold}}(Eigen::Index\ n\_splits,\ Eigen::Index\ n\_obs,\ \textcolor{keywordtype}{bool}\ shuffle\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ random\_state\ =\ 42)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a474bfecec12a9e55bdf965535f56da0a}{nSplits\_}}(n\_splits),}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_ac32622bc5444115cbf0e8c68f260f7e1}{nObs\_}}(n\_obs),}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a222f68935675eb0d3eff0219c386f62e}{shuffle\_}}(shuffle),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aec6e04d2bbe696cc3b3a9742c3f764da}{rngState\_}}(random\_state),}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a8007c58d20b3a0f0014718ab872fe204}{rng\_}}(random\_state)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(n\_obs\ <\ 2)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Number\ of\ observations\ must\ be\ at\ least\ 2."{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(n\_splits\ <\ 2\ ||\ n\_splits\ >\ n\_obs)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Number\ of\ splits\ must\ be\ between\ 2\ and\ the\ number\ of\ observations."{}});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ indices\ 0..nObs-\/1}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929}{indices\_}}.resize(\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_ac32622bc5444115cbf0e8c68f260f7e1}{nObs\_}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(Eigen::Index\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_ac32622bc5444115cbf0e8c68f260f7e1}{nObs\_}};\ ++i)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929}{indices\_}}(i)\ =\ i;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a222f68935675eb0d3eff0219c386f62e}{shuffle\_}})\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ std::shuffle(\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929}{indices\_}}.data(),\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929}{indices\_}}.data()\ +\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929}{indices\_}}.size(),\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a8007c58d20b3a0f0014718ab872fe204}{rng\_}});}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a6e3a816cd0afe3290d4b44b678ddebf1}{KFoldIterator}}\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ Eigen::Index\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}{currentSplit\_}};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a1f3735ac2d7d52a59a097e4840c496f0}{KFold}}\ \&\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a6e3a816cd0afe3290d4b44b678ddebf1}{KFoldIterator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a1f3735ac2d7d52a59a097e4840c496f0}{KFold}}\&\ kf,\ Eigen::Index\ split)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}{currentSplit\_}}(split),\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}(kf)\ \{\}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_af62ee2692c2dc7286f2e542276ed7772}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a6e3a816cd0afe3290d4b44b678ddebf1}{KFoldIterator}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}{currentSplit\_}}\ !=\ other.\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}{currentSplit\_}};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ std::pair<Eigen::VectorXs,\ Eigen::VectorXs>\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a9c1a24c70d594a3b48af46614f5a513f}{operator*}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::Index\ fold\_size\ =\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}.nObs\_\ /\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}.nSplits\_;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::Index\ start\ =\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}{currentSplit\_}}\ *\ fold\_size;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::Index\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aa0aafc0a8c140532d630ead2ed1ad1ea}{end}}\ \ \ =\ (\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}{currentSplit\_}}\ ==\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}.nSplits\_\ -\/\ 1)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}.nObs\_\ :\ start\ +\ fold\_size;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ test\ set}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ test\_indices\ =\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}.indices\_.segment(start,\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aa0aafc0a8c140532d630ead2ed1ad1ea}{end}}\ -\/\ start);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ train\ set}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ train\_indices(\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}.nObs\_\ -\/\ (\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aa0aafc0a8c140532d630ead2ed1ad1ea}{end}}\ -\/\ start));}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::Index\ train\_idx\ =\ 0;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(Eigen::Index\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}.nObs\_;\ ++i)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ <\ start\ ||\ i\ >=\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aa0aafc0a8c140532d630ead2ed1ad1ea}{end}})\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ train\_indices(train\_idx++)\ =\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa7025823435ca0152e03d94bde9957c0}{parent\_}}.indices\_(i);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{train\_indices,\ test\_indices\};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a6e3a816cd0afe3290d4b44b678ddebf1}{KFoldIterator}}\&\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_aa367728d4a1ae929534e3c876060819e}{operator++}}()\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ ++\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_a77fd86c9d1bf74ba22efc52f9204e682}{currentSplit\_}};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFoldIterator}}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a2407535251bd801769a675c099c994eb}{begin}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFoldIterator}}(*\textcolor{keyword}{this},\ 0);}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFoldIterator}}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aa0aafc0a8c140532d630ead2ed1ad1ea}{end}}()\textcolor{keyword}{\ \ \ const\ }\{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFoldIterator}}(*\textcolor{keyword}{this},\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a474bfecec12a9e55bdf965535f56da0a}{nSplits\_}});}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00163\ \ \ \ \ std::pair<Eigen::VectorXs,\ Eigen::VectorXs>\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a190bbe598f6af6c21a57d25f8b61936e}{operator()}}(Eigen::Index\ split)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(split\ <\ 0\ ||\ split\ >=\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a474bfecec12a9e55bdf965535f56da0a}{nSplits\_}})\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Split\ index\ out\ of\ range."{}});}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFoldIterator}}(*\textcolor{keyword}{this},\ split));}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_ad4210521829bdc32e8ae9cd69b703eda}{nFolds}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>nSplits\_;}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a682182ddb9dad7bb853dd282d9349724}{Bootstrap}}\ \{}
+\DoxyCodeLine{00199\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ac722afdf40aca3bdf48d9f1f297a1fae}{nObs\_}};}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a0cd3268462c69be1f2806e17c4b4f578}{nObsResample\_}};}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ab4a629cfd6000b34f020f062f7ab3b69}{rngState\_}};}
+\DoxyCodeLine{00203\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ad5619a6b284966354830bab2bf8c659c}{rng\_}};}
+\DoxyCodeLine{00204\ \ \ \ \ std::uniform\_int\_distribution<size\_t>\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a853b890abc3f5abfab071b86ac65ae5f}{dist\_}};}
+\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a8e26fcf22880ce21fcca240a18730e8c}{indices\_}};}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a1fddd44e98592e4675a45b81126f4580}{withReplacement\_}};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00209\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a682182ddb9dad7bb853dd282d9349724}{Bootstrap}}(\textcolor{keywordtype}{size\_t}\ n\_obs,\ \textcolor{keywordtype}{size\_t}\ n\_obs\_resample,\ \textcolor{keywordtype}{bool}\ with\_replacement\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ random\_state\ =\ 42)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ac722afdf40aca3bdf48d9f1f297a1fae}{nObs\_}}(n\_obs),}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a0cd3268462c69be1f2806e17c4b4f578}{nObsResample\_}}(n\_obs\_resample),}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ab4a629cfd6000b34f020f062f7ab3b69}{rngState\_}}(random\_state),}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ad5619a6b284966354830bab2bf8c659c}{rng\_}}(random\_state),}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a853b890abc3f5abfab071b86ac65ae5f}{dist\_}}(0,\ n\_obs\ -\/\ 1),}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a1fddd44e98592e4675a45b81126f4580}{withReplacement\_}}(with\_replacement)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(n\_obs\ <\ 1)\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Number\ of\ observations\ must\ be\ at\ least\ 1."{}});}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(n\_obs\_resample\ <\ 1)\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Number\ of\ resampled\ observations\ must\ be\ at\ least\ 1."{}});}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a1fddd44e98592e4675a45b81126f4580}{withReplacement\_}}\ \&\&\ n\_obs\_resample\ >\ n\_obs)\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Number\ of\ resampled\ observations\ cannot\ be\ greater\ than\ number\ of\ observations\ when\ sampling\ without\ replacement."{}});}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ indices\ 0..nObs-\/1}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a8e26fcf22880ce21fcca240a18730e8c}{indices\_}}.resize(\mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ac722afdf40aca3bdf48d9f1f297a1fae}{nObs\_}});}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ac722afdf40aca3bdf48d9f1f297a1fae}{nObs\_}};\ ++i)\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a8e26fcf22880ce21fcca240a18730e8c}{indices\_}}(i)\ =\ i;}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a15f57d6e5ac54fda1bd261350f5d704e}{operator()}}()\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ sample\_indices(\mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a0cd3268462c69be1f2806e17c4b4f578}{nObsResample\_}});}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a1fddd44e98592e4675a45b81126f4580}{withReplacement\_}})\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sample\ with\ replacement}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a0cd3268462c69be1f2806e17c4b4f578}{nObsResample\_}};\ ++i)\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sample\_indices(i)\ =\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a853b890abc3f5abfab071b86ac65ae5f}{dist\_}}(\mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ad5619a6b284966354830bab2bf8c659c}{rng\_}});}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sample\ without\ replacement}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Shuffle\ all\ indices\ and\ take\ the\ first\ nObsResample\_}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ shuffled\_indices\ =\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a8e26fcf22880ce21fcca240a18730e8c}{indices\_}};\ \ \textcolor{comment}{//\ make\ a\ copy}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ std::shuffle(shuffled\_indices.data(),\ shuffled\_indices.data()\ +\ shuffled\_indices.size(),\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ad5619a6b284966354830bab2bf8c659c}{rng\_}});}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ sample\_indices\ =\ shuffled\_indices.head(\mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a0cd3268462c69be1f2806e17c4b4f578}{nObsResample\_}}).eval();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sample\_indices;}
+\DoxyCodeLine{00250\ \ \ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \};}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{comment}{/*\ @brief\ Computes\ the\ mean\ of\ a\ vector\ of\ data.}}
+\DoxyCodeLine{00258\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00259\ \textcolor{comment}{\ *\ @param\ data\ A\ reference\ to\ an\ matrix\ containing\ the\ data\ (different\ points\ in\ rows).}}
+\DoxyCodeLine{00260\ \textcolor{comment}{\ *\ @return\ The\ mean\ of\ the\ data.}}
+\DoxyCodeLine{00261\ \textcolor{comment}{\ *\ @throws\ std::invalid\_argument\ if\ the\ input\ vector\ is\ empty.}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00263\ Eigen::VectorXd\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00272\ Eigen::MatrixXd\ \mbox{\hyperlink{namespacecmp_1_1covariance}{covariance}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data);}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00282\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1statistics_a0383eca5136a701b5cbf914211aab108}{quantile}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\&\ data,\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1statistics_a0383eca5136a701b5cbf914211aab108}{quantile}});}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00294\ Eigen::VectorXd\ \mbox{\hyperlink{namespacecmp_1_1statistics_afa27e65c3e3becac7ee4f615ccaabd6b}{interQuantileRange}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data,\ \textcolor{keywordtype}{double}\ lowerQuantile,\ \textcolor{keywordtype}{double}\ upperQuantile);}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00303\ Eigen::MatrixXd\ \mbox{\hyperlink{namespacecmp_1_1statistics_af3d7ea822ca7638d9a89bd11202da867}{pearsonCorrelation}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data1,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data2);}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00314\ Eigen::MatrixXd\ \mbox{\hyperlink{namespacecmp_1_1statistics_a65be48599e4f4c98de7a37ccd965cd24}{laggedCorrelation}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data1,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data2,\ \textcolor{keywordtype}{int}\ lag);}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00326\ std::vector<Eigen::MatrixXd>\ \mbox{\hyperlink{namespacecmp_1_1statistics_a65be48599e4f4c98de7a37ccd965cd24}{laggedCorrelation}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data1,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data2,\ \textcolor{keywordtype}{int}\ minLag,\ \textcolor{keywordtype}{int}\ maxLag);}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00334\ std::pair<Eigen::VectorXd,\ double>\ \mbox{\hyperlink{namespacecmp_1_1statistics_aefc18ce56217dd9d4b93465d5ec9f76f}{selfCorrelationLength}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data);}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \textcolor{keyword}{inline}\ std::vector<Eigen::MatrixXd>\ \mbox{\hyperlink{namespacecmp_1_1statistics_a5a583b49079b5df2313396cb5fa598c3}{selfCrossCorrelationFFT}}(}
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ data)\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nPoints\ =\ data.rows();}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nFeatures\ =\ data.cols();}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nFFT\ =\ 1;}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{while}(nFFT\ <\ 2\ *\ nPoints)\ nFFT\ <<=\ 1;\ \ \textcolor{comment}{//\ zero-\/pad\ to\ next\ power\ of\ 2}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ Eigen::FFT<double>\ fft;}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{comment}{//\ Precompute\ FFTs}}
+\DoxyCodeLine{00346\ \ \ \ \ std::vector<std::vector<std::complex<double>>>\ X(nFeatures,\ std::vector<std::complex<double>>(nFFT));}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nFeatures;\ ++i)\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ x\ =\ data.col(i);}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ x.array()\ -\/=\ x.mean();}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ std::vector<double>\ x\_pad(nFFT,\ 0.0);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ t\ =\ 0;\ t\ <\ nPoints;\ ++t)\ x\_pad[t]\ =\ x[t];}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ fft.fwd(X[i],\ x\_pad);}
+\DoxyCodeLine{00355\ \ \ \ \ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{comment}{//\ Compute\ cross-\/correlations\ for\ all\ lags}}
+\DoxyCodeLine{00358\ \ \ \ \ std::vector<Eigen::MatrixXd>\ corr(nPoints,\ Eigen::MatrixXd::Zero(nFeatures,\ nFeatures));}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nFeatures;\ ++i)\ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ var\_i\ =\ data.col(i).array().square().sum()\ /\ nPoints;}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ nFeatures;\ ++j)\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ var\_j\ =\ data.col(j).array().square().sum()\ /\ nPoints;}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Multiply\ FFTs}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::complex<double>>\ R\_fft(nFFT);}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ nFFT;\ ++k)}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R\_fft[k]\ =\ X[i][k]\ *\ std::conj(X[j][k]);}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Inverse\ FFT}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<double>\ r\_pad(nFFT,\ 0.0);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ fft.inv(r\_pad,\ R\_fft);}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normalize\ and\ store\ first\ nPoints\ lags}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ lag\ =\ 0;\ lag\ <\ nPoints;\ ++lag)}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ corr[lag](i,\ j)\ =\ r\_pad[lag]\ /\ (nPoints\ *\ std::sqrt(var\_i\ *\ var\_j));}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{return}\ corr;\ \textcolor{comment}{//\ vector\ of\ size\ nPoints,\ each\ element\ =\ nFeatures\ x\ nFeatures}}
+\DoxyCodeLine{00381\ \};}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a789a5d073bf155843731ce4ebe860315}{PairwiseDistanceStats}}\ \{}
+\DoxyCodeLine{00386\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00387\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}};}
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92}{mean\_val}};}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc}{is\_computed}};}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00392\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a789a5d073bf155843731ce4ebe860315}{PairwiseDistanceStats}}()\ :\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92}{mean\_val}}(0.0),\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc}{is\_computed}}(false)\ \{\}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a4826cca144c0e61c2d716f946731f30c}{compute}}(\textcolor{keyword}{const}\ Eigen::MatrixXd\&\ data)\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ n\ =\ data.rows();}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(n\ <\ 2)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Need\ at\ least\ 2\ points\ to\ compute\ pairwise\ distances."{}});}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ strictly\ upper\ triangular\ elements:\ N\ *\ (N\ -\/\ 1)\ /\ 2}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_pairs\ =\ n\ *\ (n\ -\/\ 1)\ /\ 2;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}.resize(num\_pairs);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92}{mean\_val}}\ =\ 0.0;}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OpenMP\ parallelization\ over\ the\ outer\ loop}}
+\DoxyCodeLine{00408\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ omp\ parallel}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thread-\/local\ sum\ prevents\ atomic\ locking\ overhead\ during\ the\ loop}}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ local\_sum\ =\ 0.0;}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dynamic\ scheduling\ balances\ the\ triangular\ workload\ distribution}}
+\DoxyCodeLine{00414\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ omp\ for\ schedule(dynamic)}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ n\ -\/\ 1;\ ++i)\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ 1D\ flat\ array\ offset\ for\ row\ i}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ offset\ =\ i\ *\ n\ -\/\ i\ *\ (i\ +\ 1)\ /\ 2\ -\/\ i\ -\/\ 1;}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ i\ +\ 1;\ j\ <\ n;\ ++j)\ \{}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Eigen's\ .row()\ subtraction\ and\ .norm()\ naturally\ utilize\ SIMD}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dist\ =\ (data.row(i)\ -\/\ data.row(j)).norm();}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}[offset\ +\ j]\ =\ dist;}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_sum\ +=\ dist;}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safely\ accumulate\ the\ thread-\/local\ sums\ into\ the\ global\ mean}}
+\DoxyCodeLine{00428\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ omp\ atomic}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92}{mean\_val}}\ +=\ local\_sum;}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92}{mean\_val}}\ /=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(num\_pairs);}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc}{is\_computed}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00434\ \ \ \ \ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac122248b444427527b77fb4b21cfb219}{mean}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc}{is\_computed}})\ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Distances\ not\ yet\ computed."{}});}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a0cd87a8c750ca7186f373ae2f75d9b92}{mean\_val}};}
+\DoxyCodeLine{00439\ \ \ \ \ \}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a098ad18d3bfbeb1d17475ac0cab8607e}{quantile}}(\textcolor{keywordtype}{double}\ q)\ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc}{is\_computed}})\ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Distances\ not\ yet\ computed."{}});}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(q\ <\ 0.0\ ||\ q\ >\ 1.0)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Quantile\ must\ be\ in\ [0,\ 1]."{}});}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ idx\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(q\ *\ (\mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}.size()\ -\/\ 1));}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::nth\_element\ provides\ an\ O(M)\ partial\ sort,\ which\ is\ significantly}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ faster\ than\ an\ O(M\ log\ M)\ full\ std::sort.}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ std::nth\_element(\mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}.begin(),\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}.begin()\ +\ idx,\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}.end());}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}[idx];}
+\DoxyCodeLine{00456\ \ \ \ \ \}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00463\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a4ca8d9a6d6cd8b06535502f4291d1ea2}{correlation\_integral}}(\textcolor{keyword}{const}\ std::vector<double>\&\ r\_thresholds)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_ac6d3ab2657ae524837d26eacddc4b7dc}{is\_computed}})\ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Distances\ not\ yet\ computed."{}});}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r\_thresholds.empty())\ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ k\ =\ r\_thresholds.size();}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ m\ =\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}.size();}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Create\ a\ sorted\ copy\ of\ the\ thresholds\ for\ binary\ search\ tracking}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ std::vector<std::pair<double,\ size\_t>>\ sorted\_r(k);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ k;\ ++i)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ sorted\_r[i]\ =\ \{r\_thresholds[i],\ i\};}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ std::sort(sorted\_r.begin(),\ sorted\_r.end(),}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&\ a,\ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&\ b)\ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.first\ <\ b.first;}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extract\ just\ the\ sorted\ values\ for\ std::upper\_bound}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ std::vector<double>\ r\_vals(k);}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ k;\ ++i)\ r\_vals[i]\ =\ sorted\_r[i].first;}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Global\ histogram\ bins}}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ global\_counts(k\ +\ 1,\ 0);}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ OpenMP\ parallel\ histogram\ construction}}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ omp\ parallel}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thread-\/local\ histogram\ prevents\ atomic\ contention}}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<size\_t>\ local\_counts(k\ +\ 1,\ 0);}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ omp\ for\ schedule(static)}}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ m;\ ++i)\ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\ =\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats_a204b69b0ba538a0e10844ef2ecf96215}{distances}}[i];}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Binary\ search:\ O(log\ K)\ instead\ of\ O(K)}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ std::upper\_bound(r\_vals.begin(),\ r\_vals.end(),\ d);}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ idx\ =\ std::distance(r\_vals.begin(),\ it);}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ idx\ represents\ the\ first\ threshold\ strictly\ greater\ than\ d}}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_counts[idx]++;}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Merge\ local\ histograms\ safely}}
+\DoxyCodeLine{00506\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ omp\ critical}}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <=\ k;\ ++j)\ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ global\_counts[j]\ +=\ local\_counts[j];}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Prefix\ Sum\ (Cumulative\ integration)}}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ a\ distance\ falls\ in\ bin\ j,\ it\ is\ smaller\ than\ all\ thresholds\ >=\ j.}}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ std::vector<double>\ C\_r(k,\ 0.0);}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ cumulative\_sum\ =\ 0;}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ k;\ ++j)\ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ cumulative\_sum\ +=\ global\_counts[j];}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ the\ sorted\ result\ back\ to\ the\ original\ input\ order}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ original\_idx\ =\ sorted\_r[j].second;}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ C\_r[original\_idx]\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(cumulative\_sum)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(m);}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ C\_r;}
+\DoxyCodeLine{00528\ \ \ \ \ \}}
+\DoxyCodeLine{00529\ \};}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \}\ \textcolor{comment}{//\ namespace\ cmp::statistics}}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CMP\_STATISTICS\_H}}
+
+\end{DoxyCode}

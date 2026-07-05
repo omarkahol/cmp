@@ -1,0 +1,24 @@
+\doxysection{finite\+\_\+diff.\+h}
+\hypertarget{finite__diff_8h_source}{}\label{finite__diff_8h_source}\index{include/finite\_diff.h@{include/finite\_diff.h}}
+\mbox{\hyperlink{finite__diff_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FINITE\_DIFF}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FINITE\_DIFF}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}}\ \{\mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}},\ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca73f48b994b78aad5abaa7a113853f978}{FOURTH}},\ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca6e691be74c8cec139089cafaea8ce4e6}{SIXTH}},\ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca69f877e00d18220e8445c6cce996a14f}{EIGHTH}}\};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_accafa4931504d0ddd35567ea0667eda4}{fd\_gradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x\_0,\ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&)>\ fun,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}}\ order\ =\ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ h\ =\ 1E-\/5);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a8bde7a7cabe126e1e77fa22771f3477f}{fd\_hessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x\_0,\ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&)>\ fun,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&j,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}}\ order\ =\ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ h\ =\ 1E-\/5);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

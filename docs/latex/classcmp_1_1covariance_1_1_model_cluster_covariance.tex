@@ -1,0 +1,174 @@
+\doxysection{cmp\+::covariance\+::Model\+Cluster\+Covariance Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance}{}\label{classcmp_1_1covariance_1_1_model_cluster_covariance}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+
+
+Blended covariance kernel that interpolates local GP kernels using classifier probabilities.  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+cluster.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Model\+Cluster\+Covariance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_model_cluster_covariance}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a0e0918ae7b08e9c01b37c0e644aa2540}{Model\+Cluster\+Covariance}} (\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*}model\+Cluster, \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}classifier)
+\item 
+void \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_aaee2ced736e887c2b5eb23cfeda5e60b}{clear\+Probability\+Cache}} () const
+\item 
+void \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a1203e5f4b9a498c4c50fc05231bcd309}{precompute\+Probabilities}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_ae8797e2da51acd77e74cbff43769ef21}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a39a4e366901855a42502bb38e55dd3b9}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a6ef91ccc84f3f074386ce9a4527a8f5d}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a5500abc9f69e1cce34adc819ad8751bf}{make}} (\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*}model\+Cluster, \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}classifier)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_afcaccdc486607f469d3ccd6e1dbabbbc}{make\+Probability\+Cache\+Key}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\item 
+const std\+::vector$<$ double $>$ \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a2cbd39f4039d4cceba1ad2a7d106a0c7}{get\+Cached\+Probabilities}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_aaf14b6825c192fdfe416b48621319927}{p\+Model\+Cluster\+\_\+}}
+\item 
+\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a23693063f8392fb9742e87d030050d73}{p\+Classifier\+\_\+}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a82231470753b9f972925345fd3f274df}{probability\+Cache\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Blended covariance kernel that interpolates local GP kernels using classifier probabilities. 
+
+Mathematical Formulation The covariance function between two inputs \$x\$ and \$x\textquotesingle{}\$ is computed as\+:   \[K(x, x\textnormal{\textquotesingle}) = \sum_{k=1}^K \sqrt{P(C=k \mid x) P(C=k \mid x\textnormal{\textquotesingle})} k_k(x, x\textnormal{\textquotesingle}; \theta_k)
+\] where \$P(C=k \textbackslash{}mid x)\$ represents the probability that input \$x\$ belongs to cluster \$k\$ (evaluated by the classifier), and \$k\+\_\+k\$ is the kernel of the \$k\$-\/th cluster\textquotesingle{}s GP.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\bfseries{Cache Lookups ({\ttfamily get\+Cached\+Probabilities})}}\+: Generates a binary string key representing the coordinates of the input vector and queries the cache {\ttfamily probability\+Cache\+\_\+} to avoid redundant classifier evaluations.
+\item {\bfseries{\doxylink{classcmp_1_1covariance_1_1_covariance}{Covariance} Evaluation ({\ttfamily eval})}}\+: Fetches membership probabilities for both inputs, loops over all clusters to evaluate their respective covariance kernels, and sums the scaled products. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a0e0918ae7b08e9c01b37c0e644aa2540}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!ModelClusterCovariance@{ModelClusterCovariance}}
+\index{ModelClusterCovariance@{ModelClusterCovariance}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{ModelClusterCovariance()}{ModelClusterCovariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a0e0918ae7b08e9c01b37c0e644aa2540} 
+cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::\+Model\+Cluster\+Covariance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*}}]{model\+Cluster}{, }\item[{\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}}]{classifier}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_aaee2ced736e887c2b5eb23cfeda5e60b}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!clearProbabilityCache@{clearProbabilityCache}}
+\index{clearProbabilityCache@{clearProbabilityCache}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{clearProbabilityCache()}{clearProbabilityCache()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_aaee2ced736e887c2b5eb23cfeda5e60b} 
+void cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::clear\+Probability\+Cache (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_ae8797e2da51acd77e74cbff43769ef21}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_ae8797e2da51acd77e74cbff43769ef21} 
+double cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a39a4e366901855a42502bb38e55dd3b9}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a39a4e366901855a42502bb38e55dd3b9} 
+double cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a6ef91ccc84f3f074386ce9a4527a8f5d}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a6ef91ccc84f3f074386ce9a4527a8f5d} 
+double cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a2cbd39f4039d4cceba1ad2a7d106a0c7}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!getCachedProbabilities@{getCachedProbabilities}}
+\index{getCachedProbabilities@{getCachedProbabilities}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{getCachedProbabilities()}{getCachedProbabilities()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a2cbd39f4039d4cceba1ad2a7d106a0c7} 
+const std\+::vector$<$ double $>$ \& cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::get\+Cached\+Probabilities (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a5500abc9f69e1cce34adc819ad8751bf}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!make@{make}}
+\index{make@{make}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a5500abc9f69e1cce34adc819ad8751bf} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::make (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*}}]{model\+Cluster}{, }\item[{\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}}]{classifier}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_afcaccdc486607f469d3ccd6e1dbabbbc}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!makeProbabilityCacheKey@{makeProbabilityCacheKey}}
+\index{makeProbabilityCacheKey@{makeProbabilityCacheKey}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{makeProbabilityCacheKey()}{makeProbabilityCacheKey()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_afcaccdc486607f469d3ccd6e1dbabbbc} 
+std\+::string cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::make\+Probability\+Cache\+Key (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a1203e5f4b9a498c4c50fc05231bcd309}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!precomputeProbabilities@{precomputeProbabilities}}
+\index{precomputeProbabilities@{precomputeProbabilities}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{precomputeProbabilities()}{precomputeProbabilities()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a1203e5f4b9a498c4c50fc05231bcd309} 
+void cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::precompute\+Probabilities (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a23693063f8392fb9742e87d030050d73}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!pClassifier\_@{pClassifier\_}}
+\index{pClassifier\_@{pClassifier\_}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{pClassifier\_}{pClassifier\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a23693063f8392fb9742e87d030050d73} 
+\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}}\texorpdfstring{$\ast$}{*} cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::p\+Classifier\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_aaf14b6825c192fdfe416b48621319927}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!pModelCluster\_@{pModelCluster\_}}
+\index{pModelCluster\_@{pModelCluster\_}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{pModelCluster\_}{pModelCluster\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_aaf14b6825c192fdfe416b48621319927} 
+\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}}\texorpdfstring{$\ast$}{*} cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::p\+Model\+Cluster\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a82231470753b9f972925345fd3f274df}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!probabilityCache\_@{probabilityCache\_}}
+\index{probabilityCache\_@{probabilityCache\_}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
+\doxysubsubsection{\texorpdfstring{probabilityCache\_}{probabilityCache\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a82231470753b9f972925345fd3f274df} 
+std\+::unordered\+\_\+map$<$std\+::string, std\+::vector$<$double$>$ $>$ cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::probability\+Cache\+\_\+\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{model__cluster_8h}{model\+\_\+cluster.\+h}}\end{DoxyCompactItemize}

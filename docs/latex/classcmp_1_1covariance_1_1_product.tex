@@ -1,0 +1,185 @@
+\doxysection{cmp\+::covariance\+::Product Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_product}{}\label{classcmp_1_1covariance_1_1_product}\index{cmp::covariance::Product@{cmp::covariance::Product}}
+
+
+Represents the product of two covariance functions.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Product\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_product}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a359eb95b90a910119ddc6e0f4956c2ef}{Product}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a20ccf2d64a5332e9b310a36b9dba68a2}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_aac84d22a997220a8816668752dd45374}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adf47b3795edf200292564ba58b726df6}{Product}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k2)
+\begin{DoxyCompactList}\small\item\em Constructs a product covariance function from two kernels. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a71f338da32e83d06d5dfaf4b464ae91a}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the product kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a1b39679581a6beb1a839798500f819db}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the partial derivative of the product kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ac1d296220917092b4ce477804a585fcd}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Evaluates the second-\/order partial derivative of the product kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ae3b9369821659107073c86c200f7d7d8}{make}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k2)
+\begin{DoxyCompactList}\small\item\em Factory method to create a shared pointer to a product covariance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{left\+Covariance\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Left operand covariance function. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{right\+Covariance\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Right operand covariance function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the product of two covariance functions. 
+
+Mathematical Formulation For two covariance kernels $k_1$ and $k_2$, the product kernel is\+:   \[k_{\text{prod}}(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta}) = k_1(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta}) \times k_2(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta})
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_product_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}\index{cmp::covariance::Product@{cmp::covariance::Product}!Product@{Product}}
+\index{Product@{Product}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{Product()}{Product()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c} 
+cmp\+::covariance\+::\+Product\+::\+Product (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_product_a359eb95b90a910119ddc6e0f4956c2ef}\index{cmp::covariance::Product@{cmp::covariance::Product}!Product@{Product}}
+\index{Product@{Product}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{Product()}{Product()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_a359eb95b90a910119ddc6e0f4956c2ef} 
+cmp\+::covariance\+::\+Product\+::\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_product_adf47b3795edf200292564ba58b726df6}\index{cmp::covariance::Product@{cmp::covariance::Product}!Product@{Product}}
+\index{Product@{Product}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{Product()}{Product()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_adf47b3795edf200292564ba58b726df6} 
+cmp\+::covariance\+::\+Product\+::\+Product (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a product covariance function from two kernels. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_product_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_product_a71f338da32e83d06d5dfaf4b464ae91a}\index{cmp::covariance::Product@{cmp::covariance::Product}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_a71f338da32e83d06d5dfaf4b464ae91a} 
+double cmp\+::covariance\+::\+Product\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the product kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_product_a1b39679581a6beb1a839798500f819db}\index{cmp::covariance::Product@{cmp::covariance::Product}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_a1b39679581a6beb1a839798500f819db} 
+double cmp\+::covariance\+::\+Product\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the partial derivative of the product kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_product_ac1d296220917092b4ce477804a585fcd}\index{cmp::covariance::Product@{cmp::covariance::Product}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_ac1d296220917092b4ce477804a585fcd} 
+double cmp\+::covariance\+::\+Product\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the second-\/order partial derivative of the product kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_product_ae3b9369821659107073c86c200f7d7d8}\index{cmp::covariance::Product@{cmp::covariance::Product}!make@{make}}
+\index{make@{make}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_ae3b9369821659107073c86c200f7d7d8} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+Product\+::make (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method to create a shared pointer to a product covariance. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_product_a20ccf2d64a5332e9b310a36b9dba68a2}\index{cmp::covariance::Product@{cmp::covariance::Product}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_a20ccf2d64a5332e9b310a36b9dba68a2} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \& cmp\+::covariance\+::\+Product\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_product_aac84d22a997220a8816668752dd45374}\index{cmp::covariance::Product@{cmp::covariance::Product}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_aac84d22a997220a8816668752dd45374} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \& cmp\+::covariance\+::\+Product\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_product_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}\index{cmp::covariance::Product@{cmp::covariance::Product}!leftCovariance\_@{leftCovariance\_}}
+\index{leftCovariance\_@{leftCovariance\_}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{leftCovariance\_}{leftCovariance\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}$>$ cmp\+::covariance\+::\+Product\+::left\+Covariance\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Left operand covariance function. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}\index{cmp::covariance::Product@{cmp::covariance::Product}!rightCovariance\_@{rightCovariance\_}}
+\index{rightCovariance\_@{rightCovariance\_}!cmp::covariance::Product@{cmp::covariance::Product}}
+\doxysubsubsection{\texorpdfstring{rightCovariance\_}{rightCovariance\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}$>$ cmp\+::covariance\+::\+Product\+::right\+Covariance\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Right operand covariance function. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

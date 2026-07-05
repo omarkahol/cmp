@@ -1,0 +1,76 @@
+\doxysection{cmp\+::Chebyshev\+Basis Struct Reference}
+\hypertarget{structcmp_1_1_chebyshev_basis}{}\label{structcmp_1_1_chebyshev_basis}\index{cmp::ChebyshevBasis@{cmp::ChebyshevBasis}}
+
+
+Chebyshev orthogonal polynomial basis.  
+
+
+
+
+{\ttfamily \#include $<$poly.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_a5f0845652060aae9c4e619b0016159f7}{evaluate}} (size\+\_\+t deg, double xi)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_a7b6f6cb731abdf07f35eb8d97225ce0d}{norm\+Squared}} (size\+\_\+t deg)
+\item 
+static Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_adb86c9103354ef2ddfc1859e79cd40f1}{get\+Jacobi\+Matrix}} (int num\+Points)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_a108cc150d74d1a75d17e247562256942}{map\+To\+Physical}} (double xi, double lower\+Bound, double upper\+Bound)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_chebyshev_basis_a91d4034f3a88e520076cefa9183ad6f2}{map\+To\+Canonical}} (double x, double lower\+Bound, double upper\+Bound)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Chebyshev orthogonal polynomial basis. 
+
+Mathematical Formulation Chebyshev polynomials of the first kind $T_n(\xi)$ are orthogonal with respect to the weight function $w(\xi) = \frac{1}{\sqrt{1-\xi^2}}$ on $[-1, 1]$. The recurrence relation is\+:   \[T_0(\xi) = 1, \quad T_1(\xi) = \xi, \quad T_{n+1}(\xi) = 2\xi T_n(\xi) - T_{n-1}(\xi)
+\]
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{structcmp_1_1_chebyshev_basis_a5f0845652060aae9c4e619b0016159f7}{evaluate()}} computes polynomial values using the 3-\/term recurrence relation.
+\item {\ttfamily \doxylink{structcmp_1_1_chebyshev_basis_adb86c9103354ef2ddfc1859e79cd40f1}{get\+Jacobi\+Matrix()}} constructs the symmetric tridiagonal Jacobi matrix $\mathbf{J}$ with $\alpha_i = 0$ and off-\/diagonal $\beta_1 = \frac{1}{\sqrt{2}}$, $\beta_i = 0.5$ for $i \ge 2$. 
+\end{DoxyEnumerate}
+
+\label{doc-func-members}
+\Hypertarget{structcmp_1_1_chebyshev_basis_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structcmp_1_1_chebyshev_basis_a5f0845652060aae9c4e619b0016159f7}\index{cmp::ChebyshevBasis@{cmp::ChebyshevBasis}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!cmp::ChebyshevBasis@{cmp::ChebyshevBasis}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_chebyshev_basis_a5f0845652060aae9c4e619b0016159f7} 
+double cmp\+::\+Chebyshev\+Basis\+::evaluate (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{deg}{, }\item[{double}]{xi}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_chebyshev_basis_adb86c9103354ef2ddfc1859e79cd40f1}\index{cmp::ChebyshevBasis@{cmp::ChebyshevBasis}!getJacobiMatrix@{getJacobiMatrix}}
+\index{getJacobiMatrix@{getJacobiMatrix}!cmp::ChebyshevBasis@{cmp::ChebyshevBasis}}
+\doxysubsubsection{\texorpdfstring{getJacobiMatrix()}{getJacobiMatrix()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_chebyshev_basis_adb86c9103354ef2ddfc1859e79cd40f1} 
+Eigen\+::\+Matrix\+Xd cmp\+::\+Chebyshev\+Basis\+::get\+Jacobi\+Matrix (\begin{DoxyParamCaption}\item[{int}]{num\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_chebyshev_basis_a91d4034f3a88e520076cefa9183ad6f2}\index{cmp::ChebyshevBasis@{cmp::ChebyshevBasis}!mapToCanonical@{mapToCanonical}}
+\index{mapToCanonical@{mapToCanonical}!cmp::ChebyshevBasis@{cmp::ChebyshevBasis}}
+\doxysubsubsection{\texorpdfstring{mapToCanonical()}{mapToCanonical()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_chebyshev_basis_a91d4034f3a88e520076cefa9183ad6f2} 
+double cmp\+::\+Chebyshev\+Basis\+::map\+To\+Canonical (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{lower\+Bound}{, }\item[{double}]{upper\+Bound}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_chebyshev_basis_a108cc150d74d1a75d17e247562256942}\index{cmp::ChebyshevBasis@{cmp::ChebyshevBasis}!mapToPhysical@{mapToPhysical}}
+\index{mapToPhysical@{mapToPhysical}!cmp::ChebyshevBasis@{cmp::ChebyshevBasis}}
+\doxysubsubsection{\texorpdfstring{mapToPhysical()}{mapToPhysical()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_chebyshev_basis_a108cc150d74d1a75d17e247562256942} 
+double cmp\+::\+Chebyshev\+Basis\+::map\+To\+Physical (\begin{DoxyParamCaption}\item[{double}]{xi}{, }\item[{double}]{lower\+Bound}{, }\item[{double}]{upper\+Bound}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_chebyshev_basis_a7b6f6cb731abdf07f35eb8d97225ce0d}\index{cmp::ChebyshevBasis@{cmp::ChebyshevBasis}!normSquared@{normSquared}}
+\index{normSquared@{normSquared}!cmp::ChebyshevBasis@{cmp::ChebyshevBasis}}
+\doxysubsubsection{\texorpdfstring{normSquared()}{normSquared()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_chebyshev_basis_a7b6f6cb731abdf07f35eb8d97225ce0d} 
+double cmp\+::\+Chebyshev\+Basis\+::norm\+Squared (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{deg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{poly_8h}{poly.\+h}}\end{DoxyCompactItemize}

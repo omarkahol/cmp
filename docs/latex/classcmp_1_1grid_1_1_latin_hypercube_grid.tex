@@ -1,0 +1,151 @@
+\doxysection{cmp\+::grid\+::Latin\+Hypercube\+Grid Class Reference}
+\hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid}{}\label{classcmp_1_1grid_1_1_latin_hypercube_grid}\index{cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}}
+
+
+Latin Hypercube Sampling (LHS) grid generator.  
+
+
+
+
+{\ttfamily \#include $<$grid.\+h$>$}
+
+Inheritance diagram for cmp\+::grid\+::Latin\+Hypercube\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1grid_1_1_latin_hypercube_grid}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a1f501738b14eb1b40b659005a3b72ccc}{Latin\+Hypercube\+Grid}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lower\+Bound, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&upper\+Bound, unsigned int seed=42)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1grid_1_1_latin_hypercube_grid}{Latin\+Hypercube\+Grid} generator. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_aeb0f180fe3a8928cc373d132c1a9f084}{construct}} (const size\+\_\+t \&n\+Points) override
+\begin{DoxyCompactList}\small\item\em Constructs a Latin Hypercube matrix of samples. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_ad7c69c621e2cca950944639a11784010}{dim}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{cmp\+::grid\+::\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\texorpdfstring{$\sim$}{\string~}\+Grid}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a37a783cf2f9a727dc052ee7a8f1f1f3b}{dimension\+\_\+}}
+\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_aeeedede702f88c134e09204bc69c6861}{rng\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a2bced99f184fa78a4acc24b004bd1d34}{lower\+Bound\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_abe236a7bcf0af0f3e02763158305ef08}{upper\+Bound\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Latin Hypercube Sampling (LHS) grid generator. 
+
+Mathematical Formulation For each dimension $d \in \{1,\dots,D\}$, LHS divides the domain range $[a_d, b_d]$ into $N$ equal-\/probability bins. The coordinate values for the $i$-\/th sample is placed inside the $\pi_d(i)$-\/th bin\+:   \[x_{i, d} = a_d + \frac{b_d - a_d}{N} \left( \pi_d(i) - 1 + u_{i,d} \right)
+\] where $\pi_d$ is a random permutation of the set $\{1,\dots,N\}$ chosen independently for each dimension, and $u_{i,d} \sim \mathcal{U}(0, 1)$ is a random jitter.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Allocates $N \times D$ matrix.
+\item For each dimension $d$, generates a vector of indices $\{0, \dots, N-1\}$ and shuffles it.
+\item Draws a random uniform offset $u$ inside each bin and maps the resulting value to the target hyperrectangle bounds. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_a1f501738b14eb1b40b659005a3b72ccc}\index{cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}!LatinHypercubeGrid@{LatinHypercubeGrid}}
+\index{LatinHypercubeGrid@{LatinHypercubeGrid}!cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}}
+\doxysubsubsection{\texorpdfstring{LatinHypercubeGrid()}{LatinHypercubeGrid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_latin_hypercube_grid_a1f501738b14eb1b40b659005a3b72ccc} 
+cmp\+::grid\+::\+Latin\+Hypercube\+Grid\+::\+Latin\+Hypercube\+Grid (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lower\+Bound}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{upper\+Bound}{, }\item[{unsigned int}]{seed}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1grid_1_1_latin_hypercube_grid}{Latin\+Hypercube\+Grid} generator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower\+Bound} & The lower bounds of the hyperrectangle. \\
+\hline
+{\em upper\+Bound} & The upper bounds of the hyperrectangle. \\
+\hline
+{\em seed} & Seed for the random number generator. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_aeb0f180fe3a8928cc373d132c1a9f084}\index{cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}!construct@{construct}}
+\index{construct@{construct}!cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_latin_hypercube_grid_aeb0f180fe3a8928cc373d132c1a9f084} 
+Eigen\+::\+Matrix\+Xd cmp\+::grid\+::\+Latin\+Hypercube\+Grid\+::construct (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Constructs a Latin Hypercube matrix of samples. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Points} & Number of points to generate. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_ad7c69c621e2cca950944639a11784010}\index{cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}!dim@{dim}}
+\index{dim@{dim}!cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_latin_hypercube_grid_ad7c69c621e2cca950944639a11784010} 
+size\+\_\+t cmp\+::grid\+::\+Latin\+Hypercube\+Grid\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the dimension of the domain. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{cmp\+::grid\+::\+Grid}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_a37a783cf2f9a727dc052ee7a8f1f1f3b}\index{cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}!dimension\_@{dimension\_}}
+\index{dimension\_@{dimension\_}!cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}}
+\doxysubsubsection{\texorpdfstring{dimension\_}{dimension\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_latin_hypercube_grid_a37a783cf2f9a727dc052ee7a8f1f1f3b} 
+size\+\_\+t cmp\+::grid\+::\+Latin\+Hypercube\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_a2bced99f184fa78a4acc24b004bd1d34}\index{cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_latin_hypercube_grid_a2bced99f184fa78a4acc24b004bd1d34} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Latin\+Hypercube\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_aeeedede702f88c134e09204bc69c6861}\index{cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_latin_hypercube_grid_aeeedede702f88c134e09204bc69c6861} 
+std\+::default\+\_\+random\+\_\+engine cmp\+::grid\+::\+Latin\+Hypercube\+Grid\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_latin_hypercube_grid_abe236a7bcf0af0f3e02763158305ef08}\index{cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::grid::LatinHypercubeGrid@{cmp::grid::LatinHypercubeGrid}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_latin_hypercube_grid_abe236a7bcf0af0f3e02763158305ef08} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Latin\+Hypercube\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{grid_8h}{grid.\+h}}\end{DoxyCompactItemize}

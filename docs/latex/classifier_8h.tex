@@ -1,0 +1,37 @@
+\doxysection{include/classifier.h File Reference}
+\hypertarget{classifier_8h}{}\label{classifier_8h}\index{include/classifier.h@{include/classifier.h}}
+{\ttfamily \#include $<$cmp\+\_\+defines.\+h$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$kernel++.\+h$>$}\newline
+{\ttfamily \#include $<$svm.\+h$>$}\newline
+{\ttfamily \#include $<$statistics.\+h$>$}\newline
+{\ttfamily \#include $<$optimization.\+h$>$}\newline
+{\ttfamily \#include $<$kde.\+h$>$}\newline
+{\ttfamily \#include $<$covariance.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}}
+\begin{DoxyCompactList}\small\item\em Abstract base class for all classifiers. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n}{cmp\+::classifier\+::\+KNN}}
+\begin{DoxyCompactList}\small\item\em K-\/\+Nearest Neighbors classifier helper class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e}{cmp\+::classifier\+::\+KDE}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} that uses Kernel Density Estimation (\doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}) for classification. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m}{cmp\+::classifier\+::\+SVM}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} that uses Support Vector Machine (\doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM}) for classification. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy}{cmp\+::classifier\+::\+Dummy}}
+\begin{DoxyCompactList}\small\item\em Baseline classifier predicting class labels based on training frequency distributions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1classifier}{cmp\+::classifier}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{cmp\+::classifier\+::method}} \{ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db}{cmp\+::classifier\+::\+CV\+\_\+\+SCORE}}
+, \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343}{cmp\+::classifier\+::\+CV\+\_\+\+PROB\+\_\+\+SCORE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Bandwidth selection objective criterion. \end{DoxyCompactList}\end{DoxyCompactItemize}

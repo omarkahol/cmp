@@ -1,0 +1,687 @@
+\doxysection{gp Class Reference}
+\hypertarget{classcmp_1_1gp}{}\label{classcmp_1_1gp}\index{gp@{gp}}
+
+
+This class implements a Gaussian process, providing algorithms for training and prediction.  
+
+
+
+
+{\ttfamily \#include $<$gp.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1gp_a3237ea7e60bdbf4a5a27979fe1689502}{gp}} ()=default
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_a4abea341dab9717d10f4104711b06235}{set\+\_\+kernel}} (\mbox{\hyperlink{namespacecmp_a5a2e2c92b85e85440f9a15f207c1bb95}{kernel\+\_\+t}} \mbox{\hyperlink{classcmp_1_1gp_af40e4678ccce75e1d90704d465802e3d}{kernel}})
+\begin{DoxyCompactList}\small\item\em Set the kernel function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1gp_acaafec689db072421090f6bbf89d4d02}{set\+\_\+mean}} (\mbox{\hyperlink{namespacecmp_a13c3d6b399795f9acc645ff43035eaa1}{model\+\_\+t}} mean)
+\begin{DoxyCompactList}\small\item\em Set the mean function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1gp_a3015f4f8301ef12784682fed7de1b8a7}{set\+\_\+logprior}} (\mbox{\hyperlink{namespacecmp_ac4a25669f0559cb6d9b4c66450cafcaf}{prior\+\_\+t}} \mbox{\hyperlink{classcmp_1_1gp_a2e9edd474dfa59dfa7ada066555599bc}{logprior}})
+\begin{DoxyCompactList}\small\item\em Set the prior function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1gp_abbcba62d2b9faaa6666e1000e4b13566}{set\+\_\+obs}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&x\+\_\+obs, const std\+::vector$<$ double $>$ \&y\+\_\+obs)
+\begin{DoxyCompactList}\small\item\em Set the observations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1gp_ad0aff4982b20acfdc92655fcc69d3d00}{set\+\_\+par\+\_\+bounds}} (const Eigen\+::\+Vector\+Xd \&lb\+\_\+par, const Eigen\+::\+Vector\+Xd \&ub\+\_\+par)
+\begin{DoxyCompactList}\small\item\em Set the bounds of the gp-\/parameters (required for optimization) \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_a9fc531ce54eb6adce28a44371f7db127}{covariance}} (const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the covariance matrix of the kernel. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_afa964877f3f001d3c10738e95aa7ba34}{residual}} (const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluate the difference between the observation and the mean function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_a23b331694081cbbe0c1da419b3c1aa3a}{loglikelihood}} (Eigen\+::\+Vector\+Xd const \&res, Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ const \&llt) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_a2e9edd474dfa59dfa7ada066555599bc}{logprior}} (Eigen\+::\+Vector\+Xd const \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the logprior function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_aa62f1efb798cfa9a77f9b3ce62fccdf8}{logprior\+\_\+gradient}} (Eigen\+::\+Vector\+Xd const \&par, const int \&i) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_adfb73878cc4a0af6390c7ffbef23de10}{logprior\+\_\+hessian}} (Eigen\+::\+Vector\+Xd const \&par, const int \&i, const int \&j) const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_af305c2b736264b0498be42130f564c8a}{par\+\_\+opt}} (Eigen\+::\+Vector\+Xd x0, double ftol\+\_\+rel, nlopt\+::algorithm alg=nlopt\+::\+LN\+\_\+\+SBPLX) const
+\begin{DoxyCompactList}\small\item\em Optimize the parameters of the vector function. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_adc77285a98146fe72890d53ed8fd7a25}{par\+\_\+opt\+\_\+loo}} (Eigen\+::\+Vector\+Xd x0, double ftol\+\_\+rel) const
+\begin{DoxyCompactList}\small\item\em Optimize the parameters of the model using leave-\/one-\/out cross-\/validation. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_a950943b7ef5c461be7ad81546eebb49a}{prediction\+\_\+variance}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par, const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&ldlt) const
+\begin{DoxyCompactList}\small\item\em Compute the prediction mean and variance of the GP at a new prediction points. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_a1288112a3e60fb2d3088e451b890710e}{prediction\+\_\+mean}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par, const Eigen\+::\+Vector\+Xd \&alpha) const
+\begin{DoxyCompactList}\small\item\em Compute the prediction mean of the GP at a new prediction point. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_a6098d0df956535c29beb8672935f34af}{predict}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&x\+\_\+pts, const Eigen\+::\+Vector\+Xd \&par, const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&ldlt, const Eigen\+::\+Vector\+Xd \&res) const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_a20286c24cbb4694f5741645b60402230}{draw\+\_\+sample}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&x\+\_\+pts, Eigen\+::\+Vector\+Xd const \&par, const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&ldlt, const Eigen\+::\+Vector\+Xd \&res, std\+::default\+\_\+random\+\_\+engine \&rng) const
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_a0c3adddfde1c185b97e6ba16733f3b53}{set\+\_\+mean\+\_\+gradient}} (std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i)$>$ mean\+\_\+gradient)
+\begin{DoxyCompactList}\small\item\em Sets the mean gradient function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1gp_a2fa389189b3347210c4981b060cd9596}{set\+\_\+kernel\+\_\+gradient}} (std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i)$>$ \mbox{\hyperlink{classcmp_1_1gp_a5479953bf93b4a559663df218ea9226c}{kernel\+\_\+gradient}})
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_a528c25d8851ded55ae40d214d5e8955f}{set\+\_\+kernel\+\_\+hessian}} (std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i, int j)$>$ \mbox{\hyperlink{classcmp_1_1gp_aed89d342e43e6694659d170ebde72856}{kernel\+\_\+hessian}})
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_a1e328eba451b69da61800978eabfb709}{set\+\_\+logprior\+\_\+gradient}} (std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, int i)$>$ \mbox{\hyperlink{classcmp_1_1gp_aa62f1efb798cfa9a77f9b3ce62fccdf8}{logprior\+\_\+gradient}})
+\item 
+void \mbox{\hyperlink{classcmp_1_1gp_ad7f3eec65879c36733f35c23eaa90506}{set\+\_\+logprior\+\_\+hessian}} (std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, int i, int j)$>$ \mbox{\hyperlink{classcmp_1_1gp_adfb73878cc4a0af6390c7ffbef23de10}{logprior\+\_\+hessian}})
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_ae0fafdb3a4d0f71112ec5c4d9dbc70c7}{covariance\+\_\+gradient}} (const Eigen\+::\+Vector\+Xd \&par, const int \&i) const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_a095725eff696a20e498d5dfc0c690d59}{covariance\+\_\+hessian}} (const Eigen\+::\+Vector\+Xd \&par, const int \&i, const int \&j) const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_a0d33d016b05b3e387dbbdaf800099f78}{compute\+\_\+variance\+\_\+reduction}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&x\+\_\+pts, const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&ldlt, const Eigen\+::\+Vector\+Xd \&par, double nu=1e-\/6) const
+\begin{DoxyCompactList}\small\item\em Compute the variance reduction matrix after observing a set of points. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_acc07bb68d99464719c59bc77666a62d1}{get\+\_\+lb\+\_\+par}} ()
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_ac2694bcc671ea578c35a244b27992eac}{get\+\_\+ub\+\_\+par}} ()
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_a46d4f31972623c5af72601543f43e120}{evaluate\+\_\+mean}} (const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the mean on the observations. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_a3a9dfabc0b4744f9cbd7d8643449597c}{evaluate\+\_\+mean\+\_\+gradient}} (const Eigen\+::\+Vector\+Xd \&par, int i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the mean gradient of the function at the observations. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1gp_af40e4678ccce75e1d90704d465802e3d}{kernel}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const Eigen\+::\+Vector\+Xd par)
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_a5479953bf93b4a559663df218ea9226c}{kernel\+\_\+gradient}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const Eigen\+::\+Vector\+Xd par, const int \&i)
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_aed89d342e43e6694659d170ebde72856}{kernel\+\_\+hessian}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y, const Eigen\+::\+Vector\+Xd par, const int \&i, const int \&j)
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_a8322f3fa081a99073adf9912af652da8}{logprior}} (const Eigen\+::\+Vector\+Xd \&par)
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_a495841e8eceeb8a471b8f5fde4bd517b}{logprior\+\_\+gradient}} (const Eigen\+::\+Vector\+Xd \&par, const int \&i)
+\item 
+double \mbox{\hyperlink{classcmp_1_1gp_a3bb00f2b053ad5cbf8b0ca373ba83d0a}{logprior\+\_\+hessian}} (const Eigen\+::\+Vector\+Xd \&par, const int \&i, const int \&j)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacecmp_a5a2e2c92b85e85440f9a15f207c1bb95}{kernel\+\_\+t}} \mbox{\hyperlink{classcmp_1_1gp_a74e412cbdd82cfad4f5f03f34793f459}{m\+\_\+kernel}}
+\item 
+\mbox{\hyperlink{namespacecmp_a13c3d6b399795f9acc645ff43035eaa1}{model\+\_\+t}} \mbox{\hyperlink{classcmp_1_1gp_a8faf3a0367bc130c91c8bf3dace6a0a5}{m\+\_\+mean}}
+\item 
+\mbox{\hyperlink{namespacecmp_ac4a25669f0559cb6d9b4c66450cafcaf}{prior\+\_\+t}} \mbox{\hyperlink{classcmp_1_1gp_ac9e6695002e790171ea53933c41540f1}{m\+\_\+logprior}}
+\item 
+std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_ac6c494be34b14de2e459a6e59f90ae7e}{m\+\_\+x\+\_\+obs}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1gp_a34c479887a1a2d6921b93a94a5e6f3d3}{m\+\_\+y\+\_\+obs}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_a8b0e487c1a06e52a4622f020edf41056}{m\+\_\+lb\+\_\+par}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_a7cd2e956d061cbf8aac8fa6c7e4fc4e2}{m\+\_\+ub\+\_\+par}}
+\item 
+std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i)$>$ \mbox{\hyperlink{classcmp_1_1gp_aa9932e88b9283a6811d6288bd1f301ec}{m\+\_\+mean\+\_\+gradient}}
+\item 
+std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i)$>$ \mbox{\hyperlink{classcmp_1_1gp_a8039f00d0f12f0846e76b48ea5f3ef5e}{m\+\_\+kernel\+\_\+gradient}}
+\item 
+std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i, int j)$>$ \mbox{\hyperlink{classcmp_1_1gp_adce23985a9dbaae20b4122c2b8e98552}{m\+\_\+kernel\+\_\+hessian}}
+\item 
+std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, int i)$>$ \mbox{\hyperlink{classcmp_1_1gp_acc3a7a03ac085f9df9052e4606616573}{m\+\_\+logprior\+\_\+gradient}}
+\item 
+std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, int i, int j)$>$ \mbox{\hyperlink{classcmp_1_1gp_a9b6cb8e9d168db2ed79095000b855a59}{m\+\_\+logprior\+\_\+hessian}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class implements a Gaussian process, providing algorithms for training and prediction. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1gp_a3237ea7e60bdbf4a5a27979fe1689502}\index{gp@{gp}!gp@{gp}}
+\index{gp@{gp}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{gp()}{gp()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a3237ea7e60bdbf4a5a27979fe1689502} 
+\mbox{\hyperlink{classcmp_1_1gp}{gp}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\begin{quote}
+Function that returns the ij-\/th component of the log-\/prior hessian \end{quote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1gp_a0d33d016b05b3e387dbbdaf800099f78}\index{gp@{gp}!compute\_variance\_reduction@{compute\_variance\_reduction}}
+\index{compute\_variance\_reduction@{compute\_variance\_reduction}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{compute\_variance\_reduction()}{compute\_variance\_reduction()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a0d33d016b05b3e387dbbdaf800099f78} 
+Eigen\+::\+Matrix\+Xd compute\+\_\+variance\+\_\+reduction (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{x\+\_\+pts}{, }\item[{const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{ldlt}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{double}]{nu}{ = {\ttfamily 1e-\/6}}\end{DoxyParamCaption}) const}
+
+
+
+Compute the variance reduction matrix after observing a set of points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+pts} & The points where the variance reduction is computed \\
+\hline
+{\em ldlt} & The Cholesky decomposition of the covariance matrix \\
+\hline
+{\em par} & The value of the GP parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eigen\+::\+Matrix\+Xd The variance reduction matrix 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_a9fc531ce54eb6adce28a44371f7db127}\index{gp@{gp}!covariance@{covariance}}
+\index{covariance@{covariance}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a9fc531ce54eb6adce28a44371f7db127} 
+Eigen\+::\+Matrix\+Xd covariance (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluates the covariance matrix of the kernel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & the value of the parameters of the Gaussian Process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a matrix containing the evaluation of the kernel on the observation points 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_ae0fafdb3a4d0f71112ec5c4d9dbc70c7}\index{gp@{gp}!covariance\_gradient@{covariance\_gradient}}
+\index{covariance\_gradient@{covariance\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{covariance\_gradient()}{covariance\_gradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_ae0fafdb3a4d0f71112ec5c4d9dbc70c7} 
+Eigen\+::\+Matrix\+Xd covariance\+\_\+gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const int \&}]{i}{}\end{DoxyParamCaption}) const}
+
+Evaluate the i-\/th component of the gradient of the covariance matrix. 
+\begin{DoxyParams}{Parameters}
+{\em par} & The value of the gp parameters \\
+\hline
+{\em i} & The component of the gradient required \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_a095725eff696a20e498d5dfc0c690d59}\index{gp@{gp}!covariance\_hessian@{covariance\_hessian}}
+\index{covariance\_hessian@{covariance\_hessian}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{covariance\_hessian()}{covariance\_hessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a095725eff696a20e498d5dfc0c690d59} 
+Eigen\+::\+Matrix\+Xd covariance\+\_\+hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const int \&}]{i}{, }\item[{const int \&}]{j}{}\end{DoxyParamCaption}) const}
+
+Evaluate the ij component of the hessian of the covariance matrix. 
+\begin{DoxyParams}{Parameters}
+{\em par} & The value of the gp parameters \\
+\hline
+{\em i} & row of the hessian matrix \\
+\hline
+{\em j} & colum of the hessian matrix \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_a20286c24cbb4694f5741645b60402230}\index{gp@{gp}!draw\_sample@{draw\_sample}}
+\index{draw\_sample@{draw\_sample}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{draw\_sample()}{draw\_sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a20286c24cbb4694f5741645b60402230} 
+Eigen\+::\+Vector\+Xd draw\+\_\+sample (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{x\+\_\+pts}{, }\item[{Eigen\+::\+Vector\+Xd const \&}]{par}{, }\item[{const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{ldlt}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{res}{, }\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption}) const}
+
+Draw a random sample of the model error evaluated at x\+\_\+pts. It will draw a sample from the normal distribution N(gp\+\_\+mean, gp\+\_\+cov)
+
+decompose COV = V\texorpdfstring{$^\wedge$}{\string^}T D V Where V are the eigenvectors and D the eigenvalues
+
+then draw z from N(0,\+I) and compute samples = gp\+\_\+mean + V\texorpdfstring{$\ast$}{*}sqrt(D)\texorpdfstring{$\ast$}{*}z \texorpdfstring{$\sim$}{\string~} N(gp\+\_\+mean, gp\+\_\+cov)
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+pts} & Points where to evaluate the sample \\
+\hline
+{\em ldlt} & The Cholesky decomposition of the covariance matrix \\
+\hline
+{\em par} & Values of the GP parameters \\
+\hline
+{\em rng} & Random number generator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The evaluation of the random sample in vector format 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_a46d4f31972623c5af72601543f43e120}\index{gp@{gp}!evaluate\_mean@{evaluate\_mean}}
+\index{evaluate\_mean@{evaluate\_mean}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{evaluate\_mean()}{evaluate\_mean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a46d4f31972623c5af72601543f43e120} 
+Eigen\+::\+Vector\+Xd evaluate\+\_\+mean (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluates the mean on the observations. 
+
+This function calculates the mean of a set of points given by {\ttfamily x\+\_\+pts} using the parameters {\ttfamily par}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & The parameters used for the calculation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The mean of the points. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_a3a9dfabc0b4744f9cbd7d8643449597c}\index{gp@{gp}!evaluate\_mean\_gradient@{evaluate\_mean\_gradient}}
+\index{evaluate\_mean\_gradient@{evaluate\_mean\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{evaluate\_mean\_gradient()}{evaluate\_mean\_gradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a3a9dfabc0b4744f9cbd7d8643449597c} 
+Eigen\+::\+Vector\+Xd evaluate\+\_\+mean\+\_\+gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{int}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluates the mean gradient of the function at the observations. 
+
+This function calculates the mean gradient of the function at the observations using the provided input points and parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & The parameters used for evaluation. \\
+\hline
+{\em i} & The component of teh gradient. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The mean gradient of the function at the specified point. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_acc07bb68d99464719c59bc77666a62d1}\index{gp@{gp}!get\_lb\_par@{get\_lb\_par}}
+\index{get\_lb\_par@{get\_lb\_par}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{get\_lb\_par()}{get\_lb\_par()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_acc07bb68d99464719c59bc77666a62d1} 
+Eigen\+::\+Vector\+Xd get\+\_\+lb\+\_\+par (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_ac2694bcc671ea578c35a244b27992eac}\index{gp@{gp}!get\_ub\_par@{get\_ub\_par}}
+\index{get\_ub\_par@{get\_ub\_par}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{get\_ub\_par()}{get\_ub\_par()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_ac2694bcc671ea578c35a244b27992eac} 
+Eigen\+::\+Vector\+Xd get\+\_\+ub\+\_\+par (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_af40e4678ccce75e1d90704d465802e3d}\index{gp@{gp}!kernel@{kernel}}
+\index{kernel@{kernel}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{kernel()}{kernel()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_af40e4678ccce75e1d90704d465802e3d} 
+double kernel (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{y}{, }\item[{const Eigen\+::\+Vector\+Xd}]{par}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_a5479953bf93b4a559663df218ea9226c}\index{gp@{gp}!kernel\_gradient@{kernel\_gradient}}
+\index{kernel\_gradient@{kernel\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{kernel\_gradient()}{kernel\_gradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a5479953bf93b4a559663df218ea9226c} 
+double kernel\+\_\+gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{y}{, }\item[{const Eigen\+::\+Vector\+Xd}]{par}{, }\item[{const int \&}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_aed89d342e43e6694659d170ebde72856}\index{gp@{gp}!kernel\_hessian@{kernel\_hessian}}
+\index{kernel\_hessian@{kernel\_hessian}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{kernel\_hessian()}{kernel\_hessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_aed89d342e43e6694659d170ebde72856} 
+double kernel\+\_\+hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{y}{, }\item[{const Eigen\+::\+Vector\+Xd}]{par}{, }\item[{const int \&}]{i}{, }\item[{const int \&}]{j}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_a23b331694081cbbe0c1da419b3c1aa3a}\index{gp@{gp}!loglikelihood@{loglikelihood}}
+\index{loglikelihood@{loglikelihood}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{loglikelihood()}{loglikelihood()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a23b331694081cbbe0c1da419b3c1aa3a} 
+double loglikelihood (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd const \&}]{res}{, }\item[{Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ const \&}]{llt}{}\end{DoxyParamCaption}) const}
+
+Evaluate the log-\/likelihood
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & the residual vector\+: y\+\_\+obs-\/model(x\+\_\+obs,par) \\
+\hline
+{\em llt} & the cholesky decomposition of the global error matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the log likelihood of the Gaussian Process 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_a8322f3fa081a99073adf9912af652da8}\index{gp@{gp}!logprior@{logprior}}
+\index{logprior@{logprior}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{logprior()}{logprior()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a8322f3fa081a99073adf9912af652da8} 
+double logprior (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_a2e9edd474dfa59dfa7ada066555599bc}\index{gp@{gp}!logprior@{logprior}}
+\index{logprior@{logprior}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{logprior()}{logprior()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a2e9edd474dfa59dfa7ada066555599bc} 
+double logprior (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd const \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Evaluates the logprior function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & The value of the gp parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the logprior. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_a495841e8eceeb8a471b8f5fde4bd517b}\index{gp@{gp}!logprior\_gradient@{logprior\_gradient}}
+\index{logprior\_gradient@{logprior\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{logprior\_gradient()}{logprior\_gradient()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a495841e8eceeb8a471b8f5fde4bd517b} 
+double logprior\+\_\+gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const int \&}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_aa62f1efb798cfa9a77f9b3ce62fccdf8}\index{gp@{gp}!logprior\_gradient@{logprior\_gradient}}
+\index{logprior\_gradient@{logprior\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{logprior\_gradient()}{logprior\_gradient()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_aa62f1efb798cfa9a77f9b3ce62fccdf8} 
+double logprior\+\_\+gradient (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd const \&}]{par}{, }\item[{const int \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_a3bb00f2b053ad5cbf8b0ca373ba83d0a}\index{gp@{gp}!logprior\_hessian@{logprior\_hessian}}
+\index{logprior\_hessian@{logprior\_hessian}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{logprior\_hessian()}{logprior\_hessian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a3bb00f2b053ad5cbf8b0ca373ba83d0a} 
+double logprior\+\_\+hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const int \&}]{i}{, }\item[{const int \&}]{j}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_adfb73878cc4a0af6390c7ffbef23de10}\index{gp@{gp}!logprior\_hessian@{logprior\_hessian}}
+\index{logprior\_hessian@{logprior\_hessian}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{logprior\_hessian()}{logprior\_hessian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_adfb73878cc4a0af6390c7ffbef23de10} 
+double logprior\+\_\+hessian (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd const \&}]{par}{, }\item[{const int \&}]{i}{, }\item[{const int \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1gp_af305c2b736264b0498be42130f564c8a}\index{gp@{gp}!par\_opt@{par\_opt}}
+\index{par\_opt@{par\_opt}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{par\_opt()}{par\_opt()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_af305c2b736264b0498be42130f564c8a} 
+Eigen\+::\+Vector\+Xd par\+\_\+opt (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{x0}{, }\item[{double}]{ftol\+\_\+rel}{, }\item[{nlopt\+::algorithm}]{alg}{ = {\ttfamily nlopt\+:\+:LN\+\_\+SBPLX}}\end{DoxyParamCaption}) const}
+
+
+
+Optimize the parameters of the vector function. 
+
+This function optimizes the parameters of the vector function using the specified algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x0} & The initial guess for the parameters. \\
+\hline
+{\em ftol\+\_\+rel} & The relative tolerance for convergence. \\
+\hline
+{\em alg} & The optimization algorithm to use (default is nlopt\+::\+LN\+\_\+\+SBPLX). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The optimized parameters. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_adc77285a98146fe72890d53ed8fd7a25}\index{gp@{gp}!par\_opt\_loo@{par\_opt\_loo}}
+\index{par\_opt\_loo@{par\_opt\_loo}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{par\_opt\_loo()}{par\_opt\_loo()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_adc77285a98146fe72890d53ed8fd7a25} 
+Eigen\+::\+Vector\+Xd par\+\_\+opt\+\_\+loo (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{x0}{, }\item[{double}]{ftol\+\_\+rel}{}\end{DoxyParamCaption}) const}
+
+
+
+Optimize the parameters of the model using leave-\/one-\/out cross-\/validation. 
+
+This function optimizes the parameters of the model using leave-\/one-\/out cross-\/validation. It takes an initial guess {\ttfamily x0} for the parameters and a relative tolerance {\ttfamily ftol\+\_\+rel} for convergence.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x0} & The initial guess for the parameters. \\
+\hline
+{\em ftol\+\_\+rel} & The relative tolerance for convergence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The optimized parameters. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_a6098d0df956535c29beb8672935f34af}\index{gp@{gp}!predict@{predict}}
+\index{predict@{predict}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a6098d0df956535c29beb8672935f34af} 
+Eigen\+::\+Matrix\+Xd predict (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{x\+\_\+pts}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{ldlt}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{res}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classcmp_1_1gp_a1288112a3e60fb2d3088e451b890710e}\index{gp@{gp}!prediction\_mean@{prediction\_mean}}
+\index{prediction\_mean@{prediction\_mean}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{prediction\_mean()}{prediction\_mean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a1288112a3e60fb2d3088e451b890710e} 
+double prediction\+\_\+mean (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{alpha}{}\end{DoxyParamCaption}) const}
+
+
+
+Compute the prediction mean of the GP at a new prediction point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The value of the new prediction point. \\
+\hline
+{\em par} & The value of the GP parameters to be used. \\
+\hline
+{\em alpha} & the solution of \mbox{[}K\texorpdfstring{$\ast$}{*}x = r\mbox{]} where K is the covariance matrix and r is the residual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The mean of the prediction 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_a950943b7ef5c461be7ad81546eebb49a}\index{gp@{gp}!prediction\_variance@{prediction\_variance}}
+\index{prediction\_variance@{prediction\_variance}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{prediction\_variance()}{prediction\_variance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a950943b7ef5c461be7ad81546eebb49a} 
+double prediction\+\_\+variance (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \&}]{ldlt}{}\end{DoxyParamCaption}) const}
+
+
+
+Compute the prediction mean and variance of the GP at a new prediction points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The new prediction point. \\
+\hline
+{\em par} & The value of the GP parameters to be used. \\
+\hline
+{\em ldlt} & The Cholesky decomposition of the covariance matrix \\
+\hline
+{\em res} & The residual vector (y\+\_\+obs -\/ mu(x\+\_\+obs)) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing the variance of the prediction at each required point. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_afa964877f3f001d3c10738e95aa7ba34}\index{gp@{gp}!residual@{residual}}
+\index{residual@{residual}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{residual()}{residual()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_afa964877f3f001d3c10738e95aa7ba34} 
+Eigen\+::\+Vector\+Xd residual (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluate the difference between the observation and the mean function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & the value of the parameters of the Gaussian Process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector containing the computation of the residual 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1gp_a4abea341dab9717d10f4104711b06235}\index{gp@{gp}!set\_kernel@{set\_kernel}}
+\index{set\_kernel@{set\_kernel}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_kernel()}{set\_kernel()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a4abea341dab9717d10f4104711b06235} 
+void set\+\_\+kernel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecmp_a5a2e2c92b85e85440f9a15f207c1bb95}{kernel\+\_\+t}}}]{kernel}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the kernel function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kernel} & the function for the kernel. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_a2fa389189b3347210c4981b060cd9596}\index{gp@{gp}!set\_kernel\_gradient@{set\_kernel\_gradient}}
+\index{set\_kernel\_gradient@{set\_kernel\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_kernel\_gradient()}{set\_kernel\_gradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a2fa389189b3347210c4981b060cd9596} 
+void set\+\_\+kernel\+\_\+gradient (\begin{DoxyParamCaption}\item[{std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i)$>$}]{kernel\+\_\+gradient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the derivative of the kernel with respect to the hyperparameters. This function is necessary to use gradient based-\/optimization methods and the CMP method. This function must evaluate the derivative of the kernel at x, y with respect to hyperparameter number i. \Hypertarget{classcmp_1_1gp_a528c25d8851ded55ae40d214d5e8955f}\index{gp@{gp}!set\_kernel\_hessian@{set\_kernel\_hessian}}
+\index{set\_kernel\_hessian@{set\_kernel\_hessian}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_kernel\_hessian()}{set\_kernel\_hessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a528c25d8851ded55ae40d214d5e8955f} 
+void set\+\_\+kernel\+\_\+hessian (\begin{DoxyParamCaption}\item[{std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i, int j)$>$}]{kernel\+\_\+hessian}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the hessian of the kernel with respect to the hyperparameters. This function is necessary for the CMP method. This function must evaluate the hessian of the kernel at x, y with respect to hyperparameter number i and j. \Hypertarget{classcmp_1_1gp_a3015f4f8301ef12784682fed7de1b8a7}\index{gp@{gp}!set\_logprior@{set\_logprior}}
+\index{set\_logprior@{set\_logprior}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_logprior()}{set\_logprior()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a3015f4f8301ef12784682fed7de1b8a7} 
+void set\+\_\+logprior (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecmp_ac4a25669f0559cb6d9b4c66450cafcaf}{prior\+\_\+t}}}]{logprior}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the prior function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prior} & the function for the prior \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_a1e328eba451b69da61800978eabfb709}\index{gp@{gp}!set\_logprior\_gradient@{set\_logprior\_gradient}}
+\index{set\_logprior\_gradient@{set\_logprior\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_logprior\_gradient()}{set\_logprior\_gradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a1e328eba451b69da61800978eabfb709} 
+void set\+\_\+logprior\+\_\+gradient (\begin{DoxyParamCaption}\item[{std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, int i)$>$}]{logprior\+\_\+gradient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the derivative of the hyperparameters prior with respect to the hyperparameters. This function is necessary to use gradient based-\/optimization methods. This function must evaluate the derivative of the log of the hyperparameter prior with respect to hyperparameter number i. \Hypertarget{classcmp_1_1gp_ad7f3eec65879c36733f35c23eaa90506}\index{gp@{gp}!set\_logprior\_hessian@{set\_logprior\_hessian}}
+\index{set\_logprior\_hessian@{set\_logprior\_hessian}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_logprior\_hessian()}{set\_logprior\_hessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_ad7f3eec65879c36733f35c23eaa90506} 
+void set\+\_\+logprior\+\_\+hessian (\begin{DoxyParamCaption}\item[{std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, int i, int j)$>$}]{logprior\+\_\+hessian}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the hessian of the hyperparameters prior with respect to the hyperparameters. This function is necessary for the CMP method. This function must evaluate the hessian of the log of the hyperparameter prior with respect to hyperparameter number i. \Hypertarget{classcmp_1_1gp_acaafec689db072421090f6bbf89d4d02}\index{gp@{gp}!set\_mean@{set\_mean}}
+\index{set\_mean@{set\_mean}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_mean()}{set\_mean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_acaafec689db072421090f6bbf89d4d02} 
+void set\+\_\+mean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacecmp_a13c3d6b399795f9acc645ff43035eaa1}{model\+\_\+t}}}]{mean}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the mean function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mean} & the function for the mean. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_a0c3adddfde1c185b97e6ba16733f3b53}\index{gp@{gp}!set\_mean\_gradient@{set\_mean\_gradient}}
+\index{set\_mean\_gradient@{set\_mean\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_mean\_gradient()}{set\_mean\_gradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a0c3adddfde1c185b97e6ba16733f3b53} 
+void set\+\_\+mean\+\_\+gradient (\begin{DoxyParamCaption}\item[{std\+::function$<$ double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i)$>$}]{mean\+\_\+gradient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the mean gradient function. 
+
+This function sets the mean gradient function to be used in the Gaussian Process. The mean gradient function is a user-\/defined function that calculates the mean gradient for a given input vector, target vector, and index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mean\+\_\+gradient} & The mean gradient function to be set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_abbcba62d2b9faaa6666e1000e4b13566}\index{gp@{gp}!set\_obs@{set\_obs}}
+\index{set\_obs@{set\_obs}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_obs()}{set\_obs()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_abbcba62d2b9faaa6666e1000e4b13566} 
+void set\+\_\+obs (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{x\+\_\+obs}{, }\item[{const std\+::vector$<$ double $>$ \&}]{y\+\_\+obs}{}\end{DoxyParamCaption})}
+
+
+
+Set the observations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+obs} & \\
+\hline
+{\em y\+\_\+obs} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1gp_ad0aff4982b20acfdc92655fcc69d3d00}\index{gp@{gp}!set\_par\_bounds@{set\_par\_bounds}}
+\index{set\_par\_bounds@{set\_par\_bounds}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{set\_par\_bounds()}{set\_par\_bounds()}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_ad0aff4982b20acfdc92655fcc69d3d00} 
+void set\+\_\+par\+\_\+bounds (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{lb\+\_\+par}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{ub\+\_\+par}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the bounds of the gp-\/parameters (required for optimization) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lb\+\_\+par} & The lower bound of the gp-\/parameters. \\
+\hline
+{\em ub\+\_\+par} & The upper bound of the gp-\/parameters. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{classcmp_1_1gp_a74e412cbdd82cfad4f5f03f34793f459}\index{gp@{gp}!m\_kernel@{m\_kernel}}
+\index{m\_kernel@{m\_kernel}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_kernel}{m\_kernel}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a74e412cbdd82cfad4f5f03f34793f459} 
+\mbox{\hyperlink{namespacecmp_a5a2e2c92b85e85440f9a15f207c1bb95}{kernel\+\_\+t}} m\+\_\+kernel\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1gp_a8039f00d0f12f0846e76b48ea5f3ef5e}\index{gp@{gp}!m\_kernel\_gradient@{m\_kernel\_gradient}}
+\index{m\_kernel\_gradient@{m\_kernel\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_kernel\_gradient}{m\_kernel\_gradient}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a8039f00d0f12f0846e76b48ea5f3ef5e} 
+std\+::function$<$double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i)$>$ m\+\_\+kernel\+\_\+gradient\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{quote}
+Function that returns the i-\/th component of the mean gradient \end{quote}
+\Hypertarget{classcmp_1_1gp_adce23985a9dbaae20b4122c2b8e98552}\index{gp@{gp}!m\_kernel\_hessian@{m\_kernel\_hessian}}
+\index{m\_kernel\_hessian@{m\_kernel\_hessian}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_kernel\_hessian}{m\_kernel\_hessian}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_adce23985a9dbaae20b4122c2b8e98552} 
+std\+::function$<$double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i, int j)$>$ m\+\_\+kernel\+\_\+hessian\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{quote}
+Function that returns the i-\/th component of the kernel gradient \end{quote}
+\Hypertarget{classcmp_1_1gp_a8b0e487c1a06e52a4622f020edf41056}\index{gp@{gp}!m\_lb\_par@{m\_lb\_par}}
+\index{m\_lb\_par@{m\_lb\_par}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_lb\_par}{m\_lb\_par}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a8b0e487c1a06e52a4622f020edf41056} 
+Eigen\+::\+Vector\+Xd m\+\_\+lb\+\_\+par\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1gp_ac9e6695002e790171ea53933c41540f1}\index{gp@{gp}!m\_logprior@{m\_logprior}}
+\index{m\_logprior@{m\_logprior}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_logprior}{m\_logprior}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_ac9e6695002e790171ea53933c41540f1} 
+\mbox{\hyperlink{namespacecmp_ac4a25669f0559cb6d9b4c66450cafcaf}{prior\+\_\+t}} m\+\_\+logprior\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1gp_acc3a7a03ac085f9df9052e4606616573}\index{gp@{gp}!m\_logprior\_gradient@{m\_logprior\_gradient}}
+\index{m\_logprior\_gradient@{m\_logprior\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_logprior\_gradient}{m\_logprior\_gradient}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_acc3a7a03ac085f9df9052e4606616573} 
+std\+::function$<$double(Eigen\+::\+Vector\+Xd const \&, int i)$>$ m\+\_\+logprior\+\_\+gradient\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{quote}
+Function that returns the ij-\/th component of the kernel hessian \end{quote}
+\Hypertarget{classcmp_1_1gp_a9b6cb8e9d168db2ed79095000b855a59}\index{gp@{gp}!m\_logprior\_hessian@{m\_logprior\_hessian}}
+\index{m\_logprior\_hessian@{m\_logprior\_hessian}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_logprior\_hessian}{m\_logprior\_hessian}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a9b6cb8e9d168db2ed79095000b855a59} 
+std\+::function$<$double(Eigen\+::\+Vector\+Xd const \&, int i, int j)$>$ m\+\_\+logprior\+\_\+hessian\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{quote}
+Function that returns the i-\/th component of the log-\/prior gradient \end{quote}
+\Hypertarget{classcmp_1_1gp_a8faf3a0367bc130c91c8bf3dace6a0a5}\index{gp@{gp}!m\_mean@{m\_mean}}
+\index{m\_mean@{m\_mean}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_mean}{m\_mean}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a8faf3a0367bc130c91c8bf3dace6a0a5} 
+\mbox{\hyperlink{namespacecmp_a13c3d6b399795f9acc645ff43035eaa1}{model\+\_\+t}} m\+\_\+mean\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1gp_aa9932e88b9283a6811d6288bd1f301ec}\index{gp@{gp}!m\_mean\_gradient@{m\_mean\_gradient}}
+\index{m\_mean\_gradient@{m\_mean\_gradient}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_mean\_gradient}{m\_mean\_gradient}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_aa9932e88b9283a6811d6288bd1f301ec} 
+std\+::function$<$double(Eigen\+::\+Vector\+Xd const \&, Eigen\+::\+Vector\+Xd const \&, int i)$>$ m\+\_\+mean\+\_\+gradient\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1gp_a7cd2e956d061cbf8aac8fa6c7e4fc4e2}\index{gp@{gp}!m\_ub\_par@{m\_ub\_par}}
+\index{m\_ub\_par@{m\_ub\_par}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_ub\_par}{m\_ub\_par}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a7cd2e956d061cbf8aac8fa6c7e4fc4e2} 
+Eigen\+::\+Vector\+Xd m\+\_\+ub\+\_\+par\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1gp_ac6c494be34b14de2e459a6e59f90ae7e}\index{gp@{gp}!m\_x\_obs@{m\_x\_obs}}
+\index{m\_x\_obs@{m\_x\_obs}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_x\_obs}{m\_x\_obs}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_ac6c494be34b14de2e459a6e59f90ae7e} 
+std\+::vector$<$Eigen\+::\+Vector\+Xd$>$ m\+\_\+x\+\_\+obs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1gp_a34c479887a1a2d6921b93a94a5e6f3d3}\index{gp@{gp}!m\_y\_obs@{m\_y\_obs}}
+\index{m\_y\_obs@{m\_y\_obs}!gp@{gp}}
+\doxysubsubsection{\texorpdfstring{m\_y\_obs}{m\_y\_obs}}
+{\footnotesize\ttfamily \label{classcmp_1_1gp_a34c479887a1a2d6921b93a94a5e6f3d3} 
+std\+::vector$<$double$>$ m\+\_\+y\+\_\+obs\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{gp_8h}{gp.\+h}}\item 
+src/\mbox{\hyperlink{gp_8cpp}{gp.\+cpp}}\end{DoxyCompactItemize}

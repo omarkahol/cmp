@@ -1,0 +1,33 @@
+\doxysection{include/mcmc.h File Reference}
+\hypertarget{mcmc_8h}{}\label{mcmc_8h}\index{include/mcmc.h@{include/mcmc.h}}
+{\ttfamily \#include "{}cmp\+\_\+defines.\+h"{}}\newline
+{\ttfamily \#include "{}distribution.\+h"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain$<$ Proposal\+Type $>$}}
+\begin{DoxyCompactList}\small\item\em Represents a single Markov Chain utilizing Delayed Rejection Adaptive Metropolis (DRAM) for sampling. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain}{cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain}}
+\begin{DoxyCompactList}\small\item\em Implements an Evolutionary Markov Chain Monte Carlo sampler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1mcmc}{cmp\+::mcmc}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacecmp_1_1mcmc_a45523db96e65cb76028af79f8a3b319f}{cmp\+::mcmc\+::log1m}} (double a)
+\item 
+{\footnotesize template$<$typename Proposal\+Type$>$ }\\double \mbox{\hyperlink{namespacecmp_1_1mcmc_a5f3e921a004b7fa12216fe92d9e2dfc2}{cmp\+::mcmc\+::multi\+Chain\+Diagnosis}} (const std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{Markov\+Chain}}$<$ Proposal\+Type $>$ $>$ \&chains)
+\begin{DoxyCompactList}\small\item\em Computes the Gelman-\/\+Rubin convergence diagnostic metric (R-\/hat). \end{DoxyCompactList}\end{DoxyCompactItemize}

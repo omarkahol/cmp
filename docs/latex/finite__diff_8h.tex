@@ -1,0 +1,24 @@
+\doxysection{include/finite\+\_\+diff.h File Reference}
+\hypertarget{finite__diff_8h}{}\label{finite__diff_8h}\index{include/finite\_diff.h@{include/finite\_diff.h}}
+{\ttfamily \#include "{}cmp\+\_\+defines.\+h"{}}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{cmp\+::accuracy}} \{ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{cmp\+::\+SECOND}}
+, \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca73f48b994b78aad5abaa7a113853f978}{cmp\+::\+FOURTH}}
+, \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca6e691be74c8cec139089cafaea8ce4e6}{cmp\+::\+SIXTH}}
+, \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca69f877e00d18220e8445c6cce996a14f}{cmp\+::\+EIGHTH}}
+ \}
+\begin{DoxyCompactList}\small\item\em Accuracy order of the FD stencil. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacecmp_accafa4931504d0ddd35567ea0667eda4}{cmp\+::fd\+\_\+gradient}} (const Eigen\+::\+Vector\+Xd \&x\+\_\+0, const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ fun, const int \&i, const \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}} order=\mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}}, const double h=1E-\/5)
+\begin{DoxyCompactList}\small\item\em Computes the i-\/th component of the gradient of the function fun evaluated at x\+\_\+0 using a central difference scheme. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a8bde7a7cabe126e1e77fa22771f3477f}{cmp\+::fd\+\_\+hessian}} (const Eigen\+::\+Vector\+Xd \&x\+\_\+0, const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ fun, const int \&i, const int \&j, const \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}} order=\mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}}, const double h=1E-\/5)
+\begin{DoxyCompactList}\small\item\em Computes the i-\/th and j-\/th component of the Hessian of the function fun evaluated at x\+\_\+0 using a central difference scheme. \end{DoxyCompactList}\end{DoxyCompactItemize}

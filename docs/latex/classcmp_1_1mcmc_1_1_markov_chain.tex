@@ -1,0 +1,408 @@
+\doxysection{cmp\+::mcmc\+::Markov\+Chain\texorpdfstring{$<$}{<} Proposal\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcmp_1_1mcmc_1_1_markov_chain}{}\label{classcmp_1_1mcmc_1_1_markov_chain}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+
+
+Represents a single Markov Chain utilizing Delayed Rejection Adaptive Metropolis (DRAM) for sampling.  
+
+
+
+
+{\ttfamily \#include $<$mcmc.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a2d212ae1f143d68fe2154119c25a0217}{Markov\+Chain}} (const Proposal\+Type \&proposal, std\+::default\+\_\+random\+\_\+engine \&rng, const double \&target\+Acceptance\+Ratio=0.\+234)
+\begin{DoxyCompactList}\small\item\em Construct a new mcmc chain object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a76ca4e79568415785e4306cda0af5ad5}{Markov\+Chain}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af7f99b3cf8fc1b8136c152b4ceed4e56}{\texorpdfstring{$\sim$}{\string~}\+Markov\+Chain}} ()=default
+\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a30b456a6e485afff8b00187833911e49}{increase\+Steps}} ()
+\begin{DoxyCompactList}\small\item\em Increase the number of steps. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aba7663c62676821c1bd2189c2849677e}{accept}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&par, double score)
+\begin{DoxyCompactList}\small\item\em Accept or reject a candidate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a36c6d356357b2758e1ba53de57d1796e}{step}} (const \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t}} \&\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a33543c0c3e7cb981516c91af78c9e2cb}{get\+Score}}, const bool \&delayed\+Rejection=false, const double \&gamma=0.\+1)
+\begin{DoxyCompactList}\small\item\em Perform a single MCMC step. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6053b979262c76c94d7248ca833c40a8}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates the value of the mean and covariance matrix. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af8d07a9be6f9ff7c15685745725dbb13}{get\+Adapted\+Covariance}} () const
+\begin{DoxyCompactList}\small\item\em Get a covariance matrix adapted to the samples. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_abc5bc6c25f3ed5d4be6ffa95c8441636}{reset}} ()
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_ae98e6afbc11f99e5d48c552d14229009}{get\+Current}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current parameters of the chain. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a33543c0c3e7cb981516c91af78c9e2cb}{get\+Score}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current log probability score of the chain. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4b755cb9f8eb53c09781d31e0c9aa9ef}{get\+Dim}} () const
+\begin{DoxyCompactList}\small\item\em Gets the dimensionality of the parameter space. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a2d1bff1e8401ef1743e3f9b04ca68f25}{get\+Steps}} () const
+\begin{DoxyCompactList}\small\item\em Gets the total number of steps run in this chain. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4d17c72d1f10a686d628d69e02d77ad7}{get\+Acceptance\+Ratio}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current acceptance ratio of proposals. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a35dfb7b214ce853d3f541efc67a7feb0}{get\+Mean}} () const
+\begin{DoxyCompactList}\small\item\em Gets the running mean of the parameter samples. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a5cdf37b705e511cc6545a199488abc51}{get\+Covariance}} () const
+\begin{DoxyCompactList}\small\item\em Gets the running covariance of the parameter samples. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_ad370e54398f373f3389066283637a65e}{info}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\+\_\+}} \{0.\+0\}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{n\+Steps\+\_\+}} \{0\}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}{n\+Accepts\+\_\+}} \{0\}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\+\_\+}}
+\item 
+Proposal\+Type \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\+\_\+}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}{dist\+U\+\_\+}} \{0.\+0, 1.\+0\}
+\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}{target\+Acceptance\+Ratio\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Proposal\+Type$>$\newline
+class cmp\+::mcmc\+::\+Markov\+Chain$<$ Proposal\+Type $>$}
+Represents a single Markov Chain utilizing Delayed Rejection Adaptive Metropolis (DRAM) for sampling. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Proposal\+Type} & The class type of the proposal distribution used to generate candidate states.\\
+\hline
+\end{DoxyTemplParams}
+\hypertarget{classcmp_1_1mcmc_1_1_markov_chain_autotoc_md9}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Foundations \& DRAM Algorithm}{Mathematical Foundations \& DRAM Algorithm}}\label{classcmp_1_1mcmc_1_1_markov_chain_autotoc_md9}
+This class implements {\bfseries{Delayed Rejection Adaptive Metropolis (DRAM)}}, combining adaptive covariance tuning with multi-\/stage candidate proposals\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Stage 1 (Adaptive Metropolis)}}\+: A candidate state $\boldsymbol{\theta}^*$ is proposed from a Gaussian distribution centered at the current state $\boldsymbol{\theta}^{(t)}$ with scaling covariance $\boldsymbol{\Sigma}_t$\+: \[ \boldsymbol{\theta}^* \sim \mathcal{N}\left(\boldsymbol{\theta}^{(t)}, \gamma_1 \boldsymbol{\Sigma}_t\right) \] The Stage 1 acceptance probability is\+: \[ \alpha_1(\boldsymbol{\theta}^{(t)}, \boldsymbol{\theta}^*) = \min\left(1, \frac{\pi(\boldsymbol{\theta}^*)}{\pi(\boldsymbol{\theta}^{(t)})}\right) \] where $\pi(\boldsymbol{\theta})$ is the target density.
+\item {\bfseries{Stage 2 (Delayed Rejection)}}\+: If the Stage 1 proposal is rejected, a Stage 2 candidate $\boldsymbol{\theta}^{**}$ is drawn from a narrower proposal distribution\+: \[ \boldsymbol{\theta}^{**} \sim \mathcal{N}\left(\boldsymbol{\theta}^{(t)}, \gamma_2 \boldsymbol{\Sigma}_t\right) \] with $\gamma_2 < \gamma_1$. To preserve {\bfseries{detailed balance}}, the Stage 2 acceptance probability must account for the first-\/stage rejection\+: \[ \alpha_2(\boldsymbol{\theta}^{(t)}, \boldsymbol{\theta}^*, \boldsymbol{\theta}^{**}) = \min\left(1, \frac{\pi(\boldsymbol{\theta}^{**}) q_1(\boldsymbol{\theta}^* | \boldsymbol{\theta}^{**}) [1 - \alpha_1(\boldsymbol{\theta}^{**}, \boldsymbol{\theta}^*)]}{\pi(\boldsymbol{\theta}^{(t)}) q_1(\boldsymbol{\theta}^* | \boldsymbol{\theta}^{(t)}) [1 - \alpha_1(\boldsymbol{\theta}^{(t)}, \boldsymbol{\theta}^*)]}\right) \] where $q_1(\mathbf{x} | \mathbf{y})$ is the probability density of proposing $\mathbf{x}$ given current state $\mathbf{y}$ under the Stage-\/1 covariance.
+\item {\bfseries{Adaptive Covariance Scaling}}\+: The proposal covariance $\boldsymbol{\Sigma}_t$ is updated recursively using the sample covariance of the history of the chain\+: \[ \boldsymbol{\Sigma}_t = s_d \mathrm{Cov}\left(\boldsymbol{\theta}^{(1)}, \dots, \boldsymbol{\theta}^{(t)}\right) + s_d \epsilon \mathbf{I}_d \] where $s_d = \frac{2.4^2}{d}$ is the optimal scaling factor for $d$-\/dimensional Gaussian targets, and $\epsilon > 0$ is a regularization term.
+\end{DoxyEnumerate}\hypertarget{classcmp_1_1mcmc_1_1_markov_chain_autotoc_md10}{}\doxysubsubsubsection{\texorpdfstring{Implementation Algorithms}{Implementation Algorithms}}\label{classcmp_1_1mcmc_1_1_markov_chain_autotoc_md10}
+
+\begin{DoxyItemize}
+\item {\bfseries{Triangular Backsubstitution}}\+: The multivariate proposals evaluate Mahalanobis distances $(\mathbf{x}-\mathbf{y})^T \boldsymbol{\Sigma}^{-1} (\mathbf{x}-\mathbf{y})$ using LDLT factorization.
+\item {\bfseries{Robbins-\/\+Monro Tuning}}\+: Scale factor $s_d$ is tuned dynamically to match the target acceptance rate\+: \[ \log s_{t+1} = \log s_t + \eta_t (\alpha_{1} - \alpha_{\text{target}}) \]
+\end{DoxyItemize}\hypertarget{classcmp_1_1mcmc_1_1_markov_chain_autotoc_md11}{}\doxysubsubsubsection{\texorpdfstring{Constraints \& Invariants}{Constraints \& Invariants}}\label{classcmp_1_1mcmc_1_1_markov_chain_autotoc_md11}
+
+\begin{DoxyItemize}
+\item {\bfseries{Detailed Balance}}\+: The multi-\/stage rejection ratio calculation must use log-\/space subtraction to prevent numerical underflow.
+\item {\bfseries{Positive Definiteness}}\+: Regularization nugget $\epsilon$ must be added to the diagonal of the covariance matrix to guarantee invertibility. 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a2d212ae1f143d68fe2154119c25a0217}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!MarkovChain@{MarkovChain}}
+\index{MarkovChain@{MarkovChain}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{MarkovChain()}{MarkovChain()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a2d212ae1f143d68fe2154119c25a0217} 
+template$<$typename Proposal\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::\+Markov\+Chain (\begin{DoxyParamCaption}\item[{const Proposal\+Type \&}]{proposal}{, }\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{, }\item[{const double \&}]{target\+Acceptance\+Ratio}{ = {\ttfamily 0.234}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new mcmc chain object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proposal} & The proposal distribution (copied by value) \\
+\hline
+{\em rng} & the random number generator \\
+\hline
+{\em target\+Acceptance\+Ratio} & the target acceptance ratio \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a76ca4e79568415785e4306cda0af5ad5}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!MarkovChain@{MarkovChain}}
+\index{MarkovChain@{MarkovChain}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{MarkovChain()}{MarkovChain()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a76ca4e79568415785e4306cda0af5ad5} 
+template$<$typename Proposal\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::\+Markov\+Chain (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_af7f99b3cf8fc1b8136c152b4ceed4e56}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!````~MarkovChain@{\texorpdfstring{$\sim$}{\string~}MarkovChain}}
+\index{````~MarkovChain@{\texorpdfstring{$\sim$}{\string~}MarkovChain}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MarkovChain()}{\string~MarkovChain()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_af7f99b3cf8fc1b8136c152b4ceed4e56} 
+template$<$typename Proposal\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{Markov\+Chain}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_aba7663c62676821c1bd2189c2849677e}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!accept@{accept}}
+\index{accept@{accept}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_aba7663c62676821c1bd2189c2849677e} 
+template$<$typename Proposal\+Type$>$ \\
+bool \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::accept (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{par}{, }\item[{double}]{score}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Accept or reject a candidate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & The candidate \\
+\hline
+{\em score} & The score of the candidate \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a4d17c72d1f10a686d628d69e02d77ad7}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!getAcceptanceRatio@{getAcceptanceRatio}}
+\index{getAcceptanceRatio@{getAcceptanceRatio}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{getAcceptanceRatio()}{getAcceptanceRatio()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a4d17c72d1f10a686d628d69e02d77ad7} 
+template$<$typename Proposal\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::get\+Acceptance\+Ratio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current acceptance ratio of proposals. 
+
+\begin{DoxyReturn}{Returns}
+Acceptance ratio value in \mbox{[}0, 1\mbox{]}. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_af8d07a9be6f9ff7c15685745725dbb13}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!getAdaptedCovariance@{getAdaptedCovariance}}
+\index{getAdaptedCovariance@{getAdaptedCovariance}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{getAdaptedCovariance()}{getAdaptedCovariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_af8d07a9be6f9ff7c15685745725dbb13} 
+template$<$typename Proposal\+Type$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::get\+Adapted\+Covariance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get a covariance matrix adapted to the samples. 
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a5cdf37b705e511cc6545a199488abc51}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!getCovariance@{getCovariance}}
+\index{getCovariance@{getCovariance}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{getCovariance()}{getCovariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a5cdf37b705e511cc6545a199488abc51} 
+template$<$typename Proposal\+Type$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::get\+Covariance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the running covariance of the parameter samples. 
+
+\begin{DoxyReturn}{Returns}
+Covariance matrix. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_ae98e6afbc11f99e5d48c552d14229009}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!getCurrent@{getCurrent}}
+\index{getCurrent@{getCurrent}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{getCurrent()}{getCurrent()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_ae98e6afbc11f99e5d48c552d14229009} 
+template$<$typename Proposal\+Type$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::get\+Current (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current parameters of the chain. 
+
+\begin{DoxyReturn}{Returns}
+Parameter vector. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a4b755cb9f8eb53c09781d31e0c9aa9ef}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!getDim@{getDim}}
+\index{getDim@{getDim}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{getDim()}{getDim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a4b755cb9f8eb53c09781d31e0c9aa9ef} 
+template$<$typename Proposal\+Type$>$ \\
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::get\+Dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the dimensionality of the parameter space. 
+
+\begin{DoxyReturn}{Returns}
+Parameter dimension. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a35dfb7b214ce853d3f541efc67a7feb0}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!getMean@{getMean}}
+\index{getMean@{getMean}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{getMean()}{getMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a35dfb7b214ce853d3f541efc67a7feb0} 
+template$<$typename Proposal\+Type$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::get\+Mean (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the running mean of the parameter samples. 
+
+\begin{DoxyReturn}{Returns}
+Mean vector. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a33543c0c3e7cb981516c91af78c9e2cb}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!getScore@{getScore}}
+\index{getScore@{getScore}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{getScore()}{getScore()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a33543c0c3e7cb981516c91af78c9e2cb} 
+template$<$typename Proposal\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::get\+Score (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current log probability score of the chain. 
+
+\begin{DoxyReturn}{Returns}
+Log score. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a2d1bff1e8401ef1743e3f9b04ca68f25}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!getSteps@{getSteps}}
+\index{getSteps@{getSteps}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{getSteps()}{getSteps()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a2d1bff1e8401ef1743e3f9b04ca68f25} 
+template$<$typename Proposal\+Type$>$ \\
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::get\+Steps (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the total number of steps run in this chain. 
+
+\begin{DoxyReturn}{Returns}
+Steps count. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a30b456a6e485afff8b00187833911e49}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!increaseSteps@{increaseSteps}}
+\index{increaseSteps@{increaseSteps}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{increaseSteps()}{increaseSteps()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a30b456a6e485afff8b00187833911e49} 
+template$<$typename Proposal\+Type$>$ \\
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::increase\+Steps (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Increase the number of steps. 
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_ad370e54398f373f3389066283637a65e}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!info@{info}}
+\index{info@{info}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_ad370e54398f373f3389066283637a65e} 
+template$<$typename Proposal\+Type$>$ \\
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Log the total number of steps, acceptance ratio, data mean and covariance. \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_abc5bc6c25f3ed5d4be6ffa95c8441636}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!reset@{reset}}
+\index{reset@{reset}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_abc5bc6c25f3ed5d4be6ffa95c8441636} 
+template$<$typename Proposal\+Type$>$ \\
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reset the value of the mean and of the covariance matrix. \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a36c6d356357b2758e1ba53de57d1796e}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!step@{step}}
+\index{step@{step}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a36c6d356357b2758e1ba53de57d1796e} 
+template$<$typename Proposal\+Type$>$ \\
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t}} \&}]{get\+Score}{, }\item[{const bool \&}]{delayed\+Rejection}{ = {\ttfamily false}, }\item[{const double \&}]{gamma}{ = {\ttfamily 0.1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Perform a single MCMC step. 
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a6053b979262c76c94d7248ca833c40a8}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!update@{update}}
+\index{update@{update}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a6053b979262c76c94d7248ca833c40a8} 
+template$<$typename Proposal\+Type$>$ \\
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the value of the mean and covariance matrix. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!cov\_@{cov\_}}
+\index{cov\_@{cov\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{cov\_}{cov\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512} 
+template$<$typename Proposal\+Type$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::cov\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8} 
+template$<$typename Proposal\+Type$>$ \\
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!distU\_@{distU\_}}
+\index{distU\_@{distU\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{distU\_}{distU\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37} 
+template$<$typename Proposal\+Type$>$ \\
+std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::dist\+U\+\_\+ \{0.\+0, 1.\+0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65} 
+template$<$typename Proposal\+Type$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!nAccepts\_@{nAccepts\_}}
+\index{nAccepts\_@{nAccepts\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{nAccepts\_}{nAccepts\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de} 
+template$<$typename Proposal\+Type$>$ \\
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::n\+Accepts\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!nSteps\_@{nSteps\_}}
+\index{nSteps\_@{nSteps\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{nSteps\_}{nSteps\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84} 
+template$<$typename Proposal\+Type$>$ \\
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::n\+Steps\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!proposal\_@{proposal\_}}
+\index{proposal\_@{proposal\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{proposal\_}{proposal\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652} 
+template$<$typename Proposal\+Type$>$ \\
+Proposal\+Type \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::proposal\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73} 
+template$<$typename Proposal\+Type$>$ \\
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!scale\_@{scale\_}}
+\index{scale\_@{scale\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{scale\_}{scale\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2} 
+template$<$typename Proposal\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::scale\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!score\_@{score\_}}
+\index{score\_@{score\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{score\_}{score\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888} 
+template$<$typename Proposal\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::score\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!targetAcceptanceRatio\_@{targetAcceptanceRatio\_}}
+\index{targetAcceptanceRatio\_@{targetAcceptanceRatio\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
+\doxysubsubsection{\texorpdfstring{targetAcceptanceRatio\_}{targetAcceptanceRatio\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79} 
+template$<$typename Proposal\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::target\+Acceptance\+Ratio\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mcmc_8h}{mcmc.\+h}}\end{DoxyCompactItemize}

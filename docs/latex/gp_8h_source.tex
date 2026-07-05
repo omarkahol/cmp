@@ -1,0 +1,174 @@
+\doxysection{gp.\+h}
+\hypertarget{gp_8h_source}{}\label{gp_8h_source}\index{include/gp.h@{include/gp.h}}
+\mbox{\hyperlink{gp_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GP\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GP\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{distribution_8h}{distribution.h}}>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{scaler_8h}{scaler.h}}>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{covariance_8h}{covariance.h}}>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mean_09_09_8h}{mean++.h}}>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{prior_09_09_8h}{prior++.h}}>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{optimization_8h}{optimization.h}}>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1gp}{cmp::gp}}\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7}{MLE}},\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60}{LOO}},\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03}{LOO\_MSE}}\ \ }
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11}{PRIOR}},\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{POSTERIOR}}\ \ }
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}\ \{}
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Hyperparameters\ and\ prior\ mean\ and\ covariance\ functions}}
+\DoxyCodeLine{00083\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d}{par\_}};}
+\DoxyCodeLine{00084\ \ \ \ \ std::shared\_ptr<covariance::Covariance>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3}{pKernel\_}};}
+\DoxyCodeLine{00085\ \ \ \ \ std::shared\_ptr<mean::Mean>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09}{pMean\_}};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7}{nugget\_}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Observations\ (the\ GP\ can\ own\ the\ data\ or\ point\ to\ external\ data,\ if\ it\ owns\ the\ data\ the\ pointer\ will\ point\ to\ it)}}
+\DoxyCodeLine{00089\ \ \ \ \ std::optional<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb}{xObs\_}};}
+\DoxyCodeLine{00090\ \ \ \ \ std::optional<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913}{yObs\_}};}
+\DoxyCodeLine{00091\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::MatrixXd>>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}{pXObs\_}};}
+\DoxyCodeLine{00092\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::VectorXd>>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb}{pYObs\_}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Internal\ storage\ for\ the\ covariance\ matrix,\ its\ decomposition\ and\ related\ vectors\ (for\ fast\ query)}}
+\DoxyCodeLine{00095\ \ \ \ \ Eigen::LDLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0}{covDecomposition\_}};}
+\DoxyCodeLine{00096\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf}{alpha\_}};}
+\DoxyCodeLine{00097\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8}{diagCovInverse\_}};}
+\DoxyCodeLine{00098\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed}{residual\_}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ Internal\ flag\ to\ check\ whether\ we\ normalize\ y\ or\ not}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572}{normalizeY\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{cmp::scaler::StandardScaler}}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f}{yScaler\_}};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ Private\ members}}
+\DoxyCodeLine{00105\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a2c887aa1537dbb4e914f29eb545c47b0}{compute}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&par);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ Default\ constructor\ and\ destructor}}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}();}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a86813325c4394c3822f67add8354253a}{\string~GaussianProcess}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ Constructor\ with\ parameters}}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}(\textcolor{keyword}{const}\ std::shared\_ptr<covariance::Covariance>\ \&\mbox{\hyperlink{namespacecmp_1_1kernel}{kernel}},\ \textcolor{keyword}{const}\ std::shared\_ptr<mean::Mean>\ \&\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ Eigen::Ref<const\ Eigen::VectorXd>\ params,\ \textcolor{keywordtype}{double}\ nugget\ =\ 1e-\/8);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ Copy\ constructors\ and\ operators}}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}\ \&other);}
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}\ \&\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a2e46d3ac82ee147eb1bf5663a80d696c}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}\ \&other);}
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}(\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}\ \&\&other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}\ \&\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a2e46d3ac82ee147eb1bf5663a80d696c}{operator=}}(\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_acc0c738710e443cb6b4abafae0f9d360}{GaussianProcess}}\ \&\&other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a50f9449412e91c05f3d62449715ff62f}{set}}(\textcolor{keyword}{const}\ std::shared\_ptr<covariance::Covariance>\ \&\mbox{\hyperlink{namespacecmp_1_1kernel}{kernel}},\ \textcolor{keyword}{const}\ std::shared\_ptr<mean::Mean>\ \&\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ Eigen::Ref<const\ Eigen::VectorXd>\ params,\ \textcolor{keywordtype}{double}\ nugget\ =\ 1e-\/8);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ab49c381cf0027f77e8a493b94c55e138}{condition}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&yObs,\ \textcolor{keywordtype}{bool}\ copyData\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ normalizeY\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a8153df0fcf63902d8f99e13aa3c8501c}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&yObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&lb,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&ub,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}}\ \&\mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{method}},\ \textcolor{keyword}{const}\ nlopt::algorithm\ \&alg,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&tol\_rel,\ \textcolor{keywordtype}{bool}\ copyData\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ normalizeY\ =\ \textcolor{keyword}{false},\ \textcolor{keyword}{const}\ std::shared\_ptr<cmp::prior::Prior>\ \&\mbox{\hyperlink{namespacecmp_1_1prior}{prior}}\ =\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15}{cmp::prior::Uniform::make}}(),\ \textcolor{keyword}{const}\ std::vector<bool>\ \&logScale\ =\ \{\});}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00168\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_add352029266a5297021f045e021a27a4}{getParameters}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d}{par\_}};}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00176\ \ \ \ \ std::shared\_ptr<cmp::mean::Mean>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a1ede6e7dc5c732b7e215931ebde95779}{getMean}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>pMean\_;}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00184\ \ \ \ \ std::shared\_ptr<cmp::covariance::Covariance>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a92a2f833d0fe1024b359bc1ed40d9da7}{getKernel}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>pKernel\_;}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4f270f1d0734ce7e266cb24262b61528}{getNugget}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>nugget\_;}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00205\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{namespacecmp_1_1covariance}{covariance}}(Eigen::Ref<const\ Eigen::VectorXd>\ par)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00212\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ab2b9ccaacf6747926fb36dc718890039}{covarianceGradient}}(Eigen::Ref<const\ Eigen::VectorXd>\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00220\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4ad088783f49d3780530b513ccf87a61}{covarianceHessian}}(Eigen::Ref<const\ Eigen::VectorXd>\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::LDLT<Eigen::MatrixXd>\ \&\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a5203b3c60c69754fb70ab44a1cc8a924}{getCovDecomposition}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0}{covDecomposition\_}};}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a57962eba46dcc49bf1561a2f167ce066}{getAlpha}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf}{alpha\_}};}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a3816691896083bb0fd8cb8271083ffcc}{getDiagCovInverse}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8}{diagCovInverse\_}};}
+\DoxyCodeLine{00232\ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aadcb981d80ef084ef659d492706075de}{getResidualVector}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed}{residual\_}};}
+\DoxyCodeLine{00236\ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a143608cb42b51a873ee9fce4d074bdc7}{getXObs}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}{pXObs\_}}.value();}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a26da96ffcedd0219d7982abcaecf23b9}{getYObs}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb}{pYObs\_}}.value();}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ac2ab783f98785f652bd5d890ef72783e}{nObs}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}{pXObs\_}}.has\_value())\ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}{pXObs\_}}-\/>rows());}
+\DoxyCodeLine{00255\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00265\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a1856da5ad122dca3219b03128e5b48ac}{priorMean}}(Eigen::Ref<const\ Eigen::VectorXd>\ par)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00273\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aa1858251cb0d8903a1eecad43908d712}{priorMeanGradient}}(Eigen::Ref<const\ Eigen::VectorXd>\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00280\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4d1d78422865a6f868effe028cc6c87c}{residual}}(Eigen::Ref<const\ Eigen::VectorXd>\ par)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00294\ \ \ \ \ std::pair<double,\ double>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a2743af1cce11ba987ab7f2c9fbccacd7}{predict}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x,\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}\ predictionType\ =\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type::POSTERIOR}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a0b8db73744a4f762c523d34261df015a}{predictMean}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x,\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}\ predictionType\ =\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type::POSTERIOR}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00312\ \ \ \ \ std::pair<Eigen::VectorXd,\ Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a178fc2ad5579efa76961dcc1f0eb98d9}{predictMultiple}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&x\_pts,\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}\ predictionType\ =\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type::POSTERIOR}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00321\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aaf2426664ad51d6c826bddd505b931fe}{predictMeanMultiple}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&x\_pts,\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{type}}\ predictionType\ =\ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{type::POSTERIOR}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00330\ \ \ \ \ std::pair<double,\ double>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a3f6e80990413da57ec26e1979c0ae87b}{predictLOO}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a78cb7b0ae4f15efacef96e4786e90048}{logLikelihood}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a378a76dca17b76ad357a44fc106f410e}{logLikelihoodLOO}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_add94222d3fb955c643ab30605bab2ae4}{expectedVarianceImprovement}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&x\_pts,}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&x\_pending,}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ nu)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae9b5587f0ed81f578c98ab7a5caeed61}{objectiveFunction}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x,\ Eigen::Ref<Eigen::VectorXd>\ grad,\ \textcolor{keyword}{const}\ std::shared\_ptr<cmp::prior::Prior>\ \&\mbox{\hyperlink{namespacecmp_1_1prior}{prior}});}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ad22dd46bd5be7763735c938065bd06b3}{objectiveFunctionLOO}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x,\ Eigen::Ref<Eigen::VectorXd>\ grad,\ \textcolor{keyword}{const}\ std::shared\_ptr<cmp::prior::Prior>\ \&\mbox{\hyperlink{namespacecmp_1_1prior}{prior}});}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_aedcef6ce567c447f29871f4fbb3b20ce}{objectiveFunctionLOOMSE}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x,\ Eigen::Ref<Eigen::VectorXd>\ grad,\ \textcolor{keyword}{const}\ std::shared\_ptr<cmp::prior::Prior>\ \&\mbox{\hyperlink{namespacecmp_1_1prior}{prior}});}
+\DoxyCodeLine{00367\ \};}
+\DoxyCodeLine{00368\ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MACRO}}
+
+\end{DoxyCode}

@@ -1,0 +1,238 @@
+\doxysection{cmp\+::scaler\+::Elliptic\+Scaler Class Reference}
+\hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler}{}\label{classcmp_1_1scaler_1_1_elliptic_scaler}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+
+
+\doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently (diagonal variance scaling).  
+
+
+
+
+{\ttfamily \#include $<$scaler.\+h$>$}
+
+Inheritance diagram for cmp\+::scaler\+::Elliptic\+Scaler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1scaler_1_1_elliptic_scaler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{Elliptic\+Scaler}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a769b58f04d54d6ccda9c9e48291a0401}{Elliptic\+Scaler}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&mean, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&std)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler} with specified mean and standard deviations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a53f8d1f69524076db56af2a709881414}{Elliptic\+Scaler}} (const \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa2ee6b60713b48100cd29639bae98548}{Elliptic\+Scaler}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a98dd13aa727d2de34dbd282c152c289a}{\texorpdfstring{$\sim$}{\string~}\+Elliptic\+Scaler}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \& \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a3183265f75e490a27915fb9b02ef434d}{operator=}} (const \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \& \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ab596ef021cf6fc07d008e18179c2e05d}{operator=}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&\&other)=default
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa9165c49ba109a73f91bdfeb288c1f4c}{transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
+\begin{DoxyCompactList}\small\item\em Standardizes the input data vector. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a0527554327168152d5bb453ca4928953}{inverse\+Transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
+\begin{DoxyCompactList}\small\item\em Unstandardizes the input data vector back to physical space. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4702e651e83aac9b13cb75ca1600531c}{get\+Intercept}} () const override
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18}{get\+Scale}} () const override
+\item 
+void \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a044939a8e126affba4a3ca42f037590d}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
+\begin{DoxyCompactList}\small\item\em Fits the mean and standard deviation of each coordinate of the training data. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a657486b28e38db1d45eab3fb452fbd37}{fit\+\_\+transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
+\begin{DoxyCompactList}\small\item\em Fits the scaler and returns standardized data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a7bc119f6ef15a7ee235e493f6b2b34bb}{set\+Mean}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&mean)
+\begin{DoxyCompactList}\small\item\em Explicitly sets the mean parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a157800ab1b134d2700b56a2dc6244205}{set\+Std}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&std)
+\begin{DoxyCompactList}\small\item\em Explicitly sets the standard deviation scaling parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently (diagonal variance scaling). 
+
+Mathematical Formulation Standardizes each feature coordinate independently\+:   \[y_j = \frac{x_j - \mu_j}{\sigma_j}
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!EllipticScaler@{EllipticScaler}}
+\index{EllipticScaler@{EllipticScaler}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{EllipticScaler()}{EllipticScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b} 
+cmp\+::scaler\+::\+Elliptic\+Scaler\+::\+Elliptic\+Scaler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a769b58f04d54d6ccda9c9e48291a0401}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!EllipticScaler@{EllipticScaler}}
+\index{EllipticScaler@{EllipticScaler}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{EllipticScaler()}{EllipticScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a769b58f04d54d6ccda9c9e48291a0401} 
+cmp\+::scaler\+::\+Elliptic\+Scaler\+::\+Elliptic\+Scaler (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{mean}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{std}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an \doxylink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler} with specified mean and standard deviations. 
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a53f8d1f69524076db56af2a709881414}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!EllipticScaler@{EllipticScaler}}
+\index{EllipticScaler@{EllipticScaler}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{EllipticScaler()}{EllipticScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a53f8d1f69524076db56af2a709881414} 
+cmp\+::scaler\+::\+Elliptic\+Scaler\+::\+Elliptic\+Scaler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_aa2ee6b60713b48100cd29639bae98548}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!EllipticScaler@{EllipticScaler}}
+\index{EllipticScaler@{EllipticScaler}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{EllipticScaler()}{EllipticScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_aa2ee6b60713b48100cd29639bae98548} 
+cmp\+::scaler\+::\+Elliptic\+Scaler\+::\+Elliptic\+Scaler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a98dd13aa727d2de34dbd282c152c289a}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!````~EllipticScaler@{\texorpdfstring{$\sim$}{\string~}EllipticScaler}}
+\index{````~EllipticScaler@{\texorpdfstring{$\sim$}{\string~}EllipticScaler}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}EllipticScaler()}{\string~EllipticScaler()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a98dd13aa727d2de34dbd282c152c289a} 
+cmp\+::scaler\+::\+Elliptic\+Scaler\+::\texorpdfstring{$\sim$}{\string~}\+Elliptic\+Scaler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a044939a8e126affba4a3ca42f037590d}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!fit@{fit}}
+\index{fit@{fit}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a044939a8e126affba4a3ca42f037590d} 
+void cmp\+::scaler\+::\+Elliptic\+Scaler\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Fits the mean and standard deviation of each coordinate of the training data. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a034490dc8b97ab47a73ca3ffb3b6db66}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a657486b28e38db1d45eab3fb452fbd37}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!fit\_transform@{fit\_transform}}
+\index{fit\_transform@{fit\_transform}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{fit\_transform()}{fit\_transform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a657486b28e38db1d45eab3fb452fbd37} 
+Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::fit\+\_\+transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Fits the scaler and returns standardized data. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a4702e651e83aac9b13cb75ca1600531c}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!getIntercept@{getIntercept}}
+\index{getIntercept@{getIntercept}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{getIntercept()}{getIntercept()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a4702e651e83aac9b13cb75ca1600531c} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::get\+Intercept (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9cebf0f6c04f}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!getScale@{getScale}}
+\index{getScale@{getScale}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{getScale()}{getScale()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18} 
+Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::get\+Scale (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a0527554327168152d5bb453ca4928953}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!inverseTransform@{inverseTransform}}
+\index{inverseTransform@{inverseTransform}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{inverseTransform()}{inverseTransform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a0527554327168152d5bb453ca4928953} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::inverse\+Transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Unstandardizes the input data vector back to physical space. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a34c7739c949f4603ec1a430daf405dec}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a3183265f75e490a27915fb9b02ef434d}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a3183265f75e490a27915fb9b02ef434d} 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \& cmp\+::scaler\+::\+Elliptic\+Scaler\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_ab596ef021cf6fc07d008e18179c2e05d}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_ab596ef021cf6fc07d008e18179c2e05d} 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \& cmp\+::scaler\+::\+Elliptic\+Scaler\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a7bc119f6ef15a7ee235e493f6b2b34bb}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!setMean@{setMean}}
+\index{setMean@{setMean}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{setMean()}{setMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a7bc119f6ef15a7ee235e493f6b2b34bb} 
+void cmp\+::scaler\+::\+Elliptic\+Scaler\+::set\+Mean (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{mean}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Explicitly sets the mean parameters. 
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a157800ab1b134d2700b56a2dc6244205}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!setStd@{setStd}}
+\index{setStd@{setStd}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{setStd()}{setStd()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a157800ab1b134d2700b56a2dc6244205} 
+void cmp\+::scaler\+::\+Elliptic\+Scaler\+::set\+Std (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{std}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Explicitly sets the standard deviation scaling parameters. 
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_aa9165c49ba109a73f91bdfeb288c1f4c}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!transform@{transform}}
+\index{transform@{transform}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_aa9165c49ba109a73f91bdfeb288c1f4c} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Standardizes the input data vector. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}{cmp\+::scaler\+::\+Scaler}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!std\_@{std\_}}
+\index{std\_@{std\_}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
+\doxysubsubsection{\texorpdfstring{std\_}{std\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::std\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{scaler_8h}{scaler.\+h}}\item 
+src/\mbox{\hyperlink{scaler_8cpp}{scaler.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,100 @@
+\doxysection{cmp\+::Quadrature1D\texorpdfstring{$<$}{<} Basis\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcmp_1_1_quadrature1_d}{}\label{classcmp_1_1_quadrature1_d}\index{cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}}
+
+
+One-\/dimensional quadrature rule generator and integrator.  
+
+
+
+
+{\ttfamily \#include $<$integrator.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1_quadrature1_d_a4f69cd5cb720d2040cd0c0d54f0e7717}{Quadrature1D}} (int num\+Points)
+\item 
+double \mbox{\hyperlink{classcmp_1_1_quadrature1_d_ad9ad84846c0d231576bb10e595975294}{integrate}} (std\+::function$<$ double(double)$>$ f) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Basis\+Type$>$\newline
+class cmp\+::\+Quadrature1\+D$<$ Basis\+Type $>$}
+One-\/dimensional quadrature rule generator and integrator. 
+
+Mathematical Formulation\+: A 1D quadrature rule approximates the integral of a function \$f(x)\$ over an interval \$\mbox{[}a, b\mbox{]}\$ with a weight function \$w(x)\$ as\+:   \[\int_{a}^{b} w(x) f(x) \, dx \approx \sum_{i=0}^{N-1} w_i f(x_i)
+\] where \$x\+\_\+i\$ are the quadrature nodes (roots of the \$\+N\$-\/th order orthogonal polynomial associated with \$w(x)\$) and \$w\+\_\+i\$ are the corresponding quadrature weights. Using the Golub-\/\+Welsch algorithm, the nodes \$x\+\_\+i\$ and weights \$w\+\_\+i\$ are computed from the symmetric tridiagonal Jacobi matrix \$\+J\$ for the orthogonal polynomial sequence\+:         \[J = \begin{pmatrix}
+a_0 & b_1 & 0 & \cdots & 0 \\
+b_1 & a_1 & b_2 & \cdots & 0 \\
+0 & b_2 & a_2 & \ddots & \vdots \\
+\vdots & \vdots & \ddots & \ddots & b_{N-1} \\
+0 & 0 & \cdots & b_{N-1} & a_{N-1}
+\end{pmatrix}
+\] The nodes \$x\+\_\+i\$ are the eigenvalues of \$\+J\$. The weights \$w\+\_\+i\$ are computed as\+:   \[w_i = \mu_0 v_{i,0}^2
+\] where \$v\+\_\+\{i,0\}\$ is the first component of the normalized \$i\$-\/th eigenvector of \$\+J\$, and \$\textbackslash{}mu\+\_\+0 = \textbackslash{}int\+\_\+\{a\}\texorpdfstring{$^\wedge$}{\string^}\{b\} w(x) \textbackslash{}, dx\$ is the total mass/zeroth moment of the weight function.
+
+Implementation Algorithm\+:
+\begin{DoxyEnumerate}
+\item Checks if the requested number of points \$\+N\$ is less than 1 (throwing std\+::invalid\+\_\+argument).
+\item If \$N == 1\$, sets node \$x\+\_\+0 = 0.\+0\$ and weight \$w\+\_\+0 = 1.\+0\$.
+\item Otherwise, requests the Jacobi matrix \$\+J\$ of size \$N \textbackslash{}times N\$ from {\ttfamily Basis\+Type\+::get\+Jacobi\+Matrix(num\+Points)}.
+\item Computes the spectral decomposition of \$\+J\$ using {\ttfamily Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}.
+\item Assigns the resulting eigenvalues directly to {\ttfamily nodes}.
+\item Computes the weights {\ttfamily \doxylink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights(i)}} by squaring the first component of the \$i\$-\/th eigenvector ({\ttfamily solver.\+eigenvectors()(0, i)}).
+\item Provides {\ttfamily integrate(f)} which evaluates \$\textbackslash{}sum\+\_\+i w\+\_\+i f(x\+\_\+i)\$. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1_quadrature1_d_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1_quadrature1_d_a4f69cd5cb720d2040cd0c0d54f0e7717}\index{cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}!Quadrature1D@{Quadrature1D}}
+\index{Quadrature1D@{Quadrature1D}!cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{Quadrature1D()}{Quadrature1D()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_quadrature1_d_a4f69cd5cb720d2040cd0c0d54f0e7717} 
+template$<$typename Basis\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1_quadrature1_d}{cmp\+::\+Quadrature1D}}$<$ Basis\+Type $>$\+::\+Quadrature1D (\begin{DoxyParamCaption}\item[{int}]{num\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1_quadrature1_d_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1_quadrature1_d_ad9ad84846c0d231576bb10e595975294}\index{cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}!integrate@{integrate}}
+\index{integrate@{integrate}!cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{integrate()}{integrate()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_quadrature1_d_ad9ad84846c0d231576bb10e595975294} 
+template$<$typename Basis\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1_quadrature1_d}{cmp\+::\+Quadrature1D}}$<$ Basis\+Type $>$\+::integrate (\begin{DoxyParamCaption}\item[{std\+::function$<$ double(double)$>$}]{f}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1_quadrature1_d_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}\index{cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}!nodes@{nodes}}
+\index{nodes@{nodes}!cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{nodes}{nodes}}
+{\footnotesize\ttfamily \label{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1} 
+template$<$typename Basis\+Type$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_quadrature1_d}{cmp\+::\+Quadrature1D}}$<$ Basis\+Type $>$\+::nodes}
+
+\Hypertarget{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}\index{cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}!weights@{weights}}
+\index{weights@{weights}!cmp::Quadrature1D$<$ BasisType $>$@{cmp::Quadrature1D$<$ BasisType $>$}}
+\doxysubsubsection{\texorpdfstring{weights}{weights}}
+{\footnotesize\ttfamily \label{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0} 
+template$<$typename Basis\+Type$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_quadrature1_d}{cmp\+::\+Quadrature1D}}$<$ Basis\+Type $>$\+::weights}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{integrator_8h}{integrator.\+h}}\end{DoxyCompactItemize}

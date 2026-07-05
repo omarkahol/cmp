@@ -1,0 +1,231 @@
+\doxysection{classifier.\+h}
+\hypertarget{classifier_8h_source}{}\label{classifier_8h_source}\index{include/classifier.h@{include/classifier.h}}
+\mbox{\hyperlink{classifier_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CLASSIFIER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CLASSIFIER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{kernel_09_09_8h}{kernel++.h}}>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <svm.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{statistics_8h}{statistics.h}}>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{optimization_8h}{optimization.h}}>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{kde_8h}{kde.h}}>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{covariance_8h}{covariance.h}}>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1classifier}{cmp::classifier}}\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db}{CV\_SCORE}},\ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343}{CV\_PROB\_SCORE}}\ \ }
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{Classifier}}\ \{}
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a7dd8540cf402dfb9b5f3b83b2de9d17d}{\string~Classifier}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_af91c87a6c6a2261f74333847e6f6d68a}{predictProbabilities}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a2fbf78b38db8cc851a433caa9b87e758}{predict}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n}{KNN}}\ \{}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00062\ \ \ \ \ std::vector<std::vector<size\_t>>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a48cfa40a75110ac48cc559fcbe55fbb1}{neighbours\_}};\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a78e7e9dc0ee2fa074c4f8129be6e5a55}{kNearestValue\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_ae0840d7055a75035523eb166b6ad6944}{nPoints\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a683120d033cab65d84a0dad5f14689e2}{compute}}(\textcolor{keyword}{const}\ std::vector<Eigen::VectorXd>\ \&points,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_ab14d257edb7f10593d734d008d1bca45}{k}});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\ \&\mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a5d4dab364f380b50d2964528321f6dc7}{operator[]}}(\textcolor{keywordtype}{size\_t}\ i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a2c857acc2f3117c578a020ef5695ba73}{nPoints}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_ab14d257edb7f10593d734d008d1bca45}{k}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a39c5f3b135b704098aafa12ccbf500a8}{KDE}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{Classifier}}\ \{}
+\DoxyCodeLine{00121\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00122\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a65f02ac64c534123a425e66eeb2f3b97}{xObs\_}}\ =\ Eigen::MatrixXd(0,\ 0);\ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a5d3735e12aeed67668cc6abc16688739}{labels\_}}\ =\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}(0);\ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a599215e4c0fe25b662df9cbe3427c3bd}{classCounts\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a08c2c9a30041396406a914a760d346d5}{nObs\_}}\ =\ 0;\ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a06b46da8bf315b7215afdc590766a080}{dimX\_}}\ =\ 0;\ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a148fe7ac061097b7b9b6a9982a273468}{nClasses\_}}\ =\ 1;\ \ }
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ std::shared\_ptr<cmp::kernel::Bandwidth>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a941bb78e648d581f28fa7a1310a46bcf}{bandwidth\_}}\{\textcolor{keyword}{nullptr}\};\ }
+\DoxyCodeLine{00131\ \ \ \ \ std::shared\_ptr<kernel::Kernel>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a34c11a49eef00c046a2dcfdd3a74a2ab}{kernel\_}}\{\textcolor{keyword}{nullptr}\};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a39c5f3b135b704098aafa12ccbf500a8}{KDE}}()\ \{\};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a88412a84686f3df848a4b8b922ec9714}{set}}(std::shared\_ptr<kernel::Kernel>\ \mbox{\hyperlink{namespacecmp_1_1kernel}{kernel}},\ std::shared\_ptr<cmp::kernel::Bandwidth>\ bandwidth)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a34c11a49eef00c046a2dcfdd3a74a2ab}{kernel\_}}\ =\ \mbox{\hyperlink{namespacecmp_1_1kernel}{kernel}};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a941bb78e648d581f28fa7a1310a46bcf}{bandwidth\_}}\ =\ bandwidth;}
+\DoxyCodeLine{00146\ \ \ \ \ \};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_aa69b82b9c52436d59f7bbb1b901214d1}{condition}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXs>\ \&labels)\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a65f02ac64c534123a425e66eeb2f3b97}{xObs\_}}\ =\ xObs;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a5d3735e12aeed67668cc6abc16688739}{labels\_}}\ =\ labels;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a08c2c9a30041396406a914a760d346d5}{nObs\_}}\ =\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a65f02ac64c534123a425e66eeb2f3b97}{xObs\_}}.rows();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a06b46da8bf315b7215afdc590766a080}{dimX\_}}\ =\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a65f02ac64c534123a425e66eeb2f3b97}{xObs\_}}.cols();}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a148fe7ac061097b7b9b6a9982a273468}{nClasses\_}}\ =\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a5d3735e12aeed67668cc6abc16688739}{labels\_}}.maxCoeff()\ +\ 1;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a08c2c9a30041396406a914a760d346d5}{nObs\_}}\ !=\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a5d3735e12aeed67668cc6abc16688739}{labels\_}}.size())\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}KDE::set:\ Number\ of\ observations\ and\ labels\ size\ do\ not\ match."{}});}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a599215e4c0fe25b662df9cbe3427c3bd}{classCounts\_}}\ =\ Eigen::VectorXs::Zero(\mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a148fe7ac061097b7b9b6a9982a273468}{nClasses\_}});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a08c2c9a30041396406a914a760d346d5}{nObs\_}};\ i++)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a599215e4c0fe25b662df9cbe3427c3bd}{classCounts\_}}(\mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a5d3735e12aeed67668cc6abc16688739}{labels\_}}(i))++;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1density}{density}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&classLabel)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00188\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a6d22b13a7d6b3a4945cb59798ef34d26}{predictProbabilities}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_afc69aee2a558b1f14580e53d694968e3}{predict}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ std::vector<double>\ probs\ =\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a6d22b13a7d6b3a4945cb59798ef34d26}{predictProbabilities}}(x);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::max\_element(probs.begin(),\ probs.end())\ -\/\ probs.begin();}
+\DoxyCodeLine{00198\ \ \ \ \ \};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a048e39c6d3e2936d698162e510fd961c}{objectiveFunctionCV}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}\&\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp::statistics::KFold}}\&\ kf)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_ac587f3709c35b02b7d9106a37758bbb6}{objectiveFunctionLOO}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_aceb3c3eb3e6dcd298cce52ce9ca3009f}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXs>\&\ labels,\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp::statistics::KFold}}\ kf,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ minBw,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ maxBw,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}\ =\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343}{CV\_PROB\_SCORE}},\ nlopt::algorithm\ algo\ =\ nlopt::LN\_SBPLX,\ \textcolor{keywordtype}{double}\ ftol\_rel\ =\ 1e-\/4,\ std::vector<bool>\ logScaleFlags\ =\ \{\});}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a4f63e7ab3c8518d93fc8acb434fdc1dd}{fitLOO}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXs>\&\ labels,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ minBw,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ maxBw,\ nlopt::algorithm\ algo\ =\ nlopt::LN\_SBPLX,\ \textcolor{keywordtype}{double}\ ftol\_rel\ =\ 1e-\/4,\ std::vector<bool>\ logScaleFlags\ =\ \{\});}
+\DoxyCodeLine{00245\ \};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00277\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_aae52613b76fffb2068382185ca458e04}{SVM}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{Classifier}}\ \{}
+\DoxyCodeLine{00278\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{struct\ }svm\_model\ *\mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a729ae6e934d962359165cdebff19b1f3}{model\_}}\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{struct\ }svm\_problem\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a35e1d53006df2faa79ecda6ab442dbbd}{prob\_}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{struct\ }svm\_parameter\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00284\ \ \ \ \ std::shared\_ptr<cmp::covariance::Covariance>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ad16b27cc70a95b10e2c23874bbfb2d05}{covariance\_}}\{\textcolor{keyword}{nullptr}\};\ \ }
+\DoxyCodeLine{00285\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a4bb2ca69fdd4d3d2bb0911a64f5ad8e7}{hyperparameters\_}}\ =\ Eigen::VectorXd(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{comment}{//\ Eigen::VectorXd\ to\ hold\ the\ original\ training\ data}}
+\DoxyCodeLine{00288\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a8300b9667a2e0c650e2bf2776191da13}{xObs\_}};\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ac4022ab50dbd75780789aa9f3b2bde24}{nObs\_}}\ =\ 0;\ \ \ \ \ \ }
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a850c5fe9eb025499770467be7a1e0225}{silent\_print}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *s)\ \{\}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a63912997e1edf3fa83acbf55e8186d71}{initDefaultParameters}}(\textcolor{keywordtype}{double}\ C,\ \textcolor{keywordtype}{double}\ eps)\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}\ =\ svm\_parameter();}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ a\ classifier\ with\ precomputed\ kernel}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.svm\_type\ =\ C\_SVC;}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.kernel\_type\ =\ PRECOMPUTED;}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ two\ parameters\ C\ and\ eps}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.eps\ =\ eps;}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.C\ =\ C;}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Other\ parameters}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.weight\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.weight\_label\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.shrinking\ =\ 1;}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.probability\ =\ 1;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.nr\_weight\ =\ 0;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.cache\_size\ =\ 200;}
+\DoxyCodeLine{00322\ \ \ \ \ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ to\ free\ a\ problem\ pointer}}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8775f7a7dccddec98f9b118d324fa39}{freeProblem}}(\textcolor{keyword}{struct}\ svm\_problem\ *prob)\ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(prob-\/>x)\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ prob-\/>l;\ i++)\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ prob-\/>x[i];}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ prob-\/>x;}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ prob-\/>x\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(prob-\/>y)\ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ prob-\/>y;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ prob-\/>y\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ prob-\/>l\ =\ 0;}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ SVM\ with\ default\ parameters}}
+\DoxyCodeLine{00344\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_aae52613b76fffb2068382185ca458e04}{SVM}}()\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a63912997e1edf3fa83acbf55e8186d71}{initDefaultParameters}}(100,\ 1e-\/3);}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Disable\ LIBSVM\ printing\ by\ default}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ svm\_set\_print\_string\_function(\&\mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a850c5fe9eb025499770467be7a1e0225}{silent\_print}});}
+\DoxyCodeLine{00349\ \ \ \ \ \};}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00354\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a977a68ec02bf16e66314433ffd0d4034}{\string~SVM}}()\ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ svm\_free\_and\_destroy\_model(\&\mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a729ae6e934d962359165cdebff19b1f3}{model\_}});}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8775f7a7dccddec98f9b118d324fa39}{freeProblem}}(\&\mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a35e1d53006df2faa79ecda6ab442dbbd}{prob\_}});}
+\DoxyCodeLine{00357\ \ \ \ \ \};}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae78d34fbd7ba1b1df9d6f4c02da06cfc}{set}}(std::shared\_ptr<cmp::covariance::Covariance>\ \mbox{\hyperlink{namespacecmp_1_1covariance}{covariance}},\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ hpar,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&C,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&eps\ =\ 1e-\/3)\ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a63912997e1edf3fa83acbf55e8186d71}{initDefaultParameters}}(C,\ eps);}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ad16b27cc70a95b10e2c23874bbfb2d05}{covariance\_}}\ =\ \mbox{\hyperlink{namespacecmp_1_1covariance}{covariance}};}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a4bb2ca69fdd4d3d2bb0911a64f5ad8e7}{hyperparameters\_}}\ =\ hpar;}
+\DoxyCodeLine{00371\ \ \ \ \ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a7187b963753f5144570c9614acad57c3}{condition}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXs>\ \&labels);}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_aa892d97d4fd879e9d7e9467f72748aa1}{predict}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00396\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ad8f549d860b2677573184e6a7bf50833}{predictProbabilities}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00402\ \ \ \ \ std::pair<Eigen::VectorXd,\ double>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ad8fc3a646ff1396d275cfd57f789cd34}{getHyperparameters}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a4bb2ca69fdd4d3d2bb0911a64f5ad8e7}{hyperparameters\_}},\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{modelParameters\_}}.C\};}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a9fa21f962c732ebf5cc031d64f90dcc1}{fit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}\&\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp::statistics::KFold}}\&\ kf,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXs>\&\ membershipTable,\ Eigen::VectorXd\ lb,\ Eigen::VectorXd\ ub,\ nlopt::algorithm\ algo\ =\ nlopt::LN\_SBPLX,\ \textcolor{keywordtype}{double}\ ftol\_rel\ =\ 1e-\/4,\ std::vector<bool>\ logScaleFlags\ =\ \{\});}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a9fa21f962c732ebf5cc031d64f90dcc1}{fit}}(Eigen::Ref<const\ Eigen::MatrixXd>\ xObs,\ Eigen::Ref<const\ Eigen::VectorXs>\ membershipTable,\ Eigen::Ref<const\ Eigen::VectorXd>\ lb,\ Eigen::Ref<const\ Eigen::VectorXd>\ ub,\ nlopt::algorithm\ algo\ =\ nlopt::LN\_SBPLX,\ \textcolor{keywordtype}{double}\ ftol\_rel\ =\ 1e-\/4,\ std::vector<bool>\ logScaleFlags\ =\ \{\});}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00443\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a68b04d2c6f75957f002166dd70b63559}{objectiveFunctionCV}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}\&\ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp::statistics::KFold}}\&\ kf);}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a4858bf3959a3657f1c64732e966c4988}{objectiveFunctionSpan}}();}
+\DoxyCodeLine{00450\ \};}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00467\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy}{Dummy}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{Classifier}}\ \{}
+\DoxyCodeLine{00468\ \ \ private\ :}
+\DoxyCodeLine{00469\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a0a6469a29493976634805e354bb52ac2}{nClasses\_}}\{1\};\ }
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ public\ :}
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a0c1afa5f6e024a4582ba03d82c52a1f6}{condition}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&xObs,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXs>\ \&labels);}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a38f25279d0a890bcde125c2844b7dcd2}{predict}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00494\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy_a5d56e78020cbf38ab2d1dac2b898ffb0}{predictProbabilities}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \};}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \}\ \textcolor{comment}{//\ namespace\ cmp::classifier}}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CLASSIFIER\_H}}
+
+\end{DoxyCode}

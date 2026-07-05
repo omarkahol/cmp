@@ -1,0 +1,86 @@
+\doxysection{mean++.h}
+\hypertarget{mean_09_09_8h_source}{}\label{mean_09_09_8h_source}\index{include/mean++.h@{include/mean++.h}}
+\mbox{\hyperlink{mean_09_09_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MEANPP\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MEANPP\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1mean}{cmp::mean}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}}\ \{}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_afa5d512bd5c31b2a646c603e5300fd88}{\string~Mean}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a9baba3a56a23dadca372c919287e7e3e}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&par)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a3a961125a9875efd2fc0cde26430245f}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_ac07ce7fda90ebaaa9bfc282a43947c46}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}}\ \{}
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ab8304ecfdb2a9a1d1a62dd7b92b7cf68}{index\_}};}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ae3b46e92cb26e8504caf1ad11c9c80a6}{Constant}}(\mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}}\&\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a3aaa28960e127b1c064ec9ff29c21f54}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}}\&\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a0a184cc66886b90b6f5d2a454441debe}{operator=}}(\mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ab4916947f688df6257d0e5ea56146320}{Constant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&c)\ :\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ab8304ecfdb2a9a1d1a62dd7b92b7cf68}{index\_}}(c)\ \{\};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a9ede71ea6ef1d5a2721a61643906b2ea}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ par(\mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ab8304ecfdb2a9a1d1a62dd7b92b7cf68}{index\_}});}
+\DoxyCodeLine{00062\ \ \ \ \ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a410d0edef189f248e27d0f857df4ef22}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&log\_par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ab8304ecfdb2a9a1d1a62dd7b92b7cf68}{index\_}})\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a6e5efbc4382f2bb69fb03871e7b59dd7}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&log\_par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00080\ \ \ \ \ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Mean>\ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a26ada7c68a9afbb8e2104ae9be393e44}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&c)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Constant>(c);}
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}}\ \{}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a6eda99f1aa74af68db05b57410a5d1cc}{Zero}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a69c95608ff8053d3e4ddb3c188a033a9}{Zero}}(\mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}}\&\ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_aa82ab68d761d90726199ff290018860f}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}}\&\ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a0ee6111c0dcd2652fb3269be1dedcd67}{operator=}}(\mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_ab2d00feb375baf210b4813e519ad79f2}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00114\ \ \ \ \ \};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a9b428d03b73d73407d83f00317c73fe9}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&log\_par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00121\ \ \ \ \ \};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a0a89c9daf1c822f91492b2414a8783db}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&log\_par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00128\ \ \ \ \ \};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Mean>\ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a8659786dca9b22cca1a50397f1a4b543}{make}}()\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Zero>();}
+\DoxyCodeLine{00135\ \ \ \ \ \};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

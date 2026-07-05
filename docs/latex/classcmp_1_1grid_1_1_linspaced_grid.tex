@@ -1,0 +1,150 @@
+\doxysection{cmp\+::grid\+::Linspaced\+Grid Class Reference}
+\hypertarget{classcmp_1_1grid_1_1_linspaced_grid}{}\label{classcmp_1_1grid_1_1_linspaced_grid}\index{cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}}
+
+
+Linearly spaced Cartesian tensor product grid generator.  
+
+
+
+
+{\ttfamily \#include $<$grid.\+h$>$}
+
+Inheritance diagram for cmp\+::grid\+::Linspaced\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1grid_1_1_linspaced_grid}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aabcbbd2c6d0cc174f2cedba2b919ea84}{Linspaced\+Grid}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lower\+Bound, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&upper\+Bound)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1grid_1_1_linspaced_grid}{Linspaced\+Grid}. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_af404de350b5639c0ac250e00d4a4f6a9}{construct}} (const size\+\_\+t \&n\+Points) override
+\begin{DoxyCompactList}\small\item\em Constructs the linearly spaced grid matrix. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_ae97d1965714989ceb67f900c0430f76a}{dim}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{cmp\+::grid\+::\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\texorpdfstring{$\sim$}{\string~}\+Grid}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_a807c90b654f10c28ea194496e0e9158a}{grid\+Element}} (const size\+\_\+t \&index, const size\+\_\+t \&n\+\_\+pts, const size\+\_\+t \&\mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_ae97d1965714989ceb67f900c0430f76a}{dim}})
+\begin{DoxyCompactList}\small\item\em Helper to retrieve the multi-\/dimensional grid index matching a flat index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_af23f0162d71a9fb70939d4c55c27cc0e}{lower\+Bound\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_affe51c110c321cf4915e1f797afad7a0}{upper\+Bound\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Linearly spaced Cartesian tensor product grid generator. 
+
+Mathematical Formulation Given a total number of target points $N$, computes the number of points per dimension\+:   \[N_d = \lceil N^{1/D} \rceil
+\] Constructs a uniform Cartesian grid of size $N_d^D$. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_aabcbbd2c6d0cc174f2cedba2b919ea84}\index{cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}!LinspacedGrid@{LinspacedGrid}}
+\index{LinspacedGrid@{LinspacedGrid}!cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}}
+\doxysubsubsection{\texorpdfstring{LinspacedGrid()}{LinspacedGrid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_linspaced_grid_aabcbbd2c6d0cc174f2cedba2b919ea84} 
+cmp\+::grid\+::\+Linspaced\+Grid\+::\+Linspaced\+Grid (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lower\+Bound}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{upper\+Bound}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1grid_1_1_linspaced_grid}{Linspaced\+Grid}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower\+Bound} & The lower bounds of the hyperrectangle. \\
+\hline
+{\em upper\+Bound} & The upper bounds of the hyperrectangle. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_af404de350b5639c0ac250e00d4a4f6a9}\index{cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}!construct@{construct}}
+\index{construct@{construct}!cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_linspaced_grid_af404de350b5639c0ac250e00d4a4f6a9} 
+Eigen\+::\+Matrix\+Xd cmp\+::grid\+::\+Linspaced\+Grid\+::construct (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Constructs the linearly spaced grid matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Points} & Target number of points (actual size will be rounded up to the nearest perfect power). \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_ae97d1965714989ceb67f900c0430f76a}\index{cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}!dim@{dim}}
+\index{dim@{dim}!cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_linspaced_grid_ae97d1965714989ceb67f900c0430f76a} 
+size\+\_\+t cmp\+::grid\+::\+Linspaced\+Grid\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the dimension of the domain. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_a807c90b654f10c28ea194496e0e9158a}\index{cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}!gridElement@{gridElement}}
+\index{gridElement@{gridElement}!cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}}
+\doxysubsubsection{\texorpdfstring{gridElement()}{gridElement()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_linspaced_grid_a807c90b654f10c28ea194496e0e9158a} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::grid\+::\+Linspaced\+Grid\+::grid\+Element (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{index}{, }\item[{const size\+\_\+t \&}]{n\+\_\+pts}{, }\item[{const size\+\_\+t \&}]{dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper to retrieve the multi-\/dimensional grid index matching a flat index. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}\index{cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}!dimension\_@{dimension\_}}
+\index{dimension\_@{dimension\_}!cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}}
+\doxysubsubsection{\texorpdfstring{dimension\_}{dimension\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21} 
+size\+\_\+t cmp\+::grid\+::\+Linspaced\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_af23f0162d71a9fb70939d4c55c27cc0e}\index{cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_linspaced_grid_af23f0162d71a9fb70939d4c55c27cc0e} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Linspaced\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_linspaced_grid_affe51c110c321cf4915e1f797afad7a0}\index{cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::grid::LinspacedGrid@{cmp::grid::LinspacedGrid}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_linspaced_grid_affe51c110c321cf4915e1f797afad7a0} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Linspaced\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{grid_8h}{grid.\+h}}\item 
+src/\mbox{\hyperlink{grid_8cpp}{grid.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,401 @@
+\doxysection{grid.\+h}
+\hypertarget{grid_8h_source}{}\label{grid_8h_source}\index{include/grid.h@{include/grid.h}}
+\mbox{\hyperlink{grid_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GRID\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GRID\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <boost/math/special\_functions/prime.hpp>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <boost/random/sobol.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <boost/random/niederreiter\_base2.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <boost/random/faure.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{poly_8h}{poly.h}}>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1grid}{cmp::grid}}\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{Grid}}\ \{}
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{construct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&nPoints)\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{dim}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\string~Grid}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad4895def5371c3f3eb22b5ae68785b13}{SobolGrid}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{Grid}}\ \{}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ boost::random::sobol\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\_}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5}{lowerBound\_}};}
+\DoxyCodeLine{00050\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_afdf04d200badf8c27aa11930c3ef781b}{upperBound\_}};}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad4895def5371c3f3eb22b5ae68785b13}{SobolGrid}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&lowerBound,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&upperBound)\ :\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\_}}(lowerBound.size()),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}}(lowerBound.size()),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5}{lowerBound\_}}(lowerBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_afdf04d200badf8c27aa11930c3ef781b}{upperBound\_}}(upperBound)\ \{\}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acb8d1bf35f8934dd3c22468d47995fe7}{construct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&nPoints)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ points(nPoints,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}});}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::vector<boost::uint\_least64\_t>\ seq(\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}});}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nPoints;\ ++i)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\_}}.generate(seq.begin(),\ seq.end());}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}};\ ++d)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ points(i,\ d)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5}{lowerBound\_}}(d)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_afdf04d200badf8c27aa11930c3ef781b}{upperBound\_}}(d)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5}{lowerBound\_}}(d))\ *\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(seq[d])\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\_}}.max());}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ a\ list\ of\ indices\ and\ shuffle\ them}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ indices(nPoints);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ std::iota(indices.data(),\ indices.data()\ +\ indices.size(),\ 0);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ std::shuffle(indices.data(),\ indices.data()\ +\ indices.size(),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\_}});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ points\ =\ \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{cmp::slice}}(points,\ indices);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\_}}.discard(nPoints\ *\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}});\ \textcolor{comment}{//\ Advance\ the\ generator\ state}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Pure\ lazy\ evaluation}}
+\DoxyCodeLine{00080\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a24fc446f1ec159d901cae3c7fa2cdd9c}{operator()}}()\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ point(\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ std::vector<boost::uint\_least64\_t>\ seq(\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}});}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\_}}.generate(seq.begin(),\ seq.end());}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}};\ ++d)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ point(d)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5}{lowerBound\_}}(d)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_afdf04d200badf8c27aa11930c3ef781b}{upperBound\_}}(d)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_a8aa5a21d3c82401af7704374fac9bbe5}{lowerBound\_}}(d))\ *\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(seq[d])\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_acfdbb2faf5cbeb43f32f1fc79802d77d}{gen\_}}.max());}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ point;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ae78194e7d58008019ccaa037e56650ef}{dim}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_sobol_grid_ad8ecf037e12795ba116ea66e75b32540}{dimension\_}};}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ac9adcb70ea599f5628b13f5f675d7feb}{ScrambledSobolGrid}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{Grid}}\ \{}
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00115\ \ \ \ \ boost::random::sobol\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57}{gen\_}};}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2}{lowerBound\_}};}
+\DoxyCodeLine{00119\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d}{upperBound\_}};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ We\ need\ a\ unique\ seed\ for\ each\ dimension's\ permutation\ tree}}
+\DoxyCodeLine{00122\ \ \ \ \ std::vector<uint64\_t>\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b}{dim\_seeds\_}};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Fast\ bit-\/mixer\ to\ generate\ deterministic\ pseudo-\/randomness\ based\ on\ bit\ history}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint64\_t\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1924b37d4596dc588fc29e808c1e0056}{hash\_prefix}}(uint64\_t\ prefix,\ uint64\_t\ seed)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ uint64\_t\ v\ =\ prefix\ \string^\ seed;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ v\ \string^=\ v\ >>\ 30;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ v\ *=\ 0xbf58476d1ce4e5b9ULL;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ v\ \string^=\ v\ >>\ 27;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ v\ *=\ 0x94d049bb133111ebULL;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ v\ \string^=\ v\ >>\ 31;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ True\ stateless\ nested\ Owen\ Scrambling}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint64\_t\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a163f8a21135138f16ec10831ecbabf32}{owen\_scramble}}(uint64\_t\ val,\ uint64\_t\ seed)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ uint64\_t\ result\ =\ 0;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 64;\ ++i)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ shift\ =\ 63\ -\/\ i;}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ permutation\ of\ this\ bit\ depends\ ONLY\ on\ the\ preceding\ bits\ (the\ prefix)}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ uint64\_t\ prefix\ =\ (i\ ==\ 0)\ ?\ 0\ :\ (val\ >>\ (shift\ +\ 1));}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hash\ the\ prefix\ and\ seed\ to\ decide\ whether\ to\ flip\ the\ current\ bit}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ uint64\_t\ flip\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1924b37d4596dc588fc29e808c1e0056}{hash\_prefix}}(prefix,\ seed)\ \&\ 1;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ uint64\_t\ bit\ =\ ((val\ >>\ shift)\ \&\ 1)\ \string^\ flip;}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ (result\ <<\ 1)\ |\ bit;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ac9adcb70ea599f5628b13f5f675d7feb}{ScrambledSobolGrid}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&lowerBound,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&upperBound,}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ seed\ =\ 42)}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57}{gen\_}}(lowerBound.size()),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}}(lowerBound.size()),}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2}{lowerBound\_}}(lowerBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d}{upperBound\_}}(upperBound)\ \{}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ a\ unique\ scrambling\ seed\ for\ each\ dimension}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ std::default\_random\_engine\ rng(seed);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b}{dim\_seeds\_}}.resize(\mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}});}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}};\ ++i)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b}{dim\_seeds\_}}[i]\ =\ rng();}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a4217b3651d34e52703221085eb6887fa}{construct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&nPoints)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ points(nPoints,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nPoints;\ ++i)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ points.row(i)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ab349e5b8ff42a49ec36222e01ca091a5}{operator()}}();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//\ Pure\ lazy\ evaluation}}
+\DoxyCodeLine{00177\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ab349e5b8ff42a49ec36222e01ca091a5}{operator()}}()\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ point(\mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}});}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ std::vector<boost::uint\_least64\_t>\ seq(\mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}});}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57}{gen\_}}.generate(seq.begin(),\ seq.end());}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ max\_val\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57}{gen\_}}.max());}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}};\ ++d)\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Normalize\ the\ boost\ integer\ to\ [0,\ 1)}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ u\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(seq[d])\ /\ max\_val;}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Map\ into\ a\ full\ 64-\/bit\ integer\ representing\ the\ fractional\ bits}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (Bit\ 63\ is\ the\ 0.5\ space\ cut,\ bit\ 62\ is\ 0.25,\ etc.)}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Using\ 18446744073709551615.0\ (which\ is\ 2\string^64\ -\/\ 1)}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ uint64\_t\ fractional\_bits\ =\ \textcolor{keyword}{static\_cast<}uint64\_t\textcolor{keyword}{>}(u\ *\ 18446744073709551615.0);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Apply\ the\ true\ Owen\ scrambling\ algorithm}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ uint64\_t\ scrambled\_bits\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a163f8a21135138f16ec10831ecbabf32}{owen\_scramble}}(fractional\_bits,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b}{dim\_seeds\_}}[d]);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Map\ back\ to\ [0,\ 1]\ float\ space}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ scrambled\_u\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(scrambled\_bits)\ /\ 18446744073709551615.0;}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5.\ Scale\ to\ final\ parameter\ bounds}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ point(d)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2}{lowerBound\_}}(d)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d}{upperBound\_}}(d)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2}{lowerBound\_}}(d))\ *\ scrambled\_u;}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ point;}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ad8710b483a2302c1a4d0446410e7b33b}{dim}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\_}};}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00219\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_ab770e33976b9a444c6144c2fcc3d6bc0}{MonteCarloGrid}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{Grid}}\ \{}
+\DoxyCodeLine{00220\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\_}};}
+\DoxyCodeLine{00222\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286}{rng\_}};}
+\DoxyCodeLine{00223\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553}{dist\_}};}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}{lowerBound\_}};}
+\DoxyCodeLine{00226\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707}{upperBound\_}};}
+\DoxyCodeLine{00227\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00234\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_ab770e33976b9a444c6144c2fcc3d6bc0}{MonteCarloGrid}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&lowerBound,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&upperBound,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ seed\ =\ 42)}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\_}}(lowerBound.size()),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}{lowerBound\_}}(lowerBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707}{upperBound\_}}(upperBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286}{rng\_}}(seed),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553}{dist\_}}(0.0,\ 1.0)\ \{\}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00241\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a0afe702679d6e5aae6a086ec961fd483}{construct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&nPoints)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ points(nPoints,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\_}});}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nPoints;\ ++i)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\_}};\ ++j)\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ points(i,\ j)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}{lowerBound\_}}(j)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707}{upperBound\_}}(j)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}{lowerBound\_}}(j))\ *\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553}{dist\_}}(\mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286}{rng\_}});}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00254\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_af0eb9f14154a48b03ed37ea87aad1d71}{operator()}}()\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ point(\mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\_}});}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\_}};\ ++j)\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ point(j)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}{lowerBound\_}}(j)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707}{upperBound\_}}(j)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}{lowerBound\_}}(j))\ *\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553}{dist\_}}(\mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286}{rng\_}});}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ point;}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_ad99f8459f435c900dd6a414e5e7661a8}{dim}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\_}};}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \};}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00285\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a1f501738b14eb1b40b659005a3b72ccc}{LatinHypercubeGrid}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{Grid}}\ \{}
+\DoxyCodeLine{00286\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a37a783cf2f9a727dc052ee7a8f1f1f3b}{dimension\_}};}
+\DoxyCodeLine{00288\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_aeeedede702f88c134e09204bc69c6861}{rng\_}};}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a2bced99f184fa78a4acc24b004bd1d34}{lowerBound\_}};}
+\DoxyCodeLine{00291\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_abe236a7bcf0af0f3e02763158305ef08}{upperBound\_}};}
+\DoxyCodeLine{00292\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00299\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a1f501738b14eb1b40b659005a3b72ccc}{LatinHypercubeGrid}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&lowerBound,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&upperBound,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ seed\ =\ 42)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a2bced99f184fa78a4acc24b004bd1d34}{lowerBound\_}}(lowerBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_abe236a7bcf0af0f3e02763158305ef08}{upperBound\_}}(upperBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_aeeedede702f88c134e09204bc69c6861}{rng\_}}(seed),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a37a783cf2f9a727dc052ee7a8f1f1f3b}{dimension\_}}(lowerBound.size())\ \{\}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00306\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_aeb0f180fe3a8928cc373d132c1a9f084}{construct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&nPoints)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ grid\_points(nPoints,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a37a783cf2f9a727dc052ee7a8f1f1f3b}{dimension\_}});}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ std::uniform\_real\_distribution<double>\ dist(0.0,\ 1.0);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a37a783cf2f9a727dc052ee7a8f1f1f3b}{dimension\_}};\ j++)\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bins\ 0..nPoints-\/1}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<size\_t>\ bins(nPoints);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ std::iota(bins.begin(),\ bins.end(),\ 0);}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ shuffle\ the\ bin\ order\ for\ this\ dimension}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ std::shuffle(bins.begin(),\ bins.end(),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_aeeedede702f88c134e09204bc69c6861}{rng\_}});}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ assign\ a\ random\ location\ inside\ each\ bin}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nPoints;\ i++)\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ u\ =\ dist(\mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_aeeedede702f88c134e09204bc69c6861}{rng\_}});\ \ \textcolor{comment}{//\ random\ offset}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ grid\_points(i,\ j)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a2bced99f184fa78a4acc24b004bd1d34}{lowerBound\_}}(j)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_abe236a7bcf0af0f3e02763158305ef08}{upperBound\_}}(j)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a2bced99f184fa78a4acc24b004bd1d34}{lowerBound\_}}(j))\ *\ (bins[i]\ +\ u)\ /\ double(nPoints);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ grid\_points;}
+\DoxyCodeLine{00327\ \ \ \ \ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_ad7c69c621e2cca950944639a11784010}{dim}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_latin_hypercube_grid_a37a783cf2f9a727dc052ee7a8f1f1f3b}{dimension\_}};}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00347\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aabcbbd2c6d0cc174f2cedba2b919ea84}{LinspacedGrid}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{Grid}}\ \{}
+\DoxyCodeLine{00348\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}};}
+\DoxyCodeLine{00350\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_af23f0162d71a9fb70939d4c55c27cc0e}{lowerBound\_}};}
+\DoxyCodeLine{00351\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_affe51c110c321cf4915e1f797afad7a0}{upperBound\_}};}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_a807c90b654f10c28ea194496e0e9158a}{gridElement}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&n\_pts,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&\mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_ae97d1965714989ceb67f900c0430f76a}{dim}});}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00364\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aabcbbd2c6d0cc174f2cedba2b919ea84}{LinspacedGrid}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&lowerBound,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&upperBound)}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_af23f0162d71a9fb70939d4c55c27cc0e}{lowerBound\_}}(lowerBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_affe51c110c321cf4915e1f797afad7a0}{upperBound\_}}(upperBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}}(lowerBound.size())\ \{\}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00371\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_af404de350b5639c0ac250e00d4a4f6a9}{construct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&nPoints)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ number\ of\ points\ per\ dimension}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ n\_pts\_per\_dim\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(std::ceil(std::pow(nPoints,\ 1.0\ /\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}})));}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ total\_points\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(std::pow(n\_pts\_per\_dim,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}}));}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ grid\_points(total\_points,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}});}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ total\_points;\ i++)\ \{}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Index\ will\ be\ updated\ to\ contain\ numbers\ from\ 0\ to\ n-\/1}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ index(\mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}});}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Generate\ current\ indices\ for\ the\ parameters}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ index\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_a807c90b654f10c28ea194496e0e9158a}{gridElement}}(i,\ n\_pts\_per\_dim,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}});}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}};\ j++)\ \{}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ perform\ a\ linear\ mapping\ to\ [0,1]}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ grid\_points(i,\ j)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_af23f0162d71a9fb70939d4c55c27cc0e}{lowerBound\_}}(j)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_affe51c110c321cf4915e1f797afad7a0}{upperBound\_}}(j)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_af23f0162d71a9fb70939d4c55c27cc0e}{lowerBound\_}}(j))\ *\ (index[j]\ +\ 0.5)\ /\ double(n\_pts\_per\_dim);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ grid\_points;}
+\DoxyCodeLine{00394\ \ \ \ \ \}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_ae97d1965714989ceb67f900c0430f76a}{dim}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_linspaced_grid_aaf6349c8fada923424337ca464d52e21}{dimension\_}};}
+\DoxyCodeLine{00401\ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \};}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00411\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_aeab07744c83038da074f94e383d822f4}{NiederreiterGrid}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{Grid}}\ \{}
+\DoxyCodeLine{00412\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00413\ \ \ \ \ boost::random::niederreiter\_base2\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\_}};}
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}};}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935}{lowerBound\_}};}
+\DoxyCodeLine{00417\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_aaec0f73a436f7cb852c9f34ee9f292f4}{upperBound\_}};}
+\DoxyCodeLine{00418\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_aeab07744c83038da074f94e383d822f4}{NiederreiterGrid}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&lowerBound,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&upperBound)}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\_}}(lowerBound.size()),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}}(lowerBound.size()),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935}{lowerBound\_}}(lowerBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_aaec0f73a436f7cb852c9f34ee9f292f4}{upperBound\_}}(upperBound)\ \{\}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00431\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a70c25c779cde7125df09c8887db42c50}{construct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&nPoints)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ points(nPoints,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}});}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ std::vector<boost::uint\_least64\_t>\ seq(\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}});}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nPoints;\ ++i)\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\_}}.generate(seq.begin(),\ seq.end());}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}};\ ++d)\ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ points(i,\ d)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935}{lowerBound\_}}(d)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_aaec0f73a436f7cb852c9f34ee9f292f4}{upperBound\_}}(d)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935}{lowerBound\_}}(d))\ *\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(seq[d])\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\_}}.max());}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ a\ list\ of\ indices\ and\ shuffle\ them}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ indices(nPoints);}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ std::iota(indices.data(),\ indices.data()\ +\ indices.size(),\ 0);}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ std::shuffle(indices.data(),\ indices.data()\ +\ indices.size(),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\_}});}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ points\ =\ \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{cmp::slice}}(points,\ indices);}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\_}}.discard(nPoints\ *\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}});\ \textcolor{comment}{//\ Advance\ the\ generator\ state}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00453\ \ \ \ \ \}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00458\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a37927080ba5cd6d41e884e874fc356bc}{operator()}}()\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ point(\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}});}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ std::vector<boost::uint\_least64\_t>\ seq(\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}});}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\_}}.generate(seq.begin(),\ seq.end());}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}};\ ++d)\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ point(d)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935}{lowerBound\_}}(d)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_aaec0f73a436f7cb852c9f34ee9f292f4}{upperBound\_}}(d)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935}{lowerBound\_}}(d))\ *\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(seq[d])\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\_}}.max());}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ point;}
+\DoxyCodeLine{00468\ \ \ \ \ \}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a7afa6391e5e4959d19a384625956d9b9}{dim}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\_}};}
+\DoxyCodeLine{00475\ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \};}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00484\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a2d114cc1df2cbb8eb1e9ed781077761a}{FaureGrid}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{Grid}}\ \{}
+\DoxyCodeLine{00485\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00486\ \ \ \ \ boost::random::faure\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}{gen\_}};}
+\DoxyCodeLine{00487\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a1060bccbe1bf199bb4aaace62bb234e8}{rng\_}};}
+\DoxyCodeLine{00488\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}};}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9}{lowerBound\_}};}
+\DoxyCodeLine{00491\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a6c4be4c601d6ba60df9928d946431313}{upperBound\_}};}
+\DoxyCodeLine{00492\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00499\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a2d114cc1df2cbb8eb1e9ed781077761a}{FaureGrid}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&lowerBound,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&upperBound,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ seed\ =\ 42)}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}{gen\_}}(lowerBound.size()),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a1060bccbe1bf199bb4aaace62bb234e8}{rng\_}}(seed),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}}(lowerBound.size()),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9}{lowerBound\_}}(lowerBound),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a6c4be4c601d6ba60df9928d946431313}{upperBound\_}}(upperBound)\ \{\}}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00506\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a7396f2455fcd4b0fe7c25c3644d22b44}{construct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&nPoints)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ points(nPoints,\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}});}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ std::vector<boost::uint\_least64\_t>\ seq(\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}});}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nPoints;\ ++i)\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}{gen\_}}.generate(seq.begin(),\ seq.end());}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}};\ ++d)\ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ points(i,\ d)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9}{lowerBound\_}}(d)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a6c4be4c601d6ba60df9928d946431313}{upperBound\_}}(d)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9}{lowerBound\_}}(d))\ *\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(seq[d])\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}{gen\_}}.max());}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ a\ list\ of\ indices\ and\ shuffle\ them}}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ indices(nPoints);}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ std::iota(indices.data(),\ indices.data()\ +\ indices.size(),\ 0);}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ std::shuffle(indices.data(),\ indices.data()\ +\ indices.size(),\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a1060bccbe1bf199bb4aaace62bb234e8}{rng\_}});}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ points\ =\ \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{cmp::slice}}(points,\ indices);}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}{gen\_}}.discard(nPoints\ *\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}});\ \textcolor{comment}{//\ Advance\ the\ generator\ state}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00528\ \ \ \ \ \}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00533\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a1ab2135277c596aa3edbca0da3bff89a}{operator()}}()\ \{}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ point(\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}});}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ std::vector<boost::uint\_least64\_t>\ seq(\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}});}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}{gen\_}}.generate(seq.begin(),\ seq.end());}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ d\ =\ 0;\ d\ <\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}};\ ++d)\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ point(d)\ =\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9}{lowerBound\_}}(d)\ +\ (\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a6c4be4c601d6ba60df9928d946431313}{upperBound\_}}(d)\ -\/\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9}{lowerBound\_}}(d))\ *\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(seq[d])\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}{gen\_}}.max());}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ point;}
+\DoxyCodeLine{00543\ \ \ \ \ \}}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00548\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a2db7c0ec848c430be37b62b1c4004601}{dim}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\_}};}
+\DoxyCodeLine{00550\ \ \ \ \ \}}
+\DoxyCodeLine{00551\ \};}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \}}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

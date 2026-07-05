@@ -1,0 +1,121 @@
+\doxysection{cmp\+::cluster\+::Dummy\+Cluster Class Reference}
+\hypertarget{classcmp_1_1cluster_1_1_dummy_cluster}{}\label{classcmp_1_1cluster_1_1_dummy_cluster}\index{cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}}
+
+
+Simple partitioning algorithm that assigns observations to clusters uniformly at random.  
+
+
+
+
+{\ttfamily \#include $<$cluster.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_ad79c1ddf389f7c96bc2b57a06cecbe03}{Dummy\+Cluster}} (size\+\_\+t n\+Clusters, unsigned int seed=42)
+\item 
+void \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_ad466acb58ffc955424660ef4da57089d}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&points)
+\begin{DoxyCompactList}\small\item\em Randomly assigns each data point to a cluster uniformly at random. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \& \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_ae114e57f9bcaa1a6877e6f6d31256ceb}{get\+Labels}} () const
+\begin{DoxyCompactList}\small\item\em Gets the randomly generated cluster labels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a7c8e182f83e36d9f1c7dce68653b335c}{n\+Clusters\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Number of target clusters. \end{DoxyCompactList}\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_aaf87d5ed7f495e9c3be8613ce822ae8d}{rng\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Random number generator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a47b1c931dbb1a64e2ca9290dd4081174}{labels\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Vector of randomly assigned labels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple partitioning algorithm that assigns observations to clusters uniformly at random. 
+
+Mathematical Formulation Each sample index $i$ is assigned a cluster assignment variable $z_i$ drawn from a discrete uniform distribution\+:   \[P(z_i = k) = \frac{1}{K}, \quad k \in \{0, 1, \dots, K-1\}
+\] where $K$ is the number of target clusters.
+
+Implementation Algorithm The {\ttfamily \doxylink{classcmp_1_1cluster_1_1_dummy_cluster_ad466acb58ffc955424660ef4da57089d}{fit()}} function constructs a {\ttfamily std\+::uniform\+\_\+int\+\_\+distribution} and samples an integer in the range $[0, K-1]$ for each data point sequentially. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_ad79c1ddf389f7c96bc2b57a06cecbe03}\index{cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}!DummyCluster@{DummyCluster}}
+\index{DummyCluster@{DummyCluster}!cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}}
+\doxysubsubsection{\texorpdfstring{DummyCluster()}{DummyCluster()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dummy_cluster_ad79c1ddf389f7c96bc2b57a06cecbe03} 
+cmp\+::cluster\+::\+Dummy\+Cluster\+::\+Dummy\+Cluster (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n\+Clusters}{, }\item[{unsigned int}]{seed}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_ad466acb58ffc955424660ef4da57089d}\index{cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}!fit@{fit}}
+\index{fit@{fit}!cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dummy_cluster_ad466acb58ffc955424660ef4da57089d} 
+void cmp\+::cluster\+::\+Dummy\+Cluster\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Randomly assigns each data point to a cluster uniformly at random. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & Matrix of points. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_ae114e57f9bcaa1a6877e6f6d31256ceb}\index{cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}!getLabels@{getLabels}}
+\index{getLabels@{getLabels}!cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}}
+\doxysubsubsection{\texorpdfstring{getLabels()}{getLabels()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dummy_cluster_ae114e57f9bcaa1a6877e6f6d31256ceb} 
+const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \& cmp\+::cluster\+::\+Dummy\+Cluster\+::get\+Labels (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the randomly generated cluster labels. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the label vector. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_a47b1c931dbb1a64e2ca9290dd4081174}\index{cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}!labels\_@{labels\_}}
+\index{labels\_@{labels\_}!cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}}
+\doxysubsubsection{\texorpdfstring{labels\_}{labels\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dummy_cluster_a47b1c931dbb1a64e2ca9290dd4081174} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::cluster\+::\+Dummy\+Cluster\+::labels\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector of randomly assigned labels. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_a7c8e182f83e36d9f1c7dce68653b335c}\index{cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}!nClusters\_@{nClusters\_}}
+\index{nClusters\_@{nClusters\_}!cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}}
+\doxysubsubsection{\texorpdfstring{nClusters\_}{nClusters\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dummy_cluster_a7c8e182f83e36d9f1c7dce68653b335c} 
+size\+\_\+t cmp\+::cluster\+::\+Dummy\+Cluster\+::n\+Clusters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of target clusters. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dummy_cluster_aaf87d5ed7f495e9c3be8613ce822ae8d}\index{cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::cluster::DummyCluster@{cmp::cluster::DummyCluster}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dummy_cluster_aaf87d5ed7f495e9c3be8613ce822ae8d} 
+std\+::default\+\_\+random\+\_\+engine cmp\+::cluster\+::\+Dummy\+Cluster\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Random number generator. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{cluster_8h}{cluster.\+h}}\end{DoxyCompactItemize}

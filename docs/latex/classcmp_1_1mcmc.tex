@@ -1,0 +1,318 @@
+\doxysection{mcmc Class Reference}
+\hypertarget{classcmp_1_1mcmc}{}\label{classcmp_1_1mcmc}\index{mcmc@{mcmc}}
+
+
+{\ttfamily \#include $<$mcmc.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1mcmc_a2d9e71ed9f8074479184972eb985a801}{mcmc}} (size\+\_\+t dim)
+\begin{DoxyCompactList}\small\item\em Construct a new mcmc chain object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1mcmc_a51fe7aa7635559602da7a45010715a79}{mcmc}} ()=default
+\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_a5c1786ffec118222f4129655822dcebd}{seed}} (Eigen\+::\+Vector\+Xd par, double score=0.\+0)
+\begin{DoxyCompactList}\small\item\em Initialize the chain. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_af4eae494bc4338b7324c9612a1c97cd2}{init}} (\mbox{\hyperlink{classcmp_1_1multivariate__distribution}{cmp\+::multivariate\+\_\+distribution}} \texorpdfstring{$\ast$}{*}proposal)
+\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_a08c3c9307d30c3eeae8859bb3ca6363c}{increase\+\_\+steps}} ()
+\begin{DoxyCompactList}\small\item\em Increase the number of steps. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_ae724ca920887cca839cb6d4839b1912d}{step}} (const \mbox{\hyperlink{namespacecmp_a17c0c4f6e3630f71fa31481832c4b270}{score\+\_\+t}} \&\mbox{\hyperlink{classcmp_1_1mcmc_a871a2bbcbdd528f0c8b517c7d2172708}{get\+\_\+score}}, bool DR\+\_\+\+STEP=false, double gamma=0.\+2)
+\begin{DoxyCompactList}\small\item\em Perform a single MCMC step (without updating the mean and cov) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classcmp_1_1mcmc_a872f22b4966c571bb1cb8ef9260e9576}{accept}} (const Eigen\+::\+Vector\+Xd \&par, double score)
+\begin{DoxyCompactList}\small\item\em Accept or reject a candidate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_ac5c54df7ed3b930268c8d7752c101725}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates the value of the mean and covariance matrix. \end{DoxyCompactList}\item 
+Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1mcmc_a39140ff21327f2e5924ff4683a33ec89}{get\+\_\+adapted\+\_\+cov}} ()
+\begin{DoxyCompactList}\small\item\em Get a covariance matrix adapted to the samples. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_ad20897c5c8bd47f5d4005989bead0e55}{reset}} ()
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_a2d8cf06f8cbfbc26408fdaccf564642e}{get\+\_\+par}} () const
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_a871a2bbcbdd528f0c8b517c7d2172708}{get\+\_\+score}} () const
+\begin{DoxyCompactList}\small\item\em Get the current score. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_a17ea40a5d74a45e048e14f9ee65e0a89}{get\+\_\+dim}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_ac2bcbf4c7255ea25070cd34c76e73168}{get\+\_\+steps}} () const
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_a1e4e30a0631a4e9485c6cc8c80d9e7cf}{get\+\_\+acceptance\+\_\+ratio}} () const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_a78e9b14ecd7b20adf69dbda16c3c0b3c}{get\+\_\+mean}} () const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_a137f7b9a8ef305d327e0c606dc91ab17}{get\+\_\+cov}} () const
+\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_af2960d58af494b4d0b2380a50c7eaa4d}{info}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_a71cea137adb4df06681ae5ae6ce87b0c}{m\+\_\+par}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_affe93b5e6890ca3d05272e2c103f1a9e}{m\+\_\+score}} \{0.\+0\}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_a329f60154839437fc2169d9332736246}{m\+\_\+dim}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_a2d3d8f97e81bf4e8819faacfc9cb2571}{m\+\_\+steps}} \{0\}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_a8caa3c9662f75c606632cb968c85bb66}{m\+\_\+accepts}} \{0\}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_a44499c009e2c19ac90821ab9c8577d12}{m\+\_\+mean}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_a5520c3e3910672fccc9afb500d290c75}{m\+\_\+cov}}
+\item 
+\mbox{\hyperlink{classcmp_1_1multivariate__distribution}{cmp\+::multivariate\+\_\+distribution}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1mcmc_a4f051277504ede2d557e6cc7de5cb7b2}{m\+\_\+proposal}}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_a536090f54aadf998e77eb43f9a3cdcc1}{m\+\_\+dist\+\_\+u}} \{0,1\}
+\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1mcmc_ab87936222927514d508a650e68578672}{m\+\_\+rng}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1mcmc_a2d9e71ed9f8074479184972eb985a801}\index{mcmc@{mcmc}!mcmc@{mcmc}}
+\index{mcmc@{mcmc}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{mcmc()}{mcmc()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a2d9e71ed9f8074479184972eb985a801} 
+\mbox{\hyperlink{classcmp_1_1mcmc}{mcmc}} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{dim}{}\end{DoxyParamCaption})}
+
+
+
+Construct a new mcmc chain object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & the size of the chain (number of parameters) \\
+\hline
+{\em rng} & the random number generator \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1mcmc_a51fe7aa7635559602da7a45010715a79}\index{mcmc@{mcmc}!mcmc@{mcmc}}
+\index{mcmc@{mcmc}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{mcmc()}{mcmc()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a51fe7aa7635559602da7a45010715a79} 
+\mbox{\hyperlink{classcmp_1_1mcmc}{mcmc}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1mcmc_a872f22b4966c571bb1cb8ef9260e9576}\index{mcmc@{mcmc}!accept@{accept}}
+\index{accept@{accept}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a872f22b4966c571bb1cb8ef9260e9576} 
+bool accept (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{double}]{score}{}\end{DoxyParamCaption})}
+
+
+
+Accept or reject a candidate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & The candidate \\
+\hline
+{\em score} & The score of the candidate \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1mcmc_a1e4e30a0631a4e9485c6cc8c80d9e7cf}\index{mcmc@{mcmc}!get\_acceptance\_ratio@{get\_acceptance\_ratio}}
+\index{get\_acceptance\_ratio@{get\_acceptance\_ratio}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{get\_acceptance\_ratio()}{get\_acceptance\_ratio()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a1e4e30a0631a4e9485c6cc8c80d9e7cf} 
+double get\+\_\+acceptance\+\_\+ratio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Return the number of steps performed \Hypertarget{classcmp_1_1mcmc_a39140ff21327f2e5924ff4683a33ec89}\index{mcmc@{mcmc}!get\_adapted\_cov@{get\_adapted\_cov}}
+\index{get\_adapted\_cov@{get\_adapted\_cov}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{get\_adapted\_cov()}{get\_adapted\_cov()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a39140ff21327f2e5924ff4683a33ec89} 
+Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ get\+\_\+adapted\+\_\+cov (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get a covariance matrix adapted to the samples. 
+
+\begin{DoxyNote}{Note}
+The covariance matrix is adapted to the samples by computing their covariance and multiplying it by a factor of 2.\+38\texorpdfstring{$^\wedge$}{\string^}2/d
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+Eigen\+::\+LLT$<$\+Eigen\+::\+Matrix\+Xd$>$ 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_a137f7b9a8ef305d327e0c606dc91ab17}\index{mcmc@{mcmc}!get\_cov@{get\_cov}}
+\index{get\_cov@{get\_cov}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{get\_cov()}{get\_cov()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a137f7b9a8ef305d327e0c606dc91ab17} 
+Eigen\+::\+Matrix\+Xd get\+\_\+cov (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Return the covariance of the data \Hypertarget{classcmp_1_1mcmc_a17ea40a5d74a45e048e14f9ee65e0a89}\index{mcmc@{mcmc}!get\_dim@{get\_dim}}
+\index{get\_dim@{get\_dim}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{get\_dim()}{get\_dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a17ea40a5d74a45e048e14f9ee65e0a89} 
+size\+\_\+t get\+\_\+dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Return the dimension of the chain \Hypertarget{classcmp_1_1mcmc_a78e9b14ecd7b20adf69dbda16c3c0b3c}\index{mcmc@{mcmc}!get\_mean@{get\_mean}}
+\index{get\_mean@{get\_mean}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{get\_mean()}{get\_mean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a78e9b14ecd7b20adf69dbda16c3c0b3c} 
+Eigen\+::\+Vector\+Xd get\+\_\+mean (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Return the mean of the data \Hypertarget{classcmp_1_1mcmc_a2d8cf06f8cbfbc26408fdaccf564642e}\index{mcmc@{mcmc}!get\_par@{get\_par}}
+\index{get\_par@{get\_par}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{get\_par()}{get\_par()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a2d8cf06f8cbfbc26408fdaccf564642e} 
+Eigen\+::\+Vector\+Xd get\+\_\+par (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Return the current parameter \Hypertarget{classcmp_1_1mcmc_a871a2bbcbdd528f0c8b517c7d2172708}\index{mcmc@{mcmc}!get\_score@{get\_score}}
+\index{get\_score@{get\_score}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{get\_score()}{get\_score()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a871a2bbcbdd528f0c8b517c7d2172708} 
+double get\+\_\+score (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the current score. 
+
+\begin{DoxyReturn}{Returns}
+the score 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1mcmc_ac2bcbf4c7255ea25070cd34c76e73168}\index{mcmc@{mcmc}!get\_steps@{get\_steps}}
+\index{get\_steps@{get\_steps}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{get\_steps()}{get\_steps()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_ac2bcbf4c7255ea25070cd34c76e73168} 
+size\+\_\+t get\+\_\+steps (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Return the number of steps performed \Hypertarget{classcmp_1_1mcmc_a08c3c9307d30c3eeae8859bb3ca6363c}\index{mcmc@{mcmc}!increase\_steps@{increase\_steps}}
+\index{increase\_steps@{increase\_steps}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{increase\_steps()}{increase\_steps()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a08c3c9307d30c3eeae8859bb3ca6363c} 
+void increase\+\_\+steps (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Increase the number of steps. 
+
+\Hypertarget{classcmp_1_1mcmc_af2960d58af494b4d0b2380a50c7eaa4d}\index{mcmc@{mcmc}!info@{info}}
+\index{info@{info}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_af2960d58af494b4d0b2380a50c7eaa4d} 
+void info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Log the total number of steps, acceptance ratio, data mean and covariance. \Hypertarget{classcmp_1_1mcmc_af4eae494bc4338b7324c9612a1c97cd2}\index{mcmc@{mcmc}!init@{init}}
+\index{init@{init}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_af4eae494bc4338b7324c9612a1c97cd2} 
+void init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1multivariate__distribution}{cmp\+::multivariate\+\_\+distribution}} \texorpdfstring{$\ast$}{*}}]{proposal}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1mcmc_ad20897c5c8bd47f5d4005989bead0e55}\index{mcmc@{mcmc}!reset@{reset}}
+\index{reset@{reset}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_ad20897c5c8bd47f5d4005989bead0e55} 
+void reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Reset the value of the mean and of the covariance matrix. Reset the number of steps and number of accepted steps. Does not reset the value of the proposal covariance matrix. \Hypertarget{classcmp_1_1mcmc_a5c1786ffec118222f4129655822dcebd}\index{mcmc@{mcmc}!seed@{seed}}
+\index{seed@{seed}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{seed()}{seed()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a5c1786ffec118222f4129655822dcebd} 
+void seed (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{par}{, }\item[{double}]{score}{ = {\ttfamily 0.0}}\end{DoxyParamCaption})}
+
+
+
+Initialize the chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em par} & The proposal value of the parameters \\
+\hline
+{\em score} & The initial score (default is zero) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1mcmc_ae724ca920887cca839cb6d4839b1912d}\index{mcmc@{mcmc}!step@{step}}
+\index{step@{step}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_ae724ca920887cca839cb6d4839b1912d} 
+void step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecmp_a17c0c4f6e3630f71fa31481832c4b270}{score\+\_\+t}} \&}]{get\+\_\+score}{, }\item[{bool}]{DR\+\_\+\+STEP}{ = {\ttfamily false}, }\item[{double}]{gamma}{ = {\ttfamily 0.2}}\end{DoxyParamCaption})}
+
+
+
+Perform a single MCMC step (without updating the mean and cov) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em get\+\_\+score} & The score function \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1mcmc_ac5c54df7ed3b930268c8d7752c101725}\index{mcmc@{mcmc}!update@{update}}
+\index{update@{update}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_ac5c54df7ed3b930268c8d7752c101725} 
+void update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the value of the mean and covariance matrix. 
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{classcmp_1_1mcmc_a8caa3c9662f75c606632cb968c85bb66}\index{mcmc@{mcmc}!m\_accepts@{m\_accepts}}
+\index{m\_accepts@{m\_accepts}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_accepts}{m\_accepts}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a8caa3c9662f75c606632cb968c85bb66} 
+size\+\_\+t m\+\_\+accepts \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_a5520c3e3910672fccc9afb500d290c75}\index{mcmc@{mcmc}!m\_cov@{m\_cov}}
+\index{m\_cov@{m\_cov}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_cov}{m\_cov}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a5520c3e3910672fccc9afb500d290c75} 
+Eigen\+::\+Matrix\+Xd m\+\_\+cov\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_a329f60154839437fc2169d9332736246}\index{mcmc@{mcmc}!m\_dim@{m\_dim}}
+\index{m\_dim@{m\_dim}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_dim}{m\_dim}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a329f60154839437fc2169d9332736246} 
+size\+\_\+t m\+\_\+dim\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_a536090f54aadf998e77eb43f9a3cdcc1}\index{mcmc@{mcmc}!m\_dist\_u@{m\_dist\_u}}
+\index{m\_dist\_u@{m\_dist\_u}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_dist\_u}{m\_dist\_u}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a536090f54aadf998e77eb43f9a3cdcc1} 
+std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ m\+\_\+dist\+\_\+u \{0,1\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_a44499c009e2c19ac90821ab9c8577d12}\index{mcmc@{mcmc}!m\_mean@{m\_mean}}
+\index{m\_mean@{m\_mean}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_mean}{m\_mean}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a44499c009e2c19ac90821ab9c8577d12} 
+Eigen\+::\+Vector\+Xd m\+\_\+mean\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_a71cea137adb4df06681ae5ae6ce87b0c}\index{mcmc@{mcmc}!m\_par@{m\_par}}
+\index{m\_par@{m\_par}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_par}{m\_par}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a71cea137adb4df06681ae5ae6ce87b0c} 
+Eigen\+::\+Vector\+Xd m\+\_\+par\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_a4f051277504ede2d557e6cc7de5cb7b2}\index{mcmc@{mcmc}!m\_proposal@{m\_proposal}}
+\index{m\_proposal@{m\_proposal}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_proposal}{m\_proposal}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a4f051277504ede2d557e6cc7de5cb7b2} 
+\mbox{\hyperlink{classcmp_1_1multivariate__distribution}{cmp\+::multivariate\+\_\+distribution}}\texorpdfstring{$\ast$}{*} m\+\_\+proposal\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_ab87936222927514d508a650e68578672}\index{mcmc@{mcmc}!m\_rng@{m\_rng}}
+\index{m\_rng@{m\_rng}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_rng}{m\_rng}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_ab87936222927514d508a650e68578672} 
+std\+::default\+\_\+random\+\_\+engine m\+\_\+rng\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_affe93b5e6890ca3d05272e2c103f1a9e}\index{mcmc@{mcmc}!m\_score@{m\_score}}
+\index{m\_score@{m\_score}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_score}{m\_score}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_affe93b5e6890ca3d05272e2c103f1a9e} 
+double m\+\_\+score \{0.\+0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classcmp_1_1mcmc_a2d3d8f97e81bf4e8819faacfc9cb2571}\index{mcmc@{mcmc}!m\_steps@{m\_steps}}
+\index{m\_steps@{m\_steps}!mcmc@{mcmc}}
+\doxysubsubsection{\texorpdfstring{m\_steps}{m\_steps}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_a2d3d8f97e81bf4e8819faacfc9cb2571} 
+size\+\_\+t m\+\_\+steps \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mcmc_8h}{mcmc.\+h}}\item 
+src/\mbox{\hyperlink{mcmc_8cpp}{mcmc.\+cpp}}\end{DoxyCompactItemize}

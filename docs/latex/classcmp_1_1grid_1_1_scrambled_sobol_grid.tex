@@ -1,0 +1,161 @@
+\doxysection{cmp\+::grid\+::Scrambled\+Sobol\+Grid Class Reference}
+\hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid}{}\label{classcmp_1_1grid_1_1_scrambled_sobol_grid}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+
+
+Owen-\/scrambled Sobol low-\/discrepancy sequence grid generator.  
+
+
+
+
+{\ttfamily \#include $<$grid.\+h$>$}
+
+Inheritance diagram for cmp\+::grid\+::Scrambled\+Sobol\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1grid_1_1_scrambled_sobol_grid}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ac9adcb70ea599f5628b13f5f675d7feb}{Scrambled\+Sobol\+Grid}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lower\+Bound, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&upper\+Bound, unsigned int seed=42)
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a4217b3651d34e52703221085eb6887fa}{construct}} (const size\+\_\+t \&n\+Points) override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ab349e5b8ff42a49ec36222e01ca091a5}{operator()}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_ad8710b483a2302c1a4d0446410e7b33b}{dim}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{cmp\+::grid\+::\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\texorpdfstring{$\sim$}{\string~}\+Grid}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1924b37d4596dc588fc29e808c1e0056}{hash\+\_\+prefix}} (uint64\+\_\+t prefix, uint64\+\_\+t seed)
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a163f8a21135138f16ec10831ecbabf32}{owen\+\_\+scramble}} (uint64\+\_\+t val, uint64\+\_\+t seed)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::random\+::sobol \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57}{gen\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2}{lower\+Bound\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d}{upper\+Bound\+\_\+}}
+\item 
+std\+::vector$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b}{dim\+\_\+seeds\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Owen-\/scrambled Sobol low-\/discrepancy sequence grid generator. 
+
+Mathematical Formulation Owen scrambling randomized digital nets by applying random permutations on the digital trees. It preserves the low-\/discrepancy property\+:   \[D_N^*(\mathcal{P}) = O\left( \frac{\log^D N}{N} \right)
+\] while providing unbiased estimates and improving the numerical integration variance rate to $o(N^{-1})$.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Obtains Sobol sequences from the underlying Boost generator.
+\item Maps values to 64-\/bit unsigned integers representing fractional components.
+\item Applies a recursive bitwise Owen scrambled hash permutation using the prefix history.
+\item Maps the scrambled values back to floating point space and scales them to the boundaries. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_ac9adcb70ea599f5628b13f5f675d7feb}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!ScrambledSobolGrid@{ScrambledSobolGrid}}
+\index{ScrambledSobolGrid@{ScrambledSobolGrid}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{ScrambledSobolGrid()}{ScrambledSobolGrid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_ac9adcb70ea599f5628b13f5f675d7feb} 
+cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::\+Scrambled\+Sobol\+Grid (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lower\+Bound}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{upper\+Bound}{, }\item[{unsigned int}]{seed}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_a4217b3651d34e52703221085eb6887fa}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!construct@{construct}}
+\index{construct@{construct}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_a4217b3651d34e52703221085eb6887fa} 
+Eigen\+::\+Matrix\+Xd cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::construct (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_ad8710b483a2302c1a4d0446410e7b33b}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!dim@{dim}}
+\index{dim@{dim}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_ad8710b483a2302c1a4d0446410e7b33b} 
+size\+\_\+t cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1924b37d4596dc588fc29e808c1e0056}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!hash\_prefix@{hash\_prefix}}
+\index{hash\_prefix@{hash\_prefix}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{hash\_prefix()}{hash\_prefix()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1924b37d4596dc588fc29e808c1e0056} 
+uint64\+\_\+t cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::hash\+\_\+prefix (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{prefix}{, }\item[{uint64\+\_\+t}]{seed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_ab349e5b8ff42a49ec36222e01ca091a5}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!operator()@{operator()}}
+\index{operator()@{operator()}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_ab349e5b8ff42a49ec36222e01ca091a5} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::operator() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_a163f8a21135138f16ec10831ecbabf32}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!owen\_scramble@{owen\_scramble}}
+\index{owen\_scramble@{owen\_scramble}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{owen\_scramble()}{owen\_scramble()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_a163f8a21135138f16ec10831ecbabf32} 
+uint64\+\_\+t cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::owen\+\_\+scramble (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{val}{, }\item[{uint64\+\_\+t}]{seed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!dim\_seeds\_@{dim\_seeds\_}}
+\index{dim\_seeds\_@{dim\_seeds\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{dim\_seeds\_}{dim\_seeds\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b} 
+std\+::vector$<$uint64\+\_\+t$>$ cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::dim\+\_\+seeds\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!dimension\_@{dimension\_}}
+\index{dimension\_@{dimension\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{dimension\_}{dimension\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98} 
+size\+\_\+t cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!gen\_@{gen\_}}
+\index{gen\_@{gen\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{gen\_}{gen\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57} 
+boost\+::random\+::sobol cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::gen\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{grid_8h}{grid.\+h}}\end{DoxyCompactItemize}

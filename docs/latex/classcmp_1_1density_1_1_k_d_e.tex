@@ -1,0 +1,259 @@
+\doxysection{cmp\+::density\+::KDE Class Reference}
+\hypertarget{classcmp_1_1density_1_1_k_d_e}{}\label{classcmp_1_1density_1_1_k_d_e}\index{cmp::density::KDE@{cmp::density::KDE}}
+
+
+Multivariate Kernel Density Estimation (\doxylink{classcmp_1_1density_1_1_k_d_e}{KDE}) class.  
+
+
+
+
+{\ttfamily \#include $<$kde.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188}{Band\+Width\+Selection\+Method}} \{ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188ac43507d936eb0cb2aecfd4bee979abdd}{SCOTT}}
+, \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188a8a282c9226e821541630e24586705549}{SILVERMAN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}{KDE}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE}. Creates a \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} with identity bandwidth and Gaussian kernel in 1D. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a17ae9ce7ab56879d916b160584b34323}{KDE}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{kernel\+::\+Bandwidth}} $>$ bandwidth, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}} $>$ kernel)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} with specified bandwidth and kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a11ef130726a41ed562db4f7a9fb47f9e}{KDE}} (const \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \&other)
+\item 
+\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a6ea99af10e747bc2894934fb819bfc85}{KDE}} (\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \&\&other) noexcept
+\item 
+\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \& \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ad956265e0db067e9522f7474c482620b}{operator=}} (const \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \&other)
+\item 
+\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \& \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a124d20c4097a4d2a8d22b5e546273f88}{operator=}} (\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \&\&other) noexcept
+\item 
+void \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a025590cc89bd18ec0ed2aac677253323}{set}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{kernel\+::\+Bandwidth}} $>$ \&bandwidth, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}} $>$ \&kernel)
+\begin{DoxyCompactList}\small\item\em Set the bandwidth and kernel for the \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a9c351627adef2b24a76e8c53bbcea22b}{condition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data, bool copy\+Data=false)
+\begin{DoxyCompactList}\small\item\em Condition the \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} on the provided data. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a0de562b368818bb4de7a7d28d5e7ff4b}{eval}} (const Eigen\+::\+Vector\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Evaluate the \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} at a given point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{kernel\+::\+Bandwidth}} $>$ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ac97423fe85996294aa3bf78f109b0bf6}{bandwidth\+\_\+}} \{nullptr\}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}} $>$ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ad8fb8ff20577b4c336f5d8b23533539e}{kernel\+\_\+}} \{nullptr\}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_abbd042fc66194b2bd62f2081c6211e27}{data\+\_\+}} \{0, 0\}
+\item 
+std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a0a98e878d5290410650631c70ec14dfc}{p\+Data\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aded9b5a2a69f20ec644b0219f48adae8}{is\+Owning\+\_\+}} \{false\}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a7c6b3d52a0f91618985dba1d1ecbc3e6}{dim\+\_\+}} \{0\}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a5f5e313a0cfe43a372d5f3016ea73300}{n\+Points\+\_\+}} \{0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Multivariate Kernel Density Estimation (\doxylink{classcmp_1_1density_1_1_k_d_e}{KDE}) class. 
+
+Mathematical Formulation Evaluates the multivariate probability density function estimate of a random vector $\mathbf{x} \in \mathbb{R}^D$ based on observations $\{\mathbf{x}_i\}_{i=1}^N$\+:   \[\hat{f}(\mathbf{x}) = \frac{1}{N} \sum_{i=1}^N \frac{1}{\det(\mathbf{H})} K\left( \mathbf{H}^{-1} (\mathbf{x} - \mathbf{x}_i) \right)
+\] where $\mathbf{H}$ is the bandwidth matrix and $K$ is the multi-\/dimensional kernel function.
+\begin{DoxyItemize}
+\item Scott\textquotesingle{}s Rule\+: $H_{dd} = N^{-1/(D+4)} \hat{\sigma}_d$
+\item Silverman\textquotesingle{}s Rule\+: $H_{dd} = \left(\frac{4}{D+2}\right)^{1/(D+4)} N^{-1/(D+4)} \hat{\sigma}_d$ where $\hat{\sigma}_d$ is the standard deviation of coordinate $d$.
+\end{DoxyItemize}
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{classcmp_1_1density_1_1_k_d_e_a9c351627adef2b24a76e8c53bbcea22b}{condition()}} registers the dataset references.
+\item {\ttfamily \doxylink{classcmp_1_1density_1_1_k_d_e_a0de562b368818bb4de7a7d28d5e7ff4b}{eval()}} averages kernel evaluations over all conditioning observation points, scaled by the determinant of the bandwidth matrix. 
+\end{DoxyEnumerate}
+
+\label{doc-enum-members}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188}\index{cmp::density::KDE@{cmp::density::KDE}!BandWidthSelectionMethod@{BandWidthSelectionMethod}}
+\index{BandWidthSelectionMethod@{BandWidthSelectionMethod}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{BandWidthSelectionMethod}{BandWidthSelectionMethod}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188} 
+enum class \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188}{cmp\+::density\+::\+KDE\+::\+Band\+Width\+Selection\+Method}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SCOTT@{SCOTT}!cmp::density::KDE@{cmp::density::KDE}}\index{cmp::density::KDE@{cmp::density::KDE}!SCOTT@{SCOTT}}}\Hypertarget{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188ac43507d936eb0cb2aecfd4bee979abdd}\label{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188ac43507d936eb0cb2aecfd4bee979abdd} 
+SCOTT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SILVERMAN@{SILVERMAN}!cmp::density::KDE@{cmp::density::KDE}}\index{cmp::density::KDE@{cmp::density::KDE}!SILVERMAN@{SILVERMAN}}}\Hypertarget{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188a8a282c9226e821541630e24586705549}\label{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188a8a282c9226e821541630e24586705549} 
+SILVERMAN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}\index{cmp::density::KDE@{cmp::density::KDE}!KDE@{KDE}}
+\index{KDE@{KDE}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{KDE()}{KDE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09} 
+cmp\+::density\+::\+KDE\+::\+KDE (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor for \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE}. Creates a \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} with identity bandwidth and Gaussian kernel in 1D. 
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a17ae9ce7ab56879d916b160584b34323}\index{cmp::density::KDE@{cmp::density::KDE}!KDE@{KDE}}
+\index{KDE@{KDE}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{KDE()}{KDE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a17ae9ce7ab56879d916b160584b34323} 
+cmp\+::density\+::\+KDE\+::\+KDE (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{kernel\+::\+Bandwidth}} $>$}]{bandwidth}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}} $>$}]{kernel}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} with specified bandwidth and kernel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bandwidth} & Shared pointer to the bandwidth object. \\
+\hline
+{\em kernel} & Shared pointer to the kernel object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a11ef130726a41ed562db4f7a9fb47f9e}\index{cmp::density::KDE@{cmp::density::KDE}!KDE@{KDE}}
+\index{KDE@{KDE}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{KDE()}{KDE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a11ef130726a41ed562db4f7a9fb47f9e} 
+cmp\+::density\+::\+KDE\+::\+KDE (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \&}]{other}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a6ea99af10e747bc2894934fb819bfc85}\index{cmp::density::KDE@{cmp::density::KDE}!KDE@{KDE}}
+\index{KDE@{KDE}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{KDE()}{KDE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a6ea99af10e747bc2894934fb819bfc85} 
+cmp\+::density\+::\+KDE\+::\+KDE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a9c351627adef2b24a76e8c53bbcea22b}\index{cmp::density::KDE@{cmp::density::KDE}!condition@{condition}}
+\index{condition@{condition}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{condition()}{condition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a9c351627adef2b24a76e8c53bbcea22b} 
+void cmp\+::density\+::\+KDE\+::condition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{, }\item[{bool}]{copy\+Data}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Condition the \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} on the provided data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data matrix where each row is a data point. \\
+\hline
+{\em copy\+Data} & If true, the data is copied into the \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} object; if false, a reference is kept. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a0de562b368818bb4de7a7d28d5e7ff4b}\index{cmp::density::KDE@{cmp::density::KDE}!eval@{eval}}
+\index{eval@{eval}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a0de562b368818bb4de7a7d28d5e7ff4b} 
+double cmp\+::density\+::\+KDE\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{}\end{DoxyParamCaption}) const}
+
+
+
+Evaluate the \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE} at a given point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to evaluate the density estimate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The estimated density at point x. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_ad956265e0db067e9522f7474c482620b}\index{cmp::density::KDE@{cmp::density::KDE}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_ad956265e0db067e9522f7474c482620b} 
+\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{cmp\+::density\+::\+KDE}} \& cmp\+::density\+::\+KDE\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \&}]{other}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a124d20c4097a4d2a8d22b5e546273f88}\index{cmp::density::KDE@{cmp::density::KDE}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a124d20c4097a4d2a8d22b5e546273f88} 
+\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{cmp\+::density\+::\+KDE}} \& cmp\+::density\+::\+KDE\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a025590cc89bd18ec0ed2aac677253323}\index{cmp::density::KDE@{cmp::density::KDE}!set@{set}}
+\index{set@{set}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a025590cc89bd18ec0ed2aac677253323} 
+void cmp\+::density\+::\+KDE\+::set (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{kernel\+::\+Bandwidth}} $>$ \&}]{bandwidth}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}} $>$ \&}]{kernel}{}\end{DoxyParamCaption})}
+
+
+
+Set the bandwidth and kernel for the \doxylink{classcmp_1_1density_1_1_k_d_e}{KDE}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bandwidth} & Shared pointer to the bandwidth object. \\
+\hline
+{\em kernel} & Shared pointer to the kernel object. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_ac97423fe85996294aa3bf78f109b0bf6}\index{cmp::density::KDE@{cmp::density::KDE}!bandwidth\_@{bandwidth\_}}
+\index{bandwidth\_@{bandwidth\_}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{bandwidth\_}{bandwidth\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_ac97423fe85996294aa3bf78f109b0bf6} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{kernel\+::\+Bandwidth}}$>$ cmp\+::density\+::\+KDE\+::bandwidth\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_abbd042fc66194b2bd62f2081c6211e27}\index{cmp::density::KDE@{cmp::density::KDE}!data\_@{data\_}}
+\index{data\_@{data\_}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{data\_}{data\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_abbd042fc66194b2bd62f2081c6211e27} 
+Eigen\+::\+Matrix\+Xd cmp\+::density\+::\+KDE\+::data\+\_\+ \{0, 0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a7c6b3d52a0f91618985dba1d1ecbc3e6}\index{cmp::density::KDE@{cmp::density::KDE}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a7c6b3d52a0f91618985dba1d1ecbc3e6} 
+size\+\_\+t cmp\+::density\+::\+KDE\+::dim\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_aded9b5a2a69f20ec644b0219f48adae8}\index{cmp::density::KDE@{cmp::density::KDE}!isOwning\_@{isOwning\_}}
+\index{isOwning\_@{isOwning\_}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{isOwning\_}{isOwning\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_aded9b5a2a69f20ec644b0219f48adae8} 
+bool cmp\+::density\+::\+KDE\+::is\+Owning\+\_\+ \{false\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_ad8fb8ff20577b4c336f5d8b23533539e}\index{cmp::density::KDE@{cmp::density::KDE}!kernel\_@{kernel\_}}
+\index{kernel\_@{kernel\_}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{kernel\_}{kernel\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_ad8fb8ff20577b4c336f5d8b23533539e} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}}$>$ cmp\+::density\+::\+KDE\+::kernel\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a5f5e313a0cfe43a372d5f3016ea73300}\index{cmp::density::KDE@{cmp::density::KDE}!nPoints\_@{nPoints\_}}
+\index{nPoints\_@{nPoints\_}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{nPoints\_}{nPoints\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a5f5e313a0cfe43a372d5f3016ea73300} 
+size\+\_\+t cmp\+::density\+::\+KDE\+::n\+Points\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1density_1_1_k_d_e_a0a98e878d5290410650631c70ec14dfc}\index{cmp::density::KDE@{cmp::density::KDE}!pData\_@{pData\_}}
+\index{pData\_@{pData\_}!cmp::density::KDE@{cmp::density::KDE}}
+\doxysubsubsection{\texorpdfstring{pData\_}{pData\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1density_1_1_k_d_e_a0a98e878d5290410650631c70ec14dfc} 
+std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ $>$ cmp\+::density\+::\+KDE\+::p\+Data\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kde_8h}{kde.\+h}}\item 
+src/\mbox{\hyperlink{kde_8cpp}{kde.\+cpp}}\end{DoxyCompactItemize}

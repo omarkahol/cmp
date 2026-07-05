@@ -1,0 +1,118 @@
+\doxysection{cmp\+::kernel\+::Epanechnikov Class Reference}
+\hypertarget{classcmp_1_1kernel_1_1_epanechnikov}{}\label{classcmp_1_1kernel_1_1_epanechnikov}\index{cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}}
+
+
+\doxylink{classcmp_1_1kernel_1_1_epanechnikov}{Epanechnikov} (parabolic) density kernel.  
+
+
+
+
+{\ttfamily \#include $<$kernel++.\+h$>$}
+
+Inheritance diagram for cmp\+::kernel\+::Epanechnikov\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1kernel_1_1_epanechnikov}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a9478a3763346d37fa3576398afe3ce0d}{Epanechnikov}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_aee71c6de645381a8262c5a86b9969c0c}{eval}} (const Eigen\+::\+Vector\+Xd \&z\+\_\+diff) const override
+\begin{DoxyCompactList}\small\item\em Evaluates the unnormalized \doxylink{classcmp_1_1kernel_1_1_epanechnikov}{Epanechnikov} kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a96c071d4b783b7e3cc73038e0df45c35}{normalization\+Constant}} (const size\+\_\+t \&dim) const override
+\begin{DoxyCompactList}\small\item\em Returns the normalization constant for a given dimension. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_a609c5f59d390ef31f60980fdf63b8227}{apply\+To\+Gradient}} (const Eigen\+::\+Vector\+Xd \&z, const Eigen\+::\+Vector\+Xd \&grad\+\_\+z\+\_\+i) const override
+\begin{DoxyCompactList}\small\item\em Computes the gradient of the kernel evaluation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{cmp\+::kernel\+::\+Kernel}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad1d785fbdc3a74aedfa575053b09bb0}{\texorpdfstring{$\sim$}{\string~}\+Kernel}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}} $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_epanechnikov_af3171106e52bfff69338f17f2684cc4c}{make}} ()
+\begin{DoxyCompactList}\small\item\em Factory method for creating an \doxylink{classcmp_1_1kernel_1_1_epanechnikov}{Epanechnikov} kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classcmp_1_1kernel_1_1_epanechnikov}{Epanechnikov} (parabolic) density kernel. 
+
+Mathematical Formulation The multivariate \doxylink{classcmp_1_1kernel_1_1_epanechnikov}{Epanechnikov} kernel\+:   \[K(\mathbf{z}) \propto \begin{cases} 1 - \|\mathbf{z}\|_2^2 & \text{if } \|\mathbf{z}\|_2 \le 1 \\ 0 & \text{otherwise} \end{cases}
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1kernel_1_1_epanechnikov_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_epanechnikov_a9478a3763346d37fa3576398afe3ce0d}\index{cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}!Epanechnikov@{Epanechnikov}}
+\index{Epanechnikov@{Epanechnikov}!cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}}
+\doxysubsubsection{\texorpdfstring{Epanechnikov()}{Epanechnikov()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_epanechnikov_a9478a3763346d37fa3576398afe3ce0d} 
+cmp\+::kernel\+::\+Epanechnikov\+::\+Epanechnikov (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1kernel_1_1_epanechnikov_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_epanechnikov_a609c5f59d390ef31f60980fdf63b8227}\index{cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}!applyToGradient@{applyToGradient}}
+\index{applyToGradient@{applyToGradient}!cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}}
+\doxysubsubsection{\texorpdfstring{applyToGradient()}{applyToGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_epanechnikov_a609c5f59d390ef31f60980fdf63b8227} 
+double cmp\+::kernel\+::\+Epanechnikov\+::apply\+To\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{z}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{grad\+\_\+z\+\_\+i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the gradient of the kernel evaluation. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad7b69ab20fe331b1b9e64ca9afa10ad}{cmp\+::kernel\+::\+Kernel}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_epanechnikov_aee71c6de645381a8262c5a86b9969c0c}\index{cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}!eval@{eval}}
+\index{eval@{eval}!cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_epanechnikov_aee71c6de645381a8262c5a86b9969c0c} 
+double cmp\+::kernel\+::\+Epanechnikov\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{z\+\_\+diff}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the unnormalized \doxylink{classcmp_1_1kernel_1_1_epanechnikov}{Epanechnikov} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a93a0f6bc1b69f2398d9fdc0f36bd01bb}{cmp\+::kernel\+::\+Kernel}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_epanechnikov_af3171106e52bfff69338f17f2684cc4c}\index{cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}!make@{make}}
+\index{make@{make}!cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_epanechnikov_af3171106e52bfff69338f17f2684cc4c} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}} $>$ cmp\+::kernel\+::\+Epanechnikov\+::make (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating an \doxylink{classcmp_1_1kernel_1_1_epanechnikov}{Epanechnikov} kernel. 
+
+\Hypertarget{classcmp_1_1kernel_1_1_epanechnikov_a96c071d4b783b7e3cc73038e0df45c35}\index{cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}!normalizationConstant@{normalizationConstant}}
+\index{normalizationConstant@{normalizationConstant}!cmp::kernel::Epanechnikov@{cmp::kernel::Epanechnikov}}
+\doxysubsubsection{\texorpdfstring{normalizationConstant()}{normalizationConstant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_epanechnikov_a96c071d4b783b7e3cc73038e0df45c35} 
+double cmp\+::kernel\+::\+Epanechnikov\+::normalization\+Constant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{dim}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the normalization constant for a given dimension. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a8e73dd33c293a97bb12cb3dc1b22725a}{cmp\+::kernel\+::\+Kernel}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kernel_09_09_8h}{kernel++.\+h}}\item 
+src/\mbox{\hyperlink{kernel_09_09_8cpp}{kernel++.\+cpp}}\end{DoxyCompactItemize}

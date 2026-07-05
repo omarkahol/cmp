@@ -1,0 +1,118 @@
+\doxysection{cmp\+::kernel\+::Gaussian Class Reference}
+\hypertarget{classcmp_1_1kernel_1_1_gaussian}{}\label{classcmp_1_1kernel_1_1_gaussian}\index{cmp::kernel::Gaussian@{cmp::kernel::Gaussian}}
+
+
+Standard \doxylink{classcmp_1_1kernel_1_1_gaussian}{Gaussian} density kernel.  
+
+
+
+
+{\ttfamily \#include $<$kernel++.\+h$>$}
+
+Inheritance diagram for cmp\+::kernel\+::Gaussian\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1kernel_1_1_gaussian}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a8e9f7bd5513c1c92df9021315297fe55}{Gaussian}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a45c5037253b8b75056a5dbdbac8eacea}{eval}} (const Eigen\+::\+Vector\+Xd \&z\+\_\+diff) const override
+\begin{DoxyCompactList}\small\item\em Evaluates the unnormalized \doxylink{classcmp_1_1kernel_1_1_gaussian}{Gaussian} kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_aca2277b5c630a150e95a1401576d90a4}{normalization\+Constant}} (const size\+\_\+t \&dim) const override
+\begin{DoxyCompactList}\small\item\em Returns the normalization constant for a given dimension. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a28505136011d51c47cf5a545d5e7fda8}{apply\+To\+Gradient}} (const Eigen\+::\+Vector\+Xd \&z, const Eigen\+::\+Vector\+Xd \&grad\+\_\+z\+\_\+i) const override
+\begin{DoxyCompactList}\small\item\em Computes the gradient of the kernel evaluation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{cmp\+::kernel\+::\+Kernel}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad1d785fbdc3a74aedfa575053b09bb0}{\texorpdfstring{$\sim$}{\string~}\+Kernel}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}} $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_gaussian_a2ad6859667a4598245cb917eb4ce4d0c}{make}} ()
+\begin{DoxyCompactList}\small\item\em Factory method for creating a \doxylink{classcmp_1_1kernel_1_1_gaussian}{Gaussian} kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Standard \doxylink{classcmp_1_1kernel_1_1_gaussian}{Gaussian} density kernel. 
+
+Mathematical Formulation The standard multivariate \doxylink{classcmp_1_1kernel_1_1_gaussian}{Gaussian} density kernel\+:   \[K(\mathbf{z}) = (2\pi)^{-D/2} \exp\left(-\frac{1}{2} \|\mathbf{z}\|_2^2 \right)
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1kernel_1_1_gaussian_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_gaussian_a8e9f7bd5513c1c92df9021315297fe55}\index{cmp::kernel::Gaussian@{cmp::kernel::Gaussian}!Gaussian@{Gaussian}}
+\index{Gaussian@{Gaussian}!cmp::kernel::Gaussian@{cmp::kernel::Gaussian}}
+\doxysubsubsection{\texorpdfstring{Gaussian()}{Gaussian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_gaussian_a8e9f7bd5513c1c92df9021315297fe55} 
+cmp\+::kernel\+::\+Gaussian\+::\+Gaussian (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1kernel_1_1_gaussian_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_gaussian_a28505136011d51c47cf5a545d5e7fda8}\index{cmp::kernel::Gaussian@{cmp::kernel::Gaussian}!applyToGradient@{applyToGradient}}
+\index{applyToGradient@{applyToGradient}!cmp::kernel::Gaussian@{cmp::kernel::Gaussian}}
+\doxysubsubsection{\texorpdfstring{applyToGradient()}{applyToGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_gaussian_a28505136011d51c47cf5a545d5e7fda8} 
+double cmp\+::kernel\+::\+Gaussian\+::apply\+To\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{z}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{grad\+\_\+z\+\_\+i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the gradient of the kernel evaluation. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad7b69ab20fe331b1b9e64ca9afa10ad}{cmp\+::kernel\+::\+Kernel}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_gaussian_a45c5037253b8b75056a5dbdbac8eacea}\index{cmp::kernel::Gaussian@{cmp::kernel::Gaussian}!eval@{eval}}
+\index{eval@{eval}!cmp::kernel::Gaussian@{cmp::kernel::Gaussian}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_gaussian_a45c5037253b8b75056a5dbdbac8eacea} 
+double cmp\+::kernel\+::\+Gaussian\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{z\+\_\+diff}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the unnormalized \doxylink{classcmp_1_1kernel_1_1_gaussian}{Gaussian} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a93a0f6bc1b69f2398d9fdc0f36bd01bb}{cmp\+::kernel\+::\+Kernel}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_gaussian_a2ad6859667a4598245cb917eb4ce4d0c}\index{cmp::kernel::Gaussian@{cmp::kernel::Gaussian}!make@{make}}
+\index{make@{make}!cmp::kernel::Gaussian@{cmp::kernel::Gaussian}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_gaussian_a2ad6859667a4598245cb917eb4ce4d0c} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}} $>$ cmp\+::kernel\+::\+Gaussian\+::make (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating a \doxylink{classcmp_1_1kernel_1_1_gaussian}{Gaussian} kernel. 
+
+\Hypertarget{classcmp_1_1kernel_1_1_gaussian_aca2277b5c630a150e95a1401576d90a4}\index{cmp::kernel::Gaussian@{cmp::kernel::Gaussian}!normalizationConstant@{normalizationConstant}}
+\index{normalizationConstant@{normalizationConstant}!cmp::kernel::Gaussian@{cmp::kernel::Gaussian}}
+\doxysubsubsection{\texorpdfstring{normalizationConstant()}{normalizationConstant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_gaussian_aca2277b5c630a150e95a1401576d90a4} 
+double cmp\+::kernel\+::\+Gaussian\+::normalization\+Constant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{dim}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the normalization constant for a given dimension. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a8e73dd33c293a97bb12cb3dc1b22725a}{cmp\+::kernel\+::\+Kernel}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kernel_09_09_8h}{kernel++.\+h}}\item 
+src/\mbox{\hyperlink{kernel_09_09_8cpp}{kernel++.\+cpp}}\end{DoxyCompactItemize}

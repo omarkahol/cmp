@@ -1,0 +1,118 @@
+\doxysection{cmp\+\_\+defines.\+h}
+\hypertarget{cmp__defines_8h_source}{}\label{cmp__defines_8h_source}\index{include/cmp\_defines.h@{include/cmp\_defines.h}}
+\mbox{\hyperlink{cmp__defines_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CMP\_DEFINES\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CMP\_DEFINES\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <nlopt.hpp>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ Additional\ Eigen\ typedefs}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{VectorXs}}\ =\ Matrix<size\_t,\ Eigen::Dynamic,\ 1>;}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a18ada0943b60e75012f5515f0cccdc71}{TOL}}\ =\ 1e-\/12;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Dummy\ Matrix\ and\ Vector}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ Eigen::MatrixXd\ \mbox{\hyperlink{namespacecmp_a5476a9005fef87fe8be6e524e232bc98}{DummyMatrix}}(0,\ 0);}
+\DoxyCodeLine{00034\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \mbox{\hyperlink{namespacecmp_a4f75935600bc75d75cd4e2be2b052b7d}{DummyVector}}(0);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcmp_1_1_vector_like}{VectorLike}}\ =\ \textcolor{keyword}{requires}(T\ a,\ \textcolor{keywordtype}{size\_t}\ i)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{typename}\ T::value\_type;}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ a.size()}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ -\/>\ std::convertible\_to<size\_t>;}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ a[i]}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ -\/>\ std::convertible\_to<typename\ T::value\_type>;}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ a.data()}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ -\/>\ std::convertible\_to<const\ typename\ T::value\_type*>;}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ a.begin()}
+\DoxyCodeLine{00067\ \ \ \ \ \};}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ a.end()}
+\DoxyCodeLine{00070\ \ \ \ \ \};}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ Define\ a\ \ \ Eigen::VectorXd\ of\ size\ 1\ containing\ the\ value\ zero\ and\ one\ containing\ the\ value\ one}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \mbox{\hyperlink{namespacecmp_ae1760e4cac40f3ce4dfd20eaa3b0bfa0}{ScalarZero}}\ =\ Eigen::VectorXd::Zero(1);}
+\DoxyCodeLine{00075\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \mbox{\hyperlink{namespacecmp_a4620b6017bcf39ea112d4d3c156f572c}{ScalarOne}}\ =\ \ Eigen::VectorXd::Ones(1);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\_t}}\ =\ std::function<double(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&)>;}
+\DoxyCodeLine{00083\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\_t}}\ =\ std::function<Eigen::VectorXd(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\&)>;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{inline}\ Eigen::LDLT<Eigen::MatrixXd>\ \mbox{\hyperlink{namespacecmp_ab31a233db5724680beea2f084e788593}{ldltDecomposition}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&cov)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ cov.ldlt();}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}\ <VectorLike\ V>}
+\DoxyCodeLine{00118\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacecmp_aed2492db04bf5592363dd260d1ec4916}{asEigen}}(\textcolor{keyword}{const}\ V\ \&v)\ -\/>\ Eigen::Map<const\ Eigen::Matrix<typename\ V::value\_type,\ Eigen::Dynamic,\ 1>>\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{using\ }T\ =\ \textcolor{keyword}{typename}\ V::value\_type;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::Map<const\ Eigen::Matrix<T,\ Eigen::Dynamic,\ 1>>(v.data(),\ \textcolor{keyword}{static\_cast<}Eigen::Index\textcolor{keyword}{>}(v.size()));}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}\ <VectorLike\ V>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacecmp_aed2492db04bf5592363dd260d1ec4916}{asEigen}}(V\ \&v)\ -\/>\ Eigen::Map<Eigen::Matrix<typename\ V::value\_type,\ Eigen::Dynamic,\ 1>>\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{using\ }T\ =\ \textcolor{keyword}{typename}\ V::value\_type;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::Map<Eigen::Matrix<T,\ Eigen::Dynamic,\ 1>>(v.data(),\ \textcolor{keyword}{static\_cast<}Eigen::Index\textcolor{keyword}{>}(v.size()));}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}\ <VectorLike\ V>}
+\DoxyCodeLine{00144\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacecmp_a4598dd0b664a7aca04f272933e62a9e6}{toEigen}}(\textcolor{keyword}{const}\ V\ \&v)\ -\/>\ Eigen::VectorXd\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{using\ }T\ =\ \textcolor{keyword}{typename}\ V::value\_type;}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::Map<const\ Eigen::Matrix<T,\ Eigen::Dynamic,\ 1>>(v.data(),\ \textcolor{keyword}{static\_cast<}Eigen::Index\textcolor{keyword}{>}(v.size()));}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{template}\ <VectorLike\ V>}
+\DoxyCodeLine{00157\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacecmp_a72460633038acb89481cec84c091f8a0}{toStdVector}}(\textcolor{keyword}{const}\ V\ \&v)\ -\/>\ std::vector<typename\ V::value\_type>\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{using\ }T\ =\ \textcolor{keyword}{typename}\ V::value\_type;}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ std::vector<T>(v.begin(),\ v.end());}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00178\ \textcolor{keyword}{typename}\ Derived::PlainObject\ \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{slice}}(\textcolor{keyword}{const}\ Eigen::MatrixBase<Derived>\&\ mat,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\&\ indices)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{typename}\ Derived::PlainObject\ result(indices.size(),\ mat.cols());}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{for}(Eigen::Index\ i\ =\ 0;\ i\ <\ indices.size();\ ++i)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ result.row(i)\ =\ mat.row(indices(i));}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00184\ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DerivedX,\ \textcolor{keyword}{typename}\ DerivedY>}
+\DoxyCodeLine{00195\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacecmp_a85a82f291af82d7530729e9ec05a4c75}{trainTestSplit}}(\textcolor{keyword}{const}\ Eigen::MatrixBase<DerivedX>\&\ xObs,\ \textcolor{keyword}{const}\ Eigen::MatrixBase<DerivedY>\&\ yObs,\ \textcolor{keyword}{const}\ std::pair<Eigen::VectorXs,\ Eigen::VectorXs>\&\ train\_test\_pair)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{auto}\ xTrain\ =\ \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{slice}}(xObs,\ train\_test\_pair.first);}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{auto}\ yTrain\ =\ \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{slice}}(yObs,\ train\_test\_pair.first);}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{auto}\ xTest\ =\ \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{slice}}(xObs,\ train\_test\_pair.second);}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{auto}\ yTest\ =\ \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{slice}}(yObs,\ train\_test\_pair.second);}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_tuple(xTrain,\ yTrain,\ xTest,\ yTest);}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \}\ \textcolor{comment}{//\ namespace\ cmp}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CMP\_DEFINES\_H}}
+
+\end{DoxyCode}

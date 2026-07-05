@@ -1,0 +1,179 @@
+\doxysection{cmp\+::covariance\+::Inverse Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_inverse}{}\label{classcmp_1_1covariance_1_1_inverse}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+
+
+Represents an \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} covariance function.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Inverse\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_inverse}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a489258fc9b458cbff0be3127eca2acd9}{Inverse}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_abad61b7f144973b79ee6d7b41a123dd4}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_aa19b840f5a4d68a733bcbce147a11e27}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a7d33755c0a657385e61465a2e1b226a0}{Inverse}} (const int \&indexX=-\/1)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} covariance function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_abeedd44401576e4db9ac3a4253f53598}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_aa9b2bd41b8175dc7195dcc84f78c3bc0}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the partial derivative of the \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a5d012a66b21a29004a7903ff405213ce}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Evaluates the second-\/order partial derivative of the \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_ab29e339826aff947245571ed5010af1b}{make}} (const int \&i)
+\begin{DoxyCompactList}\small\item\em Factory method for creating an inverse covariance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a50b4bfa8511bb53dafd3de93cdc4fc7a}{index\+X\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Coordinate index to project (-\/1 for full vector dot product). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} covariance function. 
+
+Mathematical Formulation If {\ttfamily index\+X\+\_\+} is -\/1, computes\+:   \[k_{\text{inv}}(\mathbf{x}_1, \mathbf{x}_2) = \frac{1}{\mathbf{x}_1^T \mathbf{x}_2 + 1}
+\] Otherwise, evaluates only for the coordinate at index\+X\+\_\+\+:   \[k_{\text{inv}}(\mathbf{x}_1, \mathbf{x}_2) = \frac{1}{x_{1,\text{index}} \times x_{2,\text{index}} + 1}
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{Inverse()}{Inverse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2} 
+cmp\+::covariance\+::\+Inverse\+::\+Inverse (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_a489258fc9b458cbff0be3127eca2acd9}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{Inverse()}{Inverse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_a489258fc9b458cbff0be3127eca2acd9} 
+cmp\+::covariance\+::\+Inverse\+::\+Inverse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_a7d33755c0a657385e61465a2e1b226a0}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{Inverse()}{Inverse()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_a7d33755c0a657385e61465a2e1b226a0} 
+cmp\+::covariance\+::\+Inverse\+::\+Inverse (\begin{DoxyParamCaption}\item[{const int \&}]{indexX}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} covariance function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indexX} & Dimension index to evaluate, or -\/1 for the full dot product. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_abeedd44401576e4db9ac3a4253f53598}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_abeedd44401576e4db9ac3a4253f53598} 
+double cmp\+::covariance\+::\+Inverse\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_aa9b2bd41b8175dc7195dcc84f78c3bc0}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_aa9b2bd41b8175dc7195dcc84f78c3bc0} 
+double cmp\+::covariance\+::\+Inverse\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the partial derivative of the \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_a5d012a66b21a29004a7903ff405213ce}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_a5d012a66b21a29004a7903ff405213ce} 
+double cmp\+::covariance\+::\+Inverse\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the second-\/order partial derivative of the \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_ab29e339826aff947245571ed5010af1b}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!make@{make}}
+\index{make@{make}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_ab29e339826aff947245571ed5010af1b} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+Inverse\+::make (\begin{DoxyParamCaption}\item[{const int \&}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating an inverse covariance. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_abad61b7f144973b79ee6d7b41a123dd4}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_abad61b7f144973b79ee6d7b41a123dd4} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \& cmp\+::covariance\+::\+Inverse\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_aa19b840f5a4d68a733bcbce147a11e27}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_aa19b840f5a4d68a733bcbce147a11e27} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \& cmp\+::covariance\+::\+Inverse\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_inverse_a50b4bfa8511bb53dafd3de93cdc4fc7a}\index{cmp::covariance::Inverse@{cmp::covariance::Inverse}!indexX\_@{indexX\_}}
+\index{indexX\_@{indexX\_}!cmp::covariance::Inverse@{cmp::covariance::Inverse}}
+\doxysubsubsection{\texorpdfstring{indexX\_}{indexX\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_inverse_a50b4bfa8511bb53dafd3de93cdc4fc7a} 
+int cmp\+::covariance\+::\+Inverse\+::index\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coordinate index to project (-\/1 for full vector dot product). 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

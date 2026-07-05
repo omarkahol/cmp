@@ -1,0 +1,184 @@
+\doxysection{cmp\+::covariance\+::Matern Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_matern}{}\label{classcmp_1_1covariance_1_1_matern}\index{cmp::covariance::Matern@{cmp::covariance::Matern}}
+
+
+General Matérn covariance function.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Matern\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_matern}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_ae72b109efef09a7df4ae578a39e9d858}{Matern}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a03a072dcb39f1dea838dc21b4881b538}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_ac9e50d20904b425c72ff89766a7e5b3e}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a59377ec12e46e920a1fef4882533ca96}{Matern}} (const size\+\_\+t \&index, const double \&nu, const int \&indexX=-\/1)
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a0f41db54466903f5ee6caa69d86e7b57}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a7474291168c99b7f49d2e2a1356f1017}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8f3a41de0598868563fb9383ec6c14cd}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a7cea3af467d2fd3d8ab93ea3569f2620}{make}} (const size\+\_\+t \&l, const double \&nu, const int \&i)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Hyperparameter index for the lengthscale parameter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{index\+X\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Dimension index to evaluate, or -\/1 for the full isotropic kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Smoothness parameter nu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+General Matérn covariance function. 
+
+Mathematical Formulation Evaluates the Matérn covariance function between two inputs $\mathbf{x}_1, \mathbf{x}_2$\+:   \[k(\mathbf{x}_1, \mathbf{x}_2) = \frac{2^{1-\nu}}{\Gamma(\nu)} \left( \frac{\sqrt{2\nu}d}{\ell} \right)^\nu K_\nu\left( \frac{\sqrt{2\nu}d}{\ell} \right)
+\] where $d$ is the distance, $\ell = \theta_{\text{index}}$ is the lengthscale hyperparameter, $\nu$ is the smoothness parameter, $\Gamma$ is the Gamma function, and $K_\nu$ is the modified Bessel function of the second kind.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Computes distance $d$ and scaling parameter $r = \frac{\sqrt{2\nu}d}{\ell}$.
+\item Evaluates the term using {\ttfamily std\+::tgamma} and Boost\textquotesingle{}s {\ttfamily boost\+::math\+::cyl\+\_\+bessel\+\_\+k} implementation of the modified Bessel function.
+\item Evaluates analytical derivatives with respect to the lengthscale $\ell$. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_matern_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!Matern@{Matern}}
+\index{Matern@{Matern}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{Matern()}{Matern()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4} 
+cmp\+::covariance\+::\+Matern\+::\+Matern (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_ae72b109efef09a7df4ae578a39e9d858}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!Matern@{Matern}}
+\index{Matern@{Matern}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{Matern()}{Matern()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_ae72b109efef09a7df4ae578a39e9d858} 
+cmp\+::covariance\+::\+Matern\+::\+Matern (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a59377ec12e46e920a1fef4882533ca96}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!Matern@{Matern}}
+\index{Matern@{Matern}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{Matern()}{Matern()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a59377ec12e46e920a1fef4882533ca96} 
+cmp\+::covariance\+::\+Matern\+::\+Matern (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{index}{, }\item[{const double \&}]{nu}{, }\item[{const int \&}]{indexX}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_matern_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a0f41db54466903f5ee6caa69d86e7b57}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a0f41db54466903f5ee6caa69d86e7b57} 
+double cmp\+::covariance\+::\+Matern\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a7474291168c99b7f49d2e2a1356f1017}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a7474291168c99b7f49d2e2a1356f1017} 
+double cmp\+::covariance\+::\+Matern\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a8f3a41de0598868563fb9383ec6c14cd}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a8f3a41de0598868563fb9383ec6c14cd} 
+double cmp\+::covariance\+::\+Matern\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a7cea3af467d2fd3d8ab93ea3569f2620}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!make@{make}}
+\index{make@{make}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a7cea3af467d2fd3d8ab93ea3569f2620} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+Matern\+::make (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{l}{, }\item[{const double \&}]{nu}{, }\item[{const int \&}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a03a072dcb39f1dea838dc21b4881b538}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a03a072dcb39f1dea838dc21b4881b538} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \& cmp\+::covariance\+::\+Matern\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_ac9e50d20904b425c72ff89766a7e5b3e}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_ac9e50d20904b425c72ff89766a7e5b3e} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \& cmp\+::covariance\+::\+Matern\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_matern_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!index\_@{index\_}}
+\index{index\_@{index\_}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{index\_}{index\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8} 
+size\+\_\+t cmp\+::covariance\+::\+Matern\+::index\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hyperparameter index for the lengthscale parameter. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!indexX\_@{indexX\_}}
+\index{indexX\_@{indexX\_}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{indexX\_}{indexX\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526} 
+int cmp\+::covariance\+::\+Matern\+::index\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dimension index to evaluate, or -\/1 for the full isotropic kernel. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}\index{cmp::covariance::Matern@{cmp::covariance::Matern}!nu\_@{nu\_}}
+\index{nu\_@{nu\_}!cmp::covariance::Matern@{cmp::covariance::Matern}}
+\doxysubsubsection{\texorpdfstring{nu\_}{nu\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6} 
+double cmp\+::covariance\+::\+Matern\+::nu\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Smoothness parameter nu. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

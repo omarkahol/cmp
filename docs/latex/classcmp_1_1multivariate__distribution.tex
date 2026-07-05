@@ -1,0 +1,92 @@
+\doxysection{multivariate\+\_\+distribution Class Reference}
+\hypertarget{classcmp_1_1multivariate__distribution}{}\label{classcmp_1_1multivariate__distribution}\index{multivariate\_distribution@{multivariate\_distribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for multivariate\+\_\+distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.895093cm]{classcmp_1_1multivariate__distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1multivariate__distribution_ae38de544833816032d8b9c000daa1ba4}{log\+\_\+pdf}} (const Eigen\+::\+Vector\+Xd \&x)=0
+\item 
+virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1multivariate__distribution_a9dbdcfdafd087d9499b225744f3ccd0f}{sample}} ()=0
+\begin{DoxyCompactList}\small\item\em Generate a sample from the distribution. \end{DoxyCompactList}\item 
+virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1multivariate__distribution_a264ed03b4a95f8b58abbcef9e0914cae}{jump}} (const Eigen\+::\+Vector\+Xd \&x, double gamma=1.\+0)=0
+\begin{DoxyCompactList}\small\item\em Jump to a new point in the parameter space centered at x. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{classcmp_1_1multivariate__distribution_a8fa621d26a3333ee24889e18381110d6}{log\+\_\+jump\+\_\+prob}} (const Eigen\+::\+Vector\+Xd \&\mbox{\hyperlink{classcmp_1_1multivariate__distribution_a264ed03b4a95f8b58abbcef9e0914cae}{jump}}, double gamma=1.\+0)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1multivariate__distribution_a264ed03b4a95f8b58abbcef9e0914cae}\index{multivariate\_distribution@{multivariate\_distribution}!jump@{jump}}
+\index{jump@{jump}!multivariate\_distribution@{multivariate\_distribution}}
+\doxysubsubsection{\texorpdfstring{jump()}{jump()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__distribution_a264ed03b4a95f8b58abbcef9e0914cae} 
+virtual Eigen\+::\+Vector\+Xd jump (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{double}]{gamma}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Jump to a new point in the parameter space centered at x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The center of the jump \\
+\hline
+{\em gamma} & The size of the jump \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eigen\+::\+Vector\+Xd 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a63c24909fb58e79960dbb10dc19c1603}{multivariate\+\_\+normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1multivariate__t__distribution_a63c24909fb58e79960dbb10dc19c1603}{multivariate\+\_\+t\+\_\+distribution}}, and \mbox{\hyperlink{classcmp_1_1uniform__sphere__distribution_a63c24909fb58e79960dbb10dc19c1603}{uniform\+\_\+sphere\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1multivariate__distribution_a8fa621d26a3333ee24889e18381110d6}\index{multivariate\_distribution@{multivariate\_distribution}!log\_jump\_prob@{log\_jump\_prob}}
+\index{log\_jump\_prob@{log\_jump\_prob}!multivariate\_distribution@{multivariate\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_jump\_prob()}{log\_jump\_prob()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__distribution_a8fa621d26a3333ee24889e18381110d6} 
+virtual double log\+\_\+jump\+\_\+prob (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{jump}{, }\item[{double}]{gamma}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a402b12ccb90b00424db73eb9f7a2d71a}{multivariate\+\_\+normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1multivariate__t__distribution_a402b12ccb90b00424db73eb9f7a2d71a}{multivariate\+\_\+t\+\_\+distribution}}, and \mbox{\hyperlink{classcmp_1_1uniform__sphere__distribution_a19a4a2ef309bac430e5dc7394360f326}{uniform\+\_\+sphere\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1multivariate__distribution_ae38de544833816032d8b9c000daa1ba4}\index{multivariate\_distribution@{multivariate\_distribution}!log\_pdf@{log\_pdf}}
+\index{log\_pdf@{log\_pdf}!multivariate\_distribution@{multivariate\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_pdf()}{log\_pdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__distribution_ae38de544833816032d8b9c000daa1ba4} 
+virtual double log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_a5222b223cf3fcf42150ada3545a8a686}{multivariate\+\_\+normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1multivariate__t__distribution_a5222b223cf3fcf42150ada3545a8a686}{multivariate\+\_\+t\+\_\+distribution}}, and \mbox{\hyperlink{classcmp_1_1uniform__sphere__distribution_a5222b223cf3fcf42150ada3545a8a686}{uniform\+\_\+sphere\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1multivariate__distribution_a9dbdcfdafd087d9499b225744f3ccd0f}\index{multivariate\_distribution@{multivariate\_distribution}!sample@{sample}}
+\index{sample@{sample}!multivariate\_distribution@{multivariate\_distribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1multivariate__distribution_a9dbdcfdafd087d9499b225744f3ccd0f} 
+virtual Eigen\+::\+Vector\+Xd sample (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Generate a sample from the distribution. 
+
+\begin{DoxyReturn}{Returns}
+Eigen\+::\+Vector\+Xd 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1multivariate__normal__distribution_ad740f3e010f90c01130f25de855fe219}{multivariate\+\_\+normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1multivariate__t__distribution_ad740f3e010f90c01130f25de855fe219}{multivariate\+\_\+t\+\_\+distribution}}, and \mbox{\hyperlink{classcmp_1_1uniform__sphere__distribution_ad740f3e010f90c01130f25de855fe219}{uniform\+\_\+sphere\+\_\+distribution}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

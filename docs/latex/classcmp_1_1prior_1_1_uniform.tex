@@ -1,0 +1,134 @@
+\doxysection{cmp\+::prior\+::Uniform Class Reference}
+\hypertarget{classcmp_1_1prior_1_1_uniform}{}\label{classcmp_1_1prior_1_1_uniform}\index{cmp::prior::Uniform@{cmp::prior::Uniform}}
+
+
+Represents an improper flat (uniform) prior.  
+
+
+
+
+{\ttfamily \#include $<$prior++.\+h$>$}
+
+Inheritance diagram for cmp\+::prior\+::Uniform\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1prior_1_1_uniform}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}} (const \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_ad1cb63c95ff103c308e532be26db2e8a}{Uniform}} (\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \& \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_ad375c65bb380a06777dbf59ffd6385e4}{operator=}} (const \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \& \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_afad8d1075a45177c4263af67802082f3}{operator=}} (\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_abac00180d3a4310c76f4ed7541170fa4}{Uniform}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a546e360c07a1d387400473c9ff9f78da}{eval}} (const Eigen\+::\+Vector\+Xd \&par) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a0bd9af2635ad15c02348fc9e1f609e9e}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a60e6ade5799dd9909ad93dd948358f77}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_a32b126d443e54e0c933eac638626acfa}{\texorpdfstring{$\sim$}{\string~}\+Prior}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15}{make}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an improper flat (uniform) prior. 
+
+{\bfseries{Mathematical}} {\bfseries{Formulation}} A uniform prior assumes constant probability density\+: \[ p(\theta) \propto 1 \implies \log p(\theta) = C \] For convenience, the constant $ C $ is set to 0. All derivatives are zero\+: \[ \nabla_i \log p(\theta) = 0 \] \[ \mathcal{H}_{ij} \log p(\theta) = 0 \]
+
+{\bfseries{Implementation}} {\bfseries{Algorithm}} Returns constant 0.\+0 for all evaluation, gradient, and Hessian queries. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1prior_1_1_uniform_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!Uniform@{Uniform}}
+\index{Uniform@{Uniform}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{Uniform()}{Uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269} 
+cmp\+::prior\+::\+Uniform\+::\+Uniform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_uniform_ad1cb63c95ff103c308e532be26db2e8a}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!Uniform@{Uniform}}
+\index{Uniform@{Uniform}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{Uniform()}{Uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_ad1cb63c95ff103c308e532be26db2e8a} 
+cmp\+::prior\+::\+Uniform\+::\+Uniform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_uniform_abac00180d3a4310c76f4ed7541170fa4}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!Uniform@{Uniform}}
+\index{Uniform@{Uniform}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{Uniform()}{Uniform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_abac00180d3a4310c76f4ed7541170fa4} 
+cmp\+::prior\+::\+Uniform\+::\+Uniform (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1prior_1_1_uniform_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1prior_1_1_uniform_a546e360c07a1d387400473c9ff9f78da}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!eval@{eval}}
+\index{eval@{eval}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_a546e360c07a1d387400473c9ff9f78da} 
+double cmp\+::prior\+::\+Uniform\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_ac983277833189063b62793fbc1c3ebd5}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_uniform_a0bd9af2635ad15c02348fc9e1f609e9e}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_a0bd9af2635ad15c02348fc9e1f609e9e} 
+double cmp\+::prior\+::\+Uniform\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_aeb36eaf26c22bdf4049574f7eb254db8}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_uniform_a60e6ade5799dd9909ad93dd948358f77}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_a60e6ade5799dd9909ad93dd948358f77} 
+double cmp\+::prior\+::\+Uniform\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_ad047a6a9bf982743897f4e42529ada63}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!make@{make}}
+\index{make@{make}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ cmp\+::prior\+::\+Uniform\+::make (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_uniform_ad375c65bb380a06777dbf59ffd6385e4}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_ad375c65bb380a06777dbf59ffd6385e4} 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \& cmp\+::prior\+::\+Uniform\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_uniform_afad8d1075a45177c4263af67802082f3}\index{cmp::prior::Uniform@{cmp::prior::Uniform}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::prior::Uniform@{cmp::prior::Uniform}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_uniform_afad8d1075a45177c4263af67802082f3} 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \& cmp\+::prior\+::\+Uniform\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{prior_09_09_8h}{prior++.\+h}}\end{DoxyCompactItemize}

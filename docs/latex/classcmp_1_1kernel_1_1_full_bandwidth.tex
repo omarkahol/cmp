@@ -1,0 +1,252 @@
+\doxysection{cmp\+::kernel\+::Full\+Bandwidth Class Reference}
+\hypertarget{classcmp_1_1kernel_1_1_full_bandwidth}{}\label{classcmp_1_1kernel_1_1_full_bandwidth}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+
+
+Full covariance bandwidth matrix parameterized by its Cholesky factor.  
+
+
+
+
+{\ttfamily \#include $<$kernel++.\+h$>$}
+
+Inheritance diagram for cmp\+::kernel\+::Full\+Bandwidth\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1kernel_1_1_full_bandwidth}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a7ddf096ebf1acfe67beed015cf2d08a0}{Full\+Bandwidth}} ()=delete
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a8843ec4c6b914ff1057dc979c2715a49}{Full\+Bandwidth}} (const Eigen\+::\+Matrix\+Xd \&LLT)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1kernel_1_1_full_bandwidth}{Full\+Bandwidth} from a positive definite scale matrix. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab10e0d03356a1216a70bb4550bf541a4}{determinant}} () const override
+\begin{DoxyCompactList}\small\item\em Computes the determinant of the bandwidth matrix. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a0ee84d8b42b8488a266408649506400b}{size}} () const
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the space. \end{DoxyCompactList}\item 
+std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ad09d7dde73c614d9d9d14c79379562e3}{index\+To\+Row\+Col}} (const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Maps a flat index to row and column indices of the Cholesky factor. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a6259f9454ca705178e15350750a1eb23}{apply}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2) const override
+\begin{DoxyCompactList}\small\item\em Projects the distance vector using the inverse of the Cholesky factor L. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a2f0390182b2293ab011726d6590c5aef}{gradient\+Of\+Apply}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const size\+\_\+t \&i) const override
+\begin{DoxyCompactList}\small\item\em Computes the gradient of the scaling transformation with respect to parameter i. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a4abd245fbba3514679bc8cc9f54968f2}{gradient\+Of\+Log\+Determinant}} (const size\+\_\+t \&i) const override
+\begin{DoxyCompactList}\small\item\em Computes the gradient of the log-\/determinant. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a0f53f06e7579d8c07d8284c0bb15de45}{set\+From\+Vector}} (const Eigen\+::\+Vector\+Xd \&params) override
+\begin{DoxyCompactList}\small\item\em Sets the bandwidth parameters from a parameter vector. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a62bfa6bf98fab34a92ae2cb0b7407345}{get\+Params}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the bandwidth parameters as a vector. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_aaf91cd1d8e2ea8f7a5340dab9d1e9d6b}{matrix}} () const
+\begin{DoxyCompactList}\small\item\em Returns the full density bandwidth matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2bcf9c9c28c36fa4f5c38a779d8f2ae8}{\texorpdfstring{$\sim$}{\string~}\+Bandwidth}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}} $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a66e3bf8eab7e67fa871495f2358b4d4f}{make}} (const Eigen\+::\+Matrix\+Xd \&LLT)
+\begin{DoxyCompactList}\small\item\em Factory method for creating a \doxylink{classcmp_1_1kernel_1_1_full_bandwidth}{Full\+Bandwidth}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+LLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38}{det\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}{dim\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Full covariance bandwidth matrix parameterized by its Cholesky factor. 
+
+Mathematical Formulation Represents a full bandwidth matrix parameterized via lower triangular Cholesky factor $\mathbf{L}$ where\+:   \[\mathbf{H} = \mathbf{L} \mathbf{L}^T
+\] The transformation projects distances as\+:   \[\mathbf{z} = \mathbf{L}^{-1} (\mathbf{x}_1 - \mathbf{x}_2)
+\] The determinant is computed from the diagonal elements of the Cholesky factor\+:   \[\det(\mathbf{H}) = \prod_{d=1}^D L_{dd}^2
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a7ddf096ebf1acfe67beed015cf2d08a0}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!FullBandwidth@{FullBandwidth}}
+\index{FullBandwidth@{FullBandwidth}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{FullBandwidth()}{FullBandwidth()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a7ddf096ebf1acfe67beed015cf2d08a0} 
+cmp\+::kernel\+::\+Full\+Bandwidth\+::\+Full\+Bandwidth (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a8843ec4c6b914ff1057dc979c2715a49}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!FullBandwidth@{FullBandwidth}}
+\index{FullBandwidth@{FullBandwidth}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{FullBandwidth()}{FullBandwidth()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a8843ec4c6b914ff1057dc979c2715a49} 
+cmp\+::kernel\+::\+Full\+Bandwidth\+::\+Full\+Bandwidth (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{LLT}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1kernel_1_1_full_bandwidth}{Full\+Bandwidth} from a positive definite scale matrix. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a6259f9454ca705178e15350750a1eb23}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!apply@{apply}}
+\index{apply@{apply}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a6259f9454ca705178e15350750a1eb23} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Full\+Bandwidth\+::apply (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Projects the distance vector using the inverse of the Cholesky factor L. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a7b59faf763ae6808acd9ec5cf93f2663}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_ab10e0d03356a1216a70bb4550bf541a4}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!determinant@{determinant}}
+\index{determinant@{determinant}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_ab10e0d03356a1216a70bb4550bf541a4} 
+double cmp\+::kernel\+::\+Full\+Bandwidth\+::determinant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the determinant of the bandwidth matrix. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a718d366c32b080389cae1e844f126002}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a62bfa6bf98fab34a92ae2cb0b7407345}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!getParams@{getParams}}
+\index{getParams@{getParams}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{getParams()}{getParams()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a62bfa6bf98fab34a92ae2cb0b7407345} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Full\+Bandwidth\+::get\+Params (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the bandwidth parameters as a vector. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a1c1ec89f8c2823ade415bfc22c46ff11}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a2f0390182b2293ab011726d6590c5aef}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!gradientOfApply@{gradientOfApply}}
+\index{gradientOfApply@{gradientOfApply}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{gradientOfApply()}{gradientOfApply()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a2f0390182b2293ab011726d6590c5aef} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Full\+Bandwidth\+::gradient\+Of\+Apply (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the gradient of the scaling transformation with respect to parameter i. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2e95090dd6f3648c895b3763bc23f519}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a4abd245fbba3514679bc8cc9f54968f2}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!gradientOfLogDeterminant@{gradientOfLogDeterminant}}
+\index{gradientOfLogDeterminant@{gradientOfLogDeterminant}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{gradientOfLogDeterminant()}{gradientOfLogDeterminant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a4abd245fbba3514679bc8cc9f54968f2} 
+double cmp\+::kernel\+::\+Full\+Bandwidth\+::gradient\+Of\+Log\+Determinant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the gradient of the log-\/determinant. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a8e0152653d956a81f9ee555ab83c8e1b}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_ad09d7dde73c614d9d9d14c79379562e3}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!indexToRowCol@{indexToRowCol}}
+\index{indexToRowCol@{indexToRowCol}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{indexToRowCol()}{indexToRowCol()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_ad09d7dde73c614d9d9d14c79379562e3} 
+std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ cmp\+::kernel\+::\+Full\+Bandwidth\+::index\+To\+Row\+Col (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Maps a flat index to row and column indices of the Cholesky factor. 
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a66e3bf8eab7e67fa871495f2358b4d4f}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!make@{make}}
+\index{make@{make}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a66e3bf8eab7e67fa871495f2358b4d4f} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}} $>$ cmp\+::kernel\+::\+Full\+Bandwidth\+::make (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{LLT}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating a \doxylink{classcmp_1_1kernel_1_1_full_bandwidth}{Full\+Bandwidth}. 
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_aaf91cd1d8e2ea8f7a5340dab9d1e9d6b}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!matrix@{matrix}}
+\index{matrix@{matrix}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_aaf91cd1d8e2ea8f7a5340dab9d1e9d6b} 
+Eigen\+::\+Matrix\+Xd cmp\+::kernel\+::\+Full\+Bandwidth\+::matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the full density bandwidth matrix. 
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a0f53f06e7579d8c07d8284c0bb15de45}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!setFromVector@{setFromVector}}
+\index{setFromVector@{setFromVector}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{setFromVector()}{setFromVector()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a0f53f06e7579d8c07d8284c0bb15de45} 
+void cmp\+::kernel\+::\+Full\+Bandwidth\+::set\+From\+Vector (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{params}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sets the bandwidth parameters from a parameter vector. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_af901feed1ed1e7bd7b44ecd12152b1d4}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a0ee84d8b42b8488a266408649506400b}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!size@{size}}
+\index{size@{size}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a0ee84d8b42b8488a266408649506400b} 
+size\+\_\+t cmp\+::kernel\+::\+Full\+Bandwidth\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the dimension of the space. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a873ddb11a78e7adc920d31aa2c9cbeae}{cmp\+::kernel\+::\+Bandwidth}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!det\_@{det\_}}
+\index{det\_@{det\_}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{det\_}{det\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38} 
+double cmp\+::kernel\+::\+Full\+Bandwidth\+::det\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814} 
+size\+\_\+t cmp\+::kernel\+::\+Full\+Bandwidth\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!L\_@{L\_}}
+\index{L\_@{L\_}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
+\doxysubsubsection{\texorpdfstring{L\_}{L\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399} 
+Eigen\+::\+LLT$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::kernel\+::\+Full\+Bandwidth\+::\+L\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kernel_09_09_8h}{kernel++.\+h}}\item 
+src/\mbox{\hyperlink{kernel_09_09_8cpp}{kernel++.\+cpp}}\end{DoxyCompactItemize}

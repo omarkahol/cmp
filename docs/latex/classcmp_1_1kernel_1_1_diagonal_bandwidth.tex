@@ -1,0 +1,198 @@
+\doxysection{cmp\+::kernel\+::Diagonal\+Bandwidth Class Reference}
+\hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth}{}\label{classcmp_1_1kernel_1_1_diagonal_bandwidth}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+
+
+Diagonal bandwidth matrix (independent parameter per dimension).  
+
+
+
+
+{\ttfamily \#include $<$kernel++.\+h$>$}
+
+Inheritance diagram for cmp\+::kernel\+::Diagonal\+Bandwidth\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1kernel_1_1_diagonal_bandwidth}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a5ca9a18310308d0181a78db8efa62396}{Diagonal\+Bandwidth}} ()=delete
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a906a60d34379b56b2c61a7e124ba7d32}{Diagonal\+Bandwidth}} (const Eigen\+::\+Vector\+Xd \&h)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1kernel_1_1_diagonal_bandwidth}{Diagonal\+Bandwidth} from a parameter vector. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a30cdee5966d0c041a02b1bb5799bfcb0}{apply}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2) const override
+\begin{DoxyCompactList}\small\item\em Scales the coordinate distances independently by 1 / h\+\_\+d. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a1ca633e2913ffe602d1f2726260d01cf}{determinant}} () const override
+\begin{DoxyCompactList}\small\item\em Computes the determinant of the diagonal bandwidth matrix. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_aade0fa1151a3cf6ffd54374fa9a743f8}{size}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the space. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_ab233586f447b5cb6888eaa18a4ed218d}{gradient\+Of\+Apply}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const size\+\_\+t \&i) const override
+\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a445ac377661391b0089c64a6271b58c6}{gradient\+Of\+Log\+Determinant}} (const size\+\_\+t \&i) const override
+\item 
+void \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a0576664d48583c59df9385f2bbb21325}{set\+From\+Vector}} (const Eigen\+::\+Vector\+Xd \&params) override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a95d0e03300a71ace8fe87fb8e6634636}{get\+Params}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2bcf9c9c28c36fa4f5c38a779d8f2ae8}{\texorpdfstring{$\sim$}{\string~}\+Bandwidth}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}} $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a686d387930d6676fc1f0515a42d33cb1}{make}} (const Eigen\+::\+Vector\+Xd \&h)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5}{h\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_aff91c96966828ae18b71232d50de1078}{det\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Diagonal bandwidth matrix (independent parameter per dimension). 
+
+Mathematical Formulation Represents a diagonal matrix $\mathbf{H} = \text{diag}(h_1, \dots, h_D)$. Coordinates are scaled independently\+:   \[z_d = \frac{x_{1,d} - x_{2,d}}{h_d}
+\] The determinant is $\det(\mathbf{H}) = \prod_{d=1}^D h_d$. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a5ca9a18310308d0181a78db8efa62396}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!DiagonalBandwidth@{DiagonalBandwidth}}
+\index{DiagonalBandwidth@{DiagonalBandwidth}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{DiagonalBandwidth()}{DiagonalBandwidth()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a5ca9a18310308d0181a78db8efa62396} 
+cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::\+Diagonal\+Bandwidth (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a906a60d34379b56b2c61a7e124ba7d32}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!DiagonalBandwidth@{DiagonalBandwidth}}
+\index{DiagonalBandwidth@{DiagonalBandwidth}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{DiagonalBandwidth()}{DiagonalBandwidth()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a906a60d34379b56b2c61a7e124ba7d32} 
+cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::\+Diagonal\+Bandwidth (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{h}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1kernel_1_1_diagonal_bandwidth}{Diagonal\+Bandwidth} from a parameter vector. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a30cdee5966d0c041a02b1bb5799bfcb0}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!apply@{apply}}
+\index{apply@{apply}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a30cdee5966d0c041a02b1bb5799bfcb0} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::apply (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Scales the coordinate distances independently by 1 / h\+\_\+d. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a7b59faf763ae6808acd9ec5cf93f2663}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a1ca633e2913ffe602d1f2726260d01cf}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!determinant@{determinant}}
+\index{determinant@{determinant}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a1ca633e2913ffe602d1f2726260d01cf} 
+double cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::determinant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the determinant of the diagonal bandwidth matrix. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a718d366c32b080389cae1e844f126002}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a95d0e03300a71ace8fe87fb8e6634636}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!getParams@{getParams}}
+\index{getParams@{getParams}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{getParams()}{getParams()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a95d0e03300a71ace8fe87fb8e6634636} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::get\+Params (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a1c1ec89f8c2823ade415bfc22c46ff11}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_ab233586f447b5cb6888eaa18a4ed218d}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!gradientOfApply@{gradientOfApply}}
+\index{gradientOfApply@{gradientOfApply}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{gradientOfApply()}{gradientOfApply()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_ab233586f447b5cb6888eaa18a4ed218d} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::gradient\+Of\+Apply (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2e95090dd6f3648c895b3763bc23f519}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a445ac377661391b0089c64a6271b58c6}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!gradientOfLogDeterminant@{gradientOfLogDeterminant}}
+\index{gradientOfLogDeterminant@{gradientOfLogDeterminant}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{gradientOfLogDeterminant()}{gradientOfLogDeterminant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a445ac377661391b0089c64a6271b58c6} 
+double cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::gradient\+Of\+Log\+Determinant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a8e0152653d956a81f9ee555ab83c8e1b}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a686d387930d6676fc1f0515a42d33cb1}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!make@{make}}
+\index{make@{make}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a686d387930d6676fc1f0515a42d33cb1} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}} $>$ cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::make (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{h}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a0576664d48583c59df9385f2bbb21325}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!setFromVector@{setFromVector}}
+\index{setFromVector@{setFromVector}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{setFromVector()}{setFromVector()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a0576664d48583c59df9385f2bbb21325} 
+void cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::set\+From\+Vector (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{params}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_af901feed1ed1e7bd7b44ecd12152b1d4}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_aade0fa1151a3cf6ffd54374fa9a743f8}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!size@{size}}
+\index{size@{size}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_aade0fa1151a3cf6ffd54374fa9a743f8} 
+size\+\_\+t cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the dimension of the space. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a873ddb11a78e7adc920d31aa2c9cbeae}{cmp\+::kernel\+::\+Bandwidth}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_aff91c96966828ae18b71232d50de1078}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!det\_@{det\_}}
+\index{det\_@{det\_}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{det\_}{det\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_aff91c96966828ae18b71232d50de1078} 
+double cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::det\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5}\index{cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}!h\_@{h\_}}
+\index{h\_@{h\_}!cmp::kernel::DiagonalBandwidth@{cmp::kernel::DiagonalBandwidth}}
+\doxysubsubsection{\texorpdfstring{h\_}{h\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Diagonal\+Bandwidth\+::h\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kernel_09_09_8h}{kernel++.\+h}}\item 
+src/\mbox{\hyperlink{kernel_09_09_8cpp}{kernel++.\+cpp}}\end{DoxyCompactItemize}

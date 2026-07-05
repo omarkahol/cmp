@@ -1,0 +1,84 @@
+\doxysection{cmp\+::Hermite\+Basis Struct Reference}
+\hypertarget{structcmp_1_1_hermite_basis}{}\label{structcmp_1_1_hermite_basis}\index{cmp::HermiteBasis@{cmp::HermiteBasis}}
+
+
+Hermite orthogonal polynomial basis.  
+
+
+
+
+{\ttfamily \#include $<$poly.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_hermite_basis_a9dc704a947055ad82d002f2ddb158f10}{evaluate}} (size\+\_\+t deg, double xi)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_hermite_basis_a71d7ac38b7241d775a6daf97b470822a}{norm\+Squared}} (size\+\_\+t deg)
+\item 
+static Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{structcmp_1_1_hermite_basis_a5f49b695439eec44c7871830c50c0b50}{get\+Jacobi\+Matrix}} (int num\+Points)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_hermite_basis_af8b66ccc3b983059fea26f5e0de33d7f}{get\+PDFWeight}} ()
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_hermite_basis_ace5eade2e36c9f729432d04f5dadbcd6}{map\+To\+Physical}} (double xi, double mean, double std\+Dev)
+\item 
+static double \mbox{\hyperlink{structcmp_1_1_hermite_basis_a27a4c59a054cb3142f5b3fc6f5282ee7}{map\+To\+Canonical}} (double x, double mean, double std\+Dev)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Hermite orthogonal polynomial basis. 
+
+Mathematical Formulation Probabilist\textquotesingle{}s Hermite polynomials $H_n(\xi)$ are orthogonal with respect to the standard Gaussian density function $w(\xi) = \frac{1}{\sqrt{2\pi}} e^{-\xi^2/2}$. The recurrence relation is\+:   \[H_0(\xi) = 1, \quad H_1(\xi) = \xi, \quad H_{n+1}(\xi) = \xi H_n(\xi) - n H_{n-1}(\xi)
+\] with $\mathbb{E}[H_m(\xi) H_n(\xi)] = n! \delta_{mn}$.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{structcmp_1_1_hermite_basis_a9dc704a947055ad82d002f2ddb158f10}{evaluate()}} computes polynomial values using the 3-\/term recurrence relation.
+\item {\ttfamily \doxylink{structcmp_1_1_hermite_basis_a5f49b695439eec44c7871830c50c0b50}{get\+Jacobi\+Matrix()}} constructs the symmetric tridiagonal Jacobi matrix $\mathbf{J}$ with diagonal $\alpha_i = 0$ and off-\/diagonal $\beta_i = \sqrt{i}$ to evaluate quadrature nodes via spectral decomposition. 
+\end{DoxyEnumerate}
+
+\label{doc-func-members}
+\Hypertarget{structcmp_1_1_hermite_basis_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structcmp_1_1_hermite_basis_a9dc704a947055ad82d002f2ddb158f10}\index{cmp::HermiteBasis@{cmp::HermiteBasis}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!cmp::HermiteBasis@{cmp::HermiteBasis}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_hermite_basis_a9dc704a947055ad82d002f2ddb158f10} 
+double cmp\+::\+Hermite\+Basis\+::evaluate (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{deg}{, }\item[{double}]{xi}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_hermite_basis_a5f49b695439eec44c7871830c50c0b50}\index{cmp::HermiteBasis@{cmp::HermiteBasis}!getJacobiMatrix@{getJacobiMatrix}}
+\index{getJacobiMatrix@{getJacobiMatrix}!cmp::HermiteBasis@{cmp::HermiteBasis}}
+\doxysubsubsection{\texorpdfstring{getJacobiMatrix()}{getJacobiMatrix()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_hermite_basis_a5f49b695439eec44c7871830c50c0b50} 
+Eigen\+::\+Matrix\+Xd cmp\+::\+Hermite\+Basis\+::get\+Jacobi\+Matrix (\begin{DoxyParamCaption}\item[{int}]{num\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_hermite_basis_af8b66ccc3b983059fea26f5e0de33d7f}\index{cmp::HermiteBasis@{cmp::HermiteBasis}!getPDFWeight@{getPDFWeight}}
+\index{getPDFWeight@{getPDFWeight}!cmp::HermiteBasis@{cmp::HermiteBasis}}
+\doxysubsubsection{\texorpdfstring{getPDFWeight()}{getPDFWeight()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_hermite_basis_af8b66ccc3b983059fea26f5e0de33d7f} 
+double cmp\+::\+Hermite\+Basis\+::get\+PDFWeight (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_hermite_basis_a27a4c59a054cb3142f5b3fc6f5282ee7}\index{cmp::HermiteBasis@{cmp::HermiteBasis}!mapToCanonical@{mapToCanonical}}
+\index{mapToCanonical@{mapToCanonical}!cmp::HermiteBasis@{cmp::HermiteBasis}}
+\doxysubsubsection{\texorpdfstring{mapToCanonical()}{mapToCanonical()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_hermite_basis_a27a4c59a054cb3142f5b3fc6f5282ee7} 
+double cmp\+::\+Hermite\+Basis\+::map\+To\+Canonical (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{mean}{, }\item[{double}]{std\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_hermite_basis_ace5eade2e36c9f729432d04f5dadbcd6}\index{cmp::HermiteBasis@{cmp::HermiteBasis}!mapToPhysical@{mapToPhysical}}
+\index{mapToPhysical@{mapToPhysical}!cmp::HermiteBasis@{cmp::HermiteBasis}}
+\doxysubsubsection{\texorpdfstring{mapToPhysical()}{mapToPhysical()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_hermite_basis_ace5eade2e36c9f729432d04f5dadbcd6} 
+double cmp\+::\+Hermite\+Basis\+::map\+To\+Physical (\begin{DoxyParamCaption}\item[{double}]{xi}{, }\item[{double}]{mean}{, }\item[{double}]{std\+Dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{structcmp_1_1_hermite_basis_a71d7ac38b7241d775a6daf97b470822a}\index{cmp::HermiteBasis@{cmp::HermiteBasis}!normSquared@{normSquared}}
+\index{normSquared@{normSquared}!cmp::HermiteBasis@{cmp::HermiteBasis}}
+\doxysubsubsection{\texorpdfstring{normSquared()}{normSquared()}}
+{\footnotesize\ttfamily \label{structcmp_1_1_hermite_basis_a71d7ac38b7241d775a6daf97b470822a} 
+double cmp\+::\+Hermite\+Basis\+::norm\+Squared (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{deg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{poly_8h}{poly.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,24 @@
+\doxysection{io.\+h}
+\hypertarget{io_8h_source}{}\label{io_8h_source}\index{include/io.h@{include/io.h}}
+\mbox{\hyperlink{io_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ IO\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ IO\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_af85e70639980f381b7c0e708ad9b9c4d}{write\_vector}}(\textcolor{keyword}{const}\ std::vector<Eigen::VectorXd>\ \&data,\ std::ofstream\ \&o\_file);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_a4a5aa7d715cd32b0f56a7b92b12516f7}{write\_data}}(\textcolor{keyword}{const}\ std::vector<Eigen::VectorXd>\ \&x,\ \textcolor{keyword}{const}\ Eigen::MatrixXd\ \&y,\ std::ofstream\ \&o\_file);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00063\ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{namespacecmp_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc}{read\_vector}}(std::ifstream\ \&i\_file,\ std::string\ delimiter\ =\ \textcolor{stringliteral}{"{},"{}},\ \textcolor{keywordtype}{size\_t}\ header\ =\ 0);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,146 @@
+\doxysection{cmp\+::distribution\+::Multivariate\+Uniform\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution}{}\label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Multivariate\+Uniform\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_multivariate_uniform_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a40610bb717fa8ac780253eedead28db4}{Multivariate\+Uniform\+Distribution}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lower\+Bound, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&upper\+Bound)
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a6961e2bb489a4e6c007c40494c93a26d}{Multivariate\+Uniform\+Distribution}} ()=default
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_af7b7ffc4640755ad5121694080ea8ab3}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng, const double \&gamma=1.\+0)
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ab0e42d68f36476bea0e02d28deb943f6}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ad0b0e539215381fa546e4eaf61cc8a06}{to\+Physical}} (const Eigen\+::\+Matrix\+Xd \&z) const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a2a1edd9e42346d80df639111ba956e27}{dimension}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution$<$ Multivariate\+Uniform\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_adf3b1409c78a9180147df5ff4d9c65cd}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the joint log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_a11d88504b8e41a0d7cf53407a851ddc2}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single vector sample from the joint distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_aab20c160e414e53d0082fa02b6bfa90a}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms physical samples to standard canonical space. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ad9cfbac42c99982f2abe4f8b46bca784}{from\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms standard canonical samples back to physical space. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ae7af8e6314ab5158173f1c7809c3c9aa}{dimension}} () const
+\begin{DoxyCompactList}\small\item\em Returns the dimensionality of the multivariate space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution}{Multivariate\+Uniform\+Distribution}} \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a6e2fdb6ceaf332882225c598edd4faef}{canonical}} (const size\+\_\+t dim)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a7f00558aa18e04dbcd9d09412bef95a4}{lower\+Bound\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Lower bounds vector. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ad4fdb818900893edf2e0904f26ed3e31}{upper\+Bound\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Upper bounds vector. \end{DoxyCompactList}\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a84feef9c092da00a49041ae30f4eebbc}{dist\+U\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Uniform distribution helper for \mbox{[}0, 1\mbox{]} scaling. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a40610bb717fa8ac780253eedead28db4}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!MultivariateUniformDistribution@{MultivariateUniformDistribution}}
+\index{MultivariateUniformDistribution@{MultivariateUniformDistribution}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{MultivariateUniformDistribution()}{MultivariateUniformDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a40610bb717fa8ac780253eedead28db4} 
+cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::\+Multivariate\+Uniform\+Distribution (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lower\+Bound}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{upper\+Bound}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a6961e2bb489a4e6c007c40494c93a26d}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!MultivariateUniformDistribution@{MultivariateUniformDistribution}}
+\index{MultivariateUniformDistribution@{MultivariateUniformDistribution}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{MultivariateUniformDistribution()}{MultivariateUniformDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a6961e2bb489a4e6c007c40494c93a26d} 
+cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::\+Multivariate\+Uniform\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a6e2fdb6ceaf332882225c598edd4faef}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!canonical@{canonical}}
+\index{canonical@{canonical}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{canonical()}{canonical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a6e2fdb6ceaf332882225c598edd4faef} 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_uniform_distribution}{Multivariate\+Uniform\+Distribution}} cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::canonical (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a2a1edd9e42346d80df639111ba956e27}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!dimension@{dimension}}
+\index{dimension@{dimension}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{dimension()}{dimension()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a2a1edd9e42346d80df639111ba956e27} 
+size\+\_\+t cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::dimension (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_af7b7ffc4640755ad5121694080ea8ab3}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_af7b7ffc4640755ad5121694080ea8ab3} 
+Eigen\+::\+Vector\+Xd cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{, }\item[{const double \&}]{gamma}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ab0e42d68f36476bea0e02d28deb943f6}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!toCanonical@{toCanonical}}
+\index{toCanonical@{toCanonical}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{toCanonical()}{toCanonical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ab0e42d68f36476bea0e02d28deb943f6} 
+Eigen\+::\+Matrix\+Xd cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::to\+Canonical (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ad0b0e539215381fa546e4eaf61cc8a06}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!toPhysical@{toPhysical}}
+\index{toPhysical@{toPhysical}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{toPhysical()}{toPhysical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ad0b0e539215381fa546e4eaf61cc8a06} 
+Eigen\+::\+Matrix\+Xd cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::to\+Physical (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{z}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a84feef9c092da00a49041ae30f4eebbc}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!distU\_@{distU\_}}
+\index{distU\_@{distU\_}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{distU\_}{distU\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a84feef9c092da00a49041ae30f4eebbc} 
+std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::dist\+U\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Uniform distribution helper for \mbox{[}0, 1\mbox{]} scaling. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a7f00558aa18e04dbcd9d09412bef95a4}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_a7f00558aa18e04dbcd9d09412bef95a4} 
+Eigen\+::\+Vector\+Xd cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Lower bounds vector. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ad4fdb818900893edf2e0904f26ed3e31}\index{cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::distribution::MultivariateUniformDistribution@{cmp::distribution::MultivariateUniformDistribution}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_uniform_distribution_ad4fdb818900893edf2e0904f26ed3e31} 
+Eigen\+::\+Vector\+Xd cmp\+::distribution\+::\+Multivariate\+Uniform\+Distribution\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Upper bounds vector. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

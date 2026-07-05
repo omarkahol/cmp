@@ -1,0 +1,65 @@
+\doxysection{include/cmp\+\_\+defines.h File Reference}
+\hypertarget{cmp__defines_8h}{}\label{cmp__defines_8h}\index{include/cmp\_defines.h@{include/cmp\_defines.h}}
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$nlopt.\+hpp$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_eigen}{Eigen}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Concepts}
+\begin{DoxyCompactItemize}
+\item 
+concept \mbox{\hyperlink{conceptcmp_1_1_vector_like}{cmp\+::\+Vector\+Like}}
+\begin{DoxyCompactList}\small\item\em Concept for compile-\/time validation of vector-\/like containers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} = Matrix$<$size\+\_\+t, Eigen\+::\+Dynamic, 1$>$
+\item 
+using \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{cmp\+::score\+\_\+t}} = std\+::function$<$double(const Eigen\+::\+Vector\+Xd \&)$>$
+\begin{DoxyCompactList}\small\item\em The \doxylink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t} type A function that takes a const reference to an Eigen\+::\+Vector\+Xd and returns a double And also its gradient counterpart, \doxylink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}, which takes a const reference to an Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$ and returns an Eigen\+::\+Vector\+Xd. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{cmp\+::gradient\+\_\+t}} = std\+::function$<$Eigen\+::\+Vector\+Xd(const Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$\&)$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_a5476a9005fef87fe8be6e524e232bc98}{cmp\+::\+Dummy\+Matrix}} (0, 0)
+\item 
+const Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_a4f75935600bc75d75cd4e2be2b052b7d}{cmp\+::\+Dummy\+Vector}} (0)
+\item 
+Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacecmp_ab31a233db5724680beea2f084e788593}{cmp\+::ldlt\+Decomposition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cov)
+\begin{DoxyCompactList}\small\item\em Computes the LDLT decomposition of a symmetric matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Vector\+Like V$>$ }\\auto \mbox{\hyperlink{namespacecmp_aed2492db04bf5592363dd260d1ec4916}{cmp\+::as\+Eigen}} (const V \&v) -\/$>$ Eigen\+::\+Map$<$ const Eigen\+::\+Matrix$<$ typename V\+::value\+\_\+type, Eigen\+::\+Dynamic, 1 $>$ $>$
+\begin{DoxyCompactList}\small\item\em Creates a non-\/owning, read-\/only \doxylink{namespace_eigen}{Eigen} view (Eigen\+::\+Map) of a vector-\/like container. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Vector\+Like V$>$ }\\auto \mbox{\hyperlink{namespacecmp_a4edecd623071cd30997e4ce1f41d2b43}{cmp\+::as\+Eigen}} (V \&v) -\/$>$ Eigen\+::\+Map$<$ Eigen\+::\+Matrix$<$ typename V\+::value\+\_\+type, Eigen\+::\+Dynamic, 1 $>$ $>$
+\begin{DoxyCompactList}\small\item\em Creates a non-\/owning, read-\/write \doxylink{namespace_eigen}{Eigen} view (Eigen\+::\+Map) of a vector-\/like container. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Vector\+Like V$>$ }\\auto \mbox{\hyperlink{namespacecmp_a4598dd0b664a7aca04f272933e62a9e6}{cmp\+::to\+Eigen}} (const V \&v) -\/$>$ Eigen\+::\+Vector\+Xd
+\begin{DoxyCompactList}\small\item\em Copies the elements of a vector-\/like container to a new Eigen\+::\+Vector\+Xd. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Vector\+Like V$>$ }\\auto \mbox{\hyperlink{namespacecmp_a72460633038acb89481cec84c091f8a0}{cmp\+::to\+Std\+Vector}} (const V \&v) -\/$>$ std\+::vector$<$ typename V\+::value\+\_\+type $>$
+\begin{DoxyCompactList}\small\item\em Copies the elements of a vector-\/like container to a new std\+::vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Derived$>$ }\\Derived\+::\+Plain\+Object \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{cmp\+::slice}} (const Eigen\+::\+Matrix\+Base$<$ Derived $>$ \&mat, const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \&indices)
+\begin{DoxyCompactList}\small\item\em Slices a matrix along its rows based on a set of indices. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename DerivedX, typename DerivedY$>$ }\\auto \mbox{\hyperlink{namespacecmp_a85a82f291af82d7530729e9ec05a4c75}{cmp\+::train\+Test\+Split}} (const Eigen\+::\+Matrix\+Base$<$ DerivedX $>$ \&x\+Obs, const Eigen\+::\+Matrix\+Base$<$ DerivedY $>$ \&y\+Obs, const std\+::pair$<$ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}, \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&train\+\_\+test\+\_\+pair)
+\begin{DoxyCompactList}\small\item\em Function to split training data into training and test sets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr double \mbox{\hyperlink{namespacecmp_a18ada0943b60e75012f5515f0cccdc71}{cmp\+::\+TOL}} = 1e-\/12
+\item 
+const Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_ae1760e4cac40f3ce4dfd20eaa3b0bfa0}{cmp\+::\+Scalar\+Zero}} = Eigen\+::\+Vector\+Xd\+::\+Zero(1)
+\item 
+const Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_a4620b6017bcf39ea112d4d3c156f572c}{cmp\+::\+Scalar\+One}} = Eigen\+::\+Vector\+Xd\+::\+Ones(1)
+\end{DoxyCompactItemize}

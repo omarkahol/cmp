@@ -1,0 +1,167 @@
+\doxysection{inverse\+\_\+gamma\+\_\+distribution Class Reference}
+\hypertarget{classcmp_1_1inverse__gamma__distribution}{}\label{classcmp_1_1inverse__gamma__distribution}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for inverse\+\_\+gamma\+\_\+distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1inverse__gamma__distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_a7da52e8c6be183b4cd14f1f09c210517}{inverse\+\_\+gamma\+\_\+distribution}} (double alpha, double beta, std\+::default\+\_\+random\+\_\+engine rng)
+\item 
+\mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_a732804be27c5590392283924b428dbd3}{inverse\+\_\+gamma\+\_\+distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_abf4916297737fa5db95e6c51d327791f}{log\+\_\+pdf}} (const double \&x) override
+\begin{DoxyCompactList}\small\item\em Evaluate the log-\/pdf of the distribution at point x. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_a9e1592979d2a1f5480c9ebbd443b5593}{d\+\_\+log\+\_\+pdf}} (const double \&x)
+\item 
+double \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_a698ed8c0320ab7a11037b63b5689e958}{dd\+\_\+log\+\_\+pdf}} (const double \&x)
+\item 
+double \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_acfeee2418e7758ce8754ee04cdae549d}{cdf}} (const double \&x) override
+\begin{DoxyCompactList}\small\item\em Evaluate the cdf of the distribution at point x. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_add387d6d51ae5bab8aa6c9e172231a1e}{quantile}} (const double \&p) override
+\begin{DoxyCompactList}\small\item\em Evaluate the quantile function of the distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}{sample}} () override
+\begin{DoxyCompactList}\small\item\em Sample from the distribution. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_a1ddbe92dd7f68ea5db8d9957e6da0c0a}{set\+\_\+alpha}} (double alpha)
+\item 
+void \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_a5c1b7f6f464008701d797161b6e77cd9}{set\+\_\+beta}} (double beta)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1univariate__distribution}{univariate\+\_\+distribution}}}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_a7da52e8c6be183b4cd14f1f09c210517}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{inverse\_gamma\_distribution()}{inverse\_gamma\_distribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_a7da52e8c6be183b4cd14f1f09c210517} 
+\mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution}{inverse\+\_\+gamma\+\_\+distribution}} (\begin{DoxyParamCaption}\item[{double}]{alpha}{, }\item[{double}]{beta}{, }\item[{std\+::default\+\_\+random\+\_\+engine}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_a732804be27c5590392283924b428dbd3}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{inverse\_gamma\_distribution()}{inverse\_gamma\_distribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_a732804be27c5590392283924b428dbd3} 
+\mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution}{inverse\+\_\+gamma\+\_\+distribution}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_acfeee2418e7758ce8754ee04cdae549d}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!cdf@{cdf}}
+\index{cdf@{cdf}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{cdf()}{cdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_acfeee2418e7758ce8754ee04cdae549d} 
+double cdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate the cdf of the distribution at point x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Point at which to evaluate the cdf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1univariate__distribution_a5ba033b433776d12c997d52bf197dc66}{univariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_a9e1592979d2a1f5480c9ebbd443b5593}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!d\_log\_pdf@{d\_log\_pdf}}
+\index{d\_log\_pdf@{d\_log\_pdf}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{d\_log\_pdf()}{d\_log\_pdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_a9e1592979d2a1f5480c9ebbd443b5593} 
+double d\+\_\+log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_a698ed8c0320ab7a11037b63b5689e958}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!dd\_log\_pdf@{dd\_log\_pdf}}
+\index{dd\_log\_pdf@{dd\_log\_pdf}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{dd\_log\_pdf()}{dd\_log\_pdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_a698ed8c0320ab7a11037b63b5689e958} 
+double dd\+\_\+log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_abf4916297737fa5db95e6c51d327791f}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!log\_pdf@{log\_pdf}}
+\index{log\_pdf@{log\_pdf}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_pdf()}{log\_pdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_abf4916297737fa5db95e6c51d327791f} 
+double log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate the log-\/pdf of the distribution at point x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to evaluate the log-\/pdf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1univariate__distribution_a5dfc437751d0701c0f84bcb019b8a89d}{univariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_add387d6d51ae5bab8aa6c9e172231a1e}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!quantile@{quantile}}
+\index{quantile@{quantile}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_add387d6d51ae5bab8aa6c9e172231a1e} 
+double quantile (\begin{DoxyParamCaption}\item[{const double \&}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate the quantile function of the distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The probability at which to evaluate the quantile \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1univariate__distribution_adc4dbbebfd36dac7c7e9dfd6418ed363}{univariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!sample@{sample}}
+\index{sample@{sample}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_a72f7c9e85f9c8fb9237906eec1c7645d} 
+double sample (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sample from the distribution. 
+
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1univariate__distribution_a626aa9bd0df9342a085db74fe6560995}{univariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_a1ddbe92dd7f68ea5db8d9957e6da0c0a}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!set\_alpha@{set\_alpha}}
+\index{set\_alpha@{set\_alpha}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{set\_alpha()}{set\_alpha()}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_a1ddbe92dd7f68ea5db8d9957e6da0c0a} 
+void set\+\_\+alpha (\begin{DoxyParamCaption}\item[{double}]{alpha}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1inverse__gamma__distribution_a5c1b7f6f464008701d797161b6e77cd9}\index{inverse\_gamma\_distribution@{inverse\_gamma\_distribution}!set\_beta@{set\_beta}}
+\index{set\_beta@{set\_beta}!inverse\_gamma\_distribution@{inverse\_gamma\_distribution}}
+\doxysubsubsection{\texorpdfstring{set\_beta()}{set\_beta()}}
+{\footnotesize\ttfamily \label{classcmp_1_1inverse__gamma__distribution_a5c1b7f6f464008701d797161b6e77cd9} 
+void set\+\_\+beta (\begin{DoxyParamCaption}\item[{double}]{beta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\item 
+src/\mbox{\hyperlink{distribution_8cpp}{distribution.\+cpp}}\end{DoxyCompactItemize}

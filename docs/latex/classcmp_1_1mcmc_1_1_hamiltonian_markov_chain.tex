@@ -1,0 +1,390 @@
+\doxysection{cmp\+::mcmc\+::Hamiltonian\+Markov\+Chain Class Reference}
+\hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain}{}\label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+
+
+Implements the Hamiltonian Monte Carlo (HMC) algorithm with the No-\/\+U-\/\+Turn Sampler (NUTS) and Dual Averaging.  
+
+
+
+
+{\ttfamily \#include $<$hmc.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state}{Tree\+State}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae32bc189c3229f24eac032d5cfe2d21b}{Hamiltonian\+Markov\+Chain}} (Eigen\+::\+Vector\+Xd initial\+State, std\+::default\+\_\+random\+\_\+engine \&rng, double epsilon)
+\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a27f283272396bcd3af3f8e55bc17a218}{step}} (const \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t}} \&get\+Score, const \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}} \&get\+Gradient, bool adapt=false)
+\begin{DoxyCompactList}\small\item\em Perform a single MCMC step using the NUTS algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af465bd5d9317e3ddbc6a20408e4b1b87}{reset}} ()
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af4304808e37e9b2db701c5782a0f472a}{get\+Current}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a4b700e682b2e68a2b3cc2b7fdf778462}{get\+Steps}} () const
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a5b6a33c4e4875b647f8ea6e8b55d9c75}{get\+Acceptance\+Ratio}} () const
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab434133460a7c6047c5e7736a8b326a5}{get\+Step\+Size}} () const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9057930d1502fc353f9c2e73451709f2}{get\+Mean}} () const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a5bf3c778911b0695cad926a5b8c2f998}{get\+Covariance}} () const
+\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a4a925d7164dce71fc6d2650f84f6731e}{info}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af387f7a8ec590f7f32af25e2d125c2ad}{leapfrog}} (Eigen\+::\+Vector\+Xd \&q, Eigen\+::\+Vector\+Xd \&p, Eigen\+::\+Vector\+Xd \&grad, double epsilon, const \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}} \&get\+Gradient) const
+\begin{DoxyCompactList}\small\item\em Perform a single leapfrog step. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state}{Tree\+State}} \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_add1604bd92f053d95fbe1e3cc044e53a}{build\+\_\+tree}} (const Eigen\+::\+Vector\+Xd \&q, const Eigen\+::\+Vector\+Xd \&p, const Eigen\+::\+Vector\+Xd \&grad, double log\+\_\+u, int v, int j, double epsilon, const \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t}} \&get\+Score, const \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}} \&get\+Gradient)
+\begin{DoxyCompactList}\small\item\em Build a binary tree for the NUTS algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a3a7d3a0d068f7e66e6dcda54b904636e}{update}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::default\+\_\+random\+\_\+engine \& \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9433929535384eaf8d879f06198678ef}{rng\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_aeb45afbfb34e0e0783da49ce6f5711e3}{current\+Position\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6e7974154d7deedd607a898fbd5b4af}{current\+Momentum\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a10d0a4b6d3deb835fef0abb18fc2ac0a}{current\+Score\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae9a67b76f48648d68de5f2d1991ff16c}{dim\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6606e6ee4f141184afa95f06d193581e}{mean\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a692d89b5bf5307fc134871c17ef6f224}{cov\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a1deca95c400ea68742b25c8d96acd9c5}{epsilon\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae42059e3094a42bda64983c0ce92885f}{n\+Steps\+\_\+}} = 0
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a24b9f0232a8af231e8638d0b5e351830}{sum\+Acceptance\+Prob\+\_\+}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a94a2bed78a8eb68dccfff9599b99eaf4}{mu\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a825c68a3281e0ab8b192c3f39d94f8b7}{gamma\+\_\+}} = 0.\+05
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af32bfb3697622a5953ac2f9ce5436cb6}{t0\+\_\+}} = 10.\+0
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6eeca49e3a223aa7ed56e4d70c7e8842}{kappa\+\_\+}} = 0.\+75
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6262a8b62922965ddc6d3967321451e}{H\+\_\+bar\+\_\+}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a831b361d5171f5fbad671d387300e55a}{log\+\_\+epsilon\+\_\+bar\+\_\+}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_abdde49bfe21cfe2aa3135ac9733019da}{target\+\_\+accept\+\_\+}} = 0.\+80
+\item 
+std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ac7200ccada6a4c5935ed4d7d1a6410eb}{dist\+N\+\_\+}} \{0.\+0, 1.\+0\}
+\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a385c4c15310768956a8942006e872008}{dist\+U\+\_\+}} \{0.\+0, 1.\+0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements the Hamiltonian Monte Carlo (HMC) algorithm with the No-\/\+U-\/\+Turn Sampler (NUTS) and Dual Averaging. 
+
+\hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_autotoc_md6}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Foundations}{Mathematical Foundations}}\label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_autotoc_md6}
+Hamiltonian Monte Carlo (HMC) maps the target probability density $p(\mathbf{q})$ to the potential energy of a physical system\+: $U(\mathbf{q}) = -\log p(\mathbf{q})$. We introduce auxiliary momentum variables $\mathbf{p} \sim \mathcal{N}(\mathbf{0}, \mathbf{M})$ with kinetic energy $K(\mathbf{p}) = \frac{1}{2} \mathbf{p}^T \mathbf{M}^{-1} \mathbf{p}$.
+
+The total energy is given by the Hamiltonian\+: \[ H(\mathbf{q}, \mathbf{p}) = U(\mathbf{q}) + K(\mathbf{p}) \]
+
+The joint system evolves according to Hamilton\textquotesingle{}s equations\+: \[ \frac{d\mathbf{q}}{dt} = \frac{\partial H}{\partial \mathbf{p}} = \mathbf{M}^{-1} \mathbf{p}, \quad \frac{d\mathbf{p}}{dt} = -\frac{\partial H}{\partial \mathbf{q}} = -\nabla U(\mathbf{q}) \]\hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_autotoc_md7}{}\doxysubsubsubsection{\texorpdfstring{Implementation Algorithms}{Implementation Algorithms}}\label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_autotoc_md7}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Leapfrog Integrator}}\+: To integrate the system numerically with step size $\epsilon$, we use the symplectic Leapfrog scheme\+: \[ \mathbf{p}\left(t + \frac{\epsilon}{2}\right) = \mathbf{p}(t) - \frac{\epsilon}{2} \nabla U(\mathbf{q}(t)) \] \[ \mathbf{q}(t + \epsilon) = \mathbf{q}(t) + \epsilon \mathbf{M}^{-1} \mathbf{p}\left(t + \frac{\epsilon}{2}\right) \] \[ \mathbf{p}(t + \epsilon) = \mathbf{p}\left(t + \frac{\epsilon}{2}\right) - \frac{\epsilon}{2} \nabla U(\mathbf{q}(t + \epsilon)) \]
+\item {\bfseries{No-\/\+U-\/\+Turn Sampler (NUTS)}}\+: Avoids manual tuning of the number of integration steps $L$. It recursively builds a binary tree of leapfrog steps forward and backward in time. The tree stops growing when the trajectory starts to turn back on itself\+: \[ (\mathbf{q}_{\text{plus}} - \mathbf{q}_{\text{minus}})^T \mathbf{p}_{\text{minus}} < 0 \quad \text{or} \quad (\mathbf{q}_{\text{plus}} - \mathbf{q}_{\text{minus}})^T \mathbf{p}_{\text{plus}} < 0 \]
+\item {\bfseries{Dual Averaging Step Size Adaptation}}\+: Uses Nesterov\textquotesingle{}s dual averaging scheme to adaptively tune the step size $\epsilon$ to match a target acceptance probability $\delta$ (default 0.\+8)\+: \[ H_t = \delta - \alpha_t, \quad \bar{H}_t = \left(1 - \frac{1}{t + t_0}\right) \bar{H}_{t-1} + \frac{1}{t + t_0} H_t \] \[ \log \epsilon_t = \mu - \frac{\sqrt{t}}{\gamma} \bar{H}_t, \quad \log \bar{\epsilon}_t = t^{-\kappa} \log \epsilon_t + (1 - t^{-\kappa}) \log \bar{\epsilon}_{t-1} \]
+\end{DoxyEnumerate}\hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_autotoc_md8}{}\doxysubsubsubsection{\texorpdfstring{Constraints \& Invariants}{Constraints \& Invariants}}\label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_autotoc_md8}
+
+\begin{DoxyItemize}
+\item {\bfseries{Symplectic Flow}}\+: The Leapfrog scheme must preserve volume in phase space and hold total energy approximately constant.
+\item {\bfseries{U-\/turn Condition}}\+: Tree growth is terminated immediately if a U-\/turn is detected to ensure detailed balance is maintained. 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae32bc189c3229f24eac032d5cfe2d21b}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!HamiltonianMarkovChain@{HamiltonianMarkovChain}}
+\index{HamiltonianMarkovChain@{HamiltonianMarkovChain}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{HamiltonianMarkovChain()}{HamiltonianMarkovChain()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae32bc189c3229f24eac032d5cfe2d21b} 
+cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Hamiltonian\+Markov\+Chain (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{initial\+State}{, }\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{, }\item[{double}]{epsilon}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_add1604bd92f053d95fbe1e3cc044e53a}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!build\_tree@{build\_tree}}
+\index{build\_tree@{build\_tree}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{build\_tree()}{build\_tree()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_add1604bd92f053d95fbe1e3cc044e53a} 
+\mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state}{cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State}} cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::build\+\_\+tree (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{q}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{p}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{grad}{, }\item[{double}]{log\+\_\+u}{, }\item[{int}]{v}{, }\item[{int}]{j}{, }\item[{double}]{epsilon}{, }\item[{const \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t}} \&}]{get\+Score}{, }\item[{const \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}} \&}]{get\+Gradient}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Build a binary tree for the NUTS algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The current position (parameters) \\
+\hline
+{\em p} & The current momentum (auxiliary variable) \\
+\hline
+{\em grad} & The gradient of the score function at the current position \\
+\hline
+{\em log\+\_\+u} & The log of the slice variable \\
+\hline
+{\em v} & The direction of tree expansion (-\/1 for backward, +1 for forward) \\
+\hline
+{\em j} & The depth of the tree \\
+\hline
+{\em epsilon} & The step size for the leapfrog integrator \\
+\hline
+{\em get\+Score} & The score function (log-\/posterior) \\
+\hline
+{\em get\+Gradient} & The gradient function of the score function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The state of the tree after expansion 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is called recursively to build the tree. It returns the state of the tree after expansion, which includes the new position, momentum, gradient, and acceptance probabilities. The function also checks for U-\/turns and updates the stop flag accordingly. The acceptance probabilities are accumulated to compute the overall acceptance ratio for the NUTS algorithm. The gradient is passed by reference and will be updated to the new gradient after the leapfrog step. This is important for efficiency, as it avoids redundant gradient calculations during the tree expansion. The log of the slice variable is used to determine whether the proposed states are within the slice defined by the current Hamiltonian level. This is crucial for the correctness of the NUTS algorithm, as it ensures that the samples are drawn from the correct distribution. The direction of tree expansion (v) determines whether the tree is built forward (v=+1) or backward (v=-\/1) in time. This allows the NUTS algorithm to explore the parameter space more effectively and adaptively determine the number of leapfrog 
+\end{DoxyNote}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a5b6a33c4e4875b647f8ea6e8b55d9c75}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!getAcceptanceRatio@{getAcceptanceRatio}}
+\index{getAcceptanceRatio@{getAcceptanceRatio}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{getAcceptanceRatio()}{getAcceptanceRatio()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a5b6a33c4e4875b647f8ea6e8b55d9c75} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::get\+Acceptance\+Ratio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a5bf3c778911b0695cad926a5b8c2f998}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!getCovariance@{getCovariance}}
+\index{getCovariance@{getCovariance}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{getCovariance()}{getCovariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a5bf3c778911b0695cad926a5b8c2f998} 
+Eigen\+::\+Matrix\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::get\+Covariance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af4304808e37e9b2db701c5782a0f472a}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!getCurrent@{getCurrent}}
+\index{getCurrent@{getCurrent}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{getCurrent()}{getCurrent()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af4304808e37e9b2db701c5782a0f472a} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::get\+Current (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9057930d1502fc353f9c2e73451709f2}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!getMean@{getMean}}
+\index{getMean@{getMean}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{getMean()}{getMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9057930d1502fc353f9c2e73451709f2} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::get\+Mean (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a4b700e682b2e68a2b3cc2b7fdf778462}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!getSteps@{getSteps}}
+\index{getSteps@{getSteps}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{getSteps()}{getSteps()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a4b700e682b2e68a2b3cc2b7fdf778462} 
+size\+\_\+t cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::get\+Steps (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab434133460a7c6047c5e7736a8b326a5}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!getStepSize@{getStepSize}}
+\index{getStepSize@{getStepSize}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{getStepSize()}{getStepSize()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab434133460a7c6047c5e7736a8b326a5} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::get\+Step\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a4a925d7164dce71fc6d2650f84f6731e}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!info@{info}}
+\index{info@{info}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a4a925d7164dce71fc6d2650f84f6731e} 
+void cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Print the current state of the Markov chain, including the current position, step size, number of steps, and acceptance ratio. \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af387f7a8ec590f7f32af25e2d125c2ad}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!leapfrog@{leapfrog}}
+\index{leapfrog@{leapfrog}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{leapfrog()}{leapfrog()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af387f7a8ec590f7f32af25e2d125c2ad} 
+void cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::leapfrog (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd \&}]{q}{, }\item[{Eigen\+::\+Vector\+Xd \&}]{p}{, }\item[{Eigen\+::\+Vector\+Xd \&}]{grad}{, }\item[{double}]{epsilon}{, }\item[{const \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}} \&}]{get\+Gradient}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Perform a single leapfrog step. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The current position (parameters) \\
+\hline
+{\em p} & The current momentum (auxiliary variable) \\
+\hline
+{\em grad} & The gradient of the score function at the current position \\
+\hline
+{\em epsilon} & The step size for the leapfrog integrator \\
+\hline
+{\em get\+Gradient} & The gradient function of the score function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The gradient is passed by reference and will be updated to the new gradient after the leapfrog step. 
+\end{DoxyNote}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af465bd5d9317e3ddbc6a20408e4b1b87}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!reset@{reset}}
+\index{reset@{reset}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af465bd5d9317e3ddbc6a20408e4b1b87} 
+void cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a27f283272396bcd3af3f8e55bc17a218}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!step@{step}}
+\index{step@{step}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a27f283272396bcd3af3f8e55bc17a218} 
+void cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t}} \&}]{get\+Score}{, }\item[{const \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}} \&}]{get\+Gradient}{, }\item[{bool}]{adapt}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Perform a single MCMC step using the NUTS algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em get\+Score} & The score function (log-\/posterior) \\
+\hline
+{\em get\+Gradient} & The gradient function of the score function \\
+\hline
+{\em adapt} & Whether to adapt the step size using dual averaging (default is false) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If adapt is true, the step size will be adapted using dual averaging to achieve the target acceptance ratio. If adapt is false, the step size will remain fixed. 
+\end{DoxyNote}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a3a7d3a0d068f7e66e6dcda54b904636e}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!update@{update}}
+\index{update@{update}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a3a7d3a0d068f7e66e6dcda54b904636e} 
+void cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Updates the mean and covariance of the samples based on the current position. 
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a692d89b5bf5307fc134871c17ef6f224}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!cov\_@{cov\_}}
+\index{cov\_@{cov\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{cov\_}{cov\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a692d89b5bf5307fc134871c17ef6f224} 
+Eigen\+::\+Matrix\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::cov\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6e7974154d7deedd607a898fbd5b4af}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!currentMomentum\_@{currentMomentum\_}}
+\index{currentMomentum\_@{currentMomentum\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{currentMomentum\_}{currentMomentum\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6e7974154d7deedd607a898fbd5b4af} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::current\+Momentum\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_aeb45afbfb34e0e0783da49ce6f5711e3}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!currentPosition\_@{currentPosition\_}}
+\index{currentPosition\_@{currentPosition\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{currentPosition\_}{currentPosition\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_aeb45afbfb34e0e0783da49ce6f5711e3} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::current\+Position\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a10d0a4b6d3deb835fef0abb18fc2ac0a}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!currentScore\_@{currentScore\_}}
+\index{currentScore\_@{currentScore\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{currentScore\_}{currentScore\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a10d0a4b6d3deb835fef0abb18fc2ac0a} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::current\+Score\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae9a67b76f48648d68de5f2d1991ff16c}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae9a67b76f48648d68de5f2d1991ff16c} 
+size\+\_\+t cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ac7200ccada6a4c5935ed4d7d1a6410eb}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!distN\_@{distN\_}}
+\index{distN\_@{distN\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{distN\_}{distN\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ac7200ccada6a4c5935ed4d7d1a6410eb} 
+std\+::normal\+\_\+distribution$<$double$>$ cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::dist\+N\+\_\+ \{0.\+0, 1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a385c4c15310768956a8942006e872008}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!distU\_@{distU\_}}
+\index{distU\_@{distU\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{distU\_}{distU\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a385c4c15310768956a8942006e872008} 
+std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::dist\+U\+\_\+ \{0.\+0, 1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a1deca95c400ea68742b25c8d96acd9c5}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!epsilon\_@{epsilon\_}}
+\index{epsilon\_@{epsilon\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{epsilon\_}{epsilon\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a1deca95c400ea68742b25c8d96acd9c5} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::epsilon\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a825c68a3281e0ab8b192c3f39d94f8b7}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!gamma\_@{gamma\_}}
+\index{gamma\_@{gamma\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{gamma\_}{gamma\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a825c68a3281e0ab8b192c3f39d94f8b7} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::gamma\+\_\+ = 0.\+05\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6262a8b62922965ddc6d3967321451e}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!H\_bar\_@{H\_bar\_}}
+\index{H\_bar\_@{H\_bar\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{H\_bar\_}{H\_bar\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6262a8b62922965ddc6d3967321451e} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+H\+\_\+bar\+\_\+ = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6eeca49e3a223aa7ed56e4d70c7e8842}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!kappa\_@{kappa\_}}
+\index{kappa\_@{kappa\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{kappa\_}{kappa\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6eeca49e3a223aa7ed56e4d70c7e8842} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::kappa\+\_\+ = 0.\+75\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a831b361d5171f5fbad671d387300e55a}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!log\_epsilon\_bar\_@{log\_epsilon\_bar\_}}
+\index{log\_epsilon\_bar\_@{log\_epsilon\_bar\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{log\_epsilon\_bar\_}{log\_epsilon\_bar\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a831b361d5171f5fbad671d387300e55a} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::log\+\_\+epsilon\+\_\+bar\+\_\+ = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6606e6ee4f141184afa95f06d193581e}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6606e6ee4f141184afa95f06d193581e} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a94a2bed78a8eb68dccfff9599b99eaf4}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!mu\_@{mu\_}}
+\index{mu\_@{mu\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{mu\_}{mu\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a94a2bed78a8eb68dccfff9599b99eaf4} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::mu\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae42059e3094a42bda64983c0ce92885f}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!nSteps\_@{nSteps\_}}
+\index{nSteps\_@{nSteps\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{nSteps\_}{nSteps\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae42059e3094a42bda64983c0ce92885f} 
+size\+\_\+t cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::n\+Steps\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9433929535384eaf8d879f06198678ef}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9433929535384eaf8d879f06198678ef} 
+std\+::default\+\_\+random\+\_\+engine\& cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a24b9f0232a8af231e8638d0b5e351830}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!sumAcceptanceProb\_@{sumAcceptanceProb\_}}
+\index{sumAcceptanceProb\_@{sumAcceptanceProb\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{sumAcceptanceProb\_}{sumAcceptanceProb\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a24b9f0232a8af231e8638d0b5e351830} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::sum\+Acceptance\+Prob\+\_\+ = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af32bfb3697622a5953ac2f9ce5436cb6}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!t0\_@{t0\_}}
+\index{t0\_@{t0\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{t0\_}{t0\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af32bfb3697622a5953ac2f9ce5436cb6} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::t0\+\_\+ = 10.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_abdde49bfe21cfe2aa3135ac9733019da}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!target\_accept\_@{target\_accept\_}}
+\index{target\_accept\_@{target\_accept\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
+\doxysubsubsection{\texorpdfstring{target\_accept\_}{target\_accept\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_abdde49bfe21cfe2aa3135ac9733019da} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::target\+\_\+accept\+\_\+ = 0.\+80\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{hmc_8h}{hmc.\+h}}\item 
+src/\mbox{\hyperlink{hmc_8cpp}{hmc.\+cpp}}\end{DoxyCompactItemize}

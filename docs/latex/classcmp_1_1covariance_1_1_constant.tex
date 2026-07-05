@@ -1,0 +1,173 @@
+\doxysection{cmp\+::covariance\+::Constant Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_constant}{}\label{classcmp_1_1covariance_1_1_constant}\index{cmp::covariance::Constant@{cmp::covariance::Constant}}
+
+
+Represents a constant scale covariance function.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Constant\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_constant}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a18a135dc7bb02b32399aa89d2175d9b9}{Constant}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a996a4b39e1d7bace0c1eed2229397b28}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a05d1f875675e50f408bcd822a88dc604}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a30bb06c3584fef9a17d27fd5109e1654}{Constant}} (const size\+\_\+t \&index)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1covariance_1_1_constant}{Constant} covariance function using the hyperparameter at index. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a40031da132576e3dcb60d334debd812f}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the \doxylink{classcmp_1_1covariance_1_1_constant}{Constant} kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_aa9d5e57f97450328808a3ad3ca21e5c6}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the partial derivative of the \doxylink{classcmp_1_1covariance_1_1_constant}{Constant} kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a1bbf443134639f6b82b70d2634108c82}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Evaluates the second-\/order partial derivative of the \doxylink{classcmp_1_1covariance_1_1_constant}{Constant} kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a894a45e3d2531ce9f492541430e3fb87}{make}} (const size\+\_\+t \&c)
+\begin{DoxyCompactList}\small\item\em Factory method for creating a constant covariance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}{index\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Hyperparameter parameter index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a constant scale covariance function. 
+
+Mathematical Formulation For a constant kernel, the covariance is independent of the input points\+:   \[k_{\text{const}}(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta}) = \theta_{\text{index}}^2
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_constant_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!Constant@{Constant}}
+\index{Constant@{Constant}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{Constant()}{Constant()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f} 
+cmp\+::covariance\+::\+Constant\+::\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a18a135dc7bb02b32399aa89d2175d9b9}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!Constant@{Constant}}
+\index{Constant@{Constant}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{Constant()}{Constant()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a18a135dc7bb02b32399aa89d2175d9b9} 
+cmp\+::covariance\+::\+Constant\+::\+Constant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a30bb06c3584fef9a17d27fd5109e1654}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!Constant@{Constant}}
+\index{Constant@{Constant}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{Constant()}{Constant()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a30bb06c3584fef9a17d27fd5109e1654} 
+cmp\+::covariance\+::\+Constant\+::\+Constant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1covariance_1_1_constant}{Constant} covariance function using the hyperparameter at index. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_constant_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a40031da132576e3dcb60d334debd812f}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a40031da132576e3dcb60d334debd812f} 
+double cmp\+::covariance\+::\+Constant\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the \doxylink{classcmp_1_1covariance_1_1_constant}{Constant} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_constant_aa9d5e57f97450328808a3ad3ca21e5c6}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_aa9d5e57f97450328808a3ad3ca21e5c6} 
+double cmp\+::covariance\+::\+Constant\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the partial derivative of the \doxylink{classcmp_1_1covariance_1_1_constant}{Constant} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a1bbf443134639f6b82b70d2634108c82}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a1bbf443134639f6b82b70d2634108c82} 
+double cmp\+::covariance\+::\+Constant\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the second-\/order partial derivative of the \doxylink{classcmp_1_1covariance_1_1_constant}{Constant} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a894a45e3d2531ce9f492541430e3fb87}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!make@{make}}
+\index{make@{make}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a894a45e3d2531ce9f492541430e3fb87} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+Constant\+::make (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating a constant covariance. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a996a4b39e1d7bace0c1eed2229397b28}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a996a4b39e1d7bace0c1eed2229397b28} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \& cmp\+::covariance\+::\+Constant\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a05d1f875675e50f408bcd822a88dc604}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a05d1f875675e50f408bcd822a88dc604} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \& cmp\+::covariance\+::\+Constant\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_constant_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}\index{cmp::covariance::Constant@{cmp::covariance::Constant}!index\_@{index\_}}
+\index{index\_@{index\_}!cmp::covariance::Constant@{cmp::covariance::Constant}}
+\doxysubsubsection{\texorpdfstring{index\_}{index\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff} 
+size\+\_\+t cmp\+::covariance\+::\+Constant\+::index\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hyperparameter parameter index. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,133 @@
+\doxysection{cmp\+::sobol\+::Sobol\+Results Struct Reference}
+\hypertarget{structcmp_1_1sobol_1_1_sobol_results}{}\label{structcmp_1_1sobol_1_1_sobol_results}\index{cmp::sobol::SobolResults@{cmp::sobol::SobolResults}}
+
+
+Struct to hold calculated Sobol sensitivity indices.  
+
+
+
+
+{\ttfamily \#include $<$sobol.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_af380ed47412a2b4ab5bbf05748054eff}{get\+First\+Order}} (size\+\_\+t i) const
+\begin{DoxyCompactList}\small\item\em Gets the first-\/order Sobol index for input parameter i. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a604527aa43fdac2b3431c5d67c61c4c9}{get\+Total\+Order}} (size\+\_\+t i) const
+\begin{DoxyCompactList}\small\item\em Gets the total-\/order Sobol index for input parameter i. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a6c5e9aba7c3a6d3123099d403ff4d09b}{get\+Second\+Order}} (size\+\_\+t i, size\+\_\+t j) const
+\begin{DoxyCompactList}\small\item\em Gets the second-\/order Sobol index for interaction between parameters i and j. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{first\+Order}}
+\begin{DoxyCompactList}\small\item\em First-\/order (main effect) Sobol indices. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958}{total\+Order}}
+\begin{DoxyCompactList}\small\item\em Total-\/order Sobol indices. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc}{second\+Order}}
+\begin{DoxyCompactList}\small\item\em Second-\/order (interaction effect) Sobol indices (if computed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct to hold calculated Sobol sensitivity indices. 
+
+\label{doc-func-members}
+\Hypertarget{structcmp_1_1sobol_1_1_sobol_results_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structcmp_1_1sobol_1_1_sobol_results_af380ed47412a2b4ab5bbf05748054eff}\index{cmp::sobol::SobolResults@{cmp::sobol::SobolResults}!getFirstOrder@{getFirstOrder}}
+\index{getFirstOrder@{getFirstOrder}!cmp::sobol::SobolResults@{cmp::sobol::SobolResults}}
+\doxysubsubsection{\texorpdfstring{getFirstOrder()}{getFirstOrder()}}
+{\footnotesize\ttfamily \label{structcmp_1_1sobol_1_1_sobol_results_af380ed47412a2b4ab5bbf05748054eff} 
+double cmp\+::sobol\+::\+Sobol\+Results\+::get\+First\+Order (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the first-\/order Sobol index for input parameter i. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of the input parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+First-\/order Sobol index value. 
+\end{DoxyReturn}
+\Hypertarget{structcmp_1_1sobol_1_1_sobol_results_a6c5e9aba7c3a6d3123099d403ff4d09b}\index{cmp::sobol::SobolResults@{cmp::sobol::SobolResults}!getSecondOrder@{getSecondOrder}}
+\index{getSecondOrder@{getSecondOrder}!cmp::sobol::SobolResults@{cmp::sobol::SobolResults}}
+\doxysubsubsection{\texorpdfstring{getSecondOrder()}{getSecondOrder()}}
+{\footnotesize\ttfamily \label{structcmp_1_1sobol_1_1_sobol_results_a6c5e9aba7c3a6d3123099d403ff4d09b} 
+double cmp\+::sobol\+::\+Sobol\+Results\+::get\+Second\+Order (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{, }\item[{size\+\_\+t}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the second-\/order Sobol index for interaction between parameters i and j. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of the first parameter. \\
+\hline
+{\em j} & Index of the second parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Second-\/order Sobol index value. 
+\end{DoxyReturn}
+\Hypertarget{structcmp_1_1sobol_1_1_sobol_results_a604527aa43fdac2b3431c5d67c61c4c9}\index{cmp::sobol::SobolResults@{cmp::sobol::SobolResults}!getTotalOrder@{getTotalOrder}}
+\index{getTotalOrder@{getTotalOrder}!cmp::sobol::SobolResults@{cmp::sobol::SobolResults}}
+\doxysubsubsection{\texorpdfstring{getTotalOrder()}{getTotalOrder()}}
+{\footnotesize\ttfamily \label{structcmp_1_1sobol_1_1_sobol_results_a604527aa43fdac2b3431c5d67c61c4c9} 
+double cmp\+::sobol\+::\+Sobol\+Results\+::get\+Total\+Order (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the total-\/order Sobol index for input parameter i. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of the input parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total-\/order Sobol index value. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{structcmp_1_1sobol_1_1_sobol_results_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}\index{cmp::sobol::SobolResults@{cmp::sobol::SobolResults}!firstOrder@{firstOrder}}
+\index{firstOrder@{firstOrder}!cmp::sobol::SobolResults@{cmp::sobol::SobolResults}}
+\doxysubsubsection{\texorpdfstring{firstOrder}{firstOrder}}
+{\footnotesize\ttfamily \label{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06} 
+Eigen\+::\+Vector\+Xd cmp\+::sobol\+::\+Sobol\+Results\+::first\+Order}
+
+
+
+First-\/order (main effect) Sobol indices. 
+
+\Hypertarget{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc}\index{cmp::sobol::SobolResults@{cmp::sobol::SobolResults}!secondOrder@{secondOrder}}
+\index{secondOrder@{secondOrder}!cmp::sobol::SobolResults@{cmp::sobol::SobolResults}}
+\doxysubsubsection{\texorpdfstring{secondOrder}{secondOrder}}
+{\footnotesize\ttfamily \label{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc} 
+Eigen\+::\+Vector\+Xd cmp\+::sobol\+::\+Sobol\+Results\+::second\+Order}
+
+
+
+Second-\/order (interaction effect) Sobol indices (if computed). 
+
+\Hypertarget{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958}\index{cmp::sobol::SobolResults@{cmp::sobol::SobolResults}!totalOrder@{totalOrder}}
+\index{totalOrder@{totalOrder}!cmp::sobol::SobolResults@{cmp::sobol::SobolResults}}
+\doxysubsubsection{\texorpdfstring{totalOrder}{totalOrder}}
+{\footnotesize\ttfamily \label{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958} 
+Eigen\+::\+Vector\+Xd cmp\+::sobol\+::\+Sobol\+Results\+::total\+Order}
+
+
+
+Total-\/order Sobol indices. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{sobol_8h}{sobol.\+h}}\end{DoxyCompactItemize}

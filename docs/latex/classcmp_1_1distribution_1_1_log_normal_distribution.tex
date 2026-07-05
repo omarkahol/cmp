@@ -1,0 +1,169 @@
+\doxysection{cmp\+::distribution\+::Log\+Normal\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution}{}\label{classcmp_1_1distribution_1_1_log_normal_distribution}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Log\+Normal\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_log_normal_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a0e655dadd6b122392303ff4c0e029c6a}{Log\+Normal\+Distribution}} (double mu, double sigma)
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a646f1d0523d60da69efafb68aec7da45}{Log\+Normal\+Distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a67eb73b60bbe0e11261c8c24e05fa83a}{log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_aa5cfd872d3861e95957c6da5b1737c5e}{d\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a078434b74fad444f369622e1116c0eab}{dd\+Log\+PDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a7fe20284bc386d8088974a41eac184e7}{CDF}} (const double \&x) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a1a7135c13799b410c3baa5185b050cbc}{quantile}} (const double \&p) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a5d03deebc0cb1dbb4345becb497eeb3b}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a4e82a802a1002fbffd563a3c690f6f3a}{set\+Mean}} (double mu)
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a9bd17d0446ff3c6d0d071423c1b1962e}{set\+Std}} (double sigma)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution}{cmp\+::distribution\+::\+Univariate\+Distribution$<$ Log\+Normal\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9931f4f984317ac7bd92e0cefa5162ea}{log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a0e2fb25e16d8a5be4e07aaaf7176baf3}{d\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the first derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a9007089eadc69399bd8a7439a0f23daf}{dd\+Log\+PDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the second derivative of the log-\/\+PDF. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a8bbc084f54acc7b70441727ed118f4aa}{CDF}} (const double \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the cumulative distribution function (CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a01a92715e42ea2aaf4cb459f88370667}{quantile}} (const double \&p) const
+\begin{DoxyCompactList}\small\item\em Computes the quantile function (inverse CDF). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_univariate_distribution_a476afdc57d8b5855586323f45488ed96}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single pseudo-\/random sample from the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_af971bb7fc6ea3ddc130a20e884444a7d}{mean\+\_\+}} \{0.\+0\}
+\begin{DoxyCompactList}\small\item\em Log-\/mean parameter. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a0da57aa5d787e9cacfdf254ac4b40be8}{std\+\_\+}} \{1.\+0\}
+\begin{DoxyCompactList}\small\item\em Log-\/standard deviation parameter. \end{DoxyCompactList}\item 
+std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_log_normal_distribution_a58ee1b65efab17598f077cd60902b6db}{dist\+N\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Normal distribution generator helper. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a0e655dadd6b122392303ff4c0e029c6a}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!LogNormalDistribution@{LogNormalDistribution}}
+\index{LogNormalDistribution@{LogNormalDistribution}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{LogNormalDistribution()}{LogNormalDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a0e655dadd6b122392303ff4c0e029c6a} 
+cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::\+Log\+Normal\+Distribution (\begin{DoxyParamCaption}\item[{double}]{mu}{, }\item[{double}]{sigma}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a646f1d0523d60da69efafb68aec7da45}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!LogNormalDistribution@{LogNormalDistribution}}
+\index{LogNormalDistribution@{LogNormalDistribution}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{LogNormalDistribution()}{LogNormalDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a646f1d0523d60da69efafb68aec7da45} 
+cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::\+Log\+Normal\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a7fe20284bc386d8088974a41eac184e7}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!CDF@{CDF}}
+\index{CDF@{CDF}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{CDF()}{CDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a7fe20284bc386d8088974a41eac184e7} 
+double cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::\+CDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a078434b74fad444f369622e1116c0eab}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!ddLogPDF@{ddLogPDF}}
+\index{ddLogPDF@{ddLogPDF}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{ddLogPDF()}{ddLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a078434b74fad444f369622e1116c0eab} 
+double cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::dd\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_aa5cfd872d3861e95957c6da5b1737c5e}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!dLogPDF@{dLogPDF}}
+\index{dLogPDF@{dLogPDF}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{dLogPDF()}{dLogPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_aa5cfd872d3861e95957c6da5b1737c5e} 
+double cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::d\+Log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a67eb73b60bbe0e11261c8c24e05fa83a}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a67eb73b60bbe0e11261c8c24e05fa83a} 
+double cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::log\+PDF (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a1a7135c13799b410c3baa5185b050cbc}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!quantile@{quantile}}
+\index{quantile@{quantile}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a1a7135c13799b410c3baa5185b050cbc} 
+double cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::quantile (\begin{DoxyParamCaption}\item[{const double \&}]{p}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a5d03deebc0cb1dbb4345becb497eeb3b}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a5d03deebc0cb1dbb4345becb497eeb3b} 
+double cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a4e82a802a1002fbffd563a3c690f6f3a}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!setMean@{setMean}}
+\index{setMean@{setMean}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{setMean()}{setMean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a4e82a802a1002fbffd563a3c690f6f3a} 
+void cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::set\+Mean (\begin{DoxyParamCaption}\item[{double}]{mu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a9bd17d0446ff3c6d0d071423c1b1962e}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!setStd@{setStd}}
+\index{setStd@{setStd}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{setStd()}{setStd()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a9bd17d0446ff3c6d0d071423c1b1962e} 
+void cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::set\+Std (\begin{DoxyParamCaption}\item[{double}]{sigma}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a58ee1b65efab17598f077cd60902b6db}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!distN\_@{distN\_}}
+\index{distN\_@{distN\_}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{distN\_}{distN\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a58ee1b65efab17598f077cd60902b6db} 
+std\+::normal\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::dist\+N\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Normal distribution generator helper. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_af971bb7fc6ea3ddc130a20e884444a7d}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_af971bb7fc6ea3ddc130a20e884444a7d} 
+double cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::mean\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Log-\/mean parameter. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_log_normal_distribution_a0da57aa5d787e9cacfdf254ac4b40be8}\index{cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}!std\_@{std\_}}
+\index{std\_@{std\_}!cmp::distribution::LogNormalDistribution@{cmp::distribution::LogNormalDistribution}}
+\doxysubsubsection{\texorpdfstring{std\_}{std\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_log_normal_distribution_a0da57aa5d787e9cacfdf254ac4b40be8} 
+double cmp\+::distribution\+::\+Log\+Normal\+Distribution\+::std\+\_\+ \{1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Log-\/standard deviation parameter. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

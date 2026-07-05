@@ -1,0 +1,47 @@
+\doxysection{cmp\+::classifier Namespace Reference}
+\hypertarget{namespacecmp_1_1classifier}{}\label{namespacecmp_1_1classifier}\index{cmp::classifier@{cmp::classifier}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{Classifier}}
+\begin{DoxyCompactList}\small\item\em Abstract base class for all classifiers. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_dummy}{Dummy}}
+\begin{DoxyCompactList}\small\item\em Baseline classifier predicting class labels based on training frequency distributions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e}{KDE}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} that uses Kernel Density Estimation (\doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}) for classification. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n}{KNN}}
+\begin{DoxyCompactList}\small\item\em K-\/\+Nearest Neighbors classifier helper class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m}{SVM}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} that uses Support Vector Machine (\doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM}) for classification. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}} \{ \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db}{CV\+\_\+\+SCORE}}
+, \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343}{CV\+\_\+\+PROB\+\_\+\+SCORE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Bandwidth selection objective criterion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{namespacecmp_1_1classifier_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}\index{cmp::classifier@{cmp::classifier}!method@{method}}
+\index{method@{method}!cmp::classifier@{cmp::classifier}}
+\doxysubsubsection{\texorpdfstring{method}{method}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d} 
+enum \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{cmp\+::classifier\+::method}}}
+
+
+
+Bandwidth selection objective criterion. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CV\_SCORE@{CV\_SCORE}!cmp::classifier@{cmp::classifier}}\index{cmp::classifier@{cmp::classifier}!CV\_SCORE@{CV\_SCORE}}}\Hypertarget{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db}\label{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db} 
+CV\+\_\+\+SCORE&Cross-\/validation score optimization based on classification accuracy. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CV\_PROB\_SCORE@{CV\_PROB\_SCORE}!cmp::classifier@{cmp::classifier}}\index{cmp::classifier@{cmp::classifier}!CV\_PROB\_SCORE@{CV\_PROB\_SCORE}}}\Hypertarget{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343}\label{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343} 
+CV\+\_\+\+PROB\+\_\+\+SCORE&Cross-\/validation score optimization based on probability likelihood. \\
+\hline
+
+\end{DoxyEnumFields}

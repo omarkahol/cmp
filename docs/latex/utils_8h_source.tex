@@ -1,0 +1,53 @@
+\doxysection{utils.\+h}
+\hypertarget{utils_8h_source}{}\label{utils_8h_source}\index{include/utils.h@{include/utils.h}}
+\mbox{\hyperlink{utils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ UTILS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ UTILS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a8d9746dabaab2aaa6b1d08975442c35d}{v\_mean}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&v);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a34f2153dfe287f6c3d84d0bb411d5463}{v\_std}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&v);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{namespacecmp_af241f9354cecfcccf1d346413c7246e0}{get\_column}}(\textcolor{keyword}{const}\ std::vector<Eigen::VectorXd>\ \&data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&index);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00039\ \ \ \ \ std::pair<Eigen::VectorXd,\ Eigen::LLT<Eigen::MatrixXd>>\ \mbox{\hyperlink{namespacecmp_ab6d624a3332d0bb80f6487b39db4553a}{normalize}}(std::vector<Eigen::VectorXd>\ \&grid);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00048\ \ \ \ \ std::pair<double,\ double>\ \mbox{\hyperlink{namespacecmp_ab6d624a3332d0bb80f6487b39db4553a}{normalize}}(std::vector<double>\ \&grid);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}}(Eigen::VectorXd\ \&v,\ \textcolor{keyword}{const}\ std::pair<Eigen::VectorXd,\ Eigen::LLT<Eigen::MatrixXd>>\ \&\mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}}(\textcolor{keywordtype}{double}\ \&v,\ \textcolor{keyword}{const}\ std::pair<double,\ double>\ \&\mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_a97330cababbbf8f87801039c5cbb1372}{un\_scale}}(Eigen::VectorXd\ \&v,\ \textcolor{keyword}{const}\ std::pair<Eigen::VectorXd,\ Eigen::LLT<Eigen::MatrixXd>>\ \&\mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}});}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_a97330cababbbf8f87801039c5cbb1372}{un\_scale}}(\textcolor{keywordtype}{double}\ \&v,\ \textcolor{keyword}{const}\ std::pair<double,\ double>\ \&\mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}});}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00082\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{namespacecmp_a3b3fc997b5c129041fb046fe7ee02572}{matrix\_to\_vvxd}}(\textcolor{keyword}{const}\ Eigen::MatrixXd\ \&data);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00089\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{namespacecmp_aa9e4bf6406b205aec1d441cfa384abc2}{v\_to\_vxd}}(\textcolor{keyword}{const}\ std::vector<double>\ \&v);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00096\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{namespacecmp_a4244a4de053a07de037712265081111d}{vxd\_to\_v}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&v);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00104\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{namespacecmp_ac94c41539c6efc9c8f537fdfc73cbffb}{v\_to\_vvxd}}(\textcolor{keyword}{const}\ std::vector<double>\ \&v);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_ab1dc110c650c08e25e393f014365bd12}{write\_vector}}(\textcolor{keyword}{const}\ std::vector<Eigen::VectorXd>\ \&data,\ std::ofstream\ \&o\_file);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_a2d11da656c8543c71e0f316a4eb41146}{write\_data}}(\textcolor{keyword}{const}\ std::vector<Eigen::VectorXd>\ \&x,\ \textcolor{keyword}{const}\ Eigen::MatrixXd\ \&y,\ std::ofstream\ \&o\_file);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00137\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{namespacecmp_a73f354f9c64a3d95569b1f2931dd566e}{read\_vector}}(std::ifstream\ \&i\_file);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

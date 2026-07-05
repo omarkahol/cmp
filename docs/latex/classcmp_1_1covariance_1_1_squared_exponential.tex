@@ -1,0 +1,172 @@
+\doxysection{cmp\+::covariance\+::Squared\+Exponential Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_squared_exponential}{}\label{classcmp_1_1covariance_1_1_squared_exponential}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+
+
+Squared Exponential (RBF / Gaussian) covariance function.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Squared\+Exponential\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_squared_exponential}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{Squared\+Exponential}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a44a007646f736dee8865768433e2c9c1}{Squared\+Exponential}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_aaf4e67ecfc42a038efe48b3fab41c896}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8a649ca98e98d8f74ba7f7a459e88d78}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a9a94c4c8031130a2f5bf14d7403f14d3}{Squared\+Exponential}} (const size\+\_\+t \&index, const int \&indexX=-\/1)
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a6b9904d54e0e320142c1aae74c0fdd49}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a5b9bf2c25915b125ebdd7d03fc8a30b5}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a229e7ba4789f380e0d6a4c5b18f15f1c}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a638912db0c025210ea8399168f02fc9b}{make}} (const size\+\_\+t \&l, const int \&i)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Hyperparameter index for the lengthscale parameter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{index\+X\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Dimension index to evaluate, or -\/1 for the full isotropic kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Squared Exponential (RBF / Gaussian) covariance function. 
+
+Mathematical Formulation Evaluates the squared exponential kernel between two inputs $\mathbf{x}_1, \mathbf{x}_2$\+:   \[k(\mathbf{x}_1, \mathbf{x}_2) = \exp\left( -\frac{1}{2} \left(\frac{d}{\ell}\right)^2 \right)
+\] where $d$ is the distance (Euclidean norm $\|\mathbf{x}_1 - \mathbf{x}_2\|_2$ if isotropic, or absolute coordinate distance $|x_{1,i} - x_{2,i}|$ if restricted to dimension $i$), and $\ell = \theta_{\text{index}}$ is the lengthscale hyperparameter.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Computes the distance $d$ based on the component index configuration.
+\item Computes the exponential kernel value.
+\item Evaluates analytical first-\/order and second-\/order derivatives with respect to the lengthscale $\ell$. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!SquaredExponential@{SquaredExponential}}
+\index{SquaredExponential@{SquaredExponential}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{SquaredExponential()}{SquaredExponential()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81} 
+cmp\+::covariance\+::\+Squared\+Exponential\+::\+Squared\+Exponential (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a44a007646f736dee8865768433e2c9c1}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!SquaredExponential@{SquaredExponential}}
+\index{SquaredExponential@{SquaredExponential}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{SquaredExponential()}{SquaredExponential()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a44a007646f736dee8865768433e2c9c1} 
+cmp\+::covariance\+::\+Squared\+Exponential\+::\+Squared\+Exponential (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a9a94c4c8031130a2f5bf14d7403f14d3}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!SquaredExponential@{SquaredExponential}}
+\index{SquaredExponential@{SquaredExponential}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{SquaredExponential()}{SquaredExponential()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a9a94c4c8031130a2f5bf14d7403f14d3} 
+cmp\+::covariance\+::\+Squared\+Exponential\+::\+Squared\+Exponential (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{index}{, }\item[{const int \&}]{indexX}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a6b9904d54e0e320142c1aae74c0fdd49}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a6b9904d54e0e320142c1aae74c0fdd49} 
+double cmp\+::covariance\+::\+Squared\+Exponential\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a5b9bf2c25915b125ebdd7d03fc8a30b5}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a5b9bf2c25915b125ebdd7d03fc8a30b5} 
+double cmp\+::covariance\+::\+Squared\+Exponential\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a229e7ba4789f380e0d6a4c5b18f15f1c}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a229e7ba4789f380e0d6a4c5b18f15f1c} 
+double cmp\+::covariance\+::\+Squared\+Exponential\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a638912db0c025210ea8399168f02fc9b}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!make@{make}}
+\index{make@{make}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a638912db0c025210ea8399168f02fc9b} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+Squared\+Exponential\+::make (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{l}{, }\item[{const int \&}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_aaf4e67ecfc42a038efe48b3fab41c896}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_aaf4e67ecfc42a038efe48b3fab41c896} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \& cmp\+::covariance\+::\+Squared\+Exponential\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a8a649ca98e98d8f74ba7f7a459e88d78}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a8a649ca98e98d8f74ba7f7a459e88d78} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \& cmp\+::covariance\+::\+Squared\+Exponential\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!index\_@{index\_}}
+\index{index\_@{index\_}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{index\_}{index\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d} 
+size\+\_\+t cmp\+::covariance\+::\+Squared\+Exponential\+::index\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hyperparameter index for the lengthscale parameter. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}\index{cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}!indexX\_@{indexX\_}}
+\index{indexX\_@{indexX\_}!cmp::covariance::SquaredExponential@{cmp::covariance::SquaredExponential}}
+\doxysubsubsection{\texorpdfstring{indexX\_}{indexX\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e} 
+int cmp\+::covariance\+::\+Squared\+Exponential\+::index\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dimension index to evaluate, or -\/1 for the full isotropic kernel. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

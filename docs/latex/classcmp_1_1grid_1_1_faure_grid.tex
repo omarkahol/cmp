@@ -1,0 +1,163 @@
+\doxysection{cmp\+::grid\+::Faure\+Grid Class Reference}
+\hypertarget{classcmp_1_1grid_1_1_faure_grid}{}\label{classcmp_1_1grid_1_1_faure_grid}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+
+
+Faure low-\/discrepancy sequence grid generator.  
+
+
+
+
+{\ttfamily \#include $<$grid.\+h$>$}
+
+Inheritance diagram for cmp\+::grid\+::Faure\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1grid_1_1_faure_grid}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a2d114cc1df2cbb8eb1e9ed781077761a}{Faure\+Grid}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lower\+Bound, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&upper\+Bound, unsigned int seed=42)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1grid_1_1_faure_grid}{Faure\+Grid} generator. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a7396f2455fcd4b0fe7c25c3644d22b44}{construct}} (const size\+\_\+t \&n\+Points) override
+\begin{DoxyCompactList}\small\item\em Constructs a matrix of Faure points. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a1ab2135277c596aa3edbca0da3bff89a}{operator()}} ()
+\begin{DoxyCompactList}\small\item\em Evaluates a single Faure sample. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a2db7c0ec848c430be37b62b1c4004601}{dim}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{cmp\+::grid\+::\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\texorpdfstring{$\sim$}{\string~}\+Grid}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::random\+::faure \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}{gen\+\_\+}}
+\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a1060bccbe1bf199bb4aaace62bb234e8}{rng\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}{dimension\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9}{lower\+Bound\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_faure_grid_a6c4be4c601d6ba60df9928d946431313}{upper\+Bound\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Faure low-\/discrepancy sequence grid generator. 
+
+Mathematical Formulation Uses the Faure sequence (often used in prime base) to generate quasi-\/random samples with low discrepancy. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_a2d114cc1df2cbb8eb1e9ed781077761a}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!FaureGrid@{FaureGrid}}
+\index{FaureGrid@{FaureGrid}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{FaureGrid()}{FaureGrid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_a2d114cc1df2cbb8eb1e9ed781077761a} 
+cmp\+::grid\+::\+Faure\+Grid\+::\+Faure\+Grid (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lower\+Bound}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{upper\+Bound}{, }\item[{unsigned int}]{seed}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1grid_1_1_faure_grid}{Faure\+Grid} generator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower\+Bound} & Lower bounds of the domain. \\
+\hline
+{\em upper\+Bound} & Upper bounds of the domain. \\
+\hline
+{\em seed} & Seed for the random shuffle generator. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_a7396f2455fcd4b0fe7c25c3644d22b44}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!construct@{construct}}
+\index{construct@{construct}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_a7396f2455fcd4b0fe7c25c3644d22b44} 
+Eigen\+::\+Matrix\+Xd cmp\+::grid\+::\+Faure\+Grid\+::construct (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Constructs a matrix of Faure points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Points} & Number of points to generate. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_a2db7c0ec848c430be37b62b1c4004601}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!dim@{dim}}
+\index{dim@{dim}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_a2db7c0ec848c430be37b62b1c4004601} 
+size\+\_\+t cmp\+::grid\+::\+Faure\+Grid\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the dimension of the domain. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_a1ab2135277c596aa3edbca0da3bff89a}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!operator()@{operator()}}
+\index{operator()@{operator()}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_a1ab2135277c596aa3edbca0da3bff89a} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Faure\+Grid\+::operator() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Evaluates a single Faure sample. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!dimension\_@{dimension\_}}
+\index{dimension\_@{dimension\_}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{dimension\_}{dimension\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_ac4a4e9c7ae1e0676968a6600d3e55bb6} 
+size\+\_\+t cmp\+::grid\+::\+Faure\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!gen\_@{gen\_}}
+\index{gen\_@{gen\_}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{gen\_}{gen\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_aff76788125ba6b3d46a3ac24374cb07f} 
+boost\+::random\+::faure cmp\+::grid\+::\+Faure\+Grid\+::gen\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_a00c5047e83148c2cb22cd7128378ebf9} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Faure\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_a1060bccbe1bf199bb4aaace62bb234e8}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_a1060bccbe1bf199bb4aaace62bb234e8} 
+std\+::default\+\_\+random\+\_\+engine cmp\+::grid\+::\+Faure\+Grid\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_faure_grid_a6c4be4c601d6ba60df9928d946431313}\index{cmp::grid::FaureGrid@{cmp::grid::FaureGrid}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::grid::FaureGrid@{cmp::grid::FaureGrid}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_faure_grid_a6c4be4c601d6ba60df9928d946431313} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Faure\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{grid_8h}{grid.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,225 @@
+\doxysection{cmp\+::kernel\+::Isotropic\+Bandwidth Class Reference}
+\hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth}{}\label{classcmp_1_1kernel_1_1_isotropic_bandwidth}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+
+
+Isotropic bandwidth matrix (single scalar parameter h).  
+
+
+
+
+{\ttfamily \#include $<$kernel++.\+h$>$}
+
+Inheritance diagram for cmp\+::kernel\+::Isotropic\+Bandwidth\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1kernel_1_1_isotropic_bandwidth}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a921f82543599d3e5157f00a2eedbb640}{Isotropic\+Bandwidth}} ()=delete
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae70a1d45aa44d2e872920520fa2bc26a}{Isotropic\+Bandwidth}} (const double \&h, const size\+\_\+t \&dim)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classcmp_1_1kernel_1_1_isotropic_bandwidth}{Isotropic\+Bandwidth} object. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_aea28c87837336c8b92f9f2ac72a05732}{apply}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2) const override
+\begin{DoxyCompactList}\small\item\em Scales the distance between two vectors by 1/h. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1bb3d7bb11263f5f5e8855058dcae925}{determinant}} () const override
+\begin{DoxyCompactList}\small\item\em Computes the determinant of the bandwidth matrix (h\texorpdfstring{$^\wedge$}{\string^}D). \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a2437b9b8ab2a2bb38061b12d1ffbd26a}{size}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the space. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1488b76345f17b9734541286352ce1b0}{gradient\+Of\+Apply}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const size\+\_\+t \&i) const override
+\begin{DoxyCompactList}\small\item\em Computes the gradient of the scaling transformation with respect to h. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ac00a69937e7c21f4f8e92878677a468d}{gradient\+Of\+Log\+Determinant}} (const size\+\_\+t \&i) const override
+\begin{DoxyCompactList}\small\item\em Computes the gradient of the log-\/determinant (D / h). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1f92d3692e30b40ed949de29c6f3ecd9}{set\+From\+Vector}} (const Eigen\+::\+Vector\+Xd \&params)
+\begin{DoxyCompactList}\small\item\em Sets the bandwidth parameter from a parameter vector. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a6bf07056ff72df4eabe935d63919b6f2}{get\+Params}} () const
+\begin{DoxyCompactList}\small\item\em Returns the bandwidth parameter vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2bcf9c9c28c36fa4f5c38a779d8f2ae8}{\texorpdfstring{$\sim$}{\string~}\+Bandwidth}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}} $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a916e66a9f2be9a3e17da61ea0f03ee3c}{make}} (const double \&h, const size\+\_\+t \&dim)
+\begin{DoxyCompactList}\small\item\em Factory method for creating an \doxylink{classcmp_1_1kernel_1_1_isotropic_bandwidth}{Isotropic\+Bandwidth}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74}{h\+\_\+}} \{1.\+0\}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae805f0f988d554c6d838382dbf13a414}{dim\+\_\+}} \{1\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Isotropic bandwidth matrix (single scalar parameter h). 
+
+Mathematical Formulation Defines a spherical scaling matrix $\mathbf{H} = h \mathbf{I}_D$. The transformation scales inputs uniformly\+:   \[\mathbf{z} = \frac{1}{h} (\mathbf{x}_1 - \mathbf{x}_2)
+\] The determinant is $\det(\mathbf{H}) = h^D$. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_a921f82543599d3e5157f00a2eedbb640}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!IsotropicBandwidth@{IsotropicBandwidth}}
+\index{IsotropicBandwidth@{IsotropicBandwidth}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{IsotropicBandwidth()}{IsotropicBandwidth()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_a921f82543599d3e5157f00a2eedbb640} 
+cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::\+Isotropic\+Bandwidth (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae70a1d45aa44d2e872920520fa2bc26a}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!IsotropicBandwidth@{IsotropicBandwidth}}
+\index{IsotropicBandwidth@{IsotropicBandwidth}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{IsotropicBandwidth()}{IsotropicBandwidth()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae70a1d45aa44d2e872920520fa2bc26a} 
+cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::\+Isotropic\+Bandwidth (\begin{DoxyParamCaption}\item[{const double \&}]{h}{, }\item[{const size\+\_\+t \&}]{dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an \doxylink{classcmp_1_1kernel_1_1_isotropic_bandwidth}{Isotropic\+Bandwidth} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & Smoothing bandwidth scalar. \\
+\hline
+{\em dim} & Dimension of the data. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_aea28c87837336c8b92f9f2ac72a05732}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!apply@{apply}}
+\index{apply@{apply}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_aea28c87837336c8b92f9f2ac72a05732} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::apply (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Scales the distance between two vectors by 1/h. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a7b59faf763ae6808acd9ec5cf93f2663}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1bb3d7bb11263f5f5e8855058dcae925}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!determinant@{determinant}}
+\index{determinant@{determinant}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1bb3d7bb11263f5f5e8855058dcae925} 
+double cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::determinant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the determinant of the bandwidth matrix (h\texorpdfstring{$^\wedge$}{\string^}D). 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a718d366c32b080389cae1e844f126002}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_a6bf07056ff72df4eabe935d63919b6f2}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!getParams@{getParams}}
+\index{getParams@{getParams}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{getParams()}{getParams()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_a6bf07056ff72df4eabe935d63919b6f2} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::get\+Params (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the bandwidth parameter vector. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a1c1ec89f8c2823ade415bfc22c46ff11}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1488b76345f17b9734541286352ce1b0}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!gradientOfApply@{gradientOfApply}}
+\index{gradientOfApply@{gradientOfApply}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{gradientOfApply()}{gradientOfApply()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1488b76345f17b9734541286352ce1b0} 
+Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::gradient\+Of\+Apply (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the gradient of the scaling transformation with respect to h. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2e95090dd6f3648c895b3763bc23f519}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_ac00a69937e7c21f4f8e92878677a468d}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!gradientOfLogDeterminant@{gradientOfLogDeterminant}}
+\index{gradientOfLogDeterminant@{gradientOfLogDeterminant}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{gradientOfLogDeterminant()}{gradientOfLogDeterminant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_ac00a69937e7c21f4f8e92878677a468d} 
+double cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::gradient\+Of\+Log\+Determinant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the gradient of the log-\/determinant (D / h). 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a8e0152653d956a81f9ee555ab83c8e1b}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_a916e66a9f2be9a3e17da61ea0f03ee3c}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!make@{make}}
+\index{make@{make}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_a916e66a9f2be9a3e17da61ea0f03ee3c} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}} $>$ cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::make (\begin{DoxyParamCaption}\item[{const double \&}]{h}{, }\item[{const size\+\_\+t \&}]{dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating an \doxylink{classcmp_1_1kernel_1_1_isotropic_bandwidth}{Isotropic\+Bandwidth}. 
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1f92d3692e30b40ed949de29c6f3ecd9}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!setFromVector@{setFromVector}}
+\index{setFromVector@{setFromVector}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{setFromVector()}{setFromVector()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1f92d3692e30b40ed949de29c6f3ecd9} 
+void cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::set\+From\+Vector (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{params}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets the bandwidth parameter from a parameter vector. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_af901feed1ed1e7bd7b44ecd12152b1d4}{cmp\+::kernel\+::\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_a2437b9b8ab2a2bb38061b12d1ffbd26a}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!size@{size}}
+\index{size@{size}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_a2437b9b8ab2a2bb38061b12d1ffbd26a} 
+size\+\_\+t cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the dimension of the space. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a873ddb11a78e7adc920d31aa2c9cbeae}{cmp\+::kernel\+::\+Bandwidth}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae805f0f988d554c6d838382dbf13a414}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae805f0f988d554c6d838382dbf13a414} 
+size\+\_\+t cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::dim\+\_\+ \{1\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74}\index{cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}!h\_@{h\_}}
+\index{h\_@{h\_}!cmp::kernel::IsotropicBandwidth@{cmp::kernel::IsotropicBandwidth}}
+\doxysubsubsection{\texorpdfstring{h\_}{h\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74} 
+double cmp\+::kernel\+::\+Isotropic\+Bandwidth\+::h\+\_\+ \{1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kernel_09_09_8h}{kernel++.\+h}}\item 
+src/\mbox{\hyperlink{kernel_09_09_8cpp}{kernel++.\+cpp}}\end{DoxyCompactItemize}

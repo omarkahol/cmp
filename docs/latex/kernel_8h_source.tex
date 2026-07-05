@@ -1,0 +1,64 @@
+\doxysection{kernel.\+h}
+\hypertarget{kernel_8h_source}{}\label{kernel_8h_source}\index{include/kernel.h@{include/kernel.h}}
+\mbox{\hyperlink{kernel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ KERNEL\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ KERNEL\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_af1d329e97ac8ac65a977c1b7c802c635}{squared\_kernel}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_acb8ed9b26fc46ca2d380514d113232c0}{white\_noise\_kernel}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a71a2b85afd7c43b65b757ca11b6c5cde}{squared\_kernel\_grad}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00060\ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_aa52ee4892152aa878109b825df8315d1}{white\_noise\_kernel\_grad}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a790bf38a1d6a2a8257de4904a728ff6a}{squared\_kernel\_hess}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&j);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a088d77a41c8c6ab196f5ae31d9041f88}{white\_noise\_kernel\_hess}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&j);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_abcc3f53bb9628178574e7b87cc056470}{rational\_quadratic\_kernel}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&a);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_adf8ec4f9842e6cf0ca79a68c2fc7a915}{periodic\_kernel}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&p);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a8e01ded138c08965446bbfa257c17059}{locally\_periodic\_kernel}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&p);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_acddd68dd2a5a215ad64ac30a2c94de91}{se\_kernel\_corr}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&d,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_ad83bbf9c9f51272a44c404e91d1b7eea}{d\_se\_kernel\_corr}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&d,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a0be4e761046e9645380e703e2915c199}{dd\_se\_kernel\_corr}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&d,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_abf604abaf9ebbbdb57c5259c28d5a49d}{matern\_12\_kernel}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_af78c2d66678bbf4eb3208f4ce00938a8}{matern\_32\_kernel}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_abba41ff34332e7ef3072b4a000a44eed}{matern\_52\_kernel}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_adf6d7e74239b6808ef9a7db82a685006}{matern\_12\_corr}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&d,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a4479b63b265ebb50ccdf13d11994d06b}{matern\_32\_corr}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&d,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a94ba304a4c775659a51f8f64f4d75e15}{matern\_52\_corr}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&d,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&l);}
+\DoxyCodeLine{00239\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

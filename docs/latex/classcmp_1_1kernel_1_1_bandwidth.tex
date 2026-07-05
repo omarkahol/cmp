@@ -1,0 +1,135 @@
+\doxysection{cmp\+::kernel\+::Bandwidth Class Reference}
+\hypertarget{classcmp_1_1kernel_1_1_bandwidth}{}\label{classcmp_1_1kernel_1_1_bandwidth}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+
+
+Abstract base class for multivariate KDE bandwidth matrices.  
+
+
+
+
+{\ttfamily \#include $<$kernel++.\+h$>$}
+
+Inheritance diagram for cmp\+::kernel\+::Bandwidth\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.885522cm]{classcmp_1_1kernel_1_1_bandwidth}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2bcf9c9c28c36fa4f5c38a779d8f2ae8}{\texorpdfstring{$\sim$}{\string~}\+Bandwidth}} ()=default
+\item 
+virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a7b59faf763ae6808acd9ec5cf93f2663}{apply}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2) const =0
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a718d366c32b080389cae1e844f126002}{determinant}} () const =0
+\item 
+virtual size\+\_\+t \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a873ddb11a78e7adc920d31aa2c9cbeae}{size}} () const =0
+\item 
+virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a2e95090dd6f3648c895b3763bc23f519}{gradient\+Of\+Apply}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const size\+\_\+t \&i) const =0
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a8e0152653d956a81f9ee555ab83c8e1b}{gradient\+Of\+Log\+Determinant}} (const size\+\_\+t \&i) const =0
+\item 
+virtual void \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_af901feed1ed1e7bd7b44ecd12152b1d4}{set\+From\+Vector}} (const Eigen\+::\+Vector\+Xd \&params)=0
+\item 
+virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a1c1ec89f8c2823ade415bfc22c46ff11}{get\+Params}} () const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for multivariate KDE bandwidth matrices. 
+
+Mathematical Formulation The bandwidth matrix $\mathbf{H} \in \mathbb{R}^{D \times D}$ acts as a linear transformation scaling spatial distances\+:   \[\mathbf{z} = \mathbf{H}^{-1} (\mathbf{x}_1 - \mathbf{x}_2)
+\] The smoothing kernel scales inversely with the determinant\+: $\frac{1}{\det(\mathbf{H})}$.
+
+Implementation Algorithm Defines virtual methods to compute coordinate scaling ({\ttfamily apply}), matrix determinant ({\ttfamily determinant}), and parameter gradients for NLopt optimization. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_a2bcf9c9c28c36fa4f5c38a779d8f2ae8}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}!````~Bandwidth@{\texorpdfstring{$\sim$}{\string~}Bandwidth}}
+\index{````~Bandwidth@{\texorpdfstring{$\sim$}{\string~}Bandwidth}!cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Bandwidth()}{\string~Bandwidth()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_bandwidth_a2bcf9c9c28c36fa4f5c38a779d8f2ae8} 
+virtual cmp\+::kernel\+::\+Bandwidth\+::\texorpdfstring{$\sim$}{\string~}\+Bandwidth (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_a7b59faf763ae6808acd9ec5cf93f2663}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}!apply@{apply}}
+\index{apply@{apply}!cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+\doxysubsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_bandwidth_a7b59faf763ae6808acd9ec5cf93f2663} 
+virtual Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Bandwidth\+::apply (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a30cdee5966d0c041a02b1bb5799bfcb0}{cmp\+::kernel\+::\+Diagonal\+Bandwidth}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a6259f9454ca705178e15350750a1eb23}{cmp\+::kernel\+::\+Full\+Bandwidth}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_aea28c87837336c8b92f9f2ac72a05732}{cmp\+::kernel\+::\+Isotropic\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_a718d366c32b080389cae1e844f126002}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}!determinant@{determinant}}
+\index{determinant@{determinant}!cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_bandwidth_a718d366c32b080389cae1e844f126002} 
+virtual double cmp\+::kernel\+::\+Bandwidth\+::determinant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a1ca633e2913ffe602d1f2726260d01cf}{cmp\+::kernel\+::\+Diagonal\+Bandwidth}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab10e0d03356a1216a70bb4550bf541a4}{cmp\+::kernel\+::\+Full\+Bandwidth}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1bb3d7bb11263f5f5e8855058dcae925}{cmp\+::kernel\+::\+Isotropic\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_a1c1ec89f8c2823ade415bfc22c46ff11}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}!getParams@{getParams}}
+\index{getParams@{getParams}!cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+\doxysubsubsection{\texorpdfstring{getParams()}{getParams()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_bandwidth_a1c1ec89f8c2823ade415bfc22c46ff11} 
+virtual Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Bandwidth\+::get\+Params (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a95d0e03300a71ace8fe87fb8e6634636}{cmp\+::kernel\+::\+Diagonal\+Bandwidth}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a62bfa6bf98fab34a92ae2cb0b7407345}{cmp\+::kernel\+::\+Full\+Bandwidth}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a6bf07056ff72df4eabe935d63919b6f2}{cmp\+::kernel\+::\+Isotropic\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_a2e95090dd6f3648c895b3763bc23f519}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}!gradientOfApply@{gradientOfApply}}
+\index{gradientOfApply@{gradientOfApply}!cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+\doxysubsubsection{\texorpdfstring{gradientOfApply()}{gradientOfApply()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_bandwidth_a2e95090dd6f3648c895b3763bc23f519} 
+virtual Eigen\+::\+Vector\+Xd cmp\+::kernel\+::\+Bandwidth\+::gradient\+Of\+Apply (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_ab233586f447b5cb6888eaa18a4ed218d}{cmp\+::kernel\+::\+Diagonal\+Bandwidth}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a2f0390182b2293ab011726d6590c5aef}{cmp\+::kernel\+::\+Full\+Bandwidth}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1488b76345f17b9734541286352ce1b0}{cmp\+::kernel\+::\+Isotropic\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_a8e0152653d956a81f9ee555ab83c8e1b}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}!gradientOfLogDeterminant@{gradientOfLogDeterminant}}
+\index{gradientOfLogDeterminant@{gradientOfLogDeterminant}!cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+\doxysubsubsection{\texorpdfstring{gradientOfLogDeterminant()}{gradientOfLogDeterminant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_bandwidth_a8e0152653d956a81f9ee555ab83c8e1b} 
+virtual double cmp\+::kernel\+::\+Bandwidth\+::gradient\+Of\+Log\+Determinant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a445ac377661391b0089c64a6271b58c6}{cmp\+::kernel\+::\+Diagonal\+Bandwidth}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a4abd245fbba3514679bc8cc9f54968f2}{cmp\+::kernel\+::\+Full\+Bandwidth}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ac00a69937e7c21f4f8e92878677a468d}{cmp\+::kernel\+::\+Isotropic\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_af901feed1ed1e7bd7b44ecd12152b1d4}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}!setFromVector@{setFromVector}}
+\index{setFromVector@{setFromVector}!cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+\doxysubsubsection{\texorpdfstring{setFromVector()}{setFromVector()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_bandwidth_af901feed1ed1e7bd7b44ecd12152b1d4} 
+virtual void cmp\+::kernel\+::\+Bandwidth\+::set\+From\+Vector (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{params}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a0576664d48583c59df9385f2bbb21325}{cmp\+::kernel\+::\+Diagonal\+Bandwidth}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a0f53f06e7579d8c07d8284c0bb15de45}{cmp\+::kernel\+::\+Full\+Bandwidth}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a1f92d3692e30b40ed949de29c6f3ecd9}{cmp\+::kernel\+::\+Isotropic\+Bandwidth}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_bandwidth_a873ddb11a78e7adc920d31aa2c9cbeae}\index{cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}!size@{size}}
+\index{size@{size}!cmp::kernel::Bandwidth@{cmp::kernel::Bandwidth}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_bandwidth_a873ddb11a78e7adc920d31aa2c9cbeae} 
+virtual size\+\_\+t cmp\+::kernel\+::\+Bandwidth\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_aade0fa1151a3cf6ffd54374fa9a743f8}{cmp\+::kernel\+::\+Diagonal\+Bandwidth}}, \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a0ee84d8b42b8488a266408649506400b}{cmp\+::kernel\+::\+Full\+Bandwidth}}, and \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a2437b9b8ab2a2bb38061b12d1ffbd26a}{cmp\+::kernel\+::\+Isotropic\+Bandwidth}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kernel_09_09_8h}{kernel++.\+h}}\end{DoxyCompactItemize}

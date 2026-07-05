@@ -1,0 +1,118 @@
+\doxysection{cmp\+::kernel\+::Uniform Class Reference}
+\hypertarget{classcmp_1_1kernel_1_1_uniform}{}\label{classcmp_1_1kernel_1_1_uniform}\index{cmp::kernel::Uniform@{cmp::kernel::Uniform}}
+
+
+Rectangular (uniform) density kernel.  
+
+
+
+
+{\ttfamily \#include $<$kernel++.\+h$>$}
+
+Inheritance diagram for cmp\+::kernel\+::Uniform\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1kernel_1_1_uniform}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a34a9cfeb755cc6ae2435dfd8928f0353}{Uniform}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_af6b7a2c0dc2c0eccc339da1cd77f51e4}{eval}} (const Eigen\+::\+Vector\+Xd \&z\+\_\+diff) const override
+\begin{DoxyCompactList}\small\item\em Evaluates the unnormalized uniform kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a2c9ecbd90297949b3a0960ac71720b50}{normalization\+Constant}} (const size\+\_\+t \&dim) const override
+\begin{DoxyCompactList}\small\item\em Returns the normalization constant for a given dimension. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a4d19bf5e8fa6c259cf1b60259700755f}{apply\+To\+Gradient}} (const Eigen\+::\+Vector\+Xd \&z, const Eigen\+::\+Vector\+Xd \&grad\+\_\+z\+\_\+i) const override
+\begin{DoxyCompactList}\small\item\em Computes the gradient of the kernel evaluation (always 0 since it is flat). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{cmp\+::kernel\+::\+Kernel}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad1d785fbdc3a74aedfa575053b09bb0}{\texorpdfstring{$\sim$}{\string~}\+Kernel}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}} $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_uniform_a6397931e0c750db84f207445e2b727ae}{make}} ()
+\begin{DoxyCompactList}\small\item\em Factory method for creating a \doxylink{classcmp_1_1kernel_1_1_uniform}{Uniform} kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rectangular (uniform) density kernel. 
+
+Mathematical Formulation The multivariate uniform kernel\+:   \[K(\mathbf{z}) \propto \begin{cases} 1 & \text{if } \|\mathbf{z}\|_\infty \le 1/2 \\ 0 & \text{otherwise} \end{cases}
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1kernel_1_1_uniform_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_uniform_a34a9cfeb755cc6ae2435dfd8928f0353}\index{cmp::kernel::Uniform@{cmp::kernel::Uniform}!Uniform@{Uniform}}
+\index{Uniform@{Uniform}!cmp::kernel::Uniform@{cmp::kernel::Uniform}}
+\doxysubsubsection{\texorpdfstring{Uniform()}{Uniform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_uniform_a34a9cfeb755cc6ae2435dfd8928f0353} 
+cmp\+::kernel\+::\+Uniform\+::\+Uniform (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1kernel_1_1_uniform_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1kernel_1_1_uniform_a4d19bf5e8fa6c259cf1b60259700755f}\index{cmp::kernel::Uniform@{cmp::kernel::Uniform}!applyToGradient@{applyToGradient}}
+\index{applyToGradient@{applyToGradient}!cmp::kernel::Uniform@{cmp::kernel::Uniform}}
+\doxysubsubsection{\texorpdfstring{applyToGradient()}{applyToGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_uniform_a4d19bf5e8fa6c259cf1b60259700755f} 
+double cmp\+::kernel\+::\+Uniform\+::apply\+To\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{z}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{grad\+\_\+z\+\_\+i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Computes the gradient of the kernel evaluation (always 0 since it is flat). 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_aad7b69ab20fe331b1b9e64ca9afa10ad}{cmp\+::kernel\+::\+Kernel}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_uniform_af6b7a2c0dc2c0eccc339da1cd77f51e4}\index{cmp::kernel::Uniform@{cmp::kernel::Uniform}!eval@{eval}}
+\index{eval@{eval}!cmp::kernel::Uniform@{cmp::kernel::Uniform}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_uniform_af6b7a2c0dc2c0eccc339da1cd77f51e4} 
+double cmp\+::kernel\+::\+Uniform\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{z\+\_\+diff}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the unnormalized uniform kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a93a0f6bc1b69f2398d9fdc0f36bd01bb}{cmp\+::kernel\+::\+Kernel}}.
+
+\Hypertarget{classcmp_1_1kernel_1_1_uniform_a6397931e0c750db84f207445e2b727ae}\index{cmp::kernel::Uniform@{cmp::kernel::Uniform}!make@{make}}
+\index{make@{make}!cmp::kernel::Uniform@{cmp::kernel::Uniform}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_uniform_a6397931e0c750db84f207445e2b727ae} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{Kernel}} $>$ cmp\+::kernel\+::\+Uniform\+::make (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating a \doxylink{classcmp_1_1kernel_1_1_uniform}{Uniform} kernel. 
+
+\Hypertarget{classcmp_1_1kernel_1_1_uniform_a2c9ecbd90297949b3a0960ac71720b50}\index{cmp::kernel::Uniform@{cmp::kernel::Uniform}!normalizationConstant@{normalizationConstant}}
+\index{normalizationConstant@{normalizationConstant}!cmp::kernel::Uniform@{cmp::kernel::Uniform}}
+\doxysubsubsection{\texorpdfstring{normalizationConstant()}{normalizationConstant()}}
+{\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_uniform_a2c9ecbd90297949b3a0960ac71720b50} 
+double cmp\+::kernel\+::\+Uniform\+::normalization\+Constant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{dim}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the normalization constant for a given dimension. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel_a8e73dd33c293a97bb12cb3dc1b22725a}{cmp\+::kernel\+::\+Kernel}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{kernel_09_09_8h}{kernel++.\+h}}\item 
+src/\mbox{\hyperlink{kernel_09_09_8cpp}{kernel++.\+cpp}}\end{DoxyCompactItemize}

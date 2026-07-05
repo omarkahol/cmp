@@ -1,0 +1,92 @@
+\doxysection{cmp\+::distribution\+::Proposal\+Distribution\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcmp_1_1distribution_1_1_proposal_distribution}{}\label{classcmp_1_1distribution_1_1_proposal_distribution}\index{cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Proposal\+Distribution\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_proposal_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution_a73778476860ca2b5091c9ef6c573174f}{log\+Jump\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&jump)
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution_a7ac9a8dd07357459971224287b861866}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng, const double \&gamma)
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution_a4ab7abc70e92233676301ea1627790dc}{squared\+Mahalanobis}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&jump) const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution_af46d9f693cd52a3613d2a9295b0ca6ca}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution_a28bd5b3b56cd212ec342a01dc4b4e6d8}{get}} () const
+\item 
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution_ae2b50f1c1d418c8069b090ee6b2df3cb}{set}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution$<$ Derived $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_adf3b1409c78a9180147df5ff4d9c65cd}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the joint log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_a11d88504b8e41a0d7cf53407a851ddc2}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single vector sample from the joint distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_aab20c160e414e53d0082fa02b6bfa90a}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms physical samples to standard canonical space. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ad9cfbac42c99982f2abe4f8b46bca784}{from\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms standard canonical samples back to physical space. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ae7af8e6314ab5158173f1c7809c3c9aa}{dimension}} () const
+\begin{DoxyCompactList}\small\item\em Returns the dimensionality of the multivariate space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_proposal_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_proposal_distribution_a28bd5b3b56cd212ec342a01dc4b4e6d8}\index{cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}!get@{get}}
+\index{get@{get}!cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_proposal_distribution_a28bd5b3b56cd212ec342a01dc4b4e6d8} 
+template$<$typename Derived$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution}{cmp\+::distribution\+::\+Proposal\+Distribution}}$<$ Derived $>$\+::get (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_proposal_distribution_a73778476860ca2b5091c9ef6c573174f}\index{cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}!logJumpPDF@{logJumpPDF}}
+\index{logJumpPDF@{logJumpPDF}!cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{logJumpPDF()}{logJumpPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_proposal_distribution_a73778476860ca2b5091c9ef6c573174f} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution}{cmp\+::distribution\+::\+Proposal\+Distribution}}$<$ Derived $>$\+::log\+Jump\+PDF (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{jump}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_proposal_distribution_af46d9f693cd52a3613d2a9295b0ca6ca}\index{cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_proposal_distribution_af46d9f693cd52a3613d2a9295b0ca6ca} 
+template$<$typename Derived$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution}{cmp\+::distribution\+::\+Proposal\+Distribution}}$<$ Derived $>$\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_proposal_distribution_a7ac9a8dd07357459971224287b861866}\index{cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_proposal_distribution_a7ac9a8dd07357459971224287b861866} 
+template$<$typename Derived$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution}{cmp\+::distribution\+::\+Proposal\+Distribution}}$<$ Derived $>$\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{, }\item[{const double \&}]{gamma}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_proposal_distribution_ae2b50f1c1d418c8069b090ee6b2df3cb}\index{cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}!set@{set}}
+\index{set@{set}!cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_proposal_distribution_ae2b50f1c1d418c8069b090ee6b2df3cb} 
+template$<$typename Derived$>$ \\
+void \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution}{cmp\+::distribution\+::\+Proposal\+Distribution}}$<$ Derived $>$\+::set (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_proposal_distribution_a4ab7abc70e92233676301ea1627790dc}\index{cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}!squaredMahalanobis@{squaredMahalanobis}}
+\index{squaredMahalanobis@{squaredMahalanobis}!cmp::distribution::ProposalDistribution$<$ Derived $>$@{cmp::distribution::ProposalDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{squaredMahalanobis()}{squaredMahalanobis()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_proposal_distribution_a4ab7abc70e92233676301ea1627790dc} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_proposal_distribution}{cmp\+::distribution\+::\+Proposal\+Distribution}}$<$ Derived $>$\+::squared\+Mahalanobis (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{jump}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

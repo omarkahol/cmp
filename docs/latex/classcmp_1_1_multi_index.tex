@@ -1,0 +1,108 @@
+\doxysection{cmp\+::Multi\+Index Class Reference}
+\hypertarget{classcmp_1_1_multi_index}{}\label{classcmp_1_1_multi_index}\index{cmp::MultiIndex@{cmp::MultiIndex}}
+
+
+{\ttfamily \#include $<$poly.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}} = std\+::vector$<$size\+\_\+t$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1_multi_index_abcb409743b315af0b37e32adb4e4b8e4}{Multi\+Index}} ()=default
+\item 
+void \mbox{\hyperlink{classcmp_1_1_multi_index_ae3852f478a1328638e7e501337e17374}{set}} (size\+\_\+t dimension, size\+\_\+t total\+Degree, double q=1.\+0)
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classcmp_1_1_multi_index_a0d657b9f43a4043d7f743f3f19f2dce2}{size}} () const
+\item 
+const \mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}} \& \mbox{\hyperlink{classcmp_1_1_multi_index_a8b472dd11eb6f1c47a0207bd139df78d}{operator\mbox{[}$\,$\mbox{]}}} (std\+::size\+\_\+t i) const
+\item 
+void \mbox{\hyperlink{classcmp_1_1_multi_index_a6fd990d65dc55976dde559b0f2b936dd}{print}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}} $>$ \mbox{\hyperlink{classcmp_1_1_multi_index_ad213eabc29c4f0ad221698fd735c36a6}{indices}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcmp_1_1_multi_index_aff77bb2efa1e2957e085d2e26499a88e}{generate\+Recursive}} (\mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}} \&current, int pos, size\+\_\+t remaining, double current\+QSum, double max\+QSum, double q)
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\Hypertarget{classcmp_1_1_multi_index_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}\index{cmp::MultiIndex@{cmp::MultiIndex}!Index@{Index}}
+\index{Index@{Index}!cmp::MultiIndex@{cmp::MultiIndex}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily \label{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57} 
+using \mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{cmp\+::\+Multi\+Index\+::\+Index}} = std\+::vector$<$size\+\_\+t$>$}
+
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1_multi_index_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1_multi_index_abcb409743b315af0b37e32adb4e4b8e4}\index{cmp::MultiIndex@{cmp::MultiIndex}!MultiIndex@{MultiIndex}}
+\index{MultiIndex@{MultiIndex}!cmp::MultiIndex@{cmp::MultiIndex}}
+\doxysubsubsection{\texorpdfstring{MultiIndex()}{MultiIndex()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_multi_index_abcb409743b315af0b37e32adb4e4b8e4} 
+cmp\+::\+Multi\+Index\+::\+Multi\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1_multi_index_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1_multi_index_aff77bb2efa1e2957e085d2e26499a88e}\index{cmp::MultiIndex@{cmp::MultiIndex}!generateRecursive@{generateRecursive}}
+\index{generateRecursive@{generateRecursive}!cmp::MultiIndex@{cmp::MultiIndex}}
+\doxysubsubsection{\texorpdfstring{generateRecursive()}{generateRecursive()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_multi_index_aff77bb2efa1e2957e085d2e26499a88e} 
+void cmp\+::\+Multi\+Index\+::generate\+Recursive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}} \&}]{current}{, }\item[{int}]{pos}{, }\item[{size\+\_\+t}]{remaining}{, }\item[{double}]{current\+QSum}{, }\item[{double}]{max\+QSum}{, }\item[{double}]{q}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_multi_index_a8b472dd11eb6f1c47a0207bd139df78d}\index{cmp::MultiIndex@{cmp::MultiIndex}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!cmp::MultiIndex@{cmp::MultiIndex}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_multi_index_a8b472dd11eb6f1c47a0207bd139df78d} 
+const \mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}} \& cmp\+::\+Multi\+Index\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_multi_index_a6fd990d65dc55976dde559b0f2b936dd}\index{cmp::MultiIndex@{cmp::MultiIndex}!print@{print}}
+\index{print@{print}!cmp::MultiIndex@{cmp::MultiIndex}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_multi_index_a6fd990d65dc55976dde559b0f2b936dd} 
+void cmp\+::\+Multi\+Index\+::print (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classcmp_1_1_multi_index_ae3852f478a1328638e7e501337e17374}\index{cmp::MultiIndex@{cmp::MultiIndex}!set@{set}}
+\index{set@{set}!cmp::MultiIndex@{cmp::MultiIndex}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_multi_index_ae3852f478a1328638e7e501337e17374} 
+void cmp\+::\+Multi\+Index\+::set (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{dimension}{, }\item[{size\+\_\+t}]{total\+Degree}{, }\item[{double}]{q}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1_multi_index_a0d657b9f43a4043d7f743f3f19f2dce2}\index{cmp::MultiIndex@{cmp::MultiIndex}!size@{size}}
+\index{size@{size}!cmp::MultiIndex@{cmp::MultiIndex}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_multi_index_a0d657b9f43a4043d7f743f3f19f2dce2} 
+std\+::size\+\_\+t cmp\+::\+Multi\+Index\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1_multi_index_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1_multi_index_ad213eabc29c4f0ad221698fd735c36a6}\index{cmp::MultiIndex@{cmp::MultiIndex}!indices@{indices}}
+\index{indices@{indices}!cmp::MultiIndex@{cmp::MultiIndex}}
+\doxysubsubsection{\texorpdfstring{indices}{indices}}
+{\footnotesize\ttfamily \label{classcmp_1_1_multi_index_ad213eabc29c4f0ad221698fd735c36a6} 
+std\+::vector$<$\mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}}$>$ cmp\+::\+Multi\+Index\+::indices}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{poly_8h}{poly.\+h}}\item 
+src/\mbox{\hyperlink{poly_8cpp}{poly.\+cpp}}\end{DoxyCompactItemize}

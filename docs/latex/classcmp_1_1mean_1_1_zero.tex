@@ -1,0 +1,149 @@
+\doxysection{cmp\+::mean\+::Zero Class Reference}
+\hypertarget{classcmp_1_1mean_1_1_zero}{}\label{classcmp_1_1mean_1_1_zero}\index{cmp::mean::Zero@{cmp::mean::Zero}}
+
+
+Represents a constant zero mean function.  
+
+
+
+
+{\ttfamily \#include $<$mean++.\+h$>$}
+
+Inheritance diagram for cmp\+::mean\+::Zero\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1mean_1_1_zero}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}{Zero}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a6eda99f1aa74af68db05b57410a5d1cc}{Zero}} (const \mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a69c95608ff8053d3e4ddb3c188a033a9}{Zero}} (\mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \& \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_aa82ab68d761d90726199ff290018860f}{operator=}} (const \mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \& \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a0ee6111c0dcd2652fb3269be1dedcd67}{operator=}} (\mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \&\&)=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_ab2d00feb375baf210b4813e519ad79f2}{eval}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the zero mean function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a9b428d03b73d73407d83f00317c73fe9}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&log\+\_\+par, const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the partial derivative of the zero mean function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a0a89c9daf1c822f91492b2414a8783db}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&log\+\_\+par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Evaluates the second-\/order partial derivative (Hessian) of the zero mean function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{cmp\+::mean\+::\+Mean}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_afa5d512bd5c31b2a646c603e5300fd88}{\texorpdfstring{$\sim$}{\string~}\+Mean}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}} $>$ \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a8659786dca9b22cca1a50397f1a4b543}{make}} ()
+\begin{DoxyCompactList}\small\item\em Factory method for creating a \doxylink{classcmp_1_1mean_1_1_zero}{Zero} mean function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a constant zero mean function. 
+
+Mathematical Formulation The mean is zero everywhere\+:   \[m(\mathbf{x}) = 0
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1mean_1_1_zero_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28}\index{cmp::mean::Zero@{cmp::mean::Zero}!Zero@{Zero}}
+\index{Zero@{Zero}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{Zero()}{Zero()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_a97183cffa0d1f0b103541aa161bb7a28} 
+cmp\+::mean\+::\+Zero\+::\+Zero (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1mean_1_1_zero_a6eda99f1aa74af68db05b57410a5d1cc}\index{cmp::mean::Zero@{cmp::mean::Zero}!Zero@{Zero}}
+\index{Zero@{Zero}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{Zero()}{Zero()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_a6eda99f1aa74af68db05b57410a5d1cc} 
+cmp\+::mean\+::\+Zero\+::\+Zero (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1mean_1_1_zero_a69c95608ff8053d3e4ddb3c188a033a9}\index{cmp::mean::Zero@{cmp::mean::Zero}!Zero@{Zero}}
+\index{Zero@{Zero}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{Zero()}{Zero()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_a69c95608ff8053d3e4ddb3c188a033a9} 
+cmp\+::mean\+::\+Zero\+::\+Zero (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1mean_1_1_zero_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_zero_ab2d00feb375baf210b4813e519ad79f2}\index{cmp::mean::Zero@{cmp::mean::Zero}!eval@{eval}}
+\index{eval@{eval}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_ab2d00feb375baf210b4813e519ad79f2} 
+double cmp\+::mean\+::\+Zero\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the zero mean function. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a9baba3a56a23dadca372c919287e7e3e}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_zero_a9b428d03b73d73407d83f00317c73fe9}\index{cmp::mean::Zero@{cmp::mean::Zero}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_a9b428d03b73d73407d83f00317c73fe9} 
+double cmp\+::mean\+::\+Zero\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{log\+\_\+par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the partial derivative of the zero mean function. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a3a961125a9875efd2fc0cde26430245f}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_zero_a0a89c9daf1c822f91492b2414a8783db}\index{cmp::mean::Zero@{cmp::mean::Zero}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_a0a89c9daf1c822f91492b2414a8783db} 
+double cmp\+::mean\+::\+Zero\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{log\+\_\+par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the second-\/order partial derivative (Hessian) of the zero mean function. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_ac07ce7fda90ebaaa9bfc282a43947c46}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_zero_a8659786dca9b22cca1a50397f1a4b543}\index{cmp::mean::Zero@{cmp::mean::Zero}!make@{make}}
+\index{make@{make}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_a8659786dca9b22cca1a50397f1a4b543} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}} $>$ cmp\+::mean\+::\+Zero\+::make (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating a \doxylink{classcmp_1_1mean_1_1_zero}{Zero} mean function. 
+
+\Hypertarget{classcmp_1_1mean_1_1_zero_aa82ab68d761d90726199ff290018860f}\index{cmp::mean::Zero@{cmp::mean::Zero}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_aa82ab68d761d90726199ff290018860f} 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \& cmp\+::mean\+::\+Zero\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1mean_1_1_zero_a0ee6111c0dcd2652fb3269be1dedcd67}\index{cmp::mean::Zero@{cmp::mean::Zero}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::mean::Zero@{cmp::mean::Zero}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_zero_a0ee6111c0dcd2652fb3269be1dedcd67} 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \& cmp\+::mean\+::\+Zero\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1mean_1_1_zero}{Zero}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mean_09_09_8h}{mean++.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,33 @@
+\doxysection{include/gp.h File Reference}
+\hypertarget{gp_8h}{}\label{gp_8h}\index{include/gp.h@{include/gp.h}}
+{\ttfamily \#include $<$distribution.\+h$>$}\newline
+{\ttfamily \#include $<$scaler.\+h$>$}\newline
+{\ttfamily \#include $<$covariance.\+h$>$}\newline
+{\ttfamily \#include $<$mean++.\+h$>$}\newline
+{\ttfamily \#include $<$prior++.\+h$>$}\newline
+{\ttfamily \#include $<$optimization.\+h$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{cmp\+::gp\+::\+Gaussian\+Process}}
+\begin{DoxyCompactList}\small\item\em This class implements a Gaussian Process (GP) regression model for non-\/parametric Bayesian regression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1gp}{cmp\+::gp}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcf}{cmp\+::gp\+::method}} \{ \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7}{cmp\+::gp\+::\+MLE}}
+, \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60}{cmp\+::gp\+::\+LOO}}
+, \mbox{\hyperlink{namespacecmp_1_1gp_aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03}{cmp\+::gp\+::\+LOO\+\_\+\+MSE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Optimization method for GP hyperparameters. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27}{cmp\+::gp\+::type}} \{ \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11}{cmp\+::gp\+::\+PRIOR}}
+, \mbox{\hyperlink{namespacecmp_1_1gp_a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43}{cmp\+::gp\+::\+POSTERIOR}}
+ \}
+\begin{DoxyCompactList}\small\item\em GP evaluation type. \end{DoxyCompactList}\end{DoxyCompactItemize}

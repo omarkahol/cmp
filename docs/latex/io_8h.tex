@@ -1,0 +1,17 @@
+\doxysection{include/io.h File Reference}
+\hypertarget{io_8h}{}\label{io_8h}\index{include/io.h@{include/io.h}}
+{\ttfamily \#include $<$cmp\+\_\+defines.\+h$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacecmp_af85e70639980f381b7c0e708ad9b9c4d}{cmp\+::write\+\_\+vector}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&data, std\+::ofstream \&o\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Serializes a list of vector coordinates to a file stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_a4a5aa7d715cd32b0f56a7b92b12516f7}{cmp\+::write\+\_\+data}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&x, const Eigen\+::\+Matrix\+Xd \&y, std\+::ofstream \&o\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Write data points and evaluations to a file. \end{DoxyCompactList}\item 
+std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{namespacecmp_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc}{cmp\+::read\+\_\+vector}} (std\+::ifstream \&i\+\_\+file, std\+::string delimiter="{},"{}, size\+\_\+t header=0)
+\begin{DoxyCompactList}\small\item\em Read the contents of a delimited text file into vector collections. \end{DoxyCompactList}\end{DoxyCompactItemize}

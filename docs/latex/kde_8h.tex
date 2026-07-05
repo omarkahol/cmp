@@ -1,0 +1,26 @@
+\doxysection{include/kde.h File Reference}
+\hypertarget{kde_8h}{}\label{kde_8h}\index{include/kde.h@{include/kde.h}}
+{\ttfamily \#include $<$cmp\+\_\+defines.\+h$>$}\newline
+{\ttfamily \#include $<$statistics.\+h$>$}\newline
+{\ttfamily \#include $<$kernel++.\+h$>$}\newline
+{\ttfamily \#include $<$optimization.\+h$>$}\newline
+{\ttfamily \#include $<$distribution.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{cmp\+::density\+::\+KDE}}
+\begin{DoxyCompactList}\small\item\em Multivariate Kernel Density Estimation (\doxylink{classcmp_1_1density_1_1_k_d_e}{KDE}) class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1density}{cmp\+::density}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_1_1density_a8f9b2df230a3e644c2b72b77d7a11edd}{cmp\+::density\+::bandwidth\+Selection\+Rule}} (const \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188}{KDE\+::\+Band\+Width\+Selection\+Method}} \&method, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ x\+Obs)
+\begin{DoxyCompactList}\small\item\em Computes the bandwidth matrix using standard rules of thumb. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_1_1density_a012d8e2e86d97caec305fb1d3bf3a2ab}{cmp\+::density\+::bandwidth\+Optimization\+Cross\+Validation}} (const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&kf, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ x\+Obs, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{cmp\+::kernel\+::\+Kernel}} $>$ kernel, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}} $>$ initial\+Bandwidth, const double \&min, const double \&max, nlopt\+::algorithm alg, const double \&tol=1e-\/4)
+\begin{DoxyCompactList}\small\item\em Optimizes the bandwidth matrix using K-\/\+Fold cross-\/validation over the observations. \end{DoxyCompactList}\end{DoxyCompactItemize}

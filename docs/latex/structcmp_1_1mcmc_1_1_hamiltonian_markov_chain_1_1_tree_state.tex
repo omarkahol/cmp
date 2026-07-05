@@ -1,0 +1,108 @@
+\doxysection{cmp\+::mcmc\+::Hamiltonian\+Markov\+Chain\+::Tree\+State Struct Reference}
+\hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state}{}\label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_afadbf1ee632a900e83aada5ad7ce44ca}{q\+\_\+minus}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a1c5d2485fa3446754b8540fd894d988a}{p\+\_\+minus}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a87ca9d863bfb4eb67c6dd8b469caa2cc}{grad\+\_\+minus}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a22e06d523c379556fe430a68d737be60}{q\+\_\+plus}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a080f19eb11b80e1dfadae97d99584d84}{p\+\_\+plus}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_af8cfb31ca4e8c8f95b6c3562e83dac81}{grad\+\_\+plus}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_af93d0a5276d7683a0ab222eb148dafa4}{q\+\_\+prime}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a186931ca22f579ea4baebba11b232829}{n}}
+\item 
+int \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a99e19b28178f7c44f9220d9147ef857c}{s}}
+\item 
+double \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_aaecbc75a5b8aa99cee28e29832de0915}{alpha}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_aa36764d38afe1dde5ab2d7cbe6c5e5fc}{n\+\_\+alpha}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct to hold the state of the tree during the NUTS algorithm.
+
+q -\/\texorpdfstring{$>$}{>} Position p -\/\texorpdfstring{$>$}{>} Momentum grad -\/\texorpdfstring{$>$}{>} Gradient of the score function n -\/\texorpdfstring{$>$}{>} Number of valid points in the subtree s -\/\texorpdfstring{$>$}{>} Stop flag (1 if the subtree is valid, 0 otherwise) alpha -\/\texorpdfstring{$>$}{>} Sum of acceptance probabilities n\+\_\+alpha -\/\texorpdfstring{$>$}{>} Number of valid points for acceptance probability 
+
+\label{doc-variable-members}
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_aaecbc75a5b8aa99cee28e29832de0915}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!alpha@{alpha}}
+\index{alpha@{alpha}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_aaecbc75a5b8aa99cee28e29832de0915} 
+double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::alpha}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a87ca9d863bfb4eb67c6dd8b469caa2cc}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!grad\_minus@{grad\_minus}}
+\index{grad\_minus@{grad\_minus}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{grad\_minus}{grad\_minus}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a87ca9d863bfb4eb67c6dd8b469caa2cc} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::grad\+\_\+minus}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_af8cfb31ca4e8c8f95b6c3562e83dac81}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!grad\_plus@{grad\_plus}}
+\index{grad\_plus@{grad\_plus}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{grad\_plus}{grad\_plus}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_af8cfb31ca4e8c8f95b6c3562e83dac81} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::grad\+\_\+plus}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a186931ca22f579ea4baebba11b232829}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!n@{n}}
+\index{n@{n}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a186931ca22f579ea4baebba11b232829} 
+size\+\_\+t cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::n}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_aa36764d38afe1dde5ab2d7cbe6c5e5fc}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!n\_alpha@{n\_alpha}}
+\index{n\_alpha@{n\_alpha}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{n\_alpha}{n\_alpha}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_aa36764d38afe1dde5ab2d7cbe6c5e5fc} 
+size\+\_\+t cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::n\+\_\+alpha}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a1c5d2485fa3446754b8540fd894d988a}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!p\_minus@{p\_minus}}
+\index{p\_minus@{p\_minus}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{p\_minus}{p\_minus}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a1c5d2485fa3446754b8540fd894d988a} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::p\+\_\+minus}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a080f19eb11b80e1dfadae97d99584d84}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!p\_plus@{p\_plus}}
+\index{p\_plus@{p\_plus}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{p\_plus}{p\_plus}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a080f19eb11b80e1dfadae97d99584d84} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::p\+\_\+plus}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_afadbf1ee632a900e83aada5ad7ce44ca}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!q\_minus@{q\_minus}}
+\index{q\_minus@{q\_minus}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{q\_minus}{q\_minus}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_afadbf1ee632a900e83aada5ad7ce44ca} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::q\+\_\+minus}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a22e06d523c379556fe430a68d737be60}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!q\_plus@{q\_plus}}
+\index{q\_plus@{q\_plus}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{q\_plus}{q\_plus}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a22e06d523c379556fe430a68d737be60} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::q\+\_\+plus}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_af93d0a5276d7683a0ab222eb148dafa4}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!q\_prime@{q\_prime}}
+\index{q\_prime@{q\_prime}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{q\_prime}{q\_prime}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_af93d0a5276d7683a0ab222eb148dafa4} 
+Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::q\+\_\+prime}
+
+\Hypertarget{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a99e19b28178f7c44f9220d9147ef857c}\index{cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}!s@{s}}
+\index{s@{s}!cmp::mcmc::HamiltonianMarkovChain::TreeState@{cmp::mcmc::HamiltonianMarkovChain::TreeState}}
+\doxysubsubsection{\texorpdfstring{s}{s}}
+{\footnotesize\ttfamily \label{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a99e19b28178f7c44f9220d9147ef857c} 
+int cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+Tree\+State\+::s}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{hmc_8h}{hmc.\+h}}\end{DoxyCompactItemize}

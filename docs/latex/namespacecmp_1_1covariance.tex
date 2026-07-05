@@ -1,0 +1,53 @@
+\doxysection{cmp\+::covariance Namespace Reference}
+\hypertarget{namespacecmp_1_1covariance}{}\label{namespacecmp_1_1covariance}\index{cmp::covariance@{cmp::covariance}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant}{Constant}}
+\begin{DoxyCompactList}\small\item\em Represents a constant scale covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}
+\begin{DoxyCompactList}\small\item\em Abstract base class for all covariance (kernel) functions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom}{Custom}}
+\begin{DoxyCompactList}\small\item\em Represents a custom user-\/defined covariance function using std\+::function wrappers. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse}{Inverse}}
+\begin{DoxyCompactList}\small\item\em Represents an \doxylink{classcmp_1_1covariance_1_1_inverse}{Inverse} covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}}
+\begin{DoxyCompactList}\small\item\em Represents a \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern}{Matern}}
+\begin{DoxyCompactList}\small\item\em General Matérn covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52}{Matern52}}
+\begin{DoxyCompactList}\small\item\em Matérn covariance function with parameter nu = 5/2. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance}{Model\+Cluster\+Covariance}}
+\begin{DoxyCompactList}\small\item\em Blended covariance kernel that interpolates local GP kernels using classifier probabilities. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_product}{Product}}
+\begin{DoxyCompactList}\small\item\em Represents the product of two covariance functions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential}{Squared\+Exponential}}
+\begin{DoxyCompactList}\small\item\em Squared Exponential (RBF / Gaussian) covariance function. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}}
+\begin{DoxyCompactList}\small\item\em Represents the sum of two covariance functions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise}{White\+Noise}}
+\begin{DoxyCompactList}\small\item\em White noise covariance function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{namespacecmp_1_1covariance_afc6771328575da3b1d88c7d99f12cde8}{operator+}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k2)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{namespacecmp_1_1covariance_a4b03e17aa92a3b8a28fa0fd5b3778fd8}{operator\texorpdfstring{$\ast$}{*}}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k2)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacecmp_1_1covariance_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecmp_1_1covariance_a4b03e17aa92a3b8a28fa0fd5b3778fd8}\index{cmp::covariance@{cmp::covariance}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!cmp::covariance@{cmp::covariance}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1covariance_a4b03e17aa92a3b8a28fa0fd5b3778fd8} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespacecmp_1_1covariance_afc6771328575da3b1d88c7d99f12cde8}\index{cmp::covariance@{cmp::covariance}!operator+@{operator+}}
+\index{operator+@{operator+}!cmp::covariance@{cmp::covariance}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1covariance_afc6771328575da3b1d88c7d99f12cde8} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::operator+ (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

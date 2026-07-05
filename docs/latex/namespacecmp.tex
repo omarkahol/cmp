@@ -1,0 +1,614 @@
+\doxysection{cmp Namespace Reference}
+\hypertarget{namespacecmp}{}\label{namespacecmp}\index{cmp@{cmp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1classifier}{classifier}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1cluster}{cluster}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1covariance}{covariance}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1density}{density}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1distribution}{distribution}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1gp}{gp}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1grid}{grid}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1kernel}{kernel}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1mcmc}{mcmc}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1mean}{mean}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1prior}{prior}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1scaler}{scaler}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1sobol}{sobol}}
+\item 
+namespace \mbox{\hyperlink{namespacecmp_1_1statistics}{statistics}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcmp_1_1_chebyshev_basis}{Chebyshev\+Basis}}
+\begin{DoxyCompactList}\small\item\em Chebyshev orthogonal polynomial basis. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcmp_1_1_hermite_basis}{Hermite\+Basis}}
+\begin{DoxyCompactList}\small\item\em Hermite orthogonal polynomial basis. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcmp_1_1_laguerre_basis}{Laguerre\+Basis}}
+\begin{DoxyCompactList}\small\item\em Laguerre orthogonal polynomial basis. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcmp_1_1_legendre_basis}{Legendre\+Basis}}
+\begin{DoxyCompactList}\small\item\em Legendre orthogonal polynomial basis. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1_model_cluster}{Model\+Cluster}}
+\begin{DoxyCompactList}\small\item\em Manages a clustered set of Gaussian Processes for localized regression. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1_model_cluster_poly}{Model\+Cluster\+Poly}}
+\begin{DoxyCompactList}\small\item\em Manages a clustered set of Polynomial Chaos Expansion (PCE) models for localized regression. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1_multi_index}{Multi\+Index}}
+\item 
+class \mbox{\hyperlink{classcmp_1_1_objective_functor}{Objective\+Functor}}
+\begin{DoxyCompactList}\small\item\em Functor wrapper for NLopt with automatic, transparent parameter space mapping (e.\+g., log-\/scaling). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{Polynomial\+Expansion}}
+\begin{DoxyCompactList}\small\item\em Implements multi-\/dimensional Polynomial Chaos Expansion (PCE) for spectral surrogate modeling. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1_quadrature1_d}{Quadrature1D}}
+\begin{DoxyCompactList}\small\item\em One-\/dimensional quadrature rule generator and integrator. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1_tensor_integrator}{Tensor\+Integrator}}
+\begin{DoxyCompactList}\small\item\em Multi-\/dimensional tensor product quadrature integrator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Concepts}
+\begin{DoxyCompactItemize}
+\item 
+concept \mbox{\hyperlink{conceptcmp_1_1_vector_like}{Vector\+Like}}
+\begin{DoxyCompactList}\small\item\em Concept for compile-\/time validation of vector-\/like containers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t}} = std\+::function$<$double(const Eigen\+::\+Vector\+Xd \&)$>$
+\begin{DoxyCompactList}\small\item\em The \doxylink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t} type A function that takes a const reference to an Eigen\+::\+Vector\+Xd and returns a double And also its gradient counterpart, \doxylink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}, which takes a const reference to an Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$ and returns an Eigen\+::\+Vector\+Xd. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}} = std\+::function$<$Eigen\+::\+Vector\+Xd(const Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$\&)$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}} \{ \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}}
+, \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca73f48b994b78aad5abaa7a113853f978}{FOURTH}}
+, \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca6e691be74c8cec139089cafaea8ce4e6}{SIXTH}}
+, \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca69f877e00d18220e8445c6cce996a14f}{EIGHTH}}
+ \}
+\begin{DoxyCompactList}\small\item\em Accuracy order of the FD stencil. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_a5476a9005fef87fe8be6e524e232bc98}{Dummy\+Matrix}} (0, 0)
+\item 
+const Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_a4f75935600bc75d75cd4e2be2b052b7d}{Dummy\+Vector}} (0)
+\item 
+Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacecmp_ab31a233db5724680beea2f084e788593}{ldlt\+Decomposition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cov)
+\begin{DoxyCompactList}\small\item\em Computes the LDLT decomposition of a symmetric matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Vector\+Like V$>$ }\\auto \mbox{\hyperlink{namespacecmp_aed2492db04bf5592363dd260d1ec4916}{as\+Eigen}} (const V \&v) -\/$>$ Eigen\+::\+Map$<$ const Eigen\+::\+Matrix$<$ typename V\+::value\+\_\+type, Eigen\+::\+Dynamic, 1 $>$ $>$
+\begin{DoxyCompactList}\small\item\em Creates a non-\/owning, read-\/only \doxylink{namespace_eigen}{Eigen} view (Eigen\+::\+Map) of a vector-\/like container. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Vector\+Like V$>$ }\\auto \mbox{\hyperlink{namespacecmp_a4edecd623071cd30997e4ce1f41d2b43}{as\+Eigen}} (V \&v) -\/$>$ Eigen\+::\+Map$<$ Eigen\+::\+Matrix$<$ typename V\+::value\+\_\+type, Eigen\+::\+Dynamic, 1 $>$ $>$
+\begin{DoxyCompactList}\small\item\em Creates a non-\/owning, read-\/write \doxylink{namespace_eigen}{Eigen} view (Eigen\+::\+Map) of a vector-\/like container. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Vector\+Like V$>$ }\\auto \mbox{\hyperlink{namespacecmp_a4598dd0b664a7aca04f272933e62a9e6}{to\+Eigen}} (const V \&v) -\/$>$ Eigen\+::\+Vector\+Xd
+\begin{DoxyCompactList}\small\item\em Copies the elements of a vector-\/like container to a new Eigen\+::\+Vector\+Xd. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Vector\+Like V$>$ }\\auto \mbox{\hyperlink{namespacecmp_a72460633038acb89481cec84c091f8a0}{to\+Std\+Vector}} (const V \&v) -\/$>$ std\+::vector$<$ typename V\+::value\+\_\+type $>$
+\begin{DoxyCompactList}\small\item\em Copies the elements of a vector-\/like container to a new std\+::vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Derived$>$ }\\Derived\+::\+Plain\+Object \mbox{\hyperlink{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}{slice}} (const Eigen\+::\+Matrix\+Base$<$ Derived $>$ \&mat, const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \&indices)
+\begin{DoxyCompactList}\small\item\em Slices a matrix along its rows based on a set of indices. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename DerivedX, typename DerivedY$>$ }\\auto \mbox{\hyperlink{namespacecmp_a85a82f291af82d7530729e9ec05a4c75}{train\+Test\+Split}} (const Eigen\+::\+Matrix\+Base$<$ DerivedX $>$ \&x\+Obs, const Eigen\+::\+Matrix\+Base$<$ DerivedY $>$ \&y\+Obs, const std\+::pair$<$ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}, \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&train\+\_\+test\+\_\+pair)
+\begin{DoxyCompactList}\small\item\em Function to split training data into training and test sets. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_accafa4931504d0ddd35567ea0667eda4}{fd\+\_\+gradient}} (const Eigen\+::\+Vector\+Xd \&x\+\_\+0, const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ fun, const int \&i, const \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}} order=\mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}}, const double h=1E-\/5)
+\begin{DoxyCompactList}\small\item\em Computes the i-\/th component of the gradient of the function fun evaluated at x\+\_\+0 using a central difference scheme. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a8bde7a7cabe126e1e77fa22771f3477f}{fd\+\_\+hessian}} (const Eigen\+::\+Vector\+Xd \&x\+\_\+0, const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$ fun, const int \&i, const int \&j, const \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}} order=\mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}}, const double h=1E-\/5)
+\begin{DoxyCompactList}\small\item\em Computes the i-\/th and j-\/th component of the Hessian of the function fun evaluated at x\+\_\+0 using a central difference scheme. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_af85e70639980f381b7c0e708ad9b9c4d}{write\+\_\+vector}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&data, std\+::ofstream \&o\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Serializes a list of vector coordinates to a file stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_a4a5aa7d715cd32b0f56a7b92b12516f7}{write\+\_\+data}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&x, const Eigen\+::\+Matrix\+Xd \&y, std\+::ofstream \&o\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Write data points and evaluations to a file. \end{DoxyCompactList}\item 
+std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{namespacecmp_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc}{read\+\_\+vector}} (std\+::ifstream \&i\+\_\+file, std\+::string delimiter="{},"{}, size\+\_\+t header=0)
+\begin{DoxyCompactList}\small\item\em Read the contents of a delimited text file into vector collections. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_ad81c50ed5f55159cbd1d893f599ba74e}{nlopt\+\_\+max}} (\mbox{\hyperlink{classcmp_1_1_objective_functor}{cmp\+::\+Objective\+Functor}} \&f, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ x0, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lb, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&ub, nlopt\+::algorithm alg=nlopt\+::\+LN\+\_\+\+SBPLX, double ftol\+\_\+rel=1e-\/6)
+\begin{DoxyCompactList}\small\item\em Global helper function to execute NLopt maximization, managing the log-\/scaling wrapper. Users pass physical, real-\/world bounds and initial guesses. The function manages the log translations. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_afd4351ddf3bb25c5d954baa0b88d580c}{wasserstein1D}} (Eigen\+::\+Vector\+Xd \&s1, Eigen\+::\+Vector\+Xd \&s2, double p)
+\begin{DoxyCompactList}\small\item\em Computes the 1D Wasserstein distance between two empirical distributions. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a4676deee482c16dcbe067f72925e9cf8}{sliced\+Wasserstein\+Distance}} (const Eigen\+::\+Matrix\+Xd \&samples\+\_\+1, const Eigen\+::\+Matrix\+Xd \&samples\+\_\+2, double p, int slices, size\+\_\+t seed=42)
+\begin{DoxyCompactList}\small\item\em Computes the sliced-\/\+Wasserstein distance of order p between two n-\/dimensional datasets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr double \mbox{\hyperlink{namespacecmp_a18ada0943b60e75012f5515f0cccdc71}{TOL}} = 1e-\/12
+\item 
+const Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_ae1760e4cac40f3ce4dfd20eaa3b0bfa0}{Scalar\+Zero}} = Eigen\+::\+Vector\+Xd\+::\+Zero(1)
+\item 
+const Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_a4620b6017bcf39ea112d4d3c156f572c}{Scalar\+One}} = Eigen\+::\+Vector\+Xd\+::\+Ones(1)
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\Hypertarget{namespacecmp_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{namespacecmp_a080a42fb28573bd02368d09486075013}\index{cmp@{cmp}!gradient\_t@{gradient\_t}}
+\index{gradient\_t@{gradient\_t}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{gradient\_t}{gradient\_t}}
+{\footnotesize\ttfamily \label{namespacecmp_a080a42fb28573bd02368d09486075013} 
+using \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{cmp\+::gradient\+\_\+t}} = std\+::function$<$Eigen\+::\+Vector\+Xd(const Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$\&)$>$}
+
+\Hypertarget{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}\index{cmp@{cmp}!score\_t@{score\_t}}
+\index{score\_t@{score\_t}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{score\_t}{score\_t}}
+{\footnotesize\ttfamily \label{namespacecmp_a2375b8ae9e3db657da12b73187f8b656} 
+using \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{cmp\+::score\+\_\+t}} = std\+::function$<$double(const Eigen\+::\+Vector\+Xd \&)$>$}
+
+
+
+The \doxylink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\+\_\+t} type A function that takes a const reference to an Eigen\+::\+Vector\+Xd and returns a double And also its gradient counterpart, \doxylink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\+\_\+t}, which takes a const reference to an Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$ and returns an Eigen\+::\+Vector\+Xd. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{namespacecmp_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}\index{cmp@{cmp}!accuracy@{accuracy}}
+\index{accuracy@{accuracy}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{accuracy}{accuracy}}
+{\footnotesize\ttfamily \label{namespacecmp_a7cdd4e585f27736074b06674fdab41cc} 
+enum \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{cmp\+::accuracy}}}
+
+
+
+Accuracy order of the FD stencil. 
+
+Note, the higher the accuracy the higher the number of function evaluations required \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SECOND@{SECOND}!cmp@{cmp}}\index{cmp@{cmp}!SECOND@{SECOND}}}\Hypertarget{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}\label{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69} 
+SECOND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FOURTH@{FOURTH}!cmp@{cmp}}\index{cmp@{cmp}!FOURTH@{FOURTH}}}\Hypertarget{namespacecmp_a7cdd4e585f27736074b06674fdab41cca73f48b994b78aad5abaa7a113853f978}\label{namespacecmp_a7cdd4e585f27736074b06674fdab41cca73f48b994b78aad5abaa7a113853f978} 
+FOURTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIXTH@{SIXTH}!cmp@{cmp}}\index{cmp@{cmp}!SIXTH@{SIXTH}}}\Hypertarget{namespacecmp_a7cdd4e585f27736074b06674fdab41cca6e691be74c8cec139089cafaea8ce4e6}\label{namespacecmp_a7cdd4e585f27736074b06674fdab41cca6e691be74c8cec139089cafaea8ce4e6} 
+SIXTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EIGHTH@{EIGHTH}!cmp@{cmp}}\index{cmp@{cmp}!EIGHTH@{EIGHTH}}}\Hypertarget{namespacecmp_a7cdd4e585f27736074b06674fdab41cca69f877e00d18220e8445c6cce996a14f}\label{namespacecmp_a7cdd4e585f27736074b06674fdab41cca69f877e00d18220e8445c6cce996a14f} 
+EIGHTH&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacecmp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecmp_aed2492db04bf5592363dd260d1ec4916}\index{cmp@{cmp}!asEigen@{asEigen}}
+\index{asEigen@{asEigen}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{asEigen()}{asEigen()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{namespacecmp_aed2492db04bf5592363dd260d1ec4916} 
+template$<$Vector\+Like V$>$ \\
+auto cmp\+::as\+Eigen (\begin{DoxyParamCaption}\item[{const V \&}]{v}{}\end{DoxyParamCaption}) -\/$>$ Eigen\+::\+Map$<$const Eigen\+::\+Matrix$<$typename V\+::value\+\_\+type, Eigen\+::\+Dynamic, 1$>$$>$ }
+
+
+
+Creates a non-\/owning, read-\/only \doxylink{namespace_eigen}{Eigen} view (Eigen\+::\+Map) of a vector-\/like container. 
+
+Mathematical Formulation Maps a vector $\mathbf{v} \in \mathbb{R}^N$ represented by a contiguous-\/memory container to an \doxylink{namespace_eigen}{Eigen} Vector expression without copying\+:   \[\mathbf{v}_{\text{Eigen}} = \text{Map}(\mathbf{v})
+\]
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em V} & The type of the vector-\/like container, must satisfy the \doxylink{conceptcmp_1_1_vector_like}{Vector\+Like} concept. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vector-\/like container. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A non-\/owning Eigen\+::\+Map view pointing to the underlying data. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_a4edecd623071cd30997e4ce1f41d2b43}\index{cmp@{cmp}!asEigen@{asEigen}}
+\index{asEigen@{asEigen}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{asEigen()}{asEigen()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{namespacecmp_a4edecd623071cd30997e4ce1f41d2b43} 
+template$<$Vector\+Like V$>$ \\
+auto cmp\+::as\+Eigen (\begin{DoxyParamCaption}\item[{V \&}]{v}{}\end{DoxyParamCaption}) -\/$>$ Eigen\+::\+Map$<$Eigen\+::\+Matrix$<$typename V\+::value\+\_\+type, Eigen\+::\+Dynamic, 1$>$$>$ }
+
+
+
+Creates a non-\/owning, read-\/write \doxylink{namespace_eigen}{Eigen} view (Eigen\+::\+Map) of a vector-\/like container. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em V} & The type of the vector-\/like container, must satisfy the \doxylink{conceptcmp_1_1_vector_like}{Vector\+Like} concept. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vector-\/like container. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A mutable, non-\/owning Eigen\+::\+Map view pointing to the underlying data. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_a5476a9005fef87fe8be6e524e232bc98}\index{cmp@{cmp}!DummyMatrix@{DummyMatrix}}
+\index{DummyMatrix@{DummyMatrix}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{DummyMatrix()}{DummyMatrix()}}
+{\footnotesize\ttfamily \label{namespacecmp_a5476a9005fef87fe8be6e524e232bc98} 
+const Eigen\+::\+Matrix\+Xd cmp\+::\+Dummy\+Matrix (\begin{DoxyParamCaption}\item[{0}]{}{, }\item[{0}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespacecmp_a4f75935600bc75d75cd4e2be2b052b7d}\index{cmp@{cmp}!DummyVector@{DummyVector}}
+\index{DummyVector@{DummyVector}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{DummyVector()}{DummyVector()}}
+{\footnotesize\ttfamily \label{namespacecmp_a4f75935600bc75d75cd4e2be2b052b7d} 
+const Eigen\+::\+Vector\+Xd cmp\+::\+Dummy\+Vector (\begin{DoxyParamCaption}\item[{0}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespacecmp_accafa4931504d0ddd35567ea0667eda4}\index{cmp@{cmp}!fd\_gradient@{fd\_gradient}}
+\index{fd\_gradient@{fd\_gradient}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{fd\_gradient()}{fd\_gradient()}}
+{\footnotesize\ttfamily \label{namespacecmp_accafa4931504d0ddd35567ea0667eda4} 
+double cmp\+::fd\+\_\+gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x\+\_\+0}{, }\item[{const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$}]{fun}{, }\item[{const int \&}]{i}{, }\item[{const \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}}}]{order}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}}}, }\item[{const double}]{h}{ = {\ttfamily 1E-\/5}}\end{DoxyParamCaption})}
+
+
+
+Computes the i-\/th component of the gradient of the function fun evaluated at x\+\_\+0 using a central difference scheme. 
+
+Mathematical Formulation Approximates the partial derivative of $f: \mathbb{R}^D \to \mathbb{R}$ at $\mathbf{x}_0$ with respect to the $i$-\/th variable using a central difference stencil\+:   \[\frac{\partial f(\mathbf{x}_0)}{\partial x_i} \approx \frac{f(\mathbf{x}_0 + h \mathbf{e}_i) - f(\mathbf{x}_0 - h \mathbf{e}_i)}{2h}
+\] where $\mathbf{e}_i$ is the $i$-\/th standard basis vector, and $h > 0$ is the step size. For higher-\/order accuracy (e.\+g., 4th, 6th, or 8th order), wider stencils are employed.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Creates coordinate perturbations $\mathbf{x}_0 \pm n h \mathbf{e}_i$ for stencil points $n$.
+\item Evaluates the function {\ttfamily fun} at each perturbed point.
+\item Takes a linear combination of the function values scaled by the central difference stencil coefficients.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+0} & The point at which to evaluate the gradient \\
+\hline
+{\em fun} & The function of which to evaluate the gradient \\
+\hline
+{\em i} & The component of the gradient \\
+\hline
+{\em order} & The accuracy order (default = SECOND) \\
+\hline
+{\em h} & The step size (default = 1E-\/5) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The required component of the gradient 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_a8bde7a7cabe126e1e77fa22771f3477f}\index{cmp@{cmp}!fd\_hessian@{fd\_hessian}}
+\index{fd\_hessian@{fd\_hessian}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{fd\_hessian()}{fd\_hessian()}}
+{\footnotesize\ttfamily \label{namespacecmp_a8bde7a7cabe126e1e77fa22771f3477f} 
+double cmp\+::fd\+\_\+hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x\+\_\+0}{, }\item[{const std\+::function$<$ double(const Eigen\+::\+Vector\+Xd \&)$>$}]{fun}{, }\item[{const int \&}]{i}{, }\item[{const int \&}]{j}{, }\item[{const \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cc}{accuracy}}}]{order}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69}{SECOND}}}, }\item[{const double}]{h}{ = {\ttfamily 1E-\/5}}\end{DoxyParamCaption})}
+
+
+
+Computes the i-\/th and j-\/th component of the Hessian of the function fun evaluated at x\+\_\+0 using a central difference scheme. 
+
+Mathematical Formulation Approximates the second-\/order partial derivative $\frac{\partial^2 f(\mathbf{x}_0)}{\partial x_i \partial x_j}$ at $\mathbf{x}_0$. For diagonal elements ( $i = j$)\+:   \[\frac{\partial^2 f(\mathbf{x}_0)}{\partial x_i^2} \approx \frac{f(\mathbf{x}_0 + h\mathbf{e}_i) - 2f(\mathbf{x}_0) + f(\mathbf{x}_0 - h\mathbf{e}_i)}{h^2}
+\] For off-\/diagonal elements ( $i \neq j$)\+:   \[\frac{\partial^2 f(\mathbf{x}_0)}{\partial x_i \partial x_j} \approx \frac{f(\mathbf{x}_0 + h\mathbf{e}_i + h\mathbf{e}_j) - f(\mathbf{x}_0 + h\mathbf{e}_i - h\mathbf{e}_j) - f(\mathbf{x}_0 - h\mathbf{e}_i + h\mathbf{e}_j) + f(\mathbf{x}_0 - h\mathbf{e}_i - h\mathbf{e}_j)}{4h^2}
+\]
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Checks if $i = j$ or $i \neq j$.
+\item Prepares perturbations along standard directions $\mathbf{e}_i$ and $\mathbf{e}_j$.
+\item Evaluates the function at the perturbed points and computes the stencil difference quotient.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+0} & The point at which to evaluate the hessian \\
+\hline
+{\em fun} & The function of which to evaluate the hessian \\
+\hline
+{\em i} & Row of the hessian \\
+\hline
+{\em j} & Column of the hessian \\
+\hline
+{\em order} & The accuracy order (default = SECOND) \\
+\hline
+{\em h} & The step size (default = 1E-\/5) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The required component of the Hessian 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_ab31a233db5724680beea2f084e788593}\index{cmp@{cmp}!ldltDecomposition@{ldltDecomposition}}
+\index{ldltDecomposition@{ldltDecomposition}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{ldltDecomposition()}{ldltDecomposition()}}
+{\footnotesize\ttfamily \label{namespacecmp_ab31a233db5724680beea2f084e788593} 
+Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ cmp\+::ldlt\+Decomposition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cov}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the LDLT decomposition of a symmetric matrix. 
+
+Mathematical Formulation For a symmetric positive semidefinite matrix $\mathbf{A} \in \mathbb{R}^{n \times n}$, LDLT decomposes $\mathbf{A}$ into\+:   \[\mathbf{A} = \mathbf{L} \mathbf{D} \mathbf{L}^T
+\] where $\mathbf{L}$ is a lower unit triangular matrix and $\mathbf{D}$ is a diagonal matrix. This decomposition is more numerically stable than Cholesky decomposition for semi-\/definite matrices as it avoids taking square roots of diagonal elements.
+
+Implementation Algorithm Calls \doxylink{namespace_eigen}{Eigen}\textquotesingle{}s {\ttfamily .ldlt()} method on the matrix block. \Hypertarget{namespacecmp_ad81c50ed5f55159cbd1d893f599ba74e}\index{cmp@{cmp}!nlopt\_max@{nlopt\_max}}
+\index{nlopt\_max@{nlopt\_max}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{nlopt\_max()}{nlopt\_max()}}
+{\footnotesize\ttfamily \label{namespacecmp_ad81c50ed5f55159cbd1d893f599ba74e} 
+double cmp\+::nlopt\+\_\+max (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1_objective_functor}{cmp\+::\+Objective\+Functor}} \&}]{f}{, }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$}]{x0}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lb}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{ub}{, }\item[{nlopt\+::algorithm}]{alg}{ = {\ttfamily nlopt\+:\+:LN\+\_\+SBPLX}, }\item[{double}]{ftol\+\_\+rel}{ = {\ttfamily 1e-\/6}}\end{DoxyParamCaption})}
+
+
+
+Global helper function to execute NLopt maximization, managing the log-\/scaling wrapper. Users pass physical, real-\/world bounds and initial guesses. The function manages the log translations. 
+
+\Hypertarget{namespacecmp_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc}\index{cmp@{cmp}!read\_vector@{read\_vector}}
+\index{read\_vector@{read\_vector}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{read\_vector()}{read\_vector()}}
+{\footnotesize\ttfamily \label{namespacecmp_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc} 
+std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ cmp\+::read\+\_\+vector (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{i\+\_\+file}{, }\item[{std\+::string}]{delimiter}{ = {\ttfamily "{},"{}}, }\item[{size\+\_\+t}]{header}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Read the contents of a delimited text file into vector collections. 
+
+Mathematical Formulation Parses text lines representing coordinate records to rebuild the set $\{\mathbf{x}_i\}_{i=1}^M \subset \mathbb{R}^N$.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Skips the specified number of {\ttfamily header} rows.
+\item Parses each line using {\ttfamily std\+::getline}, splitting coordinates based on the delimiter.
+\item Converts string tokens to {\ttfamily double} using standard converters, aggregates them into {\ttfamily Eigen\+::\+Vector\+Xd} rows, and returns them as a standard vector.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+file} & An open and valid file stream. \\
+\hline
+{\em delimiter} & The delimiter string separating columns (default is "{},"{}) \\
+\hline
+{\em header} & The number of header rows to skip (default is 0) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A std\+::vector containing each row of the file as a Eigen\+::\+Vector\+Xd. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_abc91bff429824c640cf3adbd468d4fbe}\index{cmp@{cmp}!slice@{slice}}
+\index{slice@{slice}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{slice()}{slice()}}
+{\footnotesize\ttfamily \label{namespacecmp_abc91bff429824c640cf3adbd468d4fbe} 
+template$<$typename Derived$>$ \\
+Derived\+::\+Plain\+Object cmp\+::slice (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Base$<$ Derived $>$ \&}]{mat}{, }\item[{const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \&}]{indices}{}\end{DoxyParamCaption})}
+
+
+
+Slices a matrix along its rows based on a set of indices. 
+
+Mathematical Formulation For a matrix $\mathbf{X} \in \mathbb{R}^{M \times D}$ and a vector of indices $\mathcal{I} = [i_1, i_2, \dots, i_K]^T$, computes the sliced matrix $\mathbf{X}_{\mathcal{I}} \in \mathbb{R}^{K \times D}$\+:   \[\left(\mathbf{X}_{\mathcal{I}}\right)_{k, \cdot} = \mathbf{X}_{i_k, \cdot}
+\]
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & The derived \doxylink{namespace_eigen}{Eigen} matrix expression type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & The input matrix. \\
+\hline
+{\em indices} & A vector of row indices to extract. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new plain matrix containing only the specified rows of mat. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_a4676deee482c16dcbe067f72925e9cf8}\index{cmp@{cmp}!slicedWassersteinDistance@{slicedWassersteinDistance}}
+\index{slicedWassersteinDistance@{slicedWassersteinDistance}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{slicedWassersteinDistance()}{slicedWassersteinDistance()}}
+{\footnotesize\ttfamily \label{namespacecmp_a4676deee482c16dcbe067f72925e9cf8} 
+double cmp\+::sliced\+Wasserstein\+Distance (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{samples\+\_\+1}{, }\item[{const Eigen\+::\+Matrix\+Xd \&}]{samples\+\_\+2}{, }\item[{double}]{p}{, }\item[{int}]{slices}{, }\item[{size\+\_\+t}]{seed}{ = {\ttfamily 42}}\end{DoxyParamCaption})}
+
+
+
+Computes the sliced-\/\+Wasserstein distance of order p between two n-\/dimensional datasets. 
+
+Mathematical Formulation The Sliced Wasserstein distance projects multivariate distributions $\mu, \nu$ in $\mathbb{R}^D$ onto 1D lines along random directions $\boldsymbol{\theta} \in \mathbb{S}^{D-1}$ (the unit sphere)\+:   \[SW_p^p(\mu, \nu) = \int_{\mathbb{S}^{D-1}} W_p^p(\boldsymbol{\theta}^* \mu, \boldsymbol{\theta}^* \nu) d\boldsymbol{\theta} \approx \frac{1}{L} \sum_{l=1}^L W_p^p(\boldsymbol{\theta}_l^T \mathbf{X}_1, \boldsymbol{\theta}_l^T \mathbf{X}_2)
+\] where $\boldsymbol{\theta}_l$ are random projection directions drawn uniformly from the unit sphere.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Generates $L$ random directions by sampling from a standard multivariate Gaussian and normalizing to unit norm.
+\item Projects the multivariate samples $\mathbf{X}_1$ and $\mathbf{X}_2$ onto each direction.
+\item Computes the 1D Wasserstein distance for each projection and returns the arithmetic mean.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em samples\+\_\+1} & The first set of samples (N x D matrix). \\
+\hline
+{\em samples\+\_\+2} & The second set of samples (M x D matrix). \\
+\hline
+{\em p} & The order of the distance. \\
+\hline
+{\em slices} & The number of slices to compute. \\
+\hline
+{\em seed} & The seed for the random number generator (passed to thread-\/local PRNGs). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SW\+\_\+p\texorpdfstring{$^\wedge$}{\string^}p, the p-\/th power of the sliced Wasserstein distance. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_a4598dd0b664a7aca04f272933e62a9e6}\index{cmp@{cmp}!toEigen@{toEigen}}
+\index{toEigen@{toEigen}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{toEigen()}{toEigen()}}
+{\footnotesize\ttfamily \label{namespacecmp_a4598dd0b664a7aca04f272933e62a9e6} 
+template$<$Vector\+Like V$>$ \\
+auto cmp\+::to\+Eigen (\begin{DoxyParamCaption}\item[{const V \&}]{v}{}\end{DoxyParamCaption}) -\/$>$ Eigen\+::\+Vector\+Xd }
+
+
+
+Copies the elements of a vector-\/like container to a new Eigen\+::\+Vector\+Xd. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em V} & The type of the vector-\/like container, must satisfy the \doxylink{conceptcmp_1_1_vector_like}{Vector\+Like} concept. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vector-\/like container to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new Eigen\+::\+Vector\+Xd containing a copy of the elements of v. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_a72460633038acb89481cec84c091f8a0}\index{cmp@{cmp}!toStdVector@{toStdVector}}
+\index{toStdVector@{toStdVector}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{toStdVector()}{toStdVector()}}
+{\footnotesize\ttfamily \label{namespacecmp_a72460633038acb89481cec84c091f8a0} 
+template$<$Vector\+Like V$>$ \\
+auto cmp\+::to\+Std\+Vector (\begin{DoxyParamCaption}\item[{const V \&}]{v}{}\end{DoxyParamCaption}) -\/$>$ std\+::vector$<$typename V\+::value\+\_\+type$>$ }
+
+
+
+Copies the elements of a vector-\/like container to a new std\+::vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em V} & The type of the vector-\/like container, must satisfy the \doxylink{conceptcmp_1_1_vector_like}{Vector\+Like} concept. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vector-\/like container to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new std\+::vector containing a copy of the elements of v. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_a85a82f291af82d7530729e9ec05a4c75}\index{cmp@{cmp}!trainTestSplit@{trainTestSplit}}
+\index{trainTestSplit@{trainTestSplit}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{trainTestSplit()}{trainTestSplit()}}
+{\footnotesize\ttfamily \label{namespacecmp_a85a82f291af82d7530729e9ec05a4c75} 
+template$<$typename DerivedX, typename DerivedY$>$ \\
+auto cmp\+::train\+Test\+Split (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Base$<$ DerivedX $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Matrix\+Base$<$ DerivedY $>$ \&}]{y\+Obs}{, }\item[{const std\+::pair$<$ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}, \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&}]{train\+\_\+test\+\_\+pair}{}\end{DoxyParamCaption})}
+
+
+
+Function to split training data into training and test sets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & The observations matrix. \\
+\hline
+{\em y\+Obs} & The labels/values vector. \\
+\hline
+{\em train\+\_\+test\+\_\+pair} & A pair of vectors containing the training and test indices.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A tuple containing the training observations, training labels, test observations, and test labels. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_afd4351ddf3bb25c5d954baa0b88d580c}\index{cmp@{cmp}!wasserstein1D@{wasserstein1D}}
+\index{wasserstein1D@{wasserstein1D}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{wasserstein1D()}{wasserstein1D()}}
+{\footnotesize\ttfamily \label{namespacecmp_afd4351ddf3bb25c5d954baa0b88d580c} 
+double cmp\+::wasserstein1D (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd \&}]{s1}{, }\item[{Eigen\+::\+Vector\+Xd \&}]{s2}{, }\item[{double}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Computes the 1D Wasserstein distance between two empirical distributions. 
+
+Mathematical Formulation The 1D Wasserstein distance of order $p \ge 1$ between two empirical measures $\mu = \frac{1}{N}\sum \delta_{x_i}$ and $\nu = \frac{1}{M}\sum \delta_{y_j}$ is defined as the $L^p$ distance between their quantile functions $F^{-1}(t)$ and $G^{-1}(t)$\+:   \[W_p^p(\mu, \nu) = \int_0^1 |F^{-1}(t) - G^{-1}(t)|^p dt
+\] When $N = M$, this reduces to\+:   \[W_p^p(\mu, \nu) = \frac{1}{N} \sum_{i=1}^N |x_{(i)} - y_{(i)}|^p
+\] where $x_{(i)}$ and $y_{(i)}$ are sorted samples. For unequal sample sizes, the integral is solved by integrating the differences of the step functions over partitions of $[0, 1]$.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Sorts {\ttfamily s1} and {\ttfamily s2} in-\/place to form the empirical quantiles.
+\item Iterates through the joint partition of $[0, 1]$ defined by the cumulative weight steps $i/N$ and $j/M$.
+\item Integrates the constant difference raised to power $p$ over each interval.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & The first set of 1D projected samples. (Modified in-\/place) \\
+\hline
+{\em s2} & The second set of 1D projected samples. (Modified in-\/place) \\
+\hline
+{\em p} & The order of the distance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+W\+\_\+p\texorpdfstring{$^\wedge$}{\string^}p, the p-\/th power of the Wasserstein distance. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_a4a5aa7d715cd32b0f56a7b92b12516f7}\index{cmp@{cmp}!write\_data@{write\_data}}
+\index{write\_data@{write\_data}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{write\_data()}{write\_data()}}
+{\footnotesize\ttfamily \label{namespacecmp_a4a5aa7d715cd32b0f56a7b92b12516f7} 
+void cmp\+::write\+\_\+data (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{const Eigen\+::\+Matrix\+Xd \&}]{y}{, }\item[{std\+::ofstream \&}]{o\+\_\+file}{}\end{DoxyParamCaption})}
+
+
+
+Write data points and evaluations to a file. 
+
+Mathematical Formulation Serializes input vectors $\mathbf{x}_i \in \mathbb{R}^D$ along with corresponding multivariate observations $\mathbf{y}_i \in \mathbb{R}^Q$\+:   \[\text{Row}_i = [x_{i,1}, \dots, x_{i,D}, y_{i,1}, \dots, y_{i,Q}]
+\]
+
+Implementation Algorithm Loops over the vector entries, streaming coordinates of $\mathbf{x}_i$ followed by the corresponding row coordinates of the matrix $\mathbf{y}_i$ into {\ttfamily o\+\_\+file}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The points (as a vector) \\
+\hline
+{\em y} & The data (as a matrix) \\
+\hline
+{\em o\+\_\+file} & The output file \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacecmp_af85e70639980f381b7c0e708ad9b9c4d}\index{cmp@{cmp}!write\_vector@{write\_vector}}
+\index{write\_vector@{write\_vector}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{write\_vector()}{write\_vector()}}
+{\footnotesize\ttfamily \label{namespacecmp_af85e70639980f381b7c0e708ad9b9c4d} 
+void cmp\+::write\+\_\+vector (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{data}{, }\item[{std\+::ofstream \&}]{o\+\_\+file}{}\end{DoxyParamCaption})}
+
+
+
+Serializes a list of vector coordinates to a file stream. 
+
+Mathematical Formulation Serializes a set of vectors $\{\mathbf{x}_i\}_{i=1}^M$ where $\mathbf{x}_i \in \mathbb{R}^N$ into a structured grid representation in text format\+:   \[\mathbf{x}_i^T = [x_{i,1}, x_{i,2}, \dots, x_{i,N}]
+\]
+
+Implementation Algorithm Streams each vector to the output file stream {\ttfamily o\+\_\+file} line-\/by-\/line, separating coordinates with spaces.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A matrix containing the data. \\
+\hline
+{\em o\+\_\+file} & An open and valid file in which to write the contents. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-var-members}
+\Hypertarget{namespacecmp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacecmp_a4620b6017bcf39ea112d4d3c156f572c}\index{cmp@{cmp}!ScalarOne@{ScalarOne}}
+\index{ScalarOne@{ScalarOne}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{ScalarOne}{ScalarOne}}
+{\footnotesize\ttfamily \label{namespacecmp_a4620b6017bcf39ea112d4d3c156f572c} 
+const Eigen\+::\+Vector\+Xd cmp\+::\+Scalar\+One = Eigen\+::\+Vector\+Xd\+::\+Ones(1)}
+
+\Hypertarget{namespacecmp_ae1760e4cac40f3ce4dfd20eaa3b0bfa0}\index{cmp@{cmp}!ScalarZero@{ScalarZero}}
+\index{ScalarZero@{ScalarZero}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{ScalarZero}{ScalarZero}}
+{\footnotesize\ttfamily \label{namespacecmp_ae1760e4cac40f3ce4dfd20eaa3b0bfa0} 
+const Eigen\+::\+Vector\+Xd cmp\+::\+Scalar\+Zero = Eigen\+::\+Vector\+Xd\+::\+Zero(1)}
+
+\Hypertarget{namespacecmp_a18ada0943b60e75012f5515f0cccdc71}\index{cmp@{cmp}!TOL@{TOL}}
+\index{TOL@{TOL}!cmp@{cmp}}
+\doxysubsubsection{\texorpdfstring{TOL}{TOL}}
+{\footnotesize\ttfamily \label{namespacecmp_a18ada0943b60e75012f5515f0cccdc71} 
+double cmp\+::\+TOL = 1e-\/12\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+

@@ -1,0 +1,70 @@
+\doxysection{kde.\+h}
+\hypertarget{kde_8h_source}{}\label{kde_8h_source}\index{include/kde.h@{include/kde.h}}
+\mbox{\hyperlink{kde_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CMP\_KDE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CMP\_KDE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{statistics_8h}{statistics.h}}>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{kernel_09_09_8h}{kernel++.h}}>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{optimization_8h}{optimization.h}}>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{distribution_8h}{distribution.h}}>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1density}{cmp::density}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Here\ we\ implement\ a\ KDE\ class\ that\ uses\ the\ above\ bandwidth\ and\ kernel\ classes}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}{KDE}}\ \{}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ std::shared\_ptr<kernel::Bandwidth>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ac97423fe85996294aa3bf78f109b0bf6}{bandwidth\_}}\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00038\ \ \ \ \ std::shared\_ptr<kernel::Kernel>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ad8fb8ff20577b4c336f5d8b23533539e}{kernel\_}}\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Owning\ or\ non-\/owning\ data\ storage}}
+\DoxyCodeLine{00041\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_abbd042fc66194b2bd62f2081c6211e27}{data\_}}\{0,\ 0\};}
+\DoxyCodeLine{00042\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::MatrixXd>>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a0a98e878d5290410650631c70ec14dfc}{pData\_}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aded9b5a2a69f20ec644b0219f48adae8}{isOwning\_}}\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Dimension\ and\ number\ of\ points}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a7c6b3d52a0f91618985dba1d1ecbc3e6}{dim\_}}\{0\};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a5f5e313a0cfe43a372d5f3016ea73300}{nPoints\_}}\{0\};}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}{KDE}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}{KDE}}(std::shared\_ptr<kernel::Bandwidth>\ bandwidth,\ std::shared\_ptr<kernel::Kernel>\ \mbox{\hyperlink{namespacecmp_1_1kernel}{kernel}});}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Copy\ and\ move\ constructors}}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}{KDE}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}}\ \&other);}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}{KDE}}(\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}}\ \&\&other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Copy\ and\ move\ assignment\ operators}}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}}\ \&\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ad956265e0db067e9522f7474c482620b}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}}\ \&other);}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}}\ \&\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ad956265e0db067e9522f7474c482620b}{operator=}}(\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e}{KDE}}\ \&\&other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a025590cc89bd18ec0ed2aac677253323}{set}}(\textcolor{keyword}{const}\ std::shared\_ptr<kernel::Bandwidth>\ \&bandwidth,\ \textcolor{keyword}{const}\ std::shared\_ptr<kernel::Kernel>\ \&\mbox{\hyperlink{namespacecmp_1_1kernel}{kernel}});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a9c351627adef2b24a76e8c53bbcea22b}{condition}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data,\ \textcolor{keywordtype}{bool}\ copyData\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a0de562b368818bb4de7a7d28d5e7ff4b}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&x)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188}{BandWidthSelectionMethod}}\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188ac43507d936eb0cb2aecfd4bee979abdd}{SCOTT}},}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188a8a282c9226e821541630e24586705549}{SILVERMAN}}}
+\DoxyCodeLine{00096\ \ \ \ \ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00107\ Eigen::MatrixXd\ \mbox{\hyperlink{namespacecmp_1_1density_a8f9b2df230a3e644c2b72b77d7a11edd}{bandwidthSelectionRule}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aaa6e5f680dd962720fdcc0ff3f1a3188}{KDE::BandWidthSelectionMethod}}\ \&method,\ Eigen::Ref<Eigen::MatrixXd>\ xObs);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00121\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacecmp_1_1density_a012d8e2e86d97caec305fb1d3bf3a2ab}{bandwidthOptimizationCrossValidation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp::statistics::KFold}}\&\ kf,\ Eigen::Ref<Eigen::MatrixXd>\ xObs,\ std::shared\_ptr<cmp::kernel::Kernel>\ \mbox{\hyperlink{namespacecmp_1_1kernel}{kernel}},\ std::shared\_ptr<cmp::kernel::Bandwidth>\ initialBandwidth,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&min,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&max,\ nlopt::algorithm\ alg,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&\ tol\ =\ 1e-\/4);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \}\ \textcolor{comment}{//\ namespace\ cmp::density}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CMP\_KDE\_H}}
+
+\end{DoxyCode}

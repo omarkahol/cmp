@@ -1,0 +1,191 @@
+\doxysection{cmp\+::prior\+::From\+Distribution\texorpdfstring{$<$}{<} Dist\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcmp_1_1prior_1_1_from_distribution}{}\label{classcmp_1_1prior_1_1_from_distribution}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+
+
+Adapts a univariate probability distribution to act as a prior on a single coordinate.  
+
+
+
+
+{\ttfamily \#include $<$prior++.\+h$>$}
+
+Inheritance diagram for cmp\+::prior\+::From\+Distribution\texorpdfstring{$<$}{<} Dist\+Type \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1prior_1_1_from_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{From\+Distribution}} ()=delete
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a28e7b2e6a158c762695dbe39b208e32b}{From\+Distribution}} (const \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ad1a003793b92aed6a76eac43fb476731}{From\+Distribution}} (\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}} \& \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a2b0523472860f611985d5c28dff57c28}{operator=}} (const \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}} \& \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a4a700f25ef677a3cbc61ece5893fc58f}{operator=}} (\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8755c4c644a464b65fe75335155a646f}{From\+Distribution}} (const Dist\+Type \&dist, size\+\_\+t param\+Index)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1prior_1_1_prior}{Prior} from a Univariate Distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ab14d55841780cd18c5b17ad447481ff0}{eval}} (const Eigen\+::\+Vector\+Xd \&par) const override
+\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a6a371b588a37f1022c501c529810546d}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const override
+\item 
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ab759d02e3f5fea09fe768c1dbfcc8997}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_a32b126d443e54e0c933eac638626acfa}{\texorpdfstring{$\sim$}{\string~}\+Prior}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_aa9f0d271a541fe507959252dace73cb1}{make}} (const Dist\+Type \&dist, size\+\_\+t param\+Index)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dist\+Type \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}{dist\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{param\+Index\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Dist\+Type$>$\newline
+class cmp\+::prior\+::\+From\+Distribution$<$ Dist\+Type $>$}
+Adapts a univariate probability distribution to act as a prior on a single coordinate. 
+
+{\bfseries{Mathematical}} {\bfseries{Formulation}} Applies a univariate distribution $ \mathcal{D} $ to a specific parameter dimension $ k $\+: \[ \log p(\theta) = \log p_{\mathcal{D}}(\theta_k) \] The gradient is non-\/zero only for coordinate $ k $\+: \[ \frac{\partial \log p(\theta)}{\partial \theta_i} = \begin{cases} \frac{d \log p_{\mathcal{D}}(\theta_k)}{d \theta_k} & \text{if } i = k \\ 0 & \text{otherwise} \end{cases} \] The Hessian is non-\/zero only for diagonal entry $ (k, k) $\+: \[ \frac{\partial^2 \log p(\theta)}{\partial \theta_i \partial \theta_j} = \begin{cases} \frac{d^2 \log p_{\mathcal{D}}(\theta_k)}{d \theta_k^2} & \text{if } i = j = k \\ 0 & \text{otherwise} \end{cases} \]
+
+{\bfseries{Implementation}} {\bfseries{Algorithm}} Accesses parameter coordinate $ \theta_k $ and delegates log-\/\+PDF and its first/second derivative calculations to the underlying {\ttfamily dist\+\_\+} object. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!FromDistribution@{FromDistribution}}
+\index{FromDistribution@{FromDistribution}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{FromDistribution()}{FromDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9} 
+template$<$typename Dist\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::\+From\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_a28e7b2e6a158c762695dbe39b208e32b}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!FromDistribution@{FromDistribution}}
+\index{FromDistribution@{FromDistribution}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{FromDistribution()}{FromDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_a28e7b2e6a158c762695dbe39b208e32b} 
+template$<$typename Dist\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::\+From\+Distribution (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}}$<$ Dist\+Type $>$ \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_ad1a003793b92aed6a76eac43fb476731}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!FromDistribution@{FromDistribution}}
+\index{FromDistribution@{FromDistribution}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{FromDistribution()}{FromDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_ad1a003793b92aed6a76eac43fb476731} 
+template$<$typename Dist\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::\+From\+Distribution (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}}$<$ Dist\+Type $>$ \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_a8755c4c644a464b65fe75335155a646f}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!FromDistribution@{FromDistribution}}
+\index{FromDistribution@{FromDistribution}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{FromDistribution()}{FromDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_a8755c4c644a464b65fe75335155a646f} 
+template$<$typename Dist\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::\+From\+Distribution (\begin{DoxyParamCaption}\item[{const Dist\+Type \&}]{dist}{, }\item[{size\+\_\+t}]{param\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1prior_1_1_prior}{Prior} from a Univariate Distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dist} & The distribution instance (e.\+g., Normal\+Distribution) \\
+\hline
+{\em param\+Index} & The index in the Eigen\+::\+Vector\+Xd this prior applies to \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_ab14d55841780cd18c5b17ad447481ff0}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!eval@{eval}}
+\index{eval@{eval}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_ab14d55841780cd18c5b17ad447481ff0} 
+template$<$typename Dist\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_ac983277833189063b62793fbc1c3ebd5}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_a6a371b588a37f1022c501c529810546d}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_a6a371b588a37f1022c501c529810546d} 
+template$<$typename Dist\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_aeb36eaf26c22bdf4049574f7eb254db8}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_ab759d02e3f5fea09fe768c1dbfcc8997}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_ab759d02e3f5fea09fe768c1dbfcc8997} 
+template$<$typename Dist\+Type$>$ \\
+double \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_ad047a6a9bf982743897f4e42529ada63}{cmp\+::prior\+::\+Prior}}.
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_aa9f0d271a541fe507959252dace73cb1}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!make@{make}}
+\index{make@{make}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_aa9f0d271a541fe507959252dace73cb1} 
+template$<$typename Dist\+Type$>$ \\
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::make (\begin{DoxyParamCaption}\item[{const Dist\+Type \&}]{dist}{, }\item[{size\+\_\+t}]{param\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_a2b0523472860f611985d5c28dff57c28}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_a2b0523472860f611985d5c28dff57c28} 
+template$<$typename Dist\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}} \& \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}}$<$ Dist\+Type $>$ \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_a4a700f25ef677a3cbc61ece5893fc58f}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_a4a700f25ef677a3cbc61ece5893fc58f} 
+template$<$typename Dist\+Type$>$ \\
+\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}} \& \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}}$<$ Dist\+Type $>$ \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!dist\_@{dist\_}}
+\index{dist\_@{dist\_}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{dist\_}{dist\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc} 
+template$<$typename Dist\+Type$>$ \\
+Dist\+Type \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::dist\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}\index{cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}!paramIndex\_@{paramIndex\_}}
+\index{paramIndex\_@{paramIndex\_}!cmp::prior::FromDistribution$<$ DistType $>$@{cmp::prior::FromDistribution$<$ DistType $>$}}
+\doxysubsubsection{\texorpdfstring{paramIndex\_}{paramIndex\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d} 
+template$<$typename Dist\+Type$>$ \\
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{cmp\+::prior\+::\+From\+Distribution}}$<$ Dist\+Type $>$\+::param\+Index\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{prior_09_09_8h}{prior++.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,445 @@
+\doxysection{cmp\+::cluster\+::Dirichlet\+Process\+Mixture\+Model Class Reference}
+\hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model}{}\label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+
+
+Implements an infinite Gaussian Mixture Model using a Dirichlet Process Mixture Model (DPMM) and Gibbs sampling.  
+
+
+
+
+{\ttfamily \#include $<$cluster.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster}{Cluster}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad8d57685732e0491786307a19e20a1fe}{Dirichlet\+Process\+Mixture\+Model}} (double alpha, const \mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution}{cmp\+::distribution\+::\+Gamma\+Distribution}} \&alpha\+Prior, const \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution}} \&hyper, unsigned int seed=12345)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model}{Dirichlet\+Process\+Mixture\+Model} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a51fbd889895500a4026c6abcc6cc22a0}{condition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data, const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \&init\+\_\+labels)
+\begin{DoxyCompactList}\small\item\em Conditions the DPMM model on the given dataset with initial cluster labels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ae0edf2151639d901a23e1ab7ff831578}{step}} ()
+\begin{DoxyCompactList}\small\item\em Performs one complete sweep of collapsed Gibbs sampling over all points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad0274fdabfd53ad302ff5aaad823edc9}{remap\+Labels}} ()
+\begin{DoxyCompactList}\small\item\em Remaps cluster labels to be contiguous integers starting from 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2413eda7c582905edde42c1e09fa8355}{get\+Labels}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current cluster label assignments vector. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a049b71a80255f310aecc6f628ed0edd5}{n\+Clusters}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current number of active clusters. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a452d4e8cbc2d5d97a55a7c034d14adef}{get\+Alpha}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current concentration parameter alpha. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_aeed1e322dddddba9cc5eaf9120ab7f60}{init}} (const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \&init\+\_\+labels)
+\begin{DoxyCompactList}\small\item\em Initializes cluster counts, sums, and sufficient statistics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a5dd327aea614f567ff379a45b2815eb9}{remove\+Point\+From\+Cluster}} (const size\+\_\+t \&point\+Index, const size\+\_\+t \&cluster\+ID)
+\begin{DoxyCompactList}\small\item\em Removes a point from the sufficient statistics of a specified cluster. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a70fc7f6955723b0d83357924e8c558c3}{add\+Point\+To\+Cluster}} (const size\+\_\+t \&point\+Index, const size\+\_\+t \&cluster\+ID)
+\begin{DoxyCompactList}\small\item\em Adds a point to the sufficient statistics of a specified cluster. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_adbd48bcaf4222f13ef07039bea9d98ab}{log\+NIWPosterior}} (const Eigen\+::\+Vector\+Xd \&x, const \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster}{Cluster}} \&c) const
+\begin{DoxyCompactList}\small\item\em Computes the log posterior probability of a point under a cluster\textquotesingle{}s NIW predictive distribution. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab3dbafcd002cd529a6136b32018e06c2}{update\+Alpha}} ()
+\begin{DoxyCompactList}\small\item\em Updates the concentration parameter alpha via auxiliary variable sampling. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a217eb8b0524d9276f8549eaebd9a8328}{logp\+\_\+workspace\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Temporary buffer for cluster log-\/probabilities. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_af8bb0daa61526d49983def38e0a30ff8}{probs\+\_\+workspace\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Temporary buffer for cluster probability weights. \end{DoxyCompactList}\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_adf5ccdefa14ab8ef8d20866a683891c0}{cluster\+IDs\+\_\+workspace\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Temporary buffer for cluster IDs. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a089ca83c33514dfca66ddd699292f180}{x\+Obs\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Observed data points matrix (N x D). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a4eed344e6896b8a4ce53bb60191ae349}{labels\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Current cluster assignment label vector. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_abc57304801ca9b94d4132d0412af0e68}{n\+Points\+\_\+}} \{0\}
+\begin{DoxyCompactList}\small\item\em Number of observation points. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad4ec5ef7f4d9bc852f6c4c73ac2762ec}{dim\+\_\+}} \{0\}
+\begin{DoxyCompactList}\small\item\em Dimensionality of the feature space. \end{DoxyCompactList}\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a358136eacb5a457821c21427d5e8f764}{cluster\+IDs\+\_\+}}
+\begin{DoxyCompactList}\small\item\em List of active cluster IDs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution}} \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a7709e0b1e31bb1c864d8cfcb98251ffb}{hyper\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Hyperprior distribution parameters for clusters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution}{cmp\+::distribution\+::\+Gamma\+Distribution}} \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a86ac06e9822ef3957eefc42c8da55088}{alpha\+Prior\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Prior distribution parameters for concentration parameter. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}{alpha\+\_\+}} \{1.\+0\}
+\begin{DoxyCompactList}\small\item\em Concentration parameter alpha for the Dirichlet Process. \end{DoxyCompactList}\item 
+std\+::map$<$ size\+\_\+t, \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster}{Cluster}} $>$ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2747b925e11eab0b8d204763d34cdd1f}{clusters\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Map from cluster ID to sufficient statistics cluster structure. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8a043dcc7c70ec73b428932391b5c541}{next\+Cluster\+Id\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Counter to generate unique new cluster IDs. \end{DoxyCompactList}\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab8bf4143b14944f09cb1e1f2a7c5366b}{rng\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Pseudo-\/random number generator engine. \end{DoxyCompactList}\item 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ade19ad5d2f4e8d26f5d3b10d5ac41d52}{dist\+U\+\_\+}} \{0.\+0, 1.\+0\}
+\begin{DoxyCompactList}\small\item\em Uniform real generator for rejection sampler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements an infinite Gaussian Mixture Model using a Dirichlet Process Mixture Model (DPMM) and Gibbs sampling. 
+
+\hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_autotoc_md0}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Foundations}{Mathematical Foundations}}\label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_autotoc_md0}
+The Dirichlet Process Mixture Model (DPMM) assumes an infinite number of mixture components, allowing the model to adaptively determine the number of clusters from the data. The generative process for observations $\mathbf{x}_i \in \mathbb{R}^d$ is\+: \[ \mathbf{x}_i | z_i, \{\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k\} \sim \mathcal{N}(\boldsymbol{\mu}_{z_i}, \boldsymbol{\Sigma}_{z_i}) \] \[ z_i | \mathbf{w} \sim \mathrm{Categorical}(\mathbf{w}) \] \[ \mathbf{w} \sim \mathrm{GEM}(\alpha) \quad \text{(Stick-breaking construction)} \] \[ (\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) \sim \mathrm{NIW}(\boldsymbol{\mu}_0, \kappa_0, \boldsymbol{\Lambda}_0, \nu_0) \] where $\mathrm{NIW}$ is the Normal-\/\+Inverse-\/\+Wishart conjugate prior, and $\alpha > 0$ is the concentration parameter.
+
+The NIW prior is defined as\+: \[ \boldsymbol{\Sigma} \sim \mathrm{Inv-Wishart}(\boldsymbol{\Lambda}_0, \nu_0), \quad \boldsymbol{\mu} | \boldsymbol{\Sigma} \sim \mathcal{N}\left(\boldsymbol{\mu}_0, \frac{1}{\kappa_0} \boldsymbol{\Sigma}\right) \]\hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_autotoc_md1}{}\doxysubsubsubsection{\texorpdfstring{Implementation Algorithms (Collapsed Gibbs Sampling)}{Implementation Algorithms (Collapsed Gibbs Sampling)}}\label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_autotoc_md1}
+The algorithm integrates out the parameters $\{\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k\}$, sampling only the cluster indicators $z_i$\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{Existing \doxylink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster}{Cluster} Probability}}\+: The probability that data point $\mathbf{x}_i$ belongs to an existing cluster $k$ is\+: \[ P(z_i = k | \mathbf{z}_{-i}, \mathbf{x}_i) \propto n_k^{-i} \cdot t_{\nu_n}\left(\mathbf{x}_i ; \boldsymbol{\mu}_n, \frac{\kappa_n + 1}{\kappa_n(\nu_n - d + 1)} \boldsymbol{\Lambda}_n\right) \] where $n_k^{-i}$ is the cluster size excluding $\mathbf{x}_i$, and $t_{\nu}$ is the multivariate Student-\/t distribution representing the posterior predictive distribution.
+\item {\bfseries{New \doxylink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster}{Cluster} Probability}}\+: The probability that $\mathbf{x}_i$ spawns a new cluster is\+: \[ P(z_i = \text{new} | \mathbf{z}_{-i}, \mathbf{x}_i) \propto \alpha \cdot t_{\nu_0}\left(\mathbf{x}_i ; \boldsymbol{\mu}_0, \frac{\kappa_0 + 1}{\kappa_0(\nu_0 - d + 1)} \boldsymbol{\Lambda}_0\right) \]
+\item {\bfseries{NIW Posterior Updates}}\+: For each cluster $k$, the sufficient statistics are updated as\+: \[ \kappa_n = \kappa_0 + n_k, \quad \nu_n = \nu_0 + n_k, \quad \boldsymbol{\mu}_n = \frac{\kappa_0 \boldsymbol{\mu}_0 + n_k \bar{\mathbf{x}}}{\kappa_n} \] \[ \boldsymbol{\Lambda}_n = \boldsymbol{\Lambda}_0 + \mathbf{C} + \frac{\kappa_0 n_k}{\kappa_n} (\bar{\mathbf{x}} - \boldsymbol{\mu}_0)(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)^T \] where $\bar{\mathbf{x}}$ is the sample mean, and $\mathbf{C} = \sum_{j \in \text{cluster}} (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})^T$.
+\end{DoxyEnumerate}\hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_autotoc_md2}{}\doxysubsubsubsection{\texorpdfstring{Constraints \& Invariants}{Constraints \& Invariants}}\label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Degrees of Freedom}}\+: Prior degrees of freedom must satisfy $\nu_0 > d - 1$ to guarantee prior scale matrix normalization.
+\item {\bfseries{Positive Definiteness}}\+: The prior scale matrix $\boldsymbol{\Lambda}_0$ must be symmetric positive-\/definite. 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad8d57685732e0491786307a19e20a1fe}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!DirichletProcessMixtureModel@{DirichletProcessMixtureModel}}
+\index{DirichletProcessMixtureModel@{DirichletProcessMixtureModel}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{DirichletProcessMixtureModel()}{DirichletProcessMixtureModel()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad8d57685732e0491786307a19e20a1fe} 
+cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::\+Dirichlet\+Process\+Mixture\+Model (\begin{DoxyParamCaption}\item[{double}]{alpha}{, }\item[{const \mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution}{cmp\+::distribution\+::\+Gamma\+Distribution}} \&}]{alpha\+Prior}{, }\item[{const \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution}} \&}]{hyper}{, }\item[{unsigned int}]{seed}{ = {\ttfamily 12345}}\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxylink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model}{Dirichlet\+Process\+Mixture\+Model} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha} & Initial concentration parameter for the Dirichlet Process. \\
+\hline
+{\em alpha\+Prior} & Gamma prior distribution parameters for concentration updates. \\
+\hline
+{\em hyper} & Normal-\/\+Inverse-\/\+Wishart hyperprior parameters for clusters. \\
+\hline
+{\em seed} & Seed value for the random number generator. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a70fc7f6955723b0d83357924e8c558c3}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!addPointToCluster@{addPointToCluster}}
+\index{addPointToCluster@{addPointToCluster}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{addPointToCluster()}{addPointToCluster()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a70fc7f6955723b0d83357924e8c558c3} 
+void cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::add\+Point\+To\+Cluster (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{point\+Index}{, }\item[{const size\+\_\+t \&}]{cluster\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Adds a point to the sufficient statistics of a specified cluster. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point\+Index} & Index of the data point. \\
+\hline
+{\em cluster\+ID} & ID of the cluster. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a51fbd889895500a4026c6abcc6cc22a0}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!condition@{condition}}
+\index{condition@{condition}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{condition()}{condition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a51fbd889895500a4026c6abcc6cc22a0} 
+void cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::condition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{, }\item[{const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \&}]{init\+\_\+labels}{}\end{DoxyParamCaption})}
+
+
+
+Conditions the DPMM model on the given dataset with initial cluster labels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & N x D matrix of observed points. \\
+\hline
+{\em init\+\_\+labels} & Initial cluster assignment vector of size N. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a452d4e8cbc2d5d97a55a7c034d14adef}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!getAlpha@{getAlpha}}
+\index{getAlpha@{getAlpha}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{getAlpha()}{getAlpha()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a452d4e8cbc2d5d97a55a7c034d14adef} 
+double cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::get\+Alpha (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current concentration parameter alpha. 
+
+\begin{DoxyReturn}{Returns}
+Value of alpha. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2413eda7c582905edde42c1e09fa8355}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!getLabels@{getLabels}}
+\index{getLabels@{getLabels}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{getLabels()}{getLabels()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2413eda7c582905edde42c1e09fa8355} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::get\+Labels (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current cluster label assignments vector. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs} of cluster labels. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_aeed1e322dddddba9cc5eaf9120ab7f60}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!init@{init}}
+\index{init@{init}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_aeed1e322dddddba9cc5eaf9120ab7f60} 
+void cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::init (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \&}]{init\+\_\+labels}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes cluster counts, sums, and sufficient statistics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em init\+\_\+labels} & Initial cluster labels. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_adbd48bcaf4222f13ef07039bea9d98ab}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!logNIWPosterior@{logNIWPosterior}}
+\index{logNIWPosterior@{logNIWPosterior}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{logNIWPosterior()}{logNIWPosterior()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_adbd48bcaf4222f13ef07039bea9d98ab} 
+double cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::log\+NIWPosterior (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster}{Cluster}} \&}]{c}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Computes the log posterior probability of a point under a cluster\textquotesingle{}s NIW predictive distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point vector. \\
+\hline
+{\em c} & The cluster structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The log posterior probability. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a049b71a80255f310aecc6f628ed0edd5}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!nClusters@{nClusters}}
+\index{nClusters@{nClusters}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{nClusters()}{nClusters()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a049b71a80255f310aecc6f628ed0edd5} 
+size\+\_\+t cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::n\+Clusters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current number of active clusters. 
+
+\begin{DoxyReturn}{Returns}
+Number of clusters. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad0274fdabfd53ad302ff5aaad823edc9}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!remapLabels@{remapLabels}}
+\index{remapLabels@{remapLabels}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{remapLabels()}{remapLabels()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad0274fdabfd53ad302ff5aaad823edc9} 
+void cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::remap\+Labels (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Remaps cluster labels to be contiguous integers starting from 0. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a5dd327aea614f567ff379a45b2815eb9}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!removePointFromCluster@{removePointFromCluster}}
+\index{removePointFromCluster@{removePointFromCluster}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{removePointFromCluster()}{removePointFromCluster()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a5dd327aea614f567ff379a45b2815eb9} 
+void cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::remove\+Point\+From\+Cluster (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{point\+Index}{, }\item[{const size\+\_\+t \&}]{cluster\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Removes a point from the sufficient statistics of a specified cluster. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point\+Index} & Index of the data point. \\
+\hline
+{\em cluster\+ID} & ID of the cluster. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ae0edf2151639d901a23e1ab7ff831578}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!step@{step}}
+\index{step@{step}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ae0edf2151639d901a23e1ab7ff831578} 
+void cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::step (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Performs one complete sweep of collapsed Gibbs sampling over all points. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab3dbafcd002cd529a6136b32018e06c2}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!updateAlpha@{updateAlpha}}
+\index{updateAlpha@{updateAlpha}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{updateAlpha()}{updateAlpha()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab3dbafcd002cd529a6136b32018e06c2} 
+void cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::update\+Alpha (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Updates the concentration parameter alpha via auxiliary variable sampling. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!alpha\_@{alpha\_}}
+\index{alpha\_@{alpha\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{alpha\_}{alpha\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140} 
+double cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::alpha\+\_\+ \{1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Concentration parameter alpha for the Dirichlet Process. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a86ac06e9822ef3957eefc42c8da55088}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!alphaPrior\_@{alphaPrior\_}}
+\index{alphaPrior\_@{alphaPrior\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{alphaPrior\_}{alphaPrior\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a86ac06e9822ef3957eefc42c8da55088} 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution}{cmp\+::distribution\+::\+Gamma\+Distribution}} cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::alpha\+Prior\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Prior distribution parameters for concentration parameter. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a358136eacb5a457821c21427d5e8f764}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!clusterIDs\_@{clusterIDs\_}}
+\index{clusterIDs\_@{clusterIDs\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{clusterIDs\_}{clusterIDs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a358136eacb5a457821c21427d5e8f764} 
+std\+::vector$<$size\+\_\+t$>$ cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::cluster\+IDs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+List of active cluster IDs. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_adf5ccdefa14ab8ef8d20866a683891c0}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!clusterIDs\_workspace\_@{clusterIDs\_workspace\_}}
+\index{clusterIDs\_workspace\_@{clusterIDs\_workspace\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{clusterIDs\_workspace\_}{clusterIDs\_workspace\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_adf5ccdefa14ab8ef8d20866a683891c0} 
+std\+::vector$<$size\+\_\+t$>$ cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::cluster\+IDs\+\_\+workspace\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Temporary buffer for cluster IDs. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2747b925e11eab0b8d204763d34cdd1f}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!clusters\_@{clusters\_}}
+\index{clusters\_@{clusters\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{clusters\_}{clusters\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2747b925e11eab0b8d204763d34cdd1f} 
+std\+::map$<$size\+\_\+t, \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster}{Cluster}}$>$ cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::clusters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Map from cluster ID to sufficient statistics cluster structure. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad4ec5ef7f4d9bc852f6c4c73ac2762ec}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad4ec5ef7f4d9bc852f6c4c73ac2762ec} 
+int cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::dim\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dimensionality of the feature space. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ade19ad5d2f4e8d26f5d3b10d5ac41d52}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!distU\_@{distU\_}}
+\index{distU\_@{distU\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{distU\_}{distU\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ade19ad5d2f4e8d26f5d3b10d5ac41d52} 
+std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::dist\+U\+\_\+ \{0.\+0, 1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Uniform real generator for rejection sampler. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a7709e0b1e31bb1c864d8cfcb98251ffb}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!hyper\_@{hyper\_}}
+\index{hyper\_@{hyper\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{hyper\_}{hyper\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a7709e0b1e31bb1c864d8cfcb98251ffb} 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution}} cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::hyper\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hyperprior distribution parameters for clusters. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a4eed344e6896b8a4ce53bb60191ae349}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!labels\_@{labels\_}}
+\index{labels\_@{labels\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{labels\_}{labels\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a4eed344e6896b8a4ce53bb60191ae349} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::labels\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current cluster assignment label vector. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a217eb8b0524d9276f8549eaebd9a8328}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!logp\_workspace\_@{logp\_workspace\_}}
+\index{logp\_workspace\_@{logp\_workspace\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{logp\_workspace\_}{logp\_workspace\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a217eb8b0524d9276f8549eaebd9a8328} 
+std\+::vector$<$double$>$ cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::logp\+\_\+workspace\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Temporary buffer for cluster log-\/probabilities. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8a043dcc7c70ec73b428932391b5c541}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!nextClusterId\_@{nextClusterId\_}}
+\index{nextClusterId\_@{nextClusterId\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{nextClusterId\_}{nextClusterId\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8a043dcc7c70ec73b428932391b5c541} 
+size\+\_\+t cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::next\+Cluster\+Id\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Counter to generate unique new cluster IDs. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_abc57304801ca9b94d4132d0412af0e68}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!nPoints\_@{nPoints\_}}
+\index{nPoints\_@{nPoints\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{nPoints\_}{nPoints\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_abc57304801ca9b94d4132d0412af0e68} 
+size\+\_\+t cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::n\+Points\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of observation points. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_af8bb0daa61526d49983def38e0a30ff8}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!probs\_workspace\_@{probs\_workspace\_}}
+\index{probs\_workspace\_@{probs\_workspace\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{probs\_workspace\_}{probs\_workspace\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_af8bb0daa61526d49983def38e0a30ff8} 
+std\+::vector$<$double$>$ cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::probs\+\_\+workspace\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Temporary buffer for cluster probability weights. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab8bf4143b14944f09cb1e1f2a7c5366b}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab8bf4143b14944f09cb1e1f2a7c5366b} 
+std\+::default\+\_\+random\+\_\+engine cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pseudo-\/random number generator engine. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a089ca83c33514dfca66ddd699292f180}\index{cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}!xObs\_@{xObs\_}}
+\index{xObs\_@{xObs\_}!cmp::cluster::DirichletProcessMixtureModel@{cmp::cluster::DirichletProcessMixtureModel}}
+\doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a089ca83c33514dfca66ddd699292f180} 
+Eigen\+::\+Matrix\+Xd cmp\+::cluster\+::\+Dirichlet\+Process\+Mixture\+Model\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Observed data points matrix (N x D). 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{cluster_8h}{cluster.\+h}}\item 
+src/\mbox{\hyperlink{cluster_8cpp}{cluster.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,27 @@
+\doxysection{wasserstein.\+h}
+\hypertarget{wasserstein_8h_source}{}\label{wasserstein_8h_source}\index{include/wasserstein.h@{include/wasserstein.h}}
+\mbox{\hyperlink{wasserstein_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WASSERSTEIN\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WASSERSTEIN\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_afd4351ddf3bb25c5d954baa0b88d580c}{wasserstein1D}}(Eigen::VectorXd\ \&s1,\ Eigen::VectorXd\ \&s2,\ \textcolor{keywordtype}{double}\ p);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_a4676deee482c16dcbe067f72925e9cf8}{slicedWassersteinDistance}}(\textcolor{keyword}{const}\ Eigen::MatrixXd\ \&samples\_1,\ \textcolor{keyword}{const}\ Eigen::MatrixXd\ \&samples\_2,\ \textcolor{keywordtype}{double}\ p,\ \textcolor{keywordtype}{int}\ slices,\ \textcolor{keywordtype}{size\_t}\ seed\ =\ 42);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \}\ \textcolor{comment}{//\ namespace\ cmp}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

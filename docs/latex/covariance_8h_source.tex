@@ -1,0 +1,504 @@
+\doxysection{covariance.\+h}
+\hypertarget{covariance_8h_source}{}\label{covariance_8h_source}\index{include/covariance.h@{include/covariance.h}}
+\mbox{\hyperlink{covariance_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ COVARIANCE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ COVARIANCE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <boost/math/special\_functions/gamma.hpp>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <boost/math/special\_functions/beta.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <boost/math/special\_functions/bessel.hpp>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1covariance}{cmp::covariance}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\string~Covariance}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a9fb251698c57ef527bfc11619af42b22}{leftCovariance\_}};\ \ }
+\DoxyCodeLine{00050\ \ \ \ \ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a4a1165935ea128d455ff1b68632d1e28}{rightCovariance\_}};\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_ac64190126422ab033aecb1a68286da2b}{Sum}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a093c765b13a3df793869c43e69a653e4}{Sum}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_aa85596c2af9abc20e514f90843d1efe7}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_ad41ddae0180da1f38c2f2c907f3b9e9f}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a466f2ace185cd64cc3afee1eab2fa125}{Sum}}(std::shared\_ptr<Covariance>\ k1,\ std::shared\_ptr<Covariance>\ k2)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a9fb251698c57ef527bfc11619af42b22}{leftCovariance\_}}(k1),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a4a1165935ea128d455ff1b68632d1e28}{rightCovariance\_}}(k2)\ \{\};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a0ede71a4a41c1d532a4da3c1d0a4d315}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a9fb251698c57ef527bfc11619af42b22}{leftCovariance\_}}-\/>eval(x1,\ x2,\ par)\ +\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a4a1165935ea128d455ff1b68632d1e28}{rightCovariance\_}}-\/>eval(x1,\ x2,\ par);}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_abdc331300b2d41565c53373593aa3176}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a9fb251698c57ef527bfc11619af42b22}{leftCovariance\_}}-\/>evalGradient(x1,\ x2,\ par,\ i)\ +\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a4a1165935ea128d455ff1b68632d1e28}{rightCovariance\_}}-\/>evalGradient(x1,\ x2,\ par,\ i);}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_ae8e5c9319ad82ff2b8b5d22b62b68361}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a9fb251698c57ef527bfc11619af42b22}{leftCovariance\_}}-\/>evalHessian(x1,\ x2,\ par,\ i,\ j)\ +\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a4a1165935ea128d455ff1b68632d1e28}{rightCovariance\_}}-\/>evalHessian(x1,\ x2,\ par,\ i,\ j);}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a5410f5513c01e4ca6e593f8f51da2d37}{make}}(std::shared\_ptr<Covariance>\ k1,\ std::shared\_ptr<Covariance>\ k2)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Sum>(k1,\ k2);}
+\DoxyCodeLine{00090\ \ \ \ \ \};}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00104\ \ \ \ \ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{leftCovariance\_}};\ \ }
+\DoxyCodeLine{00105\ \ \ \ \ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{rightCovariance\_}};\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a359eb95b90a910119ddc6e0f4956c2ef}{Product}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a20ccf2d64a5332e9b310a36b9dba68a2}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_aac84d22a997220a8816668752dd45374}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adc6416d8ebab0813e4395c48dfc5a01c}{Product}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_adf47b3795edf200292564ba58b726df6}{Product}}(std::shared\_ptr<Covariance>\ k1,\ std::shared\_ptr<Covariance>\ k2)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{leftCovariance\_}}(k1),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{rightCovariance\_}}(k2)\ \{\};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a71f338da32e83d06d5dfaf4b464ae91a}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{leftCovariance\_}}-\/>eval(x1,\ x2,\ par)\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{rightCovariance\_}}-\/>eval(x1,\ x2,\ par);}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a1b39679581a6beb1a839798500f819db}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Smart\ eval\ for\ first\ term}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d1\ =\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{leftCovariance\_}}-\/>evalGradient(x1,\ x2,\ par,\ i);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(d1)\ <\ \mbox{\hyperlink{namespacecmp_a18ada0943b60e75012f5515f0cccdc71}{TOL}})\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ d1\ *=\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{rightCovariance\_}}-\/>eval(x1,\ x2,\ par);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Smart\ eval\ for\ second\ term}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d2\ =\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{rightCovariance\_}}-\/>evalGradient(x1,\ x2,\ par,\ i);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(d2)\ <\ \mbox{\hyperlink{namespacecmp_a18ada0943b60e75012f5515f0cccdc71}{TOL}})\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ d2\ *=\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{leftCovariance\_}}-\/>eval(x1,\ x2,\ par);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ result}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ d1\ +\ d2;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ac1d296220917092b4ce477804a585fcd}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Smart\ eval\ of\ the\ first\ term}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d1\ =\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{leftCovariance\_}}-\/>evalGradient(x1,\ x2,\ par,\ i);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(d1)\ <\ \mbox{\hyperlink{namespacecmp_a18ada0943b60e75012f5515f0cccdc71}{TOL}})\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ d1\ =\ (d1\ +\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{leftCovariance\_}}-\/>evalHessian(x1,\ x2,\ par,\ i,\ j))\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{rightCovariance\_}}-\/>eval(x1,\ x2,\ par);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Smart\ eval\ for\ second\ term}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d2\ =\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{rightCovariance\_}}-\/>evalGradient(x1,\ x2,\ par,\ i);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(d2)\ <\ \mbox{\hyperlink{namespacecmp_a18ada0943b60e75012f5515f0cccdc71}{TOL}})\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ d2\ =\ (d2\ +\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ad2dccfdb37cece0735001be62981c703}{rightCovariance\_}}-\/>evalHessian(x1,\ x2,\ par,\ i,\ j))\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_a13ab3d4c55c895b7cb941f3ea18ad656}{leftCovariance\_}}-\/>eval(x1,\ x2,\ par);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Smart\ eval\ for\ the\ third\ term}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ d1\ +\ d2;}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ae3b9369821659107073c86c200f7d7d8}{make}}(std::shared\_ptr<Covariance>\ k1,\ std::shared\_ptr<Covariance>\ k2)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Product>(k1,\ k2);}
+\DoxyCodeLine{00177\ \ \ \ \ \};}
+\DoxyCodeLine{00178\ \};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00184\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00185\ \ \ \ \ std::function<double(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a1f8114e2463de8cb7942b51ed9092fd2}{eval\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00186\ \ \ \ \ std::function<double(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a3f679b090086b573fb9789ec68653d49}{evalGradient\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \ \ \ \ std::function<double(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a793877d17782f27dc0acc26d8d18f399}{evalHessian\_}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a4ad660d554dea9d53059d140fc5042fa}{Custom}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a313a4ce5566393608dd4bc56829d9ed6}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a3c42ee65967104726ff0a6855cab5752}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a334a0903fd9e6dde8961ff196f0b2ca0}{Custom}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a9ecf41579b32af24bdac8a70ee1fd8ae}{Custom}}(std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{eval}},}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{evalGradient}},}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{evalHessian}})\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a1f8114e2463de8cb7942b51ed9092fd2}{eval\_}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{eval}}),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a3f679b090086b573fb9789ec68653d49}{evalGradient\_}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{evalGradient}}),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a793877d17782f27dc0acc26d8d18f399}{evalHessian\_}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{evalHessian}})\ \{\};}
+\DoxyCodeLine{00201\ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a1f8114e2463de8cb7942b51ed9092fd2}{eval\_}}(x1,\ x2,\ par);}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a3f679b090086b573fb9789ec68653d49}{evalGradient\_}}(x1,\ x2,\ par,\ i);}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a793877d17782f27dc0acc26d8d18f399}{evalHessian\_}}(x1,\ x2,\ par,\ i,\ j);}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00226\ \ \ \ \ std::shared\_ptr<Custom>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a9eb1e92e7f789bceaac52835cc2ca759}{make}}(std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{eval}},}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{evalGradient}},}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&)>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{evalHessian}})\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Custom>(\mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_ab80d5ea82f3c028fe4a3ef867329be5d}{eval}},\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_aa30eff0c1da2fe5c40dad61c0cd395f5}{evalGradient}},\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_custom_a8baa474f1cca11671c1661caedf70038}{evalHessian}});}
+\DoxyCodeLine{00230\ \ \ \ \ \};}
+\DoxyCodeLine{00231\ \};}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00242\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00243\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}{index\_}};\ }
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00248\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a18a135dc7bb02b32399aa89d2175d9b9}{Constant}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00249\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a996a4b39e1d7bace0c1eed2229397b28}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a05d1f875675e50f408bcd822a88dc604}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a42b027f33b9b43e940587e719468ed2f}{Constant}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00255\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a30bb06c3584fef9a17d27fd5109e1654}{Constant}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&index)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}{index\_}}(index)\ \{\};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a40031da132576e3dcb60d334debd812f}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pow(par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}{index\_}}),\ 2);}
+\DoxyCodeLine{00262\ \ \ \ \ \};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_aa9d5e57f97450328808a3ad3ca21e5c6}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}{index\_}})\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2\ *\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}{index\_}});}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \};}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a1bbf443134639f6b82b70d2634108c82}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}{index\_}}\ \&\&\ j\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a96a7a4d2d0579a0bf2b41cae797583ff}{index\_}})\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \};}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_constant_a894a45e3d2531ce9f492541430e3fb87}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&c)\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Constant>(c);}
+\DoxyCodeLine{00291\ \ \ \ \ \};}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00308\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00309\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a6eb97f9b756c790546c1c2933c92ccab}{indexX\_}};\ }
+\DoxyCodeLine{00311\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00314\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a94fdd91a23e77ea0b0983493db61b9f7}{Linear}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00315\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_af9ba6c75012d3c9a2890a667449b35e5}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00316\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a53bbe65fc1ae45c8157e942e7f9e3be8}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00322\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a54e244f2ac6504d26c079f60303fbf45}{Linear}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&indexX\ =\ -\/1)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a6eb97f9b756c790546c1c2933c92ccab}{indexX\_}}(indexX)\ \{\};}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_ac1eab08ceece4131f7ca699bb290246b}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a6eb97f9b756c790546c1c2933c92ccab}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x1.dot(x2);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a6eb97f9b756c790546c1c2933c92ccab}{indexX\_}})\ *\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a6eb97f9b756c790546c1c2933c92ccab}{indexX\_}});}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00333\ \ \ \ \ \};}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_ae56c5efc71057448b48b5b9e65ace531}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00340\ \ \ \ \ \};}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_aae33ab7ccf24090f6e512f1e7de651a3}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00347\ \ \ \ \ \};}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a226f1048abc4976b5c1921f01174c3d7}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i)\ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Linear>(i);}
+\DoxyCodeLine{00354\ \ \ \ \ \};}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \};}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00371\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00372\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a50b4bfa8511bb53dafd3de93cdc4fc7a}{indexX\_}};\ }
+\DoxyCodeLine{00374\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00377\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a489258fc9b458cbff0be3127eca2acd9}{Inverse}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00378\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_abad61b7f144973b79ee6d7b41a123dd4}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00379\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_aa19b840f5a4d68a733bcbce147a11e27}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a748a6da7e922651efa2ff3dc33801ed2}{Inverse}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00385\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a7d33755c0a657385e61465a2e1b226a0}{Inverse}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&indexX\ =\ -\/1)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a50b4bfa8511bb53dafd3de93cdc4fc7a}{indexX\_}}(indexX)\ \{\};}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_abeedd44401576e4db9ac3a4253f53598}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a50b4bfa8511bb53dafd3de93cdc4fc7a}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0\ /\ (x1.dot(x2)\ +\ 1);}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0\ /\ (x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a50b4bfa8511bb53dafd3de93cdc4fc7a}{indexX\_}})\ *\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a50b4bfa8511bb53dafd3de93cdc4fc7a}{indexX\_}})\ +\ 1);}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \};}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_aa9b2bd41b8175dc7195dcc84f78c3bc0}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00403\ \ \ \ \ \};}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_a5d012a66b21a29004a7903ff405213ce}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00410\ \ \ \ \ \};}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_inverse_ab29e339826aff947245571ed5010af1b}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i)\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Inverse>(i);}
+\DoxyCodeLine{00417\ \ \ \ \ \};}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \};}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00436\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{SquaredExponential}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00437\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}};\ \ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}};\ \ \ \ }
+\DoxyCodeLine{00440\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{SquaredExponential}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{SquaredExponential}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00443\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a44a007646f736dee8865768433e2c9c1}{SquaredExponential}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{SquaredExponential}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00444\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{SquaredExponential}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_aaf4e67ecfc42a038efe48b3fab41c896}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{SquaredExponential}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00445\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{SquaredExponential}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8a649ca98e98d8f74ba7f7a459e88d78}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_ad803a99653c349ecf1f5105b93e0df81}{SquaredExponential}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a9a94c4c8031130a2f5bf14d7403f14d3}{SquaredExponential}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&indexX\ =\ -\/1)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}}(index),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}}(indexX)\ \{\};}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a6b9904d54e0e320142c1aae74c0fdd49}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}}));}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::exp(-\/0.5\ *\ std::pow(d\ /\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}}),\ 2));}
+\DoxyCodeLine{00456\ \ \ \ \ \};}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a5b9bf2c25915b125ebdd7d03fc8a30b5}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}}));}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ gradient}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}})\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::exp(-\/0.5\ *\ std::pow(d\ /\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}}),\ 2))\ *\ std::pow(d,\ 2)\ /\ std::pow(par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}}),\ 3);}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \};}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a229e7ba4789f380e0d6a4c5b18f15f1c}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a1373bb0cc4484c0e187aa1edb4f1da7e}{indexX\_}}));}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ hessian}}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}}\ \&\&\ j\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}})\ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (std::exp(-\/0.5\ *\ std::pow(d\ /\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}}),\ 2))\ *\ std::pow(d,\ 2)\ /\ std::pow(par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}}),\ 4))\ *\ (-\/3\ +\ std::pow(d,\ 2)\ /\ std::pow(par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a8d0796d2fe7ed12135e06fa6c84f641d}{index\_}}),\ 3));}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \};}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_squared_exponential_a638912db0c025210ea8399168f02fc9b}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i)\ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<SquaredExponential>(l,\ i);}
+\DoxyCodeLine{00492\ \ \ \ \ \};}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \};}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00511\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3a00e821ab412bcab5ebd87c38c2eda6}{Matern52}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00512\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_aa7dc755be28b9ef5a489c21b41d80f12}{index\_}};\ \ }
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}};\ \ \ \ }
+\DoxyCodeLine{00515\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3a00e821ab412bcab5ebd87c38c2eda6}{Matern52}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3a00e821ab412bcab5ebd87c38c2eda6}{Matern52}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00518\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3ad54e6160162d4497a58f48578e2598}{Matern52}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3a00e821ab412bcab5ebd87c38c2eda6}{Matern52}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00519\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3a00e821ab412bcab5ebd87c38c2eda6}{Matern52}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_ae2718da49c6cb57f9f84362eac959e5a}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3a00e821ab412bcab5ebd87c38c2eda6}{Matern52}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00520\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3a00e821ab412bcab5ebd87c38c2eda6}{Matern52}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_ab0c9cda1d9c3a092e4d5b75491647e4c}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a3a00e821ab412bcab5ebd87c38c2eda6}{Matern52}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_af28da145478457a8687893996f2a0a6f}{Matern52}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i\ =\ -\/1)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_aa7dc755be28b9ef5a489c21b41d80f12}{index\_}}(l),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}}(i)\ \{\};}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a753982b98b4819c5eecef396fc8cd624}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}}));}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ l\ =\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_aa7dc755be28b9ef5a489c21b41d80f12}{index\_}});}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ c\_1\ =\ sqrt(5.)\ *\ d\ /\ l;}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ c\_2\ =\ (5.\ /\ 3.)\ *\ pow(d\ /\ l,\ 2);}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (1\ +\ c\_1\ +\ c\_2)\ *\ exp(-\/c\_1);}
+\DoxyCodeLine{00534\ \ \ \ \ \};}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a315d4405b4093ea6ad5683bba0d1627c}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}}));}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ gradient}}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_aa7dc755be28b9ef5a489c21b41d80f12}{index\_}})\ \{}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ l\ =\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_aa7dc755be28b9ef5a489c21b41d80f12}{index\_}});}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (5.*std::pow(d,\ 2)\ *\ (std::sqrt(5)\ *\ d\ +\ l))\ /\ (3.*std::exp((std::sqrt(5)\ *\ d)\ /\ l)\ *\ std::pow(l,\ 4));}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00551\ \ \ \ \ \};}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a4b09c22fe37b132417d85b303fbbda03}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a33be55472b259d809c8b9fe926db5642}{indexX\_}}));}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ hessian}}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_aa7dc755be28b9ef5a489c21b41d80f12}{index\_}}\ \&\&\ j\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_aa7dc755be28b9ef5a489c21b41d80f12}{index\_}})\ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ l\ =\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_aa7dc755be28b9ef5a489c21b41d80f12}{index\_}});}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (5\ *\ std::pow(d,\ 2)\ *\ (5\ *\ std::pow(d,\ 2)\ -\/\ 3\ *\ std::sqrt(5)\ *\ d\ *\ l\ -\/\ 3\ *\ std::pow(l,\ 2)))\ /\ (3.*std::exp(std::sqrt(5)\ *\ d\ /\ l)\ *\ std::pow(l,\ 6));}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00568\ \ \ \ \ \};}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern52_a09715da8e8ae56573cb5407fd8614468}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i)\ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Matern52>(l,\ i);}
+\DoxyCodeLine{00572\ \ \ \ \ \};}
+\DoxyCodeLine{00573\ \};}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00590\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00591\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00592\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\_}};\ \ }
+\DoxyCodeLine{00593\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}};\ \ \ \ }
+\DoxyCodeLine{00594\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}};\ \ \ \ \ }
+\DoxyCodeLine{00595\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00596\ }
+\DoxyCodeLine{00597\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00598\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_ae72b109efef09a7df4ae578a39e9d858}{Matern}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00599\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a03a072dcb39f1dea838dc21b4881b538}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00600\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_ac9e50d20904b425c72ff89766a7e5b3e}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a3e1b0333c1243cc97ba65ffacc8996d4}{Matern}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00602\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a59377ec12e46e920a1fef4882533ca96}{Matern}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&nu,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&indexX\ =\ -\/1)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\_}}(index),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}}(indexX),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}(nu)\ \{\};}
+\DoxyCodeLine{00603\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a0f41db54466903f5ee6caa69d86e7b57}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}}));}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ l\ =\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\_}});}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ r\ =\ std::sqrt(2\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ d\ /\ l;}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (1.0\ /\ (std::tgamma(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ std::pow(2,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ -\/\ 1)))\ *\ std::pow(r,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ boost::math::cyl\_bessel\_k(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}},\ r);}
+\DoxyCodeLine{00613\ \ \ \ \ \};}
+\DoxyCodeLine{00614\ }
+\DoxyCodeLine{00615\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a7474291168c99b7f49d2e2a1356f1017}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}}));}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ gradient}}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\_}})\ \{}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ l\ =\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\_}});}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ r\ =\ std::sqrt(2\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ d\ /\ l;}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (std::pow(r,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ boost::math::cyl\_bessel\_k(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ -\/\ 1,\ r)\ *\ (-\/std::sqrt(2\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ d\ /\ std::pow(l,\ 2))\ -\/\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ *\ std::pow(r,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ boost::math::cyl\_bessel\_k(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}},\ r)\ /\ l)\ /\ (std::tgamma(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ std::pow(2,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ -\/\ 1));}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00631\ \ \ \ \ \};}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8f3a41de0598868563fb9383ec6c14cd}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a8e96fceba9a3ca66df95ee5b0f521526}{indexX\_}}));}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00640\ }
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ hessian}}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\_}}\ \&\&\ j\ ==\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\_}})\ \{}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ l\ =\ par(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a347ea952d5e530be59cbebdbf03c70f8}{index\_}});}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ r\ =\ std::sqrt(2\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ d\ /\ l;}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (std::pow(r,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ boost::math::cyl\_bessel\_k(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ -\/\ 2,\ r)\ *\ std::pow(-\/std::sqrt(2\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ d\ /\ std::pow(l,\ 2),\ 2)}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ 2\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ *\ std::pow(r,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ boost::math::cyl\_bessel\_k(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ -\/\ 1,\ r)\ *\ (-\/std::sqrt(2\ *\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ d\ /\ std::pow(l,\ 3))}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ *\ (\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ +\ 1)\ *\ std::pow(r,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ boost::math::cyl\_bessel\_k(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}},\ r)\ /\ std::pow(l,\ 2))\ /\ (std::tgamma(\mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}})\ *\ std::pow(2,\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a20dc211f6214938c407cc51733dc03a6}{nu\_}}\ -\/\ 1));}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00651\ \ \ \ \ \};}
+\DoxyCodeLine{00652\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_matern_a7cea3af467d2fd3d8ab93ea3569f2620}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&nu,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i)\ \{}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Matern>(l,\ nu,\ i);}
+\DoxyCodeLine{00654\ \ \ \ \ \};}
+\DoxyCodeLine{00655\ \};}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00670\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{WhiteNoise}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}\ \{}
+\DoxyCodeLine{00671\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00672\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aca4ca45bc41ea06dcfeeeb22f51017f9}{indexX\_}}\{-\/1\};\ \ \ \ }
+\DoxyCodeLine{00673\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a8114c9388de25916ade131570bd5fc0f}{tol\_}}\{1e-\/10\};\ }
+\DoxyCodeLine{00674\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00675\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{WhiteNoise}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{WhiteNoise}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00676\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a42c0164a05b1f78bb4c094daa74d2b6f}{WhiteNoise}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{WhiteNoise}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00677\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{WhiteNoise}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_abb765a4dbdf12159790ed0216566717d}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{WhiteNoise}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00678\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{WhiteNoise}}\&\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_abd38e41d26f939781710cb09c0da61cb}{operator=}}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ade89c0d348384578dfb5c6b1b7f5444b}{WhiteNoise}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00679\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a1e7fdd112179f94d7fe3126613ce7bce}{WhiteNoise}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&indexX\ =\ -\/1,\ \textcolor{keywordtype}{double}\ tol\ =\ 1e-\/10)\ :\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aca4ca45bc41ea06dcfeeeb22f51017f9}{indexX\_}}(indexX),\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a8114c9388de25916ade131570bd5fc0f}{tol\_}}(tol)\ \{\};}
+\DoxyCodeLine{00680\ }
+\DoxyCodeLine{00681\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aef11287ef98ee7540b338e87c3ca0927}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aca4ca45bc41ea06dcfeeeb22f51017f9}{indexX\_}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ (x1\ -\/\ x2).norm();}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ d\ =\ std::abs(x1(\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aca4ca45bc41ea06dcfeeeb22f51017f9}{indexX\_}})\ -\/\ x2(\mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_aca4ca45bc41ea06dcfeeeb22f51017f9}{indexX\_}}));}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(d\ <\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a8114c9388de25916ade131570bd5fc0f}{tol\_}})\ \{}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00693\ \ \ \ \ \};}
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a213147357af292f75a8c29b14282d73b}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00697\ \ \ \ \ \};}
+\DoxyCodeLine{00698\ }
+\DoxyCodeLine{00699\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_a104bda4913a681622472380eb58117d6}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x1,\ \textcolor{keyword}{const}\ Eigen::VectorXd\ \&x2,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00701\ \ \ \ \ \};}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_white_noise_ae14c3104e841bd710d74e3713d2f5a33}{make}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&i\ =\ -\/1,\ \textcolor{keywordtype}{double}\ tol\ =\ 1e-\/10)\ \{}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<WhiteNoise>(i,\ tol);}
+\DoxyCodeLine{00705\ \ \ \ \ \};}
+\DoxyCodeLine{00706\ }
+\DoxyCodeLine{00707\ \};}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \textcolor{comment}{//\ Inline\ operator\ helpers\ —\ define\ here\ to\ ensure\ they\ live\ in\ the\ same\ namespace}}
+\DoxyCodeLine{00710\ \textcolor{keyword}{inline}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{namespacecmp_1_1covariance_afc6771328575da3b1d88c7d99f12cde8}{operator+}}(std::shared\_ptr<Covariance>\ k1,\ std::shared\_ptr<Covariance>\ k2)\ \{}
+\DoxyCodeLine{00711\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a5410f5513c01e4ca6e593f8f51da2d37}{Sum::make}}(k1,\ k2);}
+\DoxyCodeLine{00712\ \}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \textcolor{keyword}{inline}\ std::shared\_ptr<Covariance>\ \mbox{\hyperlink{namespacecmp_1_1covariance_a4b03e17aa92a3b8a28fa0fd5b3778fd8}{operator*}}(std::shared\_ptr<Covariance>\ k1,\ std::shared\_ptr<Covariance>\ k2)\ \{}
+\DoxyCodeLine{00715\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_product_ae3b9369821659107073c86c200f7d7d8}{Product::make}}(k1,\ k2);}
+\DoxyCodeLine{00716\ \}}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00718\ }
+\DoxyCodeLine{00719\ }
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \}}
+\DoxyCodeLine{00722\ }
+\DoxyCodeLine{00724\ }
+\DoxyCodeLine{00725\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,175 @@
+\doxysection{t\+\_\+distribution Class Reference}
+\hypertarget{classcmp_1_1t__distribution}{}\label{classcmp_1_1t__distribution}\index{t\_distribution@{t\_distribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for t\+\_\+distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1t__distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1t__distribution_ab2265d57c04ab29800411dda55b9ca0a}{t\+\_\+distribution}} (double nu, double mu, double sigma, std\+::default\+\_\+random\+\_\+engine rng)
+\item 
+\mbox{\hyperlink{classcmp_1_1t__distribution_abc615b1b76df0891e09b29a024b204c4}{t\+\_\+distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1t__distribution_abf4916297737fa5db95e6c51d327791f}{log\+\_\+pdf}} (const double \&x) override
+\begin{DoxyCompactList}\small\item\em Evaluate the log-\/pdf of the distribution at point x. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1t__distribution_a9e1592979d2a1f5480c9ebbd443b5593}{d\+\_\+log\+\_\+pdf}} (const double \&x)
+\item 
+double \mbox{\hyperlink{classcmp_1_1t__distribution_a698ed8c0320ab7a11037b63b5689e958}{dd\+\_\+log\+\_\+pdf}} (const double \&x)
+\item 
+double \mbox{\hyperlink{classcmp_1_1t__distribution_acfeee2418e7758ce8754ee04cdae549d}{cdf}} (const double \&x) override
+\begin{DoxyCompactList}\small\item\em Evaluate the cdf of the distribution at point x. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1t__distribution_add387d6d51ae5bab8aa6c9e172231a1e}{quantile}} (const double \&p) override
+\begin{DoxyCompactList}\small\item\em Evaluate the quantile function of the distribution. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1t__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}{sample}} () override
+\begin{DoxyCompactList}\small\item\em Sample from the distribution. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1t__distribution_aa00a7e875ddf8f0dab1fa7ff292f86b3}{set\+\_\+nu}} (double nu)
+\item 
+void \mbox{\hyperlink{classcmp_1_1t__distribution_a14e2b225764a7ca725659e8545e505f7}{set\+\_\+mu}} (double mu)
+\item 
+void \mbox{\hyperlink{classcmp_1_1t__distribution_a9deeb85bd0eca06ba471178b7c91e18f}{set\+\_\+sigma}} (double sigma)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1univariate__distribution}{univariate\+\_\+distribution}}}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1t__distribution_ab2265d57c04ab29800411dda55b9ca0a}\index{t\_distribution@{t\_distribution}!t\_distribution@{t\_distribution}}
+\index{t\_distribution@{t\_distribution}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{t\_distribution()}{t\_distribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_ab2265d57c04ab29800411dda55b9ca0a} 
+\mbox{\hyperlink{classcmp_1_1t__distribution}{t\+\_\+distribution}} (\begin{DoxyParamCaption}\item[{double}]{nu}{, }\item[{double}]{mu}{, }\item[{double}]{sigma}{, }\item[{std\+::default\+\_\+random\+\_\+engine}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1t__distribution_abc615b1b76df0891e09b29a024b204c4}\index{t\_distribution@{t\_distribution}!t\_distribution@{t\_distribution}}
+\index{t\_distribution@{t\_distribution}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{t\_distribution()}{t\_distribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_abc615b1b76df0891e09b29a024b204c4} 
+\mbox{\hyperlink{classcmp_1_1t__distribution}{t\+\_\+distribution}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1t__distribution_acfeee2418e7758ce8754ee04cdae549d}\index{t\_distribution@{t\_distribution}!cdf@{cdf}}
+\index{cdf@{cdf}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{cdf()}{cdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_acfeee2418e7758ce8754ee04cdae549d} 
+double cdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate the cdf of the distribution at point x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Point at which to evaluate the cdf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1univariate__distribution_a5ba033b433776d12c997d52bf197dc66}{univariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1t__distribution_a9e1592979d2a1f5480c9ebbd443b5593}\index{t\_distribution@{t\_distribution}!d\_log\_pdf@{d\_log\_pdf}}
+\index{d\_log\_pdf@{d\_log\_pdf}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{d\_log\_pdf()}{d\_log\_pdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_a9e1592979d2a1f5480c9ebbd443b5593} 
+double d\+\_\+log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1t__distribution_a698ed8c0320ab7a11037b63b5689e958}\index{t\_distribution@{t\_distribution}!dd\_log\_pdf@{dd\_log\_pdf}}
+\index{dd\_log\_pdf@{dd\_log\_pdf}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{dd\_log\_pdf()}{dd\_log\_pdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_a698ed8c0320ab7a11037b63b5689e958} 
+double dd\+\_\+log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classcmp_1_1t__distribution_abf4916297737fa5db95e6c51d327791f}\index{t\_distribution@{t\_distribution}!log\_pdf@{log\_pdf}}
+\index{log\_pdf@{log\_pdf}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_pdf()}{log\_pdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_abf4916297737fa5db95e6c51d327791f} 
+double log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate the log-\/pdf of the distribution at point x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to evaluate the log-\/pdf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1univariate__distribution_a5dfc437751d0701c0f84bcb019b8a89d}{univariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1t__distribution_add387d6d51ae5bab8aa6c9e172231a1e}\index{t\_distribution@{t\_distribution}!quantile@{quantile}}
+\index{quantile@{quantile}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_add387d6d51ae5bab8aa6c9e172231a1e} 
+double quantile (\begin{DoxyParamCaption}\item[{const double \&}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate the quantile function of the distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The probability at which to evaluate the quantile \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1univariate__distribution_adc4dbbebfd36dac7c7e9dfd6418ed363}{univariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1t__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}\index{t\_distribution@{t\_distribution}!sample@{sample}}
+\index{sample@{sample}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_a72f7c9e85f9c8fb9237906eec1c7645d} 
+double sample (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sample from the distribution. 
+
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1univariate__distribution_a626aa9bd0df9342a085db74fe6560995}{univariate\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1t__distribution_a14e2b225764a7ca725659e8545e505f7}\index{t\_distribution@{t\_distribution}!set\_mu@{set\_mu}}
+\index{set\_mu@{set\_mu}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{set\_mu()}{set\_mu()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_a14e2b225764a7ca725659e8545e505f7} 
+void set\+\_\+mu (\begin{DoxyParamCaption}\item[{double}]{mu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1t__distribution_aa00a7e875ddf8f0dab1fa7ff292f86b3}\index{t\_distribution@{t\_distribution}!set\_nu@{set\_nu}}
+\index{set\_nu@{set\_nu}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{set\_nu()}{set\_nu()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_aa00a7e875ddf8f0dab1fa7ff292f86b3} 
+void set\+\_\+nu (\begin{DoxyParamCaption}\item[{double}]{nu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1t__distribution_a9deeb85bd0eca06ba471178b7c91e18f}\index{t\_distribution@{t\_distribution}!set\_sigma@{set\_sigma}}
+\index{set\_sigma@{set\_sigma}!t\_distribution@{t\_distribution}}
+\doxysubsubsection{\texorpdfstring{set\_sigma()}{set\_sigma()}}
+{\footnotesize\ttfamily \label{classcmp_1_1t__distribution_a9deeb85bd0eca06ba471178b7c91e18f} 
+void set\+\_\+sigma (\begin{DoxyParamCaption}\item[{double}]{sigma}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\item 
+src/\mbox{\hyperlink{distribution_8cpp}{distribution.\+cpp}}\end{DoxyCompactItemize}

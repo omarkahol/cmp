@@ -1,0 +1,99 @@
+\doxysection{hmc.\+h}
+\hypertarget{hmc_8h_source}{}\label{hmc_8h_source}\index{include/hmc.h@{include/hmc.h}}
+\mbox{\hyperlink{hmc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1mcmc}{cmp::mcmc}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae32bc189c3229f24eac032d5cfe2d21b}{HamiltonianMarkovChain}}\ \{}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ std::default\_random\_engine\&\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9433929535384eaf8d879f06198678ef}{rng\_}};\ \textcolor{comment}{//\ Reference\ to\ the\ random\ number\ generator}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_aeb45afbfb34e0e0783da49ce6f5711e3}{currentPosition\_}};\ \textcolor{comment}{//\ The\ current\ position\ (parameters)}}
+\DoxyCodeLine{00053\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6e7974154d7deedd607a898fbd5b4af}{currentMomentum\_}};\ \textcolor{comment}{//\ The\ current\ momentum\ (auxiliary\ variable)}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a10d0a4b6d3deb835fef0abb18fc2ac0a}{currentScore\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ current\ Score\ (log-\/posterior)\ value}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae9a67b76f48648d68de5f2d1991ff16c}{dim\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dimension\ of\ the\ parameter\ space\ (not\ sure\ if\ this\ is\ needed)}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ keep\ track\ of\ the\ mean\ and\ covariance\ of\ the\ samples}}
+\DoxyCodeLine{00058\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6606e6ee4f141184afa95f06d193581e}{mean\_}};\ \ \ \textcolor{comment}{//\ Sample-\/mean\ vector}}
+\DoxyCodeLine{00059\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a692d89b5bf5307fc134871c17ef6f224}{cov\_}};\ \ \ \ \textcolor{comment}{//\ Sample-\/covariance\ matrix}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a1deca95c400ea68742b25c8d96acd9c5}{epsilon\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ size\ for\ the\ leapfrog\ integrator}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae42059e3094a42bda64983c0ce92885f}{nSteps\_}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ steps\ taken\ in\ the\ Markov\ chain}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a24b9f0232a8af231e8638d0b5e351830}{sumAcceptanceProb\_}}\ =\ 0.0;\ \ \ \ \ \ \textcolor{comment}{//\ Sum\ of\ acceptance\ probabilities\ for\ adaptation}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ Dual\ Averaging\ parameters\ for\ step\ size\ adaptation}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a94a2bed78a8eb68dccfff9599b99eaf4}{mu\_}};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a825c68a3281e0ab8b192c3f39d94f8b7}{gamma\_}}\ =\ 0.05;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af32bfb3697622a5953ac2f9ce5436cb6}{t0\_}}\ =\ 10.0;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6eeca49e3a223aa7ed56e4d70c7e8842}{kappa\_}}\ =\ 0.75;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ Dual\ Averaging\ State\ Trackers}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6262a8b62922965ddc6d3967321451e}{H\_bar\_}}\ =\ 0.0;}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a831b361d5171f5fbad671d387300e55a}{log\_epsilon\_bar\_}}\ =\ 0.0;}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_abdde49bfe21cfe2aa3135ac9733019da}{target\_accept\_}}\ =\ 0.80;\ \textcolor{comment}{//\ This\ should\ be\ set\ by\ the\ user,\ but\ we\ can\ provide\ a\ default\ value}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ Proposal\ distributions\ for\ momentum\ and\ uniform\ random\ numbers}}
+\DoxyCodeLine{00079\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ac7200ccada6a4c5935ed4d7d1a6410eb}{distN\_}}\{0.0,\ 1.0\};}
+\DoxyCodeLine{00080\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a385c4c15310768956a8942006e872008}{distU\_}}\{0.0,\ 1.0\};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af387f7a8ec590f7f32af25e2d125c2ad}{leapfrog}}(Eigen::VectorXd\&\ q,\ Eigen::VectorXd\&\ p,\ Eigen::VectorXd\&\ grad,\ \textcolor{keywordtype}{double}\ epsilon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\_t}}\&\ getGradient)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state}{TreeState}}\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_afadbf1ee632a900e83aada5ad7ce44ca}{q\_minus}};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a1c5d2485fa3446754b8540fd894d988a}{p\_minus}};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a87ca9d863bfb4eb67c6dd8b469caa2cc}{grad\_minus}};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a22e06d523c379556fe430a68d737be60}{q\_plus}};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a080f19eb11b80e1dfadae97d99584d84}{p\_plus}};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_af8cfb31ca4e8c8f95b6c3562e83dac81}{grad\_plus}};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_af93d0a5276d7683a0ab222eb148dafa4}{q\_prime}};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a186931ca22f579ea4baebba11b232829}{n}};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_a99e19b28178f7c44f9220d9147ef857c}{s}};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_aaecbc75a5b8aa99cee28e29832de0915}{alpha}};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state_aa36764d38afe1dde5ab2d7cbe6c5e5fc}{n\_alpha}};}
+\DoxyCodeLine{00120\ \ \ \ \ \};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{structcmp_1_1mcmc_1_1_hamiltonian_markov_chain_1_1_tree_state}{TreeState}}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_add1604bd92f053d95fbe1e3cc044e53a}{build\_tree}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ q,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ p,\ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ grad,\ \textcolor{keywordtype}{double}\ log\_u,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{double}\ epsilon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\_t}}\&\ getScore,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\_t}}\&\ getGradient);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a3a7d3a0d068f7e66e6dcda54b904636e}{update}}();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae32bc189c3229f24eac032d5cfe2d21b}{HamiltonianMarkovChain}}(Eigen::VectorXd\ initialState,\ std::default\_random\_engine\&\ rng,\ \textcolor{keywordtype}{double}\ epsilon);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a27f283272396bcd3af3f8e55bc17a218}{step}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\_t}}\&\ getScore,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a080a42fb28573bd02368d09486075013}{gradient\_t}}\&\ getGradient,\ \textcolor{keywordtype}{bool}\ adapt\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af465bd5d9317e3ddbc6a20408e4b1b87}{reset}}();}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af4304808e37e9b2db701c5782a0f472a}{getCurrent}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a4b700e682b2e68a2b3cc2b7fdf778462}{getSteps}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a5b6a33c4e4875b647f8ea6e8b55d9c75}{getAcceptanceRatio}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab434133460a7c6047c5e7736a8b326a5}{getStepSize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a1deca95c400ea68742b25c8d96acd9c5}{epsilon\_}};}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9057930d1502fc353f9c2e73451709f2}{getMean}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6606e6ee4f141184afa95f06d193581e}{mean\_}};}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a5bf3c778911b0695cad926a5b8c2f998}{getCovariance}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a692d89b5bf5307fc134871c17ef6f224}{cov\_}}\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(std::max(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae42059e3094a42bda64983c0ce92885f}{nSteps\_}}\ -\/\ 1,\ (\textcolor{keywordtype}{size\_t})1));}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a4a925d7164dce71fc6d2650f84f6731e}{info}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00180\ \};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00184\ }
+
+\end{DoxyCode}

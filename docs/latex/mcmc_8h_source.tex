@@ -1,0 +1,317 @@
+\doxysection{mcmc.\+h}
+\hypertarget{mcmc_8h_source}{}\label{mcmc_8h_source}\index{include/mcmc.h@{include/mcmc.h}}
+\mbox{\hyperlink{mcmc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MCMC\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MCMC\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{distribution_8h}{distribution.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1mcmc}{cmp::mcmc}}\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ==============================================================================}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ HELPER\ FUNCTIONS}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ ==============================================================================}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Numerically\ safe\ log(1\ -\/\ α)}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1mcmc_a45523db96e65cb76028af79f8a3b319f}{log1m}}(\textcolor{keywordtype}{double}\ a)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ (a\ <\ 1.0)\ ?\ std::log1p(-\/a)\ :\ -\/std::numeric\_limits<double>::infinity();}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ ==============================================================================}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ MARKOV\ CHAIN\ CLASS\ TEMPLATE}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ ==============================================================================}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ProposalType>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a2d212ae1f143d68fe2154119c25a0217}{MarkovChain}}\ \{}
+\DoxyCodeLine{00076\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}}\{0.0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Current\ value\ of\ the\ score}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dimension\ of\ the\ chain}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Steps\ done}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}{nAccepts\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Accepted\ candidates}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sample-\/mean\ vector}}
+\DoxyCodeLine{00083\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sample-\/covariance\ matrix}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ ProposalType\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proposal\ distribution\ (stored\ by\ value)}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}{distU\_}}\{0.0,\ 1.0\};}
+\DoxyCodeLine{00088\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\_}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Scaling\ factor}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}{targetAcceptanceRatio\_}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Target\ acceptance\ ratio\ for\ adaptive\ MCMC}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a2d212ae1f143d68fe2154119c25a0217}{MarkovChain}}(\textcolor{keyword}{const}\ ProposalType\ \&proposal,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::default\_random\_engine\ \&rng,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&targetAcceptanceRatio\ =\ 0.234)}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\_}}(rng),}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}(proposal),}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}}(-\/std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}}(proposal.get().size()),}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}{targetAcceptanceRatio\_}}(targetAcceptanceRatio),}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}}(\mbox{\hyperlink{namespace_eigen}{Eigen}}::VectorXd::Zero(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}})),}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\_}}(\mbox{\hyperlink{namespace_eigen}{Eigen}}::MatrixXd::Zero(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}},\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}})),}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\_}}(5.6644\ /\ static\_cast<double>(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}}))\ \textcolor{comment}{//\ 2.38\string^2\ =\ 5.6644}}
+\DoxyCodeLine{00112\ \ \ \ \ \{\}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a76ca4e79568415785e4306cda0af5ad5}{MarkovChain}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af7f99b3cf8fc1b8136c152b4ceed4e56}{\string~MarkovChain}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a30b456a6e485afff8b00187833911e49}{increaseSteps}}()\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}++;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aba7663c62676821c1bd2189c2849677e}{accept}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&par,\ \textcolor{keywordtype}{double}\ score)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((score\ -\/\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}})\ >\ std::log(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}{distU\_}}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\_}})))\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}.set(par);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}}\ =\ score;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}{nAccepts\_}}++;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a36c6d356357b2758e1ba53de57d1796e}{step}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\_t}}\ \&\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a33543c0c3e7cb981516c91af78c9e2cb}{getScore}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \&delayedRejection\ =\ \textcolor{keyword}{false},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ gamma\ =\ 0.1)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a30b456a6e485afff8b00187833911e49}{increaseSteps}}();}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ========================================================================}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ STAGE\ 1:\ Standard\ Proposal}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ========================================================================}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ cand\_prev\ =\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}.sample(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\_}},\ 1.0);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ score\_prev\ =\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a33543c0c3e7cb981516c91af78c9e2cb}{getScore}}(cand\_prev);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ Stage\ 1\ continuous\ acceptance\ probability\ (alpha\_1\_fwd)}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ log\_alpha\_1\_fwd\ =\ std::min(0.0,\ score\_prev\ -\/\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ alpha\_1\_fwd\ =\ std::exp(log\_alpha\_1\_fwd);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ accepted\ =\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aba7663c62676821c1bd2189c2849677e}{accept}}(cand\_prev,\ score\_prev);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Robbins-\/Monro\ Global\ Scale\ Update\ (Tuning\ to\ First-\/Stage\ efficiency)}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ rm\_gamma\ =\ 1.0\ /\ std::sqrt(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}));}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\_}}\ *=\ std::exp(rm\_gamma\ *\ (alpha\_1\_fwd\ -\/\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}{targetAcceptanceRatio\_}}));}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ========================================================================}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ STAGE\ 2:\ Delayed\ Rejection\ (DRAM\ Detailed\ Balance)}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ========================================================================}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!accepted\ \&\&\ delayedRejection)\ \{}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ the\ first\ gamma\ for\ the\ narrower\ DR\ backup\ proposal}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::VectorXd\ cand\_new\ =\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}.sample(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\_}},\ gamma);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ score\_new\ =\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a33543c0c3e7cb981516c91af78c9e2cb}{getScore}}(cand\_new);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ The\ Backward\ Rejection\ Probability}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ log\_alpha\_1\_bwd\ =\ std::min(0.0,\ score\_prev\ -\/\ score\_new);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ alpha\_1\_bwd\ =\ std::exp(log\_alpha\_1\_bwd);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ log\_rej\_fwd\ =\ \mbox{\hyperlink{namespacecmp_1_1mcmc_a45523db96e65cb76028af79f8a3b319f}{log1m}}(alpha\_1\_fwd);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ log\_rej\_bwd\ =\ \mbox{\hyperlink{namespacecmp_1_1mcmc_a45523db96e65cb76028af79f8a3b319f}{log1m}}(alpha\_1\_bwd);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ The\ Proposal\ Asymmetry}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::VectorXd\ jump\_fwd\ =\ cand\_prev\ -\/\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_ae98e6afbc11f99e5d48c552d14229009}{getCurrent}}();}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::VectorXd\ jump\_bwd\ =\ cand\_prev\ -\/\ cand\_new;}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ log\_q1\_fwd\ =\ -\/0.5\ *\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}.squaredMahalanobis(jump\_fwd);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ log\_q1\_bwd\ =\ -\/0.5\ *\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}.squaredMahalanobis(jump\_bwd);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ The\ True\ DRAM\ Stage-\/2\ Acceptance\ Ratio}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ log\_ratio\_stage2\ =\ (score\_new\ -\/\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}})\ +\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pi\ ratio}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (log\_q1\_bwd\ -\/\ log\_q1\_fwd)\ +\ \ \ \ \textcolor{comment}{//\ Proposal\ ratio}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (log\_rej\_bwd\ -\/\ log\_rej\_fwd);\ \ \ \textcolor{comment}{//\ Rejection\ ratio}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ alpha\_2\ =\ std::exp(std::min(0.0,\ log\_ratio\_stage2));}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Final\ Stage-\/2\ Coin\ Flip}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::log(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}{distU\_}}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\_}}))\ <\ std::log(alpha\_2))\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}.set(cand\_new);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}}\ =\ score\_new;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ accepted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6053b979262c76c94d7248ca833c40a8}{update}}();}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6053b979262c76c94d7248ca833c40a8}{update}}()\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ par\ =\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}.get();}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}\ ==\ 1)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}}\ =\ par;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\_}}.setZero();}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Welford's\ stable\ 1-\/pass\ multi-\/dimensional\ algorithm}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::VectorXd\ delta\_old\ =\ par\ -\/\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}}\ +=\ delta\_old\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}});}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::VectorXd\ delta\_new\ =\ par\ -\/\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\_}}\ +=\ delta\_old\ *\ delta\_new.transpose();}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00225\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af8d07a9be6f9ff7c15685745725dbb13}{getAdaptedCovariance}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ epsilon\ =\ 1e-\/6;\ \textcolor{comment}{//\ Regularization}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ identity\ =\ Eigen::MatrixXd::Identity(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}},\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}});}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\_}}\ *\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a5cdf37b705e511cc6545a199488abc51}{getCovariance}}()\ +\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\_}}\ *\ epsilon\ *\ identity;}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_abc5bc6c25f3ed5d4be6ffa95c8441636}{reset}}()\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}\ =\ 0;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}{nAccepts\_}}\ =\ 0;}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}}.setZero();}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\_}}.setZero();}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\_}}\ =\ 5.6644\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}});}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00246\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_ae98e6afbc11f99e5d48c552d14229009}{getCurrent}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}}.get();}
+\DoxyCodeLine{00248\ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a33543c0c3e7cb981516c91af78c9e2cb}{getScore}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}};}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4b755cb9f8eb53c09781d31e0c9aa9ef}{getDim}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}};}
+\DoxyCodeLine{00264\ \ \ \ \ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a2d1bff1e8401ef1743e3f9b04ca68f25}{getSteps}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}};}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4d17c72d1f10a686d628d69e02d77ad7}{getAcceptanceRatio}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}{nAccepts\_}})\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}});}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00286\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a35dfb7b214ce853d3f541efc67a7feb0}{getMean}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}};}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00294\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a5cdf37b705e511cc6545a199488abc51}{getCovariance}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}\ <=\ 1)\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::MatrixXd::Zero(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}},\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}});}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\_}}\ /\ (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}})\ -\/\ 1.0);}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_ad370e54398f373f3389066283637a65e}{info}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}run\ "{}}\ <<\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}\ <<\ \textcolor{stringliteral}{"{}\ steps\(\backslash\)n"{}}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}acceptance\ ratio:\ "{}}\ <<\ std::fixed\ <<\ std::setprecision(3)\ <<\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4d17c72d1f10a686d628d69e02d77ad7}{getAcceptanceRatio}}()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Data\ covariance:\ \(\backslash\)n"{}}\ <<\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a5cdf37b705e511cc6545a199488abc51}{getCovariance}}()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Data\ mean:\ \(\backslash\)n"{}}\ <<\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a35dfb7b214ce853d3f541efc67a7feb0}{getMean}}()\ <<\ std::endl;}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \};}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{comment}{//\ ==============================================================================}}
+\DoxyCodeLine{00313\ \textcolor{comment}{//\ CHAIN\ DIAGNOSTICS\ (Also\ templated)}}
+\DoxyCodeLine{00314\ \textcolor{comment}{//\ ==============================================================================}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00337\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ProposalType>}
+\DoxyCodeLine{00338\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1mcmc_a5f3e921a004b7fa12216fe92d9e2dfc2}{multiChainDiagnosis}}(\textcolor{keyword}{const}\ std::vector<\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{MarkovChain<ProposalType>}}>\ \&chains)\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordflow}{if}(chains.empty())\ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dim\_chain\ =\ chains[0].getDim();}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_chains\ =\ chains.size();}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ Eigen::VectorXd\ chainwise\_mean\ =\ Eigen::VectorXd::Zero(dim\_chain);}
+\DoxyCodeLine{00345\ \ \ \ \ Eigen::VectorXd\ chainwise\_cov\ =\ Eigen::VectorXd::Zero(dim\_chain);}
+\DoxyCodeLine{00346\ \ \ \ \ Eigen::VectorXd\ chainwise\_mean\_cov\ =\ Eigen::VectorXd::Zero(dim\_chain);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&chain\ :\ chains)\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ current\_mean\ =\ chain.getMean();}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ current\_cov\ =\ chain.getCovariance();}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ chainwise\_mean\ +=\ current\_mean;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ chainwise\_cov\ +=\ current\_cov.diagonal();}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ chainwise\_mean\_cov\ +=\ current\_mean.cwiseProduct(current\_mean);}
+\DoxyCodeLine{00355\ \ \ \ \ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ chainwise\_mean\ /=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(num\_chains);}
+\DoxyCodeLine{00358\ \ \ \ \ chainwise\_cov\ /=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(num\_chains);}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ chainwise\_mean\_cov\ =\ chainwise\_mean\_cov\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(num\_chains)\ -\/\ chainwise\_mean.cwiseProduct(chainwise\_mean);}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordflow}{if}(num\_chains\ >\ 1)\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ chainwise\_mean\_cov\ *=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(num\_chains)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(num\_chains\ -\/\ 1);}
+\DoxyCodeLine{00364\ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ Eigen::VectorXd\ var\_chain\ =\ chainwise\_cov\ +\ chainwise\_mean\_cov;}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{comment}{//\ Prevent\ division\ by\ zero\ if\ variance\ is\ perfectly\ flat}}
+\DoxyCodeLine{00369\ \ \ \ \ Eigen::VectorXd\ r\_hat\ =\ Eigen::VectorXd::Zero(dim\_chain);}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ dim\_chain;\ ++i)\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(chainwise\_cov(i)\ >\ 0.0)\ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ r\_hat(i)\ =\ std::sqrt(var\_chain(i)\ /\ chainwise\_cov(i));}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ r\_hat(i)\ =\ 1.0;}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keywordflow}{return}\ r\_hat.maxCoeff();}
+\DoxyCodeLine{00379\ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00401\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a716929479bfa4b4a7ae8e6f3bad25acc}{EvolutionaryMarkovChain}}\ \{}
+\DoxyCodeLine{00402\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_abc3c756d62cb3ec6615956dd51929742}{nChains\_}}\{0\};}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a0f3f7ffcf3db603f79ca279871aff279}{dim\_}}\{0\};}
+\DoxyCodeLine{00405\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad5116dfc7c72d8c185aeba769282da02}{chainSamples\_}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Current\ samples\ of\ each\ chain}}
+\DoxyCodeLine{00406\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ae8dc967a2e44a7125afc59de69ff6dc6}{chainScores\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Current\ scores\ of\ each\ chain}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{comment}{//\ Random\ distribution\ to\ pick\ a\ random\ chain}}
+\DoxyCodeLine{00409\ \ \ \ \ std::uniform\_int\_distribution<size\_t>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a9351419d92e28d11378724802c01fd5c}{distChain\_}};}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{comment}{//\ Random\ distribution\ to\ pick\ a\ random\ number}}
+\DoxyCodeLine{00412\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a00e1b3a389e105c950680331d282c2f9}{distU\_}}\{0,\ 1\};}
+\DoxyCodeLine{00413\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad55c73ca3b211a37188d99db2241f055}{distN\_}}\{0,\ 1\};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad26388ab7e796253ac77f1b82844af49}{nugget\_}}\{1e-\/6\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nugget\ to\ add\ to\ the\ covariance\ matrix\ for\ numerical\ stability}}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00418\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a716929479bfa4b4a7ae8e6f3bad25acc}{EvolutionaryMarkovChain}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00427\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a716929479bfa4b4a7ae8e6f3bad25acc}{EvolutionaryMarkovChain}}(std::vector<Eigen::VectorXd>\ initialSamples,\ std::vector<double>\ initialScores,\ \textcolor{keywordtype}{double}\ nugget\ =\ 1e-\/6);}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ae3f9806a58e314654ff5d56e98e215c8}{step}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacecmp_a2375b8ae9e3db657da12b73187f8b656}{score\_t}}\ \&getScore,\ std::default\_random\_engine\ \&rng,\ \textcolor{keywordtype}{double}\ gamma\ =\ 0.2);}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00441\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_aaccefa584544c903b55c7ddf99cd2ddf}{getCurrent}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad5116dfc7c72d8c185aeba769282da02}{chainSamples\_}};}
+\DoxyCodeLine{00443\ \ \ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00449\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a782a4c4a6a36e9dcd3aa292dfcf27b1b}{getScores}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ae8dc967a2e44a7125afc59de69ff6dc6}{chainScores\_}};}
+\DoxyCodeLine{00451\ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \};}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \}}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

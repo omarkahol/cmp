@@ -1,0 +1,232 @@
+\doxysection{cmp\+::scaler\+::Min\+Max\+Scaler Class Reference}
+\hypertarget{classcmp_1_1scaler_1_1_min_max_scaler}{}\label{classcmp_1_1scaler_1_1_min_max_scaler}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+
+
+Linearly scales features to a target bounding box range.  
+
+
+
+
+{\ttfamily \#include $<$scaler.\+h$>$}
+
+Inheritance diagram for cmp\+::scaler\+::Min\+Max\+Scaler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1scaler_1_1_min_max_scaler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{Min\+Max\+Scaler}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a8f9835c9f1c5b881bf74e1b2b3bc42e6}{Min\+Max\+Scaler}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&min, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&max)
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a1426a4f28567b46ba9adb05f1c2ecc56}{Min\+Max\+Scaler}} (const \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_abf19928dc3614b8db165bdcb103956df}{Min\+Max\+Scaler}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ad1803568927aac0a3def45190ace4982}{\texorpdfstring{$\sim$}{\string~}\+Min\+Max\+Scaler}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \& \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a5c9f96e018de1c78983537d035904942}{operator=}} (const \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&other)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \& \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a35e3aafba14fe404a01ff545aabe08bc}{operator=}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&\&other)=default
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c}{transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}{inverse\+Transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7137f3b6cd83ec840291b288eb8fa552}{get\+Data\+Min}} () const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_abdbc974ef6ec7f83efa0d08211eedbd5}{get\+Data\+Max}} () const
+\item 
+void \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac7cf5a8ad79582ab3bf569f2f51b81b3}{fit\+\_\+transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e}{get\+Intercept}} () const override
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7bbf79807c05b4f60ec2b1a946158dd0}{get\+Scale}} () const override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc}{min\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2}{max\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1}{data\+\_\+min\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a}{data\+\_\+max\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Linearly scales features to a target bounding box range. 
+
+Mathematical Formulation Scales each feature vector component to live within range $[a_j, b_j]$ (typically $[0, 1]$)\+:   \[y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}} (b_j - a_j)
+\] where $x_{\text{min}, j}$ and $x_{\text{max}, j}$ are the training data\textquotesingle{}s minimum and maximum values for feature $j$.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5}{fit()}} computes column-\/wise minima and maxima vectors of the training matrix.
+\item {\ttfamily \doxylink{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c}{transform()}} and {\ttfamily \doxylink{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}{inverse\+Transform()}} apply element-\/wise division and scaling multiplication. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!MinMaxScaler@{MinMaxScaler}}
+\index{MinMaxScaler@{MinMaxScaler}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{MinMaxScaler()}{MinMaxScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532} 
+cmp\+::scaler\+::\+Min\+Max\+Scaler\+::\+Min\+Max\+Scaler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a8f9835c9f1c5b881bf74e1b2b3bc42e6}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!MinMaxScaler@{MinMaxScaler}}
+\index{MinMaxScaler@{MinMaxScaler}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{MinMaxScaler()}{MinMaxScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a8f9835c9f1c5b881bf74e1b2b3bc42e6} 
+cmp\+::scaler\+::\+Min\+Max\+Scaler\+::\+Min\+Max\+Scaler (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{min}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{max}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a1426a4f28567b46ba9adb05f1c2ecc56}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!MinMaxScaler@{MinMaxScaler}}
+\index{MinMaxScaler@{MinMaxScaler}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{MinMaxScaler()}{MinMaxScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a1426a4f28567b46ba9adb05f1c2ecc56} 
+cmp\+::scaler\+::\+Min\+Max\+Scaler\+::\+Min\+Max\+Scaler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_abf19928dc3614b8db165bdcb103956df}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!MinMaxScaler@{MinMaxScaler}}
+\index{MinMaxScaler@{MinMaxScaler}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{MinMaxScaler()}{MinMaxScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_abf19928dc3614b8db165bdcb103956df} 
+cmp\+::scaler\+::\+Min\+Max\+Scaler\+::\+Min\+Max\+Scaler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_ad1803568927aac0a3def45190ace4982}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!````~MinMaxScaler@{\texorpdfstring{$\sim$}{\string~}MinMaxScaler}}
+\index{````~MinMaxScaler@{\texorpdfstring{$\sim$}{\string~}MinMaxScaler}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MinMaxScaler()}{\string~MinMaxScaler()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_ad1803568927aac0a3def45190ace4982} 
+cmp\+::scaler\+::\+Min\+Max\+Scaler\+::\texorpdfstring{$\sim$}{\string~}\+Min\+Max\+Scaler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!fit@{fit}}
+\index{fit@{fit}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5} 
+void cmp\+::scaler\+::\+Min\+Max\+Scaler\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a034490dc8b97ab47a73ca3ffb3b6db66}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_ac7cf5a8ad79582ab3bf569f2f51b81b3}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!fit\_transform@{fit\_transform}}
+\index{fit\_transform@{fit\_transform}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{fit\_transform()}{fit\_transform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_ac7cf5a8ad79582ab3bf569f2f51b81b3} 
+Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::fit\+\_\+transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_abdbc974ef6ec7f83efa0d08211eedbd5}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!getDataMax@{getDataMax}}
+\index{getDataMax@{getDataMax}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{getDataMax()}{getDataMax()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_abdbc974ef6ec7f83efa0d08211eedbd5} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::get\+Data\+Max (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a7137f3b6cd83ec840291b288eb8fa552}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!getDataMin@{getDataMin}}
+\index{getDataMin@{getDataMin}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{getDataMin()}{getDataMin()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a7137f3b6cd83ec840291b288eb8fa552} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::get\+Data\+Min (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!getIntercept@{getIntercept}}
+\index{getIntercept@{getIntercept}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{getIntercept()}{getIntercept()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::get\+Intercept (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9cebf0f6c04f}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a7bbf79807c05b4f60ec2b1a946158dd0}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!getScale@{getScale}}
+\index{getScale@{getScale}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{getScale()}{getScale()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a7bbf79807c05b4f60ec2b1a946158dd0} 
+Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::get\+Scale (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!inverseTransform@{inverseTransform}}
+\index{inverseTransform@{inverseTransform}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{inverseTransform()}{inverseTransform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::inverse\+Transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a34c7739c949f4603ec1a430daf405dec}{cmp\+::scaler\+::\+Scaler}}.
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a5c9f96e018de1c78983537d035904942}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a5c9f96e018de1c78983537d035904942} 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \& cmp\+::scaler\+::\+Min\+Max\+Scaler\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a35e3aafba14fe404a01ff545aabe08bc}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a35e3aafba14fe404a01ff545aabe08bc} 
+\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \& cmp\+::scaler\+::\+Min\+Max\+Scaler\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&\&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!transform@{transform}}
+\index{transform@{transform}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}{cmp\+::scaler\+::\+Scaler}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!data\_max\_@{data\_max\_}}
+\index{data\_max\_@{data\_max\_}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{data\_max\_}{data\_max\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::data\+\_\+max\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!data\_min\_@{data\_min\_}}
+\index{data\_min\_@{data\_min\_}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{data\_min\_}{data\_min\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::data\+\_\+min\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!max\_@{max\_}}
+\index{max\_@{max\_}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{max\_}{max\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::max\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!min\_@{min\_}}
+\index{min\_@{min\_}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
+\doxysubsubsection{\texorpdfstring{min\_}{min\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc} 
+Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::min\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{scaler_8h}{scaler.\+h}}\item 
+src/\mbox{\hyperlink{scaler_8cpp}{scaler.\+cpp}}\end{DoxyCompactItemize}

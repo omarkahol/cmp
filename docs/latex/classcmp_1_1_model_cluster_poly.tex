@@ -1,0 +1,374 @@
+\doxysection{cmp\+::Model\+Cluster\+Poly Class Reference}
+\hypertarget{classcmp_1_1_model_cluster_poly}{}\label{classcmp_1_1_model_cluster_poly}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+
+
+Manages a clustered set of Polynomial Chaos Expansion (PCE) models for localized regression.  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+cluster\+\_\+poly.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_afd09bdae0789e2e967ecb7e46db7c794}{Model\+Cluster\+Poly}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1cd901d9b5f7fe476b20c17dfbb11c47}{\texorpdfstring{$\sim$}{\string~}\+Model\+Cluster\+Poly}} ()=default
+\item 
+void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1691f2f9f3f0bf58b5687dbf02b013a6}{set}} (std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}} $>$ \texorpdfstring{$\ast$}{*}polynomials, const double \&gamma=0, const double \&seed=42)
+\item 
+void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa15e6acc2aebc488071b77ba0c183465}{condition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&y\+Obs, const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&labels)
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a60716eb20a053bbbab42720c658ce1ca}{n\+Clusters}} () const
+\item 
+void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a55a012b15c93cba5aa6d484123559b7e}{fit}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa71a85e82c31b952cbafcb6b07f69178}{n\+Points}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ad265da2ad78381dd47b7d0ca187effc3}{dim}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a2a95e75a7d9e81e151b84d1d1ab7a0ea}{get\+Membership}} (size\+\_\+t i) const
+\item 
+const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \& \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a42b4d31622f8c86823afc63532d0440d}{get\+Labels}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af34ca12ee9ea75ea49dd04e4c24ed67f}{get\+Cluster\+Size}} (size\+\_\+t i) const
+\item 
+\mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}} \& \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ad68921c5cc117d9a5a1f208f15ec4720}{operator\mbox{[}$\,$\mbox{]}}} (size\+\_\+t i)
+\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a3b03ff03b78423ebc7506a9e33cb996e}{centroid}} (size\+\_\+t i) const
+\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af5248a09766a72138ea89551b7f4c16d}{get\+Indices}} (size\+\_\+t cluster\+Index) const
+\item 
+void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ae566968ca096ece6e22fd563a1e74caa}{update\+Model}} (const std\+::vector$<$ bool $>$ \&affected\+Clusters)
+\item 
+void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a51a0d61d8f710bbc3b00dcbecb3b9099}{perform\+Switches}} (const std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ $>$ \&new\+Owners)
+\item 
+bool \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af44fb7c39e80f5f613e43ba080816cdd}{is\+Fit}} (const size\+\_\+t \&cluster\+Index) const
+\item 
+void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aaeb1c102ee76ae915fff22d1135cd6b4}{set\+Fit}} (const size\+\_\+t \&cluster\+Index, const bool \&\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a55a012b15c93cba5aa6d484123559b7e}{fit}})
+\item 
+double \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925}{compute\+Score}} (size\+\_\+t global\+Index) const
+\item 
+double \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a3fd6a887335a3f83e35832a8fbf7310d}{compute\+Score}} (size\+\_\+t model, size\+\_\+t global\+Index) const
+\item 
+std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a6cb0463b49c63e4a9da20463bb7d82fa}{switch\+Step}} (\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}classifier, const double \&T=1.\+0, const size\+\_\+t \&max\+Allowed\+Switches=10, const double \&min\+Prob=0.\+1)
+\item 
+std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a31ddd2c25ac9cba525d68b36c9b93847}{deterministic\+Switch\+Step}} (\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}cls, const size\+\_\+t \&max\+Allowed\+Switches, const double \&min\+Prob)
+\item 
+void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ab53c8a894a3215ecb5f99abd1d685767}{purge\+Step}} (const size\+\_\+t \&cluster\+Index)
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aec8b7c546e030b3b061559f9f144cc2f}{compute\+Probabilities}} (const double \&T, \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}classifier, const double \&min\+Prob=0.\+1) const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af924313af6846a8188f61ec676625c8f}{confusion\+Matrix}} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ switching\+Probability) const
+\item 
+void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ad94f74314b04b2f523ab6641638c2dd1}{merge\+Clusters}} (const size\+\_\+t \&cluster\+Index1, const size\+\_\+t \&cluster\+Index2, bool hpar\+Guess=false)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}{rng\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{x\+Obs\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{y\+Obs\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{n\+Clusters\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{n\+Obs\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dim\+X\+\_\+}}
+\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\+\_\+}}
+\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}{local\+Index\+Table\+\_\+}}
+\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\+\_\+}}
+\item 
+std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\+\_\+}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\+\_\+}}
+\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{cluster\+Size\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}{gamma\+\_\+}} \{1.\+0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages a clustered set of Polynomial Chaos Expansion (PCE) models for localized regression. 
+
+Mathematical Formulation Partitions the input dataset $\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N$ into $K$ localized clusters. For each cluster $k \in \{0, \dots, K-1\}$, it fits a localized Polynomial Chaos Expansion surrogate\+:   \[Y^{(k)}(\boldsymbol{\xi}) \approx \sum_{j=0}^{P-1} c_j^{(k)} \Psi_j^{(k)}(\boldsymbol{\xi})
+\] where $\Psi_j^{(k)}$ is the orthonormal polynomial basis for cluster $k$, and $c_j^{(k)}$ are the local expansion coefficients. For a test query $\mathbf{x}^*$, local predictions are combined using the classifier\textquotesingle{}s posterior probabilities $P(C=k \mid \mathbf{x}^*)$\+:   \[\mu(\mathbf{x}^*) = \sum_{k=1}^K P(C=k \mid \mathbf{x}^*) \mu_k(\mathbf{x}^*)
+\] where $\mu_k(\mathbf{x}^*)$ is the output of the $k$-\/th local PCE model.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{classcmp_1_1_model_cluster_poly_aa15e6acc2aebc488071b77ba0c183465}{condition()}} groups training inputs according to active clusters and solves the local spectral projection or regression to estimate coefficients $c_j^{(k)}$.
+\item {\ttfamily predict()} obtains classifier probabilities and computes the weighted average of local polynomial evaluations. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1_model_cluster_poly_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1_model_cluster_poly_afd09bdae0789e2e967ecb7e46db7c794}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!ModelClusterPoly@{ModelClusterPoly}}
+\index{ModelClusterPoly@{ModelClusterPoly}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{ModelClusterPoly()}{ModelClusterPoly()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_afd09bdae0789e2e967ecb7e46db7c794} 
+cmp\+::\+Model\+Cluster\+Poly\+::\+Model\+Cluster\+Poly (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a1cd901d9b5f7fe476b20c17dfbb11c47}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!````~ModelClusterPoly@{\texorpdfstring{$\sim$}{\string~}ModelClusterPoly}}
+\index{````~ModelClusterPoly@{\texorpdfstring{$\sim$}{\string~}ModelClusterPoly}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ModelClusterPoly()}{\string~ModelClusterPoly()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a1cd901d9b5f7fe476b20c17dfbb11c47} 
+cmp\+::\+Model\+Cluster\+Poly\+::\texorpdfstring{$\sim$}{\string~}\+Model\+Cluster\+Poly (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1_model_cluster_poly_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1_model_cluster_poly_a3b03ff03b78423ebc7506a9e33cb996e}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!centroid@{centroid}}
+\index{centroid@{centroid}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{centroid()}{centroid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a3b03ff03b78423ebc7506a9e33cb996e} 
+const Eigen\+::\+Vector\+Xd \& cmp\+::\+Model\+Cluster\+Poly\+::centroid (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_aec8b7c546e030b3b061559f9f144cc2f}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!computeProbabilities@{computeProbabilities}}
+\index{computeProbabilities@{computeProbabilities}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{computeProbabilities()}{computeProbabilities()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_aec8b7c546e030b3b061559f9f144cc2f} 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ cmp\+::\+Model\+Cluster\+Poly\+::compute\+Probabilities (\begin{DoxyParamCaption}\item[{const double \&}]{T}{, }\item[{\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}}]{classifier}{, }\item[{const double \&}]{min\+Prob}{ = {\ttfamily 0.1}}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!computeScore@{computeScore}}
+\index{computeScore@{computeScore}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{computeScore()}{computeScore()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a0e6319674cd328243ea33c537f928925} 
+double cmp\+::\+Model\+Cluster\+Poly\+::compute\+Score (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{global\+Index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function computes the owner-\/cluster LOO score for point {\ttfamily global\+Index}. \Hypertarget{classcmp_1_1_model_cluster_poly_a3fd6a887335a3f83e35832a8fbf7310d}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!computeScore@{computeScore}}
+\index{computeScore@{computeScore}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{computeScore()}{computeScore()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a3fd6a887335a3f83e35832a8fbf7310d} 
+double cmp\+::\+Model\+Cluster\+Poly\+::compute\+Score (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{model}{, }\item[{size\+\_\+t}]{global\+Index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function computes the score of cluster {\ttfamily model} on point {\ttfamily global\+Index}. \Hypertarget{classcmp_1_1_model_cluster_poly_aa15e6acc2aebc488071b77ba0c183465}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!condition@{condition}}
+\index{condition@{condition}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{condition()}{condition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_aa15e6acc2aebc488071b77ba0c183465} 
+void cmp\+::\+Model\+Cluster\+Poly\+::condition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{y\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&}]{labels}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_af924313af6846a8188f61ec676625c8f}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!confusionMatrix@{confusionMatrix}}
+\index{confusionMatrix@{confusionMatrix}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{confusionMatrix()}{confusionMatrix()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_af924313af6846a8188f61ec676625c8f} 
+Eigen\+::\+Matrix\+Xd cmp\+::\+Model\+Cluster\+Poly\+::confusion\+Matrix (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$}]{switching\+Probability}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a31ddd2c25ac9cba525d68b36c9b93847}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!deterministicSwitchStep@{deterministicSwitchStep}}
+\index{deterministicSwitchStep@{deterministicSwitchStep}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{deterministicSwitchStep()}{deterministicSwitchStep()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a31ddd2c25ac9cba525d68b36c9b93847} 
+std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ $>$ cmp\+::\+Model\+Cluster\+Poly\+::deterministic\+Switch\+Step (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}}]{cls}{, }\item[{const size\+\_\+t \&}]{max\+Allowed\+Switches}{, }\item[{const double \&}]{min\+Prob}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_ad265da2ad78381dd47b7d0ca187effc3}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!dim@{dim}}
+\index{dim@{dim}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ad265da2ad78381dd47b7d0ca187effc3} 
+size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a55a012b15c93cba5aa6d484123559b7e}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!fit@{fit}}
+\index{fit@{fit}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a55a012b15c93cba5aa6d484123559b7e} 
+void cmp\+::\+Model\+Cluster\+Poly\+::fit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_af34ca12ee9ea75ea49dd04e4c24ed67f}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!getClusterSize@{getClusterSize}}
+\index{getClusterSize@{getClusterSize}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{getClusterSize()}{getClusterSize()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_af34ca12ee9ea75ea49dd04e4c24ed67f} 
+size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::get\+Cluster\+Size (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_af5248a09766a72138ea89551b7f4c16d}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!getIndices@{getIndices}}
+\index{getIndices@{getIndices}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{getIndices()}{getIndices()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_af5248a09766a72138ea89551b7f4c16d} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::\+Model\+Cluster\+Poly\+::get\+Indices (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{cluster\+Index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a42b4d31622f8c86823afc63532d0440d}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!getLabels@{getLabels}}
+\index{getLabels@{getLabels}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{getLabels()}{getLabels()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a42b4d31622f8c86823afc63532d0440d} 
+const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \& cmp\+::\+Model\+Cluster\+Poly\+::get\+Labels (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a2a95e75a7d9e81e151b84d1d1ab7a0ea}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!getMembership@{getMembership}}
+\index{getMembership@{getMembership}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{getMembership()}{getMembership()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a2a95e75a7d9e81e151b84d1d1ab7a0ea} 
+size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::get\+Membership (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_af44fb7c39e80f5f613e43ba080816cdd}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!isFit@{isFit}}
+\index{isFit@{isFit}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{isFit()}{isFit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_af44fb7c39e80f5f613e43ba080816cdd} 
+bool cmp\+::\+Model\+Cluster\+Poly\+::is\+Fit (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{cluster\+Index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_ad94f74314b04b2f523ab6641638c2dd1}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!mergeClusters@{mergeClusters}}
+\index{mergeClusters@{mergeClusters}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{mergeClusters()}{mergeClusters()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ad94f74314b04b2f523ab6641638c2dd1} 
+void cmp\+::\+Model\+Cluster\+Poly\+::merge\+Clusters (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{cluster\+Index1}{, }\item[{const size\+\_\+t \&}]{cluster\+Index2}{, }\item[{bool}]{hpar\+Guess}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a60716eb20a053bbbab42720c658ce1ca}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!nClusters@{nClusters}}
+\index{nClusters@{nClusters}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{nClusters()}{nClusters()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a60716eb20a053bbbab42720c658ce1ca} 
+size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::n\+Clusters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_aa71a85e82c31b952cbafcb6b07f69178}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!nPoints@{nPoints}}
+\index{nPoints@{nPoints}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{nPoints()}{nPoints()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_aa71a85e82c31b952cbafcb6b07f69178} 
+size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::n\+Points (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_ad68921c5cc117d9a5a1f208f15ec4720}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ad68921c5cc117d9a5a1f208f15ec4720} 
+\mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}} \& cmp\+::\+Model\+Cluster\+Poly\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a51a0d61d8f710bbc3b00dcbecb3b9099}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!performSwitches@{performSwitches}}
+\index{performSwitches@{performSwitches}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{performSwitches()}{performSwitches()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a51a0d61d8f710bbc3b00dcbecb3b9099} 
+void cmp\+::\+Model\+Cluster\+Poly\+::perform\+Switches (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ $>$ \&}]{new\+Owners}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function performs the switch of the points 
+\begin{DoxyParams}{Parameters}
+{\em new\+Owners} & The new owners of the points, the first element is the global index and the second element is the owner \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1_model_cluster_poly_ab53c8a894a3215ecb5f99abd1d685767}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!purgeStep@{purgeStep}}
+\index{purgeStep@{purgeStep}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{purgeStep()}{purgeStep()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ab53c8a894a3215ecb5f99abd1d685767} 
+void cmp\+::\+Model\+Cluster\+Poly\+::purge\+Step (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{cluster\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function purges a cluster
+
+
+\begin{DoxyParams}{Parameters}
+{\em cluster\+Index} & The index of the cluster to purge \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1_model_cluster_poly_a1691f2f9f3f0bf58b5687dbf02b013a6}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!set@{set}}
+\index{set@{set}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a1691f2f9f3f0bf58b5687dbf02b013a6} 
+void cmp\+::\+Model\+Cluster\+Poly\+::set (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}} $>$ \texorpdfstring{$\ast$}{*}}]{polynomials}{, }\item[{const double \&}]{gamma}{ = {\ttfamily 0}, }\item[{const double \&}]{seed}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_aaeb1c102ee76ae915fff22d1135cd6b4}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!setFit@{setFit}}
+\index{setFit@{setFit}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{setFit()}{setFit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_aaeb1c102ee76ae915fff22d1135cd6b4} 
+void cmp\+::\+Model\+Cluster\+Poly\+::set\+Fit (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{cluster\+Index}{, }\item[{const bool \&}]{fit}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a6cb0463b49c63e4a9da20463bb7d82fa}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!switchStep@{switchStep}}
+\index{switchStep@{switchStep}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{switchStep()}{switchStep()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a6cb0463b49c63e4a9da20463bb7d82fa} 
+std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ $>$ cmp\+::\+Model\+Cluster\+Poly\+::switch\+Step (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*}}]{classifier}{, }\item[{const double \&}]{T}{ = {\ttfamily 1.0}, }\item[{const size\+\_\+t \&}]{max\+Allowed\+Switches}{ = {\ttfamily 10}, }\item[{const double \&}]{min\+Prob}{ = {\ttfamily 0.1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_ae566968ca096ece6e22fd563a1e74caa}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!updateModel@{updateModel}}
+\index{updateModel@{updateModel}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{updateModel()}{updateModel()}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ae566968ca096ece6e22fd563a1e74caa} 
+void cmp\+::\+Model\+Cluster\+Poly\+::update\+Model (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ bool $>$ \&}]{affected\+Clusters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1_model_cluster_poly_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!centroids\_@{centroids\_}}
+\index{centroids\_@{centroids\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{centroids\_}{centroids\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a} 
+std\+::vector$<$Eigen\+::\+Vector\+Xd$>$ cmp\+::\+Model\+Cluster\+Poly\+::centroids\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!clusterSize\_@{clusterSize\_}}
+\index{clusterSize\_@{clusterSize\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{clusterSize\_}{clusterSize\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede} 
+std\+::vector$<$size\+\_\+t$>$ cmp\+::\+Model\+Cluster\+Poly\+::cluster\+Size\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!dimX\_@{dimX\_}}
+\index{dimX\_@{dimX\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{dimX\_}{dimX\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2} 
+size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::dim\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!fit\_@{fit\_}}
+\index{fit\_@{fit\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{fit\_}{fit\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe} 
+std\+::vector$<$bool$>$ cmp\+::\+Model\+Cluster\+Poly\+::fit\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!gamma\_@{gamma\_}}
+\index{gamma\_@{gamma\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{gamma\_}{gamma\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47} 
+double cmp\+::\+Model\+Cluster\+Poly\+::gamma\+\_\+ \{1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!labels\_@{labels\_}}
+\index{labels\_@{labels\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{labels\_}{labels\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::\+Model\+Cluster\+Poly\+::labels\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!localIndexTable\_@{localIndexTable\_}}
+\index{localIndexTable\_@{localIndexTable\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{localIndexTable\_}{localIndexTable\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::\+Model\+Cluster\+Poly\+::local\+Index\+Table\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!nClusters\_@{nClusters\_}}
+\index{nClusters\_@{nClusters\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{nClusters\_}{nClusters\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28} 
+size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::n\+Clusters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!nObs\_@{nObs\_}}
+\index{nObs\_@{nObs\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{nObs\_}{nObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3} 
+size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::n\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!polynomials\_@{polynomials\_}}
+\index{polynomials\_@{polynomials\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{polynomials\_}{polynomials\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74} 
+std\+::vector$<$\mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$>$\texorpdfstring{$\ast$}{*} cmp\+::\+Model\+Cluster\+Poly\+::polynomials\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9} 
+std\+::default\+\_\+random\+\_\+engine cmp\+::\+Model\+Cluster\+Poly\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!xObs\_@{xObs\_}}
+\index{xObs\_@{xObs\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57} 
+Eigen\+::\+Matrix\+Xd cmp\+::\+Model\+Cluster\+Poly\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!yObs\_@{yObs\_}}
+\index{yObs\_@{yObs\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
+\doxysubsubsection{\texorpdfstring{yObs\_}{yObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4} 
+Eigen\+::\+Vector\+Xd cmp\+::\+Model\+Cluster\+Poly\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{model__cluster__poly_8h}{model\+\_\+cluster\+\_\+poly.\+h}}\end{DoxyCompactItemize}

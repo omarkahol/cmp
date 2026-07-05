@@ -1,0 +1,194 @@
+\doxysection{cluster.\+h}
+\hypertarget{cluster_8h_source}{}\label{cluster_8h_source}\index{include/cluster.h@{include/cluster.h}}
+\mbox{\hyperlink{cluster_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CLUSTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CLUSTER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{distribution_8h}{distribution.h}}>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{grid_8h}{grid.h}}>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1cluster}{cmp::cluster}}\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_af388f3da2b93f110ef956e5ad5d889b9}{GeometricCluster}}\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_adc096b4f56036c5da4da2097e1e8d46c}{labels\_}};\ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_ad42d010720fd09e4b1f00ef4fede3865}{centroids\_}};\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_aac26f622a9e449c022dbde6236f2856a}{nClusters\_}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_ae043fd7e6cc4afa358873e4fa12e8bf6}{nPoints\_}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_afa635e89afa48702e0536ddb0196a3e7}{dim\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_af388f3da2b93f110ef956e5ad5d889b9}{GeometricCluster}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_ac8b7e1b55ae7b3bce7c1d635ebda098a}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&points,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a54c293056d5713b5bad8c7c9e662a962}{nClusters}},\ std::default\_random\_engine\ \&rng,\ \textcolor{keywordtype}{size\_t}\ max\_iter\ =\ 1000);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&\mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a046053468202d006e673a8bd241e25af}{operator[]}}(\textcolor{keywordtype}{size\_t}\ i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a52873464ae777b98143ec1d38787173e}{centroid}}(\textcolor{keywordtype}{size\_t}\ i)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a54c293056d5713b5bad8c7c9e662a962}{nClusters}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a538021d3ce75a01c53c27f918239d7b6}{nPoints}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a17dd8284c4d5dac885c3833bdac5c2e0}{dim}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \&\mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a2f3e3fc361864c55b6b33a60f11f982b}{getLabels}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_adc096b4f56036c5da4da2097e1e8d46c}{labels\_}};}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad8d57685732e0491786307a19e20a1fe}{DirichletProcessMixtureModel}}\ \{}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a4d1849503e2a2c5231b99ce57e19a8e1}{Cluster}}\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a3c569bfb1a3fb5d87431f9fcbc94dcb0}{id\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a673f9ad44296c8b397e21478bd860a84}{nPoints\_}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sufficient\ statistics}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a0fd5af5b8c8475019b4d6c6e73bc6dc6}{sumOfX\_}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a406f1b23941339a080771aa12aabd59f}{sumOfXXT\_}};\ \ \ \ \ }
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Default\ constructor}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a4d1849503e2a2c5231b99ce57e19a8e1}{Cluster}}()\ :\ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a3c569bfb1a3fb5d87431f9fcbc94dcb0}{id\_}}(0),\ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a673f9ad44296c8b397e21478bd860a84}{nPoints\_}}(0)\ \{\}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor\ with\ id\ and\ dimension}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a10d13c686b57af932010917a22501862}{Cluster}}(\textcolor{keywordtype}{size\_t}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{size\_t}\ dim)\ :\ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a3c569bfb1a3fb5d87431f9fcbc94dcb0}{id\_}}(id),\ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a673f9ad44296c8b397e21478bd860a84}{nPoints\_}}(0),}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a0fd5af5b8c8475019b4d6c6e73bc6dc6}{sumOfX\_}}(\mbox{\hyperlink{namespace_eigen}{Eigen}}::VectorXd::Zero(dim)),}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster_a406f1b23941339a080771aa12aabd59f}{sumOfXXT\_}}(\mbox{\hyperlink{namespace_eigen}{Eigen}}::MatrixXd::Zero(dim,\ dim))\ \{\}}
+\DoxyCodeLine{00150\ \ \ \ \ \};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ Workspaces\ for\ the\ Gibbs\ sampler\ to\ avoid\ heap\ allocations}}
+\DoxyCodeLine{00155\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a217eb8b0524d9276f8549eaebd9a8328}{logp\_workspace\_}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_af8bb0daa61526d49983def38e0a30ff8}{probs\_workspace\_}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_adf5ccdefa14ab8ef8d20866a683891c0}{clusterIDs\_workspace\_}};\ \ }
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a089ca83c33514dfca66ddd699292f180}{xObs\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a4eed344e6896b8a4ce53bb60191ae349}{labels\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_abc57304801ca9b94d4132d0412af0e68}{nPoints\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad4ec5ef7f4d9bc852f6c4c73ac2762ec}{dim\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ std::vector<size\_t>\ \ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a358136eacb5a457821c21427d5e8f764}{clusterIDs\_}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ This\ prior\ is\ conjugate\ to\ the\ Gaussian\ likelihood}}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{cmp::distribution::NormalInverseWishartDistribution}}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a7709e0b1e31bb1c864d8cfcb98251ffb}{hyper\_}};\ }
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution}{cmp::distribution::GammaDistribution}}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a86ac06e9822ef3957eefc42c8da55088}{alphaPrior\_}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}{alpha\_}}\{1.0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ std::map<size\_t,\ Cluster>\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2747b925e11eab0b8d204763d34cdd1f}{clusters\_}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8a043dcc7c70ec73b428932391b5c541}{nextClusterId\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{//\ Random\ number\ generator\ for\ sampling}}
+\DoxyCodeLine{00174\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab8bf4143b14944f09cb1e1f2a7c5366b}{rng\_}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ade19ad5d2f4e8d26f5d3b10d5ac41d52}{distU\_}}\{0.0,\ 1.0\};\ }
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{comment}{//\ public\ API}}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad8d57685732e0491786307a19e20a1fe}{DirichletProcessMixtureModel}}(}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ alpha,}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution}{cmp::distribution::GammaDistribution}}\ \&alphaPrior,}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{cmp::distribution::NormalInverseWishartDistribution}}\ \&hyper,}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ seed\ =\ 12345}
+\DoxyCodeLine{00193\ \ \ \ \ );}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a51fbd889895500a4026c6abcc6cc22a0}{condition}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\&\ init\_labels);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ae0edf2151639d901a23e1ab7ff831578}{step}}();}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ad0274fdabfd53ad302ff5aaad823edc9}{remapLabels}}();}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00218\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2413eda7c582905edde42c1e09fa8355}{getLabels}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a4eed344e6896b8a4ce53bb60191ae349}{labels\_}};}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a049b71a80255f310aecc6f628ed0edd5}{nClusters}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2747b925e11eab0b8d204763d34cdd1f}{clusters\_}}.size();}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a452d4e8cbc2d5d97a55a7c034d14adef}{getAlpha}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}{alpha\_}};}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_aeed1e322dddddba9cc5eaf9120ab7f60}{init}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\&\ init\_labels);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a5dd327aea614f567ff379a45b2815eb9}{removePointFromCluster}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&pointIndex,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&clusterID);}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a70fc7f6955723b0d83357924e8c558c3}{addPointToCluster}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&pointIndex,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&clusterID);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_adbd48bcaf4222f13ef07039bea9d98ab}{logNIWPosterior}}(\textcolor{keyword}{const}\ Eigen::VectorXd\&\ x,\ \textcolor{keyword}{const}\ Cluster\&\ c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab3dbafcd002cd529a6136b32018e06c2}{updateAlpha}}()\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ K\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a2747b925e11eab0b8d204763d34cdd1f}{clusters\_}}.size());}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ N\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_abc57304801ca9b94d4132d0412af0e68}{nPoints\_}});}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extract\ prior\ parameters\ from\ your\ distribution\ object}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a86ac06e9822ef3957eefc42c8da55088}{alphaPrior\_}}.getAlpha();}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ b\ =\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a86ac06e9822ef3957eefc42c8da55088}{alphaPrior\_}}.getBeta();}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Instantiate\ the\ Beta\ distribution\ and\ sample\ eta}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution}{cmp::distribution::BetaDistribution}}\ beta\_dist(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}{alpha\_}}\ +\ 1.0,\ N);}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ eta\ =\ beta\_dist.\mbox{\hyperlink{classcmp_1_1distribution_1_1_beta_distribution_a76683486e88eed3bac521c6663e3dd10}{sample}}(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab8bf4143b14944f09cb1e1f2a7c5366b}{rng\_}});}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Calculate\ the\ weights\ for\ the\ Gamma\ mixture}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ weight1\ =\ (a\ +\ K\ -\/\ 1.0)\ /\ (N\ *\ (b\ -\/\ std::log(eta)));}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pi\_eta\ =\ weight1\ /\ (weight1\ +\ 1.0);}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Sample\ the\ new\ alpha\ using\ your\ custom\ cmp::distribution\ classes}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ u\ =\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ade19ad5d2f4e8d26f5d3b10d5ac41d52}{distU\_}}(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab8bf4143b14944f09cb1e1f2a7c5366b}{rng\_}});}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ updated\_beta\ =\ b\ -\/\ std::log(eta);\ \textcolor{comment}{//\ The\ rate\ parameter}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(u\ <\ pi\_eta)\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gamma(a\ +\ K,\ b\ -\/\ ln(eta))}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution}{cmp::distribution::GammaDistribution}}\ new\_gamma(a\ +\ K,\ updated\_beta);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}{alpha\_}}\ =\ new\_gamma.\mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution_aab77167267d24db68aa2e18175669486}{sample}}(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab8bf4143b14944f09cb1e1f2a7c5366b}{rng\_}});}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gamma(a\ +\ K\ -\/\ 1,\ b\ -\/\ ln(eta))}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution}{cmp::distribution::GammaDistribution}}\ new\_gamma(a\ +\ K\ -\/\ 1.0,\ updated\_beta);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}{alpha\_}}\ =\ new\_gamma.\mbox{\hyperlink{classcmp_1_1distribution_1_1_gamma_distribution_aab77167267d24db68aa2e18175669486}{sample}}(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_ab8bf4143b14944f09cb1e1f2a7c5366b}{rng\_}});}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safety\ bounds\ just\ in\ case\ of\ severe\ numerical\ underflow}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}{alpha\_}}\ <\ 1e-\/5)\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dirichlet_process_mixture_model_a8c0c45b7b90eb86a067586709e4d4140}{alpha\_}}\ =\ 1e-\/5;}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \};}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00327\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_ad79c1ddf389f7c96bc2b57a06cecbe03}{DummyCluster}}\ \{}
+\DoxyCodeLine{00328\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a7c8e182f83e36d9f1c7dce68653b335c}{nClusters\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00330\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_aaf87d5ed7f495e9c3be8613ce822ae8d}{rng\_}};\ \ }
+\DoxyCodeLine{00331\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a47b1c931dbb1a64e2ca9290dd4081174}{labels\_}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00332\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00333\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_ad79c1ddf389f7c96bc2b57a06cecbe03}{DummyCluster}}(\textcolor{keywordtype}{size\_t}\ nClusters,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ seed\ =\ 42)}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a7c8e182f83e36d9f1c7dce68653b335c}{nClusters\_}}(nClusters),\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_aaf87d5ed7f495e9c3be8613ce822ae8d}{rng\_}}(seed)\ \{\}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_ad466acb58ffc955424660ef4da57089d}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&points)\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nPoints\ =\ points.rows();}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ std::uniform\_int\_distribution<size\_t>\ dist(0,\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a7c8e182f83e36d9f1c7dce68653b335c}{nClusters\_}}\ -\/\ 1);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a47b1c931dbb1a64e2ca9290dd4081174}{labels\_}}\ =\ Eigen::VectorXs::Zero(nPoints);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nPoints;\ i++)\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a47b1c931dbb1a64e2ca9290dd4081174}{labels\_}}(i)\ =\ dist(\mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_aaf87d5ed7f495e9c3be8613ce822ae8d}{rng\_}});}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \&\mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_ae114e57f9bcaa1a6877e6f6d31256ceb}{getLabels}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1cluster_1_1_dummy_cluster_a47b1c931dbb1a64e2ca9290dd4081174}{labels\_}};}
+\DoxyCodeLine{00357\ \ \ \ \ \}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \};}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \}\ \textcolor{comment}{//\ namespace\ cmp::cluster}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

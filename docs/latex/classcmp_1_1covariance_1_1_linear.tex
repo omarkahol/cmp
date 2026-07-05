@@ -1,0 +1,179 @@
+\doxysection{cmp\+::covariance\+::Linear Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_linear}{}\label{classcmp_1_1covariance_1_1_linear}\index{cmp::covariance::Linear@{cmp::covariance::Linear}}
+
+
+Represents a \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} covariance function.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Linear\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_linear}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}{Linear}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a94fdd91a23e77ea0b0983493db61b9f7}{Linear}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_af9ba6c75012d3c9a2890a667449b35e5}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a53bbe65fc1ae45c8157e942e7f9e3be8}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a54e244f2ac6504d26c079f60303fbf45}{Linear}} (const int \&indexX=-\/1)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} covariance function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_ac1eab08ceece4131f7ca699bb290246b}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_ae56c5efc71057448b48b5b9e65ace531}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the partial derivative of the \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_aae33ab7ccf24090f6e512f1e7de651a3}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Evaluates the second-\/order partial derivative of the \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a226f1048abc4976b5c1921f01174c3d7}{make}} (const int \&i)
+\begin{DoxyCompactList}\small\item\em Factory method for creating a linear covariance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear_a6eb97f9b756c790546c1c2933c92ccab}{index\+X\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Coordinate index to project (-\/1 for full vector inner product). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} covariance function. 
+
+Mathematical Formulation If {\ttfamily index\+X\+\_\+} is -\/1, computes the full dot product\+:   \[k_{\text{lin}}(\mathbf{x}_1, \mathbf{x}_2) = \mathbf{x}_1^T \mathbf{x}_2
+\] Otherwise, evaluates only for the coordinate at index\+X\+\_\+\+:   \[k_{\text{lin}}(\mathbf{x}_1, \mathbf{x}_2) = x_{1,\text{index}} \times x_{2,\text{index}}
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_linear_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!Linear@{Linear}}
+\index{Linear@{Linear}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{Linear()}{Linear()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_a318b7e947ba79b984778cb87a4bf1052} 
+cmp\+::covariance\+::\+Linear\+::\+Linear (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_linear_a94fdd91a23e77ea0b0983493db61b9f7}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!Linear@{Linear}}
+\index{Linear@{Linear}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{Linear()}{Linear()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_a94fdd91a23e77ea0b0983493db61b9f7} 
+cmp\+::covariance\+::\+Linear\+::\+Linear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_linear_a54e244f2ac6504d26c079f60303fbf45}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!Linear@{Linear}}
+\index{Linear@{Linear}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{Linear()}{Linear()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_a54e244f2ac6504d26c079f60303fbf45} 
+cmp\+::covariance\+::\+Linear\+::\+Linear (\begin{DoxyParamCaption}\item[{const int \&}]{indexX}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} covariance function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indexX} & Dimension index to evaluate, or -\/1 for the full inner product. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_linear_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_linear_ac1eab08ceece4131f7ca699bb290246b}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_ac1eab08ceece4131f7ca699bb290246b} 
+double cmp\+::covariance\+::\+Linear\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_linear_ae56c5efc71057448b48b5b9e65ace531}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_ae56c5efc71057448b48b5b9e65ace531} 
+double cmp\+::covariance\+::\+Linear\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the partial derivative of the \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_linear_aae33ab7ccf24090f6e512f1e7de651a3}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_aae33ab7ccf24090f6e512f1e7de651a3} 
+double cmp\+::covariance\+::\+Linear\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the second-\/order partial derivative of the \doxylink{classcmp_1_1covariance_1_1_linear}{Linear} kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_linear_a226f1048abc4976b5c1921f01174c3d7}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!make@{make}}
+\index{make@{make}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_a226f1048abc4976b5c1921f01174c3d7} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+Linear\+::make (\begin{DoxyParamCaption}\item[{const int \&}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating a linear covariance. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_linear_af9ba6c75012d3c9a2890a667449b35e5}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_af9ba6c75012d3c9a2890a667449b35e5} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \& cmp\+::covariance\+::\+Linear\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_linear_a53bbe65fc1ae45c8157e942e7f9e3be8}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_a53bbe65fc1ae45c8157e942e7f9e3be8} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \& cmp\+::covariance\+::\+Linear\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_linear}{Linear}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_linear_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_linear_a6eb97f9b756c790546c1c2933c92ccab}\index{cmp::covariance::Linear@{cmp::covariance::Linear}!indexX\_@{indexX\_}}
+\index{indexX\_@{indexX\_}!cmp::covariance::Linear@{cmp::covariance::Linear}}
+\doxysubsubsection{\texorpdfstring{indexX\_}{indexX\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_linear_a6eb97f9b756c790546c1c2933c92ccab} 
+int cmp\+::covariance\+::\+Linear\+::index\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coordinate index to project (-\/1 for full vector inner product). 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

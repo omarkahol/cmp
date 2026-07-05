@@ -1,0 +1,169 @@
+\doxysection{cmp\+::mean\+::Constant Class Reference}
+\hypertarget{classcmp_1_1mean_1_1_constant}{}\label{classcmp_1_1mean_1_1_constant}\index{cmp::mean::Constant@{cmp::mean::Constant}}
+
+
+Represents a constant mean function.  
+
+
+
+
+{\ttfamily \#include $<$mean++.\+h$>$}
+
+Inheritance diagram for cmp\+::mean\+::Constant\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1mean_1_1_constant}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}{Constant}} (const \mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ae3b46e92cb26e8504caf1ad11c9c80a6}{Constant}} (\mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \& \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a3aaa28960e127b1c064ec9ff29c21f54}{operator=}} (const \mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \& \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a0a184cc66886b90b6f5d2a454441debe}{operator=}} (\mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ab4916947f688df6257d0e5ea56146320}{Constant}} (const size\+\_\+t \&c)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1mean_1_1_constant}{Constant} mean function using the hyperparameter at index c. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a9ede71ea6ef1d5a2721a61643906b2ea}{eval}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the constant mean. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a410d0edef189f248e27d0f857df4ef22}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&log\+\_\+par, const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the partial derivative of the constant mean function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a6e5efbc4382f2bb69fb03871e7b59dd7}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&log\+\_\+par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Evaluates the second-\/order partial derivative (Hessian) of the constant mean function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{cmp\+::mean\+::\+Mean}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_afa5d512bd5c31b2a646c603e5300fd88}{\texorpdfstring{$\sim$}{\string~}\+Mean}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}} $>$ \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a26ada7c68a9afbb8e2104ae9be393e44}{make}} (const size\+\_\+t \&c)
+\begin{DoxyCompactList}\small\item\em Factory method for creating a \doxylink{classcmp_1_1mean_1_1_constant}{Constant} mean function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_ab8304ecfdb2a9a1d1a62dd7b92b7cf68}{index\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a constant mean function. 
+
+Mathematical Formulation The mean function returns a constant value from the hyperparameters\+:   \[m(\mathbf{x}) = \theta_{\text{index}}
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1mean_1_1_constant_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7}\index{cmp::mean::Constant@{cmp::mean::Constant}!Constant@{Constant}}
+\index{Constant@{Constant}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{Constant()}{Constant()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_a68936ca01829f53141a8bda4690a98d7} 
+cmp\+::mean\+::\+Constant\+::\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1mean_1_1_constant_ae3b46e92cb26e8504caf1ad11c9c80a6}\index{cmp::mean::Constant@{cmp::mean::Constant}!Constant@{Constant}}
+\index{Constant@{Constant}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{Constant()}{Constant()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_ae3b46e92cb26e8504caf1ad11c9c80a6} 
+cmp\+::mean\+::\+Constant\+::\+Constant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1mean_1_1_constant_ab4916947f688df6257d0e5ea56146320}\index{cmp::mean::Constant@{cmp::mean::Constant}!Constant@{Constant}}
+\index{Constant@{Constant}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{Constant()}{Constant()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_ab4916947f688df6257d0e5ea56146320} 
+cmp\+::mean\+::\+Constant\+::\+Constant (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1mean_1_1_constant}{Constant} mean function using the hyperparameter at index c. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1mean_1_1_constant_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_constant_a9ede71ea6ef1d5a2721a61643906b2ea}\index{cmp::mean::Constant@{cmp::mean::Constant}!eval@{eval}}
+\index{eval@{eval}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_a9ede71ea6ef1d5a2721a61643906b2ea} 
+double cmp\+::mean\+::\+Constant\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the constant mean. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a9baba3a56a23dadca372c919287e7e3e}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_constant_a410d0edef189f248e27d0f857df4ef22}\index{cmp::mean::Constant@{cmp::mean::Constant}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_a410d0edef189f248e27d0f857df4ef22} 
+double cmp\+::mean\+::\+Constant\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{log\+\_\+par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the partial derivative of the constant mean function. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a3a961125a9875efd2fc0cde26430245f}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_constant_a6e5efbc4382f2bb69fb03871e7b59dd7}\index{cmp::mean::Constant@{cmp::mean::Constant}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_a6e5efbc4382f2bb69fb03871e7b59dd7} 
+double cmp\+::mean\+::\+Constant\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{log\+\_\+par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the second-\/order partial derivative (Hessian) of the constant mean function. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_ac07ce7fda90ebaaa9bfc282a43947c46}{cmp\+::mean\+::\+Mean}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_constant_a26ada7c68a9afbb8e2104ae9be393e44}\index{cmp::mean::Constant@{cmp::mean::Constant}!make@{make}}
+\index{make@{make}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_a26ada7c68a9afbb8e2104ae9be393e44} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{Mean}} $>$ cmp\+::mean\+::\+Constant\+::make (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method for creating a \doxylink{classcmp_1_1mean_1_1_constant}{Constant} mean function. 
+
+\Hypertarget{classcmp_1_1mean_1_1_constant_a3aaa28960e127b1c064ec9ff29c21f54}\index{cmp::mean::Constant@{cmp::mean::Constant}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_a3aaa28960e127b1c064ec9ff29c21f54} 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \& cmp\+::mean\+::\+Constant\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1mean_1_1_constant_a0a184cc66886b90b6f5d2a454441debe}\index{cmp::mean::Constant@{cmp::mean::Constant}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_a0a184cc66886b90b6f5d2a454441debe} 
+\mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \& cmp\+::mean\+::\+Constant\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1mean_1_1_constant}{Constant}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1mean_1_1_constant_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_constant_ab8304ecfdb2a9a1d1a62dd7b92b7cf68}\index{cmp::mean::Constant@{cmp::mean::Constant}!index\_@{index\_}}
+\index{index\_@{index\_}!cmp::mean::Constant@{cmp::mean::Constant}}
+\doxysubsubsection{\texorpdfstring{index\_}{index\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_constant_ab8304ecfdb2a9a1d1a62dd7b92b7cf68} 
+size\+\_\+t cmp\+::mean\+::\+Constant\+::index\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mean_09_09_8h}{mean++.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,18 @@
+\doxysection{include/wasserstein.h File Reference}
+\hypertarget{wasserstein_8h}{}\label{wasserstein_8h}\index{include/wasserstein.h@{include/wasserstein.h}}
+{\ttfamily \#include $<$cmp\+\_\+defines.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacecmp_afd4351ddf3bb25c5d954baa0b88d580c}{cmp\+::wasserstein1D}} (Eigen\+::\+Vector\+Xd \&s1, Eigen\+::\+Vector\+Xd \&s2, double p)
+\begin{DoxyCompactList}\small\item\em Computes the 1D Wasserstein distance between two empirical distributions. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a4676deee482c16dcbe067f72925e9cf8}{cmp\+::sliced\+Wasserstein\+Distance}} (const Eigen\+::\+Matrix\+Xd \&samples\+\_\+1, const Eigen\+::\+Matrix\+Xd \&samples\+\_\+2, double p, int slices, size\+\_\+t seed=42)
+\begin{DoxyCompactList}\small\item\em Computes the sliced-\/\+Wasserstein distance of order p between two n-\/dimensional datasets. \end{DoxyCompactList}\end{DoxyCompactItemize}

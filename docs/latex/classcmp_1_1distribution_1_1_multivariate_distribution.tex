@@ -1,0 +1,141 @@
+\doxysection{cmp\+::distribution\+::Multivariate\+Distribution\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcmp_1_1distribution_1_1_multivariate_distribution}{}\label{classcmp_1_1distribution_1_1_multivariate_distribution}\index{cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}}
+
+
+CRTP base class for all multivariate probability distributions.  
+
+
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Multivariate\+Distribution\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_multivariate_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_adf3b1409c78a9180147df5ff4d9c65cd}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the joint log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_a11d88504b8e41a0d7cf53407a851ddc2}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single vector sample from the joint distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_aab20c160e414e53d0082fa02b6bfa90a}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms physical samples to standard canonical space. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ad9cfbac42c99982f2abe4f8b46bca784}{from\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms standard canonical samples back to physical space. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ae7af8e6314ab5158173f1c7809c3c9aa}{dimension}} () const
+\begin{DoxyCompactList}\small\item\em Returns the dimensionality of the multivariate space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class cmp\+::distribution\+::\+Multivariate\+Distribution$<$ Derived $>$}
+CRTP base class for all multivariate probability distributions. 
+
+Mathematical Formulation Defines a probability distribution over a random vector $\mathbf{X} \in \mathbb{R}^d$ with joint probability density function $p(\mathbf{x})$. Provides static polymorphic interfaces for\+:
+\begin{DoxyItemize}
+\item Joint log-\/likelihood\+: $\log p(\mathbf{x})$
+\item Vector sampling\+: drawing $\mathbf{x} \sim p(\mathbf{x})$
+\item Canonical transformations (bijective mapping to/from standard multivariate space).
+\end{DoxyItemize}
+
+Implementation Algorithm Uses the Curiously Recurring Template Pattern (CRTP) to implement static polymorphism. 
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_distribution_ae7af8e6314ab5158173f1c7809c3c9aa}\index{cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}!dimension@{dimension}}
+\index{dimension@{dimension}!cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{dimension()}{dimension()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_distribution_ae7af8e6314ab5158173f1c7809c3c9aa} 
+template$<$typename Derived$>$ \\
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution}}$<$ Derived $>$\+::dimension (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the dimensionality of the multivariate space. 
+
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_distribution_ad9cfbac42c99982f2abe4f8b46bca784}\index{cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}!fromCanonical@{fromCanonical}}
+\index{fromCanonical@{fromCanonical}!cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{fromCanonical()}{fromCanonical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_distribution_ad9cfbac42c99982f2abe4f8b46bca784} 
+template$<$typename Derived$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution}}$<$ Derived $>$\+::from\+Canonical (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Transforms standard canonical samples back to physical space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Matrix of canonical samples. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Matrix of physical samples. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_distribution_adf3b1409c78a9180147df5ff4d9c65cd}\index{cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_distribution_adf3b1409c78a9180147df5ff4d9c65cd} 
+template$<$typename Derived$>$ \\
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution}}$<$ Derived $>$\+::log\+PDF (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the joint log probability density function (log-\/\+PDF) of the distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Vector point at which to evaluate the log-\/\+PDF. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluated log-\/\+PDF. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_distribution_a11d88504b8e41a0d7cf53407a851ddc2}\index{cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_distribution_a11d88504b8e41a0d7cf53407a851ddc2} 
+template$<$typename Derived$>$ \\
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution}}$<$ Derived $>$\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Draws a single vector sample from the joint distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rng} & Random number engine. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random vector sample. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_multivariate_distribution_aab20c160e414e53d0082fa02b6bfa90a}\index{cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}!toCanonical@{toCanonical}}
+\index{toCanonical@{toCanonical}!cmp::distribution::MultivariateDistribution$<$ Derived $>$@{cmp::distribution::MultivariateDistribution$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{toCanonical()}{toCanonical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_multivariate_distribution_aab20c160e414e53d0082fa02b6bfa90a} 
+template$<$typename Derived$>$ \\
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution}}$<$ Derived $>$\+::to\+Canonical (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Transforms physical samples to standard canonical space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Matrix of physical samples (each row is a sample). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Matrix of canonical samples. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

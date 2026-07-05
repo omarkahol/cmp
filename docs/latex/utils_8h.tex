@@ -1,0 +1,43 @@
+\doxysection{include/utils.h File Reference}
+\hypertarget{utils_8h}{}\label{utils_8h}\index{include/utils.h@{include/utils.h}}
+{\ttfamily \#include $<$cmp\+\_\+defines.\+h$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecmp}{cmp}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacecmp_a8d9746dabaab2aaa6b1d08975442c35d}{v\+\_\+mean}} (const Eigen\+::\+Vector\+Xd \&v)
+\begin{DoxyCompactList}\small\item\em Compute the mean of a vector. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecmp_a34f2153dfe287f6c3d84d0bb411d5463}{v\+\_\+std}} (const Eigen\+::\+Vector\+Xd \&v)
+\begin{DoxyCompactList}\small\item\em Compute the standard deviation of the vector. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{namespacecmp_af241f9354cecfcccf1d346413c7246e0}{get\+\_\+column}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&data, const int \&index)
+\begin{DoxyCompactList}\small\item\em Get the column object. \end{DoxyCompactList}\item 
+std\+::pair$<$ Eigen\+::\+Vector\+Xd, Eigen\+::\+LLT$<$ Eigen\+::\+Matrix\+Xd $>$ $>$ \mbox{\hyperlink{namespacecmp_ab6d624a3332d0bb80f6487b39db4553a}{normalize}} (std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&grid)
+\begin{DoxyCompactList}\small\item\em Normalize a data-\/set (subtract the mean and divide by the std) \end{DoxyCompactList}\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{namespacecmp_a0fd186a6a6c9f9f2ce607e2f2cd786d5}{normalize}} (std\+::vector$<$ double $>$ \&grid)
+\begin{DoxyCompactList}\small\item\em Normalize a data-\/set (subtract the mean and divide by the std) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}} (Eigen\+::\+Vector\+Xd \&v, const std\+::pair$<$ Eigen\+::\+Vector\+Xd, Eigen\+::\+LLT$<$ Eigen\+::\+Matrix\+Xd $>$ $>$ \&scale)
+\begin{DoxyCompactList}\small\item\em Scale a vector according to its mean and std. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_ab82b03c7aefba35d8f536b1595282d08}{scale}} (double \&v, const std\+::pair$<$ double, double $>$ \&scale)
+\item 
+void \mbox{\hyperlink{namespacecmp_a97330cababbbf8f87801039c5cbb1372}{un\+\_\+scale}} (Eigen\+::\+Vector\+Xd \&v, const std\+::pair$<$ Eigen\+::\+Vector\+Xd, Eigen\+::\+LLT$<$ Eigen\+::\+Matrix\+Xd $>$ $>$ \&\mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}})
+\begin{DoxyCompactList}\small\item\em Un-\/normalize a vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_a0aaac3f198dc94fec60d1097e925ebd8}{un\+\_\+scale}} (double \&v, const std\+::pair$<$ double, double $>$ \&\mbox{\hyperlink{namespacecmp_adc8d8e4f52e99edc0af525f8cbfc48b9}{scale}})
+\begin{DoxyCompactList}\small\item\em Un-\/normalize a number. \end{DoxyCompactList}\item 
+std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{namespacecmp_a3b3fc997b5c129041fb046fe7ee02572}{matrix\+\_\+to\+\_\+vvxd}} (const Eigen\+::\+Matrix\+Xd \&data)
+\begin{DoxyCompactList}\small\item\em Convert a matrix into a std\+::vector$<$\+Eigen\+::\+Vector\+Xd$>$ \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_aa9e4bf6406b205aec1d441cfa384abc2}{v\+\_\+to\+\_\+vxd}} (const std\+::vector$<$ double $>$ \&v)
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{namespacecmp_a4244a4de053a07de037712265081111d}{vxd\+\_\+to\+\_\+v}} (const Eigen\+::\+Vector\+Xd \&v)
+\item 
+std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{namespacecmp_ac94c41539c6efc9c8f537fdfc73cbffb}{v\+\_\+to\+\_\+vvxd}} (const std\+::vector$<$ double $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Transform a vector of doubles to a vector of scalars (Eigen\+::vector\+Xd of dimension 1) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacecmp_ab1dc110c650c08e25e393f014365bd12}{write\+\_\+vector}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&data, std\+::ofstream \&o\+\_\+file)
+\item 
+void \mbox{\hyperlink{namespacecmp_a2d11da656c8543c71e0f316a4eb41146}{write\+\_\+data}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&x, const Eigen\+::\+Matrix\+Xd \&y, std\+::ofstream \&o\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Write data points to a file. \end{DoxyCompactList}\item 
+std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{namespacecmp_a73f354f9c64a3d95569b1f2931dd566e}{read\+\_\+vector}} (std\+::ifstream \&i\+\_\+file)
+\end{DoxyCompactItemize}

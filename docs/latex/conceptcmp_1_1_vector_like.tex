@@ -1,0 +1,52 @@
+\doxysection{cmp\+::Vector\+Like Concept Reference}
+\hypertarget{conceptcmp_1_1_vector_like}{}\label{conceptcmp_1_1_vector_like}\index{cmp::VectorLike@{cmp::VectorLike}}
+
+
+Concept for compile-\/time validation of vector-\/like containers.  
+
+
+
+
+{\ttfamily \#include $<$cmp\+\_\+defines.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcmp_1_1_vector_like}{cmp::VectorLike}}\ =\ \ \textcolor{keyword}{requires}(T\ a,\ \textcolor{keywordtype}{size\_t}\ i)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{typename}\ T::value\_type;}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ a.size()}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ -\/>\ std::convertible\_to<size\_t>;}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ a[i]}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ -\/>\ std::convertible\_to<typename\ T::value\_type>;}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ a.data()}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ -\/>\ std::convertible\_to<const\ typename\ T::value\_type*>;}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ a.begin()}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ a.end()}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Concept for compile-\/time validation of vector-\/like containers. 
+
+Mathematical Formulation Defines a set of constraints for type $T$ representing an element in a finite-\/dimensional vector space $\mathbb{R}^N$.
+
+Implementation Algorithm Ensures that $T$ supports\+:
+\begin{DoxyItemize}
+\item {\ttfamily .size()} returning an integer/size type.
+\item {\ttfamily operator\mbox{[}\mbox{]}} for coordinate access.
+\item {\ttfamily .data()} providing a raw pointer to contiguous memory.
+\item Iterators {\ttfamily .begin()} and {\ttfamily .end()}. 
+\end{DoxyItemize}

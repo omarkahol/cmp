@@ -1,0 +1,230 @@
+\doxysection{cmp\+::distribution\+::Normal\+Inverse\+Wishart\+Distribution Class Reference}
+\hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{}\label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for cmp\+::distribution\+::Normal\+Inverse\+Wishart\+Distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8a882b2269d1790117fa90cc002bc955}{Normal\+Inverse\+Wishart\+Distribution}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&\mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a140893e07af44671cfef22ad6dd761ad}{mean}}, double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a126416340fe0e01aabc4e0bb4508608c}{kappa}}, double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a72f0eb468f982e8c16807b6bee97522c}{nu}}, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&psi)
+\item 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aae28c7db6b016ec80eb7b9b4b63392d9}{Normal\+Inverse\+Wishart\+Distribution}} ()=default
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a06050f9f9f8be1f8d280b3cf9e83e900}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a257961f2b1e8a7e9cca604b252e2c44c}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a140893e07af44671cfef22ad6dd761ad}{mean}} () const
+\item 
+const double \& \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a126416340fe0e01aabc4e0bb4508608c}{kappa}} () const
+\item 
+const double \& \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a72f0eb468f982e8c16807b6bee97522c}{nu}} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_acf29f0d9cc4a861db25fcde4f8444469}{covariance}} () const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a4208b0275666a00036b6fa2738495fcd}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af38f73033c33a12d7cda9b1c2b25a439}{to\+Physical}} (const Eigen\+::\+Matrix\+Xd \&z) const
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a7efba38a984d5602728faabeb3d603e0}{dimension}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{cmp\+::distribution\+::\+Multivariate\+Distribution$<$ Normal\+Inverse\+Wishart\+Distribution $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_adf3b1409c78a9180147df5ff4d9c65cd}{log\+PDF}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const
+\begin{DoxyCompactList}\small\item\em Computes the joint log probability density function (log-\/\+PDF) of the distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_a11d88504b8e41a0d7cf53407a851ddc2}{sample}} (std\+::default\+\_\+random\+\_\+engine \&rng)
+\begin{DoxyCompactList}\small\item\em Draws a single vector sample from the joint distribution. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_aab20c160e414e53d0082fa02b6bfa90a}{to\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms physical samples to standard canonical space. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ad9cfbac42c99982f2abe4f8b46bca784}{from\+Canonical}} (const Eigen\+::\+Matrix\+Xd \&x) const
+\begin{DoxyCompactList}\small\item\em Transforms standard canonical samples back to physical space. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution_ae7af8e6314ab5158173f1c7809c3c9aa}{dimension}} () const
+\begin{DoxyCompactList}\small\item\em Returns the dimensionality of the multivariate space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{Normal\+Inverse\+Wishart\+Distribution}} \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a0aba1317b683b18b7bb50bd647bb057b}{canonical}} (const size\+\_\+t dim, double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a126416340fe0e01aabc4e0bb4508608c}{kappa}}, double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a72f0eb468f982e8c16807b6bee97522c}{nu}})
+\item 
+static \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{Normal\+Inverse\+Wishart\+Distribution}} \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a5471afbb0ad3c3d66b9f70121e5928d7}{empirical\+Prior}} (const Eigen\+::\+Matrix\+Xd \&data, double expected\+\_\+clusters, double kappa0)
+\begin{DoxyCompactList}\small\item\em Computes an empirical Normal-\/\+Inverse-\/\+Wishart prior from the provided dataset. Useful for initializing the prior in a Dirichlet Process Mixture Model (DPMM) when you have observed data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aa03ae298fc1088aa3c64ee09e740d40b}{mean\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_afbe6fa7a9fb4229fb40ee101c8cd67b1}{kappa\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a9a50de594f7e0e2abfadaa72545e7c0e}{nu\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af9eb05b79eef4551525cbb228ea3746c}{dim\+\_\+}}
+\item 
+Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a80fa02dccdbdf55cf47577e607e41e6b}{cov\+LDLT\+\_\+}}
+\item 
+double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a14d36c7b29e7239ce0612edbcd4fdfba}{log\+Determinant\+\_\+}}
+\item 
+std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8d1444869325837bce26a061c5cd3172}{dist\+N\+\_\+}} \{0., 1.\}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8a882b2269d1790117fa90cc002bc955}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!NormalInverseWishartDistribution@{NormalInverseWishartDistribution}}
+\index{NormalInverseWishartDistribution@{NormalInverseWishartDistribution}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{NormalInverseWishartDistribution()}{NormalInverseWishartDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8a882b2269d1790117fa90cc002bc955} 
+cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::\+Normal\+Inverse\+Wishart\+Distribution (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{mean}{, }\item[{double}]{kappa}{, }\item[{double}]{nu}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{psi}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aae28c7db6b016ec80eb7b9b4b63392d9}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!NormalInverseWishartDistribution@{NormalInverseWishartDistribution}}
+\index{NormalInverseWishartDistribution@{NormalInverseWishartDistribution}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{NormalInverseWishartDistribution()}{NormalInverseWishartDistribution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aae28c7db6b016ec80eb7b9b4b63392d9} 
+cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::\+Normal\+Inverse\+Wishart\+Distribution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a0aba1317b683b18b7bb50bd647bb057b}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!canonical@{canonical}}
+\index{canonical@{canonical}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{canonical()}{canonical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a0aba1317b683b18b7bb50bd647bb057b} 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{Normal\+Inverse\+Wishart\+Distribution}} cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::canonical (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim}{, }\item[{double}]{kappa}{, }\item[{double}]{nu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_acf29f0d9cc4a861db25fcde4f8444469}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!covariance@{covariance}}
+\index{covariance@{covariance}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_acf29f0d9cc4a861db25fcde4f8444469} 
+const Eigen\+::\+Matrix\+Xd cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::covariance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a7efba38a984d5602728faabeb3d603e0}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!dimension@{dimension}}
+\index{dimension@{dimension}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{dimension()}{dimension()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a7efba38a984d5602728faabeb3d603e0} 
+size\+\_\+t cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::dimension (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a5471afbb0ad3c3d66b9f70121e5928d7}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!empiricalPrior@{empiricalPrior}}
+\index{empiricalPrior@{empiricalPrior}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{empiricalPrior()}{empiricalPrior()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a5471afbb0ad3c3d66b9f70121e5928d7} 
+\mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution}{Normal\+Inverse\+Wishart\+Distribution}} cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::empirical\+Prior (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{data}{, }\item[{double}]{expected\+\_\+clusters}{, }\item[{double}]{kappa0}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Computes an empirical Normal-\/\+Inverse-\/\+Wishart prior from the provided dataset. Useful for initializing the prior in a Dirichlet Process Mixture Model (DPMM) when you have observed data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The observed data matrix. \\
+\hline
+{\em expected\+\_\+clusters} & The expected number of clusters. \\
+\hline
+{\em kappa0} & The prior precision parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The computed empirical Normal-\/\+Inverse-\/\+Wishart prior. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a126416340fe0e01aabc4e0bb4508608c}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!kappa@{kappa}}
+\index{kappa@{kappa}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{kappa()}{kappa()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a126416340fe0e01aabc4e0bb4508608c} 
+const double \& cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::kappa (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a06050f9f9f8be1f8d280b3cf9e83e900}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!logPDF@{logPDF}}
+\index{logPDF@{logPDF}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{logPDF()}{logPDF()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a06050f9f9f8be1f8d280b3cf9e83e900} 
+double cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::log\+PDF (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a140893e07af44671cfef22ad6dd761ad}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!mean@{mean}}
+\index{mean@{mean}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a140893e07af44671cfef22ad6dd761ad} 
+const Eigen\+::\+Vector\+Xd \& cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::mean (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a72f0eb468f982e8c16807b6bee97522c}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!nu@{nu}}
+\index{nu@{nu}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{nu()}{nu()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a72f0eb468f982e8c16807b6bee97522c} 
+const double \& cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::nu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a257961f2b1e8a7e9cca604b252e2c44c}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!sample@{sample}}
+\index{sample@{sample}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a257961f2b1e8a7e9cca604b252e2c44c} 
+Eigen\+::\+Vector\+Xd cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::sample (\begin{DoxyParamCaption}\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a4208b0275666a00036b6fa2738495fcd}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!toCanonical@{toCanonical}}
+\index{toCanonical@{toCanonical}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{toCanonical()}{toCanonical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a4208b0275666a00036b6fa2738495fcd} 
+Eigen\+::\+Matrix\+Xd cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::to\+Canonical (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af38f73033c33a12d7cda9b1c2b25a439}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!toPhysical@{toPhysical}}
+\index{toPhysical@{toPhysical}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{toPhysical()}{toPhysical()}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af38f73033c33a12d7cda9b1c2b25a439} 
+Eigen\+::\+Matrix\+Xd cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::to\+Physical (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{z}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a80fa02dccdbdf55cf47577e607e41e6b}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!covLDLT\_@{covLDLT\_}}
+\index{covLDLT\_@{covLDLT\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{covLDLT\_}{covLDLT\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a80fa02dccdbdf55cf47577e607e41e6b} 
+Eigen\+::\+LDLT$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::cov\+LDLT\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af9eb05b79eef4551525cbb228ea3746c}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af9eb05b79eef4551525cbb228ea3746c} 
+size\+\_\+t cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8d1444869325837bce26a061c5cd3172}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!distN\_@{distN\_}}
+\index{distN\_@{distN\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{distN\_}{distN\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8d1444869325837bce26a061c5cd3172} 
+std\+::normal\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::dist\+N\+\_\+ \{0., 1.\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_afbe6fa7a9fb4229fb40ee101c8cd67b1}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!kappa\_@{kappa\_}}
+\index{kappa\_@{kappa\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{kappa\_}{kappa\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_afbe6fa7a9fb4229fb40ee101c8cd67b1} 
+double cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::kappa\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a14d36c7b29e7239ce0612edbcd4fdfba}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!logDeterminant\_@{logDeterminant\_}}
+\index{logDeterminant\_@{logDeterminant\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{logDeterminant\_}{logDeterminant\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a14d36c7b29e7239ce0612edbcd4fdfba} 
+double cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::log\+Determinant\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aa03ae298fc1088aa3c64ee09e740d40b}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aa03ae298fc1088aa3c64ee09e740d40b} 
+Eigen\+::\+Vector\+Xd cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a9a50de594f7e0e2abfadaa72545e7c0e}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!nu\_@{nu\_}}
+\index{nu\_@{nu\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
+\doxysubsubsection{\texorpdfstring{nu\_}{nu\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a9a50de594f7e0e2abfadaa72545e7c0e} 
+double cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::nu\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

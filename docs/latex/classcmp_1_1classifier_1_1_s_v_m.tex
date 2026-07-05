@@ -1,0 +1,414 @@
+\doxysection{cmp\+::classifier\+::SVM Class Reference}
+\hypertarget{classcmp_1_1classifier_1_1_s_v_m}{}\label{classcmp_1_1classifier_1_1_s_v_m}\index{cmp::classifier::SVM@{cmp::classifier::SVM}}
+
+
+\doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} that uses Support Vector Machine (\doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM}) for classification.  
+
+
+
+
+{\ttfamily \#include $<$classifier.\+h$>$}
+
+Inheritance diagram for cmp\+::classifier\+::SVM\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1classifier_1_1_s_v_m}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_aae52613b76fffb2068382185ca458e04}{SVM}} ()
+\item 
+\mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a977a68ec02bf16e66314433ffd0d4034}{\texorpdfstring{$\sim$}{\string~}\+SVM}} ()
+\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae78d34fbd7ba1b1df9d6f4c02da06cfc}{set}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}} $>$ covariance, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ hpar, const double \&C, const double \&eps=1e-\/3)
+\begin{DoxyCompactList}\small\item\em Set the covariance function, hyperparameters, and \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} parameters. This method allows you to set the covariance function, its hyperparameters, and the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} parameters C and eps. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a7187b963753f5144570c9614acad57c3}{condition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&labels)
+\begin{DoxyCompactList}\small\item\em Condition the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} with observations and labels. This method sets the observations and labels for the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} and trains the model using the specified kernel. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_aa892d97d4fd879e9d7e9467f72748aa1}{predict}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const override
+\begin{DoxyCompactList}\small\item\em Predict the class label at a given point. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ad8f549d860b2677573184e6a7bf50833}{predict\+Probabilities}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const override
+\begin{DoxyCompactList}\small\item\em Predict the class probabilities at a given point. \end{DoxyCompactList}\item 
+std\+::pair$<$ Eigen\+::\+Vector\+Xd, double $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ad8fc3a646ff1396d275cfd57f789cd34}{get\+Hyperparameters}} () const
+\begin{DoxyCompactList}\small\item\em Get the current hyperparameters and \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} regularization parameter C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a9fa21f962c732ebf5cc031d64f90dcc1}{fit}} (const \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}} \&\mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}, const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&kf, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&membership\+Table, Eigen\+::\+Vector\+Xd lb, Eigen\+::\+Vector\+Xd ub, nlopt\+::algorithm algo=nlopt\+::\+LN\+\_\+\+SBPLX, double ftol\+\_\+rel=1e-\/4, std\+::vector$<$ bool $>$ log\+Scale\+Flags=\{\})
+\begin{DoxyCompactList}\small\item\em Fit the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} using cross-\/validation to optimize hyperparameters and C. This method uses the specified optimization algorithm to find the optimal hyperparameters and C that maximize the cross-\/validation score. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_aa4ca767b44e3b77455043d4001b3668a}{fit}} (Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ x\+Obs, Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ membership\+Table, Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ lb, Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ ub, nlopt\+::algorithm algo=nlopt\+::\+LN\+\_\+\+SBPLX, double ftol\+\_\+rel=1e-\/4, std\+::vector$<$ bool $>$ log\+Scale\+Flags=\{\})
+\begin{DoxyCompactList}\small\item\em Fit the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} using span-\/based optimization to optimize hyperparameters and C. This method uses the specified optimization algorithm to find the optimal hyperparameters and C that minimizes the span of the support vectors. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a68b04d2c6f75957f002166dd70b63559}{objective\+Function\+CV}} (const \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}} \&\mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}, const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&kf)
+\begin{DoxyCompactList}\small\item\em Objective function for cross-\/validation. This function computes the objective value for cross-\/validation, to be maximized. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a4858bf3959a3657f1c64732e966c4988}{objective\+Function\+Span}} ()
+\begin{DoxyCompactList}\small\item\em Objective function for span-\/based optimization. This function returns the negative mean support-\/vector span so it can be maximized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a7dd8540cf402dfb9b5f3b83b2de9d17d}{\texorpdfstring{$\sim$}{\string~}\+Classifier}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a63912997e1edf3fa83acbf55e8186d71}{init\+Default\+Parameters}} (double C, double eps)
+\begin{DoxyCompactList}\small\item\em Initializes default parameters for the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a850c5fe9eb025499770467be7a1e0225}{silent\+\_\+print}} (const char \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Custom print redirect function to suppress standard console output from LIBSVM. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8775f7a7dccddec98f9b118d324fa39}{free\+Problem}} (struct svm\+\_\+problem \texorpdfstring{$\ast$}{*}prob)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct svm\+\_\+model \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a729ae6e934d962359165cdebff19b1f3}{model\+\_\+}} = nullptr
+\item 
+struct svm\+\_\+problem \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a35e1d53006df2faa79ecda6ab442dbbd}{prob\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Pointer to the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} model. \end{DoxyCompactList}\item 
+struct svm\+\_\+parameter \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}{model\+Parameters\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Structure to hold the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} problem. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ad16b27cc70a95b10e2c23874bbfb2d05}{covariance\+\_\+}} \{nullptr\}
+\begin{DoxyCompactList}\small\item\em Structure to hold the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} parameters. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a4bb2ca69fdd4d3d2bb0911a64f5ad8e7}{hyperparameters\+\_\+}} = Eigen\+::\+Vector\+Xd(0)
+\begin{DoxyCompactList}\small\item\em Covariance object for the kernel. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_a8300b9667a2e0c650e2bf2776191da13}{x\+Obs\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Hyperparameters for the covariance function. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_s_v_m_ac4022ab50dbd75780789aa9f3b2bde24}{n\+Obs\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em Total number of training observations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} that uses Support Vector Machine (\doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM}) for classification. 
+
+Mathematical Formulation \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} constructs a hyperparameter-\/tuned decision boundary in a high-\/dimensional feature space mapped via a kernel\+:   \[k(\mathbf{x}_i, \mathbf{x}_j) = \phi(\mathbf{x}_i)^T \phi(\mathbf{x}_j)
+\] The dual optimization problem solved is\+:   \[\min_{\boldsymbol{\alpha}} \frac{1}{2} \sum_{i,j=1}^N \alpha_i \alpha_j y_i y_j k(\mathbf{x}_i, \mathbf{x}_j) - \sum_{i=1}^N \alpha_i
+\] subject to\+:   \[0 \le \alpha_i \le C, \quad \sum_{i=1}^N \alpha_i y_i = 0
+\] where $C > 0$ is the regularization parameter, $y_i \in \{-1, 1\}$ are class labels, and $\alpha_i$ are Lagrange multipliers. Class probabilities are calculated using Platt scaling to compute the probability of class 1\+:   \[P(y=1 \mid \mathbf{x}) = \frac{1}{1 + \exp(A f(\mathbf{x}) + B)}
+\] where $f(\mathbf{x}) = \sum_i \alpha_i y_i k(\mathbf{x}_i, \mathbf{x}) + b$ is the decision function, and parameters $A, B$ are fitted via maximum likelihood on cross-\/validation outputs.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{classcmp_1_1classifier_1_1_s_v_m_a7187b963753f5144570c9614acad57c3}{condition()}} maps training dataset to LIBSVM nodes, constructs the precomputed kernel matrix $\mathbf{K}$, and trains the support vectors via Sequential Minimal Optimization (SMO).
+\item {\ttfamily \doxylink{classcmp_1_1classifier_1_1_s_v_m_ad8f549d860b2677573184e6a7bf50833}{predict\+Probabilities()}} performs Platt scaling by passing computed decision function outputs to Platt\textquotesingle{}s sigmoid model.
+\item {\ttfamily \doxylink{classcmp_1_1classifier_1_1_s_v_m_a9fa21f962c732ebf5cc031d64f90dcc1}{fit()}} optimizes hyperparameters (including kernel lengthscales and \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} penalty $C$) using cross-\/validation or span-\/based bounds. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_aae52613b76fffb2068382185ca458e04}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!SVM@{SVM}}
+\index{SVM@{SVM}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{SVM()}{SVM()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_aae52613b76fffb2068382185ca458e04} 
+cmp\+::classifier\+::\+SVM\+::\+SVM (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a977a68ec02bf16e66314433ffd0d4034}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!````~SVM@{\texorpdfstring{$\sim$}{\string~}SVM}}
+\index{````~SVM@{\texorpdfstring{$\sim$}{\string~}SVM}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SVM()}{\string~SVM()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a977a68ec02bf16e66314433ffd0d4034} 
+cmp\+::classifier\+::\+SVM\+::\texorpdfstring{$\sim$}{\string~}\+SVM (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Call to LIBSVM function to free the model. 
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a7187b963753f5144570c9614acad57c3}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!condition@{condition}}
+\index{condition@{condition}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{condition()}{condition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a7187b963753f5144570c9614acad57c3} 
+void cmp\+::classifier\+::\+SVM\+::condition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&}]{labels}{}\end{DoxyParamCaption})}
+
+
+
+Condition the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} with observations and labels. This method sets the observations and labels for the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} and trains the model using the specified kernel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & A matrix of observations where each row is an observation and each column is a feature. \\
+\hline
+{\em labels} & A vector of labels corresponding to the observations. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the number of observations and labels do not match.\\
+\hline
+\end{DoxyExceptions}
+Functions for the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} classifier \Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a9fa21f962c732ebf5cc031d64f90dcc1}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!fit@{fit}}
+\index{fit@{fit}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a9fa21f962c732ebf5cc031d64f90dcc1} 
+void cmp\+::classifier\+::\+SVM\+::fit (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}} \&}]{method}{, }\item[{const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&}]{kf}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&}]{membership\+Table}{, }\item[{Eigen\+::\+Vector\+Xd}]{lb}{, }\item[{Eigen\+::\+Vector\+Xd}]{ub}{, }\item[{nlopt\+::algorithm}]{algo}{ = {\ttfamily nlopt\+:\+:LN\+\_\+SBPLX}, }\item[{double}]{ftol\+\_\+rel}{ = {\ttfamily 1e-\/4}, }\item[{std\+::vector$<$ bool $>$}]{log\+Scale\+Flags}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+
+
+Fit the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} using cross-\/validation to optimize hyperparameters and C. This method uses the specified optimization algorithm to find the optimal hyperparameters and C that maximize the cross-\/validation score. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em method} & The method to use for cross-\/validation (CV\+\_\+\+SCORE or CV\+\_\+\+PROB\+\_\+\+SCORE). \\
+\hline
+{\em kf} & A KFold object containing the cross-\/validation splits. \\
+\hline
+{\em x\+Obs} & A matrix of observations where each row is an observation and each column is a feature. \\
+\hline
+{\em membership\+Table} & A vector of membership values (class labels) corresponding to the observations. \\
+\hline
+{\em lb} & A vector of lower bounds for the hyperparameters and C. \\
+\hline
+{\em ub} & A vector of upper bounds for the hyperparameters and C. \\
+\hline
+{\em algo} & The optimization algorithm to use (default is nlopt\+::\+LN\+\_\+\+SBPLX). \\
+\hline
+{\em ftol\+\_\+rel} & The relative tolerance for the optimization algorithm (default is 1e-\/4). \\
+\hline
+{\em log\+Scale\+Flags} & A vector of booleans indicating whether to use log-\/scaling for each bandwidth parameter (default is all false). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_aa4ca767b44e3b77455043d4001b3668a}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!fit@{fit}}
+\index{fit@{fit}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_aa4ca767b44e3b77455043d4001b3668a} 
+void cmp\+::classifier\+::\+SVM\+::fit (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$}]{x\+Obs}{, }\item[{Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$}]{membership\+Table}{, }\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{lb}{, }\item[{Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{ub}{, }\item[{nlopt\+::algorithm}]{algo}{ = {\ttfamily nlopt\+:\+:LN\+\_\+SBPLX}, }\item[{double}]{ftol\+\_\+rel}{ = {\ttfamily 1e-\/4}, }\item[{std\+::vector$<$ bool $>$}]{log\+Scale\+Flags}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+
+
+Fit the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} using span-\/based optimization to optimize hyperparameters and C. This method uses the specified optimization algorithm to find the optimal hyperparameters and C that minimizes the span of the support vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & A matrix of observations where each row is an observation and each column is a feature. \\
+\hline
+{\em membership\+Table} & A vector of membership values (class labels) corresponding to the observations. \\
+\hline
+{\em lb} & A vector of lower bounds for the hyperparameters and C. \\
+\hline
+{\em ub} & A vector of upper bounds for the hyperparameters and C. \\
+\hline
+{\em algo} & The optimization algorithm to use (default is nlopt\+::\+LN\+\_\+\+SBPLX). \\
+\hline
+{\em ftol\+\_\+rel} & The relative tolerance for the optimization algorithm (default is 1e-\/4). \\
+\hline
+{\em log\+Scale\+Flags} & A vector of booleans indicating whether to use log-\/scaling for each bandwidth parameter (default is all false). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_ae8775f7a7dccddec98f9b118d324fa39}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!freeProblem@{freeProblem}}
+\index{freeProblem@{freeProblem}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{freeProblem()}{freeProblem()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_ae8775f7a7dccddec98f9b118d324fa39} 
+void cmp\+::classifier\+::\+SVM\+::free\+Problem (\begin{DoxyParamCaption}\item[{struct svm\+\_\+problem \texorpdfstring{$\ast$}{*}}]{prob}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_ad8fc3a646ff1396d275cfd57f789cd34}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!getHyperparameters@{getHyperparameters}}
+\index{getHyperparameters@{getHyperparameters}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{getHyperparameters()}{getHyperparameters()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_ad8fc3a646ff1396d275cfd57f789cd34} 
+std\+::pair$<$ Eigen\+::\+Vector\+Xd, double $>$ cmp\+::classifier\+::\+SVM\+::get\+Hyperparameters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the current hyperparameters and \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} regularization parameter C. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a63912997e1edf3fa83acbf55e8186d71}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!initDefaultParameters@{initDefaultParameters}}
+\index{initDefaultParameters@{initDefaultParameters}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{initDefaultParameters()}{initDefaultParameters()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a63912997e1edf3fa83acbf55e8186d71} 
+void cmp\+::classifier\+::\+SVM\+::init\+Default\+Parameters (\begin{DoxyParamCaption}\item[{double}]{C}{, }\item[{double}]{eps}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Initializes default parameters for the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em C} & Regularization penalty parameter. \\
+\hline
+{\em eps} & Tolerance of termination criterion. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a68b04d2c6f75957f002166dd70b63559}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!objectiveFunctionCV@{objectiveFunctionCV}}
+\index{objectiveFunctionCV@{objectiveFunctionCV}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{objectiveFunctionCV()}{objectiveFunctionCV()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a68b04d2c6f75957f002166dd70b63559} 
+double cmp\+::classifier\+::\+SVM\+::objective\+Function\+CV (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}} \&}]{method}{, }\item[{const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&}]{kf}{}\end{DoxyParamCaption})}
+
+
+
+Objective function for cross-\/validation. This function computes the objective value for cross-\/validation, to be maximized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em method} & The method to use for cross-\/validation (CV\+\_\+\+SCORE or CV\+\_\+\+PROB\+\_\+\+SCORE). \\
+\hline
+{\em kf} & The KFold object containing the cross-\/validation splits. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The objective value for cross-\/validation. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a4858bf3959a3657f1c64732e966c4988}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!objectiveFunctionSpan@{objectiveFunctionSpan}}
+\index{objectiveFunctionSpan@{objectiveFunctionSpan}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{objectiveFunctionSpan()}{objectiveFunctionSpan()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a4858bf3959a3657f1c64732e966c4988} 
+double cmp\+::classifier\+::\+SVM\+::objective\+Function\+Span (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Objective function for span-\/based optimization. This function returns the negative mean support-\/vector span so it can be maximized. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_aa892d97d4fd879e9d7e9467f72748aa1}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!predict@{predict}}
+\index{predict@{predict}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_aa892d97d4fd879e9d7e9467f72748aa1} 
+size\+\_\+t cmp\+::classifier\+::\+SVM\+::predict (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Predict the class label at a given point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to predict the class label. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The predicted class label. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a2fbf78b38db8cc851a433caa9b87e758}{cmp\+::classifier\+::\+Classifier}}.
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_ad8f549d860b2677573184e6a7bf50833}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!predictProbabilities@{predictProbabilities}}
+\index{predictProbabilities@{predictProbabilities}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{predictProbabilities()}{predictProbabilities()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_ad8f549d860b2677573184e6a7bf50833} 
+std\+::vector$<$ double $>$ cmp\+::classifier\+::\+SVM\+::predict\+Probabilities (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Predict the class probabilities at a given point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to predict the class probabilities. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of class probabilities. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_af91c87a6c6a2261f74333847e6f6d68a}{cmp\+::classifier\+::\+Classifier}}.
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_ae78d34fbd7ba1b1df9d6f4c02da06cfc}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!set@{set}}
+\index{set@{set}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_ae78d34fbd7ba1b1df9d6f4c02da06cfc} 
+void cmp\+::classifier\+::\+SVM\+::set (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}} $>$}]{covariance}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$}]{hpar}{, }\item[{const double \&}]{C}{, }\item[{const double \&}]{eps}{ = {\ttfamily 1e-\/3}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the covariance function, hyperparameters, and \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} parameters. This method allows you to set the covariance function, its hyperparameters, and the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} parameters C and eps. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em covariance} & A shared pointer to a covariance object that defines the kernel function. \\
+\hline
+{\em hpar} & A vector of hyperparameters for the covariance function. \\
+\hline
+{\em C} & The \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} regularization parameter. Note, this is treated as an extra hyperparameter during fitting. \\
+\hline
+{\em eps} & The stopping criterion for the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} training algorithm (default is 1e-\/3). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a850c5fe9eb025499770467be7a1e0225}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!silent\_print@{silent\_print}}
+\index{silent\_print@{silent\_print}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{silent\_print()}{silent\_print()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a850c5fe9eb025499770467be7a1e0225} 
+void cmp\+::classifier\+::\+SVM\+::silent\+\_\+print (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Custom print redirect function to suppress standard console output from LIBSVM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The string output from LIBSVM. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_ad16b27cc70a95b10e2c23874bbfb2d05}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!covariance\_@{covariance\_}}
+\index{covariance\_@{covariance\_}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{covariance\_}{covariance\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_ad16b27cc70a95b10e2c23874bbfb2d05} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}$>$ cmp\+::classifier\+::\+SVM\+::covariance\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Structure to hold the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} parameters. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a4bb2ca69fdd4d3d2bb0911a64f5ad8e7}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!hyperparameters\_@{hyperparameters\_}}
+\index{hyperparameters\_@{hyperparameters\_}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{hyperparameters\_}{hyperparameters\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a4bb2ca69fdd4d3d2bb0911a64f5ad8e7} 
+Eigen\+::\+Vector\+Xd cmp\+::classifier\+::\+SVM\+::hyperparameters\+\_\+ = Eigen\+::\+Vector\+Xd(0)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Covariance object for the kernel. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a729ae6e934d962359165cdebff19b1f3}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!model\_@{model\_}}
+\index{model\_@{model\_}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{model\_}{model\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a729ae6e934d962359165cdebff19b1f3} 
+struct svm\+\_\+model\texorpdfstring{$\ast$}{*} cmp\+::classifier\+::\+SVM\+::model\+\_\+ = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!modelParameters\_@{modelParameters\_}}
+\index{modelParameters\_@{modelParameters\_}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{modelParameters\_}{modelParameters\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_ae8462bff3c6cae3c669f9cf357d637e7} 
+struct svm\+\_\+parameter cmp\+::classifier\+::\+SVM\+::model\+Parameters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Structure to hold the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} problem. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_ac4022ab50dbd75780789aa9f3b2bde24}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!nObs\_@{nObs\_}}
+\index{nObs\_@{nObs\_}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{nObs\_}{nObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_ac4022ab50dbd75780789aa9f3b2bde24} 
+size\+\_\+t cmp\+::classifier\+::\+SVM\+::n\+Obs\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Total number of training observations. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a35e1d53006df2faa79ecda6ab442dbbd}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!prob\_@{prob\_}}
+\index{prob\_@{prob\_}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{prob\_}{prob\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a35e1d53006df2faa79ecda6ab442dbbd} 
+struct svm\+\_\+problem cmp\+::classifier\+::\+SVM\+::prob\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the \doxylink{classcmp_1_1classifier_1_1_s_v_m}{SVM} model. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_s_v_m_a8300b9667a2e0c650e2bf2776191da13}\index{cmp::classifier::SVM@{cmp::classifier::SVM}!xObs\_@{xObs\_}}
+\index{xObs\_@{xObs\_}!cmp::classifier::SVM@{cmp::classifier::SVM}}
+\doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_s_v_m_a8300b9667a2e0c650e2bf2776191da13} 
+Eigen\+::\+Matrix\+Xd cmp\+::classifier\+::\+SVM\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hyperparameters for the covariance function. 
+
+Training observation points. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{classifier_8h}{classifier.\+h}}\item 
+src/\mbox{\hyperlink{classifier_8cpp}{classifier.\+cpp}}\end{DoxyCompactItemize}

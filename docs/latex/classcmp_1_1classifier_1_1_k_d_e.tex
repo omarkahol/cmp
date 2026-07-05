@@ -1,0 +1,372 @@
+\doxysection{cmp\+::classifier\+::KDE Class Reference}
+\hypertarget{classcmp_1_1classifier_1_1_k_d_e}{}\label{classcmp_1_1classifier_1_1_k_d_e}\index{cmp::classifier::KDE@{cmp::classifier::KDE}}
+
+
+\doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} that uses Kernel Density Estimation (\doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}) for classification.  
+
+
+
+
+{\ttfamily \#include $<$classifier.\+h$>$}
+
+Inheritance diagram for cmp\+::classifier\+::KDE\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1classifier_1_1_k_d_e}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a39c5f3b135b704098aafa12ccbf500a8}{KDE}} ()
+\begin{DoxyCompactList}\small\item\em Kernel object for \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a88412a84686f3df848a4b8b922ec9714}{set}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}} $>$ kernel, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}} $>$ bandwidth)
+\begin{DoxyCompactList}\small\item\em Set the kernel and bandwidth for the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. This method allows you to set the kernel and bandwidth objects that will be used for the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_aa69b82b9c52436d59f7bbb1b901214d1}{condition}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&labels)
+\begin{DoxyCompactList}\small\item\em Condition the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE} with observations and labels. This method sets the observations and labels for the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. It initializes the number of observations, dimensions, and classes based on the input data. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a576c421d7c33f47a85e69115c5349645}{density}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x, const size\+\_\+t \&class\+Label) const
+\begin{DoxyCompactList}\small\item\em Get the density of a class at a given point. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a6d22b13a7d6b3a4945cb59798ef34d26}{predict\+Probabilities}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const override
+\begin{DoxyCompactList}\small\item\em Predict the class probabilities at a given point. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_afc69aee2a558b1f14580e53d694968e3}{predict}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&x) const override
+\begin{DoxyCompactList}\small\item\em Predict the class label at a given point. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a048e39c6d3e2936d698162e510fd961c}{objective\+Function\+CV}} (const \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}} \&\mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}, const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&kf) const
+\begin{DoxyCompactList}\small\item\em Objective function for cross-\/validation. This function computes the objective value for cross-\/validation, to be maximized. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_ac587f3709c35b02b7d9106a37758bbb6}{objective\+Function\+LOO}} () const
+\begin{DoxyCompactList}\small\item\em Objective function for efficient leave-\/one-\/out optimization. This function computes mean LOO log-\/probability over all observations, to be maximized. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_aceb3c3eb3e6dcd298cce52ce9ca3009f}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&labels, \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} kf, const double \&min\+Bw, const double \&max\+Bw, const \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}} \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}=\mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343}{CV\+\_\+\+PROB\+\_\+\+SCORE}}, nlopt\+::algorithm algo=nlopt\+::\+LN\+\_\+\+SBPLX, double ftol\+\_\+rel=1e-\/4, std\+::vector$<$ bool $>$ log\+Scale\+Flags=\{\})
+\begin{DoxyCompactList}\small\item\em Fit the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE} using cross-\/validation to optimize the bandwidth. This method uses the specified optimization algorithm to find the optimal bandwidth that maximizes the cross-\/validation score. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a4f63e7ab3c8518d93fc8acb434fdc1dd}{fit\+LOO}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&x\+Obs, const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&labels, const double \&min\+Bw, const double \&max\+Bw, nlopt\+::algorithm algo=nlopt\+::\+LN\+\_\+\+SBPLX, double ftol\+\_\+rel=1e-\/4, std\+::vector$<$ bool $>$ log\+Scale\+Flags=\{\})
+\begin{DoxyCompactList}\small\item\em Fit the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE} by maximizing an efficient leave-\/one-\/out objective. This method optimizes bandwidth using mean LOO log-\/probability over all observations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a7dd8540cf402dfb9b5f3b83b2de9d17d}{\texorpdfstring{$\sim$}{\string~}\+Classifier}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a65f02ac64c534123a425e66eeb2f3b97}{x\+Obs\+\_\+}} = Eigen\+::\+Matrix\+Xd(0, 0)
+\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a5d3735e12aeed67668cc6abc16688739}{labels\+\_\+}} = \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}(0)
+\begin{DoxyCompactList}\small\item\em Observations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a599215e4c0fe25b662df9cbe3427c3bd}{class\+Counts\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Labels for the observations. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a08c2c9a30041396406a914a760d346d5}{n\+Obs\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em Count of observations per class. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a06b46da8bf315b7215afdc590766a080}{dim\+X\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em Input features dimensionality. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a148fe7ac061097b7b9b6a9982a273468}{n\+Classes\+\_\+}} = 1
+\begin{DoxyCompactList}\small\item\em Total number of distinct class labels. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}} $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a941bb78e648d581f28fa7a1310a46bcf}{bandwidth\+\_\+}} \{nullptr\}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}} $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_d_e_a34c11a49eef00c046a2dcfdd3a74a2ab}{kernel\+\_\+}} \{nullptr\}
+\begin{DoxyCompactList}\small\item\em Bandwidth object for \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classcmp_1_1classifier_1_1_classifier}{Classifier} that uses Kernel Density Estimation (\doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}) for classification. 
+
+Mathematical Formulation Estimates the conditional probability density function for class $c$ at point $\mathbf{x} \in \mathbb{R}^D$ using kernel density estimation\+:   \[p(\mathbf{x} \mid y = c) = \frac{1}{N_c} \sum_{i \in \mathcal{D}_c} \prod_{d=1}^D \frac{1}{h_{c,d}} K\left(\frac{x_d - x_{i,d}}{h_{c,d}}\right)
+\] where $N_c$ is the number of samples in class $c$, $h_{c,d}$ is the bandwidth for dimension $d$ in class $c$, and $K$ is a univariate kernel. The class posterior probability is obtained using Bayes\textquotesingle{} rule\+:   \[P(y = c \mid \mathbf{x}) = \frac{p(\mathbf{x} \mid y = c) P(y = c)}{\sum_{j=0}^{C-1} p(\mathbf{x} \mid y = j) P(y = j)}
+\] where $P(y = c) = \frac{N_c}{N}$ represents the empirical prior probability of class $c$.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{classcmp_1_1classifier_1_1_k_d_e_aa69b82b9c52436d59f7bbb1b901214d1}{condition()}} partitions training samples by class label and computes class priors $P(y=c)$.
+\item {\ttfamily \doxylink{classcmp_1_1classifier_1_1_k_d_e_a6d22b13a7d6b3a4945cb59798ef34d26}{predict\+Probabilities()}} computes the kernel density $p(\mathbf{x} \mid y = c)$ for each class, computes the product of density and prior, and normalizes the results.
+\item {\ttfamily \doxylink{classcmp_1_1classifier_1_1_k_d_e_aceb3c3eb3e6dcd298cce52ce9ca3009f}{fit()}} optimizes the bandwidth vector $\mathbf{h}$ by maximizing K-\/fold cross-\/validation likelihood or leave-\/one-\/out (LOO) log-\/probability using NLopt optimization routines. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a39c5f3b135b704098aafa12ccbf500a8}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!KDE@{KDE}}
+\index{KDE@{KDE}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{KDE()}{KDE()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a39c5f3b135b704098aafa12ccbf500a8} 
+cmp\+::classifier\+::\+KDE\+::\+KDE (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Kernel object for \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_aa69b82b9c52436d59f7bbb1b901214d1}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!condition@{condition}}
+\index{condition@{condition}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{condition()}{condition()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_aa69b82b9c52436d59f7bbb1b901214d1} 
+void cmp\+::classifier\+::\+KDE\+::condition (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&}]{labels}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Condition the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE} with observations and labels. This method sets the observations and labels for the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. It initializes the number of observations, dimensions, and classes based on the input data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & A matrix of observations where each row is an observation and each column is a feature. \\
+\hline
+{\em labels} & A vector of labels corresponding to the observations. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the number of observations and labels do not match. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a576c421d7c33f47a85e69115c5349645}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!density@{density}}
+\index{density@{density}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{density()}{density()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a576c421d7c33f47a85e69115c5349645} 
+double cmp\+::classifier\+::\+KDE\+::density (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{, }\item[{const size\+\_\+t \&}]{class\+Label}{}\end{DoxyParamCaption}) const}
+
+
+
+Get the density of a class at a given point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to evaluate the density. \\
+\hline
+{\em class\+Label} & The label of the class for which to evaluate the density. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The density of the class at the given point.
+\end{DoxyReturn}
+Functions for the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE} classifier \Hypertarget{classcmp_1_1classifier_1_1_k_d_e_aceb3c3eb3e6dcd298cce52ce9ca3009f}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!fit@{fit}}
+\index{fit@{fit}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_aceb3c3eb3e6dcd298cce52ce9ca3009f} 
+void cmp\+::classifier\+::\+KDE\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&}]{labels}{, }\item[{\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}}}]{kf}{, }\item[{const double \&}]{min\+Bw}{, }\item[{const double \&}]{max\+Bw}{, }\item[{const \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}}}]{method}{ = {\ttfamily \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343}{CV\+\_\+\+PROB\+\_\+\+SCORE}}}, }\item[{nlopt\+::algorithm}]{algo}{ = {\ttfamily nlopt\+:\+:LN\+\_\+SBPLX}, }\item[{double}]{ftol\+\_\+rel}{ = {\ttfamily 1e-\/4}, }\item[{std\+::vector$<$ bool $>$}]{log\+Scale\+Flags}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+
+
+Fit the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE} using cross-\/validation to optimize the bandwidth. This method uses the specified optimization algorithm to find the optimal bandwidth that maximizes the cross-\/validation score. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & A matrix of observations where each row is an observation and each column is a feature. \\
+\hline
+{\em labels} & A vector of labels corresponding to the observations. \\
+\hline
+{\em kf} & A KFold object containing the cross-\/validation splits. \\
+\hline
+{\em min\+Bw} & The minimum bandwidth value for optimization. \\
+\hline
+{\em max\+Bw} & The maximum bandwidth value for optimization. \\
+\hline
+{\em method} & The method to use for cross-\/validation (CV\+\_\+\+SCORE or CV\+\_\+\+PROB\+\_\+\+SCORE). \\
+\hline
+{\em algo} & The optimization algorithm to use (default is nlopt\+::\+LN\+\_\+\+SBPLX). \\
+\hline
+{\em ftol\+\_\+rel} & The relative tolerance for the optimization algorithm (default is 1e-\/4). \\
+\hline
+{\em log\+Scale\+Flags} & A vector of booleans indicating whether to use log-\/scaling for each bandwidth parameter (default is all false). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a4f63e7ab3c8518d93fc8acb434fdc1dd}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!fitLOO@{fitLOO}}
+\index{fitLOO@{fitLOO}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{fitLOO()}{fitLOO()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a4f63e7ab3c8518d93fc8acb434fdc1dd} 
+void cmp\+::classifier\+::\+KDE\+::fit\+LOO (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{x\+Obs}{, }\item[{const Eigen\+::\+Ref$<$ const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \&}]{labels}{, }\item[{const double \&}]{min\+Bw}{, }\item[{const double \&}]{max\+Bw}{, }\item[{nlopt\+::algorithm}]{algo}{ = {\ttfamily nlopt\+:\+:LN\+\_\+SBPLX}, }\item[{double}]{ftol\+\_\+rel}{ = {\ttfamily 1e-\/4}, }\item[{std\+::vector$<$ bool $>$}]{log\+Scale\+Flags}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+
+
+Fit the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE} by maximizing an efficient leave-\/one-\/out objective. This method optimizes bandwidth using mean LOO log-\/probability over all observations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Obs} & A matrix of observations where each row is an observation and each column is a feature. \\
+\hline
+{\em labels} & A vector of labels corresponding to the observations. \\
+\hline
+{\em min\+Bw} & The minimum bandwidth value for optimization. \\
+\hline
+{\em max\+Bw} & The maximum bandwidth value for optimization. \\
+\hline
+{\em algo} & The optimization algorithm to use (default is nlopt\+::\+LN\+\_\+\+SBPLX). \\
+\hline
+{\em ftol\+\_\+rel} & The relative tolerance for the optimization algorithm (default is 1e-\/4). \\
+\hline
+{\em log\+Scale\+Flags} & A vector of booleans indicating whether to use log-\/scaling for each bandwidth parameter (default is all false). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a048e39c6d3e2936d698162e510fd961c}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!objectiveFunctionCV@{objectiveFunctionCV}}
+\index{objectiveFunctionCV@{objectiveFunctionCV}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{objectiveFunctionCV()}{objectiveFunctionCV()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a048e39c6d3e2936d698162e510fd961c} 
+double cmp\+::classifier\+::\+KDE\+::objective\+Function\+CV (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecmp_1_1classifier_aa762cd221c89d3516bbb7686df10306d}{method}} \&}]{method}{, }\item[{const \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{cmp\+::statistics\+::\+KFold}} \&}]{kf}{}\end{DoxyParamCaption}) const}
+
+
+
+Objective function for cross-\/validation. This function computes the objective value for cross-\/validation, to be maximized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em method} & The method to use for cross-\/validation (CV\+\_\+\+SCORE or CV\+\_\+\+PROB\+\_\+\+SCORE). \\
+\hline
+{\em kf} & The KFold object containing the cross-\/validation splits. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The objective value for cross-\/validation. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_ac587f3709c35b02b7d9106a37758bbb6}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!objectiveFunctionLOO@{objectiveFunctionLOO}}
+\index{objectiveFunctionLOO@{objectiveFunctionLOO}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{objectiveFunctionLOO()}{objectiveFunctionLOO()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_ac587f3709c35b02b7d9106a37758bbb6} 
+double cmp\+::classifier\+::\+KDE\+::objective\+Function\+LOO (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Objective function for efficient leave-\/one-\/out optimization. This function computes mean LOO log-\/probability over all observations, to be maximized. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_afc69aee2a558b1f14580e53d694968e3}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!predict@{predict}}
+\index{predict@{predict}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_afc69aee2a558b1f14580e53d694968e3} 
+size\+\_\+t cmp\+::classifier\+::\+KDE\+::predict (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Predict the class label at a given point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to predict the class label. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The predicted class label. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_a2fbf78b38db8cc851a433caa9b87e758}{cmp\+::classifier\+::\+Classifier}}.
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a6d22b13a7d6b3a4945cb59798ef34d26}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!predictProbabilities@{predictProbabilities}}
+\index{predictProbabilities@{predictProbabilities}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{predictProbabilities()}{predictProbabilities()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a6d22b13a7d6b3a4945cb59798ef34d26} 
+std\+::vector$<$ double $>$ cmp\+::classifier\+::\+KDE\+::predict\+Probabilities (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Predict the class probabilities at a given point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to predict the class probabilities. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of class probabilities. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier_af91c87a6c6a2261f74333847e6f6d68a}{cmp\+::classifier\+::\+Classifier}}.
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a88412a84686f3df848a4b8b922ec9714}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!set@{set}}
+\index{set@{set}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a88412a84686f3df848a4b8b922ec9714} 
+void cmp\+::classifier\+::\+KDE\+::set (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}} $>$}]{kernel}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}} $>$}]{bandwidth}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the kernel and bandwidth for the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. This method allows you to set the kernel and bandwidth objects that will be used for the \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kernel} & A shared pointer to a kernel object that defines the kernel function. \\
+\hline
+{\em bandwidth} & A shared pointer to a bandwidth object that defines the bandwidth for the kernel. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a941bb78e648d581f28fa7a1310a46bcf}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!bandwidth\_@{bandwidth\_}}
+\index{bandwidth\_@{bandwidth\_}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{bandwidth\_}{bandwidth\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a941bb78e648d581f28fa7a1310a46bcf} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{cmp\+::kernel\+::\+Bandwidth}}$>$ cmp\+::classifier\+::\+KDE\+::bandwidth\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a599215e4c0fe25b662df9cbe3427c3bd}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!classCounts\_@{classCounts\_}}
+\index{classCounts\_@{classCounts\_}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{classCounts\_}{classCounts\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a599215e4c0fe25b662df9cbe3427c3bd} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::classifier\+::\+KDE\+::class\+Counts\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Labels for the observations. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a06b46da8bf315b7215afdc590766a080}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!dimX\_@{dimX\_}}
+\index{dimX\_@{dimX\_}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{dimX\_}{dimX\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a06b46da8bf315b7215afdc590766a080} 
+size\+\_\+t cmp\+::classifier\+::\+KDE\+::dim\+X\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Input features dimensionality. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a34c11a49eef00c046a2dcfdd3a74a2ab}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!kernel\_@{kernel\_}}
+\index{kernel\_@{kernel\_}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{kernel\_}{kernel\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a34c11a49eef00c046a2dcfdd3a74a2ab} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1kernel_1_1_kernel}{kernel\+::\+Kernel}}$>$ cmp\+::classifier\+::\+KDE\+::kernel\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bandwidth object for \doxylink{classcmp_1_1classifier_1_1_k_d_e}{KDE}. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a5d3735e12aeed67668cc6abc16688739}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!labels\_@{labels\_}}
+\index{labels\_@{labels\_}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{labels\_}{labels\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a5d3735e12aeed67668cc6abc16688739} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::classifier\+::\+KDE\+::labels\+\_\+ = \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}(0)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Observations. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a148fe7ac061097b7b9b6a9982a273468}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!nClasses\_@{nClasses\_}}
+\index{nClasses\_@{nClasses\_}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{nClasses\_}{nClasses\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a148fe7ac061097b7b9b6a9982a273468} 
+size\+\_\+t cmp\+::classifier\+::\+KDE\+::n\+Classes\+\_\+ = 1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Total number of distinct class labels. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a08c2c9a30041396406a914a760d346d5}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!nObs\_@{nObs\_}}
+\index{nObs\_@{nObs\_}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{nObs\_}{nObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a08c2c9a30041396406a914a760d346d5} 
+size\+\_\+t cmp\+::classifier\+::\+KDE\+::n\+Obs\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Count of observations per class. 
+
+Number of training observations. \Hypertarget{classcmp_1_1classifier_1_1_k_d_e_a65f02ac64c534123a425e66eeb2f3b97}\index{cmp::classifier::KDE@{cmp::classifier::KDE}!xObs\_@{xObs\_}}
+\index{xObs\_@{xObs\_}!cmp::classifier::KDE@{cmp::classifier::KDE}}
+\doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_d_e_a65f02ac64c534123a425e66eeb2f3b97} 
+Eigen\+::\+Matrix\+Xd cmp\+::classifier\+::\+KDE\+::x\+Obs\+\_\+ = Eigen\+::\+Matrix\+Xd(0, 0)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{classifier_8h}{classifier.\+h}}\item 
+src/\mbox{\hyperlink{classifier_8cpp}{classifier.\+cpp}}\end{DoxyCompactItemize}

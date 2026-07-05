@@ -1,0 +1,87 @@
+\doxysection{cmp\+::mean\+::Mean Class Reference}
+\hypertarget{classcmp_1_1mean_1_1_mean}{}\label{classcmp_1_1mean_1_1_mean}\index{cmp::mean::Mean@{cmp::mean::Mean}}
+
+
+Abstract base class for Gaussian Process prior mean functions.  
+
+
+
+
+{\ttfamily \#include $<$mean++.\+h$>$}
+
+Inheritance diagram for cmp\+::mean\+::Mean\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.944445cm]{classcmp_1_1mean_1_1_mean}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_afa5d512bd5c31b2a646c603e5300fd88}{\texorpdfstring{$\sim$}{\string~}\+Mean}} ()=default
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a9baba3a56a23dadca372c919287e7e3e}{eval}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par) const =0
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_a3a961125a9875efd2fc0cde26430245f}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const =0
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1mean_1_1_mean_ac07ce7fda90ebaaa9bfc282a43947c46}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for Gaussian Process prior mean functions. 
+
+Mathematical Formulation The mean function $m: \mathbb{R}^D \to \mathbb{R}$ defines the expected value of the GP prior at any input $\mathbf{x}$\+:   \[m(\mathbf{x}) = \mathbb{E}[f(\mathbf{x})]
+\] Commonly configured as a constant $m(\mathbf{x}) = c$ or zero $m(\mathbf{x}) = 0$.
+
+Implementation Algorithm Provides virtual interfaces for mean evaluations ({\ttfamily eval}), first-\/order gradients ({\ttfamily eval\+Gradient}) with respect to a parameter $p_i$, and second-\/order Hessians ({\ttfamily eval\+Hessian}). 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1mean_1_1_mean_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_mean_afa5d512bd5c31b2a646c603e5300fd88}\index{cmp::mean::Mean@{cmp::mean::Mean}!````~Mean@{\texorpdfstring{$\sim$}{\string~}Mean}}
+\index{````~Mean@{\texorpdfstring{$\sim$}{\string~}Mean}!cmp::mean::Mean@{cmp::mean::Mean}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Mean()}{\string~Mean()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_mean_afa5d512bd5c31b2a646c603e5300fd88} 
+virtual cmp\+::mean\+::\+Mean\+::\texorpdfstring{$\sim$}{\string~}\+Mean (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1mean_1_1_mean_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1mean_1_1_mean_a9baba3a56a23dadca372c919287e7e3e}\index{cmp::mean::Mean@{cmp::mean::Mean}!eval@{eval}}
+\index{eval@{eval}!cmp::mean::Mean@{cmp::mean::Mean}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_mean_a9baba3a56a23dadca372c919287e7e3e} 
+virtual double cmp\+::mean\+::\+Mean\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a9ede71ea6ef1d5a2721a61643906b2ea}{cmp\+::mean\+::\+Constant}}, \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_ab4ca32b2846fd9f6e15983da7a4e1f0c}{cmp\+::mean\+::\+Model\+Cluster\+Mean}}, and \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_ab2d00feb375baf210b4813e519ad79f2}{cmp\+::mean\+::\+Zero}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_mean_a3a961125a9875efd2fc0cde26430245f}\index{cmp::mean::Mean@{cmp::mean::Mean}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::mean::Mean@{cmp::mean::Mean}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_mean_a3a961125a9875efd2fc0cde26430245f} 
+virtual double cmp\+::mean\+::\+Mean\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a410d0edef189f248e27d0f857df4ef22}{cmp\+::mean\+::\+Constant}}, \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_aaacb14230bb6d11845815d14457ff594}{cmp\+::mean\+::\+Model\+Cluster\+Mean}}, and \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a9b428d03b73d73407d83f00317c73fe9}{cmp\+::mean\+::\+Zero}}.
+
+\Hypertarget{classcmp_1_1mean_1_1_mean_ac07ce7fda90ebaaa9bfc282a43947c46}\index{cmp::mean::Mean@{cmp::mean::Mean}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::mean::Mean@{cmp::mean::Mean}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1mean_1_1_mean_ac07ce7fda90ebaaa9bfc282a43947c46} 
+virtual double cmp\+::mean\+::\+Mean\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1mean_1_1_constant_a6e5efbc4382f2bb69fb03871e7b59dd7}{cmp\+::mean\+::\+Constant}}, \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a28456bcb8d174af1ed3b4af1ba912f9a}{cmp\+::mean\+::\+Model\+Cluster\+Mean}}, and \mbox{\hyperlink{classcmp_1_1mean_1_1_zero_a0a89c9daf1c822f91492b2414a8783db}{cmp\+::mean\+::\+Zero}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mean_09_09_8h}{mean++.\+h}}\end{DoxyCompactItemize}

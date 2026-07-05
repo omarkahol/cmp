@@ -1,0 +1,111 @@
+\doxysection{integrator.\+h}
+\hypertarget{integrator_8h_source}{}\label{integrator_8h_source}\index{include/integrator.h@{include/integrator.h}}
+\mbox{\hyperlink{integrator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INTEGRATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INTEGRATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp}{cmp}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BasisType>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_quadrature1_d_a4f69cd5cb720d2040cd0c0d54f0e7717}{Quadrature1D}}\ \{}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}};}
+\DoxyCodeLine{00050\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_a4f69cd5cb720d2040cd0c0d54f0e7717}{Quadrature1D}}(\textcolor{keywordtype}{int}\ numPoints)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numPoints\ <\ 1)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Points\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}}.resize(numPoints);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}}.resize(numPoints);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numPoints\ ==\ 1)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}}(0)\ =\ 0.0;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}}(0)\ =\ 1.0;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ J\ =\ BasisType::getJacobiMatrix(numPoints);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd>\ solver(J);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}}\ =\ solver.eigenvalues();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ evecs\ =\ solver.eigenvectors();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numPoints;\ ++i)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}}(i)\ =\ \ evecs(0,\ i)\ *\ evecs(0,\ i);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_ad9ad84846c0d231576bb10e595975294}{integrate}}(std::function<\textcolor{keywordtype}{double}(\textcolor{keywordtype}{double})>\ f)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ result\ =\ 0.0;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}}.size();\ ++i)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}}(i)\ *\ f(\mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}}(i));}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BasisType>}
+\DoxyCodeLine{00108\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_tensor_integrator_aa3589f5894202c8a97d57d6e44796de1}{TensorIntegrator}}\ \{}
+\DoxyCodeLine{00109\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00110\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}};}
+\DoxyCodeLine{00111\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{gridWeights}};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_aa3589f5894202c8a97d57d6e44796de1}{TensorIntegrator}}(\textcolor{keywordtype}{int}\ dim,\ \textcolor{keywordtype}{int}\ pointsPerDim)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d}{Quadrature1D<BasisType>}}\ gq1D(pointsPerDim);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ totalPoints\ =\ std::pow(pointsPerDim,\ dim);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}.resize(totalPoints,\ dim);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{gridWeights}}.resize(totalPoints);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ totalPoints;\ ++i)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ temp\ =\ i;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ jointWeight\ =\ 1.0;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ d\ =\ 0;\ d\ <\ dim;\ ++d)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ idx\ =\ temp\ \%\ pointsPerDim;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}(i,\ d)\ =\ gq1D.\mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}}(idx);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ jointWeight\ *=\ gq1D.\mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}}(idx);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ /=\ pointsPerDim;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{gridWeights}}(i)\ =\ jointWeight;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ab63661144c4190470b2f2d3a56ee0212}{integrate}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&)>\ \&f)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ result\ =\ 0.0;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}.rows();\ ++i)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{gridWeights}}(i)\ *\ f(\mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}.row(i));}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a938e04b94791771eced7199e12507069}{integrate}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{double}(\textcolor{keyword}{const}\ Eigen::VectorXd\&)>\ \&f,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ p1,}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::VectorXd\&\ p2)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dim\ =\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}.cols();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(p1.size()\ !=\ dim\ ||\ p2.size()\ !=\ dim)\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Parameter\ dimensions\ must\ match\ grid\ dimensions."{}});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ result\ =\ 0.0;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ Eigen::VectorXd\ physicalPoint(dim);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}.rows();\ ++i)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ d\ =\ 0;\ d\ <\ dim;\ ++d)\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ from\ Canonical\ to\ Physical\ automatically}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ physicalPoint(d)\ =\ BasisType::mapToPhysical(\mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}}(i,\ d),\ p1(d),\ p2(d));}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{gridWeights}}(i)\ *\ f(physicalPoint);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \};}
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INTEGRATOR\_H}}
+
+\end{DoxyCode}

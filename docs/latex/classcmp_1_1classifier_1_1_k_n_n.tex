@@ -1,0 +1,145 @@
+\doxysection{cmp\+::classifier\+::KNN Class Reference}
+\hypertarget{classcmp_1_1classifier_1_1_k_n_n}{}\label{classcmp_1_1classifier_1_1_k_n_n}\index{cmp::classifier::KNN@{cmp::classifier::KNN}}
+
+
+K-\/\+Nearest Neighbors classifier helper class.  
+
+
+
+
+{\ttfamily \#include $<$classifier.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a683120d033cab65d84a0dad5f14689e2}{compute}} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&points, size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_ab14d257edb7f10593d734d008d1bca45}{k}})
+\begin{DoxyCompactList}\small\item\em Computes the nearest neighbor index map for the given points. \end{DoxyCompactList}\item 
+const std\+::vector$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a5d4dab364f380b50d2964528321f6dc7}{operator\mbox{[}$\,$\mbox{]}}} (size\+\_\+t i) const
+\begin{DoxyCompactList}\small\item\em Accesses the list of nearest neighbor indices for the i-\/th point. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a2c857acc2f3117c578a020ef5695ba73}{n\+Points}} () const
+\begin{DoxyCompactList}\small\item\em Returns the total number of points in the dataset. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_ab14d257edb7f10593d734d008d1bca45}{k}} () const
+\begin{DoxyCompactList}\small\item\em Returns the value of k (number of neighbors). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ size\+\_\+t $>$ $>$ \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a48cfa40a75110ac48cc559fcbe55fbb1}{neighbours\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Cache containing nearest neighbor indices for each data point. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_a78e7e9dc0ee2fa074c4f8129be6e5a55}{k\+Nearest\+Value\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The number of nearest neighbors (k). \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1classifier_1_1_k_n_n_ae0840d7055a75035523eb166b6ad6944}{n\+Points\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Total number of data points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+K-\/\+Nearest Neighbors classifier helper class. 
+
+Mathematical Formulation For a query point $\mathbf{x}$, K-\/\+Nearest Neighbors identifies the set of $k$ closest points $\mathcal{N}_k(\mathbf{x})$ in the reference dataset $\mathcal{D} = \{\mathbf{x}_i\}_{i=1}^N$ under a chosen distance metric $d(\mathbf{x}, \mathbf{x}_i)$ (typically Euclidean distance)\+: \[ d(\mathbf{x}, \mathbf{x}_i) = \|\mathbf{x} - \mathbf{x}_i\|_2 \]
+
+Implementation Algorithm The {\ttfamily compute} method builds an indexing/neighbour structure. For each point in the dataset, it searches and stores the indices of its $k$ nearest neighbors. 
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_a683120d033cab65d84a0dad5f14689e2}\index{cmp::classifier::KNN@{cmp::classifier::KNN}!compute@{compute}}
+\index{compute@{compute}!cmp::classifier::KNN@{cmp::classifier::KNN}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_n_n_a683120d033cab65d84a0dad5f14689e2} 
+void cmp\+::classifier\+::\+KNN\+::compute (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{points}{, }\item[{size\+\_\+t}]{k}{}\end{DoxyParamCaption})}
+
+
+
+Computes the nearest neighbor index map for the given points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & Vector of data points. \\
+\hline
+{\em k} & Number of nearest neighbors to compute. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_ab14d257edb7f10593d734d008d1bca45}\index{cmp::classifier::KNN@{cmp::classifier::KNN}!k@{k}}
+\index{k@{k}!cmp::classifier::KNN@{cmp::classifier::KNN}}
+\doxysubsubsection{\texorpdfstring{k()}{k()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_n_n_ab14d257edb7f10593d734d008d1bca45} 
+size\+\_\+t cmp\+::classifier\+::\+KNN\+::k (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns the value of k (number of neighbors). 
+
+\begin{DoxyReturn}{Returns}
+Number of neighbors. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_a2c857acc2f3117c578a020ef5695ba73}\index{cmp::classifier::KNN@{cmp::classifier::KNN}!nPoints@{nPoints}}
+\index{nPoints@{nPoints}!cmp::classifier::KNN@{cmp::classifier::KNN}}
+\doxysubsubsection{\texorpdfstring{nPoints()}{nPoints()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_n_n_a2c857acc2f3117c578a020ef5695ba73} 
+size\+\_\+t cmp\+::classifier\+::\+KNN\+::n\+Points (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns the total number of points in the dataset. 
+
+\begin{DoxyReturn}{Returns}
+Size of the dataset. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_a5d4dab364f380b50d2964528321f6dc7}\index{cmp::classifier::KNN@{cmp::classifier::KNN}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!cmp::classifier::KNN@{cmp::classifier::KNN}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_n_n_a5d4dab364f380b50d2964528321f6dc7} 
+const std\+::vector$<$ size\+\_\+t $>$ \& cmp\+::classifier\+::\+KNN\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Accesses the list of nearest neighbor indices for the i-\/th point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of the query point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to a vector of neighbor indices. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_a78e7e9dc0ee2fa074c4f8129be6e5a55}\index{cmp::classifier::KNN@{cmp::classifier::KNN}!kNearestValue\_@{kNearestValue\_}}
+\index{kNearestValue\_@{kNearestValue\_}!cmp::classifier::KNN@{cmp::classifier::KNN}}
+\doxysubsubsection{\texorpdfstring{kNearestValue\_}{kNearestValue\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_n_n_a78e7e9dc0ee2fa074c4f8129be6e5a55} 
+size\+\_\+t cmp\+::classifier\+::\+KNN\+::k\+Nearest\+Value\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of nearest neighbors (k). 
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_a48cfa40a75110ac48cc559fcbe55fbb1}\index{cmp::classifier::KNN@{cmp::classifier::KNN}!neighbours\_@{neighbours\_}}
+\index{neighbours\_@{neighbours\_}!cmp::classifier::KNN@{cmp::classifier::KNN}}
+\doxysubsubsection{\texorpdfstring{neighbours\_}{neighbours\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_n_n_a48cfa40a75110ac48cc559fcbe55fbb1} 
+std\+::vector$<$std\+::vector$<$size\+\_\+t$>$ $>$ cmp\+::classifier\+::\+KNN\+::neighbours\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cache containing nearest neighbor indices for each data point. 
+
+\Hypertarget{classcmp_1_1classifier_1_1_k_n_n_ae0840d7055a75035523eb166b6ad6944}\index{cmp::classifier::KNN@{cmp::classifier::KNN}!nPoints\_@{nPoints\_}}
+\index{nPoints\_@{nPoints\_}!cmp::classifier::KNN@{cmp::classifier::KNN}}
+\doxysubsubsection{\texorpdfstring{nPoints\_}{nPoints\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1classifier_1_1_k_n_n_ae0840d7055a75035523eb166b6ad6944} 
+size\+\_\+t cmp\+::classifier\+::\+KNN\+::n\+Points\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Total number of data points. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{classifier_8h}{classifier.\+h}}\item 
+src/\mbox{\hyperlink{classifier_8cpp}{classifier.\+cpp}}\end{DoxyCompactItemize}

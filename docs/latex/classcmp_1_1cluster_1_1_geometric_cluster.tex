@@ -1,0 +1,239 @@
+\doxysection{cmp\+::cluster\+::Geometric\+Cluster Class Reference}
+\hypertarget{classcmp_1_1cluster_1_1_geometric_cluster}{}\label{classcmp_1_1cluster_1_1_geometric_cluster}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+
+
+Implements a standard k-\/means clustering algorithm.  
+
+
+
+
+{\ttfamily \#include $<$cluster.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_af388f3da2b93f110ef956e5ad5d889b9}{Geometric\+Cluster}} ()=default
+\item 
+bool \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_ac8b7e1b55ae7b3bce7c1d635ebda098a}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&points, size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a54c293056d5713b5bad8c7c9e662a962}{n\+Clusters}}, std\+::default\+\_\+random\+\_\+engine \&rng, size\+\_\+t max\+\_\+iter=1000)
+\begin{DoxyCompactList}\small\item\em Fits the K-\/means clustering model on the given dataset. \end{DoxyCompactList}\item 
+const size\+\_\+t \& \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a046053468202d006e673a8bd241e25af}{operator\mbox{[}$\,$\mbox{]}}} (size\+\_\+t i) const
+\begin{DoxyCompactList}\small\item\em Accesses the cluster label of the i-\/th point. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a52873464ae777b98143ec1d38787173e}{centroid}} (size\+\_\+t i) const
+\begin{DoxyCompactList}\small\item\em Returns the centroid of the i-\/th cluster. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a54c293056d5713b5bad8c7c9e662a962}{n\+Clusters}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of clusters. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a538021d3ce75a01c53c27f918239d7b6}{n\+Points}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of data points. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a17dd8284c4d5dac885c3833bdac5c2e0}{dim}} () const
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the data. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \& \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_a2f3e3fc361864c55b6b33a60f11f982b}{get\+Labels}} () const
+\begin{DoxyCompactList}\small\item\em Returns the cluster assignments vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_adc096b4f56036c5da4da2097e1e8d46c}{labels\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Cluster label assigned to each data point. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_ad42d010720fd09e4b1f00ef4fede3865}{centroids\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Centroid coordinates for each cluster. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_aac26f622a9e449c022dbde6236f2856a}{n\+Clusters\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Number of clusters. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_ae043fd7e6cc4afa358873e4fa12e8bf6}{n\+Points\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Number of data points. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1cluster_1_1_geometric_cluster_afa635e89afa48702e0536ddb0196a3e7}{dim\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Dimensionality of data features. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements a standard k-\/means clustering algorithm. 
+
+Mathematical Formulation K-\/means partitions $N$ observations $\{\mathbf{x}_1, \dots, \mathbf{x}_N\}$ where $\mathbf{x}_j \in \mathbb{R}^d$ into $K$ clusters $\mathbf{S} = \{S_1, \dots, S_K\}$ to minimize the within-\/cluster sum of squares (WCSS)\+:   \[\arg\min_{\mathbf{S}} \sum_{i=1}^K \sum_{\mathbf{x} \in S_i} \|\mathbf{x} - \boldsymbol{\mu}_i\|_2^2
+\] where $\boldsymbol{\mu}_i$ is the centroid of the points in $S_i$.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Initialize centroids $\boldsymbol{\mu}_i$ by randomly selecting $K$ distinct data points.
+\item Assign each point $\mathbf{x}_j$ to the cluster with the nearest centroid\+:   \[   S_i^{(t)} = \left\{ \mathbf{x}_j : \|\mathbf{x}_j - \boldsymbol{\mu}_i^{(t)}\|_2 \le \|\mathbf{x}_j - \boldsymbol{\mu}_m^{(t)}\|_2 \ \forall m=1,\dots,K \right\}
+\]
+\item Update the centroids to be the arithmetic mean of all points in that cluster\+:   \[   \boldsymbol{\mu}_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{\mathbf{x}_j \in S_i^{(t)}} \mathbf{x}_j
+\]
+\item Iterate steps 2-\/3 until convergence (centroids no longer change or {\ttfamily max\+\_\+iter} is reached). 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_af388f3da2b93f110ef956e5ad5d889b9}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!GeometricCluster@{GeometricCluster}}
+\index{GeometricCluster@{GeometricCluster}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{GeometricCluster()}{GeometricCluster()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_af388f3da2b93f110ef956e5ad5d889b9} 
+cmp\+::cluster\+::\+Geometric\+Cluster\+::\+Geometric\+Cluster (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_a52873464ae777b98143ec1d38787173e}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!centroid@{centroid}}
+\index{centroid@{centroid}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{centroid()}{centroid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_a52873464ae777b98143ec1d38787173e} 
+Eigen\+::\+Vector\+Xd cmp\+::cluster\+::\+Geometric\+Cluster\+::centroid (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns the centroid of the i-\/th cluster. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Cluster index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector representation of the cluster centroid. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_a17dd8284c4d5dac885c3833bdac5c2e0}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!dim@{dim}}
+\index{dim@{dim}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_a17dd8284c4d5dac885c3833bdac5c2e0} 
+size\+\_\+t cmp\+::cluster\+::\+Geometric\+Cluster\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns the dimension of the data. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_ac8b7e1b55ae7b3bce7c1d635ebda098a}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!fit@{fit}}
+\index{fit@{fit}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_ac8b7e1b55ae7b3bce7c1d635ebda098a} 
+bool cmp\+::cluster\+::\+Geometric\+Cluster\+::fit (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{points}{, }\item[{size\+\_\+t}]{n\+Clusters}{, }\item[{std\+::default\+\_\+random\+\_\+engine \&}]{rng}{, }\item[{size\+\_\+t}]{max\+\_\+iter}{ = {\ttfamily 1000}}\end{DoxyParamCaption})}
+
+
+
+Fits the K-\/means clustering model on the given dataset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & N x d matrix of points to cluster. \\
+\hline
+{\em n\+Clusters} & The number of clusters K. \\
+\hline
+{\em rng} & Random number generator used to initialize centroids. \\
+\hline
+{\em max\+\_\+iter} & Maximum number of K-\/means iterations. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if convergence was reached, false if maximum iterations was exceeded. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_a2f3e3fc361864c55b6b33a60f11f982b}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!getLabels@{getLabels}}
+\index{getLabels@{getLabels}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{getLabels()}{getLabels()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_a2f3e3fc361864c55b6b33a60f11f982b} 
+const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \& cmp\+::cluster\+::\+Geometric\+Cluster\+::get\+Labels (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the cluster assignments vector. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the vector of cluster labels. 
+\end{DoxyReturn}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_a54c293056d5713b5bad8c7c9e662a962}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!nClusters@{nClusters}}
+\index{nClusters@{nClusters}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{nClusters()}{nClusters()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_a54c293056d5713b5bad8c7c9e662a962} 
+size\+\_\+t cmp\+::cluster\+::\+Geometric\+Cluster\+::n\+Clusters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of clusters. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_a538021d3ce75a01c53c27f918239d7b6}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!nPoints@{nPoints}}
+\index{nPoints@{nPoints}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{nPoints()}{nPoints()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_a538021d3ce75a01c53c27f918239d7b6} 
+size\+\_\+t cmp\+::cluster\+::\+Geometric\+Cluster\+::n\+Points (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of data points. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_a046053468202d006e673a8bd241e25af}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_a046053468202d006e673a8bd241e25af} 
+const size\+\_\+t \& cmp\+::cluster\+::\+Geometric\+Cluster\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption}) const}
+
+
+
+Accesses the cluster label of the i-\/th point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of the point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cluster label index. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_ad42d010720fd09e4b1f00ef4fede3865}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!centroids\_@{centroids\_}}
+\index{centroids\_@{centroids\_}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{centroids\_}{centroids\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_ad42d010720fd09e4b1f00ef4fede3865} 
+Eigen\+::\+Matrix\+Xd cmp\+::cluster\+::\+Geometric\+Cluster\+::centroids\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Centroid coordinates for each cluster. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_afa635e89afa48702e0536ddb0196a3e7}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!dim\_@{dim\_}}
+\index{dim\_@{dim\_}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_afa635e89afa48702e0536ddb0196a3e7} 
+size\+\_\+t cmp\+::cluster\+::\+Geometric\+Cluster\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dimensionality of data features. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_adc096b4f56036c5da4da2097e1e8d46c}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!labels\_@{labels\_}}
+\index{labels\_@{labels\_}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{labels\_}{labels\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_adc096b4f56036c5da4da2097e1e8d46c} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::cluster\+::\+Geometric\+Cluster\+::labels\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cluster label assigned to each data point. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_aac26f622a9e449c022dbde6236f2856a}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!nClusters\_@{nClusters\_}}
+\index{nClusters\_@{nClusters\_}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{nClusters\_}{nClusters\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_aac26f622a9e449c022dbde6236f2856a} 
+size\+\_\+t cmp\+::cluster\+::\+Geometric\+Cluster\+::n\+Clusters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of clusters. 
+
+\Hypertarget{classcmp_1_1cluster_1_1_geometric_cluster_ae043fd7e6cc4afa358873e4fa12e8bf6}\index{cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}!nPoints\_@{nPoints\_}}
+\index{nPoints\_@{nPoints\_}!cmp::cluster::GeometricCluster@{cmp::cluster::GeometricCluster}}
+\doxysubsubsection{\texorpdfstring{nPoints\_}{nPoints\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1cluster_1_1_geometric_cluster_ae043fd7e6cc4afa358873e4fa12e8bf6} 
+size\+\_\+t cmp\+::cluster\+::\+Geometric\+Cluster\+::n\+Points\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of data points. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{cluster_8h}{cluster.\+h}}\item 
+src/\mbox{\hyperlink{cluster_8cpp}{cluster.\+cpp}}\end{DoxyCompactItemize}

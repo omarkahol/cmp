@@ -1,0 +1,71 @@
+\doxysection{cmp\+::prior Namespace Reference}
+\hypertarget{namespacecmp_1_1prior}{}\label{namespacecmp_1_1prior}\index{cmp::prior@{cmp::prior}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution}}
+\begin{DoxyCompactList}\small\item\em Adapts a univariate probability distribution to act as a prior on a single coordinate. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}
+\begin{DoxyCompactList}\small\item\em Base class for prior probability distributions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1prior_1_1_product}{Product}}
+\begin{DoxyCompactList}\small\item\em Represents the product (sum of logs) of two independent prior distributions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform}{Uniform}}
+\begin{DoxyCompactList}\small\item\em Represents an improper flat (uniform) prior. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Dist\+Type$>$ }\\std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ \mbox{\hyperlink{namespacecmp_1_1prior_adb31d0f5e3c1784da4742ce84f67c2f2}{make}} (const Dist\+Type \&dist, size\+\_\+t param\+Index)
+\begin{DoxyCompactList}\small\item\em Helper template function to create a \doxylink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution} prior. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ \mbox{\hyperlink{namespacecmp_1_1prior_acbd773d63bc95b5e9a16f907edc37a74}{operator\texorpdfstring{$\ast$}{*}}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ p1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ p2)
+\begin{DoxyCompactList}\small\item\em Multiplies two prior distributions (returns a \doxylink{classcmp_1_1prior_1_1_product}{Product} prior). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacecmp_1_1prior_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecmp_1_1prior_adb31d0f5e3c1784da4742ce84f67c2f2}\index{cmp::prior@{cmp::prior}!make@{make}}
+\index{make@{make}!cmp::prior@{cmp::prior}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1prior_adb31d0f5e3c1784da4742ce84f67c2f2} 
+template$<$typename Dist\+Type$>$ \\
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$ cmp\+::prior\+::make (\begin{DoxyParamCaption}\item[{const Dist\+Type \&}]{dist}{, }\item[{size\+\_\+t}]{param\+Index}{}\end{DoxyParamCaption})}
+
+
+
+Helper template function to create a \doxylink{classcmp_1_1prior_1_1_from_distribution}{From\+Distribution} prior. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Dist\+Type} & The type of the univariate distribution. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em dist} & The distribution. \\
+\hline
+{\em param\+Index} & The index of the parameter coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Shared pointer to the created \doxylink{classcmp_1_1prior_1_1_prior}{Prior}. 
+\end{DoxyReturn}
+\Hypertarget{namespacecmp_1_1prior_acbd773d63bc95b5e9a16f907edc37a74}\index{cmp::prior@{cmp::prior}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!cmp::prior@{cmp::prior}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{namespacecmp_1_1prior_acbd773d63bc95b5e9a16f907edc37a74} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{cmp\+::prior\+::\+Prior}} $>$ cmp\+::prior\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$}]{p1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}} $>$}]{p2}{}\end{DoxyParamCaption})}
+
+
+
+Multiplies two prior distributions (returns a \doxylink{classcmp_1_1prior_1_1_product}{Product} prior). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & First prior distribution. \\
+\hline
+{\em p2} & Second prior distribution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Shared pointer to the \doxylink{classcmp_1_1prior_1_1_product}{Product} prior. 
+\end{DoxyReturn}

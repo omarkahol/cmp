@@ -1,0 +1,114 @@
+\doxysection{univariate\+\_\+distribution Class Reference}
+\hypertarget{classcmp_1_1univariate__distribution}{}\label{classcmp_1_1univariate__distribution}\index{univariate\_distribution@{univariate\_distribution}}
+
+
+{\ttfamily \#include $<$distribution.\+h$>$}
+
+Inheritance diagram for univariate\+\_\+distribution\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.060606cm]{classcmp_1_1univariate__distribution}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual double \mbox{\hyperlink{classcmp_1_1univariate__distribution_a5dfc437751d0701c0f84bcb019b8a89d}{log\+\_\+pdf}} (const double \&x)=0
+\begin{DoxyCompactList}\small\item\em Evaluate the log-\/pdf of the distribution at point x. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{classcmp_1_1univariate__distribution_a5ba033b433776d12c997d52bf197dc66}{cdf}} (const double \&x)=0
+\begin{DoxyCompactList}\small\item\em Evaluate the cdf of the distribution at point x. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{classcmp_1_1univariate__distribution_adc4dbbebfd36dac7c7e9dfd6418ed363}{quantile}} (const double \&p)=0
+\begin{DoxyCompactList}\small\item\em Evaluate the quantile function of the distribution. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{classcmp_1_1univariate__distribution_a626aa9bd0df9342a085db74fe6560995}{sample}} ()=0
+\begin{DoxyCompactList}\small\item\em Sample from the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1univariate__distribution_a5ba033b433776d12c997d52bf197dc66}\index{univariate\_distribution@{univariate\_distribution}!cdf@{cdf}}
+\index{cdf@{cdf}!univariate\_distribution@{univariate\_distribution}}
+\doxysubsubsection{\texorpdfstring{cdf()}{cdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1univariate__distribution_a5ba033b433776d12c997d52bf197dc66} 
+virtual double cdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Evaluate the cdf of the distribution at point x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Point at which to evaluate the cdf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1cauchy__distribution_acfeee2418e7758ce8754ee04cdae549d}{cauchy\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_acfeee2418e7758ce8754ee04cdae549d}{inverse\+\_\+gamma\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1log__normal__distribution_acfeee2418e7758ce8754ee04cdae549d}{log\+\_\+normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1normal__distribution_acfeee2418e7758ce8754ee04cdae549d}{normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1t__distribution_acfeee2418e7758ce8754ee04cdae549d}{t\+\_\+distribution}}, and \mbox{\hyperlink{classcmp_1_1uniform__distribution_acfeee2418e7758ce8754ee04cdae549d}{uniform\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1univariate__distribution_a5dfc437751d0701c0f84bcb019b8a89d}\index{univariate\_distribution@{univariate\_distribution}!log\_pdf@{log\_pdf}}
+\index{log\_pdf@{log\_pdf}!univariate\_distribution@{univariate\_distribution}}
+\doxysubsubsection{\texorpdfstring{log\_pdf()}{log\_pdf()}}
+{\footnotesize\ttfamily \label{classcmp_1_1univariate__distribution_a5dfc437751d0701c0f84bcb019b8a89d} 
+virtual double log\+\_\+pdf (\begin{DoxyParamCaption}\item[{const double \&}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Evaluate the log-\/pdf of the distribution at point x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The point at which to evaluate the log-\/pdf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1cauchy__distribution_abf4916297737fa5db95e6c51d327791f}{cauchy\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_abf4916297737fa5db95e6c51d327791f}{inverse\+\_\+gamma\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1log__normal__distribution_abf4916297737fa5db95e6c51d327791f}{log\+\_\+normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1normal__distribution_abf4916297737fa5db95e6c51d327791f}{normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1t__distribution_abf4916297737fa5db95e6c51d327791f}{t\+\_\+distribution}}, and \mbox{\hyperlink{classcmp_1_1uniform__distribution_abf4916297737fa5db95e6c51d327791f}{uniform\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1univariate__distribution_adc4dbbebfd36dac7c7e9dfd6418ed363}\index{univariate\_distribution@{univariate\_distribution}!quantile@{quantile}}
+\index{quantile@{quantile}!univariate\_distribution@{univariate\_distribution}}
+\doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
+{\footnotesize\ttfamily \label{classcmp_1_1univariate__distribution_adc4dbbebfd36dac7c7e9dfd6418ed363} 
+virtual double quantile (\begin{DoxyParamCaption}\item[{const double \&}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Evaluate the quantile function of the distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The probability at which to evaluate the quantile \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1cauchy__distribution_add387d6d51ae5bab8aa6c9e172231a1e}{cauchy\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_add387d6d51ae5bab8aa6c9e172231a1e}{inverse\+\_\+gamma\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1log__normal__distribution_add387d6d51ae5bab8aa6c9e172231a1e}{log\+\_\+normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1normal__distribution_add387d6d51ae5bab8aa6c9e172231a1e}{normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1t__distribution_add387d6d51ae5bab8aa6c9e172231a1e}{t\+\_\+distribution}}, and \mbox{\hyperlink{classcmp_1_1uniform__distribution_add387d6d51ae5bab8aa6c9e172231a1e}{uniform\+\_\+distribution}}.
+
+\Hypertarget{classcmp_1_1univariate__distribution_a626aa9bd0df9342a085db74fe6560995}\index{univariate\_distribution@{univariate\_distribution}!sample@{sample}}
+\index{sample@{sample}!univariate\_distribution@{univariate\_distribution}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily \label{classcmp_1_1univariate__distribution_a626aa9bd0df9342a085db74fe6560995} 
+virtual double sample (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sample from the distribution. 
+
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classcmp_1_1cauchy__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}{cauchy\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1inverse__gamma__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}{inverse\+\_\+gamma\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1log__normal__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}{log\+\_\+normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1normal__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}{normal\+\_\+distribution}}, \mbox{\hyperlink{classcmp_1_1t__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}{t\+\_\+distribution}}, and \mbox{\hyperlink{classcmp_1_1uniform__distribution_a72f7c9e85f9c8fb9237906eec1c7645d}{uniform\+\_\+distribution}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{distribution_8h}{distribution.\+h}}\end{DoxyCompactItemize}

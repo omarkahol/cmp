@@ -1,0 +1,193 @@
+\doxysection{cmp\+::covariance\+::Sum Class Reference}
+\hypertarget{classcmp_1_1covariance_1_1_sum}{}\label{classcmp_1_1covariance_1_1_sum}\index{cmp::covariance::Sum@{cmp::covariance::Sum}}
+
+
+Represents the sum of two covariance functions.  
+
+
+
+
+{\ttfamily \#include $<$covariance.\+h$>$}
+
+Inheritance diagram for cmp\+::covariance\+::Sum\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1covariance_1_1_sum}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}{Sum}} ()=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_ac64190126422ab033aecb1a68286da2b}{Sum}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a093c765b13a3df793869c43e69a653e4}{Sum}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_aa85596c2af9abc20e514f90843d1efe7}{operator=}} (const \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \& \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_ad41ddae0180da1f38c2f2c907f3b9e9f}{operator=}} (\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \&\&)=default
+\item 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a466f2ace185cd64cc3afee1eab2fa125}{Sum}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k2)
+\begin{DoxyCompactList}\small\item\em Constructs a sum covariance function from two kernels. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a0ede71a4a41c1d532a4da3c1d0a4d315}{eval}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par) const
+\begin{DoxyCompactList}\small\item\em Evaluates the sum kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_abdc331300b2d41565c53373593aa3176}{eval\+Gradient}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Evaluates the partial derivative of the sum kernel. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_ae8e5c9319ad82ff2b8b5d22b62b68361}{eval\+Hessian}} (const Eigen\+::\+Vector\+Xd \&x1, const Eigen\+::\+Vector\+Xd \&x2, const Eigen\+::\+Vector\+Xd \&par, const size\+\_\+t \&i, const size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Evaluates the second-\/order partial derivative of the sum kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp\+::covariance\+::\+Covariance}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5f37d5d9fcdeee6b4e7839e0f718a404}{\texorpdfstring{$\sim$}{\string~}\+Covariance}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a5410f5513c01e4ca6e593f8f51da2d37}{make}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k1, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ k2)
+\begin{DoxyCompactList}\small\item\em Factory method to create a shared pointer to a sum covariance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a9fb251698c57ef527bfc11619af42b22}{left\+Covariance\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Left operand covariance function. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum_a4a1165935ea128d455ff1b68632d1e28}{right\+Covariance\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Right operand covariance function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the sum of two covariance functions. 
+
+Mathematical Formulation For two covariance kernels $k_1$ and $k_2$, the sum kernel is\+:   \[k_{\text{sum}}(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta}) = k_1(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta}) + k_2(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta})
+\] 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1covariance_1_1_sum_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!Sum@{Sum}}
+\index{Sum@{Sum}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{Sum()}{Sum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_a769c36767f40c19bee579fbd6b6f69ed} 
+cmp\+::covariance\+::\+Sum\+::\+Sum (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_ac64190126422ab033aecb1a68286da2b}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!Sum@{Sum}}
+\index{Sum@{Sum}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{Sum()}{Sum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_ac64190126422ab033aecb1a68286da2b} 
+cmp\+::covariance\+::\+Sum\+::\+Sum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_a093c765b13a3df793869c43e69a653e4}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!Sum@{Sum}}
+\index{Sum@{Sum}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{Sum()}{Sum()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_a093c765b13a3df793869c43e69a653e4} 
+cmp\+::covariance\+::\+Sum\+::\+Sum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_a466f2ace185cd64cc3afee1eab2fa125}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!Sum@{Sum}}
+\index{Sum@{Sum}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{Sum()}{Sum()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_a466f2ace185cd64cc3afee1eab2fa125} 
+cmp\+::covariance\+::\+Sum\+::\+Sum (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a sum covariance function from two kernels. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1covariance_1_1_sum_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_sum_a0ede71a4a41c1d532a4da3c1d0a4d315}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!eval@{eval}}
+\index{eval@{eval}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_a0ede71a4a41c1d532a4da3c1d0a4d315} 
+double cmp\+::covariance\+::\+Sum\+::eval (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the sum kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a72dab452ea6ab5ef0cb2474fc2407f6c}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_abdc331300b2d41565c53373593aa3176}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!evalGradient@{evalGradient}}
+\index{evalGradient@{evalGradient}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{evalGradient()}{evalGradient()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_abdc331300b2d41565c53373593aa3176} 
+double cmp\+::covariance\+::\+Sum\+::eval\+Gradient (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the partial derivative of the sum kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5dca89e53b176ffb07e8b1e76d227b2f}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_ae8e5c9319ad82ff2b8b5d22b62b68361}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!evalHessian@{evalHessian}}
+\index{evalHessian@{evalHessian}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{evalHessian()}{evalHessian()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_ae8e5c9319ad82ff2b8b5d22b62b68361} 
+double cmp\+::covariance\+::\+Sum\+::eval\+Hessian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x1}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{x2}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{par}{, }\item[{const size\+\_\+t \&}]{i}{, }\item[{const size\+\_\+t \&}]{j}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the second-\/order partial derivative of the sum kernel. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance_a5bef06041608b381246c500a4faefb9e}{cmp\+::covariance\+::\+Covariance}}.
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_a5410f5513c01e4ca6e593f8f51da2d37}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!make@{make}}
+\index{make@{make}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_a5410f5513c01e4ca6e593f8f51da2d37} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$ cmp\+::covariance\+::\+Sum\+::make (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k1}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}} $>$}]{k2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Factory method to create a shared pointer to a sum covariance. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_aa85596c2af9abc20e514f90843d1efe7}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_aa85596c2af9abc20e514f90843d1efe7} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \& cmp\+::covariance\+::\+Sum\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_ad41ddae0180da1f38c2f2c907f3b9e9f}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!operator=@{operator=}}
+\index{operator=@{operator=}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_ad41ddae0180da1f38c2f2c907f3b9e9f} 
+\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \& cmp\+::covariance\+::\+Sum\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcmp_1_1covariance_1_1_sum}{Sum}} \&\&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1covariance_1_1_sum_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1covariance_1_1_sum_a9fb251698c57ef527bfc11619af42b22}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!leftCovariance\_@{leftCovariance\_}}
+\index{leftCovariance\_@{leftCovariance\_}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{leftCovariance\_}{leftCovariance\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_a9fb251698c57ef527bfc11619af42b22} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}$>$ cmp\+::covariance\+::\+Sum\+::left\+Covariance\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Left operand covariance function. 
+
+\Hypertarget{classcmp_1_1covariance_1_1_sum_a4a1165935ea128d455ff1b68632d1e28}\index{cmp::covariance::Sum@{cmp::covariance::Sum}!rightCovariance\_@{rightCovariance\_}}
+\index{rightCovariance\_@{rightCovariance\_}!cmp::covariance::Sum@{cmp::covariance::Sum}}
+\doxysubsubsection{\texorpdfstring{rightCovariance\_}{rightCovariance\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_sum_a4a1165935ea128d455ff1b68632d1e28} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{Covariance}}$>$ cmp\+::covariance\+::\+Sum\+::right\+Covariance\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Right operand covariance function. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{covariance_8h}{covariance.\+h}}\end{DoxyCompactItemize}

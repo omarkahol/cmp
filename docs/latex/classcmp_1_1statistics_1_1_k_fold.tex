@@ -1,0 +1,187 @@
+\doxysection{cmp\+::statistics\+::KFold Class Reference}
+\hypertarget{classcmp_1_1statistics_1_1_k_fold}{}\label{classcmp_1_1statistics_1_1_k_fold}\index{cmp::statistics::KFold@{cmp::statistics::KFold}}
+
+
+K-\/\+Fold cross-\/validation partition generator.  
+
+
+
+
+{\ttfamily \#include $<$statistics.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}}
+\begin{DoxyCompactList}\small\item\em Iterator class to traverse folds for K-\/\+Fold cross-\/validation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a1f3735ac2d7d52a59a097e4840c496f0}{KFold}} (Eigen\+::\+Index n\+\_\+splits, Eigen\+::\+Index n\+\_\+obs, bool shuffle=false, unsigned int random\+\_\+state=42)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classcmp_1_1statistics_1_1_k_fold}{KFold} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}} \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a2407535251bd801769a675c099c994eb}{begin}} () const
+\begin{DoxyCompactList}\small\item\em Gets the iterator pointing to the first fold. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}} \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aa0aafc0a8c140532d630ead2ed1ad1ea}{end}} () const
+\begin{DoxyCompactList}\small\item\em Gets the iterator pointing to the end of the folds. \end{DoxyCompactList}\item 
+std\+::pair$<$ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}, \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a190bbe598f6af6c21a57d25f8b61936e}{operator()}} (Eigen\+::\+Index split) const
+\begin{DoxyCompactList}\small\item\em Directly accesses the train/test indices for a specific split. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_ad4210521829bdc32e8ae9cd69b703eda}{n\+Folds}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of splits/folds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Index \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a474bfecec12a9e55bdf965535f56da0a}{n\+Splits\+\_\+}}
+\item 
+Eigen\+::\+Index \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_ac32622bc5444115cbf0e8c68f260f7e1}{n\+Obs\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a222f68935675eb0d3eff0219c386f62e}{shuffle\+\_\+}}
+\item 
+unsigned int \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_aec6e04d2bbe696cc3b3a9742c3f764da}{rng\+State\+\_\+}}
+\item 
+std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a8007c58d20b3a0f0014718ab872fe204}{rng\+\_\+}}
+\item 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929}{indices\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+K-\/\+Fold cross-\/validation partition generator. 
+
+Mathematical Formulation Partitions a dataset $\mathcal{D}$ of size $N$ into $K$ mutually exclusive, approximately equal-\/sized subsets $\{F_1, \dots, F_K\}$ such that\+:   \[\bigcup_{k=1}^K F_k = \mathcal{D}, \quad F_i \cap F_j = \emptyset \quad \forall i \neq j
+\] During the $k$-\/th fold iteration, the model is trained on $\mathcal{D} \setminus F_k$ and validated on $F_k$.
+
+Implementation Algorithm
+\begin{DoxyEnumerate}
+\item Computes the base size of each fold\+: $S = \lfloor N/K \rfloor$.
+\item Assigns indices to splits. The $k$-\/th split covers index range $[k \cdot S, (k+1) \cdot S)$, and the last fold covers any remainder.
+\item Returns the respective train and test index vectors. 
+\end{DoxyEnumerate}
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_a1f3735ac2d7d52a59a097e4840c496f0}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!KFold@{KFold}}
+\index{KFold@{KFold}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{KFold()}{KFold()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_a1f3735ac2d7d52a59a097e4840c496f0} 
+cmp\+::statistics\+::\+KFold\+::\+KFold (\begin{DoxyParamCaption}\item[{Eigen\+::\+Index}]{n\+\_\+splits}{, }\item[{Eigen\+::\+Index}]{n\+\_\+obs}{, }\item[{bool}]{shuffle}{ = {\ttfamily false}, }\item[{unsigned int}]{random\+\_\+state}{ = {\ttfamily 42}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classcmp_1_1statistics_1_1_k_fold}{KFold} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+splits} & Number of folds. Must be at least 2 and at most n\+\_\+obs. \\
+\hline
+{\em n\+\_\+obs} & Total number of observations in the dataset. Must be at least 2. \\
+\hline
+{\em shuffle} & Whether to shuffle the data before splitting into folds. \\
+\hline
+{\em random\+\_\+state} & Seed for the random number generator (used if shuffle is true). \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if the input parameters are invalid. \\
+\hline
+\end{DoxyExceptions}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_a2407535251bd801769a675c099c994eb}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!begin@{begin}}
+\index{begin@{begin}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_a2407535251bd801769a675c099c994eb} 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}} cmp\+::statistics\+::\+KFold\+::begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the iterator pointing to the first fold. 
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_aa0aafc0a8c140532d630ead2ed1ad1ea}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!end@{end}}
+\index{end@{end}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_aa0aafc0a8c140532d630ead2ed1ad1ea} 
+\mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{KFold\+Iterator}} cmp\+::statistics\+::\+KFold\+::end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the iterator pointing to the end of the folds. 
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_ad4210521829bdc32e8ae9cd69b703eda}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!nFolds@{nFolds}}
+\index{nFolds@{nFolds}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{nFolds()}{nFolds()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_ad4210521829bdc32e8ae9cd69b703eda} 
+size\+\_\+t cmp\+::statistics\+::\+KFold\+::n\+Folds (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the number of splits/folds. 
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_a190bbe598f6af6c21a57d25f8b61936e}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!operator()@{operator()}}
+\index{operator()@{operator()}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_a190bbe598f6af6c21a57d25f8b61936e} 
+std\+::pair$<$ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}}, \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} $>$ cmp\+::statistics\+::\+KFold\+::operator() (\begin{DoxyParamCaption}\item[{Eigen\+::\+Index}]{split}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Directly accesses the train/test indices for a specific split. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em split} & The split index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pair of training and test index vectors. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!indices\_@{indices\_}}
+\index{indices\_@{indices\_}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{indices\_}{indices\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_a4af9769867e9ff7f1933c58ed9d10929} 
+\mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::statistics\+::\+KFold\+::indices\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_ac32622bc5444115cbf0e8c68f260f7e1}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!nObs\_@{nObs\_}}
+\index{nObs\_@{nObs\_}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{nObs\_}{nObs\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_ac32622bc5444115cbf0e8c68f260f7e1} 
+Eigen\+::\+Index cmp\+::statistics\+::\+KFold\+::n\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_a474bfecec12a9e55bdf965535f56da0a}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!nSplits\_@{nSplits\_}}
+\index{nSplits\_@{nSplits\_}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{nSplits\_}{nSplits\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_a474bfecec12a9e55bdf965535f56da0a} 
+Eigen\+::\+Index cmp\+::statistics\+::\+KFold\+::n\+Splits\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_a8007c58d20b3a0f0014718ab872fe204}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!rng\_@{rng\_}}
+\index{rng\_@{rng\_}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_a8007c58d20b3a0f0014718ab872fe204} 
+std\+::default\+\_\+random\+\_\+engine cmp\+::statistics\+::\+KFold\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_aec6e04d2bbe696cc3b3a9742c3f764da}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!rngState\_@{rngState\_}}
+\index{rngState\_@{rngState\_}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{rngState\_}{rngState\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_aec6e04d2bbe696cc3b3a9742c3f764da} 
+unsigned int cmp\+::statistics\+::\+KFold\+::rng\+State\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1statistics_1_1_k_fold_a222f68935675eb0d3eff0219c386f62e}\index{cmp::statistics::KFold@{cmp::statistics::KFold}!shuffle\_@{shuffle\_}}
+\index{shuffle\_@{shuffle\_}!cmp::statistics::KFold@{cmp::statistics::KFold}}
+\doxysubsubsection{\texorpdfstring{shuffle\_}{shuffle\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_k_fold_a222f68935675eb0d3eff0219c386f62e} 
+bool cmp\+::statistics\+::\+KFold\+::shuffle\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{statistics_8h}{statistics.\+h}}\end{DoxyCompactItemize}

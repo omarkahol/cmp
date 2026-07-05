@@ -1,0 +1,138 @@
+\doxysection{prior++.h}
+\hypertarget{prior_09_09_8h_source}{}\label{prior_09_09_8h_source}\index{include/prior++.h@{include/prior++.h}}
+\mbox{\hyperlink{prior_09_09_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PRIORPP\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PRIORPP\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{distribution_8h}{distribution.h}}>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1prior}{cmp::prior}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}\ \{}
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_a32b126d443e54e0c933eac638626acfa}{\string~Prior}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_ac983277833189063b62793fbc1c3ebd5}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_aeb36eaf26c22bdf4049574f7eb254db8}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior_ad047a6a9bf982743897f4e42529ada63}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}\ \{}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}{leftPrior\_}};}
+\DoxyCodeLine{00051\ \ \ \ \ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}{rightPrior\_}};}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a65d5d9629213f441e27c4d4a9a85e514}{Product}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a4630c388577876f1f4bc4e2238bd1fff}{Product}}(\mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}\&\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a8668bbb243b48bcb2e13753a0678c55d}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}\&\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_af5267de45171cd73420ea80cb71f82cf}{operator=}}(\mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a205791a2fae74eea9bc675c530a8e80c}{Product}}(std::shared\_ptr<Prior>\ p1,\ std::shared\_ptr<Prior>\ p2)\ :\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}{leftPrior\_}}(p1),\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}{rightPrior\_}}(p2)\ \{\};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a00cd61c4a660a8f15562b6a68d00f3bf}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}{leftPrior\_}}-\/>eval(par)\ +\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}{rightPrior\_}}-\/>eval(par);}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_ac7f0b4424b6c5d24745c456c3651a5f4}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}{leftPrior\_}}-\/>evalGradient(par,\ i)\ +\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}{rightPrior\_}}-\/>evalGradient(par,\ i);}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a0fae3633bd3a46819b394a5dcbfe49f0}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}{leftPrior\_}}-\/>evalHessian(par,\ i,\ j)\ +\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}{rightPrior\_}}-\/>evalHessian(par,\ i,\ j);}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_addf13819678d313cb28e06925e8a9f96}{make}}(std::shared\_ptr<Prior>\ p1,\ std::shared\_ptr<Prior>\ p2)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Product>(p1,\ p2);}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}\ \{}
+\DoxyCodeLine{00094\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_ad1cb63c95ff103c308e532be26db2e8a}{Uniform}}(\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}}\&\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_ad375c65bb380a06777dbf59ffd6385e4}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}}\&\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_afad8d1075a45177c4263af67802082f3}{operator=}}(\mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a10752b7eb718ffd68c70737c3869d269}{Uniform}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_abac00180d3a4310c76f4ed7541170fa4}{Uniform}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a546e360c07a1d387400473c9ff9f78da}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a0bd9af2635ad15c02348fc9e1f609e9e}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a60e6ade5799dd9909ad93dd948358f77}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_uniform_a590315123014d98b0d574c35823f0c15}{make}}()\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Uniform>();}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ DistType>}
+\DoxyCodeLine{00135\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}\ \{}
+\DoxyCodeLine{00136\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00137\ \ \ \ \ DistType\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}{dist\_}};}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Delete\ default\ constructor\ since\ we\ need\ a\ valid\ distribution}}
+\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a28e7b2e6a158c762695dbe39b208e32b}{FromDistribution}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ad1a003793b92aed6a76eac43fb476731}{FromDistribution}}(\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\&\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a2b0523472860f611985d5c28dff57c28}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\&\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a4a700f25ef677a3cbc61ece5893fc58f}{operator=}}(\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8755c4c644a464b65fe75335155a646f}{FromDistribution}}(\textcolor{keyword}{const}\ DistType\&\ dist,\ \textcolor{keywordtype}{size\_t}\ paramIndex)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}{dist\_}}(dist),\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}}(paramIndex)\ \{\}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ab14d55841780cd18c5b17ad447481ff0}{eval}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ index\ is\ within\ bounds\ (optional,\ but\ safe)}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}}\ >=\ par.size())\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Parameter\ index\ out\ of\ bounds\ in\ FromDistribution::eval"{}});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}{dist\_}}.logPDF(par(\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}}));}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a6a371b588a37f1022c501c529810546d}{evalGradient}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}})\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}{dist\_}}.dLogPDF(par(\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}}));}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ taking\ the\ gradient\ with\ respect\ to\ a\ different\ parameter,\ it's\ 0}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ab759d02e3f5fea09fe768c1dbfcc8997}{evalHessian}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&par,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \&j)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}}\ \&\&\ j\ ==\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}})\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}{dist\_}}.ddLogPDF(par(\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}}));}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cross-\/derivatives\ and\ derivatives\ for\ other\ parameters\ are\ 0}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ Factory\ method\ matching\ your\ other\ Prior\ classes}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_aa9f0d271a541fe507959252dace73cb1}{make}}(\textcolor{keyword}{const}\ DistType\&\ dist,\ \textcolor{keywordtype}{size\_t}\ paramIndex)\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<FromDistribution<DistType>>(dist,\ paramIndex);}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ DistType>}
+\DoxyCodeLine{00196\ std::shared\_ptr<Prior>\ \mbox{\hyperlink{namespacecmp_1_1prior_adb31d0f5e3c1784da4742ce84f67c2f2}{make}}(\textcolor{keyword}{const}\ DistType\&\ dist,\ \textcolor{keywordtype}{size\_t}\ paramIndex)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_aa9f0d271a541fe507959252dace73cb1}{FromDistribution<DistType>::make}}(dist,\ paramIndex);}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00207\ std::shared\_ptr<Prior>\ \mbox{\hyperlink{namespacecmp_1_1prior_acbd773d63bc95b5e9a16f907edc37a74}{operator*}}(std::shared\_ptr<Prior>\ p1,\ std::shared\_ptr<Prior>\ p2);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

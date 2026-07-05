@@ -1,0 +1,153 @@
+\doxysection{cmp\+::grid\+::Niederreiter\+Grid Class Reference}
+\hypertarget{classcmp_1_1grid_1_1_niederreiter_grid}{}\label{classcmp_1_1grid_1_1_niederreiter_grid}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+
+
+Niederreiter (base 2) low-\/discrepancy sequence grid generator.  
+
+
+
+
+{\ttfamily \#include $<$grid.\+h$>$}
+
+Inheritance diagram for cmp\+::grid\+::Niederreiter\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcmp_1_1grid_1_1_niederreiter_grid}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_aeab07744c83038da074f94e383d822f4}{Niederreiter\+Grid}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&lower\+Bound, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&upper\+Bound)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1grid_1_1_niederreiter_grid}{Niederreiter\+Grid} generator. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a70c25c779cde7125df09c8887db42c50}{construct}} (const size\+\_\+t \&n\+Points) override
+\begin{DoxyCompactList}\small\item\em Constructs a matrix of Niederreiter points. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a37927080ba5cd6d41e884e874fc356bc}{operator()}} ()
+\begin{DoxyCompactList}\small\item\em Evaluates a single Niederreiter sample. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a7afa6391e5e4959d19a384625956d9b9}{dim}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the dimension of the domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{cmp\+::grid\+::\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741bdaf}{\texorpdfstring{$\sim$}{\string~}\+Grid}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::random\+::niederreiter\+\_\+base2 \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}{gen\+\_\+}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}{dimension\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935}{lower\+Bound\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_niederreiter_grid_aaec0f73a436f7cb852c9f34ee9f292f4}{upper\+Bound\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Niederreiter (base 2) low-\/discrepancy sequence grid generator. 
+
+Mathematical Formulation Uses the Niederreiter sequence in base 2 to generate quasi-\/random samples with low discrepancy. 
+
+\label{doc-constructors}
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_aeab07744c83038da074f94e383d822f4}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}!NiederreiterGrid@{NiederreiterGrid}}
+\index{NiederreiterGrid@{NiederreiterGrid}!cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+\doxysubsubsection{\texorpdfstring{NiederreiterGrid()}{NiederreiterGrid()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_niederreiter_grid_aeab07744c83038da074f94e383d822f4} 
+cmp\+::grid\+::\+Niederreiter\+Grid\+::\+Niederreiter\+Grid (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{lower\+Bound}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{upper\+Bound}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classcmp_1_1grid_1_1_niederreiter_grid}{Niederreiter\+Grid} generator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower\+Bound} & Lower bounds of the domain. \\
+\hline
+{\em upper\+Bound} & Upper bounds of the domain. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_a70c25c779cde7125df09c8887db42c50}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}!construct@{construct}}
+\index{construct@{construct}!cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_niederreiter_grid_a70c25c779cde7125df09c8887db42c50} 
+Eigen\+::\+Matrix\+Xd cmp\+::grid\+::\+Niederreiter\+Grid\+::construct (\begin{DoxyParamCaption}\item[{const size\+\_\+t \&}]{n\+Points}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Constructs a matrix of Niederreiter points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Points} & Number of points to generate. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a0c0b19ca98cc39bdd96de5d7fa46ee77}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_a7afa6391e5e4959d19a384625956d9b9}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}!dim@{dim}}
+\index{dim@{dim}!cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+\doxysubsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_niederreiter_grid_a7afa6391e5e4959d19a384625956d9b9} 
+size\+\_\+t cmp\+::grid\+::\+Niederreiter\+Grid\+::dim (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the dimension of the domain. 
+
+
+
+Implements \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_aa7e12c6dca3c6b86fd0b3eab746bc95b}{cmp\+::grid\+::\+Grid}}.
+
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_a37927080ba5cd6d41e884e874fc356bc}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}!operator()@{operator()}}
+\index{operator()@{operator()}!cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_niederreiter_grid_a37927080ba5cd6d41e884e874fc356bc} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Niederreiter\+Grid\+::operator() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Evaluates a single Niederreiter sample. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}!dimension\_@{dimension\_}}
+\index{dimension\_@{dimension\_}!cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+\doxysubsubsection{\texorpdfstring{dimension\_}{dimension\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_niederreiter_grid_a11a94d0e83b98732e4921bdafe896c51} 
+size\+\_\+t cmp\+::grid\+::\+Niederreiter\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}!gen\_@{gen\_}}
+\index{gen\_@{gen\_}!cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+\doxysubsubsection{\texorpdfstring{gen\_}{gen\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_niederreiter_grid_ac05b2b9cf52b51fa1e250b900b4c8017} 
+boost\+::random\+::niederreiter\+\_\+base2 cmp\+::grid\+::\+Niederreiter\+Grid\+::gen\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}!lowerBound\_@{lowerBound\_}}
+\index{lowerBound\_@{lowerBound\_}!cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+\doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_niederreiter_grid_a26b0ba697aa4d7de3f04e1586a05c935} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Niederreiter\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classcmp_1_1grid_1_1_niederreiter_grid_aaec0f73a436f7cb852c9f34ee9f292f4}\index{cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}!upperBound\_@{upperBound\_}}
+\index{upperBound\_@{upperBound\_}!cmp::grid::NiederreiterGrid@{cmp::grid::NiederreiterGrid}}
+\doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
+{\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_niederreiter_grid_aaec0f73a436f7cb852c9f34ee9f292f4} 
+Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Niederreiter\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{grid_8h}{grid.\+h}}\end{DoxyCompactItemize}

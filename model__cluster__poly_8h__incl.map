@@ -85,7 +85,7 @@
 <area shape="rect" id="Node000030" href="$kernel_09_09_8h.html" title=" " alt="" coords="723,335,819,361"/>
 <area shape="poly" id="edge50_Node000028_Node000030" title=" " alt="" coords="1613,194,1530,239,1474,263,1415,283,1329,302,1255,311,1189,315,1128,314,1000,313,925,318,838,331,820,335,819,329,837,325,924,313,999,308,1128,309,1189,309,1255,306,1328,296,1414,277,1472,258,1527,234,1611,190"/>
 <area shape="poly" id="edge52_Node000028_Node000031" title=" " alt="" coords="1677,185,1782,205,1905,237,1911,239,1909,245,1903,243,1781,210,1676,190"/>
-<area shape="rect" id="Node000032" href="$statistics_8h.html" title="Header file for statistical functions and classes This file contains declarations for various statist..." alt="" coords="1505,335,1599,361"/>
+<area shape="rect" id="Node000032" href="$statistics_8h.html" title="Header file for statistical functions and classes." alt="" coords="1505,335,1599,361"/>
 <area shape="poly" id="edge53_Node000028_Node000032" title=" " alt="" coords="1644,190,1659,208,1673,231,1680,256,1679,269,1674,281,1662,294,1642,308,1593,332,1591,327,1639,303,1658,290,1670,279,1674,268,1675,257,1668,233,1655,211,1640,194"/>
 <area shape="rect" id="Node000039" href="$optimization_8h.html" title="Functor wrapper for NLopt with automatic, transparent log&#45;scaling." alt="" coords="1623,335,1739,361"/>
 <area shape="poly" id="edge64_Node000028_Node000039" title=" " alt="" coords="1661,190,1692,209,1707,223,1718,239,1724,261,1721,285,1712,307,1701,325,1696,323,1707,304,1716,283,1719,262,1714,241,1703,226,1689,213,1658,194"/>

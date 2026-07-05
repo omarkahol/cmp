@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('classcmp_1_1scaler_1_1_standard_scaler
 </div><!--header-->
 <div class="contents">
 
-<p>Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition).  
+<p>Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition.  
  <a href="classcmp_1_1scaler_1_1_standard_scaler.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="scaler_8h_source.html">scaler.h</a>&gt;</code></p>
@@ -116,7 +116,7 @@ Inheritance diagram for cmp::scaler::StandardScaler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1scaler_1_1_standard_scaler__inherit__graph.png" border="0" usemap="#acmp_1_1scaler_1_1_standard_scaler_inherit__map" alt="Inheritance graph"/></div>
 <map name="acmp_1_1scaler_1_1_standard_scaler_inherit__map" id="acmp_1_1scaler_1_1_standard_scaler_inherit__map">
-<area shape="rect" title="Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition..." alt="" coords="5,79,208,104"/>
+<area shape="rect" title="Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition." alt="" coords="5,79,208,104"/>
 <area shape="rect" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="34,5,179,31"/>
 <area shape="poly" title=" " alt="" coords="109,44,109,79,104,79,104,44"/>
 </map>
@@ -126,7 +126,7 @@ Collaboration diagram for cmp::scaler::StandardScaler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1scaler_1_1_standard_scaler__coll__graph.png" border="0" usemap="#acmp_1_1scaler_1_1_standard_scaler_coll__map" alt="Collaboration graph"/></div>
 <map name="acmp_1_1scaler_1_1_standard_scaler_coll__map" id="acmp_1_1scaler_1_1_standard_scaler_coll__map">
-<area shape="rect" title="Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition..." alt="" coords="5,79,208,104"/>
+<area shape="rect" title="Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition." alt="" coords="5,79,208,104"/>
 <area shape="rect" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="34,5,179,31"/>
 <area shape="poly" title=" " alt="" coords="109,44,109,79,104,79,104,44"/>
 </map>
@@ -135,8 +135,10 @@ Collaboration diagram for cmp::scaler::StandardScaler:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a16833680d40ba0835aecc0b1cbe81b2d" id="r_a16833680d40ba0835aecc0b1cbe81b2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a16833680d40ba0835aecc0b1cbe81b2d">StandardScaler</a> ()=default</td></tr>
+<tr class="memdesc:a16833680d40ba0835aecc0b1cbe81b2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:a16833680d40ba0835aecc0b1cbe81b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e124d2325b2a1eca68bc2fe3f0abbf2" id="r_a9e124d2325b2a1eca68bc2fe3f0abbf2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a9e124d2325b2a1eca68bc2fe3f0abbf2">StandardScaler</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;mean, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;scale)</td></tr>
+<tr class="memdesc:a9e124d2325b2a1eca68bc2fe3f0abbf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition.">StandardScaler</a> with a pre-computed mean and covariance scale.  <br /></td></tr>
 <tr class="separator:a9e124d2325b2a1eca68bc2fe3f0abbf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8871e433618e9142df29ea62a55113ed" id="r_a8871e433618e9142df29ea62a55113ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a8871e433618e9142df29ea62a55113ed">StandardScaler</a> (const <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html">StandardScaler</a> &amp;other)=default</td></tr>
 <tr class="separator:a8871e433618e9142df29ea62a55113ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,28 +151,41 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adbf6d2d6fe03a6668505994a7a4c7dbf" id="r_adbf6d2d6fe03a6668505994a7a4c7dbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html">StandardScaler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#adbf6d2d6fe03a6668505994a7a4c7dbf">operator=</a> (<a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html">StandardScaler</a> &amp;&amp;other)=default</td></tr>
 <tr class="separator:adbf6d2d6fe03a6668505994a7a4c7dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dd61167cf9075fa3f8d0fd45cc8e2a6" id="r_a3dd61167cf9075fa3f8d0fd45cc8e2a6"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a3dd61167cf9075fa3f8d0fd45cc8e2a6">transform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
+<tr class="memdesc:a3dd61167cf9075fa3f8d0fd45cc8e2a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the input data from physical space to the scaled latent space.  <br /></td></tr>
 <tr class="separator:a3dd61167cf9075fa3f8d0fd45cc8e2a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a046cbb08c243e8868294262e27813a" id="r_a2a046cbb08c243e8868294262e27813a"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a2a046cbb08c243e8868294262e27813a">inverseTransform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
+<tr class="memdesc:a2a046cbb08c243e8868294262e27813a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs the data from the scaled latent space back to physical space.  <br /></td></tr>
 <tr class="separator:a2a046cbb08c243e8868294262e27813a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acda4e311222fcc745291601835a0638b" id="r_acda4e311222fcc745291601835a0638b"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#acda4e311222fcc745291601835a0638b">getIntercept</a> () const override</td></tr>
+<tr class="memdesc:acda4e311222fcc745291601835a0638b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the intercept vector \( \mu \) used in the transformation.  <br /></td></tr>
 <tr class="separator:acda4e311222fcc745291601835a0638b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d7e7ed5d867b05ee97d24f6aa30b20d" id="r_a0d7e7ed5d867b05ee97d24f6aa30b20d"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a0d7e7ed5d867b05ee97d24f6aa30b20d">getScale</a> () const override</td></tr>
+<tr class="memdesc:a0d7e7ed5d867b05ee97d24f6aa30b20d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the scaling matrix \( S \) used in the transformation.  <br /></td></tr>
 <tr class="separator:a0d7e7ed5d867b05ee97d24f6aa30b20d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c4b2d2e676396a3a31c32e303558184" id="r_a2c4b2d2e676396a3a31c32e303558184"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a2c4b2d2e676396a3a31c32e303558184">fit</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
+<tr class="memdesc:a2c4b2d2e676396a3a31c32e303558184"><td class="mdescLeft">&#160;</td><td class="mdescRight">Learns the scaling parameters (e.g., mean, variance) from the training data.  <br /></td></tr>
 <tr class="separator:a2c4b2d2e676396a3a31c32e303558184"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af29bd017ea8f164dd58c3e226a4c345e" id="r_af29bd017ea8f164dd58c3e226a4c345e"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#af29bd017ea8f164dd58c3e226a4c345e">fit_transform</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
+<tr class="memdesc:af29bd017ea8f164dd58c3e226a4c345e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the scaling parameters to the data and subsequently transforms the data.  <br /></td></tr>
 <tr class="separator:af29bd017ea8f164dd58c3e226a4c345e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a52bceaba8bd1f7998435a4c25f3159a2" id="r_a52bceaba8bd1f7998435a4c25f3159a2"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a52bceaba8bd1f7998435a4c25f3159a2">mean_</a></td></tr>
+<tr class="memdesc:a52bceaba8bd1f7998435a4c25f3159a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The empirical mean vector \( \mu \) of the training dataset.  <br /></td></tr>
 <tr class="separator:a52bceaba8bd1f7998435a4c25f3159a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636d5f6b5e1e50a5b2bfa6bf391791ee" id="r_a636d5f6b5e1e50a5b2bfa6bf391791ee"><td class="memItemLeft" align="right" valign="top">Eigen::LLT&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a636d5f6b5e1e50a5b2bfa6bf391791ee">lltDecomposition_</a></td></tr>
+<tr class="memdesc:a636d5f6b5e1e50a5b2bfa6bf391791ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">The LLT (Cholesky) decomposition of the covariance matrix \( \Sigma \).  <br /></td></tr>
 <tr class="separator:a636d5f6b5e1e50a5b2bfa6bf391791ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition). </p>
-<p><b>Mathematical</b> <b>Formulation</b> Given data matrix \( X \in \mathbb{R}^{n \times d} \), let \( \mu \in \mathbb{R}^d \) be the column-wise mean and \( \Sigma \in \mathbb{R}^{d \times d} \) be the covariance matrix. We decompose the covariance matrix via the lower Cholesky factor \( L \) such that: </p><p class="formulaDsp">
+<div class="textblock"><p>Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition. </p>
+<ul>
+<li></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md16"></a>
+Mathematical Formulation</h3>
+<p>Given data matrix \( X \in \mathbb{R}^{n \times d} \), let \( \mu \in \mathbb{R}^d \) be the column-wise mean and \( \Sigma \in \mathbb{R}^{d \times d} \) be the covariance matrix. We decompose the covariance matrix via the lower Cholesky factor \( L \) such that: </p><p class="formulaDsp">
 \[ \Sigma = L L^T \]
 </p>
 <p> The transformation maps: </p><p class="formulaDsp">
@@ -179,10 +194,13 @@ Private Attributes</h2></td></tr>
 <p> The inverse transformation maps: </p><p class="formulaDsp">
 \[ x = L y + \mu \]
 </p>
-<p><b>Implementation</b> <b>Algorithm</b> </p><ol type="1">
-<li><b>Fit:</b> Calculate mean vector \( \mu \) and covariance matrix \( \Sigma \) of \( X \), then perform Cholesky LLT decomposition to obtain \( L \).</li>
-<li><b>Transform:</b> Solve the lower triangular system \( L y = x - \mu \) to compute standardized data.</li>
-<li><b>Inverse</b> <b>Transform:</b> Compute \( L y + \mu \) via matrix multiplication and vector addition. </li>
+<ul>
+<li>### Implementation Algorithm</li>
+</ul>
+<ol type="1">
+<li><b>Fit</b>: Calculate mean vector \( \mu \) and covariance matrix \( \Sigma \) of \( X \), then perform Cholesky LLT decomposition to obtain \( L \).</li>
+<li><b>Transform</b>: Solve the lower triangular system \( L y = x - \mu \) to compute standardized data.</li>
+<li><b>Inverse Transform</b>: Compute \( L y + \mu \) via matrix multiplication and vector addition. </li>
 </ol>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a16833680d40ba0835aecc0b1cbe81b2d" name="a16833680d40ba0835aecc0b1cbe81b2d"></a>
@@ -207,6 +225,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -243,6 +263,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition.">StandardScaler</a> with a pre-computed mean and covariance scale. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mean</td><td>Pre-computed mean vector \( \mu \). </td></tr>
+    <tr><td class="paramname">scale</td><td>Pre-computed covariance matrix \( \Sigma \) (will be decomposed internally). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -348,6 +377,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Learns the scaling parameters (e.g., mean, variance) from the training data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a034490dc8b97ab47a73ca3ffb3b6db66">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -376,6 +413,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Fits the scaling parameters to the data and subsequently transforms the data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The transformed dataset matrix \( Y \). </dd></dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a51d8c5c552334f8a92975516acb811f4">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -402,6 +448,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Retrieves the intercept vector \( \mu \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The intercept vector. </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a323c36327efa37536bed9cebf0f6c04f">cmp::scaler::Scaler</a>.</p>
 
@@ -430,6 +479,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves the scaling matrix \( S \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The scaling matrix. </dd></dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a4cebbeb69fa4221279ebd6c9f91f8817">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -457,6 +509,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reconstructs the data from the scaled latent space back to physical space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( y \) in the scaled space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The unscaled physical data vector \( x \). </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a34c7739c949f4603ec1a430daf405dec">cmp::scaler::Scaler</a>.</p>
 
@@ -538,6 +599,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Transforms the input data from physical space to the scaled latent space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( x \) representing a single data point in physical space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The scaled data vector \( y \). </dd></dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#ada894025d92d10d357205a79ffe5f8f1">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -563,6 +633,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The LLT (Cholesky) decomposition of the covariance matrix \( \Sigma \). </p>
+
 </div>
 </div>
 <a id="a52bceaba8bd1f7998435a4c25f3159a2" name="a52bceaba8bd1f7998435a4c25f3159a2"></a>
@@ -584,6 +656,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The empirical mean vector \( \mu \) of the training dataset. </p>
 
 </div>
 </div>

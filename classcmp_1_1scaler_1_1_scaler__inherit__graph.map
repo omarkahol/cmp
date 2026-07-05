@@ -1,13 +1,13 @@
 <map id="cmp::scaler::Scaler" name="cmp::scaler::Scaler">
 <area shape="rect" id="Node000001" title="Template virtual base class for feature scaling and transformation." alt="" coords="5,104,151,129"/>
-<area shape="rect" id="Node000002" href="$classcmp_1_1scaler_1_1_dummy_scaler.html" title="Dummy scaler that leaves input data unchanged." alt="" coords="201,5,399,31"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1scaler_1_1_dummy_scaler.html" title="A pass&#45;through scaler that leaves input data unchanged." alt="" coords="201,5,399,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,94,148,66,198,40,231,28,233,33,200,44,150,70,108,98"/>
-<area shape="rect" id="Node000003" href="$classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently (diagonal variance scaling)." alt="" coords="205,55,395,80"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently using diagonal variance scaling." alt="" coords="205,55,395,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,98,241,77,243,83,150,104"/>
 <area shape="rect" id="Node000004" href="$classcmp_1_1scaler_1_1_min_max_scaler.html" title="Linearly scales features to a target bounding box range." alt="" coords="201,104,399,129"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="165,114,201,114,201,119,165,119"/>
 <area shape="rect" id="Node000005" href="$classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer." alt="" coords="235,153,365,179"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="150,130,243,151,241,156,149,135"/>
-<area shape="rect" id="Node000006" href="$classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition..." alt="" coords="199,203,401,228"/>
+<area shape="rect" id="Node000006" href="$classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition." alt="" coords="199,203,401,228"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="109,135,151,162,200,188,237,200,236,205,198,192,148,167,106,140"/>
 </map>

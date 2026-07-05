@@ -115,45 +115,51 @@ $(document).ready(function(){initNavTree('classcmp_1_1sobol_1_1_sobol_saltelli.h
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9be7186d4df2ff478b11d051c5ad07a2" id="r_a9be7186d4df2ff478b11d051c5ad07a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a9be7186d4df2ff478b11d051c5ad07a2">SobolSaltelli</a> ()=default</td></tr>
+<tr class="memdesc:a9be7186d4df2ff478b11d051c5ad07a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:a9be7186d4df2ff478b11d051c5ad07a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d1150ad0fa2fe3e0e0dd0d5bd55713f" id="r_a0d1150ad0fa2fe3e0e0dd0d5bd55713f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a0d1150ad0fa2fe3e0e0dd0d5bd55713f">SobolSaltelli</a> (size_t <a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ad8128589b6f4bdc529070fae23fcdc10">nObs</a>, size_t <a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ac959e8075de90bc95cd8095375a69581">dim</a>, bool secondOrder=false)</td></tr>
+<tr class="memdesc:a0d1150ad0fa2fe3e0e0dd0d5bd55713f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a Sobol-Saltelli analyzer with the given configuration.  <br /></td></tr>
 <tr class="separator:a0d1150ad0fa2fe3e0e0dd0d5bd55713f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d89e3fef9b739fd60a29460c390af65" id="r_a1d89e3fef9b739fd60a29460c390af65"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a1d89e3fef9b739fd60a29460c390af65">nTotalObs</a> () const</td></tr>
-<tr class="memdesc:a1d89e3fef9b739fd60a29460c390af65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total number of evaluations required.  <br /></td></tr>
+<tr class="memdesc:a1d89e3fef9b739fd60a29460c390af65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total number of evaluations required based on \( N \), \( d \), and analysis order.  <br /></td></tr>
 <tr class="separator:a1d89e3fef9b739fd60a29460c390af65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac959e8075de90bc95cd8095375a69581" id="r_ac959e8075de90bc95cd8095375a69581"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ac959e8075de90bc95cd8095375a69581">dim</a> () const</td></tr>
-<tr class="memdesc:ac959e8075de90bc95cd8095375a69581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of dimension parameters.  <br /></td></tr>
+<tr class="memdesc:ac959e8075de90bc95cd8095375a69581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of dimension parameters \( d \).  <br /></td></tr>
 <tr class="separator:ac959e8075de90bc95cd8095375a69581"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8128589b6f4bdc529070fae23fcdc10" id="r_ad8128589b6f4bdc529070fae23fcdc10"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ad8128589b6f4bdc529070fae23fcdc10">nObs</a> () const</td></tr>
-<tr class="memdesc:ad8128589b6f4bdc529070fae23fcdc10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of base samples.  <br /></td></tr>
+<tr class="memdesc:ad8128589b6f4bdc529070fae23fcdc10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of base samples \( N \).  <br /></td></tr>
 <tr class="separator:ad8128589b6f4bdc529070fae23fcdc10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1e0a4d0c4dc274cd0274b5e6738576c" id="r_aa1e0a4d0c4dc274cd0274b5e6738576c"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#aa1e0a4d0c4dc274cd0274b5e6738576c">evaluationGrid</a> (size_t <a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ad8128589b6f4bdc529070fae23fcdc10">nObs</a>, std::shared_ptr&lt; <a class="el" href="classcmp_1_1grid_1_1_grid.html">cmp::grid::Grid</a> &gt; gridType, bool secondOrder=false)</td></tr>
 <tr class="memdesc:aa1e0a4d0c4dc274cd0274b5e6738576c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the Sobol evaluation grid using the Saltelli sampling scheme.  <br /></td></tr>
 <tr class="separator:aa1e0a4d0c4dc274cd0274b5e6738576c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a070c94f083e35cb70ed7c13ac499b1b4" id="r_a070c94f083e35cb70ed7c13ac499b1b4"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a070c94f083e35cb70ed7c13ac499b1b4">sliceSaltelliOutput</a> (const Eigen::VectorXd &amp;Y, const <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &amp;idx, size_t <a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ad8128589b6f4bdc529070fae23fcdc10">nObs</a>, size_t <a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ac959e8075de90bc95cd8095375a69581">dim</a>, bool secondOrder)</td></tr>
-<tr class="memdesc:a070c94f083e35cb70ed7c13ac499b1b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slices the output vector Y from the Sobol evaluation grid to keep only the indices specified in idx.  <br /></td></tr>
+<tr class="memdesc:a070c94f083e35cb70ed7c13ac499b1b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slices the output vector Y from the Sobol evaluation grid to keep only valid or specified indices.  <br /></td></tr>
 <tr class="separator:a070c94f083e35cb70ed7c13ac499b1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9b84b14c727d54f274573dd5c3f8c02" id="r_ae9b84b14c727d54f274573dd5c3f8c02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html">SobolResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ae9b84b14c727d54f274573dd5c3f8c02">compute</a> (const Eigen::VectorXd &amp;Y)</td></tr>
-<tr class="memdesc:ae9b84b14c727d54f274573dd5c3f8c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes Sobol indices from the output vector Y obtained by evaluating the Sobol evaluation grid.  <br /></td></tr>
+<tr class="memdesc:ae9b84b14c727d54f274573dd5c3f8c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes Sobol indices from the output vector Y obtained by evaluating the Saltelli grid.  <br /></td></tr>
 <tr class="separator:ae9b84b14c727d54f274573dd5c3f8c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5499477ddc5bfcc20523a0c50663b719" id="r_a5499477ddc5bfcc20523a0c50663b719"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html">SobolResults</a>, <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html">SobolResults</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a5499477ddc5bfcc20523a0c50663b719">computeWithBootstrap</a> (const Eigen::VectorXd &amp;Y, size_t nBootstrap, size_t randomSeed=42)</td></tr>
-<tr class="memdesc:a5499477ddc5bfcc20523a0c50663b719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes Sobol indices with bootstrap resampling to estimate confidence intervals.  <br /></td></tr>
+<tr class="memdesc:a5499477ddc5bfcc20523a0c50663b719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes Sobol indices with bootstrap resampling to estimate statistical confidence intervals.  <br /></td></tr>
 <tr class="separator:a5499477ddc5bfcc20523a0c50663b719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ae07db6288123f1de98e77a1e902bb74c" id="r_ae07db6288123f1de98e77a1e902bb74c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ae07db6288123f1de98e77a1e902bb74c">nObs_</a> = 0</td></tr>
+<tr class="memdesc:ae07db6288123f1de98e77a1e902bb74c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of base samples \( N \).  <br /></td></tr>
 <tr class="separator:ae07db6288123f1de98e77a1e902bb74c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1450c1b39f423c53f78bc0e3f081faf2" id="r_a1450c1b39f423c53f78bc0e3f081faf2"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a1450c1b39f423c53f78bc0e3f081faf2">nTotalObs_</a> = 0</td></tr>
+<tr class="memdesc:a1450c1b39f423c53f78bc0e3f081faf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The total number of evaluations required across all matrices.  <br /></td></tr>
 <tr class="separator:a1450c1b39f423c53f78bc0e3f081faf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97555979766a8de3b44170e014d7bbd1" id="r_a97555979766a8de3b44170e014d7bbd1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a97555979766a8de3b44170e014d7bbd1">dim_</a> = 0</td></tr>
+<tr class="memdesc:a97555979766a8de3b44170e014d7bbd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dimensionality \( d \) of the input parameter space.  <br /></td></tr>
 <tr class="separator:a97555979766a8de3b44170e014d7bbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf0a591e05a349ffaf9989f7be4eadf6" id="r_aaf0a591e05a349ffaf9989f7be4eadf6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#aaf0a591e05a349ffaf9989f7be4eadf6">secondOrder_</a> = false</td></tr>
+<tr class="memdesc:aaf0a591e05a349ffaf9989f7be4eadf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether second-order indices should be computed.  <br /></td></tr>
 <tr class="separator:aaf0a591e05a349ffaf9989f7be4eadf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Performs Global Sensitivity Analysis (GSA) using the Saltelli formulation of Sobol indices. </p>
-<h3><a class="anchor" id="autotoc_md15"></a>
+<h3><a class="anchor" id="autotoc_md21"></a>
 Mathematical Foundations</h3>
 <p>Sobol sensitivity analysis decomposes the total variance \(V(Y)\) of a model \(Y = f(X_1, \dots, X_d)\) with independent inputs into contributions from individual inputs and their interactions: </p><p class="formulaDsp">
 \[ V(Y) = \sum_{i=1}^d V_i + \sum_{1 \le i &lt; j \le d} V_{ij} + \dots + V_{1\dots d} \]
@@ -172,12 +178,14 @@ Mathematical Foundations</h3>
 </p>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md16"></a>
+<h3><a class="anchor" id="autotoc_md22"></a>
 Implementation Algorithms (Saltelli 2010 Scheme)</h3>
 <ol type="1">
 <li><b>Grid Generation</b>: We draw two independent sample matrices \(\mathbf{A}\) and \(\mathbf{B}\) of size \(N \times d\). We construct \(d\) hybrid matrices \(\mathbf{A}_B^i\) (where column \(i\) is from \(\mathbf{B}\), rest from \(\mathbf{A}\)) and \(d(d-1)/2\) hybrid matrices \(\mathbf{A}_B^{ij}\) (where columns \(i\) and \(j\) are from \(\mathbf{B}\), rest from \(\mathbf{A}\)).</li>
 <li><b>Evaluation</b>: Evaluate the model outputs: \(\mathbf{y}_A\), \(\mathbf{y}_B\), \(\mathbf{y}_{AB}^i\), and \(\mathbf{y}_{AB}^{ij}\).</li>
-<li><b>Estimator Formulations</b>:<ul>
+<li><b>Estimator Formulations</b>:</li>
+</ol>
+<ul>
 <li>First-Order: <p class="formulaDsp">
 \[ S_i = \frac{\frac{1}{N} \sum_{k=1}^N y_B^{(k)} (y_{AB}^{(i)(k)} - y_A^{(k)})}{\mathrm{Var}(Y)} \]
 </p>
@@ -187,9 +195,7 @@ Implementation Algorithms (Saltelli 2010 Scheme)</h3>
 </p>
 </li>
 </ul>
-</li>
-</ol>
-<h3><a class="anchor" id="autotoc_md17"></a>
+<h3><a class="anchor" id="autotoc_md23"></a>
 Constraints &amp; Invariants</h3>
 <ul>
 <li><b>Sample Independence</b>: The input matrices \(\mathbf{A}\) and \(\mathbf{B}\) must be statistically independent.</li>
@@ -218,6 +224,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -261,6 +269,16 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a Sobol-Saltelli analyzer with the given configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nObs</td><td>The number of base observations \( N \) (size of matrices A and B). </td></tr>
+    <tr><td class="paramname">dim</td><td>The dimensionality \( d \) of the input space. </td></tr>
+    <tr><td class="paramname">secondOrder</td><td>Boolean flag to enable computation of second-order interaction indices. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -280,14 +298,14 @@ Constraints &amp; Invariants</h3>
       </table>
 </div><div class="memdoc">
 
-<p>Computes Sobol indices from the output vector Y obtained by evaluating the Sobol evaluation grid. </p>
+<p>Computes Sobol indices from the output vector Y obtained by evaluating the Saltelli grid. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Y</td><td>The output vector from the Sobol evaluation grid. </td></tr>
+    <tr><td class="paramname">Y</td><td>The output vector evaluating the full Saltelli grid sequence. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html" title="Struct to hold calculated Sobol sensitivity indices.">SobolResults</a> struct containing the first-order (firstOrder), total-order (T), and if computed, second-order (secondOrder) Sobol indices. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html" title="Struct to hold calculated Sobol sensitivity indices.">SobolResults</a> struct containing the estimated first-order, total-order, and optionally second-order indices. </dd></dl>
 
 </div>
 </div>
@@ -323,16 +341,20 @@ Constraints &amp; Invariants</h3>
       </table>
 </div><div class="memdoc">
 
-<p>Computes Sobol indices with bootstrap resampling to estimate confidence intervals. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Computes Sobol indices with bootstrap resampling to estimate statistical confidence intervals. </p>
+<ul>
+<li>Resamples the \( N \) base block sequences with replacement to construct an empirical distribution of the sensitivity indices.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Y</td><td>The output vector from the Sobol evaluation grid. </td></tr>
-    <tr><td class="paramname">nBootstrap</td><td>Number of bootstrap samples to use. </td></tr>
-    <tr><td class="paramname">randomSeed</td><td>Seed for the random number generator (default is 42). </td></tr>
+    <tr><td class="paramname">Y</td><td>The output vector evaluating the full Saltelli grid sequence. </td></tr>
+    <tr><td class="paramname">nBootstrap</td><td>Number of bootstrap resampling iterations. </td></tr>
+    <tr><td class="paramname">randomSeed</td><td>Seed for the internal random number generator (default is 42). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pair of <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html" title="Struct to hold calculated Sobol sensitivity indices.">SobolResults</a> which is just a storage for 3 <a class="el" href="namespace_eigen.html">Eigen</a> vectors firstOrder, T, and secondOrder (if second order is computed). The first element contains the mean estimates, and the second element contains the standard deviations from the bootstrap samples. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A std::pair of <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html" title="Struct to hold calculated Sobol sensitivity indices.">SobolResults</a>. The <code>first</code> element contains the mean parameter estimates, and the <code>second</code> element contains the standard deviations (standard error) of the bootstrap samples. </dd></dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -359,7 +381,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the number of dimension parameters. </p>
+<p>Gets the number of dimension parameters \( d \). </p>
+<dl class="section return"><dt>Returns</dt><dd>The dimensionality of the input space. </dd></dl>
 
 </div>
 </div>
@@ -398,13 +421,13 @@ Constraints &amp; Invariants</h3>
 <p>Constructs the Sobol evaluation grid using the Saltelli sampling scheme. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nObs</td><td>The number of observations (size of A and B matrices). </td></tr>
-    <tr><td class="paramname">gridType</td><td>A shared pointer to a UnitGrid object that defines the grid type (e.g., random, Latin Hypercube). </td></tr>
-    <tr><td class="paramname">secondOrder</td><td>Whether to compute second-order indices. </td></tr>
+    <tr><td class="paramname">nObs</td><td>The number of observations \( N \) (size of A and B matrices). </td></tr>
+    <tr><td class="paramname">gridType</td><td>A shared pointer to a Grid object that defines the sampling strategy (e.g., Random, Latin Hypercube). </td></tr>
+    <tr><td class="paramname">secondOrder</td><td>Whether to construct hybrid grids for second-order indices. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>An Eigen::MatrixXd containing the evaluation grid with size [(2 + dim + dim*(dim-1)/2) * nObs, dim] if secondOrder is true, otherwise [(2 + dim) * nObs, dim]. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An Eigen::MatrixXd containing the evaluation grid with size \([(2 + d + d(d-1)/2) \times N, d]\) if secondOrder is true, otherwise \([(2 + d) \times N, d]\). </dd></dl>
 
 </div>
 </div>
@@ -431,7 +454,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the number of base samples. </p>
+<p>Gets the number of base samples \( N \). </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of base samples. </dd></dl>
 
 </div>
 </div>
@@ -458,7 +482,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the total number of evaluations required. </p>
+<p>Gets the total number of evaluations required based on \( N \), \( d \), and analysis order. </p>
+<dl class="section return"><dt>Returns</dt><dd>The total evaluation count. </dd></dl>
 
 </div>
 </div>
@@ -506,18 +531,22 @@ Constraints &amp; Invariants</h3>
       </table>
 </div><div class="memdoc">
 
-<p>Slices the output vector Y from the Sobol evaluation grid to keep only the indices specified in idx. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Slices the output vector Y from the Sobol evaluation grid to keep only valid or specified indices. </p>
+<ul>
+<li>Useful for handling simulations that failed or returned invalid data. It safely trims the outputs while preserving the structured blocks of the Saltelli design matrix needed for index estimation.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Y</td><td>The output vector from the Sobol evaluation grid. </td></tr>
-    <tr><td class="paramname">idx</td><td>The indices of the observations to keep. </td></tr>
-    <tr><td class="paramname">nObs</td><td>The number of observations (size of A and B matrices). </td></tr>
-    <tr><td class="paramname">dim</td><td>The dimensionality of the input space. </td></tr>
-    <tr><td class="paramname">secondOrder</td><td>Whether second-order indices were computed. </td></tr>
+    <tr><td class="paramname">Y</td><td>The raw output vector from the Sobol evaluation grid. </td></tr>
+    <tr><td class="paramname">idx</td><td>The indices of the valid observations to keep. </td></tr>
+    <tr><td class="paramname">nObs</td><td>The number of base observations \( N \). </td></tr>
+    <tr><td class="paramname">dim</td><td>The dimensionality of the input space \( d \). </td></tr>
+    <tr><td class="paramname">secondOrder</td><td>Whether second-order evaluations were included in Y. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A sliced output vector containing only the specified indices. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A sliced output vector containing only the specified valid outputs. </dd></dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -542,6 +571,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>The dimensionality \( d \) of the input parameter space. </p>
+
 </div>
 </div>
 <a id="ae07db6288123f1de98e77a1e902bb74c" name="ae07db6288123f1de98e77a1e902bb74c"></a>
@@ -563,6 +594,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The number of base samples \( N \). </p>
 
 </div>
 </div>
@@ -586,6 +619,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>The total number of evaluations required across all matrices. </p>
+
 </div>
 </div>
 <a id="aaf0a591e05a349ffaf9989f7be4eadf6" name="aaf0a591e05a349ffaf9989f7be4eadf6"></a>
@@ -607,6 +642,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Flag indicating whether second-order indices should be computed. </p>
 
 </div>
 </div>

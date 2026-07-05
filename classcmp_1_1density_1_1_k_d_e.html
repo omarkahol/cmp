@@ -149,18 +149,25 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac97423fe85996294aa3bf78f109b0bf6" id="r_ac97423fe85996294aa3bf78f109b0bf6"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html">kernel::Bandwidth</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#ac97423fe85996294aa3bf78f109b0bf6">bandwidth_</a> {<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">nullptr</a>}</td></tr>
+<tr class="memdesc:ac97423fe85996294aa3bf78f109b0bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandwidth matrix of the kernel.  <br /></td></tr>
 <tr class="separator:ac97423fe85996294aa3bf78f109b0bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8fb8ff20577b4c336f5d8b23533539e" id="r_ad8fb8ff20577b4c336f5d8b23533539e"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">kernel::Kernel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#ad8fb8ff20577b4c336f5d8b23533539e">kernel_</a> {<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">nullptr</a>}</td></tr>
+<tr class="memdesc:ad8fb8ff20577b4c336f5d8b23533539e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The density kernel function.  <br /></td></tr>
 <tr class="separator:ad8fb8ff20577b4c336f5d8b23533539e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbd042fc66194b2bd62f2081c6211e27" id="r_abbd042fc66194b2bd62f2081c6211e27"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#abbd042fc66194b2bd62f2081c6211e27">data_</a> {0, 0}</td></tr>
+<tr class="memdesc:abbd042fc66194b2bd62f2081c6211e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Owning data storage.  <br /></td></tr>
 <tr class="separator:abbd042fc66194b2bd62f2081c6211e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a98e878d5290410650631c70ec14dfc" id="r_a0a98e878d5290410650631c70ec14dfc"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Eigen::Ref&lt; <a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">const</a> Eigen::MatrixXd &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a0a98e878d5290410650631c70ec14dfc">pData_</a></td></tr>
+<tr class="memdesc:a0a98e878d5290410650631c70ec14dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-owning reference wrapper to data.  <br /></td></tr>
 <tr class="separator:a0a98e878d5290410650631c70ec14dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aded9b5a2a69f20ec644b0219f48adae8" id="r_aded9b5a2a69f20ec644b0219f48adae8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#aded9b5a2a69f20ec644b0219f48adae8">isOwning_</a> {<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">false</a>}</td></tr>
+<tr class="memdesc:aded9b5a2a69f20ec644b0219f48adae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> owns the data.  <br /></td></tr>
 <tr class="separator:aded9b5a2a69f20ec644b0219f48adae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c6b3d52a0f91618985dba1d1ecbc3e6" id="r_a7c6b3d52a0f91618985dba1d1ecbc3e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a7c6b3d52a0f91618985dba1d1ecbc3e6">dim_</a> {0}</td></tr>
+<tr class="memdesc:a7c6b3d52a0f91618985dba1d1ecbc3e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimension of the dataset.  <br /></td></tr>
 <tr class="separator:a7c6b3d52a0f91618985dba1d1ecbc3e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f5e313a0cfe43a372d5f3016ea73300" id="r_a5f5e313a0cfe43a372d5f3016ea73300"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a5f5e313a0cfe43a372d5f3016ea73300">nPoints_</a> {0}</td></tr>
+<tr class="memdesc:a5f5e313a0cfe43a372d5f3016ea73300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of data points.  <br /></td></tr>
 <tr class="separator:a5f5e313a0cfe43a372d5f3016ea73300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -475,6 +482,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Bandwidth matrix of the kernel. </p>
+
 </div>
 </div>
 <a id="abbd042fc66194b2bd62f2081c6211e27" name="abbd042fc66194b2bd62f2081c6211e27"></a>
@@ -496,6 +505,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Owning data storage. </p>
 
 </div>
 </div>
@@ -519,6 +530,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Dimension of the dataset. </p>
+
 </div>
 </div>
 <a id="aded9b5a2a69f20ec644b0219f48adae8" name="aded9b5a2a69f20ec644b0219f48adae8"></a>
@@ -540,6 +553,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Flag indicating whether the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> owns the data. </p>
 
 </div>
 </div>
@@ -563,6 +578,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The density kernel function. </p>
+
 </div>
 </div>
 <a id="a5f5e313a0cfe43a372d5f3016ea73300" name="a5f5e313a0cfe43a372d5f3016ea73300"></a>
@@ -585,6 +602,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Number of data points. </p>
+
 </div>
 </div>
 <a id="a0a98e878d5290410650631c70ec14dfc" name="a0a98e878d5290410650631c70ec14dfc"></a>
@@ -606,6 +625,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Non-owning reference wrapper to data. </p>
 
 </div>
 </div>

@@ -151,14 +151,19 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af2ee66ad8f68d2eb1c741b90f0d220a4" id="r_af2ee66ad8f68d2eb1c741b90f0d220a4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html">GaussianProcess</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#af2ee66ad8f68d2eb1c741b90f0d220a4">gps_</a></td></tr>
+<tr class="memdesc:af2ee66ad8f68d2eb1c741b90f0d220a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of single-output Gaussian Process models.  <br /></td></tr>
 <tr class="separator:af2ee66ad8f68d2eb1c741b90f0d220a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8eb4813cb0a1e5391445355877e83389" id="r_a8eb4813cb0a1e5391445355877e83389"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#a8eb4813cb0a1e5391445355877e83389">xObs_</a></td></tr>
+<tr class="memdesc:a8eb4813cb0a1e5391445355877e83389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Owning training input matrix.  <br /></td></tr>
 <tr class="separator:a8eb4813cb0a1e5391445355877e83389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf57ca6f4251c2eb7dd725352b09426f" id="r_aaf57ca6f4251c2eb7dd725352b09426f"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#aaf57ca6f4251c2eb7dd725352b09426f">yObs_</a></td></tr>
+<tr class="memdesc:aaf57ca6f4251c2eb7dd725352b09426f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Owning training output target matrix.  <br /></td></tr>
 <tr class="separator:aaf57ca6f4251c2eb7dd725352b09426f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90bec24e0a05d81938d52952ec25f530" id="r_a90bec24e0a05d81938d52952ec25f530"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a> Eigen::MatrixXd &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#a90bec24e0a05d81938d52952ec25f530">pXObs_</a></td></tr>
+<tr class="memdesc:a90bec24e0a05d81938d52952ec25f530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-owning reference wrapper to training input matrix.  <br /></td></tr>
 <tr class="separator:a90bec24e0a05d81938d52952ec25f530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee02ee50d007bd0857053a563722e47d" id="r_aee02ee50d007bd0857053a563722e47d"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a> Eigen::MatrixXd &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#aee02ee50d007bd0857053a563722e47d">pYObs_</a></td></tr>
+<tr class="memdesc:aee02ee50d007bd0857053a563722e47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-owning reference wrapper to training output target matrix.  <br /></td></tr>
 <tr class="separator:aee02ee50d007bd0857053a563722e47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -704,6 +709,8 @@ f_j(\mathbf{x}) \sim \mathcal{GP}\left(m_j(\mathbf{x}), k_j(\mathbf{x}, \mathbf{
 </table>
 </div><div class="memdoc">
 
+<p>Collection of single-output Gaussian Process models. </p>
+
 </div>
 </div>
 <a id="a90bec24e0a05d81938d52952ec25f530" name="a90bec24e0a05d81938d52952ec25f530"></a>
@@ -725,6 +732,8 @@ f_j(\mathbf{x}) \sim \mathcal{GP}\left(m_j(\mathbf{x}), k_j(\mathbf{x}, \mathbf{
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Non-owning reference wrapper to training input matrix. </p>
 
 </div>
 </div>
@@ -748,6 +757,8 @@ f_j(\mathbf{x}) \sim \mathcal{GP}\left(m_j(\mathbf{x}), k_j(\mathbf{x}, \mathbf{
 </table>
 </div><div class="memdoc">
 
+<p>Non-owning reference wrapper to training output target matrix. </p>
+
 </div>
 </div>
 <a id="a8eb4813cb0a1e5391445355877e83389" name="a8eb4813cb0a1e5391445355877e83389"></a>
@@ -770,6 +781,8 @@ f_j(\mathbf{x}) \sim \mathcal{GP}\left(m_j(\mathbf{x}), k_j(\mathbf{x}, \mathbf{
 </table>
 </div><div class="memdoc">
 
+<p>Owning training input matrix. </p>
+
 </div>
 </div>
 <a id="aaf57ca6f4251c2eb7dd725352b09426f" name="aaf57ca6f4251c2eb7dd725352b09426f"></a>
@@ -791,6 +804,8 @@ f_j(\mathbf{x}) \sim \mathcal{GP}\left(m_j(\mathbf{x}), k_j(\mathbf{x}, \mathbf{
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Owning training output target matrix. </p>
 
 </div>
 </div>

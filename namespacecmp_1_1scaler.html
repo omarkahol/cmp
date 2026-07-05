@@ -109,10 +109,10 @@ $(document).ready(function(){initNavTree('namespacecmp_1_1scaler.html',''); init
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_dummy_scaler.html">DummyScaler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dummy scaler that leaves input data unchanged.  <a href="classcmp_1_1scaler_1_1_dummy_scaler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pass-through scaler that leaves input data unchanged.  <a href="classcmp_1_1scaler_1_1_dummy_scaler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently (diagonal variance scaling).  <a href="classcmp_1_1scaler_1_1_elliptic_scaler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently using diagonal variance scaling.  <a href="classcmp_1_1scaler_1_1_elliptic_scaler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html">MinMaxScaler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linearly scales features to a target bounding box range.  <a href="classcmp_1_1scaler_1_1_min_max_scaler.html#details">More...</a><br /></td></tr>
@@ -124,12 +124,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template virtual base class for feature scaling and transformation.  <a href="classcmp_1_1scaler_1_1_scaler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html">StandardScaler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition).  <a href="classcmp_1_1scaler_1_1_standard_scaler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition.  <a href="classcmp_1_1scaler_1_1_standard_scaler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a486245607be5c2c828f7bff3f33b79b0" id="r_a486245607be5c2c828f7bff3f33b79b0"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1scaler.html#a486245607be5c2c828f7bff3f33b79b0">TOL</a> = 1e-10</td></tr>
+<tr class="memdesc:a486245607be5c2c828f7bff3f33b79b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global tolerance value used for numerical stability and zero-checks.  <br /></td></tr>
 <tr class="separator:a486245607be5c2c828f7bff3f33b79b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -152,6 +153,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Global tolerance value used for numerical stability and zero-checks. </p>
 
 </div>
 </div>

@@ -118,7 +118,7 @@ Collaboration diagram for cmp::gp::GaussianProcess:</div>
 <div class="center"><img src="classcmp_1_1gp_1_1_gaussian_process__coll__graph.png" border="0" usemap="#acmp_1_1gp_1_1_gaussian_process_coll__map" alt="Collaboration graph"/></div>
 <map name="acmp_1_1gp_1_1_gaussian_process_coll__map" id="acmp_1_1gp_1_1_gaussian_process_coll__map">
 <area shape="rect" title="This class implements a Gaussian Process (GP) regression model for non&#45;parametric Bayesian regression..." alt="" coords="11,168,203,193"/>
-<area shape="rect" href="classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition..." alt="" coords="5,80,208,105"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition." alt="" coords="5,80,208,105"/>
 <area shape="poly" title=" " alt="" coords="109,119,109,167,104,167,104,119"/>
 <area shape="rect" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="34,5,179,31"/>
 <area shape="poly" title=" " alt="" coords="109,45,109,80,104,80,104,45"/>
@@ -230,32 +230,46 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a4aeeb4d37e46cb10ef1474acd9a48f6d" id="r_a4aeeb4d37e46cb10ef1474acd9a48f6d"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a4aeeb4d37e46cb10ef1474acd9a48f6d">par_</a></td></tr>
+<tr class="memdesc:a4aeeb4d37e46cb10ef1474acd9a48f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Model hyperparameters.  <br /></td></tr>
 <tr class="separator:a4aeeb4d37e46cb10ef1474acd9a48f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4850de5e2b4060e22745cb971428cae3" id="r_a4850de5e2b4060e22745cb971428cae3"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1covariance_1_1_covariance.html">covariance::Covariance</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a4850de5e2b4060e22745cb971428cae3">pKernel_</a></td></tr>
+<tr class="memdesc:a4850de5e2b4060e22745cb971428cae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariance kernel function.  <br /></td></tr>
 <tr class="separator:a4850de5e2b4060e22745cb971428cae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a435ffd91846550bf8337745235241d09" id="r_a435ffd91846550bf8337745235241d09"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1mean_1_1_mean.html">mean::Mean</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a435ffd91846550bf8337745235241d09">pMean_</a></td></tr>
+<tr class="memdesc:a435ffd91846550bf8337745235241d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prior mean function.  <br /></td></tr>
 <tr class="separator:a435ffd91846550bf8337745235241d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20b4c120163c756c0881efcec8641db7" id="r_a20b4c120163c756c0881efcec8641db7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a20b4c120163c756c0881efcec8641db7">nugget_</a></td></tr>
+<tr class="memdesc:a20b4c120163c756c0881efcec8641db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Observation noise variance (nugget).  <br /></td></tr>
 <tr class="separator:a20b4c120163c756c0881efcec8641db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29894d35a8e07839392f3641072cf8bb" id="r_a29894d35a8e07839392f3641072cf8bb"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a29894d35a8e07839392f3641072cf8bb">xObs_</a></td></tr>
+<tr class="memdesc:a29894d35a8e07839392f3641072cf8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Owning storage for training input matrix.  <br /></td></tr>
 <tr class="separator:a29894d35a8e07839392f3641072cf8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0267bd6845af0329936408fe9c4f1913" id="r_a0267bd6845af0329936408fe9c4f1913"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a0267bd6845af0329936408fe9c4f1913">yObs_</a></td></tr>
+<tr class="memdesc:a0267bd6845af0329936408fe9c4f1913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Owning storage for training target vector.  <br /></td></tr>
 <tr class="separator:a0267bd6845af0329936408fe9c4f1913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a512d6c5a6d7b0868d2ce9c4ead0e0a18" id="r_a512d6c5a6d7b0868d2ce9c4ead0e0a18"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a> Eigen::MatrixXd &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a512d6c5a6d7b0868d2ce9c4ead0e0a18">pXObs_</a></td></tr>
+<tr class="memdesc:a512d6c5a6d7b0868d2ce9c4ead0e0a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference wrapper to training input matrix.  <br /></td></tr>
 <tr class="separator:a512d6c5a6d7b0868d2ce9c4ead0e0a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29617667270a5ec1258698854deaa9bb" id="r_a29617667270a5ec1258698854deaa9bb"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a> Eigen::VectorXd &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a29617667270a5ec1258698854deaa9bb">pYObs_</a></td></tr>
+<tr class="memdesc:a29617667270a5ec1258698854deaa9bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference wrapper to training target vector.  <br /></td></tr>
 <tr class="separator:a29617667270a5ec1258698854deaa9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae285f7153216e8dd0de9806c6aa045d0" id="r_ae285f7153216e8dd0de9806c6aa045d0"><td class="memItemLeft" align="right" valign="top">Eigen::LDLT&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#ae285f7153216e8dd0de9806c6aa045d0">covDecomposition_</a></td></tr>
+<tr class="memdesc:ae285f7153216e8dd0de9806c6aa045d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">LDLT decomposition of the training covariance matrix.  <br /></td></tr>
 <tr class="separator:ae285f7153216e8dd0de9806c6aa045d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affe2082056047e1e37e9ab8363f240cf" id="r_affe2082056047e1e37e9ab8363f240cf"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#affe2082056047e1e37e9ab8363f240cf">alpha_</a></td></tr>
+<tr class="memdesc:affe2082056047e1e37e9ab8363f240cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">GP weights vector: alpha = (K + s^2 I)^-1 (y - m).  <br /></td></tr>
 <tr class="separator:affe2082056047e1e37e9ab8363f240cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14e9db52a6c8e9f0e88ddc546f5f14f8" id="r_a14e9db52a6c8e9f0e88ddc546f5f14f8"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a14e9db52a6c8e9f0e88ddc546f5f14f8">diagCovInverse_</a></td></tr>
+<tr class="memdesc:a14e9db52a6c8e9f0e88ddc546f5f14f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagonal elements of the inverse covariance matrix.  <br /></td></tr>
 <tr class="separator:a14e9db52a6c8e9f0e88ddc546f5f14f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02a01ad6a3ca04679402a13f6d4405ed" id="r_a02a01ad6a3ca04679402a13f6d4405ed"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a02a01ad6a3ca04679402a13f6d4405ed">residual_</a></td></tr>
+<tr class="memdesc:a02a01ad6a3ca04679402a13f6d4405ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Residuals of the mean function: y - m(x).  <br /></td></tr>
 <tr class="separator:a02a01ad6a3ca04679402a13f6d4405ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f851039c99f0d99326eae0411264572" id="r_a7f851039c99f0d99326eae0411264572"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a7f851039c99f0d99326eae0411264572">normalizeY_</a> = <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">false</a></td></tr>
+<tr class="memdesc:a7f851039c99f0d99326eae0411264572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether target normalization is active.  <br /></td></tr>
 <tr class="separator:a7f851039c99f0d99326eae0411264572"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61b2ec0029a56626c7caa35ece54a01f" id="r_a61b2ec0029a56626c7caa35ece54a01f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html">cmp::scaler::StandardScaler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a61b2ec0029a56626c7caa35ece54a01f">yScaler_</a></td></tr>
+<tr class="memdesc:a61b2ec0029a56626c7caa35ece54a01f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scaler used to normalize the target vector.  <br /></td></tr>
 <tr class="separator:a61b2ec0029a56626c7caa35ece54a01f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -1614,6 +1628,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>GP weights vector: alpha = (K + s^2 I)^-1 (y - m). </p>
+
 </div>
 </div>
 <a id="ae285f7153216e8dd0de9806c6aa045d0" name="ae285f7153216e8dd0de9806c6aa045d0"></a>
@@ -1635,6 +1651,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>LDLT decomposition of the training covariance matrix. </p>
 
 </div>
 </div>
@@ -1658,6 +1676,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Diagonal elements of the inverse covariance matrix. </p>
+
 </div>
 </div>
 <a id="a7f851039c99f0d99326eae0411264572" name="a7f851039c99f0d99326eae0411264572"></a>
@@ -1679,6 +1699,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Flag indicating whether target normalization is active. </p>
 
 </div>
 </div>
@@ -1702,6 +1724,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Observation noise variance (nugget). </p>
+
 </div>
 </div>
 <a id="a4aeeb4d37e46cb10ef1474acd9a48f6d" name="a4aeeb4d37e46cb10ef1474acd9a48f6d"></a>
@@ -1723,6 +1747,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Model hyperparameters. </p>
 
 </div>
 </div>
@@ -1746,6 +1772,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Covariance kernel function. </p>
+
 </div>
 </div>
 <a id="a435ffd91846550bf8337745235241d09" name="a435ffd91846550bf8337745235241d09"></a>
@@ -1767,6 +1795,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Prior mean function. </p>
 
 </div>
 </div>
@@ -1790,6 +1820,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Reference wrapper to training input matrix. </p>
+
 </div>
 </div>
 <a id="a29617667270a5ec1258698854deaa9bb" name="a29617667270a5ec1258698854deaa9bb"></a>
@@ -1811,6 +1843,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reference wrapper to training target vector. </p>
 
 </div>
 </div>
@@ -1834,6 +1868,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Residuals of the mean function: y - m(x). </p>
+
 </div>
 </div>
 <a id="a29894d35a8e07839392f3641072cf8bb" name="a29894d35a8e07839392f3641072cf8bb"></a>
@@ -1855,6 +1891,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Owning storage for training input matrix. </p>
 
 </div>
 </div>
@@ -1878,6 +1916,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Owning storage for training target vector. </p>
+
 </div>
 </div>
 <a id="a61b2ec0029a56626c7caa35ece54a01f" name="a61b2ec0029a56626c7caa35ece54a01f"></a>
@@ -1899,6 +1939,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Scaler used to normalize the target vector. </p>
 
 </div>
 </div>

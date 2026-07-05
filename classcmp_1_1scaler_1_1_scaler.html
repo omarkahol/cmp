@@ -116,15 +116,15 @@ Inheritance diagram for cmp::scaler::Scaler:</div>
 <div class="center"><img src="classcmp_1_1scaler_1_1_scaler__inherit__graph.png" border="0" usemap="#acmp_1_1scaler_1_1_scaler_inherit__map" alt="Inheritance graph"/></div>
 <map name="acmp_1_1scaler_1_1_scaler_inherit__map" id="acmp_1_1scaler_1_1_scaler_inherit__map">
 <area shape="rect" title="Template virtual base class for feature scaling and transformation." alt="" coords="5,104,151,129"/>
-<area shape="rect" href="classcmp_1_1scaler_1_1_dummy_scaler.html" title="Dummy scaler that leaves input data unchanged." alt="" coords="201,5,399,31"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_dummy_scaler.html" title="A pass&#45;through scaler that leaves input data unchanged." alt="" coords="201,5,399,31"/>
 <area shape="poly" title=" " alt="" coords="105,94,148,66,198,40,231,28,233,33,200,44,150,70,108,98"/>
-<area shape="rect" href="classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently (diagonal variance scaling)." alt="" coords="205,55,395,80"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently using diagonal variance scaling." alt="" coords="205,55,395,80"/>
 <area shape="poly" title=" " alt="" coords="149,98,241,77,243,83,150,104"/>
 <area shape="rect" href="classcmp_1_1scaler_1_1_min_max_scaler.html" title="Linearly scales features to a target bounding box range." alt="" coords="201,104,399,129"/>
 <area shape="poly" title=" " alt="" coords="165,114,201,114,201,119,165,119"/>
 <area shape="rect" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer." alt="" coords="235,153,365,179"/>
 <area shape="poly" title=" " alt="" coords="150,130,243,151,241,156,149,135"/>
-<area shape="rect" href="classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition..." alt="" coords="199,203,401,228"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition." alt="" coords="199,203,401,228"/>
 <area shape="poly" title=" " alt="" coords="109,135,151,162,200,188,237,200,236,205,198,192,148,167,106,140"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -132,21 +132,32 @@ Inheritance diagram for cmp::scaler::Scaler:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ada894025d92d10d357205a79ffe5f8f1" id="r_ada894025d92d10d357205a79ffe5f8f1"><td class="memItemLeft" align="right" valign="top">virtual Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html#ada894025d92d10d357205a79ffe5f8f1">transform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const =0</td></tr>
+<tr class="memdesc:ada894025d92d10d357205a79ffe5f8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the input data from physical space to the scaled latent space.  <br /></td></tr>
 <tr class="separator:ada894025d92d10d357205a79ffe5f8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34c7739c949f4603ec1a430daf405dec" id="r_a34c7739c949f4603ec1a430daf405dec"><td class="memItemLeft" align="right" valign="top">virtual Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a34c7739c949f4603ec1a430daf405dec">inverseTransform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const =0</td></tr>
+<tr class="memdesc:a34c7739c949f4603ec1a430daf405dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs the data from the scaled latent space back to physical space.  <br /></td></tr>
 <tr class="separator:a34c7739c949f4603ec1a430daf405dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a323c36327efa37536bed9cebf0f6c04f" id="r_a323c36327efa37536bed9cebf0f6c04f"><td class="memItemLeft" align="right" valign="top">virtual Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a323c36327efa37536bed9cebf0f6c04f">getIntercept</a> () const =0</td></tr>
+<tr class="memdesc:a323c36327efa37536bed9cebf0f6c04f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the intercept vector \( \mu \) used in the transformation.  <br /></td></tr>
 <tr class="separator:a323c36327efa37536bed9cebf0f6c04f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cebbeb69fa4221279ebd6c9f91f8817" id="r_a4cebbeb69fa4221279ebd6c9f91f8817"><td class="memItemLeft" align="right" valign="top">virtual Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a4cebbeb69fa4221279ebd6c9f91f8817">getScale</a> () const =0</td></tr>
+<tr class="memdesc:a4cebbeb69fa4221279ebd6c9f91f8817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the scaling matrix \( S \) used in the transformation.  <br /></td></tr>
 <tr class="separator:a4cebbeb69fa4221279ebd6c9f91f8817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a034490dc8b97ab47a73ca3ffb3b6db66" id="r_a034490dc8b97ab47a73ca3ffb3b6db66"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a034490dc8b97ab47a73ca3ffb3b6db66">fit</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)=0</td></tr>
+<tr class="memdesc:a034490dc8b97ab47a73ca3ffb3b6db66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Learns the scaling parameters (e.g., mean, variance) from the training data.  <br /></td></tr>
 <tr class="separator:a034490dc8b97ab47a73ca3ffb3b6db66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51d8c5c552334f8a92975516acb811f4" id="r_a51d8c5c552334f8a92975516acb811f4"><td class="memItemLeft" align="right" valign="top">virtual Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a51d8c5c552334f8a92975516acb811f4">fit_transform</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)=0</td></tr>
+<tr class="memdesc:a51d8c5c552334f8a92975516acb811f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the scaling parameters to the data and subsequently transforms the data.  <br /></td></tr>
 <tr class="separator:a51d8c5c552334f8a92975516acb811f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Template virtual base class for feature scaling and transformation. </p>
-<p><b>Mathematical</b> <b>Formulation</b> Define a transformation mapping \( T: \mathbb{R}^d \to \mathbb{R}^d \) and its inverse \( T^{-1} \): </p><p class="formulaDsp">
+<ul>
+<li></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md15"></a>
+Mathematical Formulation</h3>
+<p>Define a transformation mapping \( T: \mathbb{R}^d \to \mathbb{R}^d \) and its inverse \( T^{-1} \): </p><p class="formulaDsp">
 \[ y = T(x) \]
 </p>
  <p class="formulaDsp">
@@ -158,7 +169,9 @@ Public Member Functions</h2></td></tr>
  <p class="formulaDsp">
 \[ T^{-1}(y) = S y + \mu \]
 </p>
-<p><b>Implementation</b> <b>Algorithm</b> Pure virtual interface. Concrete implementations define the fitting, transforming, and inverse transforming steps. </p>
+<ul>
+<li>### Implementation Algorithm Pure virtual interface. Concrete implementations define the fitting, transforming, and inverse transforming steps. </li>
+</ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a034490dc8b97ab47a73ca3ffb3b6db66" name="a034490dc8b97ab47a73ca3ffb3b6db66"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a034490dc8b97ab47a73ca3ffb3b6db66">&#9670;&#160;</a></span>fit()</h2>
@@ -183,6 +196,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Learns the scaling parameters (e.g., mean, variance) from the training data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a2c4b2d2e676396a3a31c32e303558184">cmp::scaler::StandardScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html#a6a2048934255a006b8b11e0a946286d2">cmp::scaler::PCA</a>, <a class="el" href="classcmp_1_1scaler_1_1_dummy_scaler.html#a82fcc0902bcaf06895b815cad983e58f">cmp::scaler::DummyScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a044939a8e126affba4a3ca42f037590d">cmp::scaler::EllipticScaler</a>, and <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a16823cc81232127bc86759957d1c7cd5">cmp::scaler::MinMaxScaler</a>.</p>
 
@@ -212,6 +233,15 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Fits the scaling parameters to the data and subsequently transforms the data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The transformed dataset matrix \( Y \). </dd></dl>
+
 <p>Implemented in <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#af29bd017ea8f164dd58c3e226a4c345e">cmp::scaler::StandardScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html#a84fe92b3f91c4c013507254c0f019ff9">cmp::scaler::PCA</a>, <a class="el" href="classcmp_1_1scaler_1_1_dummy_scaler.html#aaf68a3279469b1c4f814c2a94f35cce9">cmp::scaler::DummyScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a657486b28e38db1d45eab3fb452fbd37">cmp::scaler::EllipticScaler</a>, and <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#ac7cf5a8ad79582ab3bf569f2f51b81b3">cmp::scaler::MinMaxScaler</a>.</p>
 
 </div>
@@ -239,6 +269,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves the intercept vector \( \mu \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The intercept vector. </dd></dl>
+
 <p>Implemented in <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#acda4e311222fcc745291601835a0638b">cmp::scaler::StandardScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html#aa12df6a29348dba275d46a3932b1b82f">cmp::scaler::PCA</a>, <a class="el" href="classcmp_1_1scaler_1_1_dummy_scaler.html#a4ed4b8f84cc0275b3609f6c10c6d5a5f">cmp::scaler::DummyScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a4702e651e83aac9b13cb75ca1600531c">cmp::scaler::EllipticScaler</a>, and <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a9c2c401942b096a31bc4938c2f12ee1e">cmp::scaler::MinMaxScaler</a>.</p>
 
 </div>
@@ -265,6 +298,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Retrieves the scaling matrix \( S \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The scaling matrix. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a0d7e7ed5d867b05ee97d24f6aa30b20d">cmp::scaler::StandardScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html#af8872ca334bde480e793cf1e1ae51f0b">cmp::scaler::PCA</a>, <a class="el" href="classcmp_1_1scaler_1_1_dummy_scaler.html#aa5b1db975a868ffbb9770fd658ce79eb">cmp::scaler::DummyScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#aa7ee167e34c4c747dbea374196cd6a18">cmp::scaler::EllipticScaler</a>, and <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a7bbf79807c05b4f60ec2b1a946158dd0">cmp::scaler::MinMaxScaler</a>.</p>
 
@@ -294,6 +330,15 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Reconstructs the data from the scaled latent space back to physical space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( y \) in the scaled space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The unscaled physical data vector \( x \). </dd></dl>
+
 <p>Implemented in <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a2a046cbb08c243e8868294262e27813a">cmp::scaler::StandardScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html#a5abb95a448b70440e3233ef426ec6dd4">cmp::scaler::PCA</a>, <a class="el" href="classcmp_1_1scaler_1_1_dummy_scaler.html#a1df30df702283b8469efb51a8b0df40d">cmp::scaler::DummyScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a0527554327168152d5bb453ca4928953">cmp::scaler::EllipticScaler</a>, and <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a23768d4063032ff713f6cdd9092240b4">cmp::scaler::MinMaxScaler</a>.</p>
 
 </div>
@@ -321,6 +366,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Transforms the input data from physical space to the scaled latent space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( x \) representing a single data point in physical space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The scaled data vector \( y \). </dd></dl>
 
 <p>Implemented in <a class="el" href="classcmp_1_1scaler_1_1_standard_scaler.html#a3dd61167cf9075fa3f8d0fd45cc8e2a6">cmp::scaler::StandardScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html#aa44b7f09120405a48e09be90955f23ca">cmp::scaler::PCA</a>, <a class="el" href="classcmp_1_1scaler_1_1_dummy_scaler.html#a01c5af2defce301638724cfda45b3812">cmp::scaler::DummyScaler</a>, <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#aa9165c49ba109a73f91bdfeb288c1f4c">cmp::scaler::EllipticScaler</a>, and <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a566ca9d333c4703307bd78e7afaebf0c">cmp::scaler::MinMaxScaler</a>.</p>
 

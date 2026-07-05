@@ -122,8 +122,10 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aeed19c069c38b6cdf4fe64de97de66d1" id="r_aeed19c069c38b6cdf4fe64de97de66d1"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_quadrature1_d.html#aeed19c069c38b6cdf4fe64de97de66d1">nodes</a></td></tr>
+<tr class="memdesc:aeed19c069c38b6cdf4fe64de97de66d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing the quadrature node points.  <br /></td></tr>
 <tr class="separator:aeed19c069c38b6cdf4fe64de97de66d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af795366d89e6f9c72d97393ff0e2adf0" id="r_af795366d89e6f9c72d97393ff0e2adf0"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_quadrature1_d.html#af795366d89e6f9c72d97393ff0e2adf0">weights</a></td></tr>
+<tr class="memdesc:af795366d89e6f9c72d97393ff0e2adf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing the corresponding quadrature weights.  <br /></td></tr>
 <tr class="separator:af795366d89e6f9c72d97393ff0e2adf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -157,7 +159,7 @@ w_i = \mu_0 v_{i,0}^2
 <li>Otherwise, requests the Jacobi matrix $J$ of size $N \times N$ from <code>BasisType::getJacobiMatrix(numPoints)</code>.</li>
 <li>Computes the spectral decomposition of $J$ using <code>Eigen::SelfAdjointEigenSolver</code>.</li>
 <li>Assigns the resulting eigenvalues directly to <code>nodes</code>.</li>
-<li>Computes the weights <code><a class="el" href="classcmp_1_1_quadrature1_d.html#af795366d89e6f9c72d97393ff0e2adf0">weights(i)</a></code> by squaring the first component of the $i$-th eigenvector (<code>solver.eigenvectors()(0, i)</code>).</li>
+<li>Computes the weights <code><a class="el" href="classcmp_1_1_quadrature1_d.html#af795366d89e6f9c72d97393ff0e2adf0" title="Vector containing the corresponding quadrature weights.">weights(i)</a></code> by squaring the first component of the $i$-th eigenvector (<code>solver.eigenvectors()(0, i)</code>).</li>
 <li>Provides <code>integrate(f)</code> which evaluates $\sum_i w_i f(x_i)$. </li>
 </ol>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -233,6 +235,8 @@ template&lt;typename BasisType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Vector containing the quadrature node points. </p>
+
 </div>
 </div>
 <a id="af795366d89e6f9c72d97393ff0e2adf0" name="af795366d89e6f9c72d97393ff0e2adf0"></a>
@@ -248,6 +252,8 @@ template&lt;typename BasisType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Vector containing the corresponding quadrature weights. </p>
 
 </div>
 </div>

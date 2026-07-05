@@ -132,20 +132,28 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:abc3c756d62cb3ec6615956dd51929742" id="r_abc3c756d62cb3ec6615956dd51929742"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#abc3c756d62cb3ec6615956dd51929742">nChains_</a> {0}</td></tr>
+<tr class="memdesc:abc3c756d62cb3ec6615956dd51929742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of active parallel chains.  <br /></td></tr>
 <tr class="separator:abc3c756d62cb3ec6615956dd51929742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f3f7ffcf3db603f79ca279871aff279" id="r_a0f3f7ffcf3db603f79ca279871aff279"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#a0f3f7ffcf3db603f79ca279871aff279">dim_</a> {0}</td></tr>
+<tr class="memdesc:a0f3f7ffcf3db603f79ca279871aff279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimension of the parameter space.  <br /></td></tr>
 <tr class="separator:a0f3f7ffcf3db603f79ca279871aff279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5116dfc7c72d8c185aeba769282da02" id="r_ad5116dfc7c72d8c185aeba769282da02"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#ad5116dfc7c72d8c185aeba769282da02">chainSamples_</a></td></tr>
+<tr class="memdesc:ad5116dfc7c72d8c185aeba769282da02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current parameter samples for each chain.  <br /></td></tr>
 <tr class="separator:ad5116dfc7c72d8c185aeba769282da02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8dc967a2e44a7125afc59de69ff6dc6" id="r_ae8dc967a2e44a7125afc59de69ff6dc6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#ae8dc967a2e44a7125afc59de69ff6dc6">chainScores_</a></td></tr>
+<tr class="memdesc:ae8dc967a2e44a7125afc59de69ff6dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current score (log probability) for each chain.  <br /></td></tr>
 <tr class="separator:ae8dc967a2e44a7125afc59de69ff6dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9351419d92e28d11378724802c01fd5c" id="r_a9351419d92e28d11378724802c01fd5c"><td class="memItemLeft" align="right" valign="top">std::uniform_int_distribution&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#a9351419d92e28d11378724802c01fd5c">distChain_</a></td></tr>
+<tr class="memdesc:a9351419d92e28d11378724802c01fd5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discrete uniform distribution helper to pick random chain.  <br /></td></tr>
 <tr class="separator:a9351419d92e28d11378724802c01fd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00e1b3a389e105c950680331d282c2f9" id="r_a00e1b3a389e105c950680331d282c2f9"><td class="memItemLeft" align="right" valign="top">std::uniform_real_distribution&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#a00e1b3a389e105c950680331d282c2f9">distU_</a> {0, 1}</td></tr>
+<tr class="memdesc:a00e1b3a389e105c950680331d282c2f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform distribution helper.  <br /></td></tr>
 <tr class="separator:a00e1b3a389e105c950680331d282c2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad55c73ca3b211a37188d99db2241f055" id="r_ad55c73ca3b211a37188d99db2241f055"><td class="memItemLeft" align="right" valign="top">std::normal_distribution&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#ad55c73ca3b211a37188d99db2241f055">distN_</a> {0, 1}</td></tr>
+<tr class="memdesc:ad55c73ca3b211a37188d99db2241f055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal distribution helper.  <br /></td></tr>
 <tr class="separator:ad55c73ca3b211a37188d99db2241f055"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad26388ab7e796253ac77f1b82844af49" id="r_ad26388ab7e796253ac77f1b82844af49"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#ad26388ab7e796253ac77f1b82844af49">nugget_</a> {1e-6}</td></tr>
+<tr class="memdesc:ad26388ab7e796253ac77f1b82844af49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crossover mutation noise scaling.  <br /></td></tr>
 <tr class="separator:ad26388ab7e796253ac77f1b82844af49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -357,6 +365,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Current parameter samples for each chain. </p>
+
 </div>
 </div>
 <a id="ae8dc967a2e44a7125afc59de69ff6dc6" name="ae8dc967a2e44a7125afc59de69ff6dc6"></a>
@@ -378,6 +388,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Current score (log probability) for each chain. </p>
 
 </div>
 </div>
@@ -401,6 +413,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Dimension of the parameter space. </p>
+
 </div>
 </div>
 <a id="a9351419d92e28d11378724802c01fd5c" name="a9351419d92e28d11378724802c01fd5c"></a>
@@ -422,6 +436,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Discrete uniform distribution helper to pick random chain. </p>
 
 </div>
 </div>
@@ -445,6 +461,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Normal distribution helper. </p>
+
 </div>
 </div>
 <a id="a00e1b3a389e105c950680331d282c2f9" name="a00e1b3a389e105c950680331d282c2f9"></a>
@@ -466,6 +484,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Uniform distribution helper. </p>
 
 </div>
 </div>
@@ -489,6 +509,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Number of active parallel chains. </p>
+
 </div>
 </div>
 <a id="ad26388ab7e796253ac77f1b82844af49" name="ad26388ab7e796253ac77f1b82844af49"></a>
@@ -510,6 +532,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Crossover mutation noise scaling. </p>
 
 </div>
 </div>

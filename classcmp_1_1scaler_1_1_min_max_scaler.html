@@ -135,8 +135,10 @@ Collaboration diagram for cmp::scaler::MinMaxScaler:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4ed6dfccaab541f91a2ce38e47cef532" id="r_a4ed6dfccaab541f91a2ce38e47cef532"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a4ed6dfccaab541f91a2ce38e47cef532">MinMaxScaler</a> ()=default</td></tr>
+<tr class="memdesc:a4ed6dfccaab541f91a2ce38e47cef532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:a4ed6dfccaab541f91a2ce38e47cef532"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f9835c9f1c5b881bf74e1b2b3bc42e6" id="r_a8f9835c9f1c5b881bf74e1b2b3bc42e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a8f9835c9f1c5b881bf74e1b2b3bc42e6">MinMaxScaler</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;min, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;max)</td></tr>
+<tr class="memdesc:a8f9835c9f1c5b881bf74e1b2b3bc42e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html" title="Linearly scales features to a target bounding box range.">MinMaxScaler</a> bounded to a specific target range.  <br /></td></tr>
 <tr class="separator:a8f9835c9f1c5b881bf74e1b2b3bc42e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1426a4f28567b46ba9adb05f1c2ecc56" id="r_a1426a4f28567b46ba9adb05f1c2ecc56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a1426a4f28567b46ba9adb05f1c2ecc56">MinMaxScaler</a> (const <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html">MinMaxScaler</a> &amp;other)=default</td></tr>
 <tr class="separator:a1426a4f28567b46ba9adb05f1c2ecc56"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,44 +151,63 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a35e3aafba14fe404a01ff545aabe08bc" id="r_a35e3aafba14fe404a01ff545aabe08bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html">MinMaxScaler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a35e3aafba14fe404a01ff545aabe08bc">operator=</a> (<a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html">MinMaxScaler</a> &amp;&amp;other)=default</td></tr>
 <tr class="separator:a35e3aafba14fe404a01ff545aabe08bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a566ca9d333c4703307bd78e7afaebf0c" id="r_a566ca9d333c4703307bd78e7afaebf0c"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a566ca9d333c4703307bd78e7afaebf0c">transform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
+<tr class="memdesc:a566ca9d333c4703307bd78e7afaebf0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the input data from physical space to the scaled latent space.  <br /></td></tr>
 <tr class="separator:a566ca9d333c4703307bd78e7afaebf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23768d4063032ff713f6cdd9092240b4" id="r_a23768d4063032ff713f6cdd9092240b4"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a23768d4063032ff713f6cdd9092240b4">inverseTransform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
+<tr class="memdesc:a23768d4063032ff713f6cdd9092240b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs the data from the scaled latent space back to physical space.  <br /></td></tr>
 <tr class="separator:a23768d4063032ff713f6cdd9092240b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7137f3b6cd83ec840291b288eb8fa552" id="r_a7137f3b6cd83ec840291b288eb8fa552"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a7137f3b6cd83ec840291b288eb8fa552">getDataMin</a> () const</td></tr>
+<tr class="memdesc:a7137f3b6cd83ec840291b288eb8fa552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the empirical minimum vector \( \mathbf{x}_{\text{min}} \) found during fitting.  <br /></td></tr>
 <tr class="separator:a7137f3b6cd83ec840291b288eb8fa552"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdbc974ef6ec7f83efa0d08211eedbd5" id="r_abdbc974ef6ec7f83efa0d08211eedbd5"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#abdbc974ef6ec7f83efa0d08211eedbd5">getDataMax</a> () const</td></tr>
+<tr class="memdesc:abdbc974ef6ec7f83efa0d08211eedbd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the empirical maximum vector \( \mathbf{x}_{\text{max}} \) found during fitting.  <br /></td></tr>
 <tr class="separator:abdbc974ef6ec7f83efa0d08211eedbd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16823cc81232127bc86759957d1c7cd5" id="r_a16823cc81232127bc86759957d1c7cd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a16823cc81232127bc86759957d1c7cd5">fit</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
+<tr class="memdesc:a16823cc81232127bc86759957d1c7cd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Learns the scaling parameters (e.g., mean, variance) from the training data.  <br /></td></tr>
 <tr class="separator:a16823cc81232127bc86759957d1c7cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7cf5a8ad79582ab3bf569f2f51b81b3" id="r_ac7cf5a8ad79582ab3bf569f2f51b81b3"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#ac7cf5a8ad79582ab3bf569f2f51b81b3">fit_transform</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
+<tr class="memdesc:ac7cf5a8ad79582ab3bf569f2f51b81b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the scaling parameters to the data and subsequently transforms the data.  <br /></td></tr>
 <tr class="separator:ac7cf5a8ad79582ab3bf569f2f51b81b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c2c401942b096a31bc4938c2f12ee1e" id="r_a9c2c401942b096a31bc4938c2f12ee1e"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a9c2c401942b096a31bc4938c2f12ee1e">getIntercept</a> () const override</td></tr>
+<tr class="memdesc:a9c2c401942b096a31bc4938c2f12ee1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the intercept vector \( \mu \) used in the transformation.  <br /></td></tr>
 <tr class="separator:a9c2c401942b096a31bc4938c2f12ee1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bbf79807c05b4f60ec2b1a946158dd0" id="r_a7bbf79807c05b4f60ec2b1a946158dd0"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a7bbf79807c05b4f60ec2b1a946158dd0">getScale</a> () const override</td></tr>
+<tr class="memdesc:a7bbf79807c05b4f60ec2b1a946158dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the scaling matrix \( S \) used in the transformation.  <br /></td></tr>
 <tr class="separator:a7bbf79807c05b4f60ec2b1a946158dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a759dbfd0c47fc160d102ba2883047cbc" id="r_a759dbfd0c47fc160d102ba2883047cbc"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a759dbfd0c47fc160d102ba2883047cbc">min_</a></td></tr>
+<tr class="memdesc:a759dbfd0c47fc160d102ba2883047cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Target minimum value bounding vector \( \mathbf{a} \).  <br /></td></tr>
 <tr class="separator:a759dbfd0c47fc160d102ba2883047cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a989c4283b6d6eab4e055da961caddbc2" id="r_a989c4283b6d6eab4e055da961caddbc2"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a989c4283b6d6eab4e055da961caddbc2">max_</a></td></tr>
+<tr class="memdesc:a989c4283b6d6eab4e055da961caddbc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Target maximum value bounding vector \( \mathbf{b} \).  <br /></td></tr>
 <tr class="separator:a989c4283b6d6eab4e055da961caddbc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a806a538ae198499889ba3c4ec79026c1" id="r_a806a538ae198499889ba3c4ec79026c1"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a806a538ae198499889ba3c4ec79026c1">data_min_</a></td></tr>
+<tr class="memdesc:a806a538ae198499889ba3c4ec79026c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empirical minimum value vector \( \mathbf{x}_{\text{min}} \) observed in the training dataset.  <br /></td></tr>
 <tr class="separator:a806a538ae198499889ba3c4ec79026c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac40d713951e369ed819178379218974a" id="r_ac40d713951e369ed819178379218974a"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#ac40d713951e369ed819178379218974a">data_max_</a></td></tr>
+<tr class="memdesc:ac40d713951e369ed819178379218974a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empirical maximum value vector \( \mathbf{x}_{\text{max}} \) observed in the training dataset.  <br /></td></tr>
 <tr class="separator:ac40d713951e369ed819178379218974a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Linearly scales features to a target bounding box range. </p>
-<p>Mathematical Formulation Scales each feature vector component to live within range \([a_j, b_j]\) (typically \([0, 1]\)):  </p><p class="formulaDsp">
+<ul>
+<li></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md20"></a>
+Mathematical Formulation</h3>
+<p>Scales each feature vector component to live within a target range \([a_j, b_j]\) (typically \([0, 1]\)):  </p><p class="formulaDsp">
 \[
 y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}} (b_j - a_j)
 \]
 </p>
-<p> where \(x_{\text{min}, j}\) and \(x_{\text{max}, j}\) are the training data's minimum and maximum values for feature \(j\).</p>
-<p>Implementation Algorithm</p><ol type="1">
-<li><code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a16823cc81232127bc86759957d1c7cd5">fit()</a></code> computes column-wise minima and maxima vectors of the training matrix.</li>
-<li><code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a566ca9d333c4703307bd78e7afaebf0c">transform()</a></code> and <code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a23768d4063032ff713f6cdd9092240b4">inverseTransform()</a></code> apply element-wise division and scaling multiplication. </li>
+<p> where \(x_{\text{min}, j}\) and \(x_{\text{max}, j}\) are the training data's empirical minimum and maximum values for feature \(j\).</p><ul>
+<li>### Implementation Algorithm</li>
+</ul>
+<ol type="1">
+<li><code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a16823cc81232127bc86759957d1c7cd5" title="Learns the scaling parameters (e.g., mean, variance) from the training data.">fit()</a></code> computes column-wise minima and maxima vectors of the training matrix.</li>
+<li><code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a566ca9d333c4703307bd78e7afaebf0c" title="Transforms the input data from physical space to the scaled latent space.">transform()</a></code> and <code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a23768d4063032ff713f6cdd9092240b4" title="Reconstructs the data from the scaled latent space back to physical space.">inverseTransform()</a></code> apply element-wise division and scaling multiplication. </li>
 </ol>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4ed6dfccaab541f91a2ce38e47cef532" name="a4ed6dfccaab541f91a2ce38e47cef532"></a>
@@ -211,6 +232,8 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -247,6 +270,15 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html" title="Linearly scales features to a target bounding box range.">MinMaxScaler</a> bounded to a specific target range. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>The target minimum bounding vector \( \mathbf{a} \). </td></tr>
+    <tr><td class="paramname">max</td><td>The target maximum bounding vector \( \mathbf{b} \). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -352,6 +384,14 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
 </table>
 </div><div class="memdoc">
 
+<p>Learns the scaling parameters (e.g., mean, variance) from the training data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a034490dc8b97ab47a73ca3ffb3b6db66">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -380,6 +420,15 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
 </table>
 </div><div class="memdoc">
 
+<p>Fits the scaling parameters to the data and subsequently transforms the data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The transformed dataset matrix \( Y \). </dd></dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a51d8c5c552334f8a92975516acb811f4">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -407,6 +456,9 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves the empirical maximum vector \( \mathbf{x}_{\text{max}} \) found during fitting. </p>
+<dl class="section return"><dt>Returns</dt><dd>The maximum data vector. </dd></dl>
+
 </div>
 </div>
 <a id="a7137f3b6cd83ec840291b288eb8fa552" name="a7137f3b6cd83ec840291b288eb8fa552"></a>
@@ -432,6 +484,9 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves the empirical minimum vector \( \mathbf{x}_{\text{min}} \) found during fitting. </p>
+<dl class="section return"><dt>Returns</dt><dd>The minimum data vector. </dd></dl>
+
 </div>
 </div>
 <a id="a9c2c401942b096a31bc4938c2f12ee1e" name="a9c2c401942b096a31bc4938c2f12ee1e"></a>
@@ -456,6 +511,9 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Retrieves the intercept vector \( \mu \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The intercept vector. </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a323c36327efa37536bed9cebf0f6c04f">cmp::scaler::Scaler</a>.</p>
 
@@ -484,6 +542,9 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves the scaling matrix \( S \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The scaling matrix. </dd></dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a4cebbeb69fa4221279ebd6c9f91f8817">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -511,6 +572,15 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reconstructs the data from the scaled latent space back to physical space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( y \) in the scaled space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The unscaled physical data vector \( x \). </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a34c7739c949f4603ec1a430daf405dec">cmp::scaler::Scaler</a>.</p>
 
@@ -592,6 +662,15 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
 </table>
 </div><div class="memdoc">
 
+<p>Transforms the input data from physical space to the scaled latent space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( x \) representing a single data point in physical space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The scaled data vector \( y \). </dd></dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#ada894025d92d10d357205a79ffe5f8f1">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -617,6 +696,8 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
 </table>
 </div><div class="memdoc">
 
+<p>Empirical maximum value vector \( \mathbf{x}_{\text{max}} \) observed in the training dataset. </p>
+
 </div>
 </div>
 <a id="a806a538ae198499889ba3c4ec79026c1" name="a806a538ae198499889ba3c4ec79026c1"></a>
@@ -638,6 +719,8 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Empirical minimum value vector \( \mathbf{x}_{\text{min}} \) observed in the training dataset. </p>
 
 </div>
 </div>
@@ -661,6 +744,8 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
 </table>
 </div><div class="memdoc">
 
+<p>Target maximum value bounding vector \( \mathbf{b} \). </p>
+
 </div>
 </div>
 <a id="a759dbfd0c47fc160d102ba2883047cbc" name="a759dbfd0c47fc160d102ba2883047cbc"></a>
@@ -682,6 +767,8 @@ y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Target minimum value bounding vector \( \mathbf{a} \). </p>
 
 </div>
 </div>

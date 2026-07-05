@@ -115,47 +115,60 @@ $(document).ready(function(){initNavTree('classcmp_1_1statistics_1_1_bootstrap.h
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a682182ddb9dad7bb853dd282d9349724" id="r_a682182ddb9dad7bb853dd282d9349724"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#a682182ddb9dad7bb853dd282d9349724">Bootstrap</a> (size_t n_obs, size_t n_obs_resample, bool with_replacement=true, unsigned int random_state=42)</td></tr>
+<tr class="memdesc:a682182ddb9dad7bb853dd282d9349724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html" title="Bootstrap resampling index generator.">Bootstrap</a> resampler.  <br /></td></tr>
 <tr class="separator:a682182ddb9dad7bb853dd282d9349724"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15f57d6e5ac54fda1bd261350f5d704e" id="r_a15f57d6e5ac54fda1bd261350f5d704e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#a15f57d6e5ac54fda1bd261350f5d704e">operator()</a> ()</td></tr>
+<tr class="memdesc:a15f57d6e5ac54fda1bd261350f5d704e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the bootstrap sampling process.  <br /></td></tr>
 <tr class="separator:a15f57d6e5ac54fda1bd261350f5d704e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac722afdf40aca3bdf48d9f1f297a1fae" id="r_ac722afdf40aca3bdf48d9f1f297a1fae"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#ac722afdf40aca3bdf48d9f1f297a1fae">nObs_</a></td></tr>
+<tr class="memdesc:ac722afdf40aca3bdf48d9f1f297a1fae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Original number of observations \( N \).  <br /></td></tr>
 <tr class="separator:ac722afdf40aca3bdf48d9f1f297a1fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cd3268462c69be1f2806e17c4b4f578" id="r_a0cd3268462c69be1f2806e17c4b4f578"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#a0cd3268462c69be1f2806e17c4b4f578">nObsResample_</a></td></tr>
+<tr class="memdesc:a0cd3268462c69be1f2806e17c4b4f578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Target number of observations to resample \( M \).  <br /></td></tr>
 <tr class="separator:a0cd3268462c69be1f2806e17c4b4f578"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4a629cfd6000b34f020f062f7ab3b69" id="r_ab4a629cfd6000b34f020f062f7ab3b69"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#ab4a629cfd6000b34f020f062f7ab3b69">rngState_</a></td></tr>
+<tr class="memdesc:ab4a629cfd6000b34f020f062f7ab3b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seed for the random number generator.  <br /></td></tr>
 <tr class="separator:ab4a629cfd6000b34f020f062f7ab3b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5619a6b284966354830bab2bf8c659c" id="r_ad5619a6b284966354830bab2bf8c659c"><td class="memItemLeft" align="right" valign="top">std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#ad5619a6b284966354830bab2bf8c659c">rng_</a></td></tr>
+<tr class="memdesc:ad5619a6b284966354830bab2bf8c659c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random number engine.  <br /></td></tr>
 <tr class="separator:ad5619a6b284966354830bab2bf8c659c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a853b890abc3f5abfab071b86ac65ae5f" id="r_a853b890abc3f5abfab071b86ac65ae5f"><td class="memItemLeft" align="right" valign="top">std::uniform_int_distribution&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#a853b890abc3f5abfab071b86ac65ae5f">dist_</a></td></tr>
+<tr class="memdesc:a853b890abc3f5abfab071b86ac65ae5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform integer distribution for sampling with replacement.  <br /></td></tr>
 <tr class="separator:a853b890abc3f5abfab071b86ac65ae5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e26fcf22880ce21fcca240a18730e8c" id="r_a8e26fcf22880ce21fcca240a18730e8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#a8e26fcf22880ce21fcca240a18730e8c">indices_</a></td></tr>
+<tr class="memdesc:a8e26fcf22880ce21fcca240a18730e8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal array storing the base indices for sampling.  <br /></td></tr>
 <tr class="separator:a8e26fcf22880ce21fcca240a18730e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fddd44e98592e4675a45b81126f4580" id="r_a1fddd44e98592e4675a45b81126f4580"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#a1fddd44e98592e4675a45b81126f4580">withReplacement_</a></td></tr>
+<tr class="memdesc:a1fddd44e98592e4675a45b81126f4580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether to sample with replacement.  <br /></td></tr>
 <tr class="separator:a1fddd44e98592e4675a45b81126f4580"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html" title="Bootstrap resampling index generator.">Bootstrap</a> resampling index generator. </p>
-<p>Mathematical Formulation Draws a random sample \(\mathcal{D}^*\) of size \(M\) from a dataset \(\mathcal{D}\) of size \(N\).</p><ul>
+<ul>
+<li></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md25"></a>
+Mathematical Formulation</h3>
+<p>Draws a random sample \(\mathcal{D}^*\) of size \(M\) from a dataset \(\mathcal{D}\) of size \(N\).</p><ul>
 <li>If with replacement:  <p class="formulaDsp">
 \[
-  P(x_i^* = x_j) = \frac{1}{N} \quad \forall i \in \{1,\dots,M\}, \ j \in \{1,\dots,N\}
-  \]
+P(x_i^* = x_j) = \frac{1}{N} \quad \forall i \in \{1,\dots,M\}, \ j \in \{1,\dots,N\}
+\]
 </p>
 </li>
-<li><p class="startli">If without replacement:  </p><p class="formulaDsp">
+<li>If without replacement:  <p class="formulaDsp">
 \[
-  P(x_i^* = x_j) = \frac{1}{N - i + 1}
-  \]
+P(x_i^* = x_j) = \frac{1}{N - i + 1}
+\]
 </p>
-<p> subject to all selections being distinct.</p>
-<p class="startli">Implementation Algorithm</p>
-</li>
+ subject to all selections being distinct.</li>
+<li>### Implementation Algorithm</li>
 </ul>
 <ol type="1">
-<li>If <code>withReplacement_</code> is true, generates \(M\) random integers in range \([0, N-1]\).</li>
+<li>If <code>withReplacement_</code> is true, generates \(M\) random integers uniformly distributed in the range \([0, N-1]\).</li>
 <li>If false, shuffles the index array using <code>std::shuffle</code> and extracts the first \(M\) elements. </li>
 </ol>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -205,6 +218,23 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructor for the <a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html" title="Bootstrap resampling index generator.">Bootstrap</a> resampler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n_obs</td><td>Total number of original observations \( N \). </td></tr>
+    <tr><td class="paramname">n_obs_resample</td><td>Number of samples to draw \( M \). </td></tr>
+    <tr><td class="paramname">with_replacement</td><td>Boolean flag indicating whether duplicates are allowed. </td></tr>
+    <tr><td class="paramname">random_state</td><td>Seed for the random number generator. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>if invalid sizes are provided. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -231,6 +261,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Executes the bootstrap sampling process. </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the \( M \) randomly sampled indices. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -254,6 +287,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Uniform integer distribution for sampling with replacement. </p>
+
 </div>
 </div>
 <a id="a8e26fcf22880ce21fcca240a18730e8c" name="a8e26fcf22880ce21fcca240a18730e8c"></a>
@@ -275,6 +310,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Internal array storing the base indices for sampling. </p>
 
 </div>
 </div>
@@ -298,6 +335,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Original number of observations \( N \). </p>
+
 </div>
 </div>
 <a id="a0cd3268462c69be1f2806e17c4b4f578" name="a0cd3268462c69be1f2806e17c4b4f578"></a>
@@ -319,6 +358,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Target number of observations to resample \( M \). </p>
 
 </div>
 </div>
@@ -342,6 +383,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Random number engine. </p>
+
 </div>
 </div>
 <a id="ab4a629cfd6000b34f020f062f7ab3b69" name="ab4a629cfd6000b34f020f062f7ab3b69"></a>
@@ -364,6 +407,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Seed for the random number generator. </p>
+
 </div>
 </div>
 <a id="a1fddd44e98592e4675a45b81126f4580" name="a1fddd44e98592e4675a45b81126f4580"></a>
@@ -385,6 +430,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Flag indicating whether to sample with replacement. </p>
 
 </div>
 </div>

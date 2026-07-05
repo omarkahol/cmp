@@ -168,16 +168,22 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a16b7cc507da5d18100ca4b253f0d5c99" id="r_a16b7cc507da5d18100ca4b253f0d5c99"><td class="memItemLeft" align="right" valign="top">std::function&lt; double(Eigen::Ref&lt; const Eigen::VectorXd &gt;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_objective_functor.html#a16b7cc507da5d18100ca4b253f0d5c99">fval_only_</a></td></tr>
+<tr class="memdesc:a16b7cc507da5d18100ca4b253f0d5c99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a gradient-free objective function.  <br /></td></tr>
 <tr class="separator:a16b7cc507da5d18100ca4b253f0d5c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a729237b005c98d8ae0949ad1a8a5808a" id="r_a729237b005c98d8ae0949ad1a8a5808a"><td class="memItemLeft" align="right" valign="top">std::function&lt; double(Eigen::Ref&lt; const Eigen::VectorXd &gt;, Eigen::Ref&lt; Eigen::VectorXd &gt;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_objective_functor.html#a729237b005c98d8ae0949ad1a8a5808a">fval_grad_inplace_</a></td></tr>
+<tr class="memdesc:a729237b005c98d8ae0949ad1a8a5808a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a gradient-based objective function.  <br /></td></tr>
 <tr class="separator:a729237b005c98d8ae0949ad1a8a5808a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a041a4a7b3c9b4cd3a11e6e90077574b7" id="r_a041a4a7b3c9b4cd3a11e6e90077574b7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::function&lt; double(Eigen::Ref&lt; const Eigen::VectorXd &gt;, Eigen::Ref&lt; Eigen::VectorXd &gt;)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_objective_functor.html#a041a4a7b3c9b4cd3a11e6e90077574b7">ineq_constraints_</a></td></tr>
+<tr class="memdesc:a041a4a7b3c9b4cd3a11e6e90077574b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of inequality constraint functions.  <br /></td></tr>
 <tr class="separator:a041a4a7b3c9b4cd3a11e6e90077574b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798d9b8952c02054eb9a9550c1695a89" id="r_a798d9b8952c02054eb9a9550c1695a89"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::function&lt; double(Eigen::Ref&lt; const Eigen::VectorXd &gt;, Eigen::Ref&lt; Eigen::VectorXd &gt;)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_objective_functor.html#a798d9b8952c02054eb9a9550c1695a89">eq_constraints_</a></td></tr>
+<tr class="memdesc:a798d9b8952c02054eb9a9550c1695a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of equality constraint functions.  <br /></td></tr>
 <tr class="separator:a798d9b8952c02054eb9a9550c1695a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61a6027cb0b93239ed7f06487c4c3189" id="r_a61a6027cb0b93239ed7f06487c4c3189"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_objective_functor.html#a61a6027cb0b93239ed7f06487c4c3189">use_gradient_</a></td></tr>
+<tr class="memdesc:a61a6027cb0b93239ed7f06487c4c3189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether the objective function uses gradient information.  <br /></td></tr>
 <tr class="separator:a61a6027cb0b93239ed7f06487c4c3189"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28fdec9e08cb60c5261db23468ac4078" id="r_a28fdec9e08cb60c5261db23468ac4078"><td class="memItemLeft" align="right" valign="top">std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_objective_functor.html#a28fdec9e08cb60c5261db23468ac4078">log_scale_</a></td></tr>
+<tr class="memdesc:a28fdec9e08cb60c5261db23468ac4078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask indicating which parameter dimensions are optimized in log-scale.  <br /></td></tr>
 <tr class="separator:a28fdec9e08cb60c5261db23468ac4078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -736,6 +742,8 @@ x_k = \exp(y_k)
 </table>
 </div><div class="memdoc">
 
+<p>Collection of equality constraint functions. </p>
+
 </div>
 </div>
 <a id="a729237b005c98d8ae0949ad1a8a5808a" name="a729237b005c98d8ae0949ad1a8a5808a"></a>
@@ -757,6 +765,8 @@ x_k = \exp(y_k)
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Pointer to a gradient-based objective function. </p>
 
 </div>
 </div>
@@ -780,6 +790,8 @@ x_k = \exp(y_k)
 </table>
 </div><div class="memdoc">
 
+<p>Pointer to a gradient-free objective function. </p>
+
 </div>
 </div>
 <a id="a041a4a7b3c9b4cd3a11e6e90077574b7" name="a041a4a7b3c9b4cd3a11e6e90077574b7"></a>
@@ -801,6 +813,8 @@ x_k = \exp(y_k)
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Collection of inequality constraint functions. </p>
 
 </div>
 </div>
@@ -824,6 +838,8 @@ x_k = \exp(y_k)
 </table>
 </div><div class="memdoc">
 
+<p>Mask indicating which parameter dimensions are optimized in log-scale. </p>
+
 </div>
 </div>
 <a id="a61a6027cb0b93239ed7f06487c4c3189" name="a61a6027cb0b93239ed7f06487c4c3189"></a>
@@ -845,6 +861,8 @@ x_k = \exp(y_k)
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Flag indicating whether the objective function uses gradient information. </p>
 
 </div>
 </div>

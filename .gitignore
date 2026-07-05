@@ -12,3 +12,4 @@ Technical_Doc/*
 .notebook
 *.d
 tests/obj/**
+doc_tracking.md

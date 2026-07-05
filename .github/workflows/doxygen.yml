@@ -11,10 +11,20 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Install Doxygen
         run: sudo apt-get update && sudo apt-get install -y doxygen
+
+      - name: Download Doxygen Awesome CSS
+        run: |
+          wget https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/doxygen-awesome.css
+          wget https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/doxygen-awesome-sidebar-only.css
+
       - name: Generate Documentation
-        run: doxygen Doxyfile
+        run: |
+          doxygen Doxyfile
+          touch ./docs/html/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

@@ -15,7 +15,18 @@ namespace cmp::classifier {
 enum method {CV_SCORE, CV_PROB_SCORE};
 
 
-// Abstract class for classifier
+/**
+ * @brief Abstract base class for all classifiers.
+ * 
+ * @details Mathematical Formulation
+ * A classifier maps an input vector \f$\mathbf{x} \in \mathbb{R}^D\f$ to a class label \f$y \in \{0, 1, \dots, C-1\}\f$,
+ * or estimates the class posterior probabilities \f$P(y = c \mid \mathbf{x})\f$ for \f$c = 0, \dots, C-1\f$.
+ * 
+ * @details Implementation Algorithm
+ * Provides a pure virtual interface defining:
+ * - `predictProbabilities(x)`: Returns a vector of probability estimates.
+ * - `predict(x)`: Returns the class label with the highest probability.
+ */
 class Classifier {
   public:
     virtual ~Classifier() = default;
@@ -23,6 +34,18 @@ class Classifier {
     virtual size_t predict(const Eigen::Ref<const Eigen::VectorXd> &x) const = 0;
 };
 
+/**
+ * @brief K-Nearest Neighbors classifier helper class.
+ * 
+ * @details Mathematical Formulation
+ * For a query point \f$\mathbf{x}\f$, K-Nearest Neighbors identifies the set of \f$k\f$ closest points 
+ * \f$\mathcal{N}_k(\mathbf{x})\f$ in the reference dataset \f$\mathcal{D} = \{\mathbf{x}_i\}_{i=1}^N\f$ under a chosen distance metric \f$d(\mathbf{x}, \mathbf{x}_i)\f$ (typically Euclidean distance):
+ * \f[ d(\mathbf{x}, \mathbf{x}_i) = \|\mathbf{x} - \mathbf{x}_i\|_2 \f]
+ * 
+ * @details Implementation Algorithm
+ * The `compute` method builds an indexing/neighbour structure. For each point in the dataset,
+ * it searches and stores the indices of its \f$k\f$ nearest neighbors.
+ */
 class KNN {
   private:
     std::vector<std::vector<size_t>> neighbours_;

@@ -16,6 +16,48 @@
 
 namespace cmp {
 
+/**
+ * @class ModelCluster
+ * @brief Manages a clustered set of Gaussian Processes for localized regression.
+ *
+ * @details Mathematical Formulation
+ * Let the dataset be composed of $N$ observations $(x_i, y_i) \in \mathbb{R}^d \times \mathbb{R}$.
+ * The data is partitioned into $K$ clusters. Each cluster $k \in \{1, \ldots, K\}$ is modeled
+ * by an independent Gaussian Process (GP) with a local covariance kernel $k_k(x, x'; \theta_k)$
+ * and a mean function $m_k(x; \theta_k)$.
+ * The cluster membership of observation $i$ is denoted by the label $c_i \in \{0, \ldots, K-1\}$.
+ *
+ * For a query point $x^*$, a classifier predicts the probability of cluster membership $P(C = k \mid x^*)$.
+ * The blended prediction is given by:
+ * \f[
+ * \mu(x^*) = \sum_{k=1}^K P(C = k \mid x^*) \mu_k(x^*)
+ * \f]
+ * \f[
+ * \sigma^2(x^*) = \sum_{k=1}^K P(C = k \mid x^*)^2 \sigma_k^2(x^*)
+ * \f]
+ * where $\mu_k(x^*)$ and $\sigma_k^2(x^*)$ are the mean and variance predictions of the $k$-th GP.
+ *
+ * Switching steps evaluate the change in predictive log-likelihood (LOO error for current cluster,
+ * or standard predictive log-likelihood for candidate clusters). The stochastic switching probability
+ * for point $i$ to cluster $j$ is computed as:
+ * \f[
+ * p_{ij} \propto P(C = j \mid x_i) \exp\left( \frac{\Delta_{ij}}{T} \right)
+ * \f]
+ * where $\Delta_{ij}$ represents the log-predictive score difference if point $i$ is moved to cluster $j$,
+ * and $T$ is the temperature parameter.
+ *
+ * @details Implementation Algorithm
+ * 1. **Initialization (`condition`)**: Groups the input observations according to their labels,
+ *    instantiates the GP models, computes initial cluster centroids, and sets up index lookup tables.
+ * 2. **Blended Prediction (`predict`)**: Obtains probabilities from the classifier, queries predictions
+ *    from each local GP, and performs the weighted combination.
+ * 3. **Stochastic Switching (`switchStep`)**: Precomputes probability distributions for all points
+ *    based on likelihood shifts, filters active points, and samples switches up to `maxAllowedSwitches`.
+ * 4. **Deterministic Switching (`deterministicSwitchStep`)**: Calculates the log-likelihood gain
+ *    for all possible re-assignments, sorts them, and executes the top beneficial moves.
+ * 5. **Purging / Merging**: Reassigns points from a dissolved cluster to their nearest centroids,
+ *    shrinks the list of active GPs, and shifts all cluster labels to maintain contiguous indices.
+ */
 class ModelCluster {
 
   private:
@@ -649,6 +691,24 @@ class ModelCluster {
 };
 
 namespace covariance {
+/**
+ * @class ModelClusterCovariance
+ * @brief Blended covariance kernel that interpolates local GP kernels using classifier probabilities.
+ *
+ * @details Mathematical Formulation
+ * The covariance function between two inputs $x$ and $x'$ is computed as:
+ * \f[
+ * K(x, x') = \sum_{k=1}^K \sqrt{P(C=k \mid x) P(C=k \mid x')} k_k(x, x'; \theta_k)
+ * \f]
+ * where $P(C=k \mid x)$ represents the probability that input $x$ belongs to cluster $k$
+ * (evaluated by the classifier), and $k_k$ is the kernel of the $k$-th cluster's GP.
+ *
+ * @details Implementation Algorithm
+ * 1. **Cache Lookups (`getCachedProbabilities`)**: Generates a binary string key representing
+ *    the coordinates of the input vector and queries the cache `probabilityCache_` to avoid redundant classifier evaluations.
+ * 2. **Covariance Evaluation (`eval`)**: Fetches membership probabilities for both inputs,
+ *    loops over all clusters to evaluate their respective covariance kernels, and sums the scaled products.
+ */
 class ModelClusterCovariance : public cmp::covariance::Covariance {
   private:
     cmp::ModelCluster *pModelCluster_;
@@ -713,6 +773,23 @@ class ModelClusterCovariance : public cmp::covariance::Covariance {
 } // namespace covariance
 
 namespace mean {
+/**
+ * @class ModelClusterMean
+ * @brief Blended mean function that interpolates local GP means using classifier probabilities.
+ *
+ * @details Mathematical Formulation
+ * The blended mean function at input $x$ is evaluated as:
+ * \f[
+ * M(x) = \sum_{k=1}^K P(C=k \mid x) m_k(x; \theta_k)
+ * \f]
+ * where $P(C=k \mid x)$ is the classifier-derived probability that $x$ belongs to cluster $k$,
+ * and $m_k$ is the mean function of the $k$-th cluster's GP.
+ *
+ * @details Implementation Algorithm
+ * 1. Queries the classifier for the cluster membership probability vector at input $x$.
+ * 2. Evaluates the local mean function for each cluster GP at $x$.
+ * 3. Returns the dot product of the probability vector and the local GP mean vector.
+ */
 class ModelClusterMean: public cmp::mean::Mean {
   private:
     cmp::ModelCluster *pModelCluster_;

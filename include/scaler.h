@@ -9,7 +9,19 @@ namespace cmp::scaler {
 constexpr double TOL = 1e-10;
 
 /**
- * Template virtual class for a Scaler object.
+ * @class Scaler
+ * @brief Template virtual base class for feature scaling and transformation.
+ * 
+ * @details \b Mathematical \b Formulation
+ * Define a transformation mapping \f$ T: \mathbb{R}^d \to \mathbb{R}^d \f$ and its inverse \f$ T^{-1} \f$:
+ * \f[ y = T(x) \f]
+ * \f[ x = T^{-1}(y) \f]
+ * Often represented linearly with intercept \f$ \mu \f$ and scaling factor/matrix \f$ S \f$:
+ * \f[ T(x) = S^{-1}(x - \mu) \f]
+ * \f[ T^{-1}(y) = S y + \mu \f]
+ * 
+ * @details \b Implementation \b Algorithm
+ * Pure virtual interface. Concrete implementations define the fitting, transforming, and inverse transforming steps.
  */
 class Scaler {
   public:
@@ -24,7 +36,24 @@ class Scaler {
     virtual Eigen::MatrixXd fit_transform(const Eigen::Ref<const Eigen::MatrixXd> &data) = 0;
 };
 
-//  Standard scaler
+/**
+ * @class StandardScaler
+ * @brief Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition).
+ * 
+ * @details \b Mathematical \b Formulation
+ * Given data matrix \f$ X \in \mathbb{R}^{n \times d} \f$, let \f$ \mu \in \mathbb{R}^d \f$ be the column-wise mean and \f$ \Sigma \in \mathbb{R}^{d \times d} \f$ be the covariance matrix.
+ * We decompose the covariance matrix via the lower Cholesky factor \f$ L \f$ such that:
+ * \f[ \Sigma = L L^T \f]
+ * The transformation maps:
+ * \f[ y = L^{-1}(x - \mu) \f]
+ * The inverse transformation maps:
+ * \f[ x = L y + \mu \f]
+ * 
+ * @details \b Implementation \b Algorithm
+ * 1. \b Fit: Calculate mean vector \f$ \mu \f$ and covariance matrix \f$ \Sigma \f$ of \f$ X \f$, then perform Cholesky LLT decomposition to obtain \f$ L \f$.
+ * 2. \b Transform: Solve the lower triangular system \f$ L y = x - \mu \f$ to compute standardized data.
+ * 3. \b Inverse \b Transform: Compute \f$ L y + \mu \f$ via matrix multiplication and vector addition.
+ */
 class StandardScaler : public Scaler {
   private:
     Eigen::VectorXd mean_;

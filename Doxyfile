@@ -10,7 +10,19 @@ INPUT                  = include src
 FILE_PATTERNS          = *.cpp *.h
 RECURSIVE              = YES
 USE_MATHJAX            = YES
-GENERATE_TREEVIEW      = YES
 HTML_DYNAMIC_MENUS     = YES
 HTML_EXTRA_FILES       = main.pdf
 MATHJAX_RELPATH        = https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7
+
+# -----------------------------------------------------------------------------
+# Doxygen Awesome CSS Configuration
+# -----------------------------------------------------------------------------
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_EXTRA_STYLESHEET  = doxygen-awesome.css doxygen-awesome-sidebar-only.css
+
+# Optional: Tweak the color scheme to be slightly more modern (blueish)
+HTML_COLORSTYLE_HUE    = 209
+HTML_COLORSTYLE_SAT    = 255
+HTML_COLORSTYLE_GAMMA  = 113

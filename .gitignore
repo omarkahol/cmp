@@ -7,7 +7,8 @@ docs
 .DS_Store
 out*
 out.dSYM
-Technical_Doc/**
+Technical_Doc/*
+!Technical_Doc/main.pdf
 .notebook
 *.d
 tests/obj/**

@@ -11,7 +11,7 @@ You can find additional details in my personal [website](https://omarkahol.githu
 ## Documentation
 
 - **LaTeX Technical Documentation**: [Technical Reference Manual](./Technical_Doc/main.pdf)
-- **Live Doxygen API Documentation**: [Live API Site](https://omarkahol.github.io/CMP++/)
+- **Live Doxygen API Documentation**: [Live API Site](https://omarkahol.github.io/cmp/)
 
 ## Getting Started
 

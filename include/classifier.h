@@ -8,6 +8,7 @@
 #include <statistics.h>
 #include <optimization.h>
 #include <kde.h>
+#include <covariance.h>
 
 namespace cmp::classifier {
 
@@ -112,7 +113,6 @@ class KDE : public Classifier {
     /**
      * @brief Predict the class probabilities at a given point.
      * @param x The point at which to predict the class probabilities.
-     * @param T Temperature scaling factor for the probabilities.
      * @return A vector of class probabilities.
      */
     std::vector<double> predictProbabilities(const Eigen::Ref<const Eigen::VectorXd> &x) const override;
@@ -154,9 +154,10 @@ class KDE : public Classifier {
      * @param method The method to use for cross-validation (CV_SCORE or CV_PROB_SCORE).
      * @param algo The optimization algorithm to use (default is nlopt::LN_SBPLX).
      * @param ftol_rel The relative tolerance for the optimization algorithm (default is 1e-4).
+     * @param logScaleFlags A vector of booleans indicating whether to use log-scaling for each bandwidth parameter (default is all false).
      *
      */
-    void fit(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, cmp::statistics::KFold kf, const double& minBw, const double& maxBw, const method method = CV_PROB_SCORE, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4);
+    void fit(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, cmp::statistics::KFold kf, const double& minBw, const double& maxBw, const method method = CV_PROB_SCORE, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4, std::vector<bool> logScaleFlags = {});
 
 
     /**
@@ -168,8 +169,9 @@ class KDE : public Classifier {
      * @param maxBw The maximum bandwidth value for optimization.
      * @param algo The optimization algorithm to use (default is nlopt::LN_SBPLX).
      * @param ftol_rel The relative tolerance for the optimization algorithm (default is 1e-4).
+     * @param logScaleFlags A vector of booleans indicating whether to use log-scaling for each bandwidth parameter (default is all false).
      */
-    void fitLOO(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, const double& minBw, const double& maxBw, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4);
+    void fitLOO(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, const double& minBw, const double& maxBw, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4, std::vector<bool> logScaleFlags = {});
 };
 
 
@@ -305,25 +307,27 @@ class SVM : public Classifier {
      * @param method The method to use for cross-validation (CV_SCORE or CV_PROB_SCORE).
      * @param kf A KFold object containing the cross-validation splits.
      * @param xObs A matrix of observations where each row is an observation and each column is a feature.
-     * @param labels A vector of labels corresponding to the observations.
+     * @param membershipTable A vector of membership values (class labels) corresponding to the observations.
      * @param lb A vector of lower bounds for the hyperparameters and C.
      * @param ub A vector of upper bounds for the hyperparameters and C.
      * @param algo The optimization algorithm to use (default is nlopt::LN_SBPLX).
      * @param ftol_rel The relative tolerance for the optimization algorithm (default is 1e-4).
+     * @param logScaleFlags A vector of booleans indicating whether to use log-scaling for each bandwidth parameter (default is all false).
      */
-    void fit(const method& method, const cmp::statistics::KFold& kf, const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& membershipTable, Eigen::VectorXd lb, Eigen::VectorXd ub, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4);
+    void fit(const method& method, const cmp::statistics::KFold& kf, const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& membershipTable, Eigen::VectorXd lb, Eigen::VectorXd ub, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4, std::vector<bool> logScaleFlags = {});
 
     /**
      * @brief Fit the SVM using span-based optimization to optimize hyperparameters and C.
      * This method uses the specified optimization algorithm to find the optimal hyperparameters and C that minimizes the span of the support vectors.
      * @param xObs A matrix of observations where each row is an observation and each column is a feature.
-     * @param labels A vector of labels corresponding to the observations.
+     * @param membershipTable A vector of membership values (class labels) corresponding to the observations.
      * @param lb A vector of lower bounds for the hyperparameters and C.
      * @param ub A vector of upper bounds for the hyperparameters and C.
      * @param algo The optimization algorithm to use (default is nlopt::LN_SBPLX).
      * @param ftol_rel The relative tolerance for the optimization algorithm (default is 1e-4).
+     * @param logScaleFlags A vector of booleans indicating whether to use log-scaling for each bandwidth parameter (default is all false).
      */
-    void fit(Eigen::Ref<const Eigen::MatrixXd> xObs, Eigen::Ref<const Eigen::VectorXs> membershipTable, Eigen::Ref<const Eigen::VectorXd> lb, Eigen::Ref<const Eigen::VectorXd> ub, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4);
+    void fit(Eigen::Ref<const Eigen::MatrixXd> xObs, Eigen::Ref<const Eigen::VectorXs> membershipTable, Eigen::Ref<const Eigen::VectorXd> lb, Eigen::Ref<const Eigen::VectorXd> ub, nlopt::algorithm algo = nlopt::LN_SBPLX, double ftol_rel = 1e-4, std::vector<bool> logScaleFlags = {});
 
 
     /**

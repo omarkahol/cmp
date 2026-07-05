@@ -142,9 +142,12 @@ std::vector<Eigen::MatrixXd> cmp::statistics::laggedCorrelation(const Eigen::Ref
         throw std::invalid_argument("minLag must be less than maxLag");
     }
 
-    std::vector<Eigen::MatrixXd> correlations;
+    int nLags = maxLag - minLag + 1;
+    std::vector<Eigen::MatrixXd> correlations(nLags);
+
+    #pragma omp parallel for default(none) shared(data1, data2, minLag, maxLag, correlations)
     for(int lag = minLag; lag <= maxLag; lag++) {
-        correlations.push_back(laggedCorrelation(data1, data2, lag));
+        correlations[lag - minLag] = laggedCorrelation(data1, data2, lag);
     }
     return correlations;
 }

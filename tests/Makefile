@@ -1,9 +1,18 @@
 # define the Cpp compiler to use
 CXX = g++-15
 
+# Detect if the compiler is Clang (e.g. Apple Clang)
+IS_CLANG := $(shell $(CXX) --version 2>/dev/null | grep -iq clang && echo yes || echo no)
+
+ifeq ($(IS_CLANG),yes)
+  OMPFLAGS = -Xpreprocessor -fopenmp
+else
+  OMPFLAGS = -fopenmp
+endif
+
 # define any compile-time flags
-CXXFLAGS := -std=c++20 -O3 -fopenmp -mmacosx-version-min=14.0 -DNDEBUG
-DEBUG_CXXFLAGS := -std=c++20 -g -O0 -fopenmp -mmacosx-version-min=14.0
+CXXFLAGS := -std=c++20 -O3 $(OMPFLAGS) -mmacosx-version-min=14.0 -DNDEBUG
+DEBUG_CXXFLAGS := -std=c++20 -g -O0 $(OMPFLAGS) -mmacosx-version-min=14.0
 
 # Dependency generation for incremental builds
 CXXFLAGS += -MMD -MP
@@ -17,6 +26,7 @@ NLOPTINC = $(HOME)/opt/nlopt-2.7.1/include
 SPDLOGINC   = $(HOME)/opt/spdlog/include
 CMPINC = $(HOME)/opt/CMP++/include
 OMPINC = $(HOME)/opt/openmp/include
+BREW_OMPINC = /opt/homebrew/opt/libomp/include
 MATPLOTLIB = $(HOME)/opt/matplotlib-cpp/
 SELF = .
 PYTHONINC = /opt/homebrew/Frameworks/Python.framework/Versions/3.13/include/python3.13
@@ -28,14 +38,15 @@ USR = /opt/homebrew/include
 NLOPTLIB = $(HOME)/opt/nlopt-2.7.1/lib
 CMPLIB = $(HOME)/opt/CMP++/lib
 OMPLIB = $(HOME)/opt/openmp/lib
+BREW_OMPLIB = /opt/homebrew/opt/libomp/lib
 PYTHONLIB = /opt/homebrew/Frameworks/Python.framework/Versions/3.13/lib
 SVMLIB = $(HOME)/opt/libsvm
 
 # include specific paths
-INCLUDES = -I$(EIGEN) -I$(NLOPTINC) -I$(SPDLOGINC) -I$(CMPINC) -I$(MATPLOTLIB) -I$(OMPINC) -I$(SELF) -I$(PYTHONINC) -I$(NUMPYINC) -I$(SVMINC) -I$(USR)
+INCLUDES = -I$(EIGEN) -I$(NLOPTINC) -I$(SPDLOGINC) -I$(CMPINC) -I$(MATPLOTLIB) -I$(OMPINC) -I$(BREW_OMPINC) -I$(SELF) -I$(PYTHONINC) -I$(NUMPYINC) -I$(SVMINC) -I$(USR)
 
 # include specific libraries
-LIBS = -L$(NLOPTLIB) -L$(CMPLIB) -L$(OMPLIB) -L$(PYTHONLIB) -L$(SVMLIB)
+LIBS = -L$(NLOPTLIB) -L$(CMPLIB) -L$(OMPLIB) -L$(BREW_OMPLIB) -L$(PYTHONLIB) -L$(SVMLIB)
 
 # define library flags
 LFLAGS = -lcmp -lnlopt -lomp -lpython3.13 -lsvm

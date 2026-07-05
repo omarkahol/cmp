@@ -22,20 +22,20 @@ void write_vector(const std::vector<Eigen::VectorXd> &data, std::ofstream &o_fil
 void write_data(const std::vector<Eigen::VectorXd> &x, const Eigen::MatrixXd &y, std::ofstream &o_file);
 
 /**
-* Read the contents of a file. Note, the file must be organized in rows containing data in the form of numbers.
-* As an example, a valid file is \n
-*
-* 0.1 1.2 3.0 \n
-* 0.2 1.3 3.1 \n
-* ... \n
-* 5.4 7.8 9.0 \n
-* \n
-* The separator must be a blank space
-* @param i_file An open and valid file stream.
-* @return A std::vector containin
-*
-* g each row of the file as a Eigen::VectorXd.
-*/
+ * @brief Read the contents of a file. Note, the file must be organized in rows containing data in the form of numbers.
+ * As an example, a valid file is \n
+ *
+ * 0.1 1.2 3.0 \n
+ * 0.2 1.3 3.1 \n
+ * ... \n
+ * 5.4 7.8 9.0 \n
+ * \n
+ * The separator must be a blank space
+ * @param i_file An open and valid file stream.
+ * @param delimiter The delimiter string separating columns (default is ",")
+ * @param header The number of header rows to skip (default is 0)
+ * @return A std::vector containing each row of the file as a Eigen::VectorXd.
+ */
 std::vector<Eigen::VectorXd> read_vector(std::ifstream &i_file, std::string delimiter = ",", size_t header = 0);
 
 }

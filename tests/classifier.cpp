@@ -72,7 +72,8 @@ int main() {
     plt::ylabel("Y");
     plt::legend();
     plt::axis("equal");
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/moons.pdf");
+    plt::close();
 
     /**
      * Function to find decision boundary points by evaluating the classifier.
@@ -170,7 +171,12 @@ int main() {
         plt::axis("equal");
 
         plt::title(clf_name + " Classifier Decision Boundary");
-        plt::show();
+        std::string filename = "/Users/omarkahol/opt/CMP++/Technical_Doc/images/";
+        if (clf_name == "KDE") filename += "kde.pdf";
+        else if (clf_name == "SVM") filename += "svm.pdf";
+        else filename += clf_name + ".pdf";
+        plt::save(filename);
+        plt::close();
     }
 
     return 0;

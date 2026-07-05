@@ -1,9 +1,18 @@
 # Define the C++ compiler to use
 CXX = g++-15
 
+# Detect if the compiler is Clang (e.g. Apple Clang)
+IS_CLANG := $(shell $(CXX) --version 2>/dev/null | grep -iq clang && echo yes || echo no)
+
+ifeq ($(IS_CLANG),yes)
+  OMPFLAGS = -Xpreprocessor -fopenmp
+else
+  OMPFLAGS = -fopenmp
+endif
+
 # Define any compile-time flags
-CXXFLAGS := -std=c++20 -O3 -fopenmp -mmacosx-version-min=14.0 -DNDEBUG
-DEBUG_CXXFLAGS := -std=c++20 -g -O0 -fopenmp -mmacosx-version-min=14.0
+CXXFLAGS := -std=c++20 -O3 $(OMPFLAGS) -mmacosx-version-min=14.0 -DNDEBUG
+DEBUG_CXXFLAGS := -std=c++20 -g -O0 $(OMPFLAGS) -mmacosx-version-min=14.0
 
 # Define external includes
 EIGEN = $(HOME)/opt/eigen-3.4.0/
@@ -11,18 +20,20 @@ NLOPTINC = $(HOME)/opt/nlopt-2.7.1/include
 SELF = ./include
 USR = /opt/homebrew/include
 OMPINC = $(HOME)/opt/openmp/include
+BREW_OMPINC = /opt/homebrew/opt/libomp/include
 SVMINC = $(HOME)/opt/libsvm
 
 # Define external libs
 NLOPTLIB = $(HOME)/opt/nlopt-2.7.1/lib
 OMPLIB = $(HOME)/opt/openmp/lib
+BREW_OMPLIB = /opt/homebrew/opt/libomp/lib
 SVMLIB = $(HOME)/opt/libsvm
 
 # External include files and folders
-INCLUDES = -I$(EIGEN) -I$(NLOPTINC) -I$(SELF) -I$(USR) -I$(OMPINC) -I$(SVMINC)
+INCLUDES = -I$(EIGEN) -I$(NLOPTINC) -I$(SELF) -I$(USR) -I$(OMPINC) -I$(BREW_OMPINC) -I$(SVMINC)
 
 # Include specific libraries
-LIBS = -L$(NLOPTLIB) -L$(OMPLIB) -L$(SVMLIB)
+LIBS = -L$(NLOPTLIB) -L$(OMPLIB) -L$(BREW_OMPLIB) -L$(SVMLIB)
 
 # Define library flags
 LFLAGS = -lnlopt -lomp -lsvm
@@ -59,12 +70,12 @@ debug_staticlib: $(DEBUG_OBJ)
 	@echo  
 
 dynamiclib: $(OBJ)
-	$(CXX) -Wl,-ld_classic -dynamiclib -fPIC -o lib/libcmp.dylib $(OBJ) $(LFLAGS) $(LIBS)
+	$(CXX) $(CXXFLAGS) -Wl,-ld_classic -dynamiclib -fPIC -o lib/libcmp.dylib $(OBJ) $(LFLAGS) $(LIBS)
 	@echo Created dynamic library 
 	@echo 
 
 debug_dynamiclib: $(DEBUG_OBJ)
-	$(CXX) -Wl,-ld_classic -dynamiclib -fPIC -o lib/libcmp_debug.dylib $(DEBUG_OBJ) $(LFLAGS) $(LIBS)
+	$(CXX) $(DEBUG_CXXFLAGS) -Wl,-ld_classic -dynamiclib -fPIC -o lib/libcmp_debug.dylib $(DEBUG_OBJ) $(LFLAGS) $(LIBS)
 	@echo Created debug dynamic library 
 	@echo 
 

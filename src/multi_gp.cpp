@@ -60,7 +60,8 @@ void cmp::gp::MultiOutputGaussianProcess::fit(const Eigen::Ref<Eigen::MatrixXd>&
                                               const method& method, const nlopt::algorithm& alg,
                                               const double& tol_rel,
                                               bool copyData,
-                                              const std::shared_ptr<cmp::prior::Prior>& prior) {
+                                              const std::shared_ptr<cmp::prior::Prior>& prior,
+                                              const std::vector<bool>& logScale) {
     assert(xObs.rows() == yObs.rows() && "The number of observation points must match the number of observation values");
     assert(yObs.cols() == gps_.size() && "The number of output dimensions must match the number of Gaussian Processes");
 
@@ -69,7 +70,7 @@ void cmp::gp::MultiOutputGaussianProcess::fit(const Eigen::Ref<Eigen::MatrixXd>&
 
     // We then fit each GP individually (without copying the data again)
     for(size_t i = 0; i < gps_.size(); i++) {
-        gps_[i].fit(pXObs_.value(), pYObs_.value().col(i), lb, ub, method, alg, tol_rel, true, prior);
+        gps_[i].fit(pXObs_.value(), pYObs_.value().col(i), lb, ub, method, alg, tol_rel, true, false, prior, logScale);
     }
 }
 

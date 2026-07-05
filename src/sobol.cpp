@@ -133,14 +133,23 @@ std::pair<cmp::sobol::SobolResults, cmp::sobol::SobolResults> cmp::sobol::SobolS
     Eigen::MatrixXd S2_samples;
     if(secondOrder_) S2_samples = Eigen::MatrixXd(dim_ * (dim_ - 1) / 2, nBootstrap);
 
+    // Pre-generate bootstrap indices sequentially to maintain deterministic random sequences
+    std::vector<Eigen::VectorXs> bootstrapIndices(nBootstrap);
     for(size_t b = 0; b < nBootstrap; ++b) {
-        Eigen::VectorXs sampleIdx = bootstrap();
-        Eigen::VectorXd Yb = sliceSaltelliOutput(Y, sampleIdx, nObs_, dim_, secondOrder_);
+        bootstrapIndices[b] = bootstrap();
+    }
+
+    #pragma omp parallel for default(none) \
+        shared(Y, nObs_, dim_, secondOrder_, nBootstrap, bootstrapIndices, S_samples, T_samples, S2_samples)
+    for(size_t b = 0; b < nBootstrap; ++b) {
+        Eigen::VectorXd Yb = sliceSaltelliOutput(Y, bootstrapIndices[b], nObs_, dim_, secondOrder_);
         SobolResults res = compute(Yb);
 
         S_samples.col(b) = res.firstOrder;
         T_samples.col(b) = res.totalOrder;
-        if(secondOrder_) S2_samples.col(b) = res.secondOrder;
+        if(secondOrder_) {
+            S2_samples.col(b) = res.secondOrder;
+        }
     }
 
     // Compute mean

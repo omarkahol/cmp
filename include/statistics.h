@@ -204,15 +204,25 @@ Eigen::VectorXd mean(const Eigen::Ref<const Eigen::MatrixXd>& data);
 Eigen::MatrixXd covariance(const Eigen::Ref<const Eigen::MatrixXd>& data);
 
 /**
- * @brief Computes the median of a vector of data.
+ * @brief Computes the quantile of a vector of data.
  *
  * @param data A reference to an Eigen vector containing the data.
- * @return The median of the data.
- * @throws std::invalid_argument if the input vector is empty.
+ * @param quantile The quantile to compute (between 0 and 1).
+ * @return The quantile of the data.
+ * @throws std::invalid_argument if the input vector is empty or the quantile is not between 0 and 1.
  */
 double quantile(const Eigen::Ref<const Eigen::VectorXd>& data, double quantile);
 
 
+/**
+ * @brief Computes the interquartile range of a vector of data.
+ *
+ * @param data A reference to an Eigen matrix containing the data.
+ * @param lowerQuantile The lower quantile (between 0 and 1).
+ * @param upperQuantile The upper quantile (between 0 and 1).
+ * @return The interquartile range of the data.
+ * @throws std::invalid_argument if the input matrix is empty or the quantiles are not between 0 and 1.
+ */
 Eigen::VectorXd interQuantileRange(const Eigen::Ref<const Eigen::MatrixXd>& data, double lowerQuantile, double upperQuantile);
 
 /**
@@ -230,6 +240,7 @@ Eigen::MatrixXd pearsonCorrelation(const Eigen::Ref<const Eigen::MatrixXd>& data
  *
  * @param data1 First dataset (points in rows).
  * @param data2 Second dataset (points in rows).
+ * @param lag The lag to apply to the second dataset.
  * @return The correlation matrix.
  */
 Eigen::MatrixXd laggedCorrelation(const Eigen::Ref<const Eigen::MatrixXd>& data1, const Eigen::Ref<const Eigen::MatrixXd>& data2, int lag);
@@ -301,6 +312,153 @@ inline std::vector<Eigen::MatrixXd> selfCrossCorrelationFFT(
     return corr; // vector of size nPoints, each element = nFeatures x nFeatures
 };
 
+
+
+class PairwiseDistanceStats {
+  private:
+    std::vector<double> distances;
+    double mean_val;
+    bool is_computed;
+
+  public:
+    PairwiseDistanceStats() : mean_val(0.0), is_computed(false) {}
+
+    /**
+     * @brief Computes the upper triangle of the pairwise distance matrix.
+     * @param data Matrix of size (N, D) where N is number of points, D is dimensions.
+     */
+    void compute(const Eigen::MatrixXd& data) {
+        size_t n = data.rows();
+        if(n < 2) throw std::invalid_argument("Need at least 2 points to compute pairwise distances.");
+
+        // Number of strictly upper triangular elements: N * (N - 1) / 2
+        size_t num_pairs = n * (n - 1) / 2;
+        distances.resize(num_pairs);
+        mean_val = 0.0;
+
+        // OpenMP parallelization over the outer loop
+        #pragma omp parallel
+        {
+            // Thread-local sum prevents atomic locking overhead during the loop
+            double local_sum = 0.0;
+
+            // dynamic scheduling balances the triangular workload distribution
+            #pragma omp for schedule(dynamic)
+            for(size_t i = 0; i < n - 1; ++i) {
+                // Calculate the 1D flat array offset for row i
+                size_t offset = i * n - i * (i + 1) / 2 - i - 1;
+
+                for(size_t j = i + 1; j < n; ++j) {
+                    // Eigen's .row() subtraction and .norm() naturally utilize SIMD
+                    double dist = (data.row(i) - data.row(j)).norm();
+                    distances[offset + j] = dist;
+                    local_sum += dist;
+                }
+            }
+
+            // Safely accumulate the thread-local sums into the global mean
+            #pragma omp atomic
+            mean_val += local_sum;
+        }
+
+        mean_val /= static_cast<double>(num_pairs);
+        is_computed = true;
+    }
+
+    double mean() const {
+        if(!is_computed) throw std::runtime_error("Distances not yet computed.");
+        return mean_val;
+    }
+
+    /**
+     * @brief Fast quantile retrieval without a full sort.
+     * @param q Quantile to retrieve in [0.0, 1.0] (e.g., 0.5 for median)
+     */
+    double quantile(double q) {
+        if(!is_computed) throw std::runtime_error("Distances not yet computed.");
+        if(q < 0.0 || q > 1.0) throw std::invalid_argument("Quantile must be in [0, 1].");
+
+        size_t idx = static_cast<size_t>(q * (distances.size() - 1));
+
+        // std::nth_element provides an O(M) partial sort, which is significantly
+        // faster than an O(M log M) full std::sort.
+        std::nth_element(distances.begin(), distances.begin() + idx, distances.end());
+
+        return distances[idx];
+    }
+
+    /**
+     * @brief Computes the spatial Correlation Integral C(r) for a grid of thresholds.
+     * * @param r_thresholds A vector of spatial distances (r). Does not need to be pre-sorted.
+     * @return std::vector<double> The fraction of pairwise distances less than each r.
+     */
+    std::vector<double> correlation_integral(const std::vector<double>& r_thresholds) const {
+        if(!is_computed) throw std::runtime_error("Distances not yet computed.");
+        if(r_thresholds.empty()) return {};
+
+        size_t k = r_thresholds.size();
+        size_t m = distances.size();
+
+        // 1. Create a sorted copy of the thresholds for binary search tracking
+        std::vector<std::pair<double, size_t>> sorted_r(k);
+        for(size_t i = 0; i < k; ++i) {
+            sorted_r[i] = {r_thresholds[i], i};
+        }
+        std::sort(sorted_r.begin(), sorted_r.end(),
+        [](const auto & a, const auto & b) {
+            return a.first < b.first;
+        });
+
+        // Extract just the sorted values for std::upper_bound
+        std::vector<double> r_vals(k);
+        for(size_t i = 0; i < k; ++i) r_vals[i] = sorted_r[i].first;
+
+        // Global histogram bins
+        std::vector<size_t> global_counts(k + 1, 0);
+
+        // 2. OpenMP parallel histogram construction
+        #pragma omp parallel
+        {
+            // Thread-local histogram prevents atomic contention
+            std::vector<size_t> local_counts(k + 1, 0);
+
+            #pragma omp for schedule(static)
+            for(size_t i = 0; i < m; ++i) {
+                double d = distances[i];
+
+                // Binary search: O(log K) instead of O(K)
+                auto it = std::upper_bound(r_vals.begin(), r_vals.end(), d);
+                size_t idx = std::distance(r_vals.begin(), it);
+
+                // idx represents the first threshold strictly greater than d
+                local_counts[idx]++;
+            }
+
+            // Merge local histograms safely
+            #pragma omp critical
+            {
+                for(size_t j = 0; j <= k; ++j) {
+                    global_counts[j] += local_counts[j];
+                }
+            }
+        }
+
+        // 3. Prefix Sum (Cumulative integration)
+        // If a distance falls in bin j, it is smaller than all thresholds >= j.
+        std::vector<double> C_r(k, 0.0);
+        size_t cumulative_sum = 0;
+
+        for(size_t j = 0; j < k; ++j) {
+            cumulative_sum += global_counts[j];
+
+            // Map the sorted result back to the original input order
+            size_t original_idx = sorted_r[j].second;
+            C_r[original_idx] = static_cast<double>(cumulative_sum) / static_cast<double>(m);
+        }
+
+        return C_r;
+    }
+};
 
 } // namespace cmp::statistics
 

@@ -172,7 +172,8 @@ int main() {
     plt::title("Estimated Sobol indices with bootstrap confidence intervals");
     plt::legend();
     plt::grid(true);
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/sobol_indices.pdf");
+    plt::close();
 
     return 0;
 }

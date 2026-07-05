@@ -91,7 +91,7 @@ int main() {
      */
     auto kernel = cmp::covariance::Constant::make(0) * cmp::covariance::SquaredExponential::make(1, -1);
     auto mean = cmp::mean::Constant::make(2);
-    Eigen::VectorXd param = 0.01 * Eigen::VectorXd::Ones(3); // Initial guess for the hyperparameters
+    Eigen::VectorXd param = 0.1 * Eigen::VectorXd::Ones(3); // Initial guess for the hyperparameters
 
 
     // Create the GP object and set it, for now the hyperparameters are just a guess
@@ -111,10 +111,11 @@ int main() {
     plt::title("Samples from the GP prior");
     plt::xlabel("x");
     plt::ylabel("y");
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/gp_prior.pdf");
+    plt::close();
 
     // Now we can condition the GP on the observations
-    gp.condition(x_obs, y_obs, false);
+    gp.condition(x_obs, y_obs, true, true);
 
     // Let's plot the some samples
     auto [mu_post, cov_post] = gp.predictMultiple(x_test);
@@ -129,7 +130,8 @@ int main() {
     plt::title("Samples from the GP posterior");
     plt::xlabel("x");
     plt::ylabel("y");
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/gp_posterior.pdf");
+    plt::close();
 
     // Let's evaluate the MSE using K-Fold Cross Validation (CV)
     size_t n_folds = 20;
@@ -145,7 +147,7 @@ int main() {
         Eigen::VectorXd y_test_cv = cmp::slice(y_obs, test_indices);
 
         // Set the training data (this does not retrain the GP, just sets the observations)
-        gp.condition(x_train, y_train, true);
+        gp.condition(x_train, y_train, true, true);
 
         // Compute the predictions for the test set
         for(size_t i = 0; i < x_test_cv.rows(); i++) {
@@ -176,10 +178,10 @@ int main() {
     Eigen::VectorXd ub(3);    // Upper bounds for the hyperparameters
     ub << 1e5, 1e5, 5;
 
-    auto prior = cmp::prior::FromDistribution::make(cmp::distribution::PowerLawDistribution::make(2), 0); // 2 refers to the degree of the power-law, 0 to the par index
+    auto prior = cmp::prior::make(cmp::distribution::PowerLawDistribution(1.0, 1e-3), 0);
 
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-    gp.fit(x_obs, y_obs, lb, ub, cmp::gp::LOO_MSE, nlopt::LN_SBPLX, 1e-5, true);
+    gp.fit(x_obs, y_obs, lb, ub, cmp::gp::LOO_MSE, nlopt::LN_SBPLX, 1e-5, true, true, prior, {true, true, false});
     std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);
@@ -199,7 +201,8 @@ int main() {
     plt::title("Samples from the optimized GP posterior");
     plt::xlabel("x");
     plt::ylabel("y");
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/gp_posterior_opt.pdf");
+    plt::close();
 
     // Now we recompute the MSE using K-Fold Cross Validation (CV) with the optimized hyperparameters
     mse = 0.0;
@@ -211,7 +214,7 @@ int main() {
         Eigen::VectorXd y_test_cv = cmp::slice(y_obs, test_indices);
 
         // Set the training data (this does not retrain the GP, just sets the observations)
-        gp.condition(x_train, y_train, true);
+        gp.condition(x_train, y_train, true, true);
 
         // Compute the predictions for the test set
         for(size_t i = 0; i < x_test_cv.rows(); i++) {

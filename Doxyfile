@@ -1,14 +1,16 @@
-# Difference with default Doxyfile 1.9.1
-PROJECT_NAME           = Complete Maximum a Posteriori
+PROJECT_NAME           = "CMP++: Uncertainty Quantification & Bayesian Calibration"
 OUTPUT_DIRECTORY       = docs
-OPTIMIZE_OUTPUT_FOR_C  = YES
+OPTIMIZE_OUTPUT_FOR_C  = NO
 EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
 CASE_SENSE_NAMES       = NO
-HIDE_SCOPE_NAMES       = YES
-INPUT                  = include \
-                        src
-FILE_PATTERNS          = *.cpp \
-                         *.h
+HIDE_SCOPE_NAMES       = NO
+INPUT                  = include src
+FILE_PATTERNS          = *.cpp *.h
 RECURSIVE              = YES
 USE_MATHJAX            = YES
-HTML_EXTRA_FILES = main.pdf
+GENERATE_TREEVIEW      = YES
+HTML_DYNAMIC_MENUS     = YES
+HTML_EXTRA_FILES       = main.pdf
+MATHJAX_RELPATH        = https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7

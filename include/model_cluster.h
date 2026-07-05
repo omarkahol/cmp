@@ -115,7 +115,7 @@ class ModelCluster {
         return nClusters_;
     }
 
-    void fit(Eigen::Ref<const Eigen::VectorXd> lowerBound, Eigen::Ref<const Eigen::VectorXd> upperBound, cmp::gp::method fitType, nlopt::algorithm algorithm = nlopt::LN_SBPLX, double tol = 1e-3, std::shared_ptr<cmp::prior::Prior> prior = nullptr) {
+    void fit(Eigen::Ref<const Eigen::VectorXd> lowerBound, Eigen::Ref<const Eigen::VectorXd> upperBound, cmp::gp::method fitType, nlopt::algorithm algorithm = nlopt::LN_SBPLX, double tol = 1e-3, std::shared_ptr<cmp::prior::Prior> prior = nullptr, std::vector<bool> logScale = {}) {
 
 
         for(size_t i = 0; i < nClusters(); i++) {
@@ -124,7 +124,7 @@ class ModelCluster {
                 auto xObsi = cmp::slice(xObs_, index);
                 auto yObsi = cmp::slice(yObs_, index);
 
-                gps_[i].fit(xObsi, yObsi, lowerBound, upperBound, fitType, algorithm, tol, true, prior);
+                gps_[i].fit(xObsi, yObsi, lowerBound, upperBound, fitType, algorithm, tol, true, false, prior, logScale);
                 fit_[i] = true;
             }
         }
@@ -215,6 +215,7 @@ class ModelCluster {
     /**
      * This function performs the switch of the points
      * @param newOwners The new owners of the points, the first element is the global index and the second element is the owner
+     * @param minSize The minimum size of the clusters
      */
     bool performSwitches(const std::vector<std::pair<size_t, size_t>> &newOwners, size_t minSize) {
 
@@ -351,8 +352,6 @@ class ModelCluster {
 
         return switches;
     }
-
-
 
     std::vector<std::pair<size_t, size_t>> deterministicSwitchStep(cmp::classifier::Classifier *cls, const size_t &maxAllowedSwitches, const double &minProb) {
 
@@ -517,68 +516,72 @@ class ModelCluster {
             // Find the owner of the point
             size_t owner = labels_[i];
 
-            // Predict the SVM probabilities for the point
-            const std::vector<double> &svmProbabilities = classifierProbabilities[i];
-
-            // Skip expensive LOO-delta computations if no alternative cluster
-            // passes the classifier probability threshold.
-            bool hasEligibleAlternative = false;
-            for(size_t j = 0; j < nClusters_; ++j) {
-                if(j != owner && svmProbabilities[j] > minProb) {
-                    hasEligibleAlternative = true;
-                    break;
-                }
-            }
-
-            if(!hasEligibleAlternative) {
-                switchingProbabilities[i] = svmProbabilities;
-                continue;
-            }
-
             // Exact cluster-level delta for removing point i from its owner.
-            const double ownerRemovalDelta = computeScore(i);
-            switchingProbabilities[i][owner] = svmProbabilities[owner];
+            const double ownerScore = computeScore(i);
+
+            // Compute the log-weights for each cluster
+            std::vector<double> logWeights(nClusters_, -std::numeric_limits<double>::infinity());
 
             for(size_t j = 0; j < nClusters_; j++) {
-                if(j == owner) {
-                    continue;
-                } else {
 
-                    if(svmProbabilities[j] <= minProb) {
-                        switchingProbabilities[i][j] = 0;
-                        continue;
+
+                if(j == owner) {
+
+                    // If j is the owner, we see if it can actually own the point (i.e., if the classifier probability is above the threshold)
+                    if(classifierProbabilities[i][j] <= minProb) {
+                        logWeights[j] = -std::numeric_limits<double>::infinity();
+                    } else {
+                        // If j is the owner and can own the point, we compute the delta score and combine it with the classifier probability.
+                        logWeights[j] = std::log(classifierProbabilities[i][j]);
                     }
 
-                    // Exact move gain includes the ripple effect in both clusters.
-                    const double deltaMove = computeScore(j, i) - ownerRemovalDelta;
-                    switchingProbabilities[i][j] = std::exp(deltaMove / T) * svmProbabilities[j];
+                } else {
 
+                    // If j is not the owner but can't own the point due to low classifier probability, we skip it.
+                    if(classifierProbabilities[i][j] <= minProb) {
+                        logWeights[j] = -std::numeric_limits<double>::infinity();
+                    } else {
+
+                        // If j is not the owner and can own the point, we compute the delta score and combine it with the classifier probability.
+                        const double deltaMove = computeScore(j, i) - ownerScore;
+                        logWeights[j] = std::log(classifierProbabilities[i][j]) + (deltaMove / T);
+                    }
                 }
             }
 
-            // Compute the sum of the probabilities
+            // Find the maximum log-weight to prevent overflow during exponentiation
+            double maxLogWeight = -std::numeric_limits<double>::infinity();
+            for(size_t j = 0; j < nClusters_; j++) {
+                if(logWeights[j] > maxLogWeight) {
+                    maxLogWeight = logWeights[j];
+                }
+            }
+
+            // Exponentiate safely and normalize
             double sum = 0.0;
             for(size_t j = 0; j < nClusters_; j++) {
-                sum += switchingProbabilities[i][j];
+                if(logWeights[j] > -std::numeric_limits<double>::infinity()) {
+                    // Subtracting maxLogWeight ensures the largest value exponentiated is 0 (exp(0) = 1)
+                    switchingProbabilities[i][j] = std::exp(logWeights[j] - maxLogWeight);
+                    sum += switchingProbabilities[i][j];
+                } else {
+                    switchingProbabilities[i][j] = 0.0;
+                }
             }
 
-            // Check if the sum is valid
-            if(sum < 1e-12 || std::isnan(sum) || std::isinf(sum)) {
-
-                // We revert back to the SVM probabilities
-                for(size_t j = 0; j < nClusters_; j++) {
-                    switchingProbabilities[i][j] = svmProbabilities[j];
-                }
-            } else {
-                // Normalize the probabilities
+            // Final normalization
+            if(sum > 0.0) {
                 for(size_t j = 0; j < nClusters_; j++) {
                     switchingProbabilities[i][j] /= sum;
                 }
+            } else {
+                // Extremely rare edge case where all weights are -inf (e.g. invalid probability inputs, we fall back to classifier probabilities)
+                for(size_t j = 0; j < nClusters_; j++) {
+                    switchingProbabilities[i][j] = classifierProbabilities[i][j];
+                }
             }
-
         }
 
-        // Now we return the probabilities
         return switchingProbabilities;
     }
 

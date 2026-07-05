@@ -48,7 +48,7 @@ int main() {
     // Define the kernel, mean and log-prior functions
     auto kernel = cmp::covariance::Constant::make(0) * cmp::covariance::SquaredExponential::make(1, -1);
     auto mean = cmp::mean::Constant::make(2);
-    auto logprior = cmp::prior::FromDistribution::make(cmp::distribution::PowerLawDistribution::make(2), 0);
+    auto logprior = cmp::prior::make(cmp::distribution::PowerLawDistribution(2.0), 0);
 
     // Scale the x observations
     cmp::scaler::StandardScaler x_scaler;
@@ -88,7 +88,8 @@ int main() {
     }
     plt::xlabel("x");
     plt::ylabel("y");
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/multi_gp_prior.pdf");
+    plt::close();
 
     // Print each GPs hyperparameters
     for(size_t i = 0; i < gp.size(); i++) {
@@ -114,7 +115,8 @@ int main() {
         plt::plot(x_test.col(0), y_pred.col(i));
         plt::xlabel("x");
         plt::ylabel("y");
-        plt::show();
+        plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/multi_gp_output_" + std::to_string(i + 1) + ".pdf");
+        plt::close();
     }
 
 

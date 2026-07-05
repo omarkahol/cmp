@@ -39,6 +39,10 @@ cmp::gp::GaussianProcess::GaussianProcess(const GaussianProcess& other) {
     pMean_ = other.pMean_;
     nugget_ = other.nugget_;
 
+    // Copy the scaler and normalization flag
+    normalizeY_ = other.normalizeY_;
+    yScaler_ = other.yScaler_;
+
     // Check if it is conditioned
     if(other.pXObs_.has_value()) {
         condition(other.pXObs_.value(), other.pYObs_.value(), other.xObs_.has_value());
@@ -132,20 +136,40 @@ void cmp::gp::GaussianProcess::set(const std::shared_ptr<covariance::Covariance>
 
 }
 
-void cmp::gp::GaussianProcess::condition(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd>& yObs, bool copyData) {
+void cmp::gp::GaussianProcess::condition(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd>& yObs, bool copyData, bool normalizeY) {
 
     assert(yObs.rows() == xObs.rows() && "X and Y must have the same length.");
+
+    if(normalizeY && !copyData) {
+        throw std::invalid_argument("Cannot normalize Y when copyData is false. Set copyData to true to normalize Y.");
+    }
+
+    // Set the normalization flag
+    normalizeY_ = normalizeY;
 
     // Check whether it owns the data or not
     if(copyData) {
 
-        // Make a hard copy of teh data
-        xObs_ = xObs;
-        yObs_ = yObs;
+        if(normalizeY) {
+            // Normalize the data
+            Eigen::VectorXd yNorm = yScaler_.fit_transform(yObs);
 
-        // Set internal pointer to the storage (create new Ref objects on heap)
-        pXObs_.emplace(xObs_.value());
-        pYObs_.emplace(yObs_.value());
+            // Make a hard copy of the data
+            xObs_ = xObs;
+            yObs_ = yNorm;
+
+            // Set internal pointer to the storage (create new Ref objects on heap)
+            pXObs_.emplace(xObs_.value());
+            pYObs_.emplace(yObs_.value());
+        } else {
+            // Make a hard copy of the data
+            xObs_ = xObs;
+            yObs_ = yObs;
+
+            // Set internal pointer to the storage (create new Ref objects on heap)
+            pXObs_.emplace(xObs_.value());
+            pYObs_.emplace(yObs_.value());
+        }
     } else {
 
         // Just point to the external data
@@ -163,9 +187,12 @@ void cmp::gp::GaussianProcess::condition(const Eigen::Ref<const Eigen::MatrixXd>
 Eigen::MatrixXd GaussianProcess::covariance(Eigen::Ref<const Eigen::VectorXd> par) const {
 
     // Computation of the kernel matrix
-    Eigen::MatrixXd kernel_mat = Eigen::MatrixXd::Zero(pXObs_->rows(), pXObs_->rows());
-    for(size_t i = 0; i < pXObs_->rows(); i++) {
-        for(size_t j = i; j < pXObs_->rows(); j++) {
+    size_t nObs = pXObs_->rows();
+    Eigen::MatrixXd kernel_mat = Eigen::MatrixXd::Zero(nObs, nObs);
+
+    #pragma omp parallel for if(nObs > 100) default(none) shared(pXObs_, par, kernel_mat, nObs)
+    for(size_t i = 0; i < nObs; i++) {
+        for(size_t j = i; j < nObs; j++) {
             kernel_mat(i, j) = pKernel_->eval(pXObs_->row(i).transpose(), pXObs_->row(j).transpose(), par);
 
             // Kernel matrix is symmetric
@@ -174,17 +201,19 @@ Eigen::MatrixXd GaussianProcess::covariance(Eigen::Ref<const Eigen::VectorXd> pa
             }
         }
     }
-    return kernel_mat + nugget_ * Eigen::MatrixXd::Identity(pXObs_->rows(), pXObs_->rows());
+    return kernel_mat + nugget_ * Eigen::MatrixXd::Identity(nObs, nObs);
 }
 
 Eigen::MatrixXd GaussianProcess::covarianceGradient(Eigen::Ref<const Eigen::VectorXd> par, const int &n) const {
 
     // Initialize the kernel derivative
-    Eigen::MatrixXd k_der = Eigen::MatrixXd::Zero(pXObs_->rows(), pXObs_->rows());
+    size_t nObs = pXObs_->rows();
+    Eigen::MatrixXd k_der = Eigen::MatrixXd::Zero(nObs, nObs);
 
     // Fill the matrix that contains the kernel derivative
-    for(size_t i = 0; i < pXObs_->rows(); i++) {
-        for(size_t j = i; j < pXObs_->rows(); j++) {
+    #pragma omp parallel for if(nObs > 100) default(none) shared(pXObs_, par, k_der, n, nObs)
+    for(size_t i = 0; i < nObs; i++) {
+        for(size_t j = i; j < nObs; j++) {
 
             k_der(i, j) = pKernel_->evalGradient(pXObs_->row(i).transpose(), pXObs_->row(j).transpose(), par, n);
 
@@ -201,11 +230,13 @@ Eigen::MatrixXd GaussianProcess::covarianceGradient(Eigen::Ref<const Eigen::Vect
 Eigen::MatrixXd GaussianProcess::covarianceHessian(Eigen::Ref<const Eigen::VectorXd> par, const size_t &l, const size_t &k) const {
 
     // Initialize the kernel hessian
-    Eigen::MatrixXd k_der = Eigen::MatrixXd::Zero(pXObs_->rows(), pXObs_->rows());
+    size_t nObs = pXObs_->rows();
+    Eigen::MatrixXd k_der = Eigen::MatrixXd::Zero(nObs, nObs);
 
     // Fill the matrix that contains the kernel hessian
-    for(size_t i = 0; i < pXObs_->rows(); i++) {
-        for(size_t j = i; j < pXObs_->rows(); j++) {
+    #pragma omp parallel for if(nObs > 100) default(none) shared(pXObs_, par, k_der, l, k, nObs)
+    for(size_t i = 0; i < nObs; i++) {
+        for(size_t j = i; j < nObs; j++) {
 
             k_der(i, j) = pKernel_->evalHessian(pXObs_->row(i), pXObs_->row(j), par, l, k);
 
@@ -255,10 +286,10 @@ Eigen::VectorXd GaussianProcess::residual(Eigen::Ref<const Eigen::VectorXd> par)
  * * FIT THE GP
  */
 
-void GaussianProcess::fit(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd> &yObs, const Eigen::Ref<const Eigen::VectorXd> &lb, const Eigen::Ref<const Eigen::VectorXd> &ub, const method &method, const nlopt::algorithm &alg, const double &tol_rel, bool copyData, const std::shared_ptr<cmp::prior::Prior> &prior) {
+void GaussianProcess::fit(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd> &yObs, const Eigen::Ref<const Eigen::VectorXd> &lb, const Eigen::Ref<const Eigen::VectorXd> &ub, const method &method, const nlopt::algorithm &alg, const double &tol_rel, bool copyData, bool normalizeY, const std::shared_ptr<cmp::prior::Prior> &prior, const std::vector<bool> &logScale) {
 
     // First we condition the GP on the observations
-    condition(xObs, yObs, copyData);
+    condition(xObs, yObs, copyData, normalizeY);
 
     // Set the optimization function
     switch(method) {
@@ -269,6 +300,11 @@ void GaussianProcess::fit(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const E
         };
         // Optimize
         cmp::ObjectiveFunctor fun(obj);
+
+        if(!logScale.empty()) {
+            fun.setLogScale(logScale);
+        }
+
         cmp::nlopt_max(fun, par_, lb, ub, alg, tol_rel);
         break;
     }
@@ -279,6 +315,9 @@ void GaussianProcess::fit(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const E
         };
         // Optimize
         cmp::ObjectiveFunctor fun(obj);
+        if(!logScale.empty()) {
+            fun.setLogScale(logScale);
+        }
         cmp::nlopt_max(fun, par_, lb, ub, alg, tol_rel);
         break;
     }
@@ -289,6 +328,9 @@ void GaussianProcess::fit(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const E
         };
         // Optimize
         cmp::ObjectiveFunctor fun(obj);
+        if(!logScale.empty()) {
+            fun.setLogScale(logScale);
+        }
         cmp::nlopt_max(fun, par_, lb, ub, alg, tol_rel);
         break;
     }
@@ -311,6 +353,12 @@ std::pair<double, double> GaussianProcess::predict(const Eigen::Ref<const Eigen:
     if(predictionType == type::PRIOR || !pXObs_.has_value()) {
         double prior_mean = pMean_->eval(x, par_);
         double prior_var = pKernel_->eval(x, x, par_) + nugget_;
+
+        if(normalizeY_) {
+            prior_mean = yScaler_.inverseTransform(prior_mean * cmp::ScalarOne)(0);
+            prior_var *= yScaler_.getScale()(0, 0) * yScaler_.getScale()(0, 0);
+        }
+
         return std::make_pair(prior_mean, prior_var);
     } else {
         // Compute the dot product (see Rasmussen and Williams)
@@ -329,6 +377,11 @@ std::pair<double, double> GaussianProcess::predict(const Eigen::Ref<const Eigen:
         double var = pKernel_->eval(x, x, par_) - k_star.dot(covDecomposition_.solve(k_star)) + nugget_;
         double mean = pMean_->eval(x, par_) + k_star_dot_alpha;
 
+        if(normalizeY_) {
+            mean = yScaler_.inverseTransform(mean * cmp::ScalarOne)(0);
+            var *= yScaler_.getScale()(0, 0) * yScaler_.getScale()(0, 0);
+        }
+
         return std::make_pair(mean, var);
     }
 }
@@ -336,13 +389,27 @@ std::pair<double, double> GaussianProcess::predict(const Eigen::Ref<const Eigen:
 double GaussianProcess::predictMean(const Eigen::Ref<const Eigen::VectorXd> &x, type predictionType) const {
 
     if(predictionType == type::PRIOR || !pXObs_.has_value()) {
-        return pMean_->eval(x, par_);
+
+        double mean = pMean_->eval(x, par_);
+
+        if(normalizeY_) {
+            mean = yScaler_.inverseTransform(mean * cmp::ScalarOne)(0);
+        }
+
+        return mean;
     } else {
         double k_star_dot_alpha = 0.0;
         for(size_t i = 0; i < pXObs_->rows(); i++) {
             k_star_dot_alpha += pKernel_->eval(x, pXObs_->row(i), par_) * alpha_(i);
         }
-        return pMean_->eval(x, par_) + k_star_dot_alpha;
+
+        double mean = pMean_->eval(x, par_) + k_star_dot_alpha;
+
+        if(normalizeY_) {
+            mean = yScaler_.inverseTransform(mean * cmp::ScalarOne)(0);
+        }
+
+        return mean;
     }
 }
 
@@ -356,6 +423,7 @@ std::pair<Eigen::VectorXd, Eigen::MatrixXd> cmp::gp::GaussianProcess::predictMul
         Eigen::MatrixXd k_xx(n_pts, n_pts);
         Eigen::VectorXd mean = Eigen::VectorXd::Zero(n_pts);
 
+        #pragma omp parallel for if(n_pts > 100) default(none) shared(x_pts, par_, mean, k_xx, n_pts)
         for(size_t i = 0; i < n_pts; i++) {
 
             // Evaluate the prior mean
@@ -372,6 +440,13 @@ std::pair<Eigen::VectorXd, Eigen::MatrixXd> cmp::gp::GaussianProcess::predictMul
             }
 
             k_xx(i, i) += nugget_;
+        }
+
+        if(normalizeY_) {
+            for(size_t i = 0; i < n_pts; i++) {
+                mean(i) = yScaler_.inverseTransform(mean(i) * cmp::ScalarOne)(0);
+                k_xx.row(i) *= yScaler_.getScale()(0, 0) * yScaler_.getScale()(0, 0);
+            }
         }
 
         return std::make_pair(mean, k_xx);
@@ -406,7 +481,15 @@ std::pair<Eigen::VectorXd, Eigen::MatrixXd> cmp::gp::GaussianProcess::predictMul
 
         }
 
-        auto cov = k_xx - k_star.transpose() * covDecomposition_.solve(k_star) + nugget_ * Eigen::MatrixXd::Identity(n_pts, n_pts);
+        Eigen::MatrixXd cov = k_xx - k_star.transpose() * covDecomposition_.solve(k_star) + nugget_ * Eigen::MatrixXd::Identity(n_pts, n_pts);
+
+        if(normalizeY_) {
+            for(size_t i = 0; i < n_pts; i++) {
+                mean(i) = yScaler_.inverseTransform(mean(i) * cmp::ScalarOne)(0);
+            }
+
+            cov *= yScaler_.getScale()(0, 0) * yScaler_.getScale()(0, 0);
+        }
 
         return std::make_pair(mean, cov);
     }
@@ -425,10 +508,14 @@ Eigen::VectorXd cmp::gp::GaussianProcess::predictMeanMultiple(const Eigen::Ref<c
 
             // Evaluate the prior mean
             mean(i) = pMean_->eval(x_pts.row(i), par_);
+
+            if(normalizeY_) {
+                mean(i) = yScaler_.inverseTransform(mean(i) * cmp::ScalarOne)(0);
+            }
         }
 
         return mean;
-    } else {
+    }  else {
         size_t n_pts = x_pts.rows();
 
         // Initialize variables
@@ -445,6 +532,11 @@ Eigen::VectorXd cmp::gp::GaussianProcess::predictMeanMultiple(const Eigen::Ref<c
                 k_star(j, i) = pKernel_->eval(pXObs_->row(j), x_pts.row(i), par_);
                 mean(i) += k_star(j, i) * alpha_(j);
             }
+
+            // Inverse transform once per target point
+            if(normalizeY_) {
+                mean(i) = yScaler_.inverseTransform(mean(i) * cmp::ScalarOne)(0);
+            }
         }
 
         return mean;
@@ -459,7 +551,15 @@ std::pair<double, double> cmp::gp::GaussianProcess::predictLOO(const size_t& i) 
         throw std::out_of_range("Index out of range");
     }
 
-    return std::pair<double, double>(pYObs_.value()(i) - alpha_(i) / diagCovInverse_(i), 1.0 / diagCovInverse_(i));
+    double loo_mean = pYObs_.value()(i) - alpha_(i) / diagCovInverse_(i);
+    double loo_var = 1.0 / diagCovInverse_(i);
+
+    if(normalizeY_) {
+        loo_mean = yScaler_.inverseTransform(loo_mean * cmp::ScalarOne)(0);
+        loo_var *= yScaler_.getScale()(0, 0) * yScaler_.getScale()(0, 0);
+    }
+
+    return std::pair<double, double>(loo_mean, loo_var);
 }
 double GaussianProcess::logLikelihood() const {
     if(!pXObs_.has_value()) {
@@ -475,7 +575,12 @@ double GaussianProcess::logLikelihoodLOO(const size_t &i) const {
     }
 
     auto [mean, var] = predictLOO(i);
-    return cmp::distribution::NormalDistribution::logPDF(pYObs_.value()(i) - mean, std::sqrt(var));
+
+    double yTrue = pYObs_.value()(i);
+    if(normalizeY_) {
+        yTrue = yScaler_.inverseTransform(yTrue * cmp::ScalarOne)(0);
+    }
+    return cmp::distribution::NormalDistribution::logPDF(yTrue - mean, std::sqrt(var));
 }
 
 
@@ -586,60 +691,83 @@ Eigen::MatrixXd GaussianProcess::expectedVarianceImprovement(
 
 double GaussianProcess::objectiveFunction(const Eigen::Ref<const Eigen::VectorXd> &par, Eigen::Ref<Eigen::VectorXd> grad, const std::shared_ptr<cmp::prior::Prior> &lp) {
 
-
-    // Compute the LDLT decomposition of the covariance matrix and the residuals
+    // --- MATHEMATICAL FORMULATION ---
+    // The objective is to maximize the Marginal Log-Likelihood (MLL):
+    // log p(y | X, theta) = -1/2 * r^T * K_y^-1 * r - 1/2 * log|K_y| - N/2 * log(2pi)
+    // where r = y - m(X) represents the residual vector.
+    
+    // We compute the LDLT decomposition: K_y = L * D * L^T.
+    // This allows stable computation of the quadratic term and the log-determinant (sum of log of D's diagonal).
     Eigen::LDLT<Eigen::MatrixXd> cov_ldlt = cmp::ldltDecomposition(covariance(par));
     Eigen::VectorXd res = residual(par);
 
-    // Evaluate the log-likelihood and the log-prior
+    // Compute the log probability density under the multivariate normal distribution.
     double ll = cmp::distribution::MultivariateNormalDistribution::logPDF(res, cov_ldlt);
 
-    // Update the gradient (note that the gradient is optional)
+    // --- ANALYTICAL GRADIENT DERIVATION ---
+    // If the gradient vector is non-empty, we compute the partial derivatives:
+    // d(MLL)/d(theta_n) = 1/2 * tr((alpha * alpha^T - K_y^-1) * d(K_y)/d(theta_n)) + (d(m(X))/d(theta_n))^T * alpha
+    // where alpha = K_y^-1 * r.
     if(grad.size() != 0) {
 
-        // Update each component of the gradient
+        // Compute derivatives with respect to each hyperparameter theta_n
         for(int n = 0; n < par.size(); n++) {
             auto cov_gradient = covarianceGradient(par, n);
             auto mean_gradient = priorMeanGradient(par, n);
+            
+            // Evaluates the derivative of the MVN log-likelihood analytically
             grad[n] = cmp::distribution::MultivariateNormalDistribution::dLogPDF(res, cov_ldlt, cov_gradient, mean_gradient);
 
-            // Add the prior gradient
+            // Add the prior gradient to incorporate prior distributions (MAP estimation)
+            // d(Log-Posterior)/d(theta_n) = d(Log-Likelihood)/d(theta_n) + d(Log-Prior)/d(theta_n)
             grad[n] += lp->evalGradient(par, n);
         }
     }
 
-    // Return the log-likelihood + log-prior
+    // Return the log-posterior: log p(theta | y, X) = log p(y | X, theta) + log p(theta)
     return ll + lp->eval(par);
 }
 double GaussianProcess::objectiveFunctionLOO(const Eigen::Ref<const Eigen::VectorXd> &par, Eigen::Ref<Eigen::VectorXd> grad, const std::shared_ptr<cmp::prior::Prior> &lp) {
 
-    const double log2pi = std::log(2.0 * M_PI);
-    const double eps = 1e-12; // numerical floor
+    // --- MATHEMATICAL FORMULATION (LEAVE-ONE-OUT CROSS-VALIDATION) ---
+    // Leave-One-Out cross-validation evaluates the model's predictive capability by training on N-1 points
+    // and predicting on the remaining point. Doing this N times is O(N^4).
+    // Instead, we use Dubrule's fast LOO formulas (derived from matrix block inversion):
+    // LOO residual: r_i = alpha_i / (K^-1)_ii
+    // LOO variance: sigma_i^2 = 1 / (K^-1)_ii
+    // where alpha = K^-1 * res, and res = y - m(X).
+    // The total LOO log-likelihood is:
+    // log p_LOO = sum_{i=1}^N [ -1/2 * log(2pi * sigma_i^2) - 1/2 * r_i^2 / sigma_i^2 ]
 
-    // Covariance, factorization, sizes
+    const double log2pi = std::log(2.0 * M_PI);
+    const double eps = 1e-12; // Numerical safety floor to prevent division by zero
+
+    // Compute covariance matrix and its LDLT decomposition
     Eigen::MatrixXd K = covariance(par);
     Eigen::LDLT<Eigen::MatrixXd> ldlt = cmp::ldltDecomposition(K);
     const Eigen::Index n = K.rows();
 
-    // residuals and alpha = K^{-1} res
-    Eigen::VectorXd res = residual(par);                // res = y - mu(par)
+    // Compute residuals and solve K * alpha = res
+    Eigen::VectorXd res = residual(par);
     Eigen::VectorXd alpha = ldlt.solve(res);
 
-    // full inverse (needed for diag and M = K^{-1} dK K^{-1})
+    // Explicitly compute K^-1 to get its diagonal elements (K^-1)_ii
     Eigen::MatrixXd Kinv = ldlt.solve(Eigen::MatrixXd::Identity(n, n));
-    Eigen::VectorXd v = Kinv.diagonal();               // v_i = (K^{-1})_ii
+    Eigen::VectorXd v = Kinv.diagonal();
 
-    // safety floor for computations (don't change v itself if you want exact derivatives;
-    // we use a floored copy for divisions only to avoid blowups)
+    // Floor the diagonal elements to avoid numerical singularites
     Eigen::VectorXd v_safe = v.array().max(eps);
-    Eigen::VectorXd sigma2 = (1.0 / v_safe.array()).matrix();   // loo variances
-    Eigen::VectorXd r = (alpha.array() / v_safe.array()).matrix(); // loo residuals
+    Eigen::VectorXd sigma2 = (1.0 / v_safe.array()).matrix();   // LOO predictive variances
+    Eigen::VectorXd r = (alpha.array() / v_safe.array()).matrix(); // LOO residuals
 
-    // per-point loo log-likelihood and total
+    // Evaluate the pointwise LOO log probability densities
     Eigen::VectorXd loo_ll = (-0.5 * (log2pi + sigma2.array().log()) - 0.5 * (r.array().square() / sigma2.array())).matrix();
     double total_loo_ll = loo_ll.sum();
 
-    // Gradient (if requested)
+    // --- ANALYTICAL GRADIENT DERIVATION FOR LOO ---
+    // If the gradient is requested, we compute derivatives:
+    // d(log p_LOO)/d(theta_j) = sum_{i=1}^N [ -1/(2 * sigma_i^2) * d(sigma_i^2)/d(theta_j) - r_i/sigma_i^2 * d(r_i)/d(theta_j) + r_i^2/(2 * sigma_i^4) * d(sigma_i^2)/d(theta_j) ]
+    // which simplifies using the derivatives of alpha and the diagonal of K^-1.
     if(grad.size() != 0) {
         const int p = static_cast<int>(par.size());
         grad.setZero();

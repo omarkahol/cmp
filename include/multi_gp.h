@@ -46,8 +46,8 @@ class MultiOutputGaussianProcess {
     /**
      * @brief Set the values of the observations
      *
-     * @param x_obs the observation points
-     * @param y_obs the observation values (each column corresponds to a different output dimension)
+     * @param xObs the observation points
+     * @param yObs the observation values (each column corresponds to a different output dimension)
      * @param copyData whether to copy the observation data internally (default is true)
      */
     void condition(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::MatrixXd> &yObs, bool copyData = true);
@@ -64,8 +64,9 @@ class MultiOutputGaussianProcess {
      * @param tol_rel the relative tolerance for the optimization (default is 1e-3)
      * @param copyData whether to copy the observation data internally (default is true)
      * @param prior the prior distribution for the hyperparameters (default is uniform prior)
+     * @param logScale a vector indicating which hyperparameters should be optimized in log scale (default is all false)
      */
-    void fit(const Eigen::Ref<Eigen::MatrixXd> &xObs, const Eigen::Ref<Eigen::MatrixXd> &yObs, const Eigen::Ref<const Eigen::VectorXd> &lb, const Eigen::Ref<const Eigen::VectorXd> &ub,  const method &method = MLE, const nlopt::algorithm &alg = nlopt::LN_SBPLX, const double &tol_rel = 1e-3, bool copyData = true, const std::shared_ptr<cmp::prior::Prior> &prior = cmp::prior::Uniform::make());
+    void fit(const Eigen::Ref<Eigen::MatrixXd> &xObs, const Eigen::Ref<Eigen::MatrixXd> &yObs, const Eigen::Ref<const Eigen::VectorXd> &lb, const Eigen::Ref<const Eigen::VectorXd> &ub,  const method &method = MLE, const nlopt::algorithm &alg = nlopt::LN_SBPLX, const double &tol_rel = 1e-3, bool copyData = true, const std::shared_ptr<cmp::prior::Prior> &prior = cmp::prior::Uniform::make(), const std::vector<bool> &logScale = {});
 
     std::pair<Eigen::VectorXd, Eigen::MatrixXd> predict(const Eigen::Ref<const Eigen::VectorXd> &x, const type &t = type::POSTERIOR) const;
 

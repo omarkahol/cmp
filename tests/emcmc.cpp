@@ -53,6 +53,7 @@ int main() {
     // Step the chains
     std::vector<double> samples(n_samples);        // Store the samples here
     double gamma;
+    std::cout << "Starting EMCMC loop..." << std::endl;
     for(size_t i = 0; i < n_samples; i++) {
 
         // one chooses gamma = 2.38/sqrt(2*dim) for Gaussian targets, every 10th iteration we set gamma=1 to allow jumps between modes
@@ -68,7 +69,7 @@ int main() {
     }
 
     // Print info
-    std::cout << "EMCMC sampling completed." << std::endl;
+    std::cout << "EMCMC sampling completed successfully." << std::endl;
 
     // Plot the histogram of the samples
     plt::figure_size(800, 600);
@@ -76,7 +77,8 @@ int main() {
     plt::title("EMCMC sampling");
     plt::xlabel("x");
     plt::ylabel("Frequency");
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/emcmc.pdf");
+    plt::close();
 
     return 0;
 }

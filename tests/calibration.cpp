@@ -11,6 +11,9 @@
 #include <finite_diff.h>
 #include <distribution.h>
 #include <optimization.h>
+#include <gp.h>
+#include <mean++.h>
+#include <covariance.h>
 #include <matplotlibcpp.h>
 
 namespace matplotlibpp = matplotlibcpp;
@@ -132,14 +135,14 @@ int main() {
     Eigen::MatrixXd proposal_cov = 0.05 * Eigen::MatrixXd::Identity(3, 3);
     auto proposal = cmp::distribution::MultivariateNormalDistribution(params, proposal_cov.ldlt());
 
-    cmp::mcmc::MarkovChain mcmc(&proposal, rng, log_posterior(params));
+    cmp::mcmc::MarkovChain mcmc(proposal, rng, log_posterior(params));
 
     size_t n_burnin = 2000;
     size_t n_samples = 4000;
     size_t n_thin = 5;
 
     for(size_t i = 0; i < n_burnin; ++i) {
-        mcmc.step(log_posterior, {0.1});
+        mcmc.step(log_posterior, false, 0.1);
     }
 
     mcmc.info();
@@ -152,7 +155,7 @@ int main() {
         samples.row(i) = sample;
 
         for(size_t j = 0; j < n_thin; ++j) {
-            mcmc.step(log_posterior, {0.1});
+            mcmc.step(log_posterior, false, 0.1);
         }
 
     }
@@ -177,21 +180,24 @@ int main() {
     plt::xlabel("model_scale");
     plt::ylabel("Frequency");
     plt::grid(true);
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/calibration_model_scale.pdf");
+    plt::close();
 
     plt::figure_size(700, 450);
     plt::hist(sigma_f_samples, 40, "green", 0.85);
     plt::title("Posterior of GP sigma_f");
     plt::xlabel("sigma_f");
     plt::grid(true);
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/calibration_sigma_f.pdf");
+    plt::close();
 
     plt::figure_size(700, 450);
     plt::hist(l_samples, 40, "red", 0.85);
     plt::title("Posterior of GP length_scale");
     plt::xlabel("length_scale");
     plt::grid(true);
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/calibration_length_scale.pdf");
+    plt::close();
 
     // Plot data and mean calibrated model
     double model_scale_mean = samples.col(0).mean();
@@ -210,7 +216,8 @@ int main() {
     plt::xlabel("x");
     plt::ylabel("y");
     plt::grid(true);
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/calibration_fit.pdf");
+    plt::close();
 
     // Save the samples to a CSV file
     std::ofstream file("mcmc_samples.csv");

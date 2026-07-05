@@ -40,6 +40,40 @@ struct SobolResults {
     }
 };
 
+/**
+ * @class SobolSaltelli
+ * @brief Performs Global Sensitivity Analysis (GSA) using the Saltelli formulation of Sobol indices.
+ *
+ * @details
+ * ### Mathematical Foundations
+ * Sobol sensitivity analysis decomposes the total variance \f$V(Y)\f$ of a model \f$Y = f(X_1, \dots, X_d)\f$
+ * with independent inputs into contributions from individual inputs and their interactions:
+ * \f[ V(Y) = \sum_{i=1}^d V_i + \sum_{1 \le i < j \le d} V_{ij} + \dots + V_{1\dots d} \f]
+ *
+ * Where:
+ * - **First-Order Index (Main Effect)**: Measures the fractional variance contribution of input \f$X_i\f$ alone:
+ *   \f[ S_i = \frac{V_i}{V(Y)} = \frac{\mathrm{Var}_{X_i}\left(\mathbb{E}_{\mathbf{X}_{\sim i}}[Y | X_i]\right)}{\mathrm{Var}(Y)} \f]
+ * - **Second-Order Index (Interaction Effect)**: Measures the interaction effect of inputs \f$X_i\f$ and \f$X_j\f$:
+ *   \f[ S_{ij} = \frac{V_{ij}}{V(Y)} = \frac{\mathrm{Var}_{X_i, X_j}\left(\mathbb{E}_{\mathbf{X}_{\sim i,j}}[Y | X_i, X_j]\right) - V_i - V_j}{\mathrm{Var}(Y)} \f]
+ * - **Total-Order Index**: Measures the total effect of \f$X_i\f$ including all its interactions:
+ *   \f[ S_{Ti} = 1 - \frac{\mathrm{Var}_{\mathbf{X}_{\sim i}}\left(\mathbb{E}_{X_i}[Y | \mathbf{X}_{\sim i}]\right)}{\mathrm{Var}(Y)} \f]
+ *
+ * ### Implementation Algorithms (Saltelli 2010 Scheme)
+ * 1. **Grid Generation**: We draw two independent sample matrices \f$\mathbf{A}\f$ and \f$\mathbf{B}\f$ of size \f$N \times d\f$.
+ *    We construct \f$d\f$ hybrid matrices \f$\mathbf{A}_B^i\f$ (where column \f$i\f$ is from \f$\mathbf{B}\f$, rest from \f$\mathbf{A}\f$)
+ *    and \f$d(d-1)/2\f$ hybrid matrices \f$\mathbf{A}_B^{ij}\f$ (where columns \f$i\f$ and \f$j\f$ are from \f$\mathbf{B}\f$, rest from \f$\mathbf{A}\f$).
+ * 2. **Evaluation**: Evaluate the model outputs: \f$\mathbf{y}_A\f$, \f$\mathbf{y}_B\f$, \f$\mathbf{y}_{AB}^i\f$, and \f$\mathbf{y}_{AB}^{ij}\f$.
+ * 3. **Estimator Formulations**:
+ *    - First-Order:
+ *      \f[ S_i = \frac{\frac{1}{N} \sum_{k=1}^N y_B^{(k)} (y_{AB}^{(i)(k)} - y_A^{(k)})}{\mathrm{Var}(Y)} \f]
+ *    - Total-Order:
+ *      \f[ S_{Ti} = \frac{\frac{1}{2N} \sum_{k=1}^N (y_A^{(k)} - y_{AB}^{(i)(k)})^2}{\mathrm{Var}(Y)} \f]
+ *
+ * ### Constraints & Invariants
+ * - **Sample Independence**: The input matrices \f$\mathbf{A}\f$ and \f$\mathbf{B}\f$ must be statistically independent.
+ * - **Computational Complexity**: The number of model evaluations required is \f$N(d + 2)\f$ for first and total order,
+ *   and \f$N(2d + 2 + d(d-1)/2)\f$ if second-order interaction indices are requested.
+ */
 class SobolSaltelli {
   private:
     size_t nObs_ = 0;
@@ -65,16 +99,14 @@ class SobolSaltelli {
         return nObs_;
     }
 
-    /**
-     * \brief Constructs the Sobol evaluation grid using the Saltelli sampling scheme.
-     * \param lowerBound The lower bounds for each dimension.
-     * \param upperBound The upper bounds for each dimension.
-     * \param nObs The number of observations (size of A and B matrices).
-     * \param gridType A shared pointer to a UnitGrid object that defines the grid type (e.g., random, Latin Hypercube).
-     * \param secondOrder Whether to compute second-order indices.
-     * \return An Eigen::MatrixXd containing the evaluation grid with size [(2 + dim + dim*(dim-1)/2) * nObs, dim] if secondOrder is true, otherwise [(2 + dim) * nObs, dim].
-     */
-    Eigen::MatrixXd evaluationGrid(size_t nObs, std::shared_ptr<cmp::grid::Grid> gridType, bool secondOrder = false);
+     /**
+      * \brief Constructs the Sobol evaluation grid using the Saltelli sampling scheme.
+      * \param nObs The number of observations (size of A and B matrices).
+      * \param gridType A shared pointer to a UnitGrid object that defines the grid type (e.g., random, Latin Hypercube).
+      * \param secondOrder Whether to compute second-order indices.
+      * \return An Eigen::MatrixXd containing the evaluation grid with size [(2 + dim + dim*(dim-1)/2) * nObs, dim] if secondOrder is true, otherwise [(2 + dim) * nObs, dim].
+      */
+     Eigen::MatrixXd evaluationGrid(size_t nObs, std::shared_ptr<cmp::grid::Grid> gridType, bool secondOrder = false);
 
     /**
      * \brief Slices the output vector Y from the Sobol evaluation grid to keep only the indices specified in idx.

@@ -40,7 +40,8 @@ int main() {
     matplotlibcpp::xlim(-3, 3);
     matplotlibcpp::ylim(-3, 3);
     matplotlibcpp::grid(true);
-    matplotlibcpp::show();
+    matplotlibcpp::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/mixture.pdf");
+    matplotlibcpp::close();
 
     std::cout << "True density at (0,0): " << std::exp(dist.logPDF(Eigen::Vector2d(0, 0))) << std::endl;
 

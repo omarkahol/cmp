@@ -1,6 +1,6 @@
 /**
- * @file mcmc.cpp
- * @brief Test file for MCMC sampling methods, including DRAM.
+ * @file hmc.cpp
+ * @brief Test file for Hamiltonian Monte Carlo sampling methods.
  * @author Omar Kahol
  *
  */
@@ -90,7 +90,8 @@ int main() {
     plt::scatter(x_vals, y_vals, 1.0);
 
     // 5. Render
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/hmc.pdf");
+    plt::close();
 
     std::cout << "-----------------------------------" << std::endl;
     return 0;

@@ -42,7 +42,7 @@ int main() {
     cmp::distribution::MultivariateNormalDistribution proposal(xInit, covInit);
 
     // Create the MCMC chain object
-    cmp::mcmc::MarkovChain chain(&proposal, rng, 0.06);
+    cmp::mcmc::MarkovChain chain(proposal, rng, 0.06);
 
     // Burn-in phase, step with no adaptation
     for(size_t i = 0; i < n_burn; i++) {
@@ -82,7 +82,8 @@ int main() {
     plt::xlabel("x");
     plt::ylabel("Frequency");
     plt::grid(true);
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/mcmc.pdf");
+    plt::close();
 
     std::cout << "-----------------------------------" << std::endl;
 
@@ -116,7 +117,8 @@ int main() {
     plt::xlabel("Lag");
     plt::ylabel("Correlation");
     plt::grid(true);
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/mcmc_autocorr.pdf");
+    plt::close();
 
     return 0;
 }

@@ -124,7 +124,13 @@ double cmp::classifier::KDE::objectiveFunctionCV(const method& method, const cmp
 
 
     double score = 0.0;
-    for(auto split : kf) {
+    size_t nFolds = kf.nFolds();
+
+    #pragma omp parallel for default(none) \
+        shared(kf, nFolds, method, xObs_, labels_, nClasses_, bandwidth_, kernel_) \
+        reduction(+:score)
+    for(size_t split_idx = 0; split_idx < nFolds; ++split_idx) {
+        auto split = kf(split_idx);
 
         // Split the data
         auto [xTrain, yTrain, xTest, yTest] = cmp::trainTestSplit(xObs_, labels_, split);
@@ -208,7 +214,7 @@ double cmp::classifier::KDE::objectiveFunctionLOO() const {
     return score / double(nObs_);
 }
 
-void cmp::classifier::KDE::fit(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, cmp::statistics::KFold kf, const double& minBw, const double& maxBw, const method method, nlopt::algorithm algo, double ftol_rel) {
+void cmp::classifier::KDE::fit(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, cmp::statistics::KFold kf, const double& minBw, const double& maxBw, const method method, nlopt::algorithm algo, double ftol_rel, std::vector<bool> logScaleFlags) {
 
     // First we condition on the data
     this->condition(xObs, labels);
@@ -225,11 +231,16 @@ void cmp::classifier::KDE::fit(const Eigen::Ref<const Eigen::MatrixXd>& xObs, co
         return objectiveFunctionCV(method, kf);
     });
 
+    if(logScaleFlags.size() == x0.size()) {
+        objectiveFunctor.setLogScale(logScaleFlags);
+    }
+
+
     // Call the optimizer: it will modify the bandwidth parameters in place
     cmp::nlopt_max(objectiveFunctor, x0, lb, ub, algo, ftol_rel);
 }
 
-void cmp::classifier::KDE::fitLOO(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, const double& minBw, const double& maxBw, nlopt::algorithm algo, double ftol_rel) {
+void cmp::classifier::KDE::fitLOO(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels, const double& minBw, const double& maxBw, nlopt::algorithm algo, double ftol_rel, std::vector<bool> logScaleFlags) {
 
     // Condition FIRST to set up the data
     this->condition(xObs, labels);
@@ -246,6 +257,10 @@ void cmp::classifier::KDE::fitLOO(const Eigen::Ref<const Eigen::MatrixXd>& xObs,
         return objectiveFunctionLOO();
     }
     );
+
+    if(logScaleFlags.size() == x0.size()) {
+        objectiveFunctor.setLogScale(logScaleFlags);
+    }
 
     // Call the optimizer: it will modify the bandwidth parameters in place
     cmp::nlopt_max(objectiveFunctor, x0, lb, ub, algo, ftol_rel);
@@ -346,7 +361,7 @@ void cmp::classifier::SVM::fit(const method& method, const cmp::statistics::KFol
                                const Eigen::Ref<const Eigen::MatrixXd>& xObs,
                                const Eigen::Ref<const Eigen::VectorXs>& membershipTable,
                                Eigen::VectorXd lb, Eigen::VectorXd ub, nlopt::algorithm algo,
-                               double ftol_rel) {
+                               double ftol_rel, std::vector<bool> logScaleFlags) {
 
     // Initial guess
     Eigen::VectorXd x0(hyperparameters_.size() + 1);
@@ -368,6 +383,10 @@ void cmp::classifier::SVM::fit(const method& method, const cmp::statistics::KFol
     }
     );
 
+    if(logScaleFlags.size() == x0.size()) {
+        objectiveFunctor.setLogScale(logScaleFlags);
+    }
+
     // Maximize the objective function
     cmp::nlopt_max(objectiveFunctor, x0, lb, ub, algo, ftol_rel);
 }
@@ -376,7 +395,7 @@ void cmp::classifier::SVM::fit(Eigen::Ref<const Eigen::MatrixXd> xObs,
                                Eigen::Ref<const Eigen::VectorXs> membershipTable,
                                Eigen::Ref<const Eigen::VectorXd> lb,
                                Eigen::Ref<const Eigen::VectorXd> ub, nlopt::algorithm algo,
-                               double ftol_rel)  {
+                               double ftol_rel, std::vector<bool> logScaleFlags)  {
 
     // Initial guess
     Eigen::VectorXd x0(hyperparameters_.size() + 1);
@@ -398,116 +417,114 @@ void cmp::classifier::SVM::fit(Eigen::Ref<const Eigen::MatrixXd> xObs,
     }
     );
 
-    // Maximize the objective function
+    if(logScaleFlags.size() == x0.size()) {
+        objectiveFunctor.setLogScale(logScaleFlags);
+    }
+
     cmp::nlopt_max(objectiveFunctor, x0, lb, ub, algo, ftol_rel);
 };
 
 double cmp::classifier::SVM::objectiveFunctionCV(const method& method,
                                                  const cmp::statistics::KFold& kf) {
-    // If we are interested in the CV score, we can use LIBSVM's built-in cross-validation function (faster).
-    if(method == CV_SCORE) {
 
-        // Create a temporary copy of the problem
-        struct svm_problem probTmp;
-        probTmp.l = prob_.l;
+    // Safety check for the data leak prevention
+    if(modelParameters_.kernel_type != PRECOMPUTED) {
+        throw std::runtime_error("This CV function is strictly designed for PRECOMPUTED kernels.");
+    }
+
+    double logLikelihoodScore = 0.0;
+    size_t totalCorrect = 0;
+
+    for(auto [trainIdx, testIdx] : kf) {
+
+        // --- 1. Construct the Training Sub-Problem ---
+        svm_problem probTmp;
+        probTmp.l = trainIdx.size();
+
+        // Use standard C++ allocation to safely manage memory manually later
         probTmp.y = new double[probTmp.l];
         probTmp.x = new svm_node*[probTmp.l];
 
-        for(size_t i = 0; i < probTmp.l; i++) {
-            probTmp.y[i] = prob_.y[i];
+        for(size_t i = 0; i < trainIdx.size(); ++i) {
+            probTmp.y[i] = prob_.y[trainIdx[i]];
+            probTmp.x[i] = new svm_node[trainIdx.size() + 2];
 
-            // Each sample has row ID + nObs kernel entries + terminator
-            probTmp.x[i] = new svm_node[nObs_ + 2];
-
-            // Row ID (mandatory, 1-based)
+            // Mandatory ID (1-based index required by LIBSVM)
             probTmp.x[i][0].index = 0;
             probTmp.x[i][0].value = i + 1;
 
-            // Fill kernel row on-the-fly
-            for(size_t j = 0; j < nObs_; j++) {
+            // Slice the kernel matrix: Train vs Train
+            for(size_t j = 0; j < trainIdx.size(); ++j) {
                 probTmp.x[i][j + 1].index = j + 1;
-                probTmp.x[i][j + 1].value = prob_.x[i][j + 1].value;
-
+                probTmp.x[i][j + 1].value = prob_.x[trainIdx[i]][trainIdx[j] + 1].value;
             }
-
             // End marker
-            probTmp.x[i][nObs_ + 1].index = -1;
+            probTmp.x[i][trainIdx.size() + 1].index = -1;
         }
 
-        // Allocate memory for the cross-validation results
-        std::vector<double> target(nObs_, 0.0);
-        svm_cross_validation(&probTmp, &modelParameters_, kf.nFolds(), target.data());
+        // --- 2. Train the Temporary Model ---
+        svm_model* modelTmp = svm_train(&probTmp, &modelParameters_);
 
-        // Free the memory
-        freeProblem(&probTmp);
+        // --- 3. Evaluate the Test Set ---
+        for(size_t i = 0; i < testIdx.size(); ++i) {
 
-        size_t correct = 0;
-        for(size_t i = 0; i < nObs_; ++i) {
-            if(target[i] == prob_.y[i]) {
-                ++correct;
+            // Construct the test vector: Test vs Train
+            svm_node* x = new svm_node[trainIdx.size() + 2];
+            x[0].index = 0;
+            x[0].value = testIdx[i] + 1;
+
+            for(size_t j = 0; j < trainIdx.size(); ++j) {
+                x[j + 1].index = j + 1;
+                x[j + 1].value = prob_.x[testIdx[i]][trainIdx[j] + 1].value;
             }
-        }
-        return static_cast<double>(correct) / nObs_;
-    } else {
+            x[trainIdx.size() + 1].index = -1;
 
-        double score = 0.0;
-        for(auto [trainIdx, testIdx] : kf) {
-
-            // Create a temporary copy of the problem for the training set
-            svm_problem probTmp;
-            probTmp.l = trainIdx.size();
-            probTmp.y = new double[probTmp.l];
-            probTmp.x = new svm_node*[probTmp.l];
-
-            // Fill the training problem
-            for(size_t i = 0; i < trainIdx.size(); ++i) {
-
-                // I am getting the necessary rows from the full kernel matrix using the trainIdx mapping
-                probTmp.y[i] = prob_.y[trainIdx[i]];
-                probTmp.x[i] = new svm_node[trainIdx.size() + 2];
-                probTmp.x[i][0].index = 0;
-                probTmp.x[i][0].value = i + 1;
-                for(size_t j = 0; j < trainIdx.size(); ++j) {
-                    probTmp.x[i][j + 1].index = j + 1;
-                    probTmp.x[i][j + 1].value = prob_.x[trainIdx[i]][trainIdx[j] + 1].value;
+            if(method == CV_SCORE) {
+                // Predict purely for accuracy
+                double prediction = svm_predict(modelTmp, x);
+                if(prediction == prob_.y[testIdx[i]]) {
+                    totalCorrect++;
                 }
-                probTmp.x[i][trainIdx.size() + 1].index = -1;
-            }
-
-            // Create and train a temporary model
-            svm_model* modelTmp = svm_train(&probTmp, &modelParameters_);
-
-            for(size_t i = 0; i < testIdx.size(); ++i) {
-                svm_node* x = new svm_node[trainIdx.size() + 2];
-                x[0].index = 0;
-                x[0].value = testIdx[i] + 1;
-                for(size_t j = 0; j < trainIdx.size(); ++j) {
-                    x[j + 1].index = j + 1;
-                    x[j + 1].value = prob_.x[testIdx[i]][trainIdx[j] + 1].value;
-                }
-                x[trainIdx.size() + 1].index = -1;
-
+            } else {
+                // Predict probabilities for Log-Loss
                 std::vector<double> probEstimates(modelTmp->nr_class);
                 svm_predict_probability(modelTmp, x, probEstimates.data());
 
                 int trueLabel = static_cast<int>(prob_.y[testIdx[i]]);
                 int labelIdx = -1;
-                for(int k = 0; k < modelTmp->nr_class; ++k)
-                    if(modelTmp->label[k] == trueLabel)
+                for(int k = 0; k < modelTmp->nr_class; ++k) {
+                    if(modelTmp->label[k] == trueLabel) {
                         labelIdx = k;
+                        break;
+                    }
+                }
 
-                if(labelIdx != -1)
-                    score += std::log(std::max(probEstimates[labelIdx], cmp::TOL));
-
-                // Free the memory
-                delete[] x;
+                if(labelIdx != -1) {
+                    logLikelihoodScore += std::log(std::max(probEstimates[labelIdx], cmp::TOL));
+                }
             }
 
-            // Free the temporary model and problem
-            svm_free_and_destroy_model(&modelTmp);
-            freeProblem(&probTmp);
+            delete[] x; // Clean up test vector
         }
-        return score / double(nObs_);
+
+        // --- 4. Clean up Training Memory ---
+        svm_free_and_destroy_model(&modelTmp);
+
+        // Properly delete C++ allocated arrays rather than using freeProblem()
+        for(size_t i = 0; i < probTmp.l; ++i) {
+            delete[] probTmp.x[i];
+        }
+        delete[] probTmp.x;
+        delete[] probTmp.y;
+    }
+
+    // --- 5. Return Maximization Objectives ---
+    if(method == CV_SCORE) {
+        // NLOPT will try to maximize this towards 1.0 (100% accuracy)
+        return static_cast<double>(totalCorrect) / static_cast<double>(nObs_);
+    } else {
+        // NLOPT will try to maximize this towards 0.0 (perfect confidence)
+        return logLikelihoodScore / static_cast<double>(nObs_);
     }
 };
 
@@ -517,7 +534,10 @@ double cmp::classifier::SVM::objectiveFunctionSpan() {
     }
 
     const double C = modelParameters_.C;
+
+    // Tolerances are critical here. libsvm bounds aren't always exact due to float math.
     const double alphaTol = std::max(1e-8, modelParameters_.eps);
+    const double boundedTol = std::max(1e-6, C * 1e-4);
 
     const int nClass = model_->nr_class;
     const int nSVTot = model_->l;
@@ -531,114 +551,113 @@ double cmp::classifier::SVM::objectiveFunctionSpan() {
         svStart[c + 1] = svStart[c] + model_->nSV[c];
     }
 
+    // Returns {LOO_bound_for_pair, total_active_SVs_in_pair}
     auto pairContribution = [&](int ci, int cj) -> std::pair<double, int> {
-        std::vector<int> pairSV;
-        std::vector<double> pairAlpha;
-        std::vector<double> pairSign;
-        pairSV.reserve(model_->nSV[ci] + model_->nSV[cj]);
-        pairAlpha.reserve(model_->nSV[ci] + model_->nSV[cj]);
-        pairSign.reserve(model_->nSV[ci] + model_->nSV[cj]);
+        std::vector<int> freeSV;
+        std::vector<double> freeAlpha;
+        std::vector<double> freeSign;
 
-        // For one-vs-one(ci,cj), libsvm stores coefficients:
-        // class ci SVs in row (cj-1), class cj SVs in row ci.
-        for(int s = svStart[ci]; s < svStart[ci + 1]; ++s) {
-            const double a = std::abs(model_->sv_coef[cj - 1][s]);
-            if(a > alphaTol && a < (C - alphaTol)) {
-                pairSV.push_back(s);
-                pairAlpha.push_back(a);
-                pairSign.push_back(+1.0);
+        int boundedCount = 0;
+        int totalActive = 0;
+
+        // Lambda to cleanly sort SVs into Free vs. Bounded
+        auto processSV = [&](int s, double coef, double sign) {
+            const double a = std::abs(coef);
+            if(a > alphaTol) {
+                totalActive++;
+                if(a >= (C - boundedTol)) {
+                    boundedCount++; // Guaranteed margin error
+                } else {
+                    freeSV.push_back(s);
+                    freeAlpha.push_back(a);
+                    freeSign.push_back(sign);
+                }
             }
+        };
+
+        // For one-vs-one(ci,cj), collect coefficients
+        for(int s = svStart[ci]; s < svStart[ci + 1]; ++s) {
+            processSV(s, model_->sv_coef[cj - 1][s], +1.0);
         }
         for(int s = svStart[cj]; s < svStart[cj + 1]; ++s) {
-            const double a = std::abs(model_->sv_coef[ci][s]);
-            if(a > alphaTol && a < (C - alphaTol)) {
-                pairSV.push_back(s);
-                pairAlpha.push_back(a);
-                pairSign.push_back(-1.0);
-            }
+            processSV(s, model_->sv_coef[ci][s], -1.0);
         }
 
-        // Fallback: if no free pair-SV, use all active pair-SV.
-        if(pairSV.empty()) {
-            for(int s = svStart[ci]; s < svStart[ci + 1]; ++s) {
-                const double a = std::abs(model_->sv_coef[cj - 1][s]);
-                if(a > alphaTol) {
-                    pairSV.push_back(s);
-                    pairAlpha.push_back(a);
-                    pairSign.push_back(+1.0);
+        const int m = static_cast<int>(freeSV.size());
+
+        // Base LOO error bound starts with the bounded SVs
+        double pairSpanBound = static_cast<double>(boundedCount);
+
+        if(m > 1) {
+            Eigen::MatrixXd Q = Eigen::MatrixXd::Zero(m, m);
+            for(int a = 0; a < m; ++a) {
+                const int svA = freeSV[a];
+                const int idxA = model_->sv_indices[svA] - 1;
+                for(int b = a; b < m; ++b) {
+                    const int svB = freeSV[b];
+                    const int idxB = model_->sv_indices[svB] - 1;
+                    const double kij = covariance_->eval(xObs_.row(idxA).transpose(), xObs_.row(idxB).transpose(), hyperparameters_);
+                    const double qij = freeSign[a] * freeSign[b] * kij;
+                    Q(a, b) = qij;
+                    Q(b, a) = qij;
                 }
             }
-            for(int s = svStart[cj]; s < svStart[cj + 1]; ++s) {
-                const double a = std::abs(model_->sv_coef[ci][s]);
-                if(a > alphaTol) {
-                    pairSV.push_back(s);
-                    pairAlpha.push_back(a);
-                    pairSign.push_back(-1.0);
+
+            // Stabilize matrix inversion
+            const double avgDiag = std::max(Q.diagonal().mean(), cmp::TOL);
+            Q.diagonal().array() += 1e-6 * avgDiag;
+
+            Eigen::LDLT<Eigen::MatrixXd> ldlt(Q);
+            if(ldlt.info() == Eigen::Success) {
+                const Eigen::MatrixXd invQ = ldlt.solve(Eigen::MatrixXd::Identity(m, m));
+                if(ldlt.info() == Eigen::Success) {
+                    for(int i = 0; i < m; ++i) {
+                        const double invDiag = std::max(invQ(i, i), cmp::TOL);
+                        const double spanSq = 1.0 / invDiag;
+                        pairSpanBound += freeAlpha[i] * std::max(spanSq, 0.0);
+                    }
+                } else {
+                    // Penalty: If we can't solve, assume all free SVs are LOO errors
+                    pairSpanBound += static_cast<double>(m);
                 }
+            } else {
+                // Penalty: If decomposition fails, assume all free SVs are LOO errors
+                pairSpanBound += static_cast<double>(m);
             }
-        }
-
-        const int m = static_cast<int>(pairSV.size());
-        if(m <= 1) {
-            return {0.0, 0};
-        }
-
-        Eigen::MatrixXd Q = Eigen::MatrixXd::Zero(m, m);
-        for(int a = 0; a < m; ++a) {
-            const int svA = pairSV[a];
+        } else if(m == 1) {
+            // Span of a single SV is derived directly from its self-kernel
+            const int svA = freeSV[0];
             const int idxA = model_->sv_indices[svA] - 1;
-            for(int b = a; b < m; ++b) {
-                const int svB = pairSV[b];
-                const int idxB = model_->sv_indices[svB] - 1;
-                const double kij = covariance_->eval(xObs_.row(idxA).transpose(), xObs_.row(idxB).transpose(), hyperparameters_);
-                const double qij = pairSign[a] * pairSign[b] * kij;
-                Q(a, b) = qij;
-                Q(b, a) = qij;
-            }
+            const double kii = covariance_->eval(xObs_.row(idxA).transpose(), xObs_.row(idxA).transpose(), hyperparameters_);
+            pairSpanBound += freeAlpha[0] * std::max(kii, cmp::TOL);
         }
 
-        const double avgDiag = std::max(Q.diagonal().mean(), cmp::TOL);
-        Q.diagonal().array() += 1e-8 * avgDiag;
-
-        Eigen::LDLT<Eigen::MatrixXd> ldlt(Q);
-        if(ldlt.info() != Eigen::Success) {
-            return {0.0, 0};
-        }
-
-        const Eigen::MatrixXd invQ = ldlt.solve(Eigen::MatrixXd::Identity(m, m));
-        if(ldlt.info() != Eigen::Success) {
-            return {0.0, 0};
-        }
-
-        double weightedSpan = 0.0;
-        for(int i = 0; i < m; ++i) {
-            const double invDiag = std::max(invQ(i, i), cmp::TOL);
-            const double spanSq = 1.0 / invDiag;
-            weightedSpan += pairAlpha[i] * std::max(spanSq, 0.0);
-        }
-        weightedSpan /= static_cast<double>(m);
-        return {weightedSpan, m};
+        return {pairSpanBound, totalActive};
     };
 
-    double aggregate = 0.0;
-    int aggregateWeight = 0;
+    double totalLOOBound = 0.0;
+    int totalAggregateSVs = 0;
+
     for(int ci = 0; ci < nClass; ++ci) {
         for(int cj = ci + 1; cj < nClass; ++cj) {
-            auto [pairSpan, weight] = pairContribution(ci, cj);
-            if(weight > 0) {
-                aggregate += pairSpan * static_cast<double>(weight);
-                aggregateWeight += weight;
+            auto [pairBound, pairActive] = pairContribution(ci, cj);
+            if(pairActive > 0) {
+                totalLOOBound += pairBound;
+                totalAggregateSVs += pairActive;
             }
         }
     }
 
-    if(aggregateWeight == 0) {
+    if(totalAggregateSVs == 0) {
         return -std::numeric_limits<double>::infinity();
     }
 
-    const double meanPairwiseSpan = aggregate / static_cast<double>(aggregateWeight);
-    return -meanPairwiseSpan;
-};
+    // Compute the ratio of the LOO error bound to the number of active support vectors
+    const double meanLooErrorRate = totalLOOBound / static_cast<double>(std::max(totalAggregateSVs, 1));
+
+    // We want to minimize the error rate. Since nlopt_max maximizes the objective, we return the negative log.
+    return -std::log(std::max(meanLooErrorRate, cmp::TOL));
+}
 
 void cmp::classifier::Dummy::condition(const Eigen::Ref<const Eigen::MatrixXd>& xObs, const Eigen::Ref<const Eigen::VectorXs>& labels) {
 

@@ -24,8 +24,47 @@ enum type {
 };
 
 /**
- * @brief This class implements a Gaussian process, providing algorithms for training and prediction.
+ * @class GaussianProcess
+ * @brief This class implements a Gaussian Process (GP) regression model for non-parametric Bayesian regression.
  *
+ * @details
+ * ### Mathematical Foundations
+ * A Gaussian Process is a collection of random variables, any finite number of which have a joint Gaussian distribution.
+ * It is completely specified by its mean function \f$m(\mathbf{x})\f$ and covariance (kernel) function \f$k(\mathbf{x}, \mathbf{x}')\f$:
+ * \f[ f(\mathbf{x}) \sim \mathcal{GP}\left(m(\mathbf{x}), k(\mathbf{x}, \mathbf{x}')\right) \f]
+ *
+ * Given a training dataset \f$\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N\f$ where \f$\mathbf{X} \in \mathbb{R}^{N \times D}\f$ and \f$\mathbf{y} \in \mathbb{R}^N\f$,
+ * the joint distribution of the training outputs and the predictive function value \f$f(\mathbf{x}_*)\f$ at a test point \f$\mathbf{x}_*\f$ is:
+ * \f[
+ * \begin{bmatrix} \mathbf{y} \\ f(\mathbf{x}_*) \end{bmatrix} \sim \mathcal{N}\left(
+ * \begin{bmatrix} \mathbf{m}(\mathbf{X}) \\ m(\mathbf{x}_*) \end{bmatrix},
+ * \begin{bmatrix} \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I} & \mathbf{k}(\mathbf{X}, \mathbf{x}_*) \\ \mathbf{k}(\mathbf{x}_*, \mathbf{X}) & k(\mathbf{x}_*, \mathbf{x}_*) \end{bmatrix}
+ * \right)
+ * \f]
+ * where \f$\sigma_n^2\f$ is the nugget (representing the observation noise variance).
+ *
+ * The conditional posterior distribution at the test point \f$\mathbf{x}_*\f$ is given by:
+ * \f[ f(\mathbf{x}_*) | \mathbf{X}, \mathbf{y}, \mathbf{x}_* \sim \mathcal{N}(\mu_*, \sigma_*^2) \f]
+ * where the posterior mean \f$\mu_*\f$ and variance \f$\sigma_*^2\f$ are calculated as:
+ * \f[ \mu_* = m(\mathbf{x}_*) + \mathbf{k}(\mathbf{x}_*, \mathbf{X}) \left[ \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I} \right]^{-1} (\mathbf{y} - \mathbf{m}(\mathbf{X})) \f]
+ * \f[ \sigma_*^2 = k(\mathbf{x}_*, \mathbf{x}_*) - \mathbf{k}(\mathbf{x}_*, \mathbf{X}) \left[ \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I} \right]^{-1} \mathbf{k}(\mathbf{X}, \mathbf{x}_*) \f]
+ *
+ * ### Implementation Algorithms
+ * 1. **LDLT Decomposition**: Directly inverting \f$\mathbf{K}_y = \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I}\f$ is numerically unstable and computationally expensive (\f$O(N^3)\f$).
+ *    We construct \f$\mathbf{K}_y\f$ and compute its LDLT decomposition:
+ *    \f[ \mathbf{K}_y = \mathbf{L} \mathbf{D} \mathbf{L}^T \f]
+ * 2. **Backsubstitution**: We precompute the weight vector \f$\boldsymbol{\alpha}\f$ by solving:
+ *    \f[ \mathbf{L} \mathbf{D} \mathbf{L}^T \boldsymbol{\alpha} = \mathbf{y} - \mathbf{m}(\mathbf{X}) \f]
+ *    The predictive posterior mean is then efficiently evaluated as:
+ *    \f[ \mu_* = m(\mathbf{x}_*) + \mathbf{k}(\mathbf{x}_*, \mathbf{X}) \boldsymbol{\alpha} \f]
+ * 3. **Hyperparameter Optimization**: The hyperparameters \f$\boldsymbol{\theta}\f$ of the covariance and mean functions are optimized by maximizing the marginal log-likelihood:
+ *    \f[ \log p(\mathbf{y} | \mathbf{X}, \boldsymbol{\theta}) = -\frac{1}{2} (\mathbf{y} - \mathbf{m}(\mathbf{X}))^T \mathbf{K}_y^{-1} (\mathbf{y} - \mathbf{m}(\mathbf{X})) - \frac{1}{2} \log |\mathbf{K}_y| - \frac{N}{2} \log (2\pi) \f]
+ *    using gradient-free (e.g., Subplex) or gradient-based NLopt algorithms.
+ *
+ * ### Constraints & Invariants
+ * - **Nugget (\f$\sigma_n^2\f$)**: Must be strictly positive (\f$\ge 10^{-12}\f$, default \f$10^{-8}\f$) to ensure the covariance matrix remains strictly positive-definite.
+ * - **Training Inputs**: Pre-conditions require that the dataset is non-empty (\f$N \ge 1\f$).
+ * - **Hyperparameter bounds**: Must satisfy the user-specified bounds \f$\mathbf{lb} \le \boldsymbol{\theta} \le \mathbf{ub}\f$.
  */
 class GaussianProcess {
   private:
@@ -48,6 +87,10 @@ class GaussianProcess {
     Eigen::VectorXd diagCovInverse_;
     Eigen::VectorXd residual_;
 
+    // Internal flag to check whether we normalize y or not
+    bool normalizeY_ = false;
+    cmp::scaler::StandardScaler yScaler_;
+
 // Private members
   private:
     void compute(const Eigen::Ref<const Eigen::VectorXd> &par);
@@ -68,13 +111,13 @@ class GaussianProcess {
     GaussianProcess &operator=(GaussianProcess &&other) noexcept;
 
     /**
-     * A GP is defined by a Kernel function, a mean function, a prior function, a nugget and its hyperparameters.
+     * A GP is defined by a Kernel function, a mean function, a nugget and its hyperparameters.
      * @param kernel The Kernel function
      * @param mean The mean function
-     * @param prior The prior function
      * @param params The vector of hyperparameters
+     * @param nugget The nugget value (default is 1e-8)
      *
-     * @note This function is used to set the Kernel, mean and prior functions of the GP.
+     * @note This function is used to set the Kernel and mean functions of the GP.
      */
     void set(const std::shared_ptr<covariance::Covariance> &kernel, const std::shared_ptr<mean::Mean> &mean, Eigen::Ref<const Eigen::VectorXd> params, double nugget = 1e-8);
 
@@ -84,24 +127,29 @@ class GaussianProcess {
      * @param xObs The observation points
      * @param yObs The observation values
      * @param copyData  Decide whether or not to make a deep copy of the data
+     * @param normalizeY Whether to normalize the observation values
+     *
+     * @note if copyData is false, and normalizeY is true the function will throw an exception, since it cannot normalize the data without owning it.
      */
-    void condition(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd> &yObs, bool copyData);
+    void condition(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd> &yObs, bool copyData = true, bool normalizeY = false);
 
     /**
      * @brief Fit the Gaussian Process to the observations
      *
      * @param xObs the observation points
      * @param yObs the observation values
-     * @param lowerBound the lower bound for the hyperparameters
-     * @param upperBound the upper bound for the hyperparameters
+     * @param lb the lower bound for the hyperparameters
+     * @param ub the upper bound for the hyperparameters
      * @param method the method to be used for the optimization
      * @param alg the algorithm to be used for the optimization
      * @param tol_rel the relative tolerance for the optimization
      * @param copyData whether to copy the observation data internally (default is true)
+     * @param normalizeY whether to normalize the observation values (default is false)
      * @param prior the prior distribution for the hyperparameters (default is uniform prior)
+     * @param logScale a vector indicating which hyperparameters should be optimized in log scale (default is all false)
      *
      */
-    void fit(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd> &yObs, const Eigen::Ref<const Eigen::VectorXd> &lowerBound, const Eigen::Ref<const Eigen::VectorXd> &upperBound, const method &method, const nlopt::algorithm &alg, const double &tol_rel, bool copyData = true, const std::shared_ptr<cmp::prior::Prior> &prior = cmp::prior::Uniform::make());
+    void fit(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd> &yObs, const Eigen::Ref<const Eigen::VectorXd> &lb, const Eigen::Ref<const Eigen::VectorXd> &ub, const method &method, const nlopt::algorithm &alg, const double &tol_rel, bool copyData = true, bool normalizeY = false, const std::shared_ptr<cmp::prior::Prior> &prior = cmp::prior::Uniform::make(), const std::vector<bool> &logScale = {});
 
     /**
      * @brief Get the hyperparameters of the Gaussian Process
@@ -129,19 +177,21 @@ class GaussianProcess {
 
     /**
      * @brief Evaluates the covariance matrix of the Kernel
-     *
+     * @param par The vector of hyperparameters
      * @return a matrix containing the evaluation of the Kernel on the observation points
      */
     Eigen::MatrixXd covariance(Eigen::Ref<const Eigen::VectorXd> par) const;
 
     /**
      * Evaluate the i-th component of the gradient of the covariance matrix.
+     * @param par The vector of hyperparameters
      * @param i The component of the gradient required
      */
     Eigen::MatrixXd covarianceGradient(Eigen::Ref<const Eigen::VectorXd> par, const int &i) const;
 
     /**
      * Evaluate the ij component of the hessian of the covariance matrix.
+     * @param par The vector of hyperparameters
      * @param i row of the hessian matrix
      * @param j colum of the hessian matrix
      */
@@ -183,16 +233,14 @@ class GaussianProcess {
 
     /**
      * @brief Evaluates the mean on the observations.
-     *
-     * This function calculates the mean of a set of points given by `x_pts` using the parameters `par`.
-     *
+     * @param par The vector of hyperparameters
      * @return The mean of the points.
      */
     Eigen::VectorXd priorMean(Eigen::Ref<const Eigen::VectorXd> par) const;
 
     /**
      * @brief Evaluate the gradient of the mean function
-     *
+     * @param par The vector of hyperparameters
      * @param i the index of the hyperparameter
      * @return a vector containing the computation of the gradient
      */
@@ -200,7 +248,7 @@ class GaussianProcess {
 
     /**
      * @brief Evaluate the difference between the observation and the mean function
-     *
+     * @param par The vector of hyperparameters
      * @return a vector containing the computation of the residual
      */
     Eigen::VectorXd residual(Eigen::Ref<const Eigen::VectorXd> par) const;

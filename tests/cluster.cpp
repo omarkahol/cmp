@@ -49,21 +49,6 @@ int main() {
 
     // Create mixture of 2D gaussians
     int n_samples = 300;
-    auto dist_1 = cmp::distribution::MultivariateNormalDistribution(Eigen::Vector2d::Zero(), 0.01 * Eigen::Matrix2d::Identity());
-    auto dist_2 = cmp::distribution::MultivariateNormalDistribution(Eigen::Vector2d::Ones(), 0.01 * Eigen::Matrix2d::Identity());
-    auto dist_3 = cmp::distribution::MultivariateNormalDistribution(-Eigen::Vector2d::Ones(), 0.01 * Eigen::Matrix2d::Identity());
-    cmp::distribution::MultivariateMixtureDistribution dist({
-        std::make_shared<cmp::distribution::MultivariateNormalDistribution>(dist_1),
-        std::make_shared<cmp::distribution::MultivariateNormalDistribution>(dist_2),
-        std::make_shared<cmp::distribution::MultivariateNormalDistribution>(dist_3)
-
-    }, {1, 1, 1});
-
-    //Eigen::MatrixXd X = Eigen::MatrixXd(n_samples, 2);
-
-    //for(size_t i = 0; i < n_samples; i++) {
-    //    X.row(i) = dist.sample(rng);
-    //}
 
     auto [X, _] = make_moons(n_samples / 2, 0.1, 42);
 
@@ -90,14 +75,14 @@ int main() {
 
     plt::title("Initial k means clustering on moon dataset");
     plt::legend();
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/cluster_kmeans.pdf");
+    plt::close();
 
     // Set DPMM hyperparameters
-    cmp::distribution::NormalInverseWishartDistribution hyper(X.colwise().mean().transpose(), 0.1, 4.0, Eigen::Matrix2d::Identity());
+    cmp::distribution::NormalInverseWishartDistribution hyper(X.colwise().mean().transpose(), 0.01, X.cols() + 2, Eigen::Matrix2d::Identity());
+    cmp::distribution::GammaDistribution alphaPrior(1.0, 1.0);
 
-    double alpha = 1.0;
-
-    cmp::cluster::DirichletProcessMixtureModel dpmm(alpha, hyper, 42);
+    cmp::cluster::DirichletProcessMixtureModel dpmm(1.0, alphaPrior, hyper, 42);
 
     dpmm.condition(X, init_labels);
 
@@ -106,10 +91,13 @@ int main() {
         dpmm.step();
     }
 
+    dpmm.remapLabels();
+
     // After running dpmm.run_gibbs(...):
     Eigen::VectorXs labels = dpmm.getLabels();
 
     std::cout << "DPMM found " << dpmm.nClusters() << " clusters." << std::endl;
+    std::cout << "Final alpha: " << dpmm.getAlpha() << std::endl;
     std::cout << "Final labels:\n" << labels.transpose() << std::endl;
 
 // Find unique clusters
@@ -137,7 +125,8 @@ int main() {
 
     plt::title("DPMM clustering on moon dataset");
     plt::legend();
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/cluster_dpmm.pdf");
+    plt::close();
 
     return 0;
 

@@ -8,6 +8,8 @@
 #include <distribution.h>
 #include <scaler.h>
 #include <statistics.h>
+#include <wasserstein.h>
+#include <omp.h>
 
 // Matplotlib for plotting
 #include <matplotlibcpp.h>
@@ -15,6 +17,8 @@
 namespace plt = matplotlibcpp;
 
 int main() {
+
+    omp_set_num_threads(4); // Set the number of threads for OpenMP
 
     // Initialize the RNG
     std::default_random_engine rng(42);
@@ -54,7 +58,16 @@ int main() {
     plt::xlabel("X");
     plt::ylabel("Y");
     plt::axis("equal");
-    plt::show();
+    plt::save("/Users/omarkahol/opt/CMP++/Technical_Doc/images/distribution_mvn.pdf");
+    plt::close();
+
+    // Compute the sliced-Wasserstein distance between two sets of samples
+    Eigen::MatrixXd samples_1 = samples.topRows(5000);
+    Eigen::MatrixXd samples_2 = samples.bottomRows(5000);
+    double p = 2.0; // Order of the Wasserstein distance
+    int slices = 100; // Number of slices for the sliced-Wasserstein distance
+    double sw_distance = cmp::slicedWassersteinDistance(samples_1, samples_2, p, slices);
+    std::cout << "Sliced-Wasserstein distance (p=" << p << ", slices=" << slices << "): " << sw_distance << std::endl;
 
     return 0;
 }

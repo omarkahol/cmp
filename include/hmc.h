@@ -7,13 +7,39 @@ namespace cmp::mcmc {
 
 
 /**
- * @brief The HamiltonianMarkovChain class
- * Implements the Hamiltonian Monte Carlo (HMC) algorithm for sampling from a target distribution.
+ * @class HamiltonianMarkovChain
+ * @brief Implements the Hamiltonian Monte Carlo (HMC) algorithm with the No-U-Turn Sampler (NUTS) and Dual Averaging.
  *
- * This class uses the leapfrog integrator to propose new states in the Markov chain, and it employs
- * the No-U-Turn Sampler (NUTS) to adaptively determine the number of leapfrog steps.
+ * @details
+ * ### Mathematical Foundations
+ * Hamiltonian Monte Carlo (HMC) maps the target probability density \f$p(\mathbf{q})\f$ to the potential energy
+ * of a physical system: \f$U(\mathbf{q}) = -\log p(\mathbf{q})\f$. We introduce auxiliary momentum variables
+ * \f$\mathbf{p} \sim \mathcal{N}(\mathbf{0}, \mathbf{M})\f$ with kinetic energy \f$K(\mathbf{p}) = \frac{1}{2} \mathbf{p}^T \mathbf{M}^{-1} \mathbf{p}\f$.
  *
- * The user must provide a score function (log-posterior) and its gradient.
+ * The total energy is given by the Hamiltonian:
+ * \f[ H(\mathbf{q}, \mathbf{p}) = U(\mathbf{q}) + K(\mathbf{p}) \f]
+ *
+ * The joint system evolves according to Hamilton's equations:
+ * \f[ \frac{d\mathbf{q}}{dt} = \frac{\partial H}{\partial \mathbf{p}} = \mathbf{M}^{-1} \mathbf{p}, \quad \frac{d\mathbf{p}}{dt} = -\frac{\partial H}{\partial \mathbf{q}} = -\nabla U(\mathbf{q}) \f]
+ *
+ * ### Implementation Algorithms
+ * 1. **Leapfrog Integrator**:
+ *    To integrate the system numerically with step size \f$\epsilon\f$, we use the symplectic Leapfrog scheme:
+ *    \f[ \mathbf{p}\left(t + \frac{\epsilon}{2}\right) = \mathbf{p}(t) - \frac{\epsilon}{2} \nabla U(\mathbf{q}(t)) \f]
+ *    \f[ \mathbf{q}(t + \epsilon) = \mathbf{q}(t) + \epsilon \mathbf{M}^{-1} \mathbf{p}\left(t + \frac{\epsilon}{2}\right) \f]
+ *    \f[ \mathbf{p}(t + \epsilon) = \mathbf{p}\left(t + \frac{\epsilon}{2}\right) - \frac{\epsilon}{2} \nabla U(\mathbf{q}(t + \epsilon)) \f]
+ * 2. **No-U-Turn Sampler (NUTS)**:
+ *    Avoids manual tuning of the number of integration steps \f$L\f$. It recursively builds a binary tree of leapfrog steps
+ *    forward and backward in time. The tree stops growing when the trajectory starts to turn back on itself:
+ *    \f[ (\mathbf{q}_{\text{plus}} - \mathbf{q}_{\text{minus}})^T \mathbf{p}_{\text{minus}} < 0 \quad \text{or} \quad (\mathbf{q}_{\text{plus}} - \mathbf{q}_{\text{minus}})^T \mathbf{p}_{\text{plus}} < 0 \f]
+ * 3. **Dual Averaging Step Size Adaptation**:
+ *    Uses Nesterov's dual averaging scheme to adaptively tune the step size \f$\epsilon\f$ to match a target acceptance probability \f$\delta\f$ (default 0.8):
+ *    \f[ H_t = \delta - \alpha_t, \quad \bar{H}_t = \left(1 - \frac{1}{t + t_0}\right) \bar{H}_{t-1} + \frac{1}{t + t_0} H_t \f]
+ *    \f[ \log \epsilon_t = \mu - \frac{\sqrt{t}}{\gamma} \bar{H}_t, \quad \log \bar{\epsilon}_t = t^{-\kappa} \log \epsilon_t + (1 - t^{-\kappa}) \log \bar{\epsilon}_{t-1} \f]
+ *
+ * ### Constraints & Invariants
+ * - **Symplectic Flow**: The Leapfrog scheme must preserve volume in phase space and hold total energy approximately constant.
+ * - **U-turn Condition**: Tree growth is terminated immediately if a U-turn is detected to ensure detailed balance is maintained.
  */
 class HamiltonianMarkovChain {
   private:

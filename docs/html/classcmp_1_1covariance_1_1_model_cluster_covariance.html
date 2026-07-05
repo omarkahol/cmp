@@ -139,8 +139,11 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aaf14b6825c192fdfe416b48621319927" id="r_aaf14b6825c192fdfe416b48621319927"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1_model_cluster.html">cmp::ModelCluster</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf14b6825c192fdfe416b48621319927">pModelCluster_</a></td></tr>
+<tr class="memdesc:aaf14b6825c192fdfe416b48621319927"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the underlying model cluster manager.  <br /></td></tr>
 <tr class="memitem:a23693063f8392fb9742e87d030050d73" id="r_a23693063f8392fb9742e87d030050d73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1classifier_1_1_classifier.html">cmp::classifier::Classifier</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23693063f8392fb9742e87d030050d73">pClassifier_</a></td></tr>
+<tr class="memdesc:a23693063f8392fb9742e87d030050d73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the classifier used for coordinate probability assignment.  <br /></td></tr>
 <tr class="memitem:a82231470753b9f972925345fd3f274df" id="r_a82231470753b9f972925345fd3f274df"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82231470753b9f972925345fd3f274df">probabilityCache_</a></td></tr>
+<tr class="memdesc:a82231470753b9f972925345fd3f274df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-local mutable cache to avoid redundant classifier evaluations.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Blended covariance kernel that interpolates local GP kernels using classifier probabilities. </p>
@@ -457,6 +460,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Pointer to the classifier used for coordinate probability assignment. </p>
+
 </div>
 </div>
 <a id="aaf14b6825c192fdfe416b48621319927" name="aaf14b6825c192fdfe416b48621319927"></a>
@@ -479,6 +484,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Pointer to the underlying model cluster manager. </p>
+
 </div>
 </div>
 <a id="a82231470753b9f972925345fd3f274df" name="a82231470753b9f972925345fd3f274df"></a>
@@ -500,6 +507,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Thread-local mutable cache to avoid redundant classifier evaluations. </p>
 
 </div>
 </div>

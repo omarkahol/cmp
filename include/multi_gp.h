@@ -28,13 +28,13 @@ class MultiOutputGaussianProcess {
   private:
 
     // Base components
-    std::vector<GaussianProcess> gps_;
+    std::vector<GaussianProcess> gps_; ///< Collection of single-output Gaussian Process models.
 
     // Observations (the GP can own the data or point to external data, if it owns the data the pointer will point to it)
-    Eigen::MatrixXd xObs_;
-    Eigen::MatrixXd yObs_;
-    std::optional<Eigen::Ref<const Eigen::MatrixXd>> pXObs_;
-    std::optional<Eigen::Ref<const Eigen::MatrixXd>> pYObs_;
+    Eigen::MatrixXd xObs_;                                     ///< Owning training input matrix.
+    Eigen::MatrixXd yObs_;                                     ///< Owning training output target matrix.
+    std::optional<Eigen::Ref<const Eigen::MatrixXd>> pXObs_;   ///< Non-owning reference wrapper to training input matrix.
+    std::optional<Eigen::Ref<const Eigen::MatrixXd>> pYObs_;   ///< Non-owning reference wrapper to training output target matrix.
 
 
 

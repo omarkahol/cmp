@@ -17,17 +17,17 @@
 \DoxyCodeLine{00017\ \textcolor{comment}{//\ Here\ we\ implement\ a\ KDE\ class\ that\ uses\ the\ above\ bandwidth\ and\ kernel\ classes}}
 \DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}{KDE}}\ \{}
 \DoxyCodeLine{00036\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00037\ \ \ \ \ std::shared\_ptr<kernel::Bandwidth>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ac97423fe85996294aa3bf78f109b0bf6}{bandwidth\_}}\{\textcolor{keyword}{nullptr}\};}
-\DoxyCodeLine{00038\ \ \ \ \ std::shared\_ptr<kernel::Kernel>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ad8fb8ff20577b4c336f5d8b23533539e}{kernel\_}}\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00037\ \ \ \ \ std::shared\_ptr<kernel::Bandwidth>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ac97423fe85996294aa3bf78f109b0bf6}{bandwidth\_}}\{\textcolor{keyword}{nullptr}\};\ }
+\DoxyCodeLine{00038\ \ \ \ \ std::shared\_ptr<kernel::Kernel>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_ad8fb8ff20577b4c336f5d8b23533539e}{kernel\_}}\{\textcolor{keyword}{nullptr}\};\ \ \ \ \ \ \ }
 \DoxyCodeLine{00039\ }
 \DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Owning\ or\ non-\/owning\ data\ storage}}
-\DoxyCodeLine{00041\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_abbd042fc66194b2bd62f2081c6211e27}{data\_}}\{0,\ 0\};}
-\DoxyCodeLine{00042\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::MatrixXd>>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a0a98e878d5290410650631c70ec14dfc}{pData\_}};}
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aded9b5a2a69f20ec644b0219f48adae8}{isOwning\_}}\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00041\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_abbd042fc66194b2bd62f2081c6211e27}{data\_}}\{0,\ 0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::MatrixXd>>\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a0a98e878d5290410650631c70ec14dfc}{pData\_}};\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_aded9b5a2a69f20ec644b0219f48adae8}{isOwning\_}}\{\textcolor{keyword}{false}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00044\ }
 \DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Dimension\ and\ number\ of\ points}}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a7c6b3d52a0f91618985dba1d1ecbc3e6}{dim\_}}\{0\};}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a5f5e313a0cfe43a372d5f3016ea73300}{nPoints\_}}\{0\};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a7c6b3d52a0f91618985dba1d1ecbc3e6}{dim\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a5f5e313a0cfe43a372d5f3016ea73300}{nPoints\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00048\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00049\ }
 \DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1density_1_1_k_d_e_a252d9d65c481bfb3a57c8cde6ad60e09}{KDE}}();}

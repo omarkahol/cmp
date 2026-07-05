@@ -23,37 +23,37 @@
 \DoxyCodeLine{00065\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_model_cluster_a3c99c6842800bbba6e54f984ca675f88}{ModelCluster}}\ \{}
 \DoxyCodeLine{00066\ }
 \DoxyCodeLine{00067\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00068\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1_model_cluster_af3fee4780d4743facb0b7f6a2a0f4966}{rng\_}};}
+\DoxyCodeLine{00068\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1_model_cluster_af3fee4780d4743facb0b7f6a2a0f4966}{rng\_}};\ }
 \DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a835834b4fa16aad5472bd2d1798456a5}{xObs\_}};}
-\DoxyCodeLine{00071\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_afd4893fd895132b6d5252b8e91de9f85}{yObs\_}};}
+\DoxyCodeLine{00070\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a835834b4fa16aad5472bd2d1798456a5}{xObs\_}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_afd4893fd895132b6d5252b8e91de9f85}{yObs\_}};\ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a4fa583b127e1e7d68cc34dbe163785c0}{nClusters\_}};}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a51c0cb0d467b968cb3766365ac8d0d8b}{nObs\_}};}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_ace54dcee8f1d6b8a764aba59f6375167}{dimX\_}};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a4fa583b127e1e7d68cc34dbe163785c0}{nClusters\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a51c0cb0d467b968cb3766365ac8d0d8b}{nObs\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_ace54dcee8f1d6b8a764aba59f6375167}{dimX\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00076\ }
 \DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ The\ labels\ of\ the\ points}}
-\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a880bd3f2c8a4befa253caf45391e2972}{labels\_}};}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a880bd3f2c8a4befa253caf45391e2972}{labels\_}};\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00079\ }
 \DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ The\ local\ index\ table}}
-\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_acad5b20073c9b691bb521645395728bd}{localIndexTable\_}};}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_acad5b20073c9b691bb521645395728bd}{localIndexTable\_}};\ }
 \DoxyCodeLine{00082\ }
 \DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ The\ GPs\ for\ each\ cluster,\ along\ with\ their\ centroids\ and\ fit\ status}}
-\DoxyCodeLine{00084\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a6ff16a1ff0d8a9757b6f171d63b76cb0}{fit\_}};}
-\DoxyCodeLine{00085\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a677bdf019ea9af69d355065294bada8c}{centroids\_}};}
-\DoxyCodeLine{00086\ \ \ \ \ std::vector<cmp::gp::GaussianProcess>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_ad5efe4f4aaa91e0333750f01f4d4fbe9}{gps\_}};}
+\DoxyCodeLine{00084\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a6ff16a1ff0d8a9757b6f171d63b76cb0}{fit\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a677bdf019ea9af69d355065294bada8c}{centroids\_}};\ \ }
+\DoxyCodeLine{00086\ \ \ \ \ std::vector<cmp::gp::GaussianProcess>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_ad5efe4f4aaa91e0333750f01f4d4fbe9}{gps\_}};\ }
 \DoxyCodeLine{00087\ }
 \DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ The\ cluster\ sizes}}
-\DoxyCodeLine{00089\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a1be702bfff40bed62b5b7f3bdaffc647}{clusterSize\_}};}
+\DoxyCodeLine{00089\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a1be702bfff40bed62b5b7f3bdaffc647}{clusterSize\_}};\ }
 \DoxyCodeLine{00090\ }
 \DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ The\ Gamma\ parameter}}
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a3013ef46aaf5bd217f90a4674bcf4024}{gamma\_}}\{1.0\};}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a3013ef46aaf5bd217f90a4674bcf4024}{gamma\_}}\{1.0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00093\ }
 \DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Kernel,\ mean\ and\ nugget\ for\ each\ cluster}}
-\DoxyCodeLine{00095\ \ \ \ \ std::shared\_ptr<covariance::Covariance>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a974fd526a325b478a901bf8714ab689c}{kernel\_}};}
-\DoxyCodeLine{00096\ \ \ \ \ std::shared\_ptr<mean::Mean>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a0527d4aeb7acbdaa6bc171af53b3a580}{mean\_}};}
-\DoxyCodeLine{00097\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_acfb06136f2a94cb0fad7ddd4d5b11d91}{parameters\_}};}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_adeeac837c7bd0c4c9f871bd089c058ca}{nugget\_}}\{1e-\/8\};}
+\DoxyCodeLine{00095\ \ \ \ \ std::shared\_ptr<covariance::Covariance>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a974fd526a325b478a901bf8714ab689c}{kernel\_}};\ }
+\DoxyCodeLine{00096\ \ \ \ \ std::shared\_ptr<mean::Mean>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_a0527d4aeb7acbdaa6bc171af53b3a580}{mean\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_acfb06136f2a94cb0fad7ddd4d5b11d91}{parameters\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_adeeac837c7bd0c4c9f871bd089c058ca}{nugget\_}}\{1e-\/8\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00099\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00100\ }
 \DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster_a3c99c6842800bbba6e54f984ca675f88}{ModelCluster}}()\ =\ \textcolor{keywordflow}{default};}
@@ -630,9 +630,9 @@
 \DoxyCodeLine{00712\ \textcolor{keyword}{namespace\ }covariance\ \{}
 \DoxyCodeLine{00731\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a0e0918ae7b08e9c01b37c0e644aa2540}{ModelClusterCovariance}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{cmp::covariance::Covariance}}\ \{}
 \DoxyCodeLine{00732\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00733\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp::ModelCluster}}\ *\mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_aaf14b6825c192fdfe416b48621319927}{pModelCluster\_}};}
-\DoxyCodeLine{00734\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp::classifier::Classifier}}\ *\mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a23693063f8392fb9742e87d030050d73}{pClassifier\_}};}
-\DoxyCodeLine{00735\ \ \ \ \ \textcolor{keyword}{mutable}\ std::unordered\_map<std::string,\ std::vector<double>>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a82231470753b9f972925345fd3f274df}{probabilityCache\_}};}
+\DoxyCodeLine{00733\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp::ModelCluster}}\ *\mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_aaf14b6825c192fdfe416b48621319927}{pModelCluster\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00734\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp::classifier::Classifier}}\ *\mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a23693063f8392fb9742e87d030050d73}{pClassifier\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00735\ \ \ \ \ \textcolor{keyword}{mutable}\ std::unordered\_map<std::string,\ std::vector<double>>\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a82231470753b9f972925345fd3f274df}{probabilityCache\_}};\ \ \ \ }
 \DoxyCodeLine{00736\ }
 \DoxyCodeLine{00737\ \ \ \ \ std::string\ \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_afcaccdc486607f469d3ccd6e1dbabbbc}{makeProbabilityCacheKey}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&x)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ n\ =\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(x.size());}
@@ -694,8 +694,8 @@
 \DoxyCodeLine{00794\ \textcolor{keyword}{namespace\ }mean\ \{}
 \DoxyCodeLine{00812\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a3be5e6fdef6734b89d40ba1a594bc06a}{ModelClusterMean}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{cmp::mean::Mean}}\ \{}
 \DoxyCodeLine{00813\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00814\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp::ModelCluster}}\ *\mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a0c73fc162a29ddd1657446f449560e5a}{pModelCluster\_}};}
-\DoxyCodeLine{00815\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp::classifier::Classifier}}\ *\mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_aa229a15fd561f3dc9cc2fa620791023f}{pClassifier\_}};}
+\DoxyCodeLine{00814\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp::ModelCluster}}\ *\mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a0c73fc162a29ddd1657446f449560e5a}{pModelCluster\_}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00815\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp::classifier::Classifier}}\ *\mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_aa229a15fd561f3dc9cc2fa620791023f}{pClassifier\_}};\ }
 \DoxyCodeLine{00816\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00817\ }
 \DoxyCodeLine{00818\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a3be5e6fdef6734b89d40ba1a594bc06a}{ModelClusterMean}}(\mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp::ModelCluster}}\ *modelCluster,\ \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp::classifier::Classifier}}\ *\mbox{\hyperlink{namespacecmp_1_1classifier}{classifier}})\ :\ \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_a0c73fc162a29ddd1657446f449560e5a}{pModelCluster\_}}(modelCluster),\ \mbox{\hyperlink{classcmp_1_1mean_1_1_model_cluster_mean_aa229a15fd561f3dc9cc2fa620791023f}{pClassifier\_}}(\mbox{\hyperlink{namespacecmp_1_1classifier}{classifier}})\ \{\};}

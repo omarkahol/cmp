@@ -22,31 +22,31 @@
 \DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_afd09bdae0789e2e967ecb7e46db7c794}{ModelClusterPoly}}\ \{}
 \DoxyCodeLine{00043\ }
 \DoxyCodeLine{00044\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00045\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}{rng\_}};}
+\DoxyCodeLine{00045\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}{rng\_}};\ }
 \DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}};}
-\DoxyCodeLine{00048\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}};}
+\DoxyCodeLine{00047\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{xObs\_}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{yObs\_}};\ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dimX\_}};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{nClusters\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{nObs\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dimX\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00053\ }
 \DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ The\ labels\ of\ the\ points}}
-\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}};}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\_}};\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00056\ }
 \DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Local\ index\ of\ each\ global\ point\ inside\ its\ current\ cluster}}
-\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}{localIndexTable\_}};}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}{localIndexTable\_}};\ }
 \DoxyCodeLine{00059\ }
 \DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ The\ GPs\ for\ each\ cluster,\ along\ with\ their\ centroids\ and\ fit\ status}}
-\DoxyCodeLine{00061\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}};}
-\DoxyCodeLine{00062\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}};}
-\DoxyCodeLine{00063\ \ \ \ \ std::vector<cmp::PolynomialExpansion>\ *\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\_}};}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ std::vector<cmp::PolynomialExpansion>\ *\mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\_}};\ }
 \DoxyCodeLine{00064\ }
 \DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ The\ cluster\ sizes}}
-\DoxyCodeLine{00066\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}};}
+\DoxyCodeLine{00066\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{clusterSize\_}};\ }
 \DoxyCodeLine{00067\ }
 \DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ The\ Gamma\ parameter}}
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}{gamma\_}}\{1.0\};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}{gamma\_}}\{1.0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00070\ }
 \DoxyCodeLine{00071\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00072\ }

@@ -136,24 +136,43 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a9433929535384eaf8d879f06198678ef" id="r_a9433929535384eaf8d879f06198678ef"><td class="memItemLeft" align="right" valign="top">std::default_random_engine &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9433929535384eaf8d879f06198678ef">rng_</a></td></tr>
+<tr class="memdesc:a9433929535384eaf8d879f06198678ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the random number generator.  <br /></td></tr>
 <tr class="memitem:aeb45afbfb34e0e0783da49ce6f5711e3" id="r_aeb45afbfb34e0e0783da49ce6f5711e3"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb45afbfb34e0e0783da49ce6f5711e3">currentPosition_</a></td></tr>
+<tr class="memdesc:aeb45afbfb34e0e0783da49ce6f5711e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current position (parameter state).  <br /></td></tr>
 <tr class="memitem:ab6e7974154d7deedd607a898fbd5b4af" id="r_ab6e7974154d7deedd607a898fbd5b4af"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6e7974154d7deedd607a898fbd5b4af">currentMomentum_</a></td></tr>
+<tr class="memdesc:ab6e7974154d7deedd607a898fbd5b4af"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current momentum auxiliary variable.  <br /></td></tr>
 <tr class="memitem:a10d0a4b6d3deb835fef0abb18fc2ac0a" id="r_a10d0a4b6d3deb835fef0abb18fc2ac0a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10d0a4b6d3deb835fef0abb18fc2ac0a">currentScore_</a></td></tr>
+<tr class="memdesc:a10d0a4b6d3deb835fef0abb18fc2ac0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current log-posterior score value.  <br /></td></tr>
 <tr class="memitem:ae9a67b76f48648d68de5f2d1991ff16c" id="r_ae9a67b76f48648d68de5f2d1991ff16c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9a67b76f48648d68de5f2d1991ff16c">dim_</a></td></tr>
+<tr class="memdesc:ae9a67b76f48648d68de5f2d1991ff16c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimension of the parameter space.  <br /></td></tr>
 <tr class="memitem:a6606e6ee4f141184afa95f06d193581e" id="r_a6606e6ee4f141184afa95f06d193581e"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6606e6ee4f141184afa95f06d193581e">mean_</a></td></tr>
+<tr class="memdesc:a6606e6ee4f141184afa95f06d193581e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running mean of the parameter samples.  <br /></td></tr>
 <tr class="memitem:a692d89b5bf5307fc134871c17ef6f224" id="r_a692d89b5bf5307fc134871c17ef6f224"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a692d89b5bf5307fc134871c17ef6f224">cov_</a></td></tr>
+<tr class="memdesc:a692d89b5bf5307fc134871c17ef6f224"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running covariance of the parameter samples.  <br /></td></tr>
 <tr class="memitem:a1deca95c400ea68742b25c8d96acd9c5" id="r_a1deca95c400ea68742b25c8d96acd9c5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1deca95c400ea68742b25c8d96acd9c5">epsilon_</a></td></tr>
+<tr class="memdesc:a1deca95c400ea68742b25c8d96acd9c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Step size for the leapfrog integrator.  <br /></td></tr>
 <tr class="memitem:ae42059e3094a42bda64983c0ce92885f" id="r_ae42059e3094a42bda64983c0ce92885f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae42059e3094a42bda64983c0ce92885f">nSteps_</a> = 0</td></tr>
+<tr class="memdesc:ae42059e3094a42bda64983c0ce92885f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of steps taken in the Markov chain.  <br /></td></tr>
 <tr class="memitem:a24b9f0232a8af231e8638d0b5e351830" id="r_a24b9f0232a8af231e8638d0b5e351830"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24b9f0232a8af231e8638d0b5e351830">sumAcceptanceProb_</a> = 0.0</td></tr>
+<tr class="memdesc:a24b9f0232a8af231e8638d0b5e351830"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of acceptance probabilities for step size adaptation.  <br /></td></tr>
 <tr class="memitem:a94a2bed78a8eb68dccfff9599b99eaf4" id="r_a94a2bed78a8eb68dccfff9599b99eaf4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94a2bed78a8eb68dccfff9599b99eaf4">mu_</a></td></tr>
+<tr class="memdesc:a94a2bed78a8eb68dccfff9599b99eaf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Target value for log step size.  <br /></td></tr>
 <tr class="memitem:a825c68a3281e0ab8b192c3f39d94f8b7" id="r_a825c68a3281e0ab8b192c3f39d94f8b7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a825c68a3281e0ab8b192c3f39d94f8b7">gamma_</a> = 0.05</td></tr>
+<tr class="memdesc:a825c68a3281e0ab8b192c3f39d94f8b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptation shrinkage parameter.  <br /></td></tr>
 <tr class="memitem:af32bfb3697622a5953ac2f9ce5436cb6" id="r_af32bfb3697622a5953ac2f9ce5436cb6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af32bfb3697622a5953ac2f9ce5436cb6">t0_</a> = 10.0</td></tr>
+<tr class="memdesc:af32bfb3697622a5953ac2f9ce5436cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptation stabilization parameter.  <br /></td></tr>
 <tr class="memitem:a6eeca49e3a223aa7ed56e4d70c7e8842" id="r_a6eeca49e3a223aa7ed56e4d70c7e8842"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6eeca49e3a223aa7ed56e4d70c7e8842">kappa_</a> = 0.75</td></tr>
+<tr class="memdesc:a6eeca49e3a223aa7ed56e4d70c7e8842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptation exponential decay parameter.  <br /></td></tr>
 <tr class="memitem:ab6262a8b62922965ddc6d3967321451e" id="r_ab6262a8b62922965ddc6d3967321451e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6262a8b62922965ddc6d3967321451e">H_bar_</a> = 0.0</td></tr>
+<tr class="memdesc:ab6262a8b62922965ddc6d3967321451e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running average of difference between target and accept probability.  <br /></td></tr>
 <tr class="memitem:a831b361d5171f5fbad671d387300e55a" id="r_a831b361d5171f5fbad671d387300e55a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a831b361d5171f5fbad671d387300e55a">log_epsilon_bar_</a> = 0.0</td></tr>
+<tr class="memdesc:a831b361d5171f5fbad671d387300e55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log of the adapted step size.  <br /></td></tr>
 <tr class="memitem:abdde49bfe21cfe2aa3135ac9733019da" id="r_abdde49bfe21cfe2aa3135ac9733019da"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdde49bfe21cfe2aa3135ac9733019da">target_accept_</a> = 0.80</td></tr>
+<tr class="memdesc:abdde49bfe21cfe2aa3135ac9733019da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Target acceptance probability.  <br /></td></tr>
 <tr class="memitem:ac7200ccada6a4c5935ed4d7d1a6410eb" id="r_ac7200ccada6a4c5935ed4d7d1a6410eb"><td class="memItemLeft" align="right" valign="top">std::normal_distribution&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7200ccada6a4c5935ed4d7d1a6410eb">distN_</a> {0.0, 1.0}</td></tr>
+<tr class="memdesc:ac7200ccada6a4c5935ed4d7d1a6410eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal generator helper for momentum initialization.  <br /></td></tr>
 <tr class="memitem:a385c4c15310768956a8942006e872008" id="r_a385c4c15310768956a8942006e872008"><td class="memItemLeft" align="right" valign="top">std::uniform_real_distribution&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a385c4c15310768956a8942006e872008">distU_</a> {0.0, 1.0}</td></tr>
+<tr class="memdesc:a385c4c15310768956a8942006e872008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform generator helper for transition accept checks.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements the Hamiltonian Monte Carlo (HMC) algorithm with the No-U-Turn Sampler (NUTS) and Dual Averaging. </p>
@@ -609,6 +628,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Running covariance of the parameter samples. </p>
+
 </div>
 </div>
 <a id="ab6e7974154d7deedd607a898fbd5b4af" name="ab6e7974154d7deedd607a898fbd5b4af"></a>
@@ -630,6 +651,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The current momentum auxiliary variable. </p>
 
 </div>
 </div>
@@ -653,6 +676,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>The current position (parameter state). </p>
+
 </div>
 </div>
 <a id="a10d0a4b6d3deb835fef0abb18fc2ac0a" name="a10d0a4b6d3deb835fef0abb18fc2ac0a"></a>
@@ -674,6 +699,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The current log-posterior score value. </p>
 
 </div>
 </div>
@@ -697,6 +724,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Dimension of the parameter space. </p>
+
 </div>
 </div>
 <a id="ac7200ccada6a4c5935ed4d7d1a6410eb" name="ac7200ccada6a4c5935ed4d7d1a6410eb"></a>
@@ -718,6 +747,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Normal generator helper for momentum initialization. </p>
 
 </div>
 </div>
@@ -741,6 +772,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Uniform generator helper for transition accept checks. </p>
+
 </div>
 </div>
 <a id="a1deca95c400ea68742b25c8d96acd9c5" name="a1deca95c400ea68742b25c8d96acd9c5"></a>
@@ -762,6 +795,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Step size for the leapfrog integrator. </p>
 
 </div>
 </div>
@@ -785,6 +820,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Adaptation shrinkage parameter. </p>
+
 </div>
 </div>
 <a id="ab6262a8b62922965ddc6d3967321451e" name="ab6262a8b62922965ddc6d3967321451e"></a>
@@ -806,6 +843,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Running average of difference between target and accept probability. </p>
 
 </div>
 </div>
@@ -829,6 +868,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Adaptation exponential decay parameter. </p>
+
 </div>
 </div>
 <a id="a831b361d5171f5fbad671d387300e55a" name="a831b361d5171f5fbad671d387300e55a"></a>
@@ -850,6 +891,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Log of the adapted step size. </p>
 
 </div>
 </div>
@@ -873,6 +916,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Running mean of the parameter samples. </p>
+
 </div>
 </div>
 <a id="a94a2bed78a8eb68dccfff9599b99eaf4" name="a94a2bed78a8eb68dccfff9599b99eaf4"></a>
@@ -894,6 +939,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Target value for log step size. </p>
 
 </div>
 </div>
@@ -917,6 +964,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Number of steps taken in the Markov chain. </p>
+
 </div>
 </div>
 <a id="a9433929535384eaf8d879f06198678ef" name="a9433929535384eaf8d879f06198678ef"></a>
@@ -938,6 +987,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reference to the random number generator. </p>
 
 </div>
 </div>
@@ -961,6 +1012,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Sum of acceptance probabilities for step size adaptation. </p>
+
 </div>
 </div>
 <a id="af32bfb3697622a5953ac2f9ce5436cb6" name="af32bfb3697622a5953ac2f9ce5436cb6"></a>
@@ -983,6 +1036,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Adaptation stabilization parameter. </p>
+
 </div>
 </div>
 <a id="abdde49bfe21cfe2aa3135ac9733019da" name="abdde49bfe21cfe2aa3135ac9733019da"></a>
@@ -1004,6 +1059,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Target acceptance probability. </p>
 
 </div>
 </div>

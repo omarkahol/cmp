@@ -97,33 +97,33 @@ void \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a2c887aa1537dbb4e914f2
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d}{par\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Model hyperparameters. \end{DoxyCompactList}\item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3}{p\+Kernel\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Covariance kernel function. \end{DoxyCompactList}\item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09}{p\+Mean\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Prior mean function. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7}{nugget\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Observation noise variance (nugget). \end{DoxyCompactList}\item 
 std\+::optional$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb}{x\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Owning storage for training input matrix. \end{DoxyCompactList}\item 
 std\+::optional$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913}{y\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Owning storage for training target vector. \end{DoxyCompactList}\item 
 std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}{p\+XObs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Reference wrapper to training input matrix. \end{DoxyCompactList}\item 
 std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb}{p\+YObs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Reference wrapper to training target vector. \end{DoxyCompactList}\item 
 Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0}{cov\+Decomposition\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em LDLT decomposition of the training covariance matrix. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf}{alpha\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em GP weights vector\+: alpha = (K + s\texorpdfstring{$^\wedge$}{\string^}2 I)\texorpdfstring{$^\wedge$}{\string^}-\/1 (y -\/ m). \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8}{diag\+Cov\+Inverse\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Diagonal elements of the inverse covariance matrix. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed}{residual\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Residuals of the mean function\+: y -\/ m(x). \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572}{normalize\+Y\+\_\+}} = false
-\item 
+\begin{DoxyCompactList}\small\item\em Flag indicating whether target normalization is active. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{cmp\+::scaler\+::\+Standard\+Scaler}} \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f}{y\+Scaler\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Scaler used to normalize the target vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -693,11 +693,19 @@ This function is used to set the Kernel and mean functions of the GP.
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf} 
 Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::alpha\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+GP weights vector\+: alpha = (K + s\texorpdfstring{$^\wedge$}{\string^}2 I)\texorpdfstring{$^\wedge$}{\string^}-\/1 (y -\/ m). 
+
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!covDecomposition\_@{covDecomposition\_}}
 \index{covDecomposition\_@{covDecomposition\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
 \doxysubsubsection{\texorpdfstring{covDecomposition\_}{covDecomposition\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0} 
 Eigen\+::\+LDLT$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::gp\+::\+Gaussian\+Process\+::cov\+Decomposition\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+LDLT decomposition of the training covariance matrix. 
 
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!diagCovInverse\_@{diagCovInverse\_}}
 \index{diagCovInverse\_@{diagCovInverse\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
@@ -705,11 +713,19 @@ Eigen\+::\+LDLT$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::gp\+::\+Gaussian\+Process\+::c
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8} 
 Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::diag\+Cov\+Inverse\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Diagonal elements of the inverse covariance matrix. 
+
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!normalizeY\_@{normalizeY\_}}
 \index{normalizeY\_@{normalizeY\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
 \doxysubsubsection{\texorpdfstring{normalizeY\_}{normalizeY\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572} 
 bool cmp\+::gp\+::\+Gaussian\+Process\+::normalize\+Y\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating whether target normalization is active. 
 
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!nugget\_@{nugget\_}}
 \index{nugget\_@{nugget\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
@@ -717,11 +733,19 @@ bool cmp\+::gp\+::\+Gaussian\+Process\+::normalize\+Y\+\_\+ = false\hspace{0.3cm
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7} 
 double cmp\+::gp\+::\+Gaussian\+Process\+::nugget\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Observation noise variance (nugget). 
+
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!par\_@{par\_}}
 \index{par\_@{par\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
 \doxysubsubsection{\texorpdfstring{par\_}{par\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d} 
 Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::par\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Model hyperparameters. 
 
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!pKernel\_@{pKernel\_}}
 \index{pKernel\_@{pKernel\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
@@ -729,11 +753,19 @@ Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::par\+\_\+\hspace{0.3cm
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3} 
 std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}}$>$ cmp\+::gp\+::\+Gaussian\+Process\+::p\+Kernel\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Covariance kernel function. 
+
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!pMean\_@{pMean\_}}
 \index{pMean\_@{pMean\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
 \doxysubsubsection{\texorpdfstring{pMean\_}{pMean\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09} 
 std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}}$>$ cmp\+::gp\+::\+Gaussian\+Process\+::p\+Mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Prior mean function. 
 
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!pXObs\_@{pXObs\_}}
 \index{pXObs\_@{pXObs\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
@@ -741,11 +773,19 @@ std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+M
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18} 
 std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ $>$ cmp\+::gp\+::\+Gaussian\+Process\+::p\+XObs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Reference wrapper to training input matrix. 
+
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!pYObs\_@{pYObs\_}}
 \index{pYObs\_@{pYObs\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
 \doxysubsubsection{\texorpdfstring{pYObs\_}{pYObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb} 
 std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$ $>$ cmp\+::gp\+::\+Gaussian\+Process\+::p\+YObs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference wrapper to training target vector. 
 
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!residual\_@{residual\_}}
 \index{residual\_@{residual\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
@@ -753,11 +793,19 @@ std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$ $>$ cmp\+::gp\
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed} 
 Eigen\+::\+Vector\+Xd cmp\+::gp\+::\+Gaussian\+Process\+::residual\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Residuals of the mean function\+: y -\/ m(x). 
+
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!xObs\_@{xObs\_}}
 \index{xObs\_@{xObs\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
 \doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb} 
 std\+::optional$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::gp\+::\+Gaussian\+Process\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Owning storage for training input matrix. 
 
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!yObs\_@{yObs\_}}
 \index{yObs\_@{yObs\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
@@ -765,11 +813,19 @@ std\+::optional$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::gp\+::\+Gaussian\+Process\+::x
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913} 
 std\+::optional$<$Eigen\+::\+Vector\+Xd$>$ cmp\+::gp\+::\+Gaussian\+Process\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Owning storage for training target vector. 
+
 \Hypertarget{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f}\index{cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}!yScaler\_@{yScaler\_}}
 \index{yScaler\_@{yScaler\_}!cmp::gp::GaussianProcess@{cmp::gp::GaussianProcess}}
 \doxysubsubsection{\texorpdfstring{yScaler\_}{yScaler\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f} 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{cmp\+::scaler\+::\+Standard\+Scaler}} cmp\+::gp\+::\+Gaussian\+Process\+::y\+Scaler\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Scaler used to normalize the target vector. 
 
 
 

@@ -7,13 +7,13 @@
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{cmp\+::scaler\+::\+Scaler}}
 \begin{DoxyCompactList}\small\item\em Template virtual base class for feature scaling and transformation. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{cmp\+::scaler\+::\+Standard\+Scaler}}
-\begin{DoxyCompactList}\small\item\em Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a}{cmp\+::scaler\+::\+PCA}}
 \begin{DoxyCompactList}\small\item\em Principal Component Analysis (\doxylink{classcmp_1_1scaler_1_1_p_c_a}{PCA}) feature scaler and dimension reducer. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler}{cmp\+::scaler\+::\+Dummy\+Scaler}}
-\begin{DoxyCompactList}\small\item\em Dummy scaler that leaves input data unchanged. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A pass-\/through scaler that leaves input data unchanged. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{cmp\+::scaler\+::\+Elliptic\+Scaler}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently (diagonal variance scaling). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently using diagonal variance scaling. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{cmp\+::scaler\+::\+Min\+Max\+Scaler}}
 \begin{DoxyCompactList}\small\item\em Linearly scales features to a target bounding box range. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
@@ -27,4 +27,4 @@ namespace \mbox{\hyperlink{namespacecmp_1_1scaler}{cmp\+::scaler}}
 \begin{DoxyCompactItemize}
 \item 
 constexpr double \mbox{\hyperlink{namespacecmp_1_1scaler_a486245607be5c2c828f7bff3f33b79b0}{cmp\+::scaler\+::\+TOL}} = 1e-\/10
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Global tolerance value used for numerical stability and zero-\/checks. \end{DoxyCompactList}\end{DoxyCompactItemize}

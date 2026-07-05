@@ -26,21 +26,21 @@ std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_m
 \begin{DoxyCompactItemize}
 \item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_abc3c756d62cb3ec6615956dd51929742}{n\+Chains\+\_\+}} \{0\}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of active parallel chains. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a0f3f7ffcf3db603f79ca279871aff279}{dim\+\_\+}} \{0\}
-\item 
+\begin{DoxyCompactList}\small\item\em Dimension of the parameter space. \end{DoxyCompactList}\item 
 std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad5116dfc7c72d8c185aeba769282da02}{chain\+Samples\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Current parameter samples for each chain. \end{DoxyCompactList}\item 
 std\+::vector$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ae8dc967a2e44a7125afc59de69ff6dc6}{chain\+Scores\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Current score (log probability) for each chain. \end{DoxyCompactList}\item 
 std\+::uniform\+\_\+int\+\_\+distribution$<$ size\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a9351419d92e28d11378724802c01fd5c}{dist\+Chain\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Discrete uniform distribution helper to pick random chain. \end{DoxyCompactList}\item 
 std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a00e1b3a389e105c950680331d282c2f9}{dist\+U\+\_\+}} \{0, 1\}
-\item 
+\begin{DoxyCompactList}\small\item\em Uniform distribution helper. \end{DoxyCompactList}\item 
 std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad55c73ca3b211a37188d99db2241f055}{dist\+N\+\_\+}} \{0, 1\}
-\item 
+\begin{DoxyCompactList}\small\item\em Normal distribution helper. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad26388ab7e796253ac77f1b82844af49}{nugget\+\_\+}} \{1e-\/6\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Crossover mutation noise scaling. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -146,11 +146,19 @@ Performs one crossover and mutation step for all chains.
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad5116dfc7c72d8c185aeba769282da02} 
 std\+::vector$<$Eigen\+::\+Vector\+Xd$>$ cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::chain\+Samples\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Current parameter samples for each chain. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ae8dc967a2e44a7125afc59de69ff6dc6}\index{cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}!chainScores\_@{chainScores\_}}
 \index{chainScores\_@{chainScores\_}!cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}}
 \doxysubsubsection{\texorpdfstring{chainScores\_}{chainScores\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ae8dc967a2e44a7125afc59de69ff6dc6} 
 std\+::vector$<$double$>$ cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::chain\+Scores\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Current score (log probability) for each chain. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a0f3f7ffcf3db603f79ca279871aff279}\index{cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}!dim\_@{dim\_}}
 \index{dim\_@{dim\_}!cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}}
@@ -158,11 +166,19 @@ std\+::vector$<$double$>$ cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::chain\
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a0f3f7ffcf3db603f79ca279871aff279} 
 size\+\_\+t cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::dim\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Dimension of the parameter space. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a9351419d92e28d11378724802c01fd5c}\index{cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}!distChain\_@{distChain\_}}
 \index{distChain\_@{distChain\_}!cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}}
 \doxysubsubsection{\texorpdfstring{distChain\_}{distChain\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a9351419d92e28d11378724802c01fd5c} 
 std\+::uniform\+\_\+int\+\_\+distribution$<$size\+\_\+t$>$ cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::dist\+Chain\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Discrete uniform distribution helper to pick random chain. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad55c73ca3b211a37188d99db2241f055}\index{cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}!distN\_@{distN\_}}
 \index{distN\_@{distN\_}!cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}}
@@ -170,11 +186,19 @@ std\+::uniform\+\_\+int\+\_\+distribution$<$size\+\_\+t$>$ cmp\+::mcmc\+::\+Evol
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad55c73ca3b211a37188d99db2241f055} 
 std\+::normal\+\_\+distribution$<$double$>$ cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::dist\+N\+\_\+ \{0, 1\}\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Normal distribution helper. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a00e1b3a389e105c950680331d282c2f9}\index{cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}!distU\_@{distU\_}}
 \index{distU\_@{distU\_}!cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}}
 \doxysubsubsection{\texorpdfstring{distU\_}{distU\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a00e1b3a389e105c950680331d282c2f9} 
 std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::dist\+U\+\_\+ \{0, 1\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Uniform distribution helper. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_abc3c756d62cb3ec6615956dd51929742}\index{cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}!nChains\_@{nChains\_}}
 \index{nChains\_@{nChains\_}!cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}}
@@ -182,11 +206,19 @@ std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::mcmc\+::\+Evolutio
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_abc3c756d62cb3ec6615956dd51929742} 
 size\+\_\+t cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::n\+Chains\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Number of active parallel chains. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad26388ab7e796253ac77f1b82844af49}\index{cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}!nugget\_@{nugget\_}}
 \index{nugget\_@{nugget\_}!cmp::mcmc::EvolutionaryMarkovChain@{cmp::mcmc::EvolutionaryMarkovChain}}
 \doxysubsubsection{\texorpdfstring{nugget\_}{nugget\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad26388ab7e796253ac77f1b82844af49} 
 double cmp\+::mcmc\+::\+Evolutionary\+Markov\+Chain\+::nugget\+\_\+ \{1e-\/6\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Crossover mutation noise scaling. 
 
 
 

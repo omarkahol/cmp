@@ -109,25 +109,28 @@ Classes</h2></td></tr>
 <tr class="memitem:KFold" id="r_KFold"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold.html">KFold</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">K-Fold cross-validation partition generator.  <a href="classcmp_1_1statistics_1_1_k_fold.html#details">More...</a><br /></td></tr>
 <tr class="memitem:PairwiseDistanceStats" id="r_PairwiseDistanceStats"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_pairwise_distance_stats.html">PairwiseDistanceStats</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes and stores pairwise spatial distances between high-dimensional data points.  <a href="classcmp_1_1statistics_1_1_pairwise_distance_stats.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a718b9c2b703c2248297619f4435d364a" id="r_a718b9c2b703c2248297619f4435d364a"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a718b9c2b703c2248297619f4435d364a">mean</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)</td></tr>
+<tr class="memdesc:a718b9c2b703c2248297619f4435d364a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the empirical mean vector of a dataset.  <br /></td></tr>
 <tr class="memitem:a7eeef4b2040b0064a68889e678e64562" id="r_a7eeef4b2040b0064a68889e678e64562"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eeef4b2040b0064a68889e678e64562">covariance</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)</td></tr>
-<tr class="memdesc:a7eeef4b2040b0064a68889e678e64562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the variance of a vector of data.  <br /></td></tr>
+<tr class="memdesc:a7eeef4b2040b0064a68889e678e64562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sample covariance matrix of a dataset.  <br /></td></tr>
 <tr class="memitem:a0383eca5136a701b5cbf914211aab108" id="r_a0383eca5136a701b5cbf914211aab108"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0383eca5136a701b5cbf914211aab108">quantile</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data, double quantile)</td></tr>
-<tr class="memdesc:a0383eca5136a701b5cbf914211aab108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the quantile of a vector of data.  <br /></td></tr>
+<tr class="memdesc:a0383eca5136a701b5cbf914211aab108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a specific quantile of a 1D vector of data.  <br /></td></tr>
 <tr class="memitem:afa27e65c3e3becac7ee4f615ccaabd6b" id="r_afa27e65c3e3becac7ee4f615ccaabd6b"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa27e65c3e3becac7ee4f615ccaabd6b">interQuantileRange</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data, double lowerQuantile, double upperQuantile)</td></tr>
-<tr class="memdesc:afa27e65c3e3becac7ee4f615ccaabd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the interquartile range of a vector of data.  <br /></td></tr>
+<tr class="memdesc:afa27e65c3e3becac7ee4f615ccaabd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the interquartile range (IQR) column-wise for a dataset.  <br /></td></tr>
 <tr class="memitem:af3d7ea822ca7638d9a89bd11202da867" id="r_af3d7ea822ca7638d9a89bd11202da867"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3d7ea822ca7638d9a89bd11202da867">pearsonCorrelation</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data1, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data2)</td></tr>
-<tr class="memdesc:af3d7ea822ca7638d9a89bd11202da867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Pearson correlation matrix between two datasets. Manages the case where the datasets have different numbers of points.  <br /></td></tr>
+<tr class="memdesc:af3d7ea822ca7638d9a89bd11202da867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Pearson correlation matrix between two datasets.  <br /></td></tr>
 <tr class="memitem:a65be48599e4f4c98de7a37ccd965cd24" id="r_a65be48599e4f4c98de7a37ccd965cd24"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65be48599e4f4c98de7a37ccd965cd24">laggedCorrelation</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data1, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data2, int lag)</td></tr>
-<tr class="memdesc:a65be48599e4f4c98de7a37ccd965cd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the correlation matrix between two datasets with a specified lag.  <br /></td></tr>
+<tr class="memdesc:a65be48599e4f4c98de7a37ccd965cd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the cross-correlation matrix between two datasets with a specified temporal lag.  <br /></td></tr>
 <tr class="memitem:a089a9c1072203f32813ddce221d81046" id="r_a089a9c1072203f32813ddce221d81046"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a089a9c1072203f32813ddce221d81046">laggedCorrelation</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data1, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data2, int minLag, int maxLag)</td></tr>
-<tr class="memdesc:a089a9c1072203f32813ddce221d81046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the correlation matrix between two datasets for all lags in the range [minLag, maxLag].  <br /></td></tr>
+<tr class="memdesc:a089a9c1072203f32813ddce221d81046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the cross-correlation matrices between two datasets for a sequence of lags.  <br /></td></tr>
 <tr class="memitem:aefc18ce56217dd9d4b93465d5ec9f76f" id="r_aefc18ce56217dd9d4b93465d5ec9f76f"><td class="memItemLeft" align="right" valign="top">std::pair&lt; Eigen::VectorXd, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefc18ce56217dd9d4b93465d5ec9f76f">selfCorrelationLength</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)</td></tr>
-<tr class="memdesc:aefc18ce56217dd9d4b93465d5ec9f76f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the self-correlation length and the effective sample size of some samples.  <br /></td></tr>
+<tr class="memdesc:aefc18ce56217dd9d4b93465d5ec9f76f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the self-correlation (autocorrelation) length and the effective sample size.  <br /></td></tr>
 <tr class="memitem:a5a583b49079b5df2313396cb5fa598c3" id="r_a5a583b49079b5df2313396cb5fa598c3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a583b49079b5df2313396cb5fa598c3">selfCrossCorrelationFFT</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)</td></tr>
+<tr class="memdesc:a5a583b49079b5df2313396cb5fa598c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the complete auto- and cross-correlation functions across all lags efficiently using the Fast Fourier Transform (FFT).  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a7eeef4b2040b0064a68889e678e64562" name="a7eeef4b2040b0064a68889e678e64562"></a>
@@ -145,17 +148,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the variance of a vector of data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Computes the sample covariance matrix of a dataset. </p>
+<ul>
+<li></li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+Mathematical Formulation</h3>
+<p>Given a dataset matrix \(\mathbf{X} \in \mathbb{R}^{N \times D}\) with mean vector \(\boldsymbol{\mu}\), the unbiased sample covariance matrix \(\mathbf{\Sigma} \in \mathbb{R}^{D \times D}\) is:   </p><p class="formulaDsp">
+\[\mathbf{\Sigma} = \frac{1}{N-1} (\mathbf{X} - \mathbf{1}\boldsymbol{\mu}^T)^T (\mathbf{X} - \mathbf{1}\boldsymbol{\mu}^T)
+\]
+</p>
+ <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>A reference to an <a class="el" href="namespace_eigen.html">Eigen</a> vector containing the data. </td></tr>
+    <tr><td class="paramname">data</td><td>A reference to an <a class="el" href="namespace_eigen.html">Eigen</a> matrix containing the data (points in rows). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The variance of the data. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The covariance matrix of the data. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::invalid_argument</td><td>if the input vector is empty. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>if the input matrix has fewer than 2 rows. </td></tr>
   </table>
   </dd>
 </dl>
@@ -186,22 +198,31 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the interquartile range of a vector of data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Computes the interquartile range (IQR) column-wise for a dataset. </p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+Mathematical Formulation</h3>
+<p>For each feature column \( j \):   </p><p class="formulaDsp">
+\[\text{IQR}_j = Q_{\text{upper}, j} - Q_{\text{lower}, j}
+\]
+</p>
+<p> where \(Q\) represents the value at the specified quantile probabilities.</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>A reference to an <a class="el" href="namespace_eigen.html">Eigen</a> matrix containing the data. </td></tr>
-    <tr><td class="paramname">lowerQuantile</td><td>The lower quantile (between 0 and 1). </td></tr>
-    <tr><td class="paramname">upperQuantile</td><td>The upper quantile (between 0 and 1). </td></tr>
+    <tr><td class="paramname">data</td><td>A reference to an <a class="el" href="namespace_eigen.html">Eigen</a> matrix containing the data (points in rows). </td></tr>
+    <tr><td class="paramname">lowerQuantile</td><td>The lower probability bound (e.g., 0.25). </td></tr>
+    <tr><td class="paramname">upperQuantile</td><td>The upper probability bound (e.g., 0.75). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The interquartile range of the data. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the IQR for each feature column. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::invalid_argument</td><td>if the input matrix is empty or the quantiles are not between 0 and 1. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>if the input matrix is empty or the quantiles are invalid. </td></tr>
   </table>
   </dd>
 </dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -229,16 +250,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the correlation matrix between two datasets with a specified lag. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Computes the cross-correlation matrix between two datasets with a specified temporal lag. </p>
+<p>Correlates \(X(t)\) from <span class="tt">data1</span> with \(Y(t + \tau)\) from <span class="tt">data2</span> where \(\tau\) is the <span class="tt">lag</span>.</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data1</td><td>First dataset (points in rows). </td></tr>
-    <tr><td class="paramname">data2</td><td>Second dataset (points in rows). </td></tr>
-    <tr><td class="paramname">lag</td><td>The lag to apply to the second dataset. </td></tr>
+    <tr><td class="paramname">data1</td><td>First dataset (time series points in rows). </td></tr>
+    <tr><td class="paramname">data2</td><td>Second dataset (time series points in rows). </td></tr>
+    <tr><td class="paramname">lag</td><td>The discrete time lag \( \tau \) to apply to the second dataset. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The correlation matrix. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The lagged correlation matrix. </dd></dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -271,17 +295,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Return the correlation matrix between two datasets for all lags in the range [minLag, maxLag]. </p>
+<p>Returns the cross-correlation matrices between two datasets for a sequence of lags. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data1</td><td>First dataset (points in rows). </td></tr>
-    <tr><td class="paramname">data2</td><td>Second dataset (points in rows). </td></tr>
-    <tr><td class="paramname">minLag</td><td>Minimum lag to consider. </td></tr>
-    <tr><td class="paramname">maxLag</td><td>Maximum lag to consider. </td></tr>
+    <tr><td class="paramname">data1</td><td>First dataset (time series points in rows). </td></tr>
+    <tr><td class="paramname">data2</td><td>Second dataset (time series points in rows). </td></tr>
+    <tr><td class="paramname">minLag</td><td>Minimum lag \( \tau_{\text{min}} \) to consider. </td></tr>
+    <tr><td class="paramname">maxLag</td><td>Maximum lag \( \tau_{\text{max}} \) to consider. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The correlation matrix. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A std::vector of correlation matrices, ordered from minLag to maxLag. </dd></dl>
 
 </div>
 </div>
@@ -299,6 +323,30 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Computes the empirical mean vector of a dataset. </p>
+<ul>
+<li></li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+Mathematical Formulation</h3>
+<p>For a dataset matrix \(\mathbf{X} \in \mathbb{R}^{N \times D}\), the mean vector \(\boldsymbol{\mu} \in \mathbb{R}^D\) is:   </p><p class="formulaDsp">
+\[\boldsymbol{\mu} = \frac{1}{N} \sum_{i=1}^N \mathbf{x}_i
+\]
+</p>
+ <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A reference to a matrix containing the data (points in rows, features in columns). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A column vector containing the mean of each feature. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>if the input matrix is empty. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -321,15 +369,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Compute the Pearson correlation matrix between two datasets. Manages the case where the datasets have different numbers of points. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Computes the Pearson correlation matrix between two datasets. </p>
+<ul>
+<li></li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+Mathematical Formulation</h3>
+<p>For columns \(X_i\) from <span class="tt">data1</span> and \(Y_j\) from <span class="tt">data2</span>, the correlation coefficient is:   </p><p class="formulaDsp">
+\[\rho_{ij} = \frac{\mathrm{cov}(X_i, Y_j)}{\sigma_{X_i} \sigma_{Y_j}}
+\]
+</p>
+<p> Manages the case where the datasets have different numbers of points by aligning them appropriately if supported by the implementation.</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data1</td><td>First dataset (points in rows). </td></tr>
     <tr><td class="paramname">data2</td><td>Second dataset (points in rows). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The Pearson correlation matrix. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The Pearson correlation matrix \( \mathbf{R} \in \mathbb{R}^{D_1 \times D_2} \). </dd></dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -352,18 +412,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the quantile of a vector of data. </p>
+<p>Computes a specific quantile of a 1D vector of data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>A reference to an <a class="el" href="namespace_eigen.html">Eigen</a> vector containing the data. </td></tr>
-    <tr><td class="paramname">quantile</td><td>The quantile to compute (between 0 and 1). </td></tr>
+    <tr><td class="paramname">quantile</td><td>The target probability quantile \( p \in [0, 1] \). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The quantile of the data. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The computed value representing the \( p \)-th quantile. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::invalid_argument</td><td>if the input vector is empty or the quantile is not between 0 and 1. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>if the input vector is empty or the quantile is out of bounds. </td></tr>
   </table>
   </dd>
 </dl>
@@ -385,14 +445,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the self-correlation length and the effective sample size of some samples. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Computes the self-correlation (autocorrelation) length and the effective sample size. </p>
+<ul>
+<li></li>
+</ul>
+<p>Useful for MCMC diagnostics to determine the number of independent samples.</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>the dataset containing the samples (each sample is a row) </td></tr>
+    <tr><td class="paramname">data</td><td>the dataset containing the samples (each sample is a row). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a pair containing the correlations lengths and the effective sample size </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a std::pair containing:</dd></dl>
+</li>
+</ul>
+<ol type="1">
+<li>An Eigen::VectorXd of correlation lengths for each feature.</li>
+<li>A double representing the overall effective sample size (ESS). </li>
+</ol>
 
 </div>
 </div>
@@ -418,6 +488,27 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Computes the complete auto- and cross-correlation functions across all lags efficiently using the Fast Fourier Transform (FFT). </p>
+<ul>
+<li></li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+Mathematical Formulation (Wiener-Khinchin Theorem)</h3>
+<p>The cross-correlation \(R_{ij}(\tau)\) between feature \(i\) and \(j\) can be computed in the frequency domain:   </p><p class="formulaDsp">
+\[R_{ij}(\tau) = \mathcal{F}^{-1}\left\{ \mathcal{F}\{x_i\} \cdot \mathcal{F}\{x_j\}^* \right\}
+\]
+</p>
+<p> where \(\mathcal{F}\) is the discrete Fourier transform. Data is mean-centered, zero-padded to the next power of 2 to avoid circular convolution artifacts, and properly normalized by sample variances.</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A reference to the dataset matrix (time points in rows, features in columns). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of length <span class="tt">nPoints</span>. Each element is a <span class="tt">nFeatures x nFeatures</span> matrix representing the correlation at lag \(\tau\). </dd></dl>
+</li>
+</ul>
 
 </div>
 </div>

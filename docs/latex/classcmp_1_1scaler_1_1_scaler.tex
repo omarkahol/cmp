@@ -19,25 +19,30 @@ Inheritance diagram for cmp\+::scaler\+::Scaler\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}{transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Transforms the input data from physical space to the scaled latent space. \end{DoxyCompactList}\item 
 virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a34c7739c949f4603ec1a430daf405dec}{inverse\+Transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Reconstructs the data from the scaled latent space back to physical space. \end{DoxyCompactList}\item 
 virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9cebf0f6c04f}{get\+Intercept}} () const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves the intercept vector $ \mu $ used in the transformation. \end{DoxyCompactList}\item 
 virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}{get\+Scale}} () const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves the scaling matrix $ S $ used in the transformation. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a034490dc8b97ab47a73ca3ffb3b6db66}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)=0
-\item 
+\begin{DoxyCompactList}\small\item\em Learns the scaling parameters (e.\+g., mean, variance) from the training data. \end{DoxyCompactList}\item 
 virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}{fit\+\_\+transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)=0
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fits the scaling parameters to the data and subsequently transforms the data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Template virtual base class for feature scaling and transformation. 
 
-{\bfseries{Mathematical}} {\bfseries{Formulation}} Define a transformation mapping $ T: \mathbb{R}^d \to \mathbb{R}^d $ and its inverse $ T^{-1} $\+: \[ y = T(x) \] \[ x = T^{-1}(y) \] Often represented linearly with intercept $ \mu $ and scaling factor/matrix $ S $\+: \[ T(x) = S^{-1}(x - \mu) \] \[ T^{-1}(y) = S y + \mu \]
 
-{\bfseries{Implementation}} {\bfseries{Algorithm}} Pure virtual interface. Concrete implementations define the fitting, transforming, and inverse transforming steps. 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\hypertarget{classcmp_1_1scaler_1_1_scaler_autotoc_md15}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation}{Mathematical Formulation}}\label{classcmp_1_1scaler_1_1_scaler_autotoc_md15}
+Define a transformation mapping $ T: \mathbb{R}^d \to \mathbb{R}^d $ and its inverse $ T^{-1} $\+: \[ y = T(x) \] \[ x = T^{-1}(y) \] Often represented linearly with intercept $ \mu $ and scaling factor/matrix $ S $\+: \[ T(x) = S^{-1}(x - \mu) \] \[ T^{-1}(y) = S y + \mu \]
+\begin{DoxyItemize}
+\item \#\#\# Implementation Algorithm Pure virtual interface. Concrete implementations define the fitting, transforming, and inverse transforming steps. 
+\end{DoxyItemize}
 
 \label{doc-func-members}
 \Hypertarget{classcmp_1_1scaler_1_1_scaler_doc-func-members}
@@ -50,6 +55,15 @@ virtual void cmp\+::scaler\+::\+Scaler\+::fit (\begin{DoxyParamCaption}\item[{co
 
 
 
+Learns the scaling parameters (e.\+g., mean, variance) from the training data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A matrix $ X \in \mathbb{R}^{n \times d} $ of training samples. \\
+\hline
+\end{DoxyParams}
+
+
 Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a82fcc0902bcaf06895b815cad983e58f}{cmp\+::scaler\+::\+Dummy\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a044939a8e126affba4a3ca42f037590d}{cmp\+::scaler\+::\+Elliptic\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5}{cmp\+::scaler\+::\+Min\+Max\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a6a2048934255a006b8b11e0a946286d2}{cmp\+::scaler\+::\+PCA}}, and \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a2c4b2d2e676396a3a31c32e303558184}{cmp\+::scaler\+::\+Standard\+Scaler}}.
 
 \Hypertarget{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}\index{cmp::scaler::Scaler@{cmp::scaler::Scaler}!fit\_transform@{fit\_transform}}
@@ -58,6 +72,18 @@ Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a82fcc0902bc
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4} 
 virtual Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Scaler\+::fit\+\_\+transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
+
+
+Fits the scaling parameters to the data and subsequently transforms the data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A matrix $ X \in \mathbb{R}^{n \times d} $ of training samples. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The transformed dataset matrix $ Y $. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_aaf68a3279469b1c4f814c2a94f35cce9}{cmp\+::scaler\+::\+Dummy\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a657486b28e38db1d45eab3fb452fbd37}{cmp\+::scaler\+::\+Elliptic\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac7cf5a8ad79582ab3bf569f2f51b81b3}{cmp\+::scaler\+::\+Min\+Max\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a84fe92b3f91c4c013507254c0f019ff9}{cmp\+::scaler\+::\+PCA}}, and \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_af29bd017ea8f164dd58c3e226a4c345e}{cmp\+::scaler\+::\+Standard\+Scaler}}.
@@ -70,6 +96,13 @@ virtual Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Scaler\+::get\+Intercept (\begi
 
 
 
+Retrieves the intercept vector $ \mu $ used in the transformation. 
+
+\begin{DoxyReturn}{Returns}
+The intercept vector. 
+\end{DoxyReturn}
+
+
 Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a4ed4b8f84cc0275b3609f6c10c6d5a5f}{cmp\+::scaler\+::\+Dummy\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4702e651e83aac9b13cb75ca1600531c}{cmp\+::scaler\+::\+Elliptic\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e}{cmp\+::scaler\+::\+Min\+Max\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_aa12df6a29348dba275d46a3932b1b82f}{cmp\+::scaler\+::\+PCA}}, and \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_acda4e311222fcc745291601835a0638b}{cmp\+::scaler\+::\+Standard\+Scaler}}.
 
 \Hypertarget{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}\index{cmp::scaler::Scaler@{cmp::scaler::Scaler}!getScale@{getScale}}
@@ -78,6 +111,13 @@ Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a4ed4b8f84cc
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817} 
 virtual Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Scaler\+::get\+Scale (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
+
+
+Retrieves the scaling matrix $ S $ used in the transformation. 
+
+\begin{DoxyReturn}{Returns}
+The scaling matrix. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_aa5b1db975a868ffbb9770fd658ce79eb}{cmp\+::scaler\+::\+Dummy\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18}{cmp\+::scaler\+::\+Elliptic\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7bbf79807c05b4f60ec2b1a946158dd0}{cmp\+::scaler\+::\+Min\+Max\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_af8872ca334bde480e793cf1e1ae51f0b}{cmp\+::scaler\+::\+PCA}}, and \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a0d7e7ed5d867b05ee97d24f6aa30b20d}{cmp\+::scaler\+::\+Standard\+Scaler}}.
@@ -90,6 +130,18 @@ virtual Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Scaler\+::inverse\+Transform (\
 
 
 
+Reconstructs the data from the scaled latent space back to physical space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A column vector $ y $ in the scaled space. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unscaled physical data vector $ x $. 
+\end{DoxyReturn}
+
+
 Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a1df30df702283b8469efb51a8b0df40d}{cmp\+::scaler\+::\+Dummy\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a0527554327168152d5bb453ca4928953}{cmp\+::scaler\+::\+Elliptic\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}{cmp\+::scaler\+::\+Min\+Max\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a5abb95a448b70440e3233ef426ec6dd4}{cmp\+::scaler\+::\+PCA}}, and \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a2a046cbb08c243e8868294262e27813a}{cmp\+::scaler\+::\+Standard\+Scaler}}.
 
 \Hypertarget{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}\index{cmp::scaler::Scaler@{cmp::scaler::Scaler}!transform@{transform}}
@@ -98,6 +150,18 @@ Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a1df30df7022
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1} 
 virtual Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Scaler\+::transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
+
+
+Transforms the input data from physical space to the scaled latent space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A column vector $ x $ representing a single data point in physical space. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scaled data vector $ y $. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a01c5af2defce301638724cfda45b3812}{cmp\+::scaler\+::\+Dummy\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa9165c49ba109a73f91bdfeb288c1f4c}{cmp\+::scaler\+::\+Elliptic\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c}{cmp\+::scaler\+::\+Min\+Max\+Scaler}}, \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_aa44b7f09120405a48e09be90955f23ca}{cmp\+::scaler\+::\+PCA}}, and \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a3dd61167cf9075fa3f8d0fd45cc8e2a6}{cmp\+::scaler\+::\+Standard\+Scaler}}.

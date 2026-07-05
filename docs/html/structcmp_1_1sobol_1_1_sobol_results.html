@@ -110,23 +110,27 @@ $(function(){initNavTree('structcmp_1_1sobol_1_1_sobol_results.html','','structc
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af380ed47412a2b4ab5bbf05748054eff" id="r_af380ed47412a2b4ab5bbf05748054eff"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af380ed47412a2b4ab5bbf05748054eff">getFirstOrder</a> (size_t i) const</td></tr>
-<tr class="memdesc:af380ed47412a2b4ab5bbf05748054eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first-order Sobol index for input parameter i.  <br /></td></tr>
+<tr class="memdesc:af380ed47412a2b4ab5bbf05748054eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first-order Sobol index for input parameter \( i \).  <br /></td></tr>
 <tr class="memitem:a604527aa43fdac2b3431c5d67c61c4c9" id="r_a604527aa43fdac2b3431c5d67c61c4c9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a604527aa43fdac2b3431c5d67c61c4c9">getTotalOrder</a> (size_t i) const</td></tr>
-<tr class="memdesc:a604527aa43fdac2b3431c5d67c61c4c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total-order Sobol index for input parameter i.  <br /></td></tr>
+<tr class="memdesc:a604527aa43fdac2b3431c5d67c61c4c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total-order Sobol index for input parameter \( i \).  <br /></td></tr>
 <tr class="memitem:a6c5e9aba7c3a6d3123099d403ff4d09b" id="r_a6c5e9aba7c3a6d3123099d403ff4d09b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c5e9aba7c3a6d3123099d403ff4d09b">getSecondOrder</a> (size_t i, size_t j) const</td></tr>
-<tr class="memdesc:a6c5e9aba7c3a6d3123099d403ff4d09b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the second-order Sobol index for interaction between parameters i and j.  <br /></td></tr>
+<tr class="memdesc:a6c5e9aba7c3a6d3123099d403ff4d09b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the second-order Sobol index for interaction between parameters \( i \) and \( j \).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a819af42267e88eaa45b7d241d7165b06" id="r_a819af42267e88eaa45b7d241d7165b06"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a819af42267e88eaa45b7d241d7165b06">firstOrder</a></td></tr>
-<tr class="memdesc:a819af42267e88eaa45b7d241d7165b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">First-order (main effect) Sobol indices.  <br /></td></tr>
+<tr class="memdesc:a819af42267e88eaa45b7d241d7165b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing the first-order (main effect) Sobol indices.  <br /></td></tr>
 <tr class="memitem:a2d24b9cb1860835721f51cc9a39c7958" id="r_a2d24b9cb1860835721f51cc9a39c7958"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d24b9cb1860835721f51cc9a39c7958">totalOrder</a></td></tr>
-<tr class="memdesc:a2d24b9cb1860835721f51cc9a39c7958"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total-order Sobol indices.  <br /></td></tr>
+<tr class="memdesc:a2d24b9cb1860835721f51cc9a39c7958"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing the total-order Sobol indices.  <br /></td></tr>
 <tr class="memitem:ac39c321a06d381737e84dae7aaa3b2dc" id="r_ac39c321a06d381737e84dae7aaa3b2dc"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac39c321a06d381737e84dae7aaa3b2dc">secondOrder</a></td></tr>
-<tr class="memdesc:ac39c321a06d381737e84dae7aaa3b2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second-order (interaction effect) Sobol indices (if computed).  <br /></td></tr>
+<tr class="memdesc:ac39c321a06d381737e84dae7aaa3b2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing the second-order (interaction effect) Sobol indices (if computed).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Struct to hold calculated Sobol sensitivity indices. </p>
+<ul>
+<li></li>
+</ul>
+<p>Stores the resultant vectors for main effects, total effects, and optional interaction effects calculated from a variance-based sensitivity analysis. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="af380ed47412a2b4ab5bbf05748054eff" name="af380ed47412a2b4ab5bbf05748054eff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af380ed47412a2b4ab5bbf05748054eff">&#9670;&#160;</a></span>getFirstOrder()</h2>
@@ -151,14 +155,20 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the first-order Sobol index for input parameter i. </p>
+<p>Gets the first-order Sobol index for input parameter \( i \). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>Index of the input parameter. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>First-order Sobol index value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>First-order Sobol index value \( S_i \). </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::out_of_range</td><td>If the requested index is out of bounds. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -189,15 +199,29 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the second-order Sobol index for interaction between parameters i and j. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Gets the second-order Sobol index for interaction between parameters \( i \) and \( j \). </p>
+<ul>
+<li></li>
+</ul>
+<p>Computes the 1D flat index for the upper triangular portion (excluding diagonal) mapping \((i, j)\).</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>Index of the first parameter. </td></tr>
     <tr><td class="paramname">j</td><td>Index of the second parameter. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Second-order Sobol index value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Second-order Sobol index value \( S_{ij} \). </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::logic_error</td><td>If second-order indices were not computed. </td></tr>
+    <tr><td class="paramname">std::out_of_range</td><td>If indices exceed parameter bounds. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>If \( i = j \). </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -224,14 +248,20 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the total-order Sobol index for input parameter i. </p>
+<p>Gets the total-order Sobol index for input parameter \( i \). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>Index of the input parameter. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Total-order Sobol index value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Total-order Sobol index value \( S_{Ti} \). </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::out_of_range</td><td>If the requested index is out of bounds. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -248,7 +278,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>First-order (main effect) Sobol indices. </p>
+<p>Vector storing the first-order (main effect) Sobol indices. </p>
 
 </div>
 </div>
@@ -264,7 +294,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Second-order (interaction effect) Sobol indices (if computed). </p>
+<p>Vector storing the second-order (interaction effect) Sobol indices (if computed). </p>
 
 </div>
 </div>
@@ -280,7 +310,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Total-order Sobol indices. </p>
+<p>Vector storing the total-order Sobol indices. </p>
 
 </div>
 </div>

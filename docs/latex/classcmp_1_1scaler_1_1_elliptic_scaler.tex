@@ -2,7 +2,7 @@
 \hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler}{}\label{classcmp_1_1scaler_1_1_elliptic_scaler}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
 
 
-\doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently (diagonal variance scaling).  
+\doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently using diagonal variance scaling.  
 
 
 
@@ -19,7 +19,7 @@ Inheritance diagram for cmp\+::scaler\+::Elliptic\+Scaler\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{Elliptic\+Scaler}} ()=default
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a769b58f04d54d6ccda9c9e48291a0401}{Elliptic\+Scaler}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&mean, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&std)
 \begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler} with specified mean and standard deviations. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a53f8d1f69524076db56af2a709881414}{Elliptic\+Scaler}} (const \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&other)=default
@@ -33,34 +33,39 @@ Inheritance diagram for cmp\+::scaler\+::Elliptic\+Scaler\+:\begin{figure}[H]
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \& \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ab596ef021cf6fc07d008e18179c2e05d}{operator=}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}} \&\&other)=default
 \item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa9165c49ba109a73f91bdfeb288c1f4c}{transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
-\begin{DoxyCompactList}\small\item\em Standardizes the input data vector. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Transforms the input data from physical space to the scaled latent space. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a0527554327168152d5bb453ca4928953}{inverse\+Transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
-\begin{DoxyCompactList}\small\item\em Unstandardizes the input data vector back to physical space. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reconstructs the data from the scaled latent space back to physical space. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4702e651e83aac9b13cb75ca1600531c}{get\+Intercept}} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves the intercept vector $ \mu $ used in the transformation. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18}{get\+Scale}} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves the scaling matrix $ S $ used in the transformation. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a044939a8e126affba4a3ca42f037590d}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
-\begin{DoxyCompactList}\small\item\em Fits the mean and standard deviation of each coordinate of the training data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Learns the scaling parameters (e.\+g., mean, variance) from the training data. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a657486b28e38db1d45eab3fb452fbd37}{fit\+\_\+transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
-\begin{DoxyCompactList}\small\item\em Fits the scaler and returns standardized data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Fits the scaling parameters to the data and subsequently transforms the data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a7bc119f6ef15a7ee235e493f6b2b34bb}{set\+Mean}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&mean)
-\begin{DoxyCompactList}\small\item\em Explicitly sets the mean parameters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Explicitly overrides the mean parameters $ \boldsymbol{\mu} $. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a157800ab1b134d2700b56a2dc6244205}{set\+Std}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&std)
-\begin{DoxyCompactList}\small\item\em Explicitly sets the standard deviation scaling parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Explicitly overrides the standard deviation parameters $ \boldsymbol{\sigma} $. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em The empirical mean vector $ \boldsymbol{\mu} $ of the training dataset. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The standard deviation vector $ \boldsymbol{\sigma} $ for each feature. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently (diagonal variance scaling). 
+\doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently using diagonal variance scaling. 
 
-Mathematical Formulation Standardizes each feature coordinate independently\+:   \[y_j = \frac{x_j - \mu_j}{\sigma_j}
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_autotoc_md19}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation}{Mathematical Formulation}}\label{classcmp_1_1scaler_1_1_elliptic_scaler_autotoc_md19}
+Standardizes each feature coordinate $ j $ independently\+:   \[y_j = \frac{x_j - \mu_j}{\sigma_j}
+\] where $ \mu_j $ is the mean and $ \sigma_j $ is the standard deviation of feature $ j $. The inverse transformation is\+:   \[x_j = y_j \sigma_j + \mu_j
 \] 
 
 \label{doc-constructors}
@@ -72,6 +77,10 @@ Mathematical Formulation Standardizes each feature coordinate independently\+:  
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b} 
 cmp\+::scaler\+::\+Elliptic\+Scaler\+::\+Elliptic\+Scaler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
+
+
+Default constructor. 
+
 \Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a769b58f04d54d6ccda9c9e48291a0401}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!EllipticScaler@{EllipticScaler}}
 \index{EllipticScaler@{EllipticScaler}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
 \doxysubsubsection{\texorpdfstring{EllipticScaler()}{EllipticScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
@@ -82,6 +91,13 @@ cmp\+::scaler\+::\+Elliptic\+Scaler\+::\+Elliptic\+Scaler (\begin{DoxyParamCapti
 
 Constructs an \doxylink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler} with specified mean and standard deviations. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em mean} & Pre-\/computed mean vector $ \boldsymbol{\mu} $. \\
+\hline
+{\em std} & Pre-\/computed standard deviation vector $ \boldsymbol{\sigma} $. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a53f8d1f69524076db56af2a709881414}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!EllipticScaler@{EllipticScaler}}
 \index{EllipticScaler@{EllipticScaler}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
 \doxysubsubsection{\texorpdfstring{EllipticScaler()}{EllipticScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
@@ -113,8 +129,13 @@ void cmp\+::scaler\+::\+Elliptic\+Scaler\+::fit (\begin{DoxyParamCaption}\item[{
 
 
 
-Fits the mean and standard deviation of each coordinate of the training data. 
+Learns the scaling parameters (e.\+g., mean, variance) from the training data. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A matrix $ X \in \mathbb{R}^{n \times d} $ of training samples. \\
+\hline
+\end{DoxyParams}
 
 
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a034490dc8b97ab47a73ca3ffb3b6db66}{cmp\+::scaler\+::\+Scaler}}.
@@ -127,8 +148,16 @@ Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::fit\+\_\+transform 
 
 
 
-Fits the scaler and returns standardized data. 
+Fits the scaling parameters to the data and subsequently transforms the data. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A matrix $ X \in \mathbb{R}^{n \times d} $ of training samples. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The transformed dataset matrix $ Y $. 
+\end{DoxyReturn}
 
 
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}{cmp\+::scaler\+::\+Scaler}}.
@@ -141,6 +170,13 @@ Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::get\+Intercept (\be
 
 
 
+Retrieves the intercept vector $ \mu $ used in the transformation. 
+
+\begin{DoxyReturn}{Returns}
+The intercept vector. 
+\end{DoxyReturn}
+
+
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9cebf0f6c04f}{cmp\+::scaler\+::\+Scaler}}.
 
 \Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!getScale@{getScale}}
@@ -149,6 +185,13 @@ Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18} 
 Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::get\+Scale (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
+
+
+Retrieves the scaling matrix $ S $ used in the transformation. 
+
+\begin{DoxyReturn}{Returns}
+The scaling matrix. 
+\end{DoxyReturn}
 
 
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}{cmp\+::scaler\+::\+Scaler}}.
@@ -161,8 +204,16 @@ Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::inverse\+Transform 
 
 
 
-Unstandardizes the input data vector back to physical space. 
+Reconstructs the data from the scaled latent space back to physical space. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A column vector $ y $ in the scaled space. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unscaled physical data vector $ x $. 
+\end{DoxyReturn}
 
 
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a34c7739c949f4603ec1a430daf405dec}{cmp\+::scaler\+::\+Scaler}}.
@@ -187,8 +238,13 @@ void cmp\+::scaler\+::\+Elliptic\+Scaler\+::set\+Mean (\begin{DoxyParamCaption}\
 
 
 
-Explicitly sets the mean parameters. 
+Explicitly overrides the mean parameters $ \boldsymbol{\mu} $. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em mean} & The new mean vector. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_a157800ab1b134d2700b56a2dc6244205}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!setStd@{setStd}}
 \index{setStd@{setStd}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
 \doxysubsubsection{\texorpdfstring{setStd()}{setStd()}}
@@ -197,8 +253,13 @@ void cmp\+::scaler\+::\+Elliptic\+Scaler\+::set\+Std (\begin{DoxyParamCaption}\i
 
 
 
-Explicitly sets the standard deviation scaling parameters. 
+Explicitly overrides the standard deviation parameters $ \boldsymbol{\sigma} $. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em std} & The new standard deviation vector. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_aa9165c49ba109a73f91bdfeb288c1f4c}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!transform@{transform}}
 \index{transform@{transform}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
 \doxysubsubsection{\texorpdfstring{transform()}{transform()}}
@@ -207,8 +268,16 @@ Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::transform (\begin{D
 
 
 
-Standardizes the input data vector. 
+Transforms the input data from physical space to the scaled latent space. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A column vector $ x $ representing a single data point in physical space. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scaled data vector $ y $. 
+\end{DoxyReturn}
 
 
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}{cmp\+::scaler\+::\+Scaler}}.
@@ -224,11 +293,19 @@ Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+The empirical mean vector $ \boldsymbol{\mu} $ of the training dataset. 
+
 \Hypertarget{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}\index{cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}!std\_@{std\_}}
 \index{std\_@{std\_}!cmp::scaler::EllipticScaler@{cmp::scaler::EllipticScaler}}
 \doxysubsubsection{\texorpdfstring{std\_}{std\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Elliptic\+Scaler\+::std\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The standard deviation vector $ \boldsymbol{\sigma} $ for each feature. 
 
 
 

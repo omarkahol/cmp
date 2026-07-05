@@ -35,21 +35,21 @@
 \DoxyCodeLine{00074\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ProposalType>}
 \DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a2d212ae1f143d68fe2154119c25a0217}{MarkovChain}}\ \{}
 \DoxyCodeLine{00076\ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}}\{0.0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Current\ value\ of\ the\ score}}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dimension\ of\ the\ chain}}
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Steps\ done}}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}{nAccepts\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Accepted\ candidates}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\_}}\{0.0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{nSteps\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}{nAccepts\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sample-\/mean\ vector}}
-\DoxyCodeLine{00083\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sample-\/covariance\ matrix}}
+\DoxyCodeLine{00082\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \ \ \ \ ProposalType\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Proposal\ distribution\ (stored\ by\ value)}}
+\DoxyCodeLine{00085\ \ \ \ \ ProposalType\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}{distU\_}}\{0.0,\ 1.0\};}
-\DoxyCodeLine{00088\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\_}};}
+\DoxyCodeLine{00087\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}{distU\_}}\{0.0,\ 1.0\};\ }
+\DoxyCodeLine{00088\ \ \ \ \ std::default\_random\_engine\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Scaling\ factor}}
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}{targetAcceptanceRatio\_}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Target\ acceptance\ ratio\ for\ adaptive\ MCMC}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}{targetAcceptanceRatio\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00092\ }
 \DoxyCodeLine{00093\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a2d212ae1f143d68fe2154119c25a0217}{MarkovChain}}(\textcolor{keyword}{const}\ ProposalType\ \&proposal,}
@@ -262,19 +262,19 @@
 \DoxyCodeLine{00381\ }
 \DoxyCodeLine{00401\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a716929479bfa4b4a7ae8e6f3bad25acc}{EvolutionaryMarkovChain}}\ \{}
 \DoxyCodeLine{00402\ \ \ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_abc3c756d62cb3ec6615956dd51929742}{nChains\_}}\{0\};}
-\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a0f3f7ffcf3db603f79ca279871aff279}{dim\_}}\{0\};}
-\DoxyCodeLine{00405\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad5116dfc7c72d8c185aeba769282da02}{chainSamples\_}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Current\ samples\ of\ each\ chain}}
-\DoxyCodeLine{00406\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ae8dc967a2e44a7125afc59de69ff6dc6}{chainScores\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Current\ scores\ of\ each\ chain}}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_abc3c756d62cb3ec6615956dd51929742}{nChains\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a0f3f7ffcf3db603f79ca279871aff279}{dim\_}}\{0\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00405\ \ \ \ \ std::vector<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad5116dfc7c72d8c185aeba769282da02}{chainSamples\_}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00406\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ae8dc967a2e44a7125afc59de69ff6dc6}{chainScores\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00407\ }
 \DoxyCodeLine{00408\ \ \ \ \ \textcolor{comment}{//\ Random\ distribution\ to\ pick\ a\ random\ chain}}
-\DoxyCodeLine{00409\ \ \ \ \ std::uniform\_int\_distribution<size\_t>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a9351419d92e28d11378724802c01fd5c}{distChain\_}};}
+\DoxyCodeLine{00409\ \ \ \ \ std::uniform\_int\_distribution<size\_t>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a9351419d92e28d11378724802c01fd5c}{distChain\_}};\ \ \ \ }
 \DoxyCodeLine{00410\ }
 \DoxyCodeLine{00411\ \ \ \ \ \textcolor{comment}{//\ Random\ distribution\ to\ pick\ a\ random\ number}}
-\DoxyCodeLine{00412\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a00e1b3a389e105c950680331d282c2f9}{distU\_}}\{0,\ 1\};}
-\DoxyCodeLine{00413\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad55c73ca3b211a37188d99db2241f055}{distN\_}}\{0,\ 1\};}
+\DoxyCodeLine{00412\ \ \ \ \ std::uniform\_real\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a00e1b3a389e105c950680331d282c2f9}{distU\_}}\{0,\ 1\};\ }
+\DoxyCodeLine{00413\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad55c73ca3b211a37188d99db2241f055}{distN\_}}\{0,\ 1\};\ \ \ \ \ \ \ }
 \DoxyCodeLine{00414\ }
-\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad26388ab7e796253ac77f1b82844af49}{nugget\_}}\{1e-\/6\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nugget\ to\ add\ to\ the\ covariance\ matrix\ for\ numerical\ stability}}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_ad26388ab7e796253ac77f1b82844af49}{nugget\_}}\{1e-\/6\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00416\ }
 \DoxyCodeLine{00417\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00418\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_evolutionary_markov_chain_a716929479bfa4b4a7ae8e6f3bad25acc}{EvolutionaryMarkovChain}}()\ =\ \textcolor{keywordflow}{default};}

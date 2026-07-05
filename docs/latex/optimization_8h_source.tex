@@ -99,14 +99,14 @@
 \DoxyCodeLine{00131\ }
 \DoxyCodeLine{00132\ }
 \DoxyCodeLine{00133\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00134\ \ \ \ \ std::function<double(Eigen::Ref<const\ Eigen::VectorXd>)>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a16b7cc507da5d18100ca4b253f0d5c99}{fval\_only\_}};}
-\DoxyCodeLine{00135\ \ \ \ \ std::function<double(Eigen::Ref<const\ Eigen::VectorXd>,\ Eigen::Ref<Eigen::VectorXd>)>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a729237b005c98d8ae0949ad1a8a5808a}{fval\_grad\_inplace\_}};}
+\DoxyCodeLine{00134\ \ \ \ \ std::function<double(Eigen::Ref<const\ Eigen::VectorXd>)>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a16b7cc507da5d18100ca4b253f0d5c99}{fval\_only\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ std::function<double(Eigen::Ref<const\ Eigen::VectorXd>,\ Eigen::Ref<Eigen::VectorXd>)>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a729237b005c98d8ae0949ad1a8a5808a}{fval\_grad\_inplace\_}};\ }
 \DoxyCodeLine{00136\ }
-\DoxyCodeLine{00137\ \ \ \ \ std::vector<std::function<double(Eigen::Ref<const\ Eigen::VectorXd>,\ Eigen::Ref<Eigen::VectorXd>)>>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a041a4a7b3c9b4cd3a11e6e90077574b7}{ineq\_constraints\_}};}
-\DoxyCodeLine{00138\ \ \ \ \ std::vector<std::function<double(Eigen::Ref<const\ Eigen::VectorXd>,\ Eigen::Ref<Eigen::VectorXd>)>>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a798d9b8952c02054eb9a9550c1695a89}{eq\_constraints\_}};}
+\DoxyCodeLine{00137\ \ \ \ \ std::vector<std::function<double(Eigen::Ref<const\ Eigen::VectorXd>,\ Eigen::Ref<Eigen::VectorXd>)>>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a041a4a7b3c9b4cd3a11e6e90077574b7}{ineq\_constraints\_}};\ }
+\DoxyCodeLine{00138\ \ \ \ \ std::vector<std::function<double(Eigen::Ref<const\ Eigen::VectorXd>,\ Eigen::Ref<Eigen::VectorXd>)>>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a798d9b8952c02054eb9a9550c1695a89}{eq\_constraints\_}};\ \ \ }
 \DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a61a6027cb0b93239ed7f06487c4c3189}{use\_gradient\_}};}
-\DoxyCodeLine{00141\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a28fdec9e08cb60c5261db23468ac4078}{log\_scale\_}};\ \textcolor{comment}{//\ Mask\ indicating\ which\ dims\ are\ log-\/scaled}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a61a6027cb0b93239ed7f06487c4c3189}{use\_gradient\_}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classcmp_1_1_objective_functor_a28fdec9e08cb60c5261db23468ac4078}{log\_scale\_}};\ }
 \DoxyCodeLine{00142\ }
 \DoxyCodeLine{00159\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_objective_functor_ae0bb5f0bd37dc41a7663b61816f7f2ea}{mapToReal}}(Eigen::Ref<const\ Eigen::VectorXd>\ x\_opt)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classcmp_1_1_objective_functor_a28fdec9e08cb60c5261db23468ac4078}{log\_scale\_}}.empty())\ \textcolor{keywordflow}{return}\ x\_opt;}

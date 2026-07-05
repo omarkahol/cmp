@@ -102,7 +102,7 @@ $(function(){initNavTree('classcmp_1_1scaler_1_1_elliptic_scaler.html','','class
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently (diagonal variance scaling).  
+<p><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently using diagonal variance scaling.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="scaler_8h_source.html">scaler.h</a>&gt;</code></p>
@@ -119,37 +119,51 @@ Inheritance diagram for cmp::scaler::EllipticScaler:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4cc577e745eed3d8d04ea3b22886a92b" id="r_a4cc577e745eed3d8d04ea3b22886a92b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cc577e745eed3d8d04ea3b22886a92b">EllipticScaler</a> ()=default</td></tr>
+<tr class="memdesc:a4cc577e745eed3d8d04ea3b22886a92b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a769b58f04d54d6ccda9c9e48291a0401" id="r_a769b58f04d54d6ccda9c9e48291a0401"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a769b58f04d54d6ccda9c9e48291a0401">EllipticScaler</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;mean, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;std)</td></tr>
-<tr class="memdesc:a769b58f04d54d6ccda9c9e48291a0401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently (diagonal variance scaling).">EllipticScaler</a> with specified mean and standard deviations.  <br /></td></tr>
+<tr class="memdesc:a769b58f04d54d6ccda9c9e48291a0401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently using diagonal variance scaling.">EllipticScaler</a> with specified mean and standard deviations.  <br /></td></tr>
 <tr class="memitem:a53f8d1f69524076db56af2a709881414" id="r_a53f8d1f69524076db56af2a709881414"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53f8d1f69524076db56af2a709881414">EllipticScaler</a> (const <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;other)=default</td></tr>
 <tr class="memitem:aa2ee6b60713b48100cd29639bae98548" id="r_aa2ee6b60713b48100cd29639bae98548"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2ee6b60713b48100cd29639bae98548">EllipticScaler</a> (<a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;&amp;other)=default</td></tr>
 <tr class="memitem:a98dd13aa727d2de34dbd282c152c289a" id="r_a98dd13aa727d2de34dbd282c152c289a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98dd13aa727d2de34dbd282c152c289a">~EllipticScaler</a> ()=default</td></tr>
 <tr class="memitem:a3183265f75e490a27915fb9b02ef434d" id="r_a3183265f75e490a27915fb9b02ef434d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3183265f75e490a27915fb9b02ef434d">operator=</a> (const <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;other)=default</td></tr>
 <tr class="memitem:ab596ef021cf6fc07d008e18179c2e05d" id="r_ab596ef021cf6fc07d008e18179c2e05d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab596ef021cf6fc07d008e18179c2e05d">operator=</a> (<a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;&amp;other)=default</td></tr>
 <tr class="memitem:aa9165c49ba109a73f91bdfeb288c1f4c" id="r_aa9165c49ba109a73f91bdfeb288c1f4c"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9165c49ba109a73f91bdfeb288c1f4c">transform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
-<tr class="memdesc:aa9165c49ba109a73f91bdfeb288c1f4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standardizes the input data vector.  <br /></td></tr>
+<tr class="memdesc:aa9165c49ba109a73f91bdfeb288c1f4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the input data from physical space to the scaled latent space.  <br /></td></tr>
 <tr class="memitem:a0527554327168152d5bb453ca4928953" id="r_a0527554327168152d5bb453ca4928953"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0527554327168152d5bb453ca4928953">inverseTransform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
-<tr class="memdesc:a0527554327168152d5bb453ca4928953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unstandardizes the input data vector back to physical space.  <br /></td></tr>
+<tr class="memdesc:a0527554327168152d5bb453ca4928953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs the data from the scaled latent space back to physical space.  <br /></td></tr>
 <tr class="memitem:a4702e651e83aac9b13cb75ca1600531c" id="r_a4702e651e83aac9b13cb75ca1600531c"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4702e651e83aac9b13cb75ca1600531c">getIntercept</a> () const override</td></tr>
+<tr class="memdesc:a4702e651e83aac9b13cb75ca1600531c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the intercept vector \( \mu \) used in the transformation.  <br /></td></tr>
 <tr class="memitem:aa7ee167e34c4c747dbea374196cd6a18" id="r_aa7ee167e34c4c747dbea374196cd6a18"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7ee167e34c4c747dbea374196cd6a18">getScale</a> () const override</td></tr>
+<tr class="memdesc:aa7ee167e34c4c747dbea374196cd6a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the scaling matrix \( S \) used in the transformation.  <br /></td></tr>
 <tr class="memitem:a044939a8e126affba4a3ca42f037590d" id="r_a044939a8e126affba4a3ca42f037590d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a044939a8e126affba4a3ca42f037590d">fit</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
-<tr class="memdesc:a044939a8e126affba4a3ca42f037590d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the mean and standard deviation of each coordinate of the training data.  <br /></td></tr>
+<tr class="memdesc:a044939a8e126affba4a3ca42f037590d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Learns the scaling parameters (e.g., mean, variance) from the training data.  <br /></td></tr>
 <tr class="memitem:a657486b28e38db1d45eab3fb452fbd37" id="r_a657486b28e38db1d45eab3fb452fbd37"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a657486b28e38db1d45eab3fb452fbd37">fit_transform</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
-<tr class="memdesc:a657486b28e38db1d45eab3fb452fbd37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the scaler and returns standardized data.  <br /></td></tr>
+<tr class="memdesc:a657486b28e38db1d45eab3fb452fbd37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the scaling parameters to the data and subsequently transforms the data.  <br /></td></tr>
 <tr class="memitem:a7bc119f6ef15a7ee235e493f6b2b34bb" id="r_a7bc119f6ef15a7ee235e493f6b2b34bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7bc119f6ef15a7ee235e493f6b2b34bb">setMean</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;mean)</td></tr>
-<tr class="memdesc:a7bc119f6ef15a7ee235e493f6b2b34bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly sets the mean parameters.  <br /></td></tr>
+<tr class="memdesc:a7bc119f6ef15a7ee235e493f6b2b34bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly overrides the mean parameters \( \boldsymbol{\mu} \).  <br /></td></tr>
 <tr class="memitem:a157800ab1b134d2700b56a2dc6244205" id="r_a157800ab1b134d2700b56a2dc6244205"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a157800ab1b134d2700b56a2dc6244205">setStd</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;std)</td></tr>
-<tr class="memdesc:a157800ab1b134d2700b56a2dc6244205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly sets the standard deviation scaling parameters.  <br /></td></tr>
+<tr class="memdesc:a157800ab1b134d2700b56a2dc6244205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly overrides the standard deviation parameters \( \boldsymbol{\sigma} \).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a52af9b6279dd3bffb1e8f5ceb805dd3b" id="r_a52af9b6279dd3bffb1e8f5ceb805dd3b"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52af9b6279dd3bffb1e8f5ceb805dd3b">mean_</a></td></tr>
+<tr class="memdesc:a52af9b6279dd3bffb1e8f5ceb805dd3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The empirical mean vector \( \boldsymbol{\mu} \) of the training dataset.  <br /></td></tr>
 <tr class="memitem:ad92d211a4816b5c773c2f80f20624106" id="r_ad92d211a4816b5c773c2f80f20624106"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad92d211a4816b5c773c2f80f20624106">std_</a></td></tr>
+<tr class="memdesc:ad92d211a4816b5c773c2f80f20624106"><td class="mdescLeft">&#160;</td><td class="mdescRight">The standard deviation vector \( \boldsymbol{\sigma} \) for each feature.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently (diagonal variance scaling). </p>
-<p>Mathematical Formulation Standardizes each feature coordinate independently:   </p><p class="formulaDsp">
+<div class="textblock"><p><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently using diagonal variance scaling. </p>
+<ul>
+<li></li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+Mathematical Formulation</h3>
+<p>Standardizes each feature coordinate \( j \) independently:   </p><p class="formulaDsp">
 \[y_j = \frac{x_j - \mu_j}{\sigma_j}
+\]
+</p>
+<p> where \( \mu_j \) is the mean and \( \sigma_j \) is the standard deviation of feature \( j \). The inverse transformation is:   </p><p class="formulaDsp">
+\[x_j = y_j \sigma_j + \mu_j
 \]
 </p>
  </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -175,6 +189,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -205,7 +221,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently (diagonal variance scaling).">EllipticScaler</a> with specified mean and standard deviations. </p>
+<p>Constructs an <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently using diagonal variance scaling.">EllipticScaler</a> with specified mean and standard deviations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mean</td><td>Pre-computed mean vector \( \boldsymbol{\mu} \). </td></tr>
+    <tr><td class="paramname">std</td><td>Pre-computed standard deviation vector \( \boldsymbol{\sigma} \). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -308,7 +331,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Fits the mean and standard deviation of each coordinate of the training data. </p>
+<p>Learns the scaling parameters (e.g., mean, variance) from the training data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a034490dc8b97ab47a73ca3ffb3b6db66">cmp::scaler::Scaler</a>.</p>
 
@@ -337,7 +366,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Fits the scaler and returns standardized data. </p>
+<p>Fits the scaling parameters to the data and subsequently transforms the data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The transformed dataset matrix \( Y \). </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a51d8c5c552334f8a92975516acb811f4">cmp::scaler::Scaler</a>.</p>
 
@@ -366,6 +402,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves the intercept vector \( \mu \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The intercept vector. </dd></dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a323c36327efa37536bed9cebf0f6c04f">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -392,6 +431,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Retrieves the scaling matrix \( S \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The scaling matrix. </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a4cebbeb69fa4221279ebd6c9f91f8817">cmp::scaler::Scaler</a>.</p>
 
@@ -420,7 +462,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Unstandardizes the input data vector back to physical space. </p>
+<p>Reconstructs the data from the scaled latent space back to physical space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( y \) in the scaled space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The unscaled physical data vector \( x \). </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a34c7739c949f4603ec1a430daf405dec">cmp::scaler::Scaler</a>.</p>
 
@@ -499,7 +548,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Explicitly sets the mean parameters. </p>
+<p>Explicitly overrides the mean parameters \( \boldsymbol{\mu} \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mean</td><td>The new mean vector. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -526,7 +581,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Explicitly sets the standard deviation scaling parameters. </p>
+<p>Explicitly overrides the standard deviation parameters \( \boldsymbol{\sigma} \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">std</td><td>The new standard deviation vector. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -553,7 +614,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Standardizes the input data vector. </p>
+<p>Transforms the input data from physical space to the scaled latent space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( x \) representing a single data point in physical space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The scaled data vector \( y \). </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#ada894025d92d10d357205a79ffe5f8f1">cmp::scaler::Scaler</a>.</p>
 
@@ -580,6 +648,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The empirical mean vector \( \boldsymbol{\mu} \) of the training dataset. </p>
+
 </div>
 </div>
 <a id="ad92d211a4816b5c773c2f80f20624106" name="ad92d211a4816b5c773c2f80f20624106"></a>
@@ -601,6 +671,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The standard deviation vector \( \boldsymbol{\sigma} \) for each feature. </p>
 
 </div>
 </div>

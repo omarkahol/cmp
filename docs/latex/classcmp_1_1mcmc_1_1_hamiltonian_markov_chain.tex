@@ -50,43 +50,43 @@ void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a3a7d3a0d068
 \begin{DoxyCompactItemize}
 \item 
 std\+::default\+\_\+random\+\_\+engine \& \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9433929535384eaf8d879f06198678ef}{rng\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Reference to the random number generator. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_aeb45afbfb34e0e0783da49ce6f5711e3}{current\+Position\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em The current position (parameter state). \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6e7974154d7deedd607a898fbd5b4af}{current\+Momentum\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em The current momentum auxiliary variable. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a10d0a4b6d3deb835fef0abb18fc2ac0a}{current\+Score\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em The current log-\/posterior score value. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae9a67b76f48648d68de5f2d1991ff16c}{dim\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Dimension of the parameter space. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6606e6ee4f141184afa95f06d193581e}{mean\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Running mean of the parameter samples. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a692d89b5bf5307fc134871c17ef6f224}{cov\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Running covariance of the parameter samples. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a1deca95c400ea68742b25c8d96acd9c5}{epsilon\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Step size for the leapfrog integrator. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae42059e3094a42bda64983c0ce92885f}{n\+Steps\+\_\+}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em Number of steps taken in the Markov chain. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a24b9f0232a8af231e8638d0b5e351830}{sum\+Acceptance\+Prob\+\_\+}} = 0.\+0
-\item 
+\begin{DoxyCompactList}\small\item\em Sum of acceptance probabilities for step size adaptation. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a94a2bed78a8eb68dccfff9599b99eaf4}{mu\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Target value for log step size. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a825c68a3281e0ab8b192c3f39d94f8b7}{gamma\+\_\+}} = 0.\+05
-\item 
+\begin{DoxyCompactList}\small\item\em Adaptation shrinkage parameter. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af32bfb3697622a5953ac2f9ce5436cb6}{t0\+\_\+}} = 10.\+0
-\item 
+\begin{DoxyCompactList}\small\item\em Adaptation stabilization parameter. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6eeca49e3a223aa7ed56e4d70c7e8842}{kappa\+\_\+}} = 0.\+75
-\item 
+\begin{DoxyCompactList}\small\item\em Adaptation exponential decay parameter. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6262a8b62922965ddc6d3967321451e}{H\+\_\+bar\+\_\+}} = 0.\+0
-\item 
+\begin{DoxyCompactList}\small\item\em Running average of difference between target and accept probability. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a831b361d5171f5fbad671d387300e55a}{log\+\_\+epsilon\+\_\+bar\+\_\+}} = 0.\+0
-\item 
+\begin{DoxyCompactList}\small\item\em Log of the adapted step size. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_abdde49bfe21cfe2aa3135ac9733019da}{target\+\_\+accept\+\_\+}} = 0.\+80
-\item 
+\begin{DoxyCompactList}\small\item\em Target acceptance probability. \end{DoxyCompactList}\item 
 std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ac7200ccada6a4c5935ed4d7d1a6410eb}{dist\+N\+\_\+}} \{0.\+0, 1.\+0\}
-\item 
+\begin{DoxyCompactList}\small\item\em Normal generator helper for momentum initialization. \end{DoxyCompactList}\item 
 std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a385c4c15310768956a8942006e872008}{dist\+U\+\_\+}} \{0.\+0, 1.\+0\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Uniform generator helper for transition accept checks. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -274,11 +274,19 @@ Updates the mean and covariance of the samples based on the current position.
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a692d89b5bf5307fc134871c17ef6f224} 
 Eigen\+::\+Matrix\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::cov\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Running covariance of the parameter samples. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6e7974154d7deedd607a898fbd5b4af}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!currentMomentum\_@{currentMomentum\_}}
 \index{currentMomentum\_@{currentMomentum\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{currentMomentum\_}{currentMomentum\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6e7974154d7deedd607a898fbd5b4af} 
 Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::current\+Momentum\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current momentum auxiliary variable. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_aeb45afbfb34e0e0783da49ce6f5711e3}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!currentPosition\_@{currentPosition\_}}
 \index{currentPosition\_@{currentPosition\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
@@ -286,11 +294,19 @@ Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::current\+Mo
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_aeb45afbfb34e0e0783da49ce6f5711e3} 
 Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::current\+Position\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+The current position (parameter state). 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a10d0a4b6d3deb835fef0abb18fc2ac0a}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!currentScore\_@{currentScore\_}}
 \index{currentScore\_@{currentScore\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{currentScore\_}{currentScore\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a10d0a4b6d3deb835fef0abb18fc2ac0a} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::current\+Score\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current log-\/posterior score value. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae9a67b76f48648d68de5f2d1991ff16c}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!dim\_@{dim\_}}
 \index{dim\_@{dim\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
@@ -298,11 +314,19 @@ double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::current\+Score\+\_\+\hspac
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae9a67b76f48648d68de5f2d1991ff16c} 
 size\+\_\+t cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Dimension of the parameter space. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ac7200ccada6a4c5935ed4d7d1a6410eb}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!distN\_@{distN\_}}
 \index{distN\_@{distN\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{distN\_}{distN\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ac7200ccada6a4c5935ed4d7d1a6410eb} 
 std\+::normal\+\_\+distribution$<$double$>$ cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::dist\+N\+\_\+ \{0.\+0, 1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Normal generator helper for momentum initialization. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a385c4c15310768956a8942006e872008}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!distU\_@{distU\_}}
 \index{distU\_@{distU\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
@@ -310,11 +334,19 @@ std\+::normal\+\_\+distribution$<$double$>$ cmp\+::mcmc\+::\+Hamiltonian\+Markov
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a385c4c15310768956a8942006e872008} 
 std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::dist\+U\+\_\+ \{0.\+0, 1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Uniform generator helper for transition accept checks. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a1deca95c400ea68742b25c8d96acd9c5}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!epsilon\_@{epsilon\_}}
 \index{epsilon\_@{epsilon\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{epsilon\_}{epsilon\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a1deca95c400ea68742b25c8d96acd9c5} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::epsilon\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Step size for the leapfrog integrator. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a825c68a3281e0ab8b192c3f39d94f8b7}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!gamma\_@{gamma\_}}
 \index{gamma\_@{gamma\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
@@ -322,11 +354,19 @@ double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::epsilon\+\_\+\hspace{0.3cm
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a825c68a3281e0ab8b192c3f39d94f8b7} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::gamma\+\_\+ = 0.\+05\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Adaptation shrinkage parameter. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6262a8b62922965ddc6d3967321451e}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!H\_bar\_@{H\_bar\_}}
 \index{H\_bar\_@{H\_bar\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{H\_bar\_}{H\_bar\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ab6262a8b62922965ddc6d3967321451e} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+H\+\_\+bar\+\_\+ = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Running average of difference between target and accept probability. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6eeca49e3a223aa7ed56e4d70c7e8842}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!kappa\_@{kappa\_}}
 \index{kappa\_@{kappa\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
@@ -334,11 +374,19 @@ double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::\+H\+\_\+bar\+\_\+ = 0.\+0
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6eeca49e3a223aa7ed56e4d70c7e8842} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::kappa\+\_\+ = 0.\+75\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Adaptation exponential decay parameter. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a831b361d5171f5fbad671d387300e55a}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!log\_epsilon\_bar\_@{log\_epsilon\_bar\_}}
 \index{log\_epsilon\_bar\_@{log\_epsilon\_bar\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{log\_epsilon\_bar\_}{log\_epsilon\_bar\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a831b361d5171f5fbad671d387300e55a} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::log\+\_\+epsilon\+\_\+bar\+\_\+ = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Log of the adapted step size. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6606e6ee4f141184afa95f06d193581e}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!mean\_@{mean\_}}
 \index{mean\_@{mean\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
@@ -346,11 +394,19 @@ double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::log\+\_\+epsilon\+\_\+bar\
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a6606e6ee4f141184afa95f06d193581e} 
 Eigen\+::\+Vector\+Xd cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Running mean of the parameter samples. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a94a2bed78a8eb68dccfff9599b99eaf4}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!mu\_@{mu\_}}
 \index{mu\_@{mu\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{mu\_}{mu\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a94a2bed78a8eb68dccfff9599b99eaf4} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::mu\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Target value for log step size. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae42059e3094a42bda64983c0ce92885f}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!nSteps\_@{nSteps\_}}
 \index{nSteps\_@{nSteps\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
@@ -358,11 +414,19 @@ double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::mu\+\_\+\hspace{0.3cm}{\tt
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_ae42059e3094a42bda64983c0ce92885f} 
 size\+\_\+t cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::n\+Steps\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Number of steps taken in the Markov chain. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9433929535384eaf8d879f06198678ef}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!rng\_@{rng\_}}
 \index{rng\_@{rng\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a9433929535384eaf8d879f06198678ef} 
 std\+::default\+\_\+random\+\_\+engine\& cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the random number generator. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a24b9f0232a8af231e8638d0b5e351830}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!sumAcceptanceProb\_@{sumAcceptanceProb\_}}
 \index{sumAcceptanceProb\_@{sumAcceptanceProb\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
@@ -370,17 +434,29 @@ std\+::default\+\_\+random\+\_\+engine\& cmp\+::mcmc\+::\+Hamiltonian\+Markov\+C
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_a24b9f0232a8af231e8638d0b5e351830} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::sum\+Acceptance\+Prob\+\_\+ = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Sum of acceptance probabilities for step size adaptation. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af32bfb3697622a5953ac2f9ce5436cb6}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!t0\_@{t0\_}}
 \index{t0\_@{t0\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{t0\_}{t0\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_af32bfb3697622a5953ac2f9ce5436cb6} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::t0\+\_\+ = 10.\+0\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Adaptation stabilization parameter. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_abdde49bfe21cfe2aa3135ac9733019da}\index{cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}!target\_accept\_@{target\_accept\_}}
 \index{target\_accept\_@{target\_accept\_}!cmp::mcmc::HamiltonianMarkovChain@{cmp::mcmc::HamiltonianMarkovChain}}
 \doxysubsubsection{\texorpdfstring{target\_accept\_}{target\_accept\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_hamiltonian_markov_chain_abdde49bfe21cfe2aa3135ac9733019da} 
 double cmp\+::mcmc\+::\+Hamiltonian\+Markov\+Chain\+::target\+\_\+accept\+\_\+ = 0.\+80\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Target acceptance probability. 
 
 
 

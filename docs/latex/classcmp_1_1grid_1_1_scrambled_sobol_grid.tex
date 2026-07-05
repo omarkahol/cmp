@@ -42,15 +42,15 @@ static uint64\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_
 \begin{DoxyCompactItemize}
 \item 
 boost\+::random\+::sobol \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57}{gen\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Boost Sobol sequence generator. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}{dimension\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of dimensions. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2}{lower\+Bound\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Lower bounds vector. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d}{upper\+Bound\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Upper bounds vector. \end{DoxyCompactList}\item 
 std\+::vector$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b}{dim\+\_\+seeds\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Seeds used to initialize scrambling for each coordinate dimension. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -130,11 +130,19 @@ uint64\+\_\+t cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::owen\+\_\+scramble (\be
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_adecfa6922bbbf54d79ee0217d68b954b} 
 std\+::vector$<$uint64\+\_\+t$>$ cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::dim\+\_\+seeds\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Seeds used to initialize scrambling for each coordinate dimension. 
+
 \Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!dimension\_@{dimension\_}}
 \index{dimension\_@{dimension\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
 \doxysubsubsection{\texorpdfstring{dimension\_}{dimension\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa8255842a1e5f3e82d7a8bf2beb35e98} 
 size\+\_\+t cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of dimensions. 
 
 \Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!gen\_@{gen\_}}
 \index{gen\_@{gen\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
@@ -142,17 +150,29 @@ size\+\_\+t cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::dimension\+\_\+\hspace{0.
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_a8dfb883003f429eb6c0839078c151b57} 
 boost\+::random\+::sobol cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::gen\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Boost Sobol sequence generator. 
+
 \Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!lowerBound\_@{lowerBound\_}}
 \index{lowerBound\_@{lowerBound\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
 \doxysubsubsection{\texorpdfstring{lowerBound\_}{lowerBound\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_a1a18be812a0b002864e33564444755e2} 
 Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Lower bounds vector. 
+
 \Hypertarget{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d}\index{cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}!upperBound\_@{upperBound\_}}
 \index{upperBound\_@{upperBound\_}!cmp::grid::ScrambledSobolGrid@{cmp::grid::ScrambledSobolGrid}}
 \doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_scrambled_sobol_grid_aa6bbd608195f2b64b2eba83a1b8d4f2d} 
 Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Scrambled\+Sobol\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Upper bounds vector. 
 
 
 

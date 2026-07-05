@@ -35,15 +35,15 @@ virtual \mbox{\hyperlink{classcmp_1_1grid_1_1_grid_a810aba7babdddc7cd156ef087741
 \begin{DoxyCompactItemize}
 \item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921}{dimension\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of dimensions. \end{DoxyCompactList}\item 
 std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286}{rng\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pseudo-\/random number generator. \end{DoxyCompactList}\item 
 std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553}{dist\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Uniform distribution range \mbox{[}0, 1\mbox{]}. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}{lower\+Bound\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Lower bounds vector. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707}{upper\+Bound\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Upper bounds vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -133,11 +133,19 @@ Evaluates a single random Monte Carlo sample.
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a6b96407ab3aab4f0350546bc48eb0921} 
 size\+\_\+t cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::dimension\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Number of dimensions. 
+
 \Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!dist\_@{dist\_}}
 \index{dist\_@{dist\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
 \doxysubsubsection{\texorpdfstring{dist\_}{dist\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a9275d1f9754db7e9c54ce77c553e7553} 
 std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::dist\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Uniform distribution range \mbox{[}0, 1\mbox{]}. 
 
 \Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!lowerBound\_@{lowerBound\_}}
 \index{lowerBound\_@{lowerBound\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
@@ -145,17 +153,29 @@ std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ cmp\+::grid\+::\+Monte\+C
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_afac9e4b42b7bc4770b395db54b88c6d1} 
 Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::lower\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Lower bounds vector. 
+
 \Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!rng\_@{rng\_}}
 \index{rng\_@{rng\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
 \doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a61d135a34c541983f09d4737fb2d9286} 
 std\+::default\+\_\+random\+\_\+engine cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Pseudo-\/random number generator. 
+
 \Hypertarget{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707}\index{cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}!upperBound\_@{upperBound\_}}
 \index{upperBound\_@{upperBound\_}!cmp::grid::MonteCarloGrid@{cmp::grid::MonteCarloGrid}}
 \doxysubsubsection{\texorpdfstring{upperBound\_}{upperBound\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1grid_1_1_monte_carlo_grid_a3d06d1864af6a7c323ffba12c60dd707} 
 Eigen\+::\+Vector\+Xd cmp\+::grid\+::\+Monte\+Carlo\+Grid\+::upper\+Bound\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Upper bounds vector. 
 
 
 

@@ -147,12 +147,19 @@ Static Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aa03ae298fc1088aa3c64ee09e740d40b" id="r_aa03ae298fc1088aa3c64ee09e740d40b"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa03ae298fc1088aa3c64ee09e740d40b">mean_</a></td></tr>
+<tr class="memdesc:aa03ae298fc1088aa3c64ee09e740d40b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean parameter vector.  <br /></td></tr>
 <tr class="memitem:afbe6fa7a9fb4229fb40ee101c8cd67b1" id="r_afbe6fa7a9fb4229fb40ee101c8cd67b1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbe6fa7a9fb4229fb40ee101c8cd67b1">kappa_</a></td></tr>
+<tr class="memdesc:afbe6fa7a9fb4229fb40ee101c8cd67b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Degrees of freedom scaling parameter kappa.  <br /></td></tr>
 <tr class="memitem:a9a50de594f7e0e2abfadaa72545e7c0e" id="r_a9a50de594f7e0e2abfadaa72545e7c0e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a50de594f7e0e2abfadaa72545e7c0e">nu_</a></td></tr>
+<tr class="memdesc:a9a50de594f7e0e2abfadaa72545e7c0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Degrees of freedom parameter nu.  <br /></td></tr>
 <tr class="memitem:af9eb05b79eef4551525cbb228ea3746c" id="r_af9eb05b79eef4551525cbb228ea3746c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9eb05b79eef4551525cbb228ea3746c">dim_</a></td></tr>
+<tr class="memdesc:af9eb05b79eef4551525cbb228ea3746c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimensionality of the parameter space.  <br /></td></tr>
 <tr class="memitem:a80fa02dccdbdf55cf47577e607e41e6b" id="r_a80fa02dccdbdf55cf47577e607e41e6b"><td class="memItemLeft" align="right" valign="top">Eigen::LDLT&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80fa02dccdbdf55cf47577e607e41e6b">covLDLT_</a></td></tr>
+<tr class="memdesc:a80fa02dccdbdf55cf47577e607e41e6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">LDLT decomposition of the scaling matrix.  <br /></td></tr>
 <tr class="memitem:a14d36c7b29e7239ce0612edbcd4fdfba" id="r_a14d36c7b29e7239ce0612edbcd4fdfba"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14d36c7b29e7239ce0612edbcd4fdfba">logDeterminant_</a></td></tr>
+<tr class="memdesc:a14d36c7b29e7239ce0612edbcd4fdfba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log-determinant of the scale covariance matrix.  <br /></td></tr>
 <tr class="memitem:a8d1444869325837bce26a061c5cd3172" id="r_a8d1444869325837bce26a061c5cd3172"><td class="memItemLeft" align="right" valign="top">std::normal_distribution&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d1444869325837bce26a061c5cd3172">distN_</a> {0., 1.}</td></tr>
+<tr class="memdesc:a8d1444869325837bce26a061c5cd3172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal distribution helper for coordinate sampling.  <br /></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8a882b2269d1790117fa90cc002bc955" name="a8a882b2269d1790117fa90cc002bc955"></a>
@@ -545,6 +552,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>LDLT decomposition of the scaling matrix. </p>
+
 </div>
 </div>
 <a id="af9eb05b79eef4551525cbb228ea3746c" name="af9eb05b79eef4551525cbb228ea3746c"></a>
@@ -566,6 +575,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Dimensionality of the parameter space. </p>
 
 </div>
 </div>
@@ -589,6 +600,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Normal distribution helper for coordinate sampling. </p>
+
 </div>
 </div>
 <a id="afbe6fa7a9fb4229fb40ee101c8cd67b1" name="afbe6fa7a9fb4229fb40ee101c8cd67b1"></a>
@@ -610,6 +623,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Degrees of freedom scaling parameter kappa. </p>
 
 </div>
 </div>
@@ -633,6 +648,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Log-determinant of the scale covariance matrix. </p>
+
 </div>
 </div>
 <a id="aa03ae298fc1088aa3c64ee09e740d40b" name="aa03ae298fc1088aa3c64ee09e740d40b"></a>
@@ -655,6 +672,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Mean parameter vector. </p>
+
 </div>
 </div>
 <a id="a9a50de594f7e0e2abfadaa72545e7c0e" name="a9a50de594f7e0e2abfadaa72545e7c0e"></a>
@@ -676,6 +695,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Degrees of freedom parameter nu. </p>
 
 </div>
 </div>

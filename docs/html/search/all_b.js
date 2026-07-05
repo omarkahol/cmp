@@ -13,6 +13,7 @@ var searchData=
   ['kernels_10',['Kernels',['../group__probability.html',1,'Probability Distributions, Priors, &amp; Kernels'],['../index.html#probability_dist',1,'Probability Distributions, Priors, &amp; Kernels']]],
   ['kfold_11',['KFold',['../classcmp_1_1statistics_1_1_k_fold.html',1,'cmp::statistics::KFold'],['../classcmp_1_1statistics_1_1_k_fold.html#a1f3735ac2d7d52a59a097e4840c496f0',1,'cmp::statistics::KFold::KFold(Eigen::Index n_splits, Eigen::Index n_obs, bool shuffle=false, unsigned int random_state=42)']]],
   ['kfolditerator_12',['KFoldIterator',['../classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html',1,'cmp::statistics::KFold::KFoldIterator'],['../classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html#a6e3a816cd0afe3290d4b44b678ddebf1',1,'cmp::statistics::KFold::KFoldIterator::KFoldIterator()']]],
-  ['knearestvalue_5f_13',['kNearestValue_',['../classcmp_1_1classifier_1_1_k_n_n.html#a78e7e9dc0ee2fa074c4f8129be6e5a55',1,'cmp::classifier::KNN']]],
-  ['knn_14',['KNN',['../classcmp_1_1classifier_1_1_k_n_n.html',1,'cmp::classifier']]]
+  ['khinchin_20theorem_13',['Mathematical Formulation (Wiener-Khinchin Theorem)',['../namespacecmp_1_1statistics.html#autotoc_md30',1,'']]],
+  ['knearestvalue_5f_14',['kNearestValue_',['../classcmp_1_1classifier_1_1_k_n_n.html#a78e7e9dc0ee2fa074c4f8129be6e5a55',1,'cmp::classifier::KNN']]],
+  ['knn_15',['KNN',['../classcmp_1_1classifier_1_1_k_n_n.html',1,'cmp::classifier']]]
 ];

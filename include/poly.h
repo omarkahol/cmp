@@ -244,7 +244,7 @@ struct LaguerreBasis {
 class MultiIndex {
   public:
     using Index = std::vector<size_t>;
-    std::vector<Index> indices;
+    std::vector<Index> indices; ///< Multi-index set matrix (each row corresponds to degree exponents vector).
 
     MultiIndex() = default;
     void set(size_t dimension, size_t totalDegree, double q = 1.0);
@@ -300,16 +300,16 @@ class MultiIndex {
 template <typename Basis>
 class PolynomialExpansion {
   private:
-    MultiIndex multiIndex_;
-    Eigen::VectorXd coefficients_;
-    Eigen::MatrixXd normalMatrixInverse_;
-    Eigen::MatrixXd xObs_;
-    Eigen::VectorXd yObs_;
-    double residualVariance_ = 0.0;
+    MultiIndex multiIndex_;               ///< Multi-index set defining the active polynomial terms.
+    Eigen::VectorXd coefficients_;        ///< Estimated expansion coefficients vector.
+    Eigen::MatrixXd normalMatrixInverse_; ///< Precomputed inverse normal matrix (A^T A)^-1.
+    Eigen::MatrixXd xObs_;                 ///< Training input data in canonical space.
+    Eigen::VectorXd yObs_;                 ///< Training target response values.
+    double residualVariance_ = 0.0;       ///< Running residual variance.
 
     // Distribution parameters for each dimension
-    Eigen::VectorXd p1_;
-    Eigen::VectorXd p2_;
+    Eigen::VectorXd p1_;                  ///< Mapping boundary lower limits/means.
+    Eigen::VectorXd p2_;                  ///< Mapping boundary upper limits/std devs.
 
     // Vectorized evaluation of a block of data
     Eigen::MatrixXd computeDesignMatrix(const Eigen::Ref<const Eigen::MatrixXd>& X) const {

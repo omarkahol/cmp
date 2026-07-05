@@ -34,17 +34,17 @@ namespace cmp::density {
  */
 class KDE {
   private:
-    std::shared_ptr<kernel::Bandwidth> bandwidth_{nullptr};
-    std::shared_ptr<kernel::Kernel> kernel_{nullptr};
+    std::shared_ptr<kernel::Bandwidth> bandwidth_{nullptr}; ///< Bandwidth matrix of the kernel.
+    std::shared_ptr<kernel::Kernel> kernel_{nullptr};       ///< The density kernel function.
 
     // Owning or non-owning data storage
-    Eigen::MatrixXd data_{0, 0};
-    std::optional<Eigen::Ref<const Eigen::MatrixXd>> pData_;
-    bool isOwning_{false};
+    Eigen::MatrixXd data_{0, 0};                             ///< Owning data storage.
+    std::optional<Eigen::Ref<const Eigen::MatrixXd>> pData_; ///< Non-owning reference wrapper to data.
+    bool isOwning_{false};                                   ///< Flag indicating whether the KDE owns the data.
 
     // Dimension and number of points
-    size_t dim_{0};
-    size_t nPoints_{0};
+    size_t dim_{0};                                          ///< Dimension of the dataset.
+    size_t nPoints_{0};                                      ///< Number of data points.
   public:
 
     /**

@@ -181,7 +181,7 @@ int main() {
     auto prior = cmp::prior::make(cmp::distribution::PowerLawDistribution(1.0, 1e-3), 0);
 
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-    gp.fit(x_obs, y_obs, lb, ub, cmp::gp::LOO_MSE, nlopt::LN_SBPLX, 1e-5, true, true, prior, {true, true, false});
+    gp.fit(x_obs, y_obs, lb, ub, cmp::gp::MLE, nlopt::LN_SBPLX, 1e-5, true, true, prior, {true, true, false});
     std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);

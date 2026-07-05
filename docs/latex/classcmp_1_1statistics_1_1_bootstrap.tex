@@ -13,42 +13,45 @@
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a682182ddb9dad7bb853dd282d9349724}{Bootstrap}} (size\+\_\+t n\+\_\+obs, size\+\_\+t n\+\_\+obs\+\_\+resample, bool with\+\_\+replacement=true, unsigned int random\+\_\+state=42)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classcmp_1_1statistics_1_1_bootstrap}{Bootstrap} resampler. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a15f57d6e5ac54fda1bd261350f5d704e}{operator()}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Executes the bootstrap sampling process. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ac722afdf40aca3bdf48d9f1f297a1fae}{n\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Original number of observations $ N $. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a0cd3268462c69be1f2806e17c4b4f578}{n\+Obs\+Resample\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Target number of observations to resample $ M $. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ab4a629cfd6000b34f020f062f7ab3b69}{rng\+State\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Seed for the random number generator. \end{DoxyCompactList}\item 
 std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_ad5619a6b284966354830bab2bf8c659c}{rng\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Random number engine. \end{DoxyCompactList}\item 
 std\+::uniform\+\_\+int\+\_\+distribution$<$ size\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a853b890abc3f5abfab071b86ac65ae5f}{dist\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Uniform integer distribution for sampling with replacement. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a8e26fcf22880ce21fcca240a18730e8c}{indices\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Internal array storing the base indices for sampling. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap_a1fddd44e98592e4675a45b81126f4580}{with\+Replacement\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether to sample with replacement. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \doxylink{classcmp_1_1statistics_1_1_bootstrap}{Bootstrap} resampling index generator. 
 
-Mathematical Formulation Draws a random sample $\mathcal{D}^*$ of size $M$ from a dataset $\mathcal{D}$ of size $N$.
-\begin{DoxyItemize}
-\item If with replacement\+:   \[  P(x_i^* = x_j) = \frac{1}{N} \quad \forall i \in \{1,\dots,M\}, \ j \in \{1,\dots,N\}
-\]
-\item If without replacement\+:   \[  P(x_i^* = x_j) = \frac{1}{N - i + 1}
-\] subject to all selections being distinct.
-\end{DoxyItemize}
 
-Implementation Algorithm
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\hypertarget{classcmp_1_1statistics_1_1_bootstrap_autotoc_md25}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation}{Mathematical Formulation}}\label{classcmp_1_1statistics_1_1_bootstrap_autotoc_md25}
+Draws a random sample $\mathcal{D}^*$ of size $M$ from a dataset $\mathcal{D}$ of size $N$.
+\begin{DoxyItemize}
+\item If with replacement\+:   \[P(x_i^* = x_j) = \frac{1}{N} \quad \forall i \in \{1,\dots,M\}, \ j \in \{1,\dots,N\}
+\]
+\item If without replacement\+:   \[P(x_i^* = x_j) = \frac{1}{N - i + 1}
+\] subject to all selections being distinct.
+\item \#\#\# Implementation Algorithm
+\end{DoxyItemize}
 \begin{DoxyEnumerate}
-\item If {\ttfamily with\+Replacement\+\_\+} is true, generates $M$ random integers in range $[0, N-1]$.
+\item If {\ttfamily with\+Replacement\+\_\+} is true, generates $M$ random integers uniformly distributed in the range $[0, N-1]$.
 \item If false, shuffles the index array using {\ttfamily std\+::shuffle} and extracts the first $M$ elements. 
 \end{DoxyEnumerate}
 
@@ -63,6 +66,26 @@ cmp\+::statistics\+::\+Bootstrap\+::\+Bootstrap (\begin{DoxyParamCaption}\item[{
 
 
 
+Constructor for the \doxylink{classcmp_1_1statistics_1_1_bootstrap}{Bootstrap} resampler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+obs} & Total number of original observations $ N $. \\
+\hline
+{\em n\+\_\+obs\+\_\+resample} & Number of samples to draw $ M $. \\
+\hline
+{\em with\+\_\+replacement} & Boolean flag indicating whether duplicates are allowed. \\
+\hline
+{\em random\+\_\+state} & Seed for the random number generator. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if invalid sizes are provided. \\
+\hline
+\end{DoxyExceptions}
+
+
 \label{doc-func-members}
 \Hypertarget{classcmp_1_1statistics_1_1_bootstrap_doc-func-members}
 \doxysubsection{Member Function Documentation}
@@ -74,6 +97,13 @@ cmp\+::statistics\+::\+Bootstrap\+::\+Bootstrap (\begin{DoxyParamCaption}\item[{
 
 
 
+Executes the bootstrap sampling process. 
+
+\begin{DoxyReturn}{Returns}
+A vector containing the $ M $ randomly sampled indices. 
+\end{DoxyReturn}
+
+
 \label{doc-variable-members}
 \Hypertarget{classcmp_1_1statistics_1_1_bootstrap_doc-variable-members}
 \doxysubsection{Member Data Documentation}
@@ -83,11 +113,19 @@ cmp\+::statistics\+::\+Bootstrap\+::\+Bootstrap (\begin{DoxyParamCaption}\item[{
 {\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_bootstrap_a853b890abc3f5abfab071b86ac65ae5f} 
 std\+::uniform\+\_\+int\+\_\+distribution$<$size\+\_\+t$>$ cmp\+::statistics\+::\+Bootstrap\+::dist\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Uniform integer distribution for sampling with replacement. 
+
 \Hypertarget{classcmp_1_1statistics_1_1_bootstrap_a8e26fcf22880ce21fcca240a18730e8c}\index{cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}!indices\_@{indices\_}}
 \index{indices\_@{indices\_}!cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}}
 \doxysubsubsection{\texorpdfstring{indices\_}{indices\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_bootstrap_a8e26fcf22880ce21fcca240a18730e8c} 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::statistics\+::\+Bootstrap\+::indices\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Internal array storing the base indices for sampling. 
 
 \Hypertarget{classcmp_1_1statistics_1_1_bootstrap_ac722afdf40aca3bdf48d9f1f297a1fae}\index{cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}!nObs\_@{nObs\_}}
 \index{nObs\_@{nObs\_}!cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}}
@@ -95,11 +133,19 @@ std\+::uniform\+\_\+int\+\_\+distribution$<$size\+\_\+t$>$ cmp\+::statistics\+::
 {\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_bootstrap_ac722afdf40aca3bdf48d9f1f297a1fae} 
 size\+\_\+t cmp\+::statistics\+::\+Bootstrap\+::n\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Original number of observations $ N $. 
+
 \Hypertarget{classcmp_1_1statistics_1_1_bootstrap_a0cd3268462c69be1f2806e17c4b4f578}\index{cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}!nObsResample\_@{nObsResample\_}}
 \index{nObsResample\_@{nObsResample\_}!cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}}
 \doxysubsubsection{\texorpdfstring{nObsResample\_}{nObsResample\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_bootstrap_a0cd3268462c69be1f2806e17c4b4f578} 
 size\+\_\+t cmp\+::statistics\+::\+Bootstrap\+::n\+Obs\+Resample\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Target number of observations to resample $ M $. 
 
 \Hypertarget{classcmp_1_1statistics_1_1_bootstrap_ad5619a6b284966354830bab2bf8c659c}\index{cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}!rng\_@{rng\_}}
 \index{rng\_@{rng\_}!cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}}
@@ -107,17 +153,29 @@ size\+\_\+t cmp\+::statistics\+::\+Bootstrap\+::n\+Obs\+Resample\+\_\+\hspace{0.
 {\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_bootstrap_ad5619a6b284966354830bab2bf8c659c} 
 std\+::default\+\_\+random\+\_\+engine cmp\+::statistics\+::\+Bootstrap\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Random number engine. 
+
 \Hypertarget{classcmp_1_1statistics_1_1_bootstrap_ab4a629cfd6000b34f020f062f7ab3b69}\index{cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}!rngState\_@{rngState\_}}
 \index{rngState\_@{rngState\_}!cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}}
 \doxysubsubsection{\texorpdfstring{rngState\_}{rngState\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_bootstrap_ab4a629cfd6000b34f020f062f7ab3b69} 
 unsigned int cmp\+::statistics\+::\+Bootstrap\+::rng\+State\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Seed for the random number generator. 
+
 \Hypertarget{classcmp_1_1statistics_1_1_bootstrap_a1fddd44e98592e4675a45b81126f4580}\index{cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}!withReplacement\_@{withReplacement\_}}
 \index{withReplacement\_@{withReplacement\_}!cmp::statistics::Bootstrap@{cmp::statistics::Bootstrap}}
 \doxysubsubsection{\texorpdfstring{withReplacement\_}{withReplacement\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1statistics_1_1_bootstrap_a1fddd44e98592e4675a45b81126f4580} 
 bool cmp\+::statistics\+::\+Bootstrap\+::with\+Replacement\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating whether to sample with replacement. 
 
 
 

@@ -47,37 +47,37 @@ namespace cmp::mcmc {
  */
 class HamiltonianMarkovChain {
   private:
-    std::default_random_engine& rng_; // Reference to the random number generator
+    std::default_random_engine& rng_; ///< Reference to the random number generator.
 
-    Eigen::VectorXd currentPosition_; // The current position (parameters)
-    Eigen::VectorXd currentMomentum_; // The current momentum (auxiliary variable)
-    double currentScore_;             // The current Score (log-posterior) value
-    size_t dim_;                      // Dimension of the parameter space (not sure if this is needed)
+    Eigen::VectorXd currentPosition_; ///< The current position (parameter state).
+    Eigen::VectorXd currentMomentum_; ///< The current momentum auxiliary variable.
+    double currentScore_;             ///< The current log-posterior score value.
+    size_t dim_;                      ///< Dimension of the parameter space.
 
     // keep track of the mean and covariance of the samples
-    Eigen::VectorXd mean_;   // Sample-mean vector
-    Eigen::MatrixXd cov_;    // Sample-covariance matrix
+    Eigen::VectorXd mean_;            ///< Running mean of the parameter samples.
+    Eigen::MatrixXd cov_;             ///< Running covariance of the parameter samples.
 
-    double epsilon_;                  // Step size for the leapfrog integrator
+    double epsilon_;                  ///< Step size for the leapfrog integrator.
 
-    size_t nSteps_ = 0;                   // Number of steps taken in the Markov chain
-    double sumAcceptanceProb_ = 0.0;      // Sum of acceptance probabilities for adaptation
+    size_t nSteps_ = 0;               ///< Number of steps taken in the Markov chain.
+    double sumAcceptanceProb_ = 0.0;  ///< Sum of acceptance probabilities for step size adaptation.
 
     // Dual Averaging parameters for step size adaptation
-    double mu_;
-    double gamma_ = 0.05;
-    double t0_ = 10.0;
-    double kappa_ = 0.75;
+    double mu_;                       ///< Target value for log step size.
+    double gamma_ = 0.05;             ///< Adaptation shrinkage parameter.
+    double t0_ = 10.0;                ///< Adaptation stabilization parameter.
+    double kappa_ = 0.75;             ///< Adaptation exponential decay parameter.
 
     // Dual Averaging State Trackers
-    double H_bar_ = 0.0;
-    double log_epsilon_bar_ = 0.0;
-    double target_accept_ = 0.80; // This should be set by the user, but we can provide a default value
+    double H_bar_ = 0.0;              ///< Running average of difference between target and accept probability.
+    double log_epsilon_bar_ = 0.0;    ///< Log of the adapted step size.
+    double target_accept_ = 0.80;     ///< Target acceptance probability.
 
 
     // Proposal distributions for momentum and uniform random numbers
-    std::normal_distribution<double> distN_{0.0, 1.0};
-    std::uniform_real_distribution<double> distU_{0.0, 1.0};
+    std::normal_distribution<double> distN_{0.0, 1.0};      ///< Normal generator helper for momentum initialization.
+    std::uniform_real_distribution<double> distU_{0.0, 1.0}; ///< Uniform generator helper for transition accept checks.
 
 
     /**
@@ -104,19 +104,19 @@ class HamiltonianMarkovChain {
      * n_alpha -> Number of valid points for acceptance probability
      */
     struct TreeState {
-        Eigen::VectorXd q_minus;
-        Eigen::VectorXd p_minus;
-        Eigen::VectorXd grad_minus;
+        Eigen::VectorXd q_minus;    ///< Position at the leftmost leaf.
+        Eigen::VectorXd p_minus;    ///< Momentum at the leftmost leaf.
+        Eigen::VectorXd grad_minus; ///< Gradient at the leftmost leaf.
 
-        Eigen::VectorXd q_plus;
-        Eigen::VectorXd p_plus;
-        Eigen::VectorXd grad_plus;
+        Eigen::VectorXd q_plus;     ///< Position at the rightmost leaf.
+        Eigen::VectorXd p_plus;     ///< Momentum at the rightmost leaf.
+        Eigen::VectorXd grad_plus;  ///< Gradient at the rightmost leaf.
 
-        Eigen::VectorXd q_prime;
-        size_t n;
-        int s;
-        double alpha;
-        size_t n_alpha;
+        Eigen::VectorXd q_prime;    ///< Proposed next sample position.
+        size_t n;                   ///< Number of valid states in the subtree.
+        int s;                      ///< Trajectory validity flag (0 = U-turn/divergence, 1 = valid).
+        double alpha;               ///< Accumulated acceptance probabilities in subtree.
+        size_t n_alpha;             ///< Number of states for calculating average acceptance probability.
     };
 
     /**

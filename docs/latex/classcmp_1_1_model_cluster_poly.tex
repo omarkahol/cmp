@@ -68,31 +68,31 @@ void \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ad94f74314b04b2f523ab66416
 \begin{DoxyCompactItemize}
 \item 
 std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}{rng\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pseudo-\/random number generator. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}{x\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Training input matrix of observations. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}{y\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Training target response vector. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}{n\+Clusters\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of active clusters. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}{n\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of training observations. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}{dim\+X\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Dimension of input features. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}{labels\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Cluster assignments label vector. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}{local\+Index\+Table\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Local coordinate lookup index mapping. \end{DoxyCompactList}\item 
 std\+::vector$<$ bool $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}{fit\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Cluster fit/convergence status flag vector. \end{DoxyCompactList}\item 
 std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a}{centroids\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Coordinates for each cluster\textquotesingle{}s centroid. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}{polynomials\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Polynomial expansions representing local models. \end{DoxyCompactList}\item 
 std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}{cluster\+Size\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of points assigned to each cluster. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}{gamma\+\_\+}} \{1.\+0\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Regularization blending parameter gamma. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -295,11 +295,19 @@ void cmp\+::\+Model\+Cluster\+Poly\+::update\+Model (\begin{DoxyParamCaption}\it
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ac9432914c697cecaabf865f65417862a} 
 std\+::vector$<$Eigen\+::\+Vector\+Xd$>$ cmp\+::\+Model\+Cluster\+Poly\+::centroids\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Coordinates for each cluster\textquotesingle{}s centroid. 
+
 \Hypertarget{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!clusterSize\_@{clusterSize\_}}
 \index{clusterSize\_@{clusterSize\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
 \doxysubsubsection{\texorpdfstring{clusterSize\_}{clusterSize\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a52681e36df8dd34c1bad6505d0202ede} 
 std\+::vector$<$size\+\_\+t$>$ cmp\+::\+Model\+Cluster\+Poly\+::cluster\+Size\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of points assigned to each cluster. 
 
 \Hypertarget{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!dimX\_@{dimX\_}}
 \index{dimX\_@{dimX\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
@@ -307,11 +315,19 @@ std\+::vector$<$size\+\_\+t$>$ cmp\+::\+Model\+Cluster\+Poly\+::cluster\+Size\+\
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a4c7df256d87df37cd110475c8e9e84e2} 
 size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::dim\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Dimension of input features. 
+
 \Hypertarget{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!fit\_@{fit\_}}
 \index{fit\_@{fit\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
 \doxysubsubsection{\texorpdfstring{fit\_}{fit\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_ac6d63548fe61a670f20b71dfda11acbe} 
 std\+::vector$<$bool$>$ cmp\+::\+Model\+Cluster\+Poly\+::fit\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cluster fit/convergence status flag vector. 
 
 \Hypertarget{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!gamma\_@{gamma\_}}
 \index{gamma\_@{gamma\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
@@ -319,11 +335,19 @@ std\+::vector$<$bool$>$ cmp\+::\+Model\+Cluster\+Poly\+::fit\+\_\+\hspace{0.3cm}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a1512f2a35af1c4db21eaa468710dbb47} 
 double cmp\+::\+Model\+Cluster\+Poly\+::gamma\+\_\+ \{1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Regularization blending parameter gamma. 
+
 \Hypertarget{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!labels\_@{labels\_}}
 \index{labels\_@{labels\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
 \doxysubsubsection{\texorpdfstring{labels\_}{labels\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_af3b9590f8f890281a0d472bd4cc84694} 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::\+Model\+Cluster\+Poly\+::labels\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cluster assignments label vector. 
 
 \Hypertarget{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!localIndexTable\_@{localIndexTable\_}}
 \index{localIndexTable\_@{localIndexTable\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
@@ -331,11 +355,19 @@ double cmp\+::\+Model\+Cluster\+Poly\+::gamma\+\_\+ \{1.\+0\}\hspace{0.3cm}{\ttf
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a888066ae866ed0658311810f7ac02fde} 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::\+Model\+Cluster\+Poly\+::local\+Index\+Table\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Local coordinate lookup index mapping. 
+
 \Hypertarget{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!nClusters\_@{nClusters\_}}
 \index{nClusters\_@{nClusters\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
 \doxysubsubsection{\texorpdfstring{nClusters\_}{nClusters\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a91bc16050571ac5f46e19f75eaf89e28} 
 size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::n\+Clusters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of active clusters. 
 
 \Hypertarget{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!nObs\_@{nObs\_}}
 \index{nObs\_@{nObs\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
@@ -343,11 +375,19 @@ size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::n\+Clusters\+\_\+\hspace{0.3cm}{\tt
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a405eddaf576b089bb30c955c4214d0a3} 
 size\+\_\+t cmp\+::\+Model\+Cluster\+Poly\+::n\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Number of training observations. 
+
 \Hypertarget{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!polynomials\_@{polynomials\_}}
 \index{polynomials\_@{polynomials\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
 \doxysubsubsection{\texorpdfstring{polynomials\_}{polynomials\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a13586824c2c9bfcd3ac71d7bf2c7cf74} 
 std\+::vector$<$\mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$>$\texorpdfstring{$\ast$}{*} cmp\+::\+Model\+Cluster\+Poly\+::polynomials\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Polynomial expansions representing local models. 
 
 \Hypertarget{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!rng\_@{rng\_}}
 \index{rng\_@{rng\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
@@ -355,17 +395,29 @@ std\+::vector$<$\mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Pol
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_aa8c9f315e4b8b800873d413dd05920a9} 
 std\+::default\+\_\+random\+\_\+engine cmp\+::\+Model\+Cluster\+Poly\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Pseudo-\/random number generator. 
+
 \Hypertarget{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!xObs\_@{xObs\_}}
 \index{xObs\_@{xObs\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
 \doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_a922497a8efdec854ab81773ef3a02d57} 
 Eigen\+::\+Matrix\+Xd cmp\+::\+Model\+Cluster\+Poly\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Training input matrix of observations. 
+
 \Hypertarget{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4}\index{cmp::ModelClusterPoly@{cmp::ModelClusterPoly}!yObs\_@{yObs\_}}
 \index{yObs\_@{yObs\_}!cmp::ModelClusterPoly@{cmp::ModelClusterPoly}}
 \doxysubsubsection{\texorpdfstring{yObs\_}{yObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_poly_aa93c790edcab953228b98ea550566bf4} 
 Eigen\+::\+Vector\+Xd cmp\+::\+Model\+Cluster\+Poly\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Training target response vector. 
 
 
 

@@ -46,8 +46,8 @@ namespace cmp {
 template <typename BasisType>
 class Quadrature1D {
   public:
-    Eigen::VectorXd nodes;
-    Eigen::VectorXd weights;
+    Eigen::VectorXd nodes;   ///< Vector containing the quadrature node points.
+    Eigen::VectorXd weights; ///< Vector containing the corresponding quadrature weights.
 
     Quadrature1D(int numPoints) {
         if(numPoints < 1) throw std::invalid_argument("Points must be >= 1");
@@ -107,8 +107,8 @@ class Quadrature1D {
 template <typename BasisType>
 class TensorIntegrator {
   public:
-    Eigen::MatrixXd gridNodes;
-    Eigen::VectorXd gridWeights;
+    Eigen::MatrixXd gridNodes;   ///< Matrix of joint tensor product quadrature nodes (totalPoints x dim).
+    Eigen::VectorXd gridWeights; ///< Vector of joint tensor product weights (totalPoints).
 
     TensorIntegrator(int dim, int pointsPerDim) {
         Quadrature1D<BasisType> gq1D(pointsPerDim);

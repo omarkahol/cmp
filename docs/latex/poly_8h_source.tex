@@ -190,7 +190,7 @@
 \DoxyCodeLine{00244\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_multi_index_abcb409743b315af0b37e32adb4e4b8e4}{MultiIndex}}\ \{}
 \DoxyCodeLine{00245\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcmp_1_1_multi_index_aa8c94cdc358addb844b3a4f2a6f16b57}{Index}}\ =\ std::vector<size\_t>;}
-\DoxyCodeLine{00247\ \ \ \ \ std::vector<Index>\ \mbox{\hyperlink{classcmp_1_1_multi_index_ad213eabc29c4f0ad221698fd735c36a6}{indices}};}
+\DoxyCodeLine{00247\ \ \ \ \ std::vector<Index>\ \mbox{\hyperlink{classcmp_1_1_multi_index_ad213eabc29c4f0ad221698fd735c36a6}{indices}};\ }
 \DoxyCodeLine{00248\ }
 \DoxyCodeLine{00249\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_multi_index_abcb409743b315af0b37e32adb4e4b8e4}{MultiIndex}}()\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1_multi_index_ae3852f478a1328638e7e501337e17374}{set}}(\textcolor{keywordtype}{size\_t}\ dimension,\ \textcolor{keywordtype}{size\_t}\ totalDegree,\ \textcolor{keywordtype}{double}\ q\ =\ 1.0);}
@@ -210,16 +210,16 @@
 \DoxyCodeLine{00300\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Basis>}
 \DoxyCodeLine{00301\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac832b21a877ab12b8394e6e74677a780}{PolynomialExpansion}}\ \{}
 \DoxyCodeLine{00302\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00303\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_multi_index}{MultiIndex}}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}};}
-\DoxyCodeLine{00304\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}};}
-\DoxyCodeLine{00305\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}};}
-\DoxyCodeLine{00306\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{xObs\_}};}
-\DoxyCodeLine{00307\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{yObs\_}};}
-\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ =\ 0.0;}
+\DoxyCodeLine{00303\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_multi_index}{MultiIndex}}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multiIndex\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00304\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\_}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00305\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normalMatrixInverse\_}};\ }
+\DoxyCodeLine{00306\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{xObs\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00307\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{yObs\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residualVariance\_}}\ =\ 0.0;\ \ \ \ \ \ \ }
 \DoxyCodeLine{00309\ }
 \DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{//\ Distribution\ parameters\ for\ each\ dimension}}
-\DoxyCodeLine{00311\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}};}
-\DoxyCodeLine{00312\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}};}
+\DoxyCodeLine{00311\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00312\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00313\ }
 \DoxyCodeLine{00314\ \ \ \ \ \textcolor{comment}{//\ Vectorized\ evaluation\ of\ a\ block\ of\ data}}
 \DoxyCodeLine{00315\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac9ef4c50866c08b2d4dc9eaa073c4308}{computeDesignMatrix}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\&\ X)\textcolor{keyword}{\ const\ }\{}

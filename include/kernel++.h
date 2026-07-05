@@ -55,8 +55,8 @@ class Bandwidth {
  */
 class IsotropicBandwidth : public Bandwidth {
   private:
-    double h_{1.0};
-    size_t dim_{1};
+    double h_{1.0};  ///< Bandwidth scalar parameter.
+    size_t dim_{1};  ///< Dimension of the input data.
   public:
     IsotropicBandwidth() = delete;
 
@@ -130,8 +130,8 @@ class IsotropicBandwidth : public Bandwidth {
  */
 class DiagonalBandwidth : public Bandwidth {
   private:
-    Eigen::VectorXd h_;
-    double det_;
+    Eigen::VectorXd h_; ///< Diagonal bandwidth parameters vector.
+    double det_;        ///< Precomputed determinant of the diagonal bandwidth matrix.
   public:
     DiagonalBandwidth() = delete;
 
@@ -197,9 +197,9 @@ class DiagonalBandwidth : public Bandwidth {
 class FullBandwidth : public Bandwidth {
 
   private:
-    Eigen::LLT<Eigen::MatrixXd> L_;
-    double det_;
-    size_t dim_;
+    Eigen::LLT<Eigen::MatrixXd> L_; ///< LDLT/Cholesky factor of the covariance scaling matrix.
+    double det_;                    ///< Precomputed determinant of the full bandwidth matrix.
+    size_t dim_;                    ///< Dimension of the input space.
 
   public:
     FullBandwidth() = delete;

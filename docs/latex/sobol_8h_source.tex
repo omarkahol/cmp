@@ -10,72 +10,80 @@
 \DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
 \DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{statistics_8h}{statistics.h}}>}}
 \DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{grid_8h}{grid.h}}>}}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1sobol}{cmp::sobol}}\ \{}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results}{SobolResults}}\ \{}
-\DoxyCodeLine{00025\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}};\ \ }
-\DoxyCodeLine{00026\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958}{totalOrder}};\ \ }
-\DoxyCodeLine{00027\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc}{secondOrder}};\ }
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_af380ed47412a2b4ab5bbf05748054eff}{getFirstOrder}}(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >=\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}.size())\ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}(i);}
-\DoxyCodeLine{00037\ \ \ \ \ \}}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a604527aa43fdac2b3431c5d67c61c4c9}{getTotalOrder}}(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >=\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958}{totalOrder}}.size())\ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958}{totalOrder}}(i);}
-\DoxyCodeLine{00047\ \ \ \ \ \}}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a6c5e9aba7c3a6d3123099d403ff4d09b}{getSecondOrder}}(\textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keywordtype}{size\_t}\ j)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc}{secondOrder}}.size()\ ==\ 0)\ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Second\ order\ Sobol\ indices\ were\ not\ computed."{}});}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >=\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}.size()\ ||\ j\ >=\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}.size())\ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ j)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Indices\ must\ be\ different\ for\ second\ order\ Sobol\ index."{}});}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >\ j)\ std::swap(i,\ j);}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ index\ =\ i\ *\ (2\ *\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}.size()\ -\/\ i\ -\/\ 1)\ /\ 2\ +\ (j\ -\/\ i\ -\/\ 1);}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc}{secondOrder}}(index);}
-\DoxyCodeLine{00062\ \ \ \ \ \}}
-\DoxyCodeLine{00063\ \};}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00099\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a9be7186d4df2ff478b11d051c5ad07a2}{SobolSaltelli}}\ \{}
-\DoxyCodeLine{00100\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{nObs\_}}\ =\ 0;}
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2}{nTotalObs\_}}\ =\ 0;}
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}\ =\ 0;}
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6}{secondOrder\_}}\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a9be7186d4df2ff478b11d051c5ad07a2}{SobolSaltelli}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a0d1150ad0fa2fe3e0e0dd0d5bd55713f}{SobolSaltelli}}(\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}},\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}},\ \textcolor{keywordtype}{bool}\ secondOrder\ =\ \textcolor{keyword}{false})}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{nObs\_}}(\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}}),\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}(\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}}),\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6}{secondOrder\_}}(secondOrder)\ \{}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2}{nTotalObs\_}}\ =\ (2\ +\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}\ +\ (\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6}{secondOrder\_}}\ ?\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}\ *\ (\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}\ -\/\ 1)\ /\ 2\ :\ 0))\ *\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{nObs\_}};}
-\DoxyCodeLine{00112\ \ \ \ \ \}}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1d89e3fef9b739fd60a29460c390af65}{nTotalObs}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2}{nTotalObs\_}};}
-\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1sobol}{cmp::sobol}}\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results}{SobolResults}}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958}{totalOrder}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc}{secondOrder}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_af380ed47412a2b4ab5bbf05748054eff}{getFirstOrder}}(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >=\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}.size())\ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}(i);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a604527aa43fdac2b3431c5d67c61c4c9}{getTotalOrder}}(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >=\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958}{totalOrder}}.size())\ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a2d24b9cb1860835721f51cc9a39c7958}{totalOrder}}(i);}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a6c5e9aba7c3a6d3123099d403ff4d09b}{getSecondOrder}}(\textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keywordtype}{size\_t}\ j)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc}{secondOrder}}.size()\ ==\ 0)\ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Second\ order\ Sobol\ indices\ were\ not\ computed."{}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >=\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}.size()\ ||\ j\ >=\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}.size())\ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Index\ out\ of\ range"{}});}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ j)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Indices\ must\ be\ different\ for\ second\ order\ Sobol\ index."{}});}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >\ j)\ std::swap(i,\ j);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ index\ =\ i\ *\ (2\ *\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_a819af42267e88eaa45b7d241d7165b06}{firstOrder}}.size()\ -\/\ i\ -\/\ 1)\ /\ 2\ +\ (j\ -\/\ i\ -\/\ 1);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results_ac39c321a06d381737e84dae7aaa3b2dc}{secondOrder}}(index);}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a9be7186d4df2ff478b11d051c5ad07a2}{SobolSaltelli}}\ \{}
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{nObs\_}}\ =\ 0;}
 \DoxyCodeLine{00120\ }
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}};}
-\DoxyCodeLine{00126\ \ \ \ \ \}}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{nObs\_}};}
-\DoxyCodeLine{00133\ \ \ \ \ \}}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00142\ \ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aa1e0a4d0c4dc274cd0274b5e6738576c}{evaluationGrid}}(\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}},\ std::shared\_ptr<cmp::grid::Grid>\ gridType,\ \textcolor{keywordtype}{bool}\ secondOrder\ =\ \textcolor{keyword}{false});}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00153\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a070c94f083e35cb70ed7c13ac499b1b4}{sliceSaltelliOutput}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&Y,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \&idx,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}},\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}},\ \textcolor{keywordtype}{bool}\ secondOrder);}
-\DoxyCodeLine{00154\ }
-\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results}{SobolResults}}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae9b84b14c727d54f274573dd5c3f8c02}{compute}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&Y);}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00169\ \ \ \ \ std::pair<SobolResults,\ SobolResults>\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a5499477ddc5bfcc20523a0c50663b719}{computeWithBootstrap}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&Y,\ \textcolor{keywordtype}{size\_t}\ nBootstrap,\ \textcolor{keywordtype}{size\_t}\ randomSeed\ =\ 42);}
-\DoxyCodeLine{00170\ }
-\DoxyCodeLine{00171\ \};}
-\DoxyCodeLine{00172\ \}}
-\DoxyCodeLine{00174\ }
-\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CMP\_SOBOL\_H}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2}{nTotalObs\_}}\ =\ 0;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}\ =\ 0;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6}{secondOrder\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a9be7186d4df2ff478b11d051c5ad07a2}{SobolSaltelli}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a0d1150ad0fa2fe3e0e0dd0d5bd55713f}{SobolSaltelli}}(\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}},\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}},\ \textcolor{keywordtype}{bool}\ secondOrder\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{nObs\_}}(\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}}),\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}(\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}}),\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6}{secondOrder\_}}(secondOrder)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2}{nTotalObs\_}}\ =\ (2\ +\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}\ +\ (\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6}{secondOrder\_}}\ ?\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}\ *\ (\mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}}\ -\/\ 1)\ /\ 2\ :\ 0))\ *\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{nObs\_}};}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1d89e3fef9b739fd60a29460c390af65}{nTotalObs}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2}{nTotalObs\_}};}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\_}};}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{nObs\_}};}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00176\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aa1e0a4d0c4dc274cd0274b5e6738576c}{evaluationGrid}}(\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}},\ std::shared\_ptr<cmp::grid::Grid>\ gridType,\ \textcolor{keywordtype}{bool}\ secondOrder\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00189\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a070c94f083e35cb70ed7c13ac499b1b4}{sliceSaltelliOutput}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&Y,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen::VectorXs}}\ \&idx,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{nObs}},\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}},\ \textcolor{keywordtype}{bool}\ secondOrder);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00196\ \ \ \ \ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results}{SobolResults}}\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae9b84b14c727d54f274573dd5c3f8c02}{compute}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&Y);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00208\ \ \ \ \ std::pair<SobolResults,\ SobolResults>\ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a5499477ddc5bfcc20523a0c50663b719}{computeWithBootstrap}}(\textcolor{keyword}{const}\ Eigen::VectorXd\ \&Y,\ \textcolor{keywordtype}{size\_t}\ nBootstrap,\ \textcolor{keywordtype}{size\_t}\ randomSeed\ =\ 42);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \};}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CMP\_SOBOL\_H}}
 
 \end{DoxyCode}

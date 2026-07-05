@@ -55,21 +55,21 @@ Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ac9ef4c
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcmp_1_1_multi_index}{Multi\+Index}} \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}{multi\+Index\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Multi-\/index set defining the active polynomial terms. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ae24a4698f0fe5643b9ff7dbc88c85889}{coefficients\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Estimated expansion coefficients vector. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}{normal\+Matrix\+Inverse\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Precomputed inverse normal matrix (A\texorpdfstring{$^\wedge$}{\string^}T A)\texorpdfstring{$^\wedge$}{\string^}-\/1. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}{x\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Training input data in canonical space. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}{y\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Training target response values. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}{residual\+Variance\+\_\+}} = 0.\+0
-\item 
+\begin{DoxyCompactList}\small\item\em Running residual variance. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}{p1\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Mapping boundary lower limits/means. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}{p2\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Mapping boundary upper limits/std devs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -248,12 +248,20 @@ void \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Ex
 template$<$typename Basis$>$ \\
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::coefficients\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Estimated expansion coefficients vector. 
+
 \Hypertarget{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!multiIndex\_@{multiIndex\_}}
 \index{multiIndex\_@{multiIndex\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
 \doxysubsubsection{\texorpdfstring{multiIndex\_}{multiIndex\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a997e9f42d0a4c3bcebbce703a841dbfa} 
 template$<$typename Basis$>$ \\
 \mbox{\hyperlink{classcmp_1_1_multi_index}{Multi\+Index}} \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::multi\+Index\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Multi-\/index set defining the active polynomial terms. 
 
 \Hypertarget{classcmp_1_1_polynomial_expansion_a80be3c630913ce581f7cc306f862d77d}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!normalMatrixInverse\_@{normalMatrixInverse\_}}
 \index{normalMatrixInverse\_@{normalMatrixInverse\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
@@ -262,12 +270,20 @@ template$<$typename Basis$>$ \\
 template$<$typename Basis$>$ \\
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::normal\+Matrix\+Inverse\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Precomputed inverse normal matrix (A\texorpdfstring{$^\wedge$}{\string^}T A)\texorpdfstring{$^\wedge$}{\string^}-\/1. 
+
 \Hypertarget{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!p1\_@{p1\_}}
 \index{p1\_@{p1\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
 \doxysubsubsection{\texorpdfstring{p1\_}{p1\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a80f67b013b42902c02e13a3846200ff0} 
 template$<$typename Basis$>$ \\
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::p1\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mapping boundary lower limits/means. 
 
 \Hypertarget{classcmp_1_1_polynomial_expansion_a9fb28320bc9ccbca30590ec973e11ac1}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!p2\_@{p2\_}}
 \index{p2\_@{p2\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
@@ -276,12 +292,20 @@ Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+:
 template$<$typename Basis$>$ \\
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::p2\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Mapping boundary upper limits/std devs. 
+
 \Hypertarget{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!residualVariance\_@{residualVariance\_}}
 \index{residualVariance\_@{residualVariance\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
 \doxysubsubsection{\texorpdfstring{residualVariance\_}{residualVariance\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a29359b415d5819065d5b114c19f624f1} 
 template$<$typename Basis$>$ \\
 double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::residual\+Variance\+\_\+ = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Running residual variance. 
 
 \Hypertarget{classcmp_1_1_polynomial_expansion_ab7ed3cb26fb86b460b459474d6f3b1f7}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!xObs\_@{xObs\_}}
 \index{xObs\_@{xObs\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
@@ -290,12 +314,20 @@ double \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+
 template$<$typename Basis$>$ \\
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Training input data in canonical space. 
+
 \Hypertarget{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d}\index{cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}!yObs\_@{yObs\_}}
 \index{yObs\_@{yObs\_}!cmp::PolynomialExpansion$<$ Basis $>$@{cmp::PolynomialExpansion$<$ Basis $>$}}
 \doxysubsubsection{\texorpdfstring{yObs\_}{yObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_polynomial_expansion_a4529c49b2aae2205a4afd43058bcd27d} 
 template$<$typename Basis$>$ \\
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_polynomial_expansion}{cmp\+::\+Polynomial\+Expansion}}$<$ Basis $>$\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Training target response values. 
 
 
 

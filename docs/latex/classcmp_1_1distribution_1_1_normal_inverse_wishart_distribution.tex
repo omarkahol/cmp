@@ -59,19 +59,19 @@ static \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_dist
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aa03ae298fc1088aa3c64ee09e740d40b}{mean\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Mean parameter vector. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_afbe6fa7a9fb4229fb40ee101c8cd67b1}{kappa\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Degrees of freedom scaling parameter kappa. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a9a50de594f7e0e2abfadaa72545e7c0e}{nu\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Degrees of freedom parameter nu. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af9eb05b79eef4551525cbb228ea3746c}{dim\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Dimensionality of the parameter space. \end{DoxyCompactList}\item 
 Eigen\+::\+LDLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a80fa02dccdbdf55cf47577e607e41e6b}{cov\+LDLT\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em LDLT decomposition of the scaling matrix. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a14d36c7b29e7239ce0612edbcd4fdfba}{log\+Determinant\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Log-\/determinant of the scale covariance matrix. \end{DoxyCompactList}\item 
 std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8d1444869325837bce26a061c5cd3172}{dist\+N\+\_\+}} \{0., 1.\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Normal distribution helper for coordinate sampling. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \label{doc-constructors}
@@ -187,11 +187,19 @@ Eigen\+::\+Matrix\+Xd cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distrib
 {\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a80fa02dccdbdf55cf47577e607e41e6b} 
 Eigen\+::\+LDLT$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::cov\+LDLT\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+LDLT decomposition of the scaling matrix. 
+
 \Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af9eb05b79eef4551525cbb228ea3746c}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!dim\_@{dim\_}}
 \index{dim\_@{dim\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
 \doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af9eb05b79eef4551525cbb228ea3746c} 
 size\+\_\+t cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dimensionality of the parameter space. 
 
 \Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8d1444869325837bce26a061c5cd3172}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!distN\_@{distN\_}}
 \index{distN\_@{distN\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
@@ -199,11 +207,19 @@ size\+\_\+t cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::d
 {\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8d1444869325837bce26a061c5cd3172} 
 std\+::normal\+\_\+distribution$<$double$>$ cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::dist\+N\+\_\+ \{0., 1.\}\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Normal distribution helper for coordinate sampling. 
+
 \Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_afbe6fa7a9fb4229fb40ee101c8cd67b1}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!kappa\_@{kappa\_}}
 \index{kappa\_@{kappa\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
 \doxysubsubsection{\texorpdfstring{kappa\_}{kappa\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_afbe6fa7a9fb4229fb40ee101c8cd67b1} 
 double cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::kappa\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Degrees of freedom scaling parameter kappa. 
 
 \Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a14d36c7b29e7239ce0612edbcd4fdfba}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!logDeterminant\_@{logDeterminant\_}}
 \index{logDeterminant\_@{logDeterminant\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
@@ -211,17 +227,29 @@ double cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::kappa\
 {\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a14d36c7b29e7239ce0612edbcd4fdfba} 
 double cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::log\+Determinant\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Log-\/determinant of the scale covariance matrix. 
+
 \Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aa03ae298fc1088aa3c64ee09e740d40b}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!mean\_@{mean\_}}
 \index{mean\_@{mean\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
 \doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aa03ae298fc1088aa3c64ee09e740d40b} 
 Eigen\+::\+Vector\+Xd cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Mean parameter vector. 
+
 \Hypertarget{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a9a50de594f7e0e2abfadaa72545e7c0e}\index{cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}!nu\_@{nu\_}}
 \index{nu\_@{nu\_}!cmp::distribution::NormalInverseWishartDistribution@{cmp::distribution::NormalInverseWishartDistribution}}
 \doxysubsubsection{\texorpdfstring{nu\_}{nu\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a9a50de594f7e0e2abfadaa72545e7c0e} 
 double cmp\+::distribution\+::\+Normal\+Inverse\+Wishart\+Distribution\+::nu\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Degrees of freedom parameter nu. 
 
 
 

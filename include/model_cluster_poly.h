@@ -42,31 +42,31 @@ namespace cmp {
 class ModelClusterPoly {
 
   private:
-    std::default_random_engine rng_;
+    std::default_random_engine rng_; ///< Pseudo-random number generator.
 
-    Eigen::MatrixXd xObs_;
-    Eigen::VectorXd yObs_;
+    Eigen::MatrixXd xObs_;           ///< Training input matrix of observations.
+    Eigen::VectorXd yObs_;           ///< Training target response vector.
 
-    size_t nClusters_;
-    size_t nObs_;
-    size_t dimX_;
+    size_t nClusters_;               ///< Number of active clusters.
+    size_t nObs_;                    ///< Number of training observations.
+    size_t dimX_;                    ///< Dimension of input features.
 
     // The labels of the points
-    Eigen::VectorXs labels_;
+    Eigen::VectorXs labels_;         ///< Cluster assignments label vector.
 
     // Local index of each global point inside its current cluster
-    Eigen::VectorXs localIndexTable_;
+    Eigen::VectorXs localIndexTable_; ///< Local coordinate lookup index mapping.
 
     // The GPs for each cluster, along with their centroids and fit status
-    std::vector<bool> fit_;
-    std::vector<Eigen::VectorXd> centroids_;
-    std::vector<cmp::PolynomialExpansion> *polynomials_;
+    std::vector<bool> fit_;                              ///< Cluster fit/convergence status flag vector.
+    std::vector<Eigen::VectorXd> centroids_;             ///< Coordinates for each cluster's centroid.
+    std::vector<cmp::PolynomialExpansion> *polynomials_; ///< Polynomial expansions representing local models.
 
     // The cluster sizes
-    std::vector<size_t> clusterSize_;
+    std::vector<size_t> clusterSize_; ///< Number of points assigned to each cluster.
 
     // The Gamma parameter
-    double gamma_{1.0};
+    double gamma_{1.0};               ///< Regularization blending parameter gamma.
 
   public:
 

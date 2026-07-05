@@ -19,9 +19,9 @@ Inheritance diagram for cmp\+::scaler\+::Min\+Max\+Scaler\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{Min\+Max\+Scaler}} ()=default
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a8f9835c9f1c5b881bf74e1b2b3bc42e6}{Min\+Max\+Scaler}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&min, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&max)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler} bounded to a specific target range. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a1426a4f28567b46ba9adb05f1c2ecc56}{Min\+Max\+Scaler}} (const \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&other)=default
 \item 
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_abf19928dc3614b8db165bdcb103956df}{Min\+Max\+Scaler}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&\&other)=default
@@ -33,41 +33,46 @@ Inheritance diagram for cmp\+::scaler\+::Min\+Max\+Scaler\+:\begin{figure}[H]
 \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \& \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a35e3aafba14fe404a01ff545aabe08bc}{operator=}} (\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}} \&\&other)=default
 \item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c}{transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
-\item 
+\begin{DoxyCompactList}\small\item\em Transforms the input data from physical space to the scaled latent space. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}{inverse\+Transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data) const override
-\item 
+\begin{DoxyCompactList}\small\item\em Reconstructs the data from the scaled latent space back to physical space. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7137f3b6cd83ec840291b288eb8fa552}{get\+Data\+Min}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves the empirical minimum vector $ \mathbf{x}_{\text{min}} $ found during fitting. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_abdbc974ef6ec7f83efa0d08211eedbd5}{get\+Data\+Max}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves the empirical maximum vector $ \mathbf{x}_{\text{max}} $ found during fitting. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5}{fit}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
-\item 
+\begin{DoxyCompactList}\small\item\em Learns the scaling parameters (e.\+g., mean, variance) from the training data. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac7cf5a8ad79582ab3bf569f2f51b81b3}{fit\+\_\+transform}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data) override
-\item 
+\begin{DoxyCompactList}\small\item\em Fits the scaling parameters to the data and subsequently transforms the data. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e}{get\+Intercept}} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves the intercept vector $ \mu $ used in the transformation. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7bbf79807c05b4f60ec2b1a946158dd0}{get\+Scale}} () const override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Retrieves the scaling matrix $ S $ used in the transformation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc}{min\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Target minimum value bounding vector $ \mathbf{a} $. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2}{max\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Target maximum value bounding vector $ \mathbf{b} $. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1}{data\+\_\+min\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Empirical minimum value vector $ \mathbf{x}_{\text{min}} $ observed in the training dataset. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a}{data\+\_\+max\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Empirical maximum value vector $ \mathbf{x}_{\text{max}} $ observed in the training dataset. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Linearly scales features to a target bounding box range. 
 
-Mathematical Formulation Scales each feature vector component to live within range $[a_j, b_j]$ (typically $[0, 1]$)\+:   \[y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}} (b_j - a_j)
-\] where $x_{\text{min}, j}$ and $x_{\text{max}, j}$ are the training data\textquotesingle{}s minimum and maximum values for feature $j$.
 
-Implementation Algorithm
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_autotoc_md20}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation}{Mathematical Formulation}}\label{classcmp_1_1scaler_1_1_min_max_scaler_autotoc_md20}
+Scales each feature vector component to live within a target range $[a_j, b_j]$ (typically $[0, 1]$)\+:   \[y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}} (b_j - a_j)
+\] where $x_{\text{min}, j}$ and $x_{\text{max}, j}$ are the training data\textquotesingle{}s empirical minimum and maximum values for feature $j$.
+\begin{DoxyItemize}
+\item \#\#\# Implementation Algorithm
+\end{DoxyItemize}
 \begin{DoxyEnumerate}
 \item {\ttfamily \doxylink{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5}{fit()}} computes column-\/wise minima and maxima vectors of the training matrix.
 \item {\ttfamily \doxylink{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c}{transform()}} and {\ttfamily \doxylink{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}{inverse\+Transform()}} apply element-\/wise division and scaling multiplication. 
@@ -82,12 +87,27 @@ Implementation Algorithm
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532} 
 cmp\+::scaler\+::\+Min\+Max\+Scaler\+::\+Min\+Max\+Scaler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
+
+
+Default constructor. 
+
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a8f9835c9f1c5b881bf74e1b2b3bc42e6}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!MinMaxScaler@{MinMaxScaler}}
 \index{MinMaxScaler@{MinMaxScaler}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
 \doxysubsubsection{\texorpdfstring{MinMaxScaler()}{MinMaxScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a8f9835c9f1c5b881bf74e1b2b3bc42e6} 
 cmp\+::scaler\+::\+Min\+Max\+Scaler\+::\+Min\+Max\+Scaler (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{min}{, }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{max}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Constructs a \doxylink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler} bounded to a specific target range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & The target minimum bounding vector $ \mathbf{a} $. \\
+\hline
+{\em max} & The target maximum bounding vector $ \mathbf{b} $. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a1426a4f28567b46ba9adb05f1c2ecc56}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!MinMaxScaler@{MinMaxScaler}}
 \index{MinMaxScaler@{MinMaxScaler}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
 \doxysubsubsection{\texorpdfstring{MinMaxScaler()}{MinMaxScaler()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
@@ -119,6 +139,15 @@ void cmp\+::scaler\+::\+Min\+Max\+Scaler\+::fit (\begin{DoxyParamCaption}\item[{
 
 
 
+Learns the scaling parameters (e.\+g., mean, variance) from the training data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A matrix $ X \in \mathbb{R}^{n \times d} $ of training samples. \\
+\hline
+\end{DoxyParams}
+
+
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a034490dc8b97ab47a73ca3ffb3b6db66}{cmp\+::scaler\+::\+Scaler}}.
 
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_ac7cf5a8ad79582ab3bf569f2f51b81b3}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!fit\_transform@{fit\_transform}}
@@ -129,6 +158,18 @@ Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::fit\+\_\+transform 
 
 
 
+Fits the scaling parameters to the data and subsequently transforms the data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A matrix $ X \in \mathbb{R}^{n \times d} $ of training samples. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The transformed dataset matrix $ Y $. 
+\end{DoxyReturn}
+
+
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}{cmp\+::scaler\+::\+Scaler}}.
 
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_abdbc974ef6ec7f83efa0d08211eedbd5}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!getDataMax@{getDataMax}}
@@ -137,18 +178,39 @@ Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_abdbc974ef6ec7f83efa0d08211eedbd5} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::get\+Data\+Max (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Retrieves the empirical maximum vector $ \mathbf{x}_{\text{max}} $ found during fitting. 
+
+\begin{DoxyReturn}{Returns}
+The maximum data vector. 
+\end{DoxyReturn}
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a7137f3b6cd83ec840291b288eb8fa552}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!getDataMin@{getDataMin}}
 \index{getDataMin@{getDataMin}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
 \doxysubsubsection{\texorpdfstring{getDataMin()}{getDataMin()}}
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a7137f3b6cd83ec840291b288eb8fa552} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::get\+Data\+Min (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Retrieves the empirical minimum vector $ \mathbf{x}_{\text{min}} $ found during fitting. 
+
+\begin{DoxyReturn}{Returns}
+The minimum data vector. 
+\end{DoxyReturn}
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!getIntercept@{getIntercept}}
 \index{getIntercept@{getIntercept}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
 \doxysubsubsection{\texorpdfstring{getIntercept()}{getIntercept()}}
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::get\+Intercept (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
+
+
+Retrieves the intercept vector $ \mu $ used in the transformation. 
+
+\begin{DoxyReturn}{Returns}
+The intercept vector. 
+\end{DoxyReturn}
 
 
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9cebf0f6c04f}{cmp\+::scaler\+::\+Scaler}}.
@@ -161,6 +223,13 @@ Eigen\+::\+Matrix\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::get\+Scale (\begin{
 
 
 
+Retrieves the scaling matrix $ S $ used in the transformation. 
+
+\begin{DoxyReturn}{Returns}
+The scaling matrix. 
+\end{DoxyReturn}
+
+
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}{cmp\+::scaler\+::\+Scaler}}.
 
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!inverseTransform@{inverseTransform}}
@@ -169,6 +238,18 @@ Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::inverse\+Transform (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
+
+
+Reconstructs the data from the scaled latent space back to physical space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A column vector $ y $ in the scaled space. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unscaled physical data vector $ x $. 
+\end{DoxyReturn}
 
 
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a34c7739c949f4603ec1a430daf405dec}{cmp\+::scaler\+::\+Scaler}}.
@@ -193,6 +274,18 @@ Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::transform (\begin{D
 
 
 
+Transforms the input data from physical space to the scaled latent space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A column vector $ x $ representing a single data point in physical space. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scaled data vector $ y $. 
+\end{DoxyReturn}
+
+
 Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}{cmp\+::scaler\+::\+Scaler}}.
 
 
@@ -206,11 +299,19 @@ Implements \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::data\+\_\+max\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Empirical maximum value vector $ \mathbf{x}_{\text{max}} $ observed in the training dataset. 
+
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!data\_min\_@{data\_min\_}}
 \index{data\_min\_@{data\_min\_}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
 \doxysubsubsection{\texorpdfstring{data\_min\_}{data\_min\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::data\+\_\+min\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Empirical minimum value vector $ \mathbf{x}_{\text{min}} $ observed in the training dataset. 
 
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!max\_@{max\_}}
 \index{max\_@{max\_}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
@@ -218,11 +319,19 @@ Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::data\+\_\+min\+\_\+
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::max\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Target maximum value bounding vector $ \mathbf{b} $. 
+
 \Hypertarget{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc}\index{cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}!min\_@{min\_}}
 \index{min\_@{min\_}!cmp::scaler::MinMaxScaler@{cmp::scaler::MinMaxScaler}}
 \doxysubsubsection{\texorpdfstring{min\_}{min\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc} 
 Eigen\+::\+Vector\+Xd cmp\+::scaler\+::\+Min\+Max\+Scaler\+::min\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Target minimum value bounding vector $ \mathbf{a} $. 
 
 
 

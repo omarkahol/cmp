@@ -102,7 +102,7 @@ $(function(){initNavTree('statistics_8h.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Header file for statistical functions and classes This file contains declarations for various statistical functions and classes used in the project.  
+<p>Header file for statistical functions and classes.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;concepts&gt;</code><br />
 <code>#include &lt;numeric&gt;</code><br />
@@ -126,6 +126,7 @@ Classes</h2></td></tr>
 <tr class="memitem:cmp_3A_3Astatistics_3A_3ABootstrap" id="r_cmp_3A_3Astatistics_3A_3ABootstrap"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html">cmp::statistics::Bootstrap</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html" title="Bootstrap resampling index generator.">Bootstrap</a> resampling index generator.  <a href="classcmp_1_1statistics_1_1_bootstrap.html#details">More...</a><br /></td></tr>
 <tr class="memitem:cmp_3A_3Astatistics_3A_3APairwiseDistanceStats" id="r_cmp_3A_3Astatistics_3A_3APairwiseDistanceStats"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_pairwise_distance_stats.html">cmp::statistics::PairwiseDistanceStats</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes and stores pairwise spatial distances between high-dimensional data points.  <a href="classcmp_1_1statistics_1_1_pairwise_distance_stats.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -135,24 +136,27 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a718b9c2b703c2248297619f4435d364a" id="r_a718b9c2b703c2248297619f4435d364a"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#a718b9c2b703c2248297619f4435d364a">cmp::statistics::mean</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)</td></tr>
+<tr class="memdesc:a718b9c2b703c2248297619f4435d364a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the empirical mean vector of a dataset.  <br /></td></tr>
 <tr class="memitem:a7eeef4b2040b0064a68889e678e64562" id="r_a7eeef4b2040b0064a68889e678e64562"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#a7eeef4b2040b0064a68889e678e64562">cmp::statistics::covariance</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)</td></tr>
-<tr class="memdesc:a7eeef4b2040b0064a68889e678e64562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the variance of a vector of data.  <br /></td></tr>
+<tr class="memdesc:a7eeef4b2040b0064a68889e678e64562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sample covariance matrix of a dataset.  <br /></td></tr>
 <tr class="memitem:a0383eca5136a701b5cbf914211aab108" id="r_a0383eca5136a701b5cbf914211aab108"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#a0383eca5136a701b5cbf914211aab108">cmp::statistics::quantile</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data, double quantile)</td></tr>
-<tr class="memdesc:a0383eca5136a701b5cbf914211aab108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the quantile of a vector of data.  <br /></td></tr>
+<tr class="memdesc:a0383eca5136a701b5cbf914211aab108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a specific quantile of a 1D vector of data.  <br /></td></tr>
 <tr class="memitem:afa27e65c3e3becac7ee4f615ccaabd6b" id="r_afa27e65c3e3becac7ee4f615ccaabd6b"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#afa27e65c3e3becac7ee4f615ccaabd6b">cmp::statistics::interQuantileRange</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data, double lowerQuantile, double upperQuantile)</td></tr>
-<tr class="memdesc:afa27e65c3e3becac7ee4f615ccaabd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the interquartile range of a vector of data.  <br /></td></tr>
+<tr class="memdesc:afa27e65c3e3becac7ee4f615ccaabd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the interquartile range (IQR) column-wise for a dataset.  <br /></td></tr>
 <tr class="memitem:af3d7ea822ca7638d9a89bd11202da867" id="r_af3d7ea822ca7638d9a89bd11202da867"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#af3d7ea822ca7638d9a89bd11202da867">cmp::statistics::pearsonCorrelation</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data1, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data2)</td></tr>
-<tr class="memdesc:af3d7ea822ca7638d9a89bd11202da867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Pearson correlation matrix between two datasets. Manages the case where the datasets have different numbers of points.  <br /></td></tr>
+<tr class="memdesc:af3d7ea822ca7638d9a89bd11202da867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Pearson correlation matrix between two datasets.  <br /></td></tr>
 <tr class="memitem:a65be48599e4f4c98de7a37ccd965cd24" id="r_a65be48599e4f4c98de7a37ccd965cd24"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#a65be48599e4f4c98de7a37ccd965cd24">cmp::statistics::laggedCorrelation</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data1, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data2, int lag)</td></tr>
-<tr class="memdesc:a65be48599e4f4c98de7a37ccd965cd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the correlation matrix between two datasets with a specified lag.  <br /></td></tr>
+<tr class="memdesc:a65be48599e4f4c98de7a37ccd965cd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the cross-correlation matrix between two datasets with a specified temporal lag.  <br /></td></tr>
 <tr class="memitem:a089a9c1072203f32813ddce221d81046" id="r_a089a9c1072203f32813ddce221d81046"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#a089a9c1072203f32813ddce221d81046">cmp::statistics::laggedCorrelation</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data1, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data2, int minLag, int maxLag)</td></tr>
-<tr class="memdesc:a089a9c1072203f32813ddce221d81046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the correlation matrix between two datasets for all lags in the range [minLag, maxLag].  <br /></td></tr>
+<tr class="memdesc:a089a9c1072203f32813ddce221d81046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the cross-correlation matrices between two datasets for a sequence of lags.  <br /></td></tr>
 <tr class="memitem:aefc18ce56217dd9d4b93465d5ec9f76f" id="r_aefc18ce56217dd9d4b93465d5ec9f76f"><td class="memItemLeft" align="right" valign="top">std::pair&lt; Eigen::VectorXd, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#aefc18ce56217dd9d4b93465d5ec9f76f">cmp::statistics::selfCorrelationLength</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)</td></tr>
-<tr class="memdesc:aefc18ce56217dd9d4b93465d5ec9f76f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the self-correlation length and the effective sample size of some samples.  <br /></td></tr>
+<tr class="memdesc:aefc18ce56217dd9d4b93465d5ec9f76f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the self-correlation (autocorrelation) length and the effective sample size.  <br /></td></tr>
 <tr class="memitem:a5a583b49079b5df2313396cb5fa598c3" id="r_a5a583b49079b5df2313396cb5fa598c3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1statistics.html#a5a583b49079b5df2313396cb5fa598c3">cmp::statistics::selfCrossCorrelationFFT</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data)</td></tr>
+<tr class="memdesc:a5a583b49079b5df2313396cb5fa598c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the complete auto- and cross-correlation functions across all lags efficiently using the Fast Fourier Transform (FFT).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Header file for statistical functions and classes This file contains declarations for various statistical functions and classes used in the project. </p>
+<div class="textblock"><p>Header file for statistical functions and classes. </p>
+<p>This file contains declarations for various statistical functions, resampling techniques (K-Fold, Bootstrap), and spatial statistics utilities used throughout the project. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

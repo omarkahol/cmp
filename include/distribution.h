@@ -935,8 +935,8 @@ class MultivariateUniformDistribution : public MultivariateDistribution<Multivar
 
 class UniformSphereDistribution : public MultivariateDistribution<UniformSphereDistribution> {
   private:
-    std::normal_distribution<double> distN_{0., 1.};
-    std::size_t dim_{1};
+    std::normal_distribution<double> distN_{0., 1.}; ///< Normal distribution helper for generating spherical coords.
+    std::size_t dim_{1};                             ///< Dimensionality of the sphere's embedding space.
   public:
 
     UniformSphereDistribution(size_t dim): dim_(dim), distN_(0., 1.) {}
@@ -972,13 +972,13 @@ class UniformSphereDistribution : public MultivariateDistribution<UniformSphereD
 
 class NormalInverseWishartDistribution : public MultivariateDistribution<NormalInverseWishartDistribution> {
   private:
-    Eigen::VectorXd mean_;
-    double kappa_;
-    double nu_;
-    size_t dim_;
-    Eigen::LDLT<Eigen::MatrixXd> covLDLT_;
-    double logDeterminant_;
-    std::normal_distribution<double> distN_{0., 1.};
+    Eigen::VectorXd mean_;                           ///< Mean parameter vector.
+    double kappa_;                                   ///< Degrees of freedom scaling parameter kappa.
+    double nu_;                                      ///< Degrees of freedom parameter nu.
+    size_t dim_;                                     ///< Dimensionality of the parameter space.
+    Eigen::LDLT<Eigen::MatrixXd> covLDLT_;           ///< LDLT decomposition of the scaling matrix.
+    double logDeterminant_;                          ///< Log-determinant of the scale covariance matrix.
+    std::normal_distribution<double> distN_{0., 1.}; ///< Normal distribution helper for coordinate sampling.
 
   public:
 

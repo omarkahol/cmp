@@ -102,26 +102,40 @@ $(function(){initNavTree('classcmp_1_1statistics_1_1_pairwise_distance_stats.htm
 </div><!--header-->
 <div class="contents">
 
+<p>Computes and stores pairwise spatial distances between high-dimensional data points.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="statistics_8h_source.html">statistics.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a789a5d073bf155843731ce4ebe860315" id="r_a789a5d073bf155843731ce4ebe860315"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a789a5d073bf155843731ce4ebe860315">PairwiseDistanceStats</a> ()</td></tr>
+<tr class="memdesc:a789a5d073bf155843731ce4ebe860315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a4826cca144c0e61c2d716f946731f30c" id="r_a4826cca144c0e61c2d716f946731f30c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4826cca144c0e61c2d716f946731f30c">compute</a> (const Eigen::MatrixXd &amp;data)</td></tr>
-<tr class="memdesc:a4826cca144c0e61c2d716f946731f30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the upper triangle of the pairwise distance matrix.  <br /></td></tr>
+<tr class="memdesc:a4826cca144c0e61c2d716f946731f30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the upper triangle of the pairwise Euclidean distance matrix.  <br /></td></tr>
 <tr class="memitem:ac122248b444427527b77fb4b21cfb219" id="r_ac122248b444427527b77fb4b21cfb219"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac122248b444427527b77fb4b21cfb219">mean</a> () const</td></tr>
+<tr class="memdesc:ac122248b444427527b77fb4b21cfb219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the mean pairwise distance \( \bar{d} \).  <br /></td></tr>
 <tr class="memitem:a098ad18d3bfbeb1d17475ac0cab8607e" id="r_a098ad18d3bfbeb1d17475ac0cab8607e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a098ad18d3bfbeb1d17475ac0cab8607e">quantile</a> (double q)</td></tr>
-<tr class="memdesc:a098ad18d3bfbeb1d17475ac0cab8607e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast quantile retrieval without a full sort.  <br /></td></tr>
+<tr class="memdesc:a098ad18d3bfbeb1d17475ac0cab8607e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast quantile retrieval without executing a full sort.  <br /></td></tr>
 <tr class="memitem:a4ca8d9a6d6cd8b06535502f4291d1ea2" id="r_a4ca8d9a6d6cd8b06535502f4291d1ea2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ca8d9a6d6cd8b06535502f4291d1ea2">correlation_integral</a> (const std::vector&lt; double &gt; &amp;r_thresholds) const</td></tr>
-<tr class="memdesc:a4ca8d9a6d6cd8b06535502f4291d1ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the spatial Correlation Integral C(r) for a grid of thresholds.  <br /></td></tr>
+<tr class="memdesc:a4ca8d9a6d6cd8b06535502f4291d1ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the spatial Correlation Integral \( C(r) \) for a grid of radial thresholds.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a204b69b0ba538a0e10844ef2ecf96215" id="r_a204b69b0ba538a0e10844ef2ecf96215"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a204b69b0ba538a0e10844ef2ecf96215">distances</a></td></tr>
+<tr class="memdesc:a204b69b0ba538a0e10844ef2ecf96215"><td class="mdescLeft">&#160;</td><td class="mdescRight">1D flattened array of the strictly upper triangular distance matrix.  <br /></td></tr>
 <tr class="memitem:a0cd87a8c750ca7186f373ae2f75d9b92" id="r_a0cd87a8c750ca7186f373ae2f75d9b92"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cd87a8c750ca7186f373ae2f75d9b92">mean_val</a></td></tr>
+<tr class="memdesc:a0cd87a8c750ca7186f373ae2f75d9b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">The globally computed mean distance across all pairs.  <br /></td></tr>
 <tr class="memitem:ac6d3ab2657ae524837d26eacddc4b7dc" id="r_ac6d3ab2657ae524837d26eacddc4b7dc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6d3ab2657ae524837d26eacddc4b7dc">is_computed</a></td></tr>
+<tr class="memdesc:ac6d3ab2657ae524837d26eacddc4b7dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if the distances have been computed and the class is ready to query.  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Computes and stores pairwise spatial distances between high-dimensional data points. </p>
+<ul>
+<li></li>
+</ul>
+<p>Efficiently computes the upper triangle of the distance matrix to save memory, utilizing OpenMP for multi-threaded parallel execution. Provides fast access to mean distances, spatial quantiles, and the spatial correlation integral. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a789a5d073bf155843731ce4ebe860315" name="a789a5d073bf155843731ce4ebe860315"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a789a5d073bf155843731ce4ebe860315">&#9670;&#160;</a></span>PairwiseDistanceStats()</h2>
 
@@ -144,6 +158,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -171,13 +187,31 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Computes the upper triangle of the pairwise distance matrix. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Computes the upper triangle of the pairwise Euclidean distance matrix. </p>
+<ul>
+<li></li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+Mathematical Formulation</h3>
+<p>Evaluates the \( L_2 \)-norm between all unique pairs:   </p><p class="formulaDsp">
+\[d_{ij} = ||\mathbf{x}_i - \mathbf{x}_j||_2 \quad \text{for } 1 \le i &lt; j \le N
+\]
+</p>
+<p> Utilizes OpenMP <span class="tt">dynamic</span> scheduling to balance the uneven workload of the triangular nested loops.</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>Matrix of size (N, D) where N is number of points, D is dimensions. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>if fewer than 2 points are provided. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -204,15 +238,38 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Computes the spatial Correlation Integral C(r) for a grid of thresholds. </p>
+<p>Computes the spatial Correlation Integral \( C(r) \) for a grid of radial thresholds. </p>
+<ul>
+<li></li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+Mathematical Formulation</h3>
+<p>Computes the fraction of pairwise distances strictly less than \( r \):   </p><p class="formulaDsp">
+\[C(r) = \frac{2}{N(N-1)} \sum_{i=1}^{N-1} \sum_{j=i+1}^N \Theta(r - d_{ij})
+\]
+</p>
+<p> where \( \Theta \) is the Heaviside step function.</p><ul>
+<li>### Implementation Algorithm</li>
+</ul>
+<ol type="1">
+<li>Copies and sorts the requested threshold bounds \( r \).</li>
+<li>Utilizes OpenMP parallelization and binary search (<span class="tt">std::upper_bound</span>) in \( \mathcal{O}(\log K) \) to rapidly bin every pairwise distance into thread-local histograms.</li>
+<li>Calculates the cumulative sum globally to construct the integral profile \( C(r) \).</li>
+</ol>
 <ul>
 <li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">r_thresholds</td><td>A vector of spatial distances (r). Does not need to be pre-sorted. </td></tr>
+    <tr><td class="paramname">r_thresholds</td><td>A vector of spatial radii ( \( r \)). Does not need to be pre-sorted. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;double&gt; The fraction of pairwise distances less than each r. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;double&gt; The fraction of pairwise distances less than each corresponding radius \( r \). </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>if called before <span class="tt"><a class="el" href="#a4826cca144c0e61c2d716f946731f30c" title="Computes the upper triangle of the pairwise Euclidean distance matrix.">compute()</a></span>. </td></tr>
+  </table>
+  </dd>
+</dl>
 </li>
 </ul>
 
@@ -241,6 +298,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves the mean pairwise distance \( \bar{d} \). </p>
+<dl class="section return"><dt>Returns</dt><dd>The mean distance. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>if called before <span class="tt"><a class="el" href="#a4826cca144c0e61c2d716f946731f30c" title="Computes the upper triangle of the pairwise Euclidean distance matrix.">compute()</a></span>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a098ad18d3bfbeb1d17475ac0cab8607e" name="a098ad18d3bfbeb1d17475ac0cab8607e"></a>
@@ -266,13 +332,27 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Fast quantile retrieval without a full sort. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Fast quantile retrieval without executing a full sort. </p>
+<ul>
+<li></li>
+</ul>
+<p>Uses <span class="tt">std::nth_element</span> to achieve \( \mathcal{O}(M) \) partial sorting performance compared to \( \mathcal{O}(M \log M) \) for full sorting. Note this mutates the internal distance array's ordering but preserves the exact values.</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">q</td><td>Quantile to retrieve in [0.0, 1.0] (e.g., 0.5 for median) </td></tr>
+    <tr><td class="paramname">q</td><td>Target quantile probability \( p \in [0, 1] \) (e.g., 0.5 for median). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance value representing that quantile. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>if called before <span class="tt"><a class="el" href="#a4826cca144c0e61c2d716f946731f30c" title="Computes the upper triangle of the pairwise Euclidean distance matrix.">compute()</a></span>. </td></tr>
+    <tr><td class="paramname">std::invalid_argument</td><td>if \( p \) is outside bounds. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -297,6 +377,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>1D flattened array of the strictly upper triangular distance matrix. </p>
+
 </div>
 </div>
 <a id="ac6d3ab2657ae524837d26eacddc4b7dc" name="ac6d3ab2657ae524837d26eacddc4b7dc"></a>
@@ -319,6 +401,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Flag indicating if the distances have been computed and the class is ready to query. </p>
+
 </div>
 </div>
 <a id="a0cd87a8c750ca7186f373ae2f75d9b92" name="a0cd87a8c750ca7186f373ae2f75d9b92"></a>
@@ -340,6 +424,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The globally computed mean distance across all pairs. </p>
 
 </div>
 </div>

@@ -844,8 +844,8 @@
 \DoxyCodeLine{00935\ }
 \DoxyCodeLine{00936\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0b235b26d0dde66463a734b9e19f01c1}{UniformSphereDistribution}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{MultivariateDistribution}}<UniformSphereDistribution>\ \{}
 \DoxyCodeLine{00937\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00938\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0a1069df4a4450aaed8b18de3d602309}{distN\_}}\{0.,\ 1.\};}
-\DoxyCodeLine{00939\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec5f74820f81babbf6daed1e6d2239e2}{dim\_}}\{1\};}
+\DoxyCodeLine{00938\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0a1069df4a4450aaed8b18de3d602309}{distN\_}}\{0.,\ 1.\};\ }
+\DoxyCodeLine{00939\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec5f74820f81babbf6daed1e6d2239e2}{dim\_}}\{1\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00940\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00941\ }
 \DoxyCodeLine{00942\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0b235b26d0dde66463a734b9e19f01c1}{UniformSphereDistribution}}(\textcolor{keywordtype}{size\_t}\ dim):\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_aec5f74820f81babbf6daed1e6d2239e2}{dim\_}}(dim),\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_uniform_sphere_distribution_a0a1069df4a4450aaed8b18de3d602309}{distN\_}}(0.,\ 1.)\ \{\}}
@@ -881,13 +881,13 @@
 \DoxyCodeLine{00972\ }
 \DoxyCodeLine{00973\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8a882b2269d1790117fa90cc002bc955}{NormalInverseWishartDistribution}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_multivariate_distribution}{MultivariateDistribution}}<NormalInverseWishartDistribution>\ \{}
 \DoxyCodeLine{00974\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00975\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aa03ae298fc1088aa3c64ee09e740d40b}{mean\_}};}
-\DoxyCodeLine{00976\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_afbe6fa7a9fb4229fb40ee101c8cd67b1}{kappa\_}};}
-\DoxyCodeLine{00977\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a9a50de594f7e0e2abfadaa72545e7c0e}{nu\_}};}
-\DoxyCodeLine{00978\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af9eb05b79eef4551525cbb228ea3746c}{dim\_}};}
-\DoxyCodeLine{00979\ \ \ \ \ Eigen::LDLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a80fa02dccdbdf55cf47577e607e41e6b}{covLDLT\_}};}
-\DoxyCodeLine{00980\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a14d36c7b29e7239ce0612edbcd4fdfba}{logDeterminant\_}};}
-\DoxyCodeLine{00981\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8d1444869325837bce26a061c5cd3172}{distN\_}}\{0.,\ 1.\};}
+\DoxyCodeLine{00975\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_aa03ae298fc1088aa3c64ee09e740d40b}{mean\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00976\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_afbe6fa7a9fb4229fb40ee101c8cd67b1}{kappa\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00977\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a9a50de594f7e0e2abfadaa72545e7c0e}{nu\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00978\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_af9eb05b79eef4551525cbb228ea3746c}{dim\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00979\ \ \ \ \ Eigen::LDLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a80fa02dccdbdf55cf47577e607e41e6b}{covLDLT\_}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00980\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a14d36c7b29e7239ce0612edbcd4fdfba}{logDeterminant\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00981\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution_a8d1444869325837bce26a061c5cd3172}{distN\_}}\{0.,\ 1.\};\ }
 \DoxyCodeLine{00982\ }
 \DoxyCodeLine{00983\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00984\ }

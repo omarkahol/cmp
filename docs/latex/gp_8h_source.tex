@@ -31,26 +31,26 @@
 \DoxyCodeLine{00080\ \ \ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00081\ }
 \DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Hyperparameters\ and\ prior\ mean\ and\ covariance\ functions}}
-\DoxyCodeLine{00083\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d}{par\_}};}
-\DoxyCodeLine{00084\ \ \ \ \ std::shared\_ptr<covariance::Covariance>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3}{pKernel\_}};}
-\DoxyCodeLine{00085\ \ \ \ \ std::shared\_ptr<mean::Mean>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09}{pMean\_}};}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7}{nugget\_}};}
+\DoxyCodeLine{00083\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4aeeb4d37e46cb10ef1474acd9a48f6d}{par\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ std::shared\_ptr<covariance::Covariance>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a4850de5e2b4060e22745cb971428cae3}{pKernel\_}};\ }
+\DoxyCodeLine{00085\ \ \ \ \ std::shared\_ptr<mean::Mean>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a435ffd91846550bf8337745235241d09}{pMean\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a20b4c120163c756c0881efcec8641db7}{nugget\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00087\ }
 \DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Observations\ (the\ GP\ can\ own\ the\ data\ or\ point\ to\ external\ data,\ if\ it\ owns\ the\ data\ the\ pointer\ will\ point\ to\ it)}}
-\DoxyCodeLine{00089\ \ \ \ \ std::optional<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb}{xObs\_}};}
-\DoxyCodeLine{00090\ \ \ \ \ std::optional<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913}{yObs\_}};}
-\DoxyCodeLine{00091\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::MatrixXd>>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}{pXObs\_}};}
-\DoxyCodeLine{00092\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::VectorXd>>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb}{pYObs\_}};}
+\DoxyCodeLine{00089\ \ \ \ \ std::optional<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29894d35a8e07839392f3641072cf8bb}{xObs\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ std::optional<Eigen::VectorXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a0267bd6845af0329936408fe9c4f1913}{yObs\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::MatrixXd>>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a512d6c5a6d7b0868d2ce9c4ead0e0a18}{pXObs\_}};\ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ std::optional<Eigen::Ref<const\ Eigen::VectorXd>>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a29617667270a5ec1258698854deaa9bb}{pYObs\_}};\ \ \ }
 \DoxyCodeLine{00093\ }
 \DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Internal\ storage\ for\ the\ covariance\ matrix,\ its\ decomposition\ and\ related\ vectors\ (for\ fast\ query)}}
-\DoxyCodeLine{00095\ \ \ \ \ Eigen::LDLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0}{covDecomposition\_}};}
-\DoxyCodeLine{00096\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf}{alpha\_}};}
-\DoxyCodeLine{00097\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8}{diagCovInverse\_}};}
-\DoxyCodeLine{00098\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed}{residual\_}};}
+\DoxyCodeLine{00095\ \ \ \ \ Eigen::LDLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_ae285f7153216e8dd0de9806c6aa045d0}{covDecomposition\_}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_affe2082056047e1e37e9ab8363f240cf}{alpha\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a14e9db52a6c8e9f0e88ddc546f5f14f8}{diagCovInverse\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a02a01ad6a3ca04679402a13f6d4405ed}{residual\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00099\ }
 \DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ Internal\ flag\ to\ check\ whether\ we\ normalize\ y\ or\ not}}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572}{normalizeY\_}}\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{cmp::scaler::StandardScaler}}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f}{yScaler\_}};}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a7f851039c99f0d99326eae0411264572}{normalizeY\_}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{cmp::scaler::StandardScaler}}\ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process_a61b2ec0029a56626c7caa35ece54a01f}{yScaler\_}};\ \ \ \ }
 \DoxyCodeLine{00103\ }
 \DoxyCodeLine{00104\ \textcolor{comment}{//\ Private\ members}}
 \DoxyCodeLine{00105\ \ \ \textcolor{keyword}{private}:}

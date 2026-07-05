@@ -2,232 +2,232 @@
 \hypertarget{scaler_8h_source}{}\label{scaler_8h_source}\index{include/scaler.h@{include/scaler.h}}
 \mbox{\hyperlink{scaler_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SCALER\_H}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SCALER\_H}}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CMP\_SCALER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CMP\_SCALER\_H}}
 \DoxyCodeLine{00003\ }
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{cmp__defines_8h}{cmp\_defines.h}}>}}
 \DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1scaler}{cmp::scaler}}\ \{}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1scaler_a486245607be5c2c828f7bff3f33b79b0}{TOL}}\ =\ 1e-\/10;}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
-\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const}\ =\ 0;}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a34c7739c949f4603ec1a430daf405dec}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const}\ =\ 0;}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9cebf0f6c04f}{getIntercept}}()\ \textcolor{keyword}{const}\ =\ 0;}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}{getScale}}()\ \textcolor{keyword}{const}\ =\ 0;}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a034490dc8b97ab47a73ca3ffb3b6db66}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ =\ 0;}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ =\ 0;}
-\DoxyCodeLine{00041\ \};}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
-\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00063\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2}{mean\_}};}
-\DoxyCodeLine{00064\ \ \ \ \ Eigen::LLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee}{lltDecomposition\_}};}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a9e124d2325b2a1eca68bc2fe3f0abbf2}{StandardScaler}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&scale)\ :\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2}{mean\_}}(\mbox{\hyperlink{namespacecmp_1_1mean}{mean}}),\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee}{lltDecomposition\_}}(scale)\ \{\};}
-\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a8871e433618e9142df29ea62a55113ed}{StandardScaler}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a1372603d4adbb2e7823300e3fb0213cf}{StandardScaler}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a437c2dafb5c075992da2008a246cda09}{\string~StandardScaler}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_aa83cf60dd899f8ba81c3edfcc44ec528}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_adbf6d2d6fe03a6668505994a7a4c7dbf}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a3dd61167cf9075fa3f8d0fd45cc8e2a6}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00078\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a2a046cbb08c243e8868294262e27813a}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_acda4e311222fcc745291601835a0638b}{getIntercept}}()\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2}{mean\_}};}
-\DoxyCodeLine{00082\ \ \ \ \ \};}
-\DoxyCodeLine{00083\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a0d7e7ed5d867b05ee97d24f6aa30b20d}{getScale}}()\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee}{lltDecomposition\_}}.matrixL();}
-\DoxyCodeLine{00085\ \ \ \ \ \};}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a2c4b2d2e676396a3a31c32e303558184}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00088\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_af29bd017ea8f164dd58c3e226a4c345e}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00089\ \};}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00116\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
-\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00118\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ae4ecead1fb732753ca8a5232dc31aff1}{mean\_}};}
-\DoxyCodeLine{00119\ \ \ \ \ Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a55ec3621ff4f5a734882a6ed6de9f8bb}{eigenSolver\_}};}
-\DoxyCodeLine{00120\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ad3b8c49bc7bce44a3fd46a6bda10ad62}{sqrtCov\_}};}
-\DoxyCodeLine{00121\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a95f1ad10267da5c3594098d040dc6926}{sqrtCovInv\_}};}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a1ccaee3f5e91a8d97758805fd5f7eace}{nComponents\_}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecmp_1_1scaler}{cmp::scaler}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespacecmp_1_1scaler_a486245607be5c2c828f7bff3f33b79b0}{TOL}}\ =\ 1e-\/10;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_ada894025d92d10d357205a79ffe5f8f1}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a34c7739c949f4603ec1a430daf405dec}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a323c36327efa37536bed9cebf0f6c04f}{getIntercept}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a4cebbeb69fa4221279ebd6c9f91f8817}{getScale}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a034490dc8b97ab47a73ca3ffb3b6db66}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ =\ 0;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler_a51d8c5c552334f8a92975516acb811f4}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ =\ 0;}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2}{mean\_}};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00096\ \ \ \ \ Eigen::LLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee}{lltDecomposition\_}};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a9e124d2325b2a1eca68bc2fe3f0abbf2}{StandardScaler}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&scale)\ :\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2}{mean\_}}(\mbox{\hyperlink{namespacecmp_1_1mean}{mean}}),\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee}{lltDecomposition\_}}(scale)\ \{\};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a8871e433618e9142df29ea62a55113ed}{StandardScaler}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a1372603d4adbb2e7823300e3fb0213cf}{StandardScaler}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a437c2dafb5c075992da2008a246cda09}{\string~StandardScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_aa83cf60dd899f8ba81c3edfcc44ec528}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_adbf6d2d6fe03a6668505994a7a4c7dbf}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a16833680d40ba0835aecc0b1cbe81b2d}{StandardScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a3dd61167cf9075fa3f8d0fd45cc8e2a6}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00116\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a2a046cbb08c243e8868294262e27813a}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_acda4e311222fcc745291601835a0638b}{getIntercept}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a52bceaba8bd1f7998435a4c25f3159a2}{mean\_}};}
+\DoxyCodeLine{00120\ \ \ \ \ \};}
+\DoxyCodeLine{00121\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a0d7e7ed5d867b05ee97d24f6aa30b20d}{getScale}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a636d5f6b5e1e50a5b2bfa6bf391791ee}{lltDecomposition\_}}.matrixL();}
+\DoxyCodeLine{00123\ \ \ \ \ \};}
 \DoxyCodeLine{00124\ }
-\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a9b3dce84ef8675cf9916864be2029686}{eigenDecomposition}}();}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}(\textcolor{keywordtype}{size\_t}\ nComponents)\ :\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a1ccaee3f5e91a8d97758805fd5f7eace}{nComponents\_}}(nComponents)\ \{\};}
-\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a35f6437cd787c16f5f4bc28572a8510e}{PCA}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ad435fe36c7d197b462b615862ebef2af}{PCA}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_af827e0347d669d70166398aa61b6ef6c}{\string~PCA}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a6adbb09f09b1b8be195b0c81a0cc0e80}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a8b78fce3e5ecfa2385f489a8864cab95}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00148\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_aa44b7f09120405a48e09be90955f23ca}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00153\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a5abb95a448b70440e3233ef426ec6dd4}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00154\ }
-\DoxyCodeLine{00155\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_aa12df6a29348dba275d46a3932b1b82f}{getIntercept}}()\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ae4ecead1fb732753ca8a5232dc31aff1}{mean\_}};}
-\DoxyCodeLine{00157\ \ \ \ \ \};}
-\DoxyCodeLine{00158\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_af8872ca334bde480e793cf1e1ae51f0b}{getScale}}()\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ad3b8c49bc7bce44a3fd46a6bda10ad62}{sqrtCov\_}};}
-\DoxyCodeLine{00160\ \ \ \ \ \};}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a6a2048934255a006b8b11e0a946286d2}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00170\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a84fe92b3f91c4c013507254c0f019ff9}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a3f6e9d0e822c72a4ceb15e13e328c141}{resize}}(\textcolor{keywordtype}{size\_t}\ nComponents);}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00180\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a49bc86c5d0942adefb95610f6961d7cf}{getEigenvalues}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a55ec3621ff4f5a734882a6ed6de9f8bb}{eigenSolver\_}}.eigenvalues();}
-\DoxyCodeLine{00182\ \ \ \ \ \};}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00187\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_aa31864710f311ff375e5721577024fd7}{getEigenvectors}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a55ec3621ff4f5a734882a6ed6de9f8bb}{eigenSolver\_}}.eigenvectors();}
-\DoxyCodeLine{00189\ \ \ \ \ \};}
-\DoxyCodeLine{00190\ \};}
-\DoxyCodeLine{00191\ }
-\DoxyCodeLine{00195\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
-\DoxyCodeLine{00196\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}};}
-\DoxyCodeLine{00198\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00199\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_af408d022a89c904f34aa59d09b6ea15a}{DummyScaler}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00202\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_acc2f784450001e4c7964fe2b88c4ded2}{DummyScaler}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00203\ }
-\DoxyCodeLine{00204\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a2ec8f41fb43188e684706189449a18f3}{\string~DummyScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_a2c4b2d2e676396a3a31c32e303558184}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00126\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler_af29bd017ea8f164dd58c3e226a4c345e}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00127\ \};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00155\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ae4ecead1fb732753ca8a5232dc31aff1}{mean\_}};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00158\ \ \ \ \ Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a55ec3621ff4f5a734882a6ed6de9f8bb}{eigenSolver\_}};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00161\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ad3b8c49bc7bce44a3fd46a6bda10ad62}{sqrtCov\_}};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00164\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a95f1ad10267da5c3594098d040dc6926}{sqrtCovInv\_}};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a1ccaee3f5e91a8d97758805fd5f7eace}{nComponents\_}};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a9b3dce84ef8675cf9916864be2029686}{eigenDecomposition}}();}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}(\textcolor{keywordtype}{size\_t}\ nComponents)\ :\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a1ccaee3f5e91a8d97758805fd5f7eace}{nComponents\_}}(nComponents)\ \{\};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a35f6437cd787c16f5f4bc28572a8510e}{PCA}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ad435fe36c7d197b462b615862ebef2af}{PCA}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_af827e0347d669d70166398aa61b6ef6c}{\string~PCA}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a6adbb09f09b1b8be195b0c81a0cc0e80}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a8b78fce3e5ecfa2385f489a8864cab95}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a2ad7c0f9de75247c1098d1cceefd635f}{PCA}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_aa44b7f09120405a48e09be90955f23ca}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00188\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a5abb95a448b70440e3233ef426ec6dd4}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_aa12df6a29348dba275d46a3932b1b82f}{getIntercept}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ae4ecead1fb732753ca8a5232dc31aff1}{mean\_}};}
+\DoxyCodeLine{00192\ \ \ \ \ \};}
+\DoxyCodeLine{00193\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_af8872ca334bde480e793cf1e1ae51f0b}{getScale}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_ad3b8c49bc7bce44a3fd46a6bda10ad62}{sqrtCov\_}};}
+\DoxyCodeLine{00195\ \ \ \ \ \};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a6a2048934255a006b8b11e0a946286d2}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00198\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a84fe92b3f91c4c013507254c0f019ff9}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a3f6e9d0e822c72a4ceb15e13e328c141}{resize}}(\textcolor{keywordtype}{size\_t}\ nComponents);}
 \DoxyCodeLine{00205\ }
-\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ac608807057c1adcd631eee3ae6f779ca}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_aa005a6784903eb5ee7776d3f4b2ed041}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00208\ }
-\DoxyCodeLine{00212\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a01c5af2defce301638724cfda45b3812}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
-\DoxyCodeLine{00214\ \ \ \ \ \};}
-\DoxyCodeLine{00215\ }
-\DoxyCodeLine{00219\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a1df30df702283b8469efb51a8b0df40d}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
-\DoxyCodeLine{00221\ \ \ \ \ \};}
+\DoxyCodeLine{00210\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a49bc86c5d0942adefb95610f6961d7cf}{getEigenvalues}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a55ec3621ff4f5a734882a6ed6de9f8bb}{eigenSolver\_}}.eigenvalues();}
+\DoxyCodeLine{00212\ \ \ \ \ \};}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00218\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_aa31864710f311ff375e5721577024fd7}{getEigenvectors}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a_a55ec3621ff4f5a734882a6ed6de9f8bb}{eigenSolver\_}}.eigenvectors();}
+\DoxyCodeLine{00220\ \ \ \ \ \};}
+\DoxyCodeLine{00221\ \};}
 \DoxyCodeLine{00222\ }
-\DoxyCodeLine{00223\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a4ed4b8f84cc0275b3609f6c10c6d5a5f}{getIntercept}}()\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::VectorXd::Zero(\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}});}
-\DoxyCodeLine{00225\ \ \ \ \ \};}
-\DoxyCodeLine{00226\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_aa5b1db975a868ffbb9770fd658ce79eb}{getScale}}()\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::MatrixXd::Identity(\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}},\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}});}
-\DoxyCodeLine{00228\ \ \ \ \ \};}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a82fcc0902bcaf06895b815cad983e58f}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\textcolor{keyword}{\ override\ }\{}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}}\ =\ data.cols();}
-\DoxyCodeLine{00235\ \ \ \ \ \};}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00240\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_aaf68a3279469b1c4f814c2a94f35cce9}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\textcolor{keyword}{\ override\ }\{}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}}\ =\ data.cols();}
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
-\DoxyCodeLine{00243\ \ \ \ \ \};}
-\DoxyCodeLine{00244\ }
-\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a13f9477860faf022a28cd346bc42a973}{setDim}}(\textcolor{keywordtype}{size\_t}\ dim)\ \{}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}}\ =\ dim;}
+\DoxyCodeLine{00233\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
+\DoxyCodeLine{00234\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}};}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_af408d022a89c904f34aa59d09b6ea15a}{DummyScaler}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_acc2f784450001e4c7964fe2b88c4ded2}{DummyScaler}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00244\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a2ec8f41fb43188e684706189449a18f3}{\string~DummyScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00245\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ac608807057c1adcd631eee3ae6f779ca}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00246\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_aa005a6784903eb5ee7776d3f4b2ed041}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ae20f14a557f33ce05cf34eba444cfc9a}{DummyScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a01c5af2defce301638724cfda45b3812}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
 \DoxyCodeLine{00250\ \ \ \ \ \};}
-\DoxyCodeLine{00251\ }
-\DoxyCodeLine{00252\ \};}
-\DoxyCodeLine{00253\ }
-\DoxyCodeLine{00263\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
-\DoxyCodeLine{00264\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00265\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}};}
-\DoxyCodeLine{00266\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\_}};}
-\DoxyCodeLine{00267\ }
-\DoxyCodeLine{00268\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00270\ }
-\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a769b58f04d54d6ccda9c9e48291a0401}{EllipticScaler}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&std)\ :\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}(\mbox{\hyperlink{namespacecmp_1_1mean}{mean}}),\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\_}}(std)\ \{\};}
-\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a53f8d1f69524076db56af2a709881414}{EllipticScaler}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa2ee6b60713b48100cd29639bae98548}{EllipticScaler}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00277\ }
-\DoxyCodeLine{00278\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a98dd13aa727d2de34dbd282c152c289a}{\string~EllipticScaler}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00279\ }
-\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a3183265f75e490a27915fb9b02ef434d}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ab596ef021cf6fc07d008e18179c2e05d}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00282\ }
-\DoxyCodeLine{00286\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa9165c49ba109a73f91bdfeb288c1f4c}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00287\ }
-\DoxyCodeLine{00291\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a0527554327168152d5bb453ca4928953}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00292\ }
-\DoxyCodeLine{00293\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4702e651e83aac9b13cb75ca1600531c}{getIntercept}}()\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}};}
-\DoxyCodeLine{00295\ \ \ \ \ \};}
-\DoxyCodeLine{00296\ }
-\DoxyCodeLine{00297\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18}{getScale}}()\textcolor{keyword}{\ const\ override\ }\{}
-\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ scale\ =\ Eigen::MatrixXd::Identity(\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}.size(),\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}.size());}
-\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}.size();\ i++)\ \{}
-\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ scale(i,\ i)\ =\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\_}}[i];}
-\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ scale;}
-\DoxyCodeLine{00303\ \ \ \ \ \};}
-\DoxyCodeLine{00304\ }
-\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a044939a8e126affba4a3ca42f037590d}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00309\ }
-\DoxyCodeLine{00313\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a657486b28e38db1d45eab3fb452fbd37}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00314\ }
-\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a7bc119f6ef15a7ee235e493f6b2b34bb}{setMean}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&\mbox{\hyperlink{namespacecmp_1_1mean}{mean}})\ \{}
-\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}\ =\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}};}
-\DoxyCodeLine{00320\ \ \ \ \ \};}
+\DoxyCodeLine{00251\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a1df30df702283b8469efb51a8b0df40d}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00253\ \ \ \ \ \};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a4ed4b8f84cc0275b3609f6c10c6d5a5f}{getIntercept}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::VectorXd::Zero(\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}});}
+\DoxyCodeLine{00257\ \ \ \ \ \};}
+\DoxyCodeLine{00258\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_aa5b1db975a868ffbb9770fd658ce79eb}{getScale}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::MatrixXd::Identity(\mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}},\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}});}
+\DoxyCodeLine{00260\ \ \ \ \ \};}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a82fcc0902bcaf06895b815cad983e58f}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}}\ =\ data.cols();}
+\DoxyCodeLine{00264\ \ \ \ \ \};}
+\DoxyCodeLine{00265\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_aaf68a3279469b1c4f814c2a94f35cce9}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}}\ =\ data.cols();}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00268\ \ \ \ \ \};}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_a13f9477860faf022a28cd346bc42a973}{setDim}}(\textcolor{keywordtype}{size\_t}\ dim)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler_ad2bf19c892d7c0dcb0db7ec7411c7f09}{dim\_}}\ =\ dim;}
+\DoxyCodeLine{00276\ \ \ \ \ \};}
+\DoxyCodeLine{00277\ \};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00294\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
+\DoxyCodeLine{00295\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00297\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}};}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00300\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\_}};}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00311\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a769b58f04d54d6ccda9c9e48291a0401}{EllipticScaler}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&\mbox{\hyperlink{namespacecmp_1_1mean}{mean}},\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&std)\ :\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}(\mbox{\hyperlink{namespacecmp_1_1mean}{mean}}),\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\_}}(std)\ \{\};}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a53f8d1f69524076db56af2a709881414}{EllipticScaler}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00314\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa2ee6b60713b48100cd29639bae98548}{EllipticScaler}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00315\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a98dd13aa727d2de34dbd282c152c289a}{\string~EllipticScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00316\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a3183265f75e490a27915fb9b02ef434d}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00317\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ab596ef021cf6fc07d008e18179c2e05d}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4cc577e745eed3d8d04ea3b22886a92b}{EllipticScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa9165c49ba109a73f91bdfeb288c1f4c}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00320\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a0527554327168152d5bb453ca4928953}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
 \DoxyCodeLine{00321\ }
-\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a157800ab1b134d2700b56a2dc6244205}{setStd}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&std)\ \{}
-\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\_}}\ =\ std;}
-\DoxyCodeLine{00327\ \ \ \ \ \};}
-\DoxyCodeLine{00328\ \};}
-\DoxyCodeLine{00329\ }
-\DoxyCodeLine{00345\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
-\DoxyCodeLine{00346\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00347\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc}{min\_}};}
-\DoxyCodeLine{00348\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2}{max\_}};}
-\DoxyCodeLine{00349\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1}{data\_min\_}};}
-\DoxyCodeLine{00350\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a}{data\_max\_}};}
-\DoxyCodeLine{00351\ }
-\DoxyCodeLine{00352\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00353\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00354\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a8f9835c9f1c5b881bf74e1b2b3bc42e6}{MinMaxScaler}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&min,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&max)\ :\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc}{min\_}}(min),\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2}{max\_}}(max)\ \{\};}
-\DoxyCodeLine{00355\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a1426a4f28567b46ba9adb05f1c2ecc56}{MinMaxScaler}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_abf19928dc3614b8db165bdcb103956df}{MinMaxScaler}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00357\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ad1803568927aac0a3def45190ace4982}{\string~MinMaxScaler}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00358\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a5c9f96e018de1c78983537d035904942}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00359\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a35e3aafba14fe404a01ff545aabe08bc}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00360\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00361\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00362\ }
-\DoxyCodeLine{00363\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7137f3b6cd83ec840291b288eb8fa552}{getDataMin}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1}{data\_min\_}};}
-\DoxyCodeLine{00365\ \ \ \ \ \};}
-\DoxyCodeLine{00366\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_abdbc974ef6ec7f83efa0d08211eedbd5}{getDataMax}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a}{data\_max\_}};}
-\DoxyCodeLine{00368\ \ \ \ \ \};}
-\DoxyCodeLine{00369\ }
-\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00371\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac7cf5a8ad79582ab3bf569f2f51b81b3}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00372\ }
-\DoxyCodeLine{00373\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e}{getIntercept}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00374\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7bbf79807c05b4f60ec2b1a946158dd0}{getScale}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00375\ \};}
-\DoxyCodeLine{00376\ \}}
+\DoxyCodeLine{00322\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a4702e651e83aac9b13cb75ca1600531c}{getIntercept}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}};}
+\DoxyCodeLine{00324\ \ \ \ \ \};}
+\DoxyCodeLine{00325\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_aa7ee167e34c4c747dbea374196cd6a18}{getScale}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ Eigen::MatrixXd\ scale\ =\ Eigen::MatrixXd::Identity(\mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}.size(),\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}.size());}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}.size();\ i++)\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ scale(i,\ i)\ =\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\_}}[i];}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ scale;}
+\DoxyCodeLine{00331\ \ \ \ \ \};}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a044939a8e126affba4a3ca42f037590d}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00334\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a657486b28e38db1d45eab3fb452fbd37}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a7bc119f6ef15a7ee235e493f6b2b34bb}{setMean}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&\mbox{\hyperlink{namespacecmp_1_1mean}{mean}})\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a52af9b6279dd3bffb1e8f5ceb805dd3b}{mean\_}}\ =\ \mbox{\hyperlink{namespacecmp_1_1mean}{mean}};}
+\DoxyCodeLine{00342\ \ \ \ \ \};}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_a157800ab1b134d2700b56a2dc6244205}{setStd}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&std)\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler_ad92d211a4816b5c773c2f80f20624106}{std\_}}\ =\ std;}
+\DoxyCodeLine{00350\ \ \ \ \ \};}
+\DoxyCodeLine{00351\ \};}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00367\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}\ \{}
+\DoxyCodeLine{00368\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00370\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc}{min\_}};}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00373\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2}{max\_}};}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00376\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1}{data\_min\_}};}
 \DoxyCodeLine{00377\ }
-\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a}{data\_max\_}};}
 \DoxyCodeLine{00380\ }
-\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SCALER\_H}}
+\DoxyCodeLine{00381\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00383\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00390\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a8f9835c9f1c5b881bf74e1b2b3bc42e6}{MinMaxScaler}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&min,\ \textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&max)\ :\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a759dbfd0c47fc160d102ba2883047cbc}{min\_}}(min),\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a989c4283b6d6eab4e055da961caddbc2}{max\_}}(max)\ \{\};}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a1426a4f28567b46ba9adb05f1c2ecc56}{MinMaxScaler}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00393\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_abf19928dc3614b8db165bdcb103956df}{MinMaxScaler}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00394\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ad1803568927aac0a3def45190ace4982}{\string~MinMaxScaler}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00395\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a5c9f96e018de1c78983537d035904942}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00396\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a35e3aafba14fe404a01ff545aabe08bc}{operator=}}(\mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a4ed6dfccaab541f91a2ce38e47cef532}{MinMaxScaler}}\ \&\&other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a566ca9d333c4703307bd78e7afaebf0c}{transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00399\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a23768d4063032ff713f6cdd9092240b4}{inverseTransform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::VectorXd>\ \&data)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00405\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7137f3b6cd83ec840291b288eb8fa552}{getDataMin}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a806a538ae198499889ba3c4ec79026c1}{data\_min\_}};}
+\DoxyCodeLine{00407\ \ \ \ \ \};}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00413\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_abdbc974ef6ec7f83efa0d08211eedbd5}{getDataMax}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac40d713951e369ed819178379218974a}{data\_max\_}};}
+\DoxyCodeLine{00415\ \ \ \ \ \};}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a16823cc81232127bc86759957d1c7cd5}{fit}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00418\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_ac7cf5a8ad79582ab3bf569f2f51b81b3}{fit\_transform}}(\textcolor{keyword}{const}\ Eigen::Ref<const\ Eigen::MatrixXd>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a9c2c401942b096a31bc4938c2f12ee1e}{getIntercept}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00421\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler_a7bbf79807c05b4f60ec2b1a946158dd0}{getScale}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00422\ \};}
+\DoxyCodeLine{00423\ \}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SCALER\_H}}
 
 \end{DoxyCode}

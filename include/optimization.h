@@ -131,14 +131,14 @@ class ObjectiveFunctor {
 
 
   private:
-    std::function<double(Eigen::Ref<const Eigen::VectorXd>)> fval_only_;
-    std::function<double(Eigen::Ref<const Eigen::VectorXd>, Eigen::Ref<Eigen::VectorXd>)> fval_grad_inplace_;
+    std::function<double(Eigen::Ref<const Eigen::VectorXd>)> fval_only_;                         ///< Pointer to a gradient-free objective function.
+    std::function<double(Eigen::Ref<const Eigen::VectorXd>, Eigen::Ref<Eigen::VectorXd>)> fval_grad_inplace_; ///< Pointer to a gradient-based objective function.
 
-    std::vector<std::function<double(Eigen::Ref<const Eigen::VectorXd>, Eigen::Ref<Eigen::VectorXd>)>> ineq_constraints_;
-    std::vector<std::function<double(Eigen::Ref<const Eigen::VectorXd>, Eigen::Ref<Eigen::VectorXd>)>> eq_constraints_;
+    std::vector<std::function<double(Eigen::Ref<const Eigen::VectorXd>, Eigen::Ref<Eigen::VectorXd>)>> ineq_constraints_; ///< Collection of inequality constraint functions.
+    std::vector<std::function<double(Eigen::Ref<const Eigen::VectorXd>, Eigen::Ref<Eigen::VectorXd>)>> eq_constraints_;   ///< Collection of equality constraint functions.
 
-    bool use_gradient_;
-    std::vector<bool> log_scale_; // Mask indicating which dims are log-scaled
+    bool use_gradient_;           ///< Flag indicating whether the objective function uses gradient information.
+    std::vector<bool> log_scale_; ///< Mask indicating which parameter dimensions are optimized in log-scale.
 
     /**
      * @brief Maps parameters from optimization space (potentially log-scaled) to physical space.

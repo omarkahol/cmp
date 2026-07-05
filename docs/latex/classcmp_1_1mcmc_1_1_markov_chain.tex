@@ -50,27 +50,27 @@ void \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_ad370e54398f373f33890662
 \begin{DoxyCompactItemize}
 \item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}{score\+\_\+}} \{0.\+0\}
-\item 
+\begin{DoxyCompactList}\small\item\em Current log probability score value. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}{dim\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Dimension of parameter space. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}{n\+Steps\+\_\+}} \{0\}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of steps taken. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}{n\+Accepts\+\_\+}} \{0\}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of accepted proposals. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}{mean\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Parameter sample running mean vector. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a0e1e72575e38028354341160fe8e5512}{cov\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Parameter sample running covariance matrix. \end{DoxyCompactList}\item 
 Proposal\+Type \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}{proposal\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Proposal distribution model (copied by value). \end{DoxyCompactList}\item 
 std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}{dist\+U\+\_\+}} \{0.\+0, 1.\+0\}
-\item 
+\begin{DoxyCompactList}\small\item\em Uniform distribution helper. \end{DoxyCompactList}\item 
 std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}{rng\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Random engine. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}{scale\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Proposal covariance scale parameter. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}{target\+Acceptance\+Ratio\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Target acceptance ratio for adaptive tuning. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -331,12 +331,20 @@ Updates the value of the mean and covariance matrix.
 template$<$typename Proposal\+Type$>$ \\
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::cov\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Parameter sample running covariance matrix. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!dim\_@{dim\_}}
 \index{dim\_@{dim\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
 \doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a6f8c3e31265af49b5a50071900c66ac8} 
 template$<$typename Proposal\+Type$>$ \\
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Dimension of parameter space. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_af89dae216d672709e2719175624f0f37}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!distU\_@{distU\_}}
 \index{distU\_@{distU\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
@@ -345,12 +353,20 @@ size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\
 template$<$typename Proposal\+Type$>$ \\
 std\+::uniform\+\_\+real\+\_\+distribution$<$double$>$ \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::dist\+U\+\_\+ \{0.\+0, 1.\+0\}\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Uniform distribution helper. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!mean\_@{mean\_}}
 \index{mean\_@{mean\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
 \doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a7866d8141f7c4287a1f5d925d1f5ba65} 
 template$<$typename Proposal\+Type$>$ \\
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Parameter sample running mean vector. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a6e6d7736ef0265efc5afbc049b82e3de}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!nAccepts\_@{nAccepts\_}}
 \index{nAccepts\_@{nAccepts\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
@@ -359,12 +375,20 @@ Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+:
 template$<$typename Proposal\+Type$>$ \\
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::n\+Accepts\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Number of accepted proposals. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!nSteps\_@{nSteps\_}}
 \index{nSteps\_@{nSteps\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
 \doxysubsubsection{\texorpdfstring{nSteps\_}{nSteps\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a18b8e92e781acd17ee59313daeddbc84} 
 template$<$typename Proposal\+Type$>$ \\
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::n\+Steps\+\_\+ \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Number of steps taken. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a29605df6bcef9debfa575ec0ed362652}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!proposal\_@{proposal\_}}
 \index{proposal\_@{proposal\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
@@ -373,12 +397,20 @@ size\+\_\+t \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\
 template$<$typename Proposal\+Type$>$ \\
 Proposal\+Type \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::proposal\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Proposal distribution model (copied by value). 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!rng\_@{rng\_}}
 \index{rng\_@{rng\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
 \doxysubsubsection{\texorpdfstring{rng\_}{rng\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a01ceabbd7de685081d4140edcabd9d73} 
 template$<$typename Proposal\+Type$>$ \\
 std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Random engine. 
 
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_aac23b7f8e3458fb8d102041df2b85bc2}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!scale\_@{scale\_}}
 \index{scale\_@{scale\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
@@ -387,6 +419,10 @@ std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1mcmc_1_1_mar
 template$<$typename Proposal\+Type$>$ \\
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::scale\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Proposal covariance scale parameter. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a6f617b9567ed0c58783c3e12d48b7888}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!score\_@{score\_}}
 \index{score\_@{score\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
 \doxysubsubsection{\texorpdfstring{score\_}{score\_}}
@@ -394,12 +430,20 @@ double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Mark
 template$<$typename Proposal\+Type$>$ \\
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::score\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
+Current log probability score value. 
+
 \Hypertarget{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79}\index{cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}!targetAcceptanceRatio\_@{targetAcceptanceRatio\_}}
 \index{targetAcceptanceRatio\_@{targetAcceptanceRatio\_}!cmp::mcmc::MarkovChain$<$ ProposalType $>$@{cmp::mcmc::MarkovChain$<$ ProposalType $>$}}
 \doxysubsubsection{\texorpdfstring{targetAcceptanceRatio\_}{targetAcceptanceRatio\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1mcmc_1_1_markov_chain_a4338cb834f1c8a641e54dd34bab09f79} 
 template$<$typename Proposal\+Type$>$ \\
 double \mbox{\hyperlink{classcmp_1_1mcmc_1_1_markov_chain}{cmp\+::mcmc\+::\+Markov\+Chain}}$<$ Proposal\+Type $>$\+::target\+Acceptance\+Ratio\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Target acceptance ratio for adaptive tuning. 
 
 
 

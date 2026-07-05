@@ -2,7 +2,7 @@
 \hypertarget{statistics_8h}{}\label{statistics_8h}\index{include/statistics.h@{include/statistics.h}}
 
 
-Header file for statistical functions and classes This file contains declarations for various statistical functions and classes used in the project.  
+Header file for statistical functions and classes.  
 
 
 {\ttfamily \#include $<$concepts$>$}\newline
@@ -25,7 +25,7 @@ class \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator}{cm
 class \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap}{cmp\+::statistics\+::\+Bootstrap}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1statistics_1_1_bootstrap}{Bootstrap} resampling index generator. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats}{cmp\+::statistics\+::\+Pairwise\+Distance\+Stats}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Computes and stores pairwise spatial distances between high-\/dimensional data points. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -37,25 +37,26 @@ namespace \mbox{\hyperlink{namespacecmp_1_1statistics}{cmp\+::statistics}}
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_a718b9c2b703c2248297619f4435d364a}{cmp\+::statistics\+::mean}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)
-\item 
+\begin{DoxyCompactList}\small\item\em Computes the empirical mean vector of a dataset. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_a7eeef4b2040b0064a68889e678e64562}{cmp\+::statistics\+::covariance}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)
-\begin{DoxyCompactList}\small\item\em Computes the variance of a vector of data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the sample covariance matrix of a dataset. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{namespacecmp_1_1statistics_a0383eca5136a701b5cbf914211aab108}{cmp\+::statistics\+::quantile}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data, double quantile)
-\begin{DoxyCompactList}\small\item\em Computes the quantile of a vector of data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes a specific quantile of a 1D vector of data. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_afa27e65c3e3becac7ee4f615ccaabd6b}{cmp\+::statistics\+::inter\+Quantile\+Range}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data, double lower\+Quantile, double upper\+Quantile)
-\begin{DoxyCompactList}\small\item\em Computes the interquartile range of a vector of data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the interquartile range (IQR) column-\/wise for a dataset. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_af3d7ea822ca7638d9a89bd11202da867}{cmp\+::statistics\+::pearson\+Correlation}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data1, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data2)
-\begin{DoxyCompactList}\small\item\em Compute the Pearson correlation matrix between two datasets. Manages the case where the datasets have different numbers of points. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the Pearson correlation matrix between two datasets. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_a65be48599e4f4c98de7a37ccd965cd24}{cmp\+::statistics\+::lagged\+Correlation}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data1, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data2, int lag)
-\begin{DoxyCompactList}\small\item\em Computes the correlation matrix between two datasets with a specified lag. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the cross-\/correlation matrix between two datasets with a specified temporal lag. \end{DoxyCompactList}\item 
 std\+::vector$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacecmp_1_1statistics_a089a9c1072203f32813ddce221d81046}{cmp\+::statistics\+::lagged\+Correlation}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data1, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data2, int min\+Lag, int max\+Lag)
-\begin{DoxyCompactList}\small\item\em Return the correlation matrix between two datasets for all lags in the range \mbox{[}min\+Lag, max\+Lag\mbox{]}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns the cross-\/correlation matrices between two datasets for a sequence of lags. \end{DoxyCompactList}\item 
 std\+::pair$<$ Eigen\+::\+Vector\+Xd, double $>$ \mbox{\hyperlink{namespacecmp_1_1statistics_aefc18ce56217dd9d4b93465d5ec9f76f}{cmp\+::statistics\+::self\+Correlation\+Length}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)
-\begin{DoxyCompactList}\small\item\em Computes the self-\/correlation length and the effective sample size of some samples. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the self-\/correlation (autocorrelation) length and the effective sample size. \end{DoxyCompactList}\item 
 std\+::vector$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacecmp_1_1statistics_a5a583b49079b5df2313396cb5fa598c3}{cmp\+::statistics\+::self\+Cross\+Correlation\+FFT}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Computes the complete auto-\/ and cross-\/correlation functions across all lags efficiently using the Fast Fourier Transform (FFT). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Header file for statistical functions and classes This file contains declarations for various statistical functions and classes used in the project. 
+Header file for statistical functions and classes. 
 
+This file contains declarations for various statistical functions, resampling techniques (K-\/\+Fold, Bootstrap), and spatial statistics utilities used throughout the project. 

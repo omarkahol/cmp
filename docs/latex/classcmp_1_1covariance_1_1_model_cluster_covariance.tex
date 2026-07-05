@@ -51,11 +51,11 @@ const std\+::vector$<$ double $>$ \& \mbox{\hyperlink{classcmp_1_1covariance_1_1
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_aaf14b6825c192fdfe416b48621319927}{p\+Model\+Cluster\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pointer to the underlying model cluster manager. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a23693063f8392fb9742e87d030050d73}{p\+Classifier\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pointer to the classifier used for coordinate probability assignment. \end{DoxyCompactList}\item 
 std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ double $>$ $>$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_model_cluster_covariance_a82231470753b9f972925345fd3f274df}{probability\+Cache\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Thread-\/local mutable cache to avoid redundant classifier evaluations. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -155,17 +155,29 @@ void cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::precompute\+Probabilit
 {\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a23693063f8392fb9742e87d030050d73} 
 \mbox{\hyperlink{classcmp_1_1classifier_1_1_classifier}{cmp\+::classifier\+::\+Classifier}}\texorpdfstring{$\ast$}{*} cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::p\+Classifier\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Pointer to the classifier used for coordinate probability assignment. 
+
 \Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_aaf14b6825c192fdfe416b48621319927}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!pModelCluster\_@{pModelCluster\_}}
 \index{pModelCluster\_@{pModelCluster\_}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
 \doxysubsubsection{\texorpdfstring{pModelCluster\_}{pModelCluster\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_aaf14b6825c192fdfe416b48621319927} 
 \mbox{\hyperlink{classcmp_1_1_model_cluster}{cmp\+::\+Model\+Cluster}}\texorpdfstring{$\ast$}{*} cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::p\+Model\+Cluster\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Pointer to the underlying model cluster manager. 
+
 \Hypertarget{classcmp_1_1covariance_1_1_model_cluster_covariance_a82231470753b9f972925345fd3f274df}\index{cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}!probabilityCache\_@{probabilityCache\_}}
 \index{probabilityCache\_@{probabilityCache\_}!cmp::covariance::ModelClusterCovariance@{cmp::covariance::ModelClusterCovariance}}
 \doxysubsubsection{\texorpdfstring{probabilityCache\_}{probabilityCache\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1covariance_1_1_model_cluster_covariance_a82231470753b9f972925345fd3f274df} 
 std\+::unordered\+\_\+map$<$std\+::string, std\+::vector$<$double$>$ $>$ cmp\+::covariance\+::\+Model\+Cluster\+Covariance\+::probability\+Cache\+\_\+\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+
+
+Thread-\/local mutable cache to avoid redundant classifier evaluations. 
 
 
 

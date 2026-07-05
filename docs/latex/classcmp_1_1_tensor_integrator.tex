@@ -22,9 +22,9 @@ double \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a938e04b94791771eced7199e
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{grid\+Nodes}}
-\item 
+\begin{DoxyCompactList}\small\item\em Matrix of joint tensor product quadrature nodes (total\+Points x dim). \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{grid\+Weights}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Vector of joint tensor product weights (total\+Points). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -110,12 +110,20 @@ Physical Integration\+: Integrates a function defined in the physical domain by 
 template$<$typename Basis\+Type$>$ \\
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_tensor_integrator}{cmp\+::\+Tensor\+Integrator}}$<$ Basis\+Type $>$\+::grid\+Nodes}
 
+
+
+Matrix of joint tensor product quadrature nodes (total\+Points x dim). 
+
 \Hypertarget{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}\index{cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}!gridWeights@{gridWeights}}
 \index{gridWeights@{gridWeights}!cmp::TensorIntegrator$<$ BasisType $>$@{cmp::TensorIntegrator$<$ BasisType $>$}}
 \doxysubsubsection{\texorpdfstring{gridWeights}{gridWeights}}
 {\footnotesize\ttfamily \label{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618} 
 template$<$typename Basis\+Type$>$ \\
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_tensor_integrator}{cmp\+::\+Tensor\+Integrator}}$<$ Basis\+Type $>$\+::grid\+Weights}
+
+
+
+Vector of joint tensor product weights (total\+Points). 
 
 
 

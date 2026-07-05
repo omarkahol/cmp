@@ -4,9 +4,9 @@
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_dummy_scaler}{Dummy\+Scaler}}
-\begin{DoxyCompactList}\small\item\em Dummy scaler that leaves input data unchanged. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A pass-\/through scaler that leaves input data unchanged. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_elliptic_scaler}{Elliptic\+Scaler}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently (diagonal variance scaling). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \doxylink{classcmp_1_1scaler_1_1_scaler}{Scaler} that standardizes features independently using diagonal variance scaling. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_min_max_scaler}{Min\+Max\+Scaler}}
 \begin{DoxyCompactList}\small\item\em Linearly scales features to a target bounding box range. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a}{PCA}}
@@ -14,12 +14,12 @@ class \mbox{\hyperlink{classcmp_1_1scaler_1_1_p_c_a}{PCA}}
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_scaler}{Scaler}}
 \begin{DoxyCompactList}\small\item\em Template virtual base class for feature scaling and transformation. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1scaler_1_1_standard_scaler}{Standard\+Scaler}}
-\begin{DoxyCompactList}\small\item\em Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Standardizes features by removing the mean and scaling to unit variance using Cholesky decomposition. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 constexpr double \mbox{\hyperlink{namespacecmp_1_1scaler_a486245607be5c2c828f7bff3f33b79b0}{TOL}} = 1e-\/10
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Global tolerance value used for numerical stability and zero-\/checks. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \label{doc-var-members}
@@ -30,4 +30,8 @@ constexpr double \mbox{\hyperlink{namespacecmp_1_1scaler_a486245607be5c2c828f7bf
 \doxysubsubsection{\texorpdfstring{TOL}{TOL}}
 {\footnotesize\ttfamily \label{namespacecmp_1_1scaler_a486245607be5c2c828f7bff3f33b79b0} 
 double cmp\+::scaler\+::\+TOL = 1e-\/10\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Global tolerance value used for numerical stability and zero-\/checks. 
 

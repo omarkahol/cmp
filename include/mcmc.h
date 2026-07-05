@@ -74,21 +74,21 @@ inline double log1m(double a) {
 template <typename ProposalType>
 class MarkovChain {
   protected:
-    double score_{0.0};                  // Current value of the score
-    size_t dim_;                         // Dimension of the chain
-    size_t nSteps_{0};                   // Steps done
-    size_t nAccepts_{0};                 // Accepted candidates
+    double score_{0.0};                            ///< Current log probability score value.
+    size_t dim_;                                   ///< Dimension of parameter space.
+    size_t nSteps_{0};                             ///< Number of steps taken.
+    size_t nAccepts_{0};                           ///< Number of accepted proposals.
 
-    Eigen::VectorXd mean_;               // Sample-mean vector
-    Eigen::MatrixXd cov_;                // Sample-covariance matrix
+    Eigen::VectorXd mean_;                         ///< Parameter sample running mean vector.
+    Eigen::MatrixXd cov_;                          ///< Parameter sample running covariance matrix.
 
-    ProposalType proposal_;              // Proposal distribution (stored by value)
+    ProposalType proposal_;                        ///< Proposal distribution model (copied by value).
 
-    std::uniform_real_distribution<double> distU_{0.0, 1.0};
-    std::default_random_engine rng_;
+    std::uniform_real_distribution<double> distU_{0.0, 1.0}; ///< Uniform distribution helper.
+    std::default_random_engine rng_;               ///< Random engine.
 
-    double scale_;                       // Scaling factor
-    double targetAcceptanceRatio_;       // Target acceptance ratio for adaptive MCMC
+    double scale_;                                 ///< Proposal covariance scale parameter.
+    double targetAcceptanceRatio_;                 ///< Target acceptance ratio for adaptive tuning.
 
   public:
     /**
@@ -400,19 +400,19 @@ double multiChainDiagnosis(const std::vector<MarkovChain<ProposalType>> &chains)
  */
 class EvolutionaryMarkovChain {
   protected:
-    size_t nChains_{0};
-    size_t dim_{0};
-    std::vector<Eigen::VectorXd> chainSamples_;          // Current samples of each chain
-    std::vector<double> chainScores_;                    // Current scores of each chain
+    size_t nChains_{0};                                  ///< Number of active parallel chains.
+    size_t dim_{0};                                      ///< Dimension of the parameter space.
+    std::vector<Eigen::VectorXd> chainSamples_;          ///< Current parameter samples for each chain.
+    std::vector<double> chainScores_;                    ///< Current score (log probability) for each chain.
 
     // Random distribution to pick a random chain
-    std::uniform_int_distribution<size_t> distChain_;
+    std::uniform_int_distribution<size_t> distChain_;    ///< Discrete uniform distribution helper to pick random chain.
 
     // Random distribution to pick a random number
-    std::uniform_real_distribution<double> distU_{0, 1};
-    std::normal_distribution<double> distN_{0, 1};
+    std::uniform_real_distribution<double> distU_{0, 1}; ///< Uniform distribution helper.
+    std::normal_distribution<double> distN_{0, 1};       ///< Normal distribution helper.
 
-    double nugget_{1e-6};                               // Nugget to add to the covariance matrix for numerical stability
+    double nugget_{1e-6};                               ///< Crossover mutation noise scaling.
 
   public:
     EvolutionaryMarkovChain() = default;

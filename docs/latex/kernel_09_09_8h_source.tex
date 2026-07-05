@@ -31,8 +31,8 @@
 \DoxyCodeLine{00044\ }
 \DoxyCodeLine{00056\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a921f82543599d3e5157f00a2eedbb640}{IsotropicBandwidth}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}}\ \{}
 \DoxyCodeLine{00057\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74}{h\_}}\{1.0\};}
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae805f0f988d554c6d838382dbf13a414}{dim\_}}\{1\};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a0c2794b69be3095316602ee423551f74}{h\_}}\{1.0\};\ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_ae805f0f988d554c6d838382dbf13a414}{dim\_}}\{1\};\ \ }
 \DoxyCodeLine{00060\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_isotropic_bandwidth_a921f82543599d3e5157f00a2eedbb640}{IsotropicBandwidth}}()\ =\ \textcolor{keyword}{delete};}
 \DoxyCodeLine{00062\ }
@@ -66,8 +66,8 @@
 \DoxyCodeLine{00119\ }
 \DoxyCodeLine{00131\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a5ca9a18310308d0181a78db8efa62396}{DiagonalBandwidth}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}}\ \{}
 \DoxyCodeLine{00132\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00133\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5}{h\_}};}
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_aff91c96966828ae18b71232d50de1078}{det\_}};}
+\DoxyCodeLine{00133\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a59fe3ffc123dc0903189bf98f92869a5}{h\_}};\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_aff91c96966828ae18b71232d50de1078}{det\_}};\ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00135\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_diagonal_bandwidth_a5ca9a18310308d0181a78db8efa62396}{DiagonalBandwidth}}()\ =\ \textcolor{keyword}{delete};}
 \DoxyCodeLine{00137\ }
@@ -104,9 +104,9 @@
 \DoxyCodeLine{00197\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a7ddf096ebf1acfe67beed015cf2d08a0}{FullBandwidth}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth}{Bandwidth}}\ \{}
 \DoxyCodeLine{00198\ }
 \DoxyCodeLine{00199\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00200\ \ \ \ \ Eigen::LLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\_}};}
-\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38}{det\_}};}
-\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}{dim\_}};}
+\DoxyCodeLine{00200\ \ \ \ \ Eigen::LLT<Eigen::MatrixXd>\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\_}};\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38}{det\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}{dim\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00203\ }
 \DoxyCodeLine{00204\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a7ddf096ebf1acfe67beed015cf2d08a0}{FullBandwidth}}()\ =\ \textcolor{keyword}{delete};}

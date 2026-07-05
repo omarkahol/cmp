@@ -54,11 +54,11 @@ static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwid
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+LLT$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}{L\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em LDLT/\+Cholesky factor of the covariance scaling matrix. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38}{det\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Precomputed determinant of the full bandwidth matrix. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}{dim\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Dimension of the input space. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -232,17 +232,29 @@ Implements \mbox{\hyperlink{classcmp_1_1kernel_1_1_bandwidth_a873ddb11a78e7adc92
 {\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_ab0c0fb02e1182865a1fd7b51d0e63d38} 
 double cmp\+::kernel\+::\+Full\+Bandwidth\+::det\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Precomputed determinant of the full bandwidth matrix. 
+
 \Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!dim\_@{dim\_}}
 \index{dim\_@{dim\_}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
 \doxysubsubsection{\texorpdfstring{dim\_}{dim\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_afd6bbe8c3a506dcea498ec8c7f969814} 
 size\+\_\+t cmp\+::kernel\+::\+Full\+Bandwidth\+::dim\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Dimension of the input space. 
+
 \Hypertarget{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399}\index{cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}!L\_@{L\_}}
 \index{L\_@{L\_}!cmp::kernel::FullBandwidth@{cmp::kernel::FullBandwidth}}
 \doxysubsubsection{\texorpdfstring{L\_}{L\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1kernel_1_1_full_bandwidth_a028dd6e457926906f91534f6c9ab6399} 
 Eigen\+::\+LLT$<$Eigen\+::\+Matrix\+Xd$>$ cmp\+::kernel\+::\+Full\+Bandwidth\+::\+L\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+LDLT/\+Cholesky factor of the covariance scaling matrix. 
 
 
 

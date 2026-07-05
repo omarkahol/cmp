@@ -8,28 +8,28 @@ class \mbox{\hyperlink{classcmp_1_1statistics_1_1_bootstrap}{Bootstrap}}
 class \mbox{\hyperlink{classcmp_1_1statistics_1_1_k_fold}{KFold}}
 \begin{DoxyCompactList}\small\item\em K-\/\+Fold cross-\/validation partition generator. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classcmp_1_1statistics_1_1_pairwise_distance_stats}{Pairwise\+Distance\+Stats}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Computes and stores pairwise spatial distances between high-\/dimensional data points. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_a718b9c2b703c2248297619f4435d364a}{mean}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)
-\item 
+\begin{DoxyCompactList}\small\item\em Computes the empirical mean vector of a dataset. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_a7eeef4b2040b0064a68889e678e64562}{covariance}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)
-\begin{DoxyCompactList}\small\item\em Computes the variance of a vector of data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the sample covariance matrix of a dataset. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{namespacecmp_1_1statistics_a0383eca5136a701b5cbf914211aab108}{quantile}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&data, double quantile)
-\begin{DoxyCompactList}\small\item\em Computes the quantile of a vector of data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes a specific quantile of a 1D vector of data. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_afa27e65c3e3becac7ee4f615ccaabd6b}{inter\+Quantile\+Range}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data, double lower\+Quantile, double upper\+Quantile)
-\begin{DoxyCompactList}\small\item\em Computes the interquartile range of a vector of data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the interquartile range (IQR) column-\/wise for a dataset. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_af3d7ea822ca7638d9a89bd11202da867}{pearson\+Correlation}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data1, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data2)
-\begin{DoxyCompactList}\small\item\em Compute the Pearson correlation matrix between two datasets. Manages the case where the datasets have different numbers of points. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the Pearson correlation matrix between two datasets. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacecmp_1_1statistics_a65be48599e4f4c98de7a37ccd965cd24}{lagged\+Correlation}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data1, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data2, int lag)
-\begin{DoxyCompactList}\small\item\em Computes the correlation matrix between two datasets with a specified lag. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the cross-\/correlation matrix between two datasets with a specified temporal lag. \end{DoxyCompactList}\item 
 std\+::vector$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacecmp_1_1statistics_a089a9c1072203f32813ddce221d81046}{lagged\+Correlation}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data1, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data2, int min\+Lag, int max\+Lag)
-\begin{DoxyCompactList}\small\item\em Return the correlation matrix between two datasets for all lags in the range \mbox{[}min\+Lag, max\+Lag\mbox{]}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns the cross-\/correlation matrices between two datasets for a sequence of lags. \end{DoxyCompactList}\item 
 std\+::pair$<$ Eigen\+::\+Vector\+Xd, double $>$ \mbox{\hyperlink{namespacecmp_1_1statistics_aefc18ce56217dd9d4b93465d5ec9f76f}{self\+Correlation\+Length}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)
-\begin{DoxyCompactList}\small\item\em Computes the self-\/correlation length and the effective sample size of some samples. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the self-\/correlation (autocorrelation) length and the effective sample size. \end{DoxyCompactList}\item 
 std\+::vector$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacecmp_1_1statistics_a5a583b49079b5df2313396cb5fa598c3}{self\+Cross\+Correlation\+FFT}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&data)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Computes the complete auto-\/ and cross-\/correlation functions across all lags efficiently using the Fast Fourier Transform (FFT). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \label{doc-func-members}
@@ -43,19 +43,24 @@ Eigen\+::\+Matrix\+Xd cmp\+::statistics\+::covariance (\begin{DoxyParamCaption}\
 
 
 
-Computes the variance of a vector of data. 
+Computes the sample covariance matrix of a dataset. 
 
 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\hypertarget{namespacecmp_1_1statistics_autotoc_md27}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation}{Mathematical Formulation}}\label{namespacecmp_1_1statistics_autotoc_md27}
+Given a dataset matrix $\mathbf{X} \in \mathbb{R}^{N \times D}$ with mean vector $\boldsymbol{\mu}$, the unbiased sample covariance matrix $\mathbf{\Sigma} \in \mathbb{R}^{D \times D}$ is\+:   \[\mathbf{\Sigma} = \frac{1}{N-1} (\mathbf{X} - \mathbf{1}\boldsymbol{\mu}^T)^T (\mathbf{X} - \mathbf{1}\boldsymbol{\mu}^T)
+\] 
 \begin{DoxyParams}{Parameters}
-{\em data} & A reference to an \doxylink{namespace_eigen}{Eigen} vector containing the data. \\
+{\em data} & A reference to an \doxylink{namespace_eigen}{Eigen} matrix containing the data (points in rows). \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The variance of the data. 
+The covariance matrix of the data. 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em std\+::invalid\+\_\+argument} & if the input vector is empty. \\
+{\em std\+::invalid\+\_\+argument} & if the input matrix has fewer than 2 rows. \\
 \hline
 \end{DoxyExceptions}
 \Hypertarget{namespacecmp_1_1statistics_afa27e65c3e3becac7ee4f615ccaabd6b}\index{cmp::statistics@{cmp::statistics}!interQuantileRange@{interQuantileRange}}
@@ -66,26 +71,31 @@ Eigen\+::\+Vector\+Xd cmp\+::statistics\+::inter\+Quantile\+Range (\begin{DoxyPa
 
 
 
-Computes the interquartile range of a vector of data. 
+Computes the interquartile range (IQR) column-\/wise for a dataset. 
 
-
+\hypertarget{namespacecmp_1_1statistics_autotoc_md28}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation}{Mathematical Formulation}}\label{namespacecmp_1_1statistics_autotoc_md28}
+For each feature column $ j $\+:   \[\text{IQR}_j = Q_{\text{upper}, j} - Q_{\text{lower}, j}
+\] where $Q$ represents the value at the specified quantile probabilities.
+\begin{DoxyItemize}
+\item 
 \begin{DoxyParams}{Parameters}
-{\em data} & A reference to an \doxylink{namespace_eigen}{Eigen} matrix containing the data. \\
+{\em data} & A reference to an \doxylink{namespace_eigen}{Eigen} matrix containing the data (points in rows). \\
 \hline
-{\em lower\+Quantile} & The lower quantile (between 0 and 1). \\
+{\em lower\+Quantile} & The lower probability bound (e.\+g., 0.\+25). \\
 \hline
-{\em upper\+Quantile} & The upper quantile (between 0 and 1). \\
+{\em upper\+Quantile} & The upper probability bound (e.\+g., 0.\+75). \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The interquartile range of the data. 
+A vector containing the IQR for each feature column. 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em std\+::invalid\+\_\+argument} & if the input matrix is empty or the quantiles are not between 0 and 1. \\
+{\em std\+::invalid\+\_\+argument} & if the input matrix is empty or the quantiles are invalid. \\
 \hline
 \end{DoxyExceptions}
-\Hypertarget{namespacecmp_1_1statistics_a65be48599e4f4c98de7a37ccd965cd24}\index{cmp::statistics@{cmp::statistics}!laggedCorrelation@{laggedCorrelation}}
+
+\end{DoxyItemize}\Hypertarget{namespacecmp_1_1statistics_a65be48599e4f4c98de7a37ccd965cd24}\index{cmp::statistics@{cmp::statistics}!laggedCorrelation@{laggedCorrelation}}
 \index{laggedCorrelation@{laggedCorrelation}!cmp::statistics@{cmp::statistics}}
 \doxysubsubsection{\texorpdfstring{laggedCorrelation()}{laggedCorrelation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \label{namespacecmp_1_1statistics_a65be48599e4f4c98de7a37ccd965cd24} 
@@ -93,21 +103,24 @@ Eigen\+::\+Matrix\+Xd cmp\+::statistics\+::lagged\+Correlation (\begin{DoxyParam
 
 
 
-Computes the correlation matrix between two datasets with a specified lag. 
+Computes the cross-\/correlation matrix between two datasets with a specified temporal lag. 
 
-
+Correlates $X(t)$ from {\ttfamily data1} with $Y(t + \tau)$ from {\ttfamily data2} where $\tau$ is the {\ttfamily lag}.
+\begin{DoxyItemize}
+\item 
 \begin{DoxyParams}{Parameters}
-{\em data1} & First dataset (points in rows). \\
+{\em data1} & First dataset (time series points in rows). \\
 \hline
-{\em data2} & Second dataset (points in rows). \\
+{\em data2} & Second dataset (time series points in rows). \\
 \hline
-{\em lag} & The lag to apply to the second dataset. \\
+{\em lag} & The discrete time lag $ \tau $ to apply to the second dataset. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The correlation matrix. 
+The lagged correlation matrix. 
 \end{DoxyReturn}
-\Hypertarget{namespacecmp_1_1statistics_a089a9c1072203f32813ddce221d81046}\index{cmp::statistics@{cmp::statistics}!laggedCorrelation@{laggedCorrelation}}
+
+\end{DoxyItemize}\Hypertarget{namespacecmp_1_1statistics_a089a9c1072203f32813ddce221d81046}\index{cmp::statistics@{cmp::statistics}!laggedCorrelation@{laggedCorrelation}}
 \index{laggedCorrelation@{laggedCorrelation}!cmp::statistics@{cmp::statistics}}
 \doxysubsubsection{\texorpdfstring{laggedCorrelation()}{laggedCorrelation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{namespacecmp_1_1statistics_a089a9c1072203f32813ddce221d81046} 
@@ -115,21 +128,21 @@ std\+::vector$<$ Eigen\+::\+Matrix\+Xd $>$ cmp\+::statistics\+::lagged\+Correlat
 
 
 
-Return the correlation matrix between two datasets for all lags in the range \mbox{[}min\+Lag, max\+Lag\mbox{]}. 
+Returns the cross-\/correlation matrices between two datasets for a sequence of lags. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em data1} & First dataset (points in rows). \\
+{\em data1} & First dataset (time series points in rows). \\
 \hline
-{\em data2} & Second dataset (points in rows). \\
+{\em data2} & Second dataset (time series points in rows). \\
 \hline
-{\em min\+Lag} & Minimum lag to consider. \\
+{\em min\+Lag} & Minimum lag $ \tau_{\text{min}} $ to consider. \\
 \hline
-{\em max\+Lag} & Maximum lag to consider. \\
+{\em max\+Lag} & Maximum lag $ \tau_{\text{max}} $ to consider. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The correlation matrix. 
+A std\+::vector of correlation matrices, ordered from min\+Lag to max\+Lag. 
 \end{DoxyReturn}
 \Hypertarget{namespacecmp_1_1statistics_a718b9c2b703c2248297619f4435d364a}\index{cmp::statistics@{cmp::statistics}!mean@{mean}}
 \index{mean@{mean}!cmp::statistics@{cmp::statistics}}
@@ -137,6 +150,28 @@ The correlation matrix.
 {\footnotesize\ttfamily \label{namespacecmp_1_1statistics_a718b9c2b703c2248297619f4435d364a} 
 Eigen\+::\+Vector\+Xd cmp\+::statistics\+::mean (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})}
 
+
+
+Computes the empirical mean vector of a dataset. 
+
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\hypertarget{namespacecmp_1_1statistics_autotoc_md26}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation}{Mathematical Formulation}}\label{namespacecmp_1_1statistics_autotoc_md26}
+For a dataset matrix $\mathbf{X} \in \mathbb{R}^{N \times D}$, the mean vector $\boldsymbol{\mu} \in \mathbb{R}^D$ is\+:   \[\boldsymbol{\mu} = \frac{1}{N} \sum_{i=1}^N \mathbf{x}_i
+\] 
+\begin{DoxyParams}{Parameters}
+{\em data} & A reference to a matrix containing the data (points in rows, features in columns). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A column vector containing the mean of each feature. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if the input matrix is empty. \\
+\hline
+\end{DoxyExceptions}
 \Hypertarget{namespacecmp_1_1statistics_af3d7ea822ca7638d9a89bd11202da867}\index{cmp::statistics@{cmp::statistics}!pearsonCorrelation@{pearsonCorrelation}}
 \index{pearsonCorrelation@{pearsonCorrelation}!cmp::statistics@{cmp::statistics}}
 \doxysubsubsection{\texorpdfstring{pearsonCorrelation()}{pearsonCorrelation()}}
@@ -145,9 +180,16 @@ Eigen\+::\+Matrix\+Xd cmp\+::statistics\+::pearson\+Correlation (\begin{DoxyPara
 
 
 
-Compute the Pearson correlation matrix between two datasets. Manages the case where the datasets have different numbers of points. 
+Computes the Pearson correlation matrix between two datasets. 
 
 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\hypertarget{namespacecmp_1_1statistics_autotoc_md29}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation}{Mathematical Formulation}}\label{namespacecmp_1_1statistics_autotoc_md29}
+For columns $X_i$ from {\ttfamily data1} and $Y_j$ from {\ttfamily data2}, the correlation coefficient is\+:   \[\rho_{ij} = \frac{\mathrm{cov}(X_i, Y_j)}{\sigma_{X_i} \sigma_{Y_j}}
+\] Manages the case where the datasets have different numbers of points by aligning them appropriately if supported by the implementation.
+\begin{DoxyItemize}
+\item 
 \begin{DoxyParams}{Parameters}
 {\em data1} & First dataset (points in rows). \\
 \hline
@@ -155,9 +197,10 @@ Compute the Pearson correlation matrix between two datasets. Manages the case wh
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The Pearson correlation matrix. 
+The Pearson correlation matrix $ \mathbf{R} \in \mathbb{R}^{D_1 \times D_2} $. 
 \end{DoxyReturn}
-\Hypertarget{namespacecmp_1_1statistics_a0383eca5136a701b5cbf914211aab108}\index{cmp::statistics@{cmp::statistics}!quantile@{quantile}}
+
+\end{DoxyItemize}\Hypertarget{namespacecmp_1_1statistics_a0383eca5136a701b5cbf914211aab108}\index{cmp::statistics@{cmp::statistics}!quantile@{quantile}}
 \index{quantile@{quantile}!cmp::statistics@{cmp::statistics}}
 \doxysubsubsection{\texorpdfstring{quantile()}{quantile()}}
 {\footnotesize\ttfamily \label{namespacecmp_1_1statistics_a0383eca5136a701b5cbf914211aab108} 
@@ -165,21 +208,21 @@ double cmp\+::statistics\+::quantile (\begin{DoxyParamCaption}\item[{const Eigen
 
 
 
-Computes the quantile of a vector of data. 
+Computes a specific quantile of a 1D vector of data. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em data} & A reference to an \doxylink{namespace_eigen}{Eigen} vector containing the data. \\
 \hline
-{\em quantile} & The quantile to compute (between 0 and 1). \\
+{\em quantile} & The target probability quantile $ p \in [0, 1] $. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The quantile of the data. 
+The computed value representing the $ p $-\/th quantile. 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em std\+::invalid\+\_\+argument} & if the input vector is empty or the quantile is not between 0 and 1. \\
+{\em std\+::invalid\+\_\+argument} & if the input vector is empty or the quantile is out of bounds. \\
 \hline
 \end{DoxyExceptions}
 \Hypertarget{namespacecmp_1_1statistics_aefc18ce56217dd9d4b93465d5ec9f76f}\index{cmp::statistics@{cmp::statistics}!selfCorrelationLength@{selfCorrelationLength}}
@@ -190,19 +233,52 @@ std\+::pair$<$ Eigen\+::\+Vector\+Xd, double $>$ cmp\+::statistics\+::self\+Corr
 
 
 
-Computes the self-\/correlation length and the effective sample size of some samples. 
+Computes the self-\/correlation (autocorrelation) length and the effective sample size. 
 
 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+
+Useful for MCMC diagnostics to determine the number of independent samples.
+\begin{DoxyItemize}
+\item 
 \begin{DoxyParams}{Parameters}
-{\em data} & the dataset containing the samples (each sample is a row) \\
+{\em data} & the dataset containing the samples (each sample is a row). \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a pair containing the correlations lengths and the effective sample size 
+a std\+::pair containing\+:
 \end{DoxyReturn}
-\Hypertarget{namespacecmp_1_1statistics_a5a583b49079b5df2313396cb5fa598c3}\index{cmp::statistics@{cmp::statistics}!selfCrossCorrelationFFT@{selfCrossCorrelationFFT}}
+
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item An Eigen\+::\+Vector\+Xd of correlation lengths for each feature.
+\item A double representing the overall effective sample size (ESS). 
+\end{DoxyEnumerate}\Hypertarget{namespacecmp_1_1statistics_a5a583b49079b5df2313396cb5fa598c3}\index{cmp::statistics@{cmp::statistics}!selfCrossCorrelationFFT@{selfCrossCorrelationFFT}}
 \index{selfCrossCorrelationFFT@{selfCrossCorrelationFFT}!cmp::statistics@{cmp::statistics}}
 \doxysubsubsection{\texorpdfstring{selfCrossCorrelationFFT()}{selfCrossCorrelationFFT()}}
 {\footnotesize\ttfamily \label{namespacecmp_1_1statistics_a5a583b49079b5df2313396cb5fa598c3} 
 std\+::vector$<$ Eigen\+::\+Matrix\+Xd $>$ cmp\+::statistics\+::self\+Cross\+Correlation\+FFT (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Computes the complete auto-\/ and cross-\/correlation functions across all lags efficiently using the Fast Fourier Transform (FFT). 
+
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\hypertarget{namespacecmp_1_1statistics_autotoc_md30}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Formulation (Wiener-\/\+Khinchin Theorem)}{Mathematical Formulation (Wiener-\/\+Khinchin Theorem)}}\label{namespacecmp_1_1statistics_autotoc_md30}
+The cross-\/correlation $R_{ij}(\tau)$ between feature $i$ and $j$ can be computed in the frequency domain\+:   \[R_{ij}(\tau) = \mathcal{F}^{-1}\left\{ \mathcal{F}\{x_i\} \cdot \mathcal{F}\{x_j\}^* \right\}
+\] where $\mathcal{F}$ is the discrete Fourier transform. Data is mean-\/centered, zero-\/padded to the next power of 2 to avoid circular convolution artifacts, and properly normalized by sample variances.
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em data} & A reference to the dataset matrix (time points in rows, features in columns). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of length {\ttfamily n\+Points}. Each element is a {\ttfamily n\+Features x n\+Features} matrix representing the correlation at lag $\tau$. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}

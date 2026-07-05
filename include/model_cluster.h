@@ -65,37 +65,37 @@ namespace cmp {
 class ModelCluster {
 
   private:
-    std::default_random_engine rng_;
+    std::default_random_engine rng_; ///< Pseudo-random number generator.
 
-    Eigen::MatrixXd xObs_;
-    Eigen::VectorXd yObs_;
+    Eigen::MatrixXd xObs_;           ///< Training input matrix of observations.
+    Eigen::VectorXd yObs_;           ///< Training target response vector.
 
-    size_t nClusters_;
-    size_t nObs_;
-    size_t dimX_;
+    size_t nClusters_;               ///< Number of active clusters.
+    size_t nObs_;                    ///< Number of training observations.
+    size_t dimX_;                    ///< Dimension of input features.
 
     // The labels of the points
-    Eigen::VectorXs labels_;
+    Eigen::VectorXs labels_;         ///< Cluster assignments label vector.
 
     // The local index table
-    Eigen::VectorXs localIndexTable_;
+    Eigen::VectorXs localIndexTable_; ///< Local coordinate lookup index mapping.
 
     // The GPs for each cluster, along with their centroids and fit status
-    std::vector<bool> fit_;
-    std::vector<Eigen::VectorXd> centroids_;
-    std::vector<cmp::gp::GaussianProcess> gps_;
+    std::vector<bool> fit_;                   ///< Cluster fit/convergence status flag vector.
+    std::vector<Eigen::VectorXd> centroids_;  ///< Coordinates for each cluster's centroid.
+    std::vector<cmp::gp::GaussianProcess> gps_; ///< Gaussian process models for each cluster.
 
     // The cluster sizes
-    std::vector<size_t> clusterSize_;
+    std::vector<size_t> clusterSize_; ///< Number of points assigned to each cluster.
 
     // The Gamma parameter
-    double gamma_{1.0};
+    double gamma_{1.0};               ///< Regularization blending parameter gamma.
 
     // Kernel, mean and nugget for each cluster
-    std::shared_ptr<covariance::Covariance> kernel_;
-    std::shared_ptr<mean::Mean> mean_;
-    Eigen::VectorXd parameters_;
-    double nugget_{1e-8};
+    std::shared_ptr<covariance::Covariance> kernel_; ///< Covariance kernel function shared across clusters.
+    std::shared_ptr<mean::Mean> mean_;               ///< Mean function shared across clusters.
+    Eigen::VectorXd parameters_;                      ///< Kernel hyperparameter values.
+    double nugget_{1e-8};                             ///< Standard noise variance nugget.
   public:
 
     ModelCluster() = default;
@@ -730,9 +730,9 @@ namespace covariance {
  */
 class ModelClusterCovariance : public cmp::covariance::Covariance {
   private:
-    cmp::ModelCluster *pModelCluster_;
-    cmp::classifier::Classifier *pClassifier_;
-    mutable std::unordered_map<std::string, std::vector<double>> probabilityCache_;
+    cmp::ModelCluster *pModelCluster_;                                                 ///< Pointer to the underlying model cluster manager.
+    cmp::classifier::Classifier *pClassifier_;                                         ///< Pointer to the classifier used for coordinate probability assignment.
+    mutable std::unordered_map<std::string, std::vector<double>> probabilityCache_;    ///< Thread-local mutable cache to avoid redundant classifier evaluations.
 
     std::string makeProbabilityCacheKey(const Eigen::Ref<const Eigen::VectorXd> &x) const {
         const std::size_t n = static_cast<std::size_t>(x.size());
@@ -811,8 +811,8 @@ namespace mean {
  */
 class ModelClusterMean: public cmp::mean::Mean {
   private:
-    cmp::ModelCluster *pModelCluster_;
-    cmp::classifier::Classifier *pClassifier_;
+    cmp::ModelCluster *pModelCluster_;         ///< Pointer to the underlying model cluster manager.
+    cmp::classifier::Classifier *pClassifier_; ///< Pointer to the classifier used for coordinate probability assignment.
   public:
 
     ModelClusterMean(cmp::ModelCluster *modelCluster, cmp::classifier::Classifier *classifier) : pModelCluster_(modelCluster), pClassifier_(classifier) {};

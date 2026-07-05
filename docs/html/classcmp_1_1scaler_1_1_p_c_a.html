@@ -119,45 +119,57 @@ Inheritance diagram for cmp::scaler::PCA:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2ad7c0f9de75247c1098d1cceefd635f" id="r_a2ad7c0f9de75247c1098d1cceefd635f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ad7c0f9de75247c1098d1cceefd635f">PCA</a> (size_t nComponents)</td></tr>
-<tr class="memdesc:a2ad7c0f9de75247c1098d1cceefd635f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a> scaler with the specified number of components.  <br /></td></tr>
+<tr class="memdesc:a2ad7c0f9de75247c1098d1cceefd635f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a> scaler targeting a specific latent dimensionality.  <br /></td></tr>
 <tr class="memitem:a35f6437cd787c16f5f4bc28572a8510e" id="r_a35f6437cd787c16f5f4bc28572a8510e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35f6437cd787c16f5f4bc28572a8510e">PCA</a> (const <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html">PCA</a> &amp;other)=default</td></tr>
 <tr class="memitem:ad435fe36c7d197b462b615862ebef2af" id="r_ad435fe36c7d197b462b615862ebef2af"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad435fe36c7d197b462b615862ebef2af">PCA</a> (<a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html">PCA</a> &amp;&amp;other)=default</td></tr>
 <tr class="memitem:af827e0347d669d70166398aa61b6ef6c" id="r_af827e0347d669d70166398aa61b6ef6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af827e0347d669d70166398aa61b6ef6c">~PCA</a> ()=default</td></tr>
 <tr class="memitem:a6adbb09f09b1b8be195b0c81a0cc0e80" id="r_a6adbb09f09b1b8be195b0c81a0cc0e80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html">PCA</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6adbb09f09b1b8be195b0c81a0cc0e80">operator=</a> (const <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html">PCA</a> &amp;other)=default</td></tr>
 <tr class="memitem:a8b78fce3e5ecfa2385f489a8864cab95" id="r_a8b78fce3e5ecfa2385f489a8864cab95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html">PCA</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b78fce3e5ecfa2385f489a8864cab95">operator=</a> (<a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html">PCA</a> &amp;&amp;other)=default</td></tr>
 <tr class="memitem:aa44b7f09120405a48e09be90955f23ca" id="r_aa44b7f09120405a48e09be90955f23ca"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa44b7f09120405a48e09be90955f23ca">transform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
-<tr class="memdesc:aa44b7f09120405a48e09be90955f23ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Projects physical data onto the principal components.  <br /></td></tr>
+<tr class="memdesc:aa44b7f09120405a48e09be90955f23ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms the input data from physical space to the scaled latent space.  <br /></td></tr>
 <tr class="memitem:a5abb95a448b70440e3233ef426ec6dd4" id="r_a5abb95a448b70440e3233ef426ec6dd4"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5abb95a448b70440e3233ef426ec6dd4">inverseTransform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
-<tr class="memdesc:a5abb95a448b70440e3233ef426ec6dd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs physical data from the principal components.  <br /></td></tr>
+<tr class="memdesc:a5abb95a448b70440e3233ef426ec6dd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs the data from the scaled latent space back to physical space.  <br /></td></tr>
 <tr class="memitem:aa12df6a29348dba275d46a3932b1b82f" id="r_aa12df6a29348dba275d46a3932b1b82f"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa12df6a29348dba275d46a3932b1b82f">getIntercept</a> () const override</td></tr>
+<tr class="memdesc:aa12df6a29348dba275d46a3932b1b82f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the intercept vector \( \mu \) used in the transformation.  <br /></td></tr>
 <tr class="memitem:af8872ca334bde480e793cf1e1ae51f0b" id="r_af8872ca334bde480e793cf1e1ae51f0b"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8872ca334bde480e793cf1e1ae51f0b">getScale</a> () const override</td></tr>
+<tr class="memdesc:af8872ca334bde480e793cf1e1ae51f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the scaling matrix \( S \) used in the transformation.  <br /></td></tr>
 <tr class="memitem:a6a2048934255a006b8b11e0a946286d2" id="r_a6a2048934255a006b8b11e0a946286d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a2048934255a006b8b11e0a946286d2">fit</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
-<tr class="memdesc:a6a2048934255a006b8b11e0a946286d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a> model to the training dataset.  <br /></td></tr>
+<tr class="memdesc:a6a2048934255a006b8b11e0a946286d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Learns the scaling parameters (e.g., mean, variance) from the training data.  <br /></td></tr>
 <tr class="memitem:a84fe92b3f91c4c013507254c0f019ff9" id="r_a84fe92b3f91c4c013507254c0f019ff9"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84fe92b3f91c4c013507254c0f019ff9">fit_transform</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
-<tr class="memdesc:a84fe92b3f91c4c013507254c0f019ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a> model and returns the projected dataset.  <br /></td></tr>
+<tr class="memdesc:a84fe92b3f91c4c013507254c0f019ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the scaling parameters to the data and subsequently transforms the data.  <br /></td></tr>
 <tr class="memitem:a3f6e9d0e822c72a4ceb15e13e328c141" id="r_a3f6e9d0e822c72a4ceb15e13e328c141"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f6e9d0e822c72a4ceb15e13e328c141">resize</a> (size_t nComponents)</td></tr>
-<tr class="memdesc:a3f6e9d0e822c72a4ceb15e13e328c141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the number of principal components.  <br /></td></tr>
+<tr class="memdesc:a3f6e9d0e822c72a4ceb15e13e328c141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the number of retained principal components \( M \) after fitting.  <br /></td></tr>
 <tr class="memitem:a49bc86c5d0942adefb95610f6961d7cf" id="r_a49bc86c5d0942adefb95610f6961d7cf"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49bc86c5d0942adefb95610f6961d7cf">getEigenvalues</a> () const</td></tr>
-<tr class="memdesc:a49bc86c5d0942adefb95610f6961d7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the eigenvalues of the covariance matrix.  <br /></td></tr>
+<tr class="memdesc:a49bc86c5d0942adefb95610f6961d7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the eigenvalues \( \mathbf{\Lambda} \) of the covariance matrix.  <br /></td></tr>
 <tr class="memitem:aa31864710f311ff375e5721577024fd7" id="r_aa31864710f311ff375e5721577024fd7"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa31864710f311ff375e5721577024fd7">getEigenvectors</a> () const</td></tr>
-<tr class="memdesc:aa31864710f311ff375e5721577024fd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the eigenvectors of the covariance matrix.  <br /></td></tr>
+<tr class="memdesc:aa31864710f311ff375e5721577024fd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the eigenvectors \( \mathbf{V} \) of the covariance matrix.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a9b3dce84ef8675cf9916864be2029686" id="r_a9b3dce84ef8675cf9916864be2029686"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b3dce84ef8675cf9916864be2029686">eigenDecomposition</a> ()</td></tr>
-<tr class="memdesc:a9b3dce84ef8675cf9916864be2029686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal helper to run eigenvalues and eigenvectors solvers.  <br /></td></tr>
+<tr class="memdesc:a9b3dce84ef8675cf9916864be2029686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal helper to execute the eigendecomposition on the current covariance matrix.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ae4ecead1fb732753ca8a5232dc31aff1" id="r_ae4ecead1fb732753ca8a5232dc31aff1"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4ecead1fb732753ca8a5232dc31aff1">mean_</a></td></tr>
+<tr class="memdesc:ae4ecead1fb732753ca8a5232dc31aff1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The empirical mean vector \( \boldsymbol{\mu} \).  <br /></td></tr>
 <tr class="memitem:a55ec3621ff4f5a734882a6ed6de9f8bb" id="r_a55ec3621ff4f5a734882a6ed6de9f8bb"><td class="memItemLeft" align="right" valign="top">Eigen::SelfAdjointEigenSolver&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55ec3621ff4f5a734882a6ed6de9f8bb">eigenSolver_</a></td></tr>
+<tr class="memdesc:a55ec3621ff4f5a734882a6ed6de9f8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_eigen.html">Eigen</a> solver storing the eigenvectors \( \mathbf{V} \) and eigenvalues \( \mathbf{\Lambda} \).  <br /></td></tr>
 <tr class="memitem:ad3b8c49bc7bce44a3fd46a6bda10ad62" id="r_ad3b8c49bc7bce44a3fd46a6bda10ad62"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3b8c49bc7bce44a3fd46a6bda10ad62">sqrtCov_</a></td></tr>
+<tr class="memdesc:ad3b8c49bc7bce44a3fd46a6bda10ad62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precomputed square root of the truncated eigenvalues matrix \( \mathbf{\Lambda}_M^{1/2} \).  <br /></td></tr>
 <tr class="memitem:a95f1ad10267da5c3594098d040dc6926" id="r_a95f1ad10267da5c3594098d040dc6926"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95f1ad10267da5c3594098d040dc6926">sqrtCovInv_</a></td></tr>
+<tr class="memdesc:a95f1ad10267da5c3594098d040dc6926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precomputed inverse square root of the truncated eigenvalues matrix \( \mathbf{\Lambda}_M^{-1/2} \).  <br /></td></tr>
 <tr class="memitem:a1ccaee3f5e91a8d97758805fd5f7eace" id="r_a1ccaee3f5e91a8d97758805fd5f7eace"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ccaee3f5e91a8d97758805fd5f7eace">nComponents_</a></td></tr>
+<tr class="memdesc:a1ccaee3f5e91a8d97758805fd5f7eace"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of principal components \( M \) to retain.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Principal Component Analysis (<a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a>) feature scaler and dimension reducer. </p>
-<p>Mathematical Formulation Centers data matrix \(\mathbf{X} \in \mathbb{R}^{N \times D}\) around column mean \(\boldsymbol{\mu}\) and computes the eigendecomposition of the sample covariance matrix \(\boldsymbol{\Sigma}\):   </p><p class="formulaDsp">
+<ul>
+<li></li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+Mathematical Formulation</h3>
+<p>Centers data matrix \(\mathbf{X} \in \mathbb{R}^{N \times D}\) around column mean \(\boldsymbol{\mu}\) and computes the eigendecomposition of the sample covariance matrix \(\boldsymbol{\Sigma}\):   </p><p class="formulaDsp">
 \[\boldsymbol{\Sigma} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^T
 \]
 </p>
@@ -165,14 +177,17 @@ Private Attributes</h2></td></tr>
 \[\mathbf{y} = \mathbf{\Lambda}_M^{-1/2} \mathbf{V}_M^T (\mathbf{x} - \boldsymbol{\mu})
 \]
 </p>
-<p> where \(\mathbf{V}_M\) and \(\mathbf{\Lambda}_M\) represent truncated eigenvector and eigenvalue matrices. The inverse transformation reconstructs the point:   </p><p class="formulaDsp">
+<p> The inverse transformation reconstructs the point:   </p><p class="formulaDsp">
 \[\mathbf{x} = \mathbf{V}_M \mathbf{\Lambda}_M^{1/2} \mathbf{y} + \boldsymbol{\mu}
 \]
 </p>
-<p>Implementation Algorithm</p><ol type="1">
-<li><span class="tt"><a class="el" href="#a6a2048934255a006b8b11e0a946286d2" title="Fits the PCA model to the training dataset.">fit()</a></span> computes the mean \(\boldsymbol{\mu}\) and covariance \(\boldsymbol{\Sigma}\) of the training matrix, then runs <span class="tt">Eigen::SelfAdjointEigenSolver</span>.</li>
-<li><span class="tt"><a class="el" href="#aa44b7f09120405a48e09be90955f23ca" title="Projects physical data onto the principal components.">transform()</a></span> centers the query vector, projects it onto the principal eigenvectors, and scales it by the inverse square root of eigenvalues.</li>
-<li><span class="tt"><a class="el" href="#a5abb95a448b70440e3233ef426ec6dd4" title="Reconstructs physical data from the principal components.">inverseTransform()</a></span> rescales by square root eigenvalues, projects back to physical coordinates, and adds the mean. </li>
+<ul>
+<li>### Implementation Algorithm</li>
+</ul>
+<ol type="1">
+<li><span class="tt"><a class="el" href="#a6a2048934255a006b8b11e0a946286d2" title="Learns the scaling parameters (e.g., mean, variance) from the training data.">fit()</a></span> computes the mean \(\boldsymbol{\mu}\) and covariance \(\boldsymbol{\Sigma}\) of the training matrix, then runs <span class="tt">Eigen::SelfAdjointEigenSolver</span>.</li>
+<li><span class="tt"><a class="el" href="#aa44b7f09120405a48e09be90955f23ca" title="Transforms the input data from physical space to the scaled latent space.">transform()</a></span> centers the query vector, projects it onto the principal eigenvectors, and scales it by the inverse square root of eigenvalues.</li>
+<li><span class="tt"><a class="el" href="#a5abb95a448b70440e3233ef426ec6dd4" title="Reconstructs the data from the scaled latent space back to physical space.">inverseTransform()</a></span> rescales by square root eigenvalues, projects back to physical coordinates, and adds the mean. </li>
 </ol>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2ad7c0f9de75247c1098d1cceefd635f" name="a2ad7c0f9de75247c1098d1cceefd635f"></a>
@@ -198,10 +213,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs a <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a> scaler with the specified number of components. </p>
+<p>Constructs a <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a> scaler targeting a specific latent dimensionality. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nComponents</td><td>Number of principal components to retain. </td></tr>
+    <tr><td class="paramname">nComponents</td><td>Number of principal components \( M \) to retain. </td></tr>
   </table>
   </dd>
 </dl>
@@ -307,7 +322,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Internal helper to run eigenvalues and eigenvectors solvers. </p>
+<p>Internal helper to execute the eigendecomposition on the current covariance matrix. </p>
 
 </div>
 </div>
@@ -334,7 +349,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Fits the <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a> model to the training dataset. </p>
+<p>Learns the scaling parameters (e.g., mean, variance) from the training data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a034490dc8b97ab47a73ca3ffb3b6db66">cmp::scaler::Scaler</a>.</p>
 
@@ -363,7 +384,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Fits the <a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a> model and returns the projected dataset. </p>
+<p>Fits the scaling parameters to the data and subsequently transforms the data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A matrix \( X \in \mathbb{R}^{n \times d} \) of training samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The transformed dataset matrix \( Y \). </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a51d8c5c552334f8a92975516acb811f4">cmp::scaler::Scaler</a>.</p>
 
@@ -392,7 +420,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the eigenvalues of the covariance matrix. </p>
+<p>Returns the eigenvalues \( \mathbf{\Lambda} \) of the covariance matrix. </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of eigenvalues. </dd></dl>
 
 </div>
 </div>
@@ -419,7 +448,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the eigenvectors of the covariance matrix. </p>
+<p>Returns the eigenvectors \( \mathbf{V} \) of the covariance matrix. </p>
+<dl class="section return"><dt>Returns</dt><dd>A matrix whose columns are the eigenvectors. </dd></dl>
 
 </div>
 </div>
@@ -445,6 +475,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Retrieves the intercept vector \( \mu \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The intercept vector. </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a323c36327efa37536bed9cebf0f6c04f">cmp::scaler::Scaler</a>.</p>
 
@@ -473,6 +506,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves the scaling matrix \( S \) used in the transformation. </p>
+<dl class="section return"><dt>Returns</dt><dd>The scaling matrix. </dd></dl>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a4cebbeb69fa4221279ebd6c9f91f8817">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -500,7 +536,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reconstructs physical data from the principal components. </p>
+<p>Reconstructs the data from the scaled latent space back to physical space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( y \) in the scaled space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The unscaled physical data vector \( x \). </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a34c7739c949f4603ec1a430daf405dec">cmp::scaler::Scaler</a>.</p>
 
@@ -571,7 +614,13 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Resizes the number of principal components. </p>
+<p>Resizes the number of retained principal components \( M \) after fitting. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nComponents</td><td>The new number of components to retain. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -598,7 +647,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Projects physical data onto the principal components. </p>
+<p>Transforms the input data from physical space to the scaled latent space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A column vector \( x \) representing a single data point in physical space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The scaled data vector \( y \). </dd></dl>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#ada894025d92d10d357205a79ffe5f8f1">cmp::scaler::Scaler</a>.</p>
 
@@ -625,6 +681,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="namespace_eigen.html">Eigen</a> solver storing the eigenvectors \( \mathbf{V} \) and eigenvalues \( \mathbf{\Lambda} \). </p>
+
 </div>
 </div>
 <a id="ae4ecead1fb732753ca8a5232dc31aff1" name="ae4ecead1fb732753ca8a5232dc31aff1"></a>
@@ -646,6 +704,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The empirical mean vector \( \boldsymbol{\mu} \). </p>
 
 </div>
 </div>
@@ -669,6 +729,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The number of principal components \( M \) to retain. </p>
+
 </div>
 </div>
 <a id="ad3b8c49bc7bce44a3fd46a6bda10ad62" name="ad3b8c49bc7bce44a3fd46a6bda10ad62"></a>
@@ -691,6 +753,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Precomputed square root of the truncated eigenvalues matrix \( \mathbf{\Lambda}_M^{1/2} \). </p>
+
 </div>
 </div>
 <a id="a95f1ad10267da5c3594098d040dc6926" name="a95f1ad10267da5c3594098d040dc6926"></a>
@@ -712,6 +776,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Precomputed inverse square root of the truncated eigenvalues matrix \( \mathbf{\Lambda}_M^{-1/2} \). </p>
 
 </div>
 </div>

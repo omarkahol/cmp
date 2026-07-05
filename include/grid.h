@@ -43,11 +43,11 @@ class Grid {
  */
 class SobolGrid : public Grid {
   private:
-    boost::random::sobol gen_;
-    size_t dimension_;
+    boost::random::sobol gen_;   ///< Boost Sobol sequence generator.
+    size_t dimension_;           ///< Number of dimensions.
 
-    Eigen::VectorXd lowerBound_;
-    Eigen::VectorXd upperBound_;
+    Eigen::VectorXd lowerBound_; ///< Lower bounds vector.
+    Eigen::VectorXd upperBound_; ///< Upper bounds vector.
   public:
     SobolGrid(const Eigen::Ref<const Eigen::VectorXd> &lowerBound, const Eigen::Ref<const Eigen::VectorXd> &upperBound) : gen_(lowerBound.size()), dimension_(lowerBound.size()), lowerBound_(lowerBound), upperBound_(upperBound) {}
 
@@ -112,14 +112,14 @@ class SobolGrid : public Grid {
  */
 class ScrambledSobolGrid : public Grid {
   private:
-    boost::random::sobol gen_;
-    size_t dimension_;
+    boost::random::sobol gen_;         ///< Boost Sobol sequence generator.
+    size_t dimension_;                 ///< Number of dimensions.
 
-    Eigen::VectorXd lowerBound_;
-    Eigen::VectorXd upperBound_;
+    Eigen::VectorXd lowerBound_;       ///< Lower bounds vector.
+    Eigen::VectorXd upperBound_;       ///< Upper bounds vector.
 
     // We need a unique seed for each dimension's permutation tree
-    std::vector<uint64_t> dim_seeds_;
+    std::vector<uint64_t> dim_seeds_;  ///< Seeds used to initialize scrambling for each coordinate dimension.
 
     // Fast bit-mixer to generate deterministic pseudo-randomness based on bit history
     static inline uint64_t hash_prefix(uint64_t prefix, uint64_t seed) {
@@ -218,12 +218,12 @@ class ScrambledSobolGrid : public Grid {
  */
 class MonteCarloGrid : public Grid {
   private:
-    size_t dimension_;
-    std::default_random_engine rng_;
-    std::uniform_real_distribution<double> dist_;
+    size_t dimension_;                            ///< Number of dimensions.
+    std::default_random_engine rng_;              ///< Pseudo-random number generator.
+    std::uniform_real_distribution<double> dist_; ///< Uniform distribution range [0, 1].
 
-    Eigen::VectorXd lowerBound_;
-    Eigen::VectorXd upperBound_;
+    Eigen::VectorXd lowerBound_;                  ///< Lower bounds vector.
+    Eigen::VectorXd upperBound_;                  ///< Upper bounds vector.
   public:
     /**
      * @brief Constructs a MonteCarloGrid generator.
@@ -284,11 +284,11 @@ class MonteCarloGrid : public Grid {
  */
 class LatinHypercubeGrid : public Grid {
   private:
-    size_t dimension_;
-    std::default_random_engine rng_;
+    size_t dimension_;                 ///< Number of dimensions.
+    std::default_random_engine rng_;    ///< Pseudo-random number generator.
 
-    Eigen::VectorXd lowerBound_;
-    Eigen::VectorXd upperBound_;
+    Eigen::VectorXd lowerBound_;       ///< Lower bounds vector.
+    Eigen::VectorXd upperBound_;       ///< Upper bounds vector.
   public:
     /**
      * @brief Constructs a LatinHypercubeGrid generator.
@@ -346,9 +346,9 @@ class LatinHypercubeGrid : public Grid {
  */
 class LinspacedGrid : public Grid {
   private:
-    size_t dimension_;
-    Eigen::VectorXd lowerBound_;
-    Eigen::VectorXd upperBound_;
+    size_t dimension_;           ///< Number of dimensions.
+    Eigen::VectorXd lowerBound_; ///< Lower bounds vector.
+    Eigen::VectorXd upperBound_; ///< Upper bounds vector.
 
     /**
      * @brief Helper to retrieve the multi-dimensional grid index matching a flat index.
@@ -410,11 +410,11 @@ class LinspacedGrid : public Grid {
  */
 class NiederreiterGrid : public Grid {
   private:
-    boost::random::niederreiter_base2 gen_;
-    size_t dimension_;
+    boost::random::niederreiter_base2 gen_; ///< Niederreiter sequence generator.
+    size_t dimension_;                       ///< Number of dimensions.
 
-    Eigen::VectorXd lowerBound_;
-    Eigen::VectorXd upperBound_;
+    Eigen::VectorXd lowerBound_;            ///< Lower bounds vector.
+    Eigen::VectorXd upperBound_;            ///< Upper bounds vector.
   public:
     /**
      * @brief Constructs a NiederreiterGrid generator.
@@ -483,12 +483,12 @@ class NiederreiterGrid : public Grid {
  */
 class FaureGrid : public Grid {
   private:
-    boost::random::faure gen_;
-    std::default_random_engine rng_;
-    size_t dimension_;
+    boost::random::faure gen_;        ///< Faure sequence generator.
+    std::default_random_engine rng_;  ///< Random engine for shuffling.
+    size_t dimension_;                ///< Number of dimensions.
 
-    Eigen::VectorXd lowerBound_;
-    Eigen::VectorXd upperBound_;
+    Eigen::VectorXd lowerBound_;      ///< Lower bounds vector.
+    Eigen::VectorXd upperBound_;      ///< Upper bounds vector.
   public:
     /**
      * @brief Constructs a FaureGrid generator.

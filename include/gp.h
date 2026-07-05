@@ -80,26 +80,26 @@ class GaussianProcess {
   private:
 
     // Hyperparameters and prior mean and covariance functions
-    Eigen::VectorXd par_;
-    std::shared_ptr<covariance::Covariance> pKernel_;
-    std::shared_ptr<mean::Mean> pMean_;
-    double nugget_;
+    Eigen::VectorXd par_;                             ///< Model hyperparameters.
+    std::shared_ptr<covariance::Covariance> pKernel_; ///< Covariance kernel function.
+    std::shared_ptr<mean::Mean> pMean_;               ///< Prior mean function.
+    double nugget_;                                   ///< Observation noise variance (nugget).
 
     // Observations (the GP can own the data or point to external data, if it owns the data the pointer will point to it)
-    std::optional<Eigen::MatrixXd> xObs_;
-    std::optional<Eigen::VectorXd> yObs_;
-    std::optional<Eigen::Ref<const Eigen::MatrixXd>> pXObs_;
-    std::optional<Eigen::Ref<const Eigen::VectorXd>> pYObs_;
+    std::optional<Eigen::MatrixXd> xObs_;                      ///< Owning storage for training input matrix.
+    std::optional<Eigen::VectorXd> yObs_;                      ///< Owning storage for training target vector.
+    std::optional<Eigen::Ref<const Eigen::MatrixXd>> pXObs_;   ///< Reference wrapper to training input matrix.
+    std::optional<Eigen::Ref<const Eigen::VectorXd>> pYObs_;   ///< Reference wrapper to training target vector.
 
     // Internal storage for the covariance matrix, its decomposition and related vectors (for fast query)
-    Eigen::LDLT<Eigen::MatrixXd> covDecomposition_;
-    Eigen::VectorXd alpha_;
-    Eigen::VectorXd diagCovInverse_;
-    Eigen::VectorXd residual_;
+    Eigen::LDLT<Eigen::MatrixXd> covDecomposition_;            ///< LDLT decomposition of the training covariance matrix.
+    Eigen::VectorXd alpha_;                                    ///< GP weights vector: alpha = (K + s^2 I)^-1 (y - m).
+    Eigen::VectorXd diagCovInverse_;                           ///< Diagonal elements of the inverse covariance matrix.
+    Eigen::VectorXd residual_;                                 ///< Residuals of the mean function: y - m(x).
 
     // Internal flag to check whether we normalize y or not
-    bool normalizeY_ = false;
-    cmp::scaler::StandardScaler yScaler_;
+    bool normalizeY_ = false;               ///< Flag indicating whether target normalization is active.
+    cmp::scaler::StandardScaler yScaler_;    ///< Scaler used to normalize the target vector.
 
 // Private members
   private:

@@ -12,14 +12,14 @@ namespace cmp::prior {
 /**
  * @class Prior
  * @brief Base class for prior probability distributions.
- * 
+ *
  * @details \b Mathematical \b Formulation
  * Represents a log-prior probability density function \f$ \log p(\theta) \f$ over parameters \f$ \theta \in \mathbb{R}^d \f$.
  * Provides virtual interfaces for evaluation, gradient, and Hessian computation:
  * - Value: \f$ f(\theta) = \log p(\theta) \f$
  * - Gradient: \f$ \nabla_i f(\theta) = \frac{\partial \log p(\theta)}{\partial \theta_i} \f$
  * - Hessian: \f$ \mathcal{H}_{ij} f(\theta) = \frac{\partial^2 \log p(\theta)}{\partial \theta_i \partial \theta_j} \f$
- * 
+ *
  * @details \b Implementation \b Algorithm
  * Pure virtual interface specifying the contract for prior evaluation. Concrete subclasses must implement `eval`, `evalGradient`, and `evalHessian`.
  */
@@ -34,21 +34,21 @@ class Prior {
 /**
  * @class Product
  * @brief Represents the product (sum of logs) of two independent prior distributions.
- * 
+ *
  * @details \b Mathematical \b Formulation
  * For independent priors \f$ p_1(\theta) \f$ and \f$ p_2(\theta) \f$, the joint prior is:
  * \f[ \log p(\theta) = \log p_1(\theta) + \log p_2(\theta) \f]
  * Derivatives are additive due to the linearity of differentiation:
  * \f[ \nabla_i \log p(\theta) = \nabla_i \log p_1(\theta) + \nabla_i \log p_2(\theta) \f]
  * \f[ \mathcal{H}_{ij} \log p(\theta) = \mathcal{H}_{ij} \log p_1(\theta) + \mathcal{H}_{ij} \log p_2(\theta) \f]
- * 
+ *
  * @details \b Implementation \b Algorithm
  * Evaluates the log-prior, gradient, and Hessian by summing the results of the `leftPrior_` and `rightPrior_` objects.
  */
 class Product : public Prior {
   private:
-    std::shared_ptr<Prior> leftPrior_;
-    std::shared_ptr<Prior> rightPrior_;
+    std::shared_ptr<Prior> leftPrior_;  ///< Left factor independent prior.
+    std::shared_ptr<Prior> rightPrior_; ///< Right factor independent prior.
   public:
 
     Product() = default;
@@ -79,14 +79,14 @@ class Product : public Prior {
 /**
  * @class Uniform
  * @brief Represents an improper flat (uniform) prior.
- * 
+ *
  * @details \b Mathematical \b Formulation
  * A uniform prior assumes constant probability density:
  * \f[ p(\theta) \propto 1 \implies \log p(\theta) = C \f]
  * For convenience, the constant \f$ C \f$ is set to 0. All derivatives are zero:
  * \f[ \nabla_i \log p(\theta) = 0 \f]
  * \f[ \mathcal{H}_{ij} \log p(\theta) = 0 \f]
- * 
+ *
  * @details \b Implementation \b Algorithm
  * Returns constant 0.0 for all evaluation, gradient, and Hessian queries.
  */
@@ -119,7 +119,7 @@ class Uniform : public Prior {
 /**
  * @class FromDistribution
  * @brief Adapts a univariate probability distribution to act as a prior on a single coordinate.
- * 
+ *
  * @details \b Mathematical \b Formulation
  * Applies a univariate distribution \f$ \mathcal{D} \f$ to a specific parameter dimension \f$ k \f$:
  * \f[ \log p(\theta) = \log p_{\mathcal{D}}(\theta_k) \f]
@@ -127,18 +127,18 @@ class Uniform : public Prior {
  * \f[ \frac{\partial \log p(\theta)}{\partial \theta_i} = \begin{cases} \frac{d \log p_{\mathcal{D}}(\theta_k)}{d \theta_k} & \text{if } i = k \\ 0 & \text{otherwise} \end{cases} \f]
  * The Hessian is non-zero only for diagonal entry \f$ (k, k) \f$:
  * \f[ \frac{\partial^2 \log p(\theta)}{\partial \theta_i \partial \theta_j} = \begin{cases} \frac{d^2 \log p_{\mathcal{D}}(\theta_k)}{d \theta_k^2} & \text{if } i = j = k \\ 0 & \text{otherwise} \end{cases} \f]
- * 
+ *
  * @details \b Implementation \b Algorithm
  * Accesses parameter coordinate \f$ \theta_k \f$ and delegates log-PDF and its first/second derivative calculations to the underlying `dist_` object.
  */
 template <typename DistType>
 class FromDistribution : public Prior {
   private:
-    DistType dist_;
-    size_t paramIndex_;
+    DistType dist_;      ///< Underlying univariate distribution.
+    size_t paramIndex_;  ///< Parameter vector coordinate index.
 
   public:
-    // Delete default constructor since we need a valid distribution
+// Delete default constructor since we need a valid distribution
     FromDistribution() = delete;
 
     FromDistribution(const FromDistribution&) = default;
@@ -178,7 +178,7 @@ class FromDistribution : public Prior {
         return 0.0;
     }
 
-    // Factory method matching your other Prior classes
+// Factory method matching your other Prior classes
     static std::shared_ptr<Prior> make(const DistType& dist, size_t paramIndex) {
         return std::make_shared<FromDistribution<DistType>>(dist, paramIndex);
     }
@@ -186,7 +186,7 @@ class FromDistribution : public Prior {
 
 /**
  * @brief Helper template function to create a FromDistribution prior.
- * 
+ *
  * @tparam DistType The type of the univariate distribution.
  * @param dist The distribution.
  * @param paramIndex The index of the parameter coordinate.
@@ -199,7 +199,7 @@ std::shared_ptr<Prior> make(const DistType& dist, size_t paramIndex) {
 
 /**
  * @brief Multiplies two prior distributions (returns a Product prior).
- * 
+ *
  * @param p1 First prior distribution.
  * @param p2 Second prior distribution.
  * @return Shared pointer to the Product prior.

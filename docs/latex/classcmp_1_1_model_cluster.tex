@@ -64,39 +64,39 @@ void \mbox{\hyperlink{classcmp_1_1_model_cluster_a61b5b71db259e99adeae34371e2527
 \begin{DoxyCompactItemize}
 \item 
 std\+::default\+\_\+random\+\_\+engine \mbox{\hyperlink{classcmp_1_1_model_cluster_af3fee4780d4743facb0b7f6a2a0f4966}{rng\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pseudo-\/random number generator. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1_model_cluster_a835834b4fa16aad5472bd2d1798456a5}{x\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Training input matrix of observations. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_model_cluster_afd4893fd895132b6d5252b8e91de9f85}{y\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Training target response vector. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_a4fa583b127e1e7d68cc34dbe163785c0}{n\+Clusters\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of active clusters. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_a51c0cb0d467b968cb3766365ac8d0d8b}{n\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of training observations. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1_model_cluster_ace54dcee8f1d6b8a764aba59f6375167}{dim\+X\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Dimension of input features. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1_model_cluster_a880bd3f2c8a4befa253caf45391e2972}{labels\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Cluster assignments label vector. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \mbox{\hyperlink{classcmp_1_1_model_cluster_acad5b20073c9b691bb521645395728bd}{local\+Index\+Table\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Local coordinate lookup index mapping. \end{DoxyCompactList}\item 
 std\+::vector$<$ bool $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_a6ff16a1ff0d8a9757b6f171d63b76cb0}{fit\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Cluster fit/convergence status flag vector. \end{DoxyCompactList}\item 
 std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_a677bdf019ea9af69d355065294bada8c}{centroids\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Coordinates for each cluster\textquotesingle{}s centroid. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{cmp\+::gp\+::\+Gaussian\+Process}} $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_ad5efe4f4aaa91e0333750f01f4d4fbe9}{gps\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Gaussian process models for each cluster. \end{DoxyCompactList}\item 
 std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_a1be702bfff40bed62b5b7f3bdaffc647}{cluster\+Size\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of points assigned to each cluster. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1_model_cluster_a3013ef46aaf5bd217f90a4674bcf4024}{gamma\+\_\+}} \{1.\+0\}
-\item 
+\begin{DoxyCompactList}\small\item\em Regularization blending parameter gamma. \end{DoxyCompactList}\item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}} $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_a974fd526a325b478a901bf8714ab689c}{kernel\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Covariance kernel function shared across clusters. \end{DoxyCompactList}\item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}} $>$ \mbox{\hyperlink{classcmp_1_1_model_cluster_a0527d4aeb7acbdaa6bc171af53b3a580}{mean\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Mean function shared across clusters. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1_model_cluster_acfb06136f2a94cb0fad7ddd4d5b11d91}{parameters\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Kernel hyperparameter values. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classcmp_1_1_model_cluster_adeeac837c7bd0c4c9f871bd089c058ca}{nugget\+\_\+}} \{1e-\/8\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Standard noise variance nugget. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -353,11 +353,19 @@ void cmp\+::\+Model\+Cluster\+::update\+Model (\begin{DoxyParamCaption}\item[{co
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a677bdf019ea9af69d355065294bada8c} 
 std\+::vector$<$Eigen\+::\+Vector\+Xd$>$ cmp\+::\+Model\+Cluster\+::centroids\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Coordinates for each cluster\textquotesingle{}s centroid. 
+
 \Hypertarget{classcmp_1_1_model_cluster_a1be702bfff40bed62b5b7f3bdaffc647}\index{cmp::ModelCluster@{cmp::ModelCluster}!clusterSize\_@{clusterSize\_}}
 \index{clusterSize\_@{clusterSize\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{clusterSize\_}{clusterSize\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a1be702bfff40bed62b5b7f3bdaffc647} 
 std\+::vector$<$size\+\_\+t$>$ cmp\+::\+Model\+Cluster\+::cluster\+Size\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of points assigned to each cluster. 
 
 \Hypertarget{classcmp_1_1_model_cluster_ace54dcee8f1d6b8a764aba59f6375167}\index{cmp::ModelCluster@{cmp::ModelCluster}!dimX\_@{dimX\_}}
 \index{dimX\_@{dimX\_}!cmp::ModelCluster@{cmp::ModelCluster}}
@@ -365,11 +373,19 @@ std\+::vector$<$size\+\_\+t$>$ cmp\+::\+Model\+Cluster\+::cluster\+Size\+\_\+\hs
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_ace54dcee8f1d6b8a764aba59f6375167} 
 size\+\_\+t cmp\+::\+Model\+Cluster\+::dim\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Dimension of input features. 
+
 \Hypertarget{classcmp_1_1_model_cluster_a6ff16a1ff0d8a9757b6f171d63b76cb0}\index{cmp::ModelCluster@{cmp::ModelCluster}!fit\_@{fit\_}}
 \index{fit\_@{fit\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{fit\_}{fit\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a6ff16a1ff0d8a9757b6f171d63b76cb0} 
 std\+::vector$<$bool$>$ cmp\+::\+Model\+Cluster\+::fit\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cluster fit/convergence status flag vector. 
 
 \Hypertarget{classcmp_1_1_model_cluster_a3013ef46aaf5bd217f90a4674bcf4024}\index{cmp::ModelCluster@{cmp::ModelCluster}!gamma\_@{gamma\_}}
 \index{gamma\_@{gamma\_}!cmp::ModelCluster@{cmp::ModelCluster}}
@@ -377,11 +393,19 @@ std\+::vector$<$bool$>$ cmp\+::\+Model\+Cluster\+::fit\+\_\+\hspace{0.3cm}{\ttfa
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a3013ef46aaf5bd217f90a4674bcf4024} 
 double cmp\+::\+Model\+Cluster\+::gamma\+\_\+ \{1.\+0\}\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Regularization blending parameter gamma. 
+
 \Hypertarget{classcmp_1_1_model_cluster_ad5efe4f4aaa91e0333750f01f4d4fbe9}\index{cmp::ModelCluster@{cmp::ModelCluster}!gps\_@{gps\_}}
 \index{gps\_@{gps\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{gps\_}{gps\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_ad5efe4f4aaa91e0333750f01f4d4fbe9} 
 std\+::vector$<$\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{cmp\+::gp\+::\+Gaussian\+Process}}$>$ cmp\+::\+Model\+Cluster\+::gps\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gaussian process models for each cluster. 
 
 \Hypertarget{classcmp_1_1_model_cluster_a974fd526a325b478a901bf8714ab689c}\index{cmp::ModelCluster@{cmp::ModelCluster}!kernel\_@{kernel\_}}
 \index{kernel\_@{kernel\_}!cmp::ModelCluster@{cmp::ModelCluster}}
@@ -389,11 +413,19 @@ std\+::vector$<$\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{cmp\+::gp\
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a974fd526a325b478a901bf8714ab689c} 
 std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}{covariance\+::\+Covariance}}$>$ cmp\+::\+Model\+Cluster\+::kernel\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Covariance kernel function shared across clusters. 
+
 \Hypertarget{classcmp_1_1_model_cluster_a880bd3f2c8a4befa253caf45391e2972}\index{cmp::ModelCluster@{cmp::ModelCluster}!labels\_@{labels\_}}
 \index{labels\_@{labels\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{labels\_}{labels\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a880bd3f2c8a4befa253caf45391e2972} 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::\+Model\+Cluster\+::labels\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cluster assignments label vector. 
 
 \Hypertarget{classcmp_1_1_model_cluster_acad5b20073c9b691bb521645395728bd}\index{cmp::ModelCluster@{cmp::ModelCluster}!localIndexTable\_@{localIndexTable\_}}
 \index{localIndexTable\_@{localIndexTable\_}!cmp::ModelCluster@{cmp::ModelCluster}}
@@ -401,11 +433,19 @@ std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1covariance_1_1_covariance}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_acad5b20073c9b691bb521645395728bd} 
 \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} cmp\+::\+Model\+Cluster\+::local\+Index\+Table\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Local coordinate lookup index mapping. 
+
 \Hypertarget{classcmp_1_1_model_cluster_a0527d4aeb7acbdaa6bc171af53b3a580}\index{cmp::ModelCluster@{cmp::ModelCluster}!mean\_@{mean\_}}
 \index{mean\_@{mean\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a0527d4aeb7acbdaa6bc171af53b3a580} 
 std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+Mean}}$>$ cmp\+::\+Model\+Cluster\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mean function shared across clusters. 
 
 \Hypertarget{classcmp_1_1_model_cluster_a4fa583b127e1e7d68cc34dbe163785c0}\index{cmp::ModelCluster@{cmp::ModelCluster}!nClusters\_@{nClusters\_}}
 \index{nClusters\_@{nClusters\_}!cmp::ModelCluster@{cmp::ModelCluster}}
@@ -413,11 +453,19 @@ std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classcmp_1_1mean_1_1_mean}{mean\+::\+M
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a4fa583b127e1e7d68cc34dbe163785c0} 
 size\+\_\+t cmp\+::\+Model\+Cluster\+::n\+Clusters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Number of active clusters. 
+
 \Hypertarget{classcmp_1_1_model_cluster_a51c0cb0d467b968cb3766365ac8d0d8b}\index{cmp::ModelCluster@{cmp::ModelCluster}!nObs\_@{nObs\_}}
 \index{nObs\_@{nObs\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{nObs\_}{nObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a51c0cb0d467b968cb3766365ac8d0d8b} 
 size\+\_\+t cmp\+::\+Model\+Cluster\+::n\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of training observations. 
 
 \Hypertarget{classcmp_1_1_model_cluster_adeeac837c7bd0c4c9f871bd089c058ca}\index{cmp::ModelCluster@{cmp::ModelCluster}!nugget\_@{nugget\_}}
 \index{nugget\_@{nugget\_}!cmp::ModelCluster@{cmp::ModelCluster}}
@@ -425,11 +473,19 @@ size\+\_\+t cmp\+::\+Model\+Cluster\+::n\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [pri
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_adeeac837c7bd0c4c9f871bd089c058ca} 
 double cmp\+::\+Model\+Cluster\+::nugget\+\_\+ \{1e-\/8\}\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Standard noise variance nugget. 
+
 \Hypertarget{classcmp_1_1_model_cluster_acfb06136f2a94cb0fad7ddd4d5b11d91}\index{cmp::ModelCluster@{cmp::ModelCluster}!parameters\_@{parameters\_}}
 \index{parameters\_@{parameters\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{parameters\_}{parameters\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_acfb06136f2a94cb0fad7ddd4d5b11d91} 
 Eigen\+::\+Vector\+Xd cmp\+::\+Model\+Cluster\+::parameters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Kernel hyperparameter values. 
 
 \Hypertarget{classcmp_1_1_model_cluster_af3fee4780d4743facb0b7f6a2a0f4966}\index{cmp::ModelCluster@{cmp::ModelCluster}!rng\_@{rng\_}}
 \index{rng\_@{rng\_}!cmp::ModelCluster@{cmp::ModelCluster}}
@@ -437,17 +493,29 @@ Eigen\+::\+Vector\+Xd cmp\+::\+Model\+Cluster\+::parameters\+\_\+\hspace{0.3cm}{
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_af3fee4780d4743facb0b7f6a2a0f4966} 
 std\+::default\+\_\+random\+\_\+engine cmp\+::\+Model\+Cluster\+::rng\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Pseudo-\/random number generator. 
+
 \Hypertarget{classcmp_1_1_model_cluster_a835834b4fa16aad5472bd2d1798456a5}\index{cmp::ModelCluster@{cmp::ModelCluster}!xObs\_@{xObs\_}}
 \index{xObs\_@{xObs\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_a835834b4fa16aad5472bd2d1798456a5} 
 Eigen\+::\+Matrix\+Xd cmp\+::\+Model\+Cluster\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Training input matrix of observations. 
+
 \Hypertarget{classcmp_1_1_model_cluster_afd4893fd895132b6d5252b8e91de9f85}\index{cmp::ModelCluster@{cmp::ModelCluster}!yObs\_@{yObs\_}}
 \index{yObs\_@{yObs\_}!cmp::ModelCluster@{cmp::ModelCluster}}
 \doxysubsubsection{\texorpdfstring{yObs\_}{yObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_model_cluster_afd4893fd895132b6d5252b8e91de9f85} 
 Eigen\+::\+Vector\+Xd cmp\+::\+Model\+Cluster\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Training target response vector. 
 
 
 

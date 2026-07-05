@@ -41,7 +41,7 @@ class Mean {
  */
 class Constant : public Mean {
   private:
-    size_t index_;
+    size_t index_; ///< Hyperparameter index of the constant value.
   public:
 
     Constant(const Constant&) = default;

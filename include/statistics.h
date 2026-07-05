@@ -1,12 +1,13 @@
 /**
  * @file statistics.h
  * @brief Header file for statistical functions and classes
- * This file contains declarations for various statistical functions and classes used in the project.
+ * @details This file contains declarations for various statistical functions,
+ * resampling techniques (K-Fold, Bootstrap), and spatial statistics utilities
+ * used throughout the project.
  */
 
 #ifndef CMP_STATISTICS_H
 #define CMP_STATISTICS_H
-
 
 #include <concepts>
 #include <numeric>
@@ -26,38 +27,49 @@
 namespace cmp::statistics {
 
 /**
+ * @class KFold
  * @brief K-Fold cross-validation partition generator.
- * 
- * @details Mathematical Formulation
+ * * @details
+ * ### Mathematical Formulation
  * Partitions a dataset \f$\mathcal{D}\f$ of size \f$N\f$ into \f$K\f$ mutually exclusive, approximately equal-sized subsets \f$\{F_1, \dots, F_K\}\f$ such that:
  * \f[
  * \bigcup_{k=1}^K F_k = \mathcal{D}, \quad F_i \cap F_j = \emptyset \quad \forall i \neq j
  * \f]
  * During the \f$k\f$-th fold iteration, the model is trained on \f$\mathcal{D} \setminus F_k\f$ and validated on \f$F_k\f$.
- * 
- * @details Implementation Algorithm
+ * * ### Implementation Algorithm
  * 1. Computes the base size of each fold: \f$S = \lfloor N/K \rfloor\f$.
  * 2. Assigns indices to splits. The \f$k\f$-th split covers index range \f$[k \cdot S, (k+1) \cdot S)\f$, and the last fold covers any remainder.
  * 3. Returns the respective train and test index vectors.
  */
 class KFold {
   private:
+    /** @brief Number of folds/splits \f$ K \f$. */
     Eigen::Index nSplits_;
+
+    /** @brief Total number of observations \f$ N \f$ in the dataset. */
     Eigen::Index nObs_;
+
+    /** @brief Flag indicating if the dataset indices should be shuffled before splitting. */
     bool shuffle_;
+
+    /** @brief Seed for the random number generator. */
     unsigned int rngState_;
+
+    /** @brief Random number engine used for shuffling. */
     std::default_random_engine rng_;
+
+    /** @brief Internal array storing the (potentially shuffled) sequence of indices. */
     Eigen::VectorXs indices_;
 
   public:
 
     /**
-     * @brief Constructor for KFold class
-     * @param n_splits Number of folds. Must be at least 2 and at most n_obs.
-     * @param n_obs Total number of observations in the dataset. Must be at least 2.
+     * @brief Constructor for the KFold partitioner.
+     * @param n_splits Number of folds \f$ K \f$. Must be at least 2 and at most n_obs.
+     * @param n_obs Total number of observations \f$ N \f$ in the dataset. Must be at least 2.
      * @param shuffle Whether to shuffle the data before splitting into folds.
      * @param random_state Seed for the random number generator (used if shuffle is true).
-     * @throws std::invalid_argument if the input parameters are invalid.
+     * @throws std::invalid_argument if the input parameters violate minimum constraints.
      */
     KFold(Eigen::Index n_splits, Eigen::Index n_obs, bool shuffle = false, unsigned int random_state = 42)
         : nSplits_(n_splits),
@@ -84,11 +96,15 @@ class KFold {
     }
 
     /**
+     * @class KFoldIterator
      * @brief Iterator class to traverse folds for K-Fold cross-validation.
      */
     class KFoldIterator {
       private:
+        /** @brief The current active fold index \f$ k \f$. */
         Eigen::Index currentSplit_;
+
+        /** @brief Reference to the parent KFold object to access index arrays and sizes. */
         const KFold &parent_;
 
       public:
@@ -101,7 +117,9 @@ class KFold {
             : currentSplit_(split), parent_(kf) {}
 
         /**
-         * @brief Checks inequality with another iterator.
+         * @brief Checks inequality with another iterator (used for loop termination).
+         * @param other The iterator to compare against.
+         * @return True if iterators point to different splits, false otherwise.
          */
         bool operator!=(const KFoldIterator& other) const {
             return currentSplit_ != other.currentSplit_;
@@ -109,7 +127,7 @@ class KFold {
 
         /**
          * @brief Dereferences the iterator to compute training and test index sets for the current fold.
-         * @return A pair containing {train_indices, test_indices}.
+         * @return A std::pair containing {train_indices, test_indices} as Eigen vectors.
          */
         std::pair<Eigen::VectorXs, Eigen::VectorXs> operator*() const {
             Eigen::Index fold_size = parent_.nObs_ / parent_.nSplits_;
@@ -134,6 +152,7 @@ class KFold {
 
         /**
          * @brief Increments the iterator to point to the next fold.
+         * @return Reference to the incremented iterator.
          */
         KFoldIterator& operator++() {
             ++currentSplit_;
@@ -143,6 +162,7 @@ class KFold {
 
     /**
      * @brief Gets the iterator pointing to the first fold.
+     * @return A KFoldIterator initialized to split 0.
      */
     KFoldIterator begin() const {
         return KFoldIterator(*this, 0);
@@ -150,15 +170,17 @@ class KFold {
 
     /**
      * @brief Gets the iterator pointing to the end of the folds.
+     * @return A KFoldIterator initialized to split K.
      */
     KFoldIterator end()   const {
         return KFoldIterator(*this, nSplits_);
     }
 
     /**
-     * @brief Directly accesses the train/test indices for a specific split.
-     * @param split The split index.
+     * @brief Directly accesses the train/test indices for a specific split without iterating.
+     * @param split The specific split index \f$ k \f$ to extract.
      * @return A pair of training and test index vectors.
+     * @throws std::out_of_range if the requested split is invalid.
      */
     std::pair<Eigen::VectorXs, Eigen::VectorXs> operator()(Eigen::Index split) const {
         if(split < 0 || split >= nSplits_) {
@@ -168,7 +190,8 @@ class KFold {
     }
 
     /**
-     * @brief Gets the number of splits/folds.
+     * @brief Gets the total number of splits/folds \f$ K \f$.
+     * @return The number of folds.
      */
     size_t nFolds() const {
         return this->nSplits_;
@@ -177,35 +200,56 @@ class KFold {
 
 
 /**
+ * @class Bootstrap
  * @brief Bootstrap resampling index generator.
- * 
- * @details Mathematical Formulation
+ * * @details
+ * ### Mathematical Formulation
  * Draws a random sample \f$\mathcal{D}^*\f$ of size \f$M\f$ from a dataset \f$\mathcal{D}\f$ of size \f$N\f$.
  * - If with replacement:
- *   \f[
- *   P(x_i^* = x_j) = \frac{1}{N} \quad \forall i \in \{1,\dots,M\}, \ j \in \{1,\dots,N\}
- *   \f]
+ * \f[
+ * P(x_i^* = x_j) = \frac{1}{N} \quad \forall i \in \{1,\dots,M\}, \ j \in \{1,\dots,N\}
+ * \f]
  * - If without replacement:
- *   \f[
- *   P(x_i^* = x_j) = \frac{1}{N - i + 1}
- *   \f]
- *   subject to all selections being distinct.
- * 
- * @details Implementation Algorithm
- * 1. If `withReplacement_` is true, generates \f$M\f$ random integers in range \f$[0, N-1]\f$.
+ * \f[
+ * P(x_i^* = x_j) = \frac{1}{N - i + 1}
+ * \f]
+ * subject to all selections being distinct.
+ * * ### Implementation Algorithm
+ * 1. If `withReplacement_` is true, generates \f$M\f$ random integers uniformly distributed in the range \f$[0, N-1]\f$.
  * 2. If false, shuffles the index array using `std::shuffle` and extracts the first \f$M\f$ elements.
  */
 class Bootstrap {
   private:
+    /** @brief Original number of observations \f$ N \f$. */
     size_t nObs_;
+
+    /** @brief Target number of observations to resample \f$ M \f$. */
     size_t nObsResample_;
+
+    /** @brief Seed for the random number generator. */
     unsigned int rngState_;
+
+    /** @brief Random number engine. */
     std::default_random_engine rng_;
+
+    /** @brief Uniform integer distribution for sampling with replacement. */
     std::uniform_int_distribution<size_t> dist_;
+
+    /** @brief Internal array storing the base indices for sampling. */
     Eigen::VectorXs indices_;
+
+    /** @brief Flag indicating whether to sample with replacement. */
     bool withReplacement_;
 
   public:
+    /**
+     * @brief Constructor for the Bootstrap resampler.
+     * @param n_obs Total number of original observations \f$ N \f$.
+     * @param n_obs_resample Number of samples to draw \f$ M \f$.
+     * @param with_replacement Boolean flag indicating whether duplicates are allowed.
+     * @param random_state Seed for the random number generator.
+     * @throws std::invalid_argument if invalid sizes are provided.
+     */
     Bootstrap(size_t n_obs, size_t n_obs_resample, bool with_replacement = true, unsigned int random_state = 42)
         : nObs_(n_obs),
           nObsResample_(n_obs_resample),
@@ -230,6 +274,10 @@ class Bootstrap {
         }
     }
 
+    /**
+     * @brief Executes the bootstrap sampling process.
+     * @return A vector containing the \f$ M \f$ randomly sampled indices.
+     */
     Eigen::VectorXs operator()() {
         Eigen::VectorXs sample_indices(nObsResample_);
 
@@ -248,91 +296,124 @@ class Bootstrap {
 
         return sample_indices;
     }
-
-
-
 };
 
-
-/* @brief Computes the mean of a vector of data.
- *
- * @param data A reference to an matrix containing the data (different points in rows).
- * @return The mean of the data.
- * @throws std::invalid_argument if the input vector is empty.
+/**
+ * @brief Computes the empirical mean vector of a dataset.
+ * * @details
+ * ### Mathematical Formulation
+ * For a dataset matrix \f$\mathbf{X} \in \mathbb{R}^{N \times D}\f$, the mean vector \f$\boldsymbol{\mu} \in \mathbb{R}^D\f$ is:
+ * \f[
+ * \boldsymbol{\mu} = \frac{1}{N} \sum_{i=1}^N \mathbf{x}_i
+ * \f]
+ * @param data A reference to a matrix containing the data (points in rows, features in columns).
+ * @return A column vector containing the mean of each feature.
+ * @throws std::invalid_argument if the input matrix is empty.
  */
 Eigen::VectorXd mean(const Eigen::Ref<const Eigen::MatrixXd>& data);
 
 /**
- * @brief Computes the variance of a vector of data.
- *
- * @param data A reference to an Eigen vector containing the data.
- * @return The variance of the data.
- * @throws std::invalid_argument if the input vector is empty.
+ * @brief Computes the sample covariance matrix of a dataset.
+ * * @details
+ * ### Mathematical Formulation
+ * Given a dataset matrix \f$\mathbf{X} \in \mathbb{R}^{N \times D}\f$ with mean vector \f$\boldsymbol{\mu}\f$, the unbiased sample covariance matrix \f$\mathbf{\Sigma} \in \mathbb{R}^{D \times D}\f$ is:
+ * \f[
+ * \mathbf{\Sigma} = \frac{1}{N-1} (\mathbf{X} - \mathbf{1}\boldsymbol{\mu}^T)^T (\mathbf{X} - \mathbf{1}\boldsymbol{\mu}^T)
+ * \f]
+ * @param data A reference to an Eigen matrix containing the data (points in rows).
+ * @return The covariance matrix of the data.
+ * @throws std::invalid_argument if the input matrix has fewer than 2 rows.
  */
 Eigen::MatrixXd covariance(const Eigen::Ref<const Eigen::MatrixXd>& data);
 
 /**
- * @brief Computes the quantile of a vector of data.
+ * @brief Computes a specific quantile of a 1D vector of data.
  *
  * @param data A reference to an Eigen vector containing the data.
- * @param quantile The quantile to compute (between 0 and 1).
- * @return The quantile of the data.
- * @throws std::invalid_argument if the input vector is empty or the quantile is not between 0 and 1.
+ * @param quantile The target probability quantile \f$ p \in [0, 1] \f$.
+ * @return The computed value representing the \f$ p \f$-th quantile.
+ * @throws std::invalid_argument if the input vector is empty or the quantile is out of bounds.
  */
 double quantile(const Eigen::Ref<const Eigen::VectorXd>& data, double quantile);
 
-
 /**
- * @brief Computes the interquartile range of a vector of data.
+ * @brief Computes the interquartile range (IQR) column-wise for a dataset.
  *
- * @param data A reference to an Eigen matrix containing the data.
- * @param lowerQuantile The lower quantile (between 0 and 1).
- * @param upperQuantile The upper quantile (between 0 and 1).
- * @return The interquartile range of the data.
- * @throws std::invalid_argument if the input matrix is empty or the quantiles are not between 0 and 1.
+ * @details
+ * ### Mathematical Formulation
+ * For each feature column \f$ j \f$:
+ * \f[
+ * \text{IQR}_j = Q_{\text{upper}, j} - Q_{\text{lower}, j}
+ * \f]
+ * where \f$Q\f$ represents the value at the specified quantile probabilities.
+ * * @param data A reference to an Eigen matrix containing the data (points in rows).
+ * @param lowerQuantile The lower probability bound (e.g., 0.25).
+ * @param upperQuantile The upper probability bound (e.g., 0.75).
+ * @return A vector containing the IQR for each feature column.
+ * @throws std::invalid_argument if the input matrix is empty or the quantiles are invalid.
  */
 Eigen::VectorXd interQuantileRange(const Eigen::Ref<const Eigen::MatrixXd>& data, double lowerQuantile, double upperQuantile);
 
 /**
- * @brief Compute the Pearson correlation matrix between two datasets.
- * Manages the case where the datasets have different numbers of points.
- * @param data1 First dataset (points in rows).
+ * @brief Computes the Pearson correlation matrix between two datasets.
+ * * @details
+ * ### Mathematical Formulation
+ * For columns \f$X_i\f$ from `data1` and \f$Y_j\f$ from `data2`, the correlation coefficient is:
+ * \f[
+ * \rho_{ij} = \frac{\mathrm{cov}(X_i, Y_j)}{\sigma_{X_i} \sigma_{Y_j}}
+ * \f]
+ * Manages the case where the datasets have different numbers of points by aligning them appropriately if supported by the implementation.
+ * * @param data1 First dataset (points in rows).
  * @param data2 Second dataset (points in rows).
- * @return The Pearson correlation matrix.
+ * @return The Pearson correlation matrix \f$ \mathbf{R} \in \mathbb{R}^{D_1 \times D_2} \f$.
  */
 Eigen::MatrixXd pearsonCorrelation(const Eigen::Ref<const Eigen::MatrixXd>& data1, const Eigen::Ref<const Eigen::MatrixXd>& data2);
 
-
 /**
- * @brief Computes the correlation matrix between two datasets with a specified lag.
+ * @brief Computes the cross-correlation matrix between two datasets with a specified temporal lag.
  *
- * @param data1 First dataset (points in rows).
- * @param data2 Second dataset (points in rows).
- * @param lag The lag to apply to the second dataset.
- * @return The correlation matrix.
+ * @details
+ * Correlates \f$X(t)\f$ from `data1` with \f$Y(t + \tau)\f$ from `data2` where \f$\tau\f$ is the `lag`.
+ * * @param data1 First dataset (time series points in rows).
+ * @param data2 Second dataset (time series points in rows).
+ * @param lag The discrete time lag \f$ \tau \f$ to apply to the second dataset.
+ * @return The lagged correlation matrix.
  */
 Eigen::MatrixXd laggedCorrelation(const Eigen::Ref<const Eigen::MatrixXd>& data1, const Eigen::Ref<const Eigen::MatrixXd>& data2, int lag);
 
-
 /**
- * @brief Return the correlation matrix between two datasets for all lags in the range [minLag, maxLag].
+ * @brief Returns the cross-correlation matrices between two datasets for a sequence of lags.
  *
- * @param data1 First dataset (points in rows).
- * @param data2 Second dataset (points in rows).
- * @param minLag Minimum lag to consider.
- * @param maxLag Maximum lag to consider.
- * @return The correlation matrix.
+ * @param data1 First dataset (time series points in rows).
+ * @param data2 Second dataset (time series points in rows).
+ * @param minLag Minimum lag \f$ \tau_{\text{min}} \f$ to consider.
+ * @param maxLag Maximum lag \f$ \tau_{\text{max}} \f$ to consider.
+ * @return A std::vector of correlation matrices, ordered from minLag to maxLag.
  */
 std::vector<Eigen::MatrixXd> laggedCorrelation(const Eigen::Ref<const Eigen::MatrixXd>& data1, const Eigen::Ref<const Eigen::MatrixXd>& data2, int minLag, int maxLag);
 
-
 /**
- * @brief Computes the self-correlation length and the effective sample size of some samples.
- * @param data the dataset containing the samples (each sample is a row)
- * @return a pair containing the correlations lengths and the effective sample size
+ * @brief Computes the self-correlation (autocorrelation) length and the effective sample size.
+ * * @details Useful for MCMC diagnostics to determine the number of independent samples.
+ * * @param data the dataset containing the samples (each sample is a row).
+ * @return a std::pair containing:
+ * 1. An Eigen::VectorXd of correlation lengths for each feature.
+ * 2. A double representing the overall effective sample size (ESS).
  */
 std::pair<Eigen::VectorXd, double> selfCorrelationLength(const Eigen::Ref<const Eigen::MatrixXd>& data);
 
+/**
+ * @brief Computes the complete auto- and cross-correlation functions across all lags efficiently using the Fast Fourier Transform (FFT).
+ * * @details
+ * ### Mathematical Formulation (Wiener-Khinchin Theorem)
+ * The cross-correlation \f$R_{ij}(\tau)\f$ between feature \f$i\f$ and \f$j\f$ can be computed in the frequency domain:
+ * \f[
+ * R_{ij}(\tau) = \mathcal{F}^{-1}\left\{ \mathcal{F}\{x_i\} \cdot \mathcal{F}\{x_j\}^* \right\}
+ * \f]
+ * where \f$\mathcal{F}\f$ is the discrete Fourier transform. Data is mean-centered, zero-padded to the next power of 2 to avoid circular convolution artifacts, and properly normalized by sample variances.
+ * * @param data A reference to the dataset matrix (time points in rows, features in columns).
+ * @return A vector of length `nPoints`. Each element is a `nFeatures x nFeatures` matrix representing the correlation at lag \f$\tau\f$.
+ */
 inline std::vector<Eigen::MatrixXd> selfCrossCorrelationFFT(
     const Eigen::Ref<const Eigen::MatrixXd>& data) {
     size_t nPoints = data.rows();
@@ -381,19 +462,40 @@ inline std::vector<Eigen::MatrixXd> selfCrossCorrelationFFT(
 };
 
 
-
+/**
+ * @class PairwiseDistanceStats
+ * @brief Computes and stores pairwise spatial distances between high-dimensional data points.
+ * * @details
+ * Efficiently computes the upper triangle of the distance matrix to save memory,
+ * utilizing OpenMP for multi-threaded parallel execution. Provides fast access to
+ * mean distances, spatial quantiles, and the spatial correlation integral.
+ */
 class PairwiseDistanceStats {
   private:
+    /** @brief 1D flattened array of the strictly upper triangular distance matrix. */
     std::vector<double> distances;
+
+    /** @brief The globally computed mean distance across all pairs. */
     double mean_val;
+
+    /** @brief Flag indicating if the distances have been computed and the class is ready to query. */
     bool is_computed;
 
   public:
+    /** @brief Default constructor. */
     PairwiseDistanceStats() : mean_val(0.0), is_computed(false) {}
 
     /**
-     * @brief Computes the upper triangle of the pairwise distance matrix.
-     * @param data Matrix of size (N, D) where N is number of points, D is dimensions.
+     * @brief Computes the upper triangle of the pairwise Euclidean distance matrix.
+     * * @details
+     * ### Mathematical Formulation
+     * Evaluates the \f$ L_2 \f$-norm between all unique pairs:
+     * \f[
+     * d_{ij} = ||\mathbf{x}_i - \mathbf{x}_j||_2 \quad \text{for } 1 \le i < j \le N
+     * \f]
+     * Utilizes OpenMP `dynamic` scheduling to balance the uneven workload of the triangular nested loops.
+     * * @param data Matrix of size (N, D) where N is number of points, D is dimensions.
+     * @throws std::invalid_argument if fewer than 2 points are provided.
      */
     void compute(const Eigen::MatrixXd& data) {
         size_t n = data.rows();
@@ -433,14 +535,25 @@ class PairwiseDistanceStats {
         is_computed = true;
     }
 
+    /**
+     * @brief Retrieves the mean pairwise distance \f$ \bar{d} \f$.
+     * @return The mean distance.
+     * @throws std::runtime_error if called before `compute()`.
+     */
     double mean() const {
         if(!is_computed) throw std::runtime_error("Distances not yet computed.");
         return mean_val;
     }
 
     /**
-     * @brief Fast quantile retrieval without a full sort.
-     * @param q Quantile to retrieve in [0.0, 1.0] (e.g., 0.5 for median)
+     * @brief Fast quantile retrieval without executing a full sort.
+     * * @details Uses `std::nth_element` to achieve \f$ \mathcal{O}(M) \f$ partial sorting performance
+     * compared to \f$ \mathcal{O}(M \log M) \f$ for full sorting. Note this mutates the internal
+     * distance array's ordering but preserves the exact values.
+     * * @param q Target quantile probability \f$ p \in [0, 1] \f$ (e.g., 0.5 for median).
+     * @return The distance value representing that quantile.
+     * @throws std::runtime_error if called before `compute()`.
+     * @throws std::invalid_argument if \f$ p \f$ is outside bounds.
      */
     double quantile(double q) {
         if(!is_computed) throw std::runtime_error("Distances not yet computed.");
@@ -456,9 +569,21 @@ class PairwiseDistanceStats {
     }
 
     /**
-     * @brief Computes the spatial Correlation Integral C(r) for a grid of thresholds.
-     * * @param r_thresholds A vector of spatial distances (r). Does not need to be pre-sorted.
-     * @return std::vector<double> The fraction of pairwise distances less than each r.
+     * @brief Computes the spatial Correlation Integral \f$ C(r) \f$ for a grid of radial thresholds.
+     * * @details
+     * ### Mathematical Formulation
+     * Computes the fraction of pairwise distances strictly less than \f$ r \f$:
+     * \f[
+     * C(r) = \frac{2}{N(N-1)} \sum_{i=1}^{N-1} \sum_{j=i+1}^N \Theta(r - d_{ij})
+     * \f]
+     * where \f$ \Theta \f$ is the Heaviside step function.
+     * * ### Implementation Algorithm
+     * 1. Copies and sorts the requested threshold bounds \f$ r \f$.
+     * 2. Utilizes OpenMP parallelization and binary search (`std::upper_bound`) in \f$ \mathcal{O}(\log K) \f$ to rapidly bin every pairwise distance into thread-local histograms.
+     * 3. Calculates the cumulative sum globally to construct the integral profile \f$ C(r) \f$.
+     * * @param r_thresholds A vector of spatial radii (\f$ r \f$). Does not need to be pre-sorted.
+     * @return std::vector<double> The fraction of pairwise distances less than each corresponding radius \f$ r \f$.
+     * @throws std::runtime_error if called before `compute()`.
      */
     std::vector<double> correlation_integral(const std::vector<double>& r_thresholds) const {
         if(!is_computed) throw std::runtime_error("Distances not yet computed.");

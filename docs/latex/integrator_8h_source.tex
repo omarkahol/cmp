@@ -12,8 +12,8 @@
 \DoxyCodeLine{00046\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BasisType>}
 \DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_quadrature1_d_a4f69cd5cb720d2040cd0c0d54f0e7717}{Quadrature1D}}\ \{}
 \DoxyCodeLine{00048\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00049\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}};}
-\DoxyCodeLine{00050\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}};}
+\DoxyCodeLine{00049\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_aeed19c069c38b6cdf4fe64de97de66d1}{nodes}};\ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_af795366d89e6f9c72d97393ff0e2adf0}{weights}};\ }
 \DoxyCodeLine{00051\ }
 \DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d_a4f69cd5cb720d2040cd0c0d54f0e7717}{Quadrature1D}}(\textcolor{keywordtype}{int}\ numPoints)\ \{}
 \DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numPoints\ <\ 1)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Points\ must\ be\ >=\ 1"{}});}
@@ -49,8 +49,8 @@
 \DoxyCodeLine{00107\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BasisType>}
 \DoxyCodeLine{00108\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1_tensor_integrator_aa3589f5894202c8a97d57d6e44796de1}{TensorIntegrator}}\ \{}
 \DoxyCodeLine{00109\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00110\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}};}
-\DoxyCodeLine{00111\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{gridWeights}};}
+\DoxyCodeLine{00110\ \ \ \ \ Eigen::MatrixXd\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_a97dc4417eacc9a8cb927abfa627a2cb5}{gridNodes}};\ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ Eigen::VectorXd\ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_ae528a221a0a5e2dc5cdf742b5592d618}{gridWeights}};\ }
 \DoxyCodeLine{00112\ }
 \DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_tensor_integrator_aa3589f5894202c8a97d57d6e44796de1}{TensorIntegrator}}(\textcolor{keywordtype}{int}\ dim,\ \textcolor{keywordtype}{int}\ pointsPerDim)\ \{}
 \DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcmp_1_1_quadrature1_d}{Quadrature1D<BasisType>}}\ gq1D(pointsPerDim);}

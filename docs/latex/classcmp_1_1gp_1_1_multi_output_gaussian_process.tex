@@ -44,15 +44,15 @@ Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_
 \begin{DoxyCompactItemize}
 \item 
 std\+::vector$<$ \mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}} $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_af2ee66ad8f68d2eb1c741b90f0d220a4}{gps\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Collection of single-\/output Gaussian Process models. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8eb4813cb0a1e5391445355877e83389}{x\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Owning training input matrix. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_aaf57ca6f4251c2eb7dd725352b09426f}{y\+Obs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Owning training output target matrix. \end{DoxyCompactList}\item 
 std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_a90bec24e0a05d81938d52952ec25f530}{p\+XObs\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Non-\/owning reference wrapper to training input matrix. \end{DoxyCompactList}\item 
 std\+::optional$<$ Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ $>$ \mbox{\hyperlink{classcmp_1_1gp_1_1_multi_output_gaussian_process_aee02ee50d007bd0857053a563722e47d}{p\+YObs\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Non-\/owning reference wrapper to training output target matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -249,11 +249,19 @@ Size of the GP collection.
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_af2ee66ad8f68d2eb1c741b90f0d220a4} 
 std\+::vector$<$\mbox{\hyperlink{classcmp_1_1gp_1_1_gaussian_process}{Gaussian\+Process}}$>$ cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::gps\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Collection of single-\/output Gaussian Process models. 
+
 \Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a90bec24e0a05d81938d52952ec25f530}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!pXObs\_@{pXObs\_}}
 \index{pXObs\_@{pXObs\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
 \doxysubsubsection{\texorpdfstring{pXObs\_}{pXObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a90bec24e0a05d81938d52952ec25f530} 
 std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ $>$ cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::p\+XObs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Non-\/owning reference wrapper to training input matrix. 
 
 \Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_aee02ee50d007bd0857053a563722e47d}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!pYObs\_@{pYObs\_}}
 \index{pYObs\_@{pYObs\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
@@ -261,17 +269,29 @@ std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ $>$ cmp\+::gp\
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_aee02ee50d007bd0857053a563722e47d} 
 std\+::optional$<$Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ $>$ cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::p\+YObs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Non-\/owning reference wrapper to training output target matrix. 
+
 \Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8eb4813cb0a1e5391445355877e83389}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!xObs\_@{xObs\_}}
 \index{xObs\_@{xObs\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
 \doxysubsubsection{\texorpdfstring{xObs\_}{xObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_a8eb4813cb0a1e5391445355877e83389} 
 Eigen\+::\+Matrix\+Xd cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::x\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Owning training input matrix. 
+
 \Hypertarget{classcmp_1_1gp_1_1_multi_output_gaussian_process_aaf57ca6f4251c2eb7dd725352b09426f}\index{cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}!yObs\_@{yObs\_}}
 \index{yObs\_@{yObs\_}!cmp::gp::MultiOutputGaussianProcess@{cmp::gp::MultiOutputGaussianProcess}}
 \doxysubsubsection{\texorpdfstring{yObs\_}{yObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1gp_1_1_multi_output_gaussian_process_aaf57ca6f4251c2eb7dd725352b09426f} 
 Eigen\+::\+Matrix\+Xd cmp\+::gp\+::\+Multi\+Output\+Gaussian\+Process\+::y\+Obs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Owning training output target matrix. 
 
 
 

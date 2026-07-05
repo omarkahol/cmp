@@ -57,17 +57,17 @@ double \mbox{\hyperlink{classcmp_1_1_objective_functor_aa1d507a9a0ba716c55328d82
 \begin{DoxyCompactItemize}
 \item 
 std\+::function$<$ double(Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$)$>$ \mbox{\hyperlink{classcmp_1_1_objective_functor_a16b7cc507da5d18100ca4b253f0d5c99}{fval\+\_\+only\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pointer to a gradient-\/free objective function. \end{DoxyCompactList}\item 
 std\+::function$<$ double(Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$)$>$ \mbox{\hyperlink{classcmp_1_1_objective_functor_a729237b005c98d8ae0949ad1a8a5808a}{fval\+\_\+grad\+\_\+inplace\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pointer to a gradient-\/based objective function. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::function$<$ double(Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$)$>$ $>$ \mbox{\hyperlink{classcmp_1_1_objective_functor_a041a4a7b3c9b4cd3a11e6e90077574b7}{ineq\+\_\+constraints\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Collection of inequality constraint functions. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::function$<$ double(Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$)$>$ $>$ \mbox{\hyperlink{classcmp_1_1_objective_functor_a798d9b8952c02054eb9a9550c1695a89}{eq\+\_\+constraints\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Collection of equality constraint functions. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classcmp_1_1_objective_functor_a61a6027cb0b93239ed7f06487c4c3189}{use\+\_\+gradient\+\_\+}}
-\item 
+\begin{DoxyCompactList}\small\item\em Flag indicating whether the objective function uses gradient information. \end{DoxyCompactList}\item 
 std\+::vector$<$ bool $>$ \mbox{\hyperlink{classcmp_1_1_objective_functor_a28fdec9e08cb60c5261db23468ac4078}{log\+\_\+scale\+\_\+}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Mask indicating which parameter dimensions are optimized in log-\/scale. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -257,11 +257,19 @@ True if gradients are used, false otherwise.
 {\footnotesize\ttfamily \label{classcmp_1_1_objective_functor_a798d9b8952c02054eb9a9550c1695a89} 
 std\+::vector$<$std\+::function$<$double(Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$, Eigen\+::\+Ref$<$Eigen\+::\+Vector\+Xd$>$)$>$ $>$ cmp\+::\+Objective\+Functor\+::eq\+\_\+constraints\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Collection of equality constraint functions. 
+
 \Hypertarget{classcmp_1_1_objective_functor_a729237b005c98d8ae0949ad1a8a5808a}\index{cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}!fval\_grad\_inplace\_@{fval\_grad\_inplace\_}}
 \index{fval\_grad\_inplace\_@{fval\_grad\_inplace\_}!cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}}
 \doxysubsubsection{\texorpdfstring{fval\_grad\_inplace\_}{fval\_grad\_inplace\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_objective_functor_a729237b005c98d8ae0949ad1a8a5808a} 
 std\+::function$<$double(Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$, Eigen\+::\+Ref$<$Eigen\+::\+Vector\+Xd$>$)$>$ cmp\+::\+Objective\+Functor\+::fval\+\_\+grad\+\_\+inplace\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to a gradient-\/based objective function. 
 
 \Hypertarget{classcmp_1_1_objective_functor_a16b7cc507da5d18100ca4b253f0d5c99}\index{cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}!fval\_only\_@{fval\_only\_}}
 \index{fval\_only\_@{fval\_only\_}!cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}}
@@ -269,11 +277,19 @@ std\+::function$<$double(Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$, Eigen\
 {\footnotesize\ttfamily \label{classcmp_1_1_objective_functor_a16b7cc507da5d18100ca4b253f0d5c99} 
 std\+::function$<$double(Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$)$>$ cmp\+::\+Objective\+Functor\+::fval\+\_\+only\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Pointer to a gradient-\/free objective function. 
+
 \Hypertarget{classcmp_1_1_objective_functor_a041a4a7b3c9b4cd3a11e6e90077574b7}\index{cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}!ineq\_constraints\_@{ineq\_constraints\_}}
 \index{ineq\_constraints\_@{ineq\_constraints\_}!cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}}
 \doxysubsubsection{\texorpdfstring{ineq\_constraints\_}{ineq\_constraints\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_objective_functor_a041a4a7b3c9b4cd3a11e6e90077574b7} 
 std\+::vector$<$std\+::function$<$double(Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$, Eigen\+::\+Ref$<$Eigen\+::\+Vector\+Xd$>$)$>$ $>$ cmp\+::\+Objective\+Functor\+::ineq\+\_\+constraints\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Collection of inequality constraint functions. 
 
 \Hypertarget{classcmp_1_1_objective_functor_a28fdec9e08cb60c5261db23468ac4078}\index{cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}!log\_scale\_@{log\_scale\_}}
 \index{log\_scale\_@{log\_scale\_}!cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}}
@@ -281,11 +297,19 @@ std\+::vector$<$std\+::function$<$double(Eigen\+::\+Ref$<$const Eigen\+::\+Vecto
 {\footnotesize\ttfamily \label{classcmp_1_1_objective_functor_a28fdec9e08cb60c5261db23468ac4078} 
 std\+::vector$<$bool$>$ cmp\+::\+Objective\+Functor\+::log\+\_\+scale\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Mask indicating which parameter dimensions are optimized in log-\/scale. 
+
 \Hypertarget{classcmp_1_1_objective_functor_a61a6027cb0b93239ed7f06487c4c3189}\index{cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}!use\_gradient\_@{use\_gradient\_}}
 \index{use\_gradient\_@{use\_gradient\_}!cmp::ObjectiveFunctor@{cmp::ObjectiveFunctor}}
 \doxysubsubsection{\texorpdfstring{use\_gradient\_}{use\_gradient\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1_objective_functor_a61a6027cb0b93239ed7f06487c4c3189} 
 bool cmp\+::\+Objective\+Functor\+::use\+\_\+gradient\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating whether the objective function uses gradient information. 
 
 
 

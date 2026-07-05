@@ -13,40 +13,40 @@ Performs Global Sensitivity Analysis (GSA) using the Saltelli formulation of Sob
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a9be7186d4df2ff478b11d051c5ad07a2}{Sobol\+Saltelli}} ()=default
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a0d1150ad0fa2fe3e0e0dd0d5bd55713f}{Sobol\+Saltelli}} (size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{n\+Obs}}, size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}}, bool second\+Order=false)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructs a Sobol-\/\+Saltelli analyzer with the given configuration. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1d89e3fef9b739fd60a29460c390af65}{n\+Total\+Obs}} () const
-\begin{DoxyCompactList}\small\item\em Gets the total number of evaluations required. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets the total number of evaluations required based on $ N $, $ d $, and analysis order. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}} () const
-\begin{DoxyCompactList}\small\item\em Gets the number of dimension parameters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets the number of dimension parameters $ d $. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{n\+Obs}} () const
-\begin{DoxyCompactList}\small\item\em Gets the number of base samples. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets the number of base samples $ N $. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aa1e0a4d0c4dc274cd0274b5e6738576c}{evaluation\+Grid}} (size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{n\+Obs}}, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcmp_1_1grid_1_1_grid}{cmp\+::grid\+::\+Grid}} $>$ grid\+Type, bool second\+Order=false)
 \begin{DoxyCompactList}\small\item\em Constructs the Sobol evaluation grid using the Saltelli sampling scheme. \end{DoxyCompactList}\item 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a070c94f083e35cb70ed7c13ac499b1b4}{slice\+Saltelli\+Output}} (const Eigen\+::\+Vector\+Xd \&Y, const \mbox{\hyperlink{namespace_eigen_ae250387a701e162bacbe517bf3bededc}{Eigen\+::\+Vector\+Xs}} \&idx, size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}{n\+Obs}}, size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}{dim}}, bool second\+Order)
-\begin{DoxyCompactList}\small\item\em Slices the output vector Y from the Sobol evaluation grid to keep only the indices specified in idx. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Slices the output vector Y from the Sobol evaluation grid to keep only valid or specified indices. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results}{Sobol\+Results}} \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae9b84b14c727d54f274573dd5c3f8c02}{compute}} (const Eigen\+::\+Vector\+Xd \&Y)
-\begin{DoxyCompactList}\small\item\em Computes Sobol indices from the output vector Y obtained by evaluating the Sobol evaluation grid. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes Sobol indices from the output vector Y obtained by evaluating the Saltelli grid. \end{DoxyCompactList}\item 
 std\+::pair$<$ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results}{Sobol\+Results}}, \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results}{Sobol\+Results}} $>$ \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a5499477ddc5bfcc20523a0c50663b719}{compute\+With\+Bootstrap}} (const Eigen\+::\+Vector\+Xd \&Y, size\+\_\+t n\+Bootstrap, size\+\_\+t random\+Seed=42)
-\begin{DoxyCompactList}\small\item\em Computes Sobol indices with bootstrap resampling to estimate confidence intervals. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Computes Sobol indices with bootstrap resampling to estimate statistical confidence intervals. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}{n\+Obs\+\_\+}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em The number of base samples $ N $. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2}{n\+Total\+Obs\+\_\+}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em The total number of evaluations required across all matrices. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1}{dim\+\_\+}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em The dimensionality $ d $ of the input parameter space. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6}{second\+Order\+\_\+}} = false
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether second-\/order indices should be computed. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Performs Global Sensitivity Analysis (GSA) using the Saltelli formulation of Sobol indices. 
 
-\hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md15}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Foundations}{Mathematical Foundations}}\label{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md15}
+\hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md21}{}\doxysubsubsubsection{\texorpdfstring{Mathematical Foundations}{Mathematical Foundations}}\label{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md21}
 Sobol sensitivity analysis decomposes the total variance $V(Y)$ of a model $Y = f(X_1, \dots, X_d)$ with independent inputs into contributions from individual inputs and their interactions\+: \[ V(Y) = \sum_{i=1}^d V_i + \sum_{1 \le i < j \le d} V_{ij} + \dots + V_{1\dots d} \]
 
 Where\+:
@@ -54,17 +54,17 @@ Where\+:
 \item {\bfseries{First-\/\+Order Index (Main Effect)}}\+: Measures the fractional variance contribution of input $X_i$ alone\+: \[ S_i = \frac{V_i}{V(Y)} = \frac{\mathrm{Var}_{X_i}\left(\mathbb{E}_{\mathbf{X}_{\sim i}}[Y | X_i]\right)}{\mathrm{Var}(Y)} \]
 \item {\bfseries{Second-\/\+Order Index (Interaction Effect)}}\+: Measures the interaction effect of inputs $X_i$ and $X_j$\+: \[ S_{ij} = \frac{V_{ij}}{V(Y)} = \frac{\mathrm{Var}_{X_i, X_j}\left(\mathbb{E}_{\mathbf{X}_{\sim i,j}}[Y | X_i, X_j]\right) - V_i - V_j}{\mathrm{Var}(Y)} \]
 \item {\bfseries{Total-\/\+Order Index}}\+: Measures the total effect of $X_i$ including all its interactions\+: \[ S_{Ti} = 1 - \frac{\mathrm{Var}_{\mathbf{X}_{\sim i}}\left(\mathbb{E}_{X_i}[Y | \mathbf{X}_{\sim i}]\right)}{\mathrm{Var}(Y)} \]
-\end{DoxyItemize}\hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md16}{}\doxysubsubsubsection{\texorpdfstring{Implementation Algorithms (Saltelli 2010 Scheme)}{Implementation Algorithms (Saltelli 2010 Scheme)}}\label{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md16}
+\end{DoxyItemize}\hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md22}{}\doxysubsubsubsection{\texorpdfstring{Implementation Algorithms (Saltelli 2010 Scheme)}{Implementation Algorithms (Saltelli 2010 Scheme)}}\label{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md22}
 
 \begin{DoxyEnumerate}
 \item {\bfseries{Grid Generation}}\+: We draw two independent sample matrices $\mathbf{A}$ and $\mathbf{B}$ of size $N \times d$. We construct $d$ hybrid matrices $\mathbf{A}_B^i$ (where column $i$ is from $\mathbf{B}$, rest from $\mathbf{A}$) and $d(d-1)/2$ hybrid matrices $\mathbf{A}_B^{ij}$ (where columns $i$ and $j$ are from $\mathbf{B}$, rest from $\mathbf{A}$).
 \item {\bfseries{Evaluation}}\+: Evaluate the model outputs\+: $\mathbf{y}_A$, $\mathbf{y}_B$, $\mathbf{y}_{AB}^i$, and $\mathbf{y}_{AB}^{ij}$.
 \item {\bfseries{Estimator Formulations}}\+:
+\end{DoxyEnumerate}
 \begin{DoxyItemize}
 \item First-\/\+Order\+: \[ S_i = \frac{\frac{1}{N} \sum_{k=1}^N y_B^{(k)} (y_{AB}^{(i)(k)} - y_A^{(k)})}{\mathrm{Var}(Y)} \]
 \item Total-\/\+Order\+: \[ S_{Ti} = \frac{\frac{1}{2N} \sum_{k=1}^N (y_A^{(k)} - y_{AB}^{(i)(k)})^2}{\mathrm{Var}(Y)} \]
-\end{DoxyItemize}
-\end{DoxyEnumerate}\hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md17}{}\doxysubsubsubsection{\texorpdfstring{Constraints \& Invariants}{Constraints \& Invariants}}\label{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md17}
+\end{DoxyItemize}\hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md23}{}\doxysubsubsubsection{\texorpdfstring{Constraints \& Invariants}{Constraints \& Invariants}}\label{classcmp_1_1sobol_1_1_sobol_saltelli_autotoc_md23}
 
 \begin{DoxyItemize}
 \item {\bfseries{Sample Independence}}\+: The input matrices $\mathbf{A}$ and $\mathbf{B}$ must be statistically independent.
@@ -80,12 +80,29 @@ Where\+:
 {\footnotesize\ttfamily \label{classcmp_1_1sobol_1_1_sobol_saltelli_a9be7186d4df2ff478b11d051c5ad07a2} 
 cmp\+::sobol\+::\+Sobol\+Saltelli\+::\+Sobol\+Saltelli (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
+
+
+Default constructor. 
+
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_a0d1150ad0fa2fe3e0e0dd0d5bd55713f}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!SobolSaltelli@{SobolSaltelli}}
 \index{SobolSaltelli@{SobolSaltelli}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
 \doxysubsubsection{\texorpdfstring{SobolSaltelli()}{SobolSaltelli()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \label{classcmp_1_1sobol_1_1_sobol_saltelli_a0d1150ad0fa2fe3e0e0dd0d5bd55713f} 
 cmp\+::sobol\+::\+Sobol\+Saltelli\+::\+Sobol\+Saltelli (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n\+Obs}{, }\item[{size\+\_\+t}]{dim}{, }\item[{bool}]{second\+Order}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Constructs a Sobol-\/\+Saltelli analyzer with the given configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Obs} & The number of base observations $ N $ (size of matrices A and B). \\
+\hline
+{\em dim} & The dimensionality $ d $ of the input space. \\
+\hline
+{\em second\+Order} & Boolean flag to enable computation of second-\/order interaction indices. \\
+\hline
+\end{DoxyParams}
 
 
 \label{doc-func-members}
@@ -99,15 +116,15 @@ cmp\+::sobol\+::\+Sobol\+Saltelli\+::\+Sobol\+Saltelli (\begin{DoxyParamCaption}
 
 
 
-Computes Sobol indices from the output vector Y obtained by evaluating the Sobol evaluation grid. 
+Computes Sobol indices from the output vector Y obtained by evaluating the Saltelli grid. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Y} & The output vector from the Sobol evaluation grid. \\
+{\em Y} & The output vector evaluating the full Saltelli grid sequence. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A \doxylink{structcmp_1_1sobol_1_1_sobol_results}{Sobol\+Results} struct containing the first-\/order (first\+Order), total-\/order (T), and if computed, second-\/order (second\+Order) Sobol indices. 
+A \doxylink{structcmp_1_1sobol_1_1_sobol_results}{Sobol\+Results} struct containing the estimated first-\/order, total-\/order, and optionally second-\/order indices. 
 \end{DoxyReturn}
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_a5499477ddc5bfcc20523a0c50663b719}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!computeWithBootstrap@{computeWithBootstrap}}
 \index{computeWithBootstrap@{computeWithBootstrap}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
@@ -117,21 +134,29 @@ std\+::pair$<$ \mbox{\hyperlink{structcmp_1_1sobol_1_1_sobol_results}{cmp\+::sob
 
 
 
-Computes Sobol indices with bootstrap resampling to estimate confidence intervals. 
+Computes Sobol indices with bootstrap resampling to estimate statistical confidence intervals. 
 
 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+
+Resamples the $ N $ base block sequences with replacement to construct an empirical distribution of the sensitivity indices.
+\begin{DoxyItemize}
+\item 
 \begin{DoxyParams}{Parameters}
-{\em Y} & The output vector from the Sobol evaluation grid. \\
+{\em Y} & The output vector evaluating the full Saltelli grid sequence. \\
 \hline
-{\em n\+Bootstrap} & Number of bootstrap samples to use. \\
+{\em n\+Bootstrap} & Number of bootstrap resampling iterations. \\
 \hline
-{\em random\+Seed} & Seed for the random number generator (default is 42). \\
+{\em random\+Seed} & Seed for the internal random number generator (default is 42). \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A pair of \doxylink{structcmp_1_1sobol_1_1_sobol_results}{Sobol\+Results} which is just a storage for 3 \doxylink{namespace_eigen}{Eigen} vectors first\+Order, T, and second\+Order (if second order is computed). The first element contains the mean estimates, and the second element contains the standard deviations from the bootstrap samples. 
+A std\+::pair of \doxylink{structcmp_1_1sobol_1_1_sobol_results}{Sobol\+Results}. The {\ttfamily first} element contains the mean parameter estimates, and the {\ttfamily second} element contains the standard deviations (standard error) of the bootstrap samples. 
 \end{DoxyReturn}
-\Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!dim@{dim}}
+
+\end{DoxyItemize}\Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!dim@{dim}}
 \index{dim@{dim}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
 \doxysubsubsection{\texorpdfstring{dim()}{dim()}}
 {\footnotesize\ttfamily \label{classcmp_1_1sobol_1_1_sobol_saltelli_ac959e8075de90bc95cd8095375a69581} 
@@ -139,8 +164,11 @@ size\+\_\+t cmp\+::sobol\+::\+Sobol\+Saltelli\+::dim (\begin{DoxyParamCaption}{}
 
 
 
-Gets the number of dimension parameters. 
+Gets the number of dimension parameters $ d $. 
 
+\begin{DoxyReturn}{Returns}
+The dimensionality of the input space. 
+\end{DoxyReturn}
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_aa1e0a4d0c4dc274cd0274b5e6738576c}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!evaluationGrid@{evaluationGrid}}
 \index{evaluationGrid@{evaluationGrid}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
 \doxysubsubsection{\texorpdfstring{evaluationGrid()}{evaluationGrid()}}
@@ -153,15 +181,15 @@ Constructs the Sobol evaluation grid using the Saltelli sampling scheme.
 
 
 \begin{DoxyParams}{Parameters}
-{\em n\+Obs} & The number of observations (size of A and B matrices). \\
+{\em n\+Obs} & The number of observations $ N $ (size of A and B matrices). \\
 \hline
-{\em grid\+Type} & A shared pointer to a Unit\+Grid object that defines the grid type (e.\+g., random, Latin Hypercube). \\
+{\em grid\+Type} & A shared pointer to a Grid object that defines the sampling strategy (e.\+g., Random, Latin Hypercube). \\
 \hline
-{\em second\+Order} & Whether to compute second-\/order indices. \\
+{\em second\+Order} & Whether to construct hybrid grids for second-\/order indices. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-An Eigen\+::\+Matrix\+Xd containing the evaluation grid with size \mbox{[}(2 + dim + dim\texorpdfstring{$\ast$}{*}(dim-\/1)/2) \texorpdfstring{$\ast$}{*} n\+Obs, dim\mbox{]} if second\+Order is true, otherwise \mbox{[}(2 + dim) \texorpdfstring{$\ast$}{*} n\+Obs, dim\mbox{]}. 
+An Eigen\+::\+Matrix\+Xd containing the evaluation grid with size $[(2 + d + d(d-1)/2) \times N, d]$ if second\+Order is true, otherwise $[(2 + d) \times N, d]$. 
 \end{DoxyReturn}
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_ad8128589b6f4bdc529070fae23fcdc10}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!nObs@{nObs}}
 \index{nObs@{nObs}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
@@ -171,8 +199,11 @@ size\+\_\+t cmp\+::sobol\+::\+Sobol\+Saltelli\+::n\+Obs (\begin{DoxyParamCaption
 
 
 
-Gets the number of base samples. 
+Gets the number of base samples $ N $. 
 
+\begin{DoxyReturn}{Returns}
+The number of base samples. 
+\end{DoxyReturn}
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_a1d89e3fef9b739fd60a29460c390af65}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!nTotalObs@{nTotalObs}}
 \index{nTotalObs@{nTotalObs}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
 \doxysubsubsection{\texorpdfstring{nTotalObs()}{nTotalObs()}}
@@ -181,8 +212,11 @@ size\+\_\+t cmp\+::sobol\+::\+Sobol\+Saltelli\+::n\+Total\+Obs (\begin{DoxyParam
 
 
 
-Gets the total number of evaluations required. 
+Gets the total number of evaluations required based on $ N $, $ d $, and analysis order. 
 
+\begin{DoxyReturn}{Returns}
+The total evaluation count. 
+\end{DoxyReturn}
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_a070c94f083e35cb70ed7c13ac499b1b4}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!sliceSaltelliOutput@{sliceSaltelliOutput}}
 \index{sliceSaltelliOutput@{sliceSaltelliOutput}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
 \doxysubsubsection{\texorpdfstring{sliceSaltelliOutput()}{sliceSaltelliOutput()}}
@@ -191,25 +225,33 @@ Eigen\+::\+Vector\+Xd cmp\+::sobol\+::\+Sobol\+Saltelli\+::slice\+Saltelli\+Outp
 
 
 
-Slices the output vector Y from the Sobol evaluation grid to keep only the indices specified in idx. 
+Slices the output vector Y from the Sobol evaluation grid to keep only valid or specified indices. 
 
 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+
+Useful for handling simulations that failed or returned invalid data. It safely trims the outputs while preserving the structured blocks of the Saltelli design matrix needed for index estimation.
+\begin{DoxyItemize}
+\item 
 \begin{DoxyParams}{Parameters}
-{\em Y} & The output vector from the Sobol evaluation grid. \\
+{\em Y} & The raw output vector from the Sobol evaluation grid. \\
 \hline
-{\em idx} & The indices of the observations to keep. \\
+{\em idx} & The indices of the valid observations to keep. \\
 \hline
-{\em n\+Obs} & The number of observations (size of A and B matrices). \\
+{\em n\+Obs} & The number of base observations $ N $. \\
 \hline
-{\em dim} & The dimensionality of the input space. \\
+{\em dim} & The dimensionality of the input space $ d $. \\
 \hline
-{\em second\+Order} & Whether second-\/order indices were computed. \\
+{\em second\+Order} & Whether second-\/order evaluations were included in Y. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A sliced output vector containing only the specified indices. 
+A sliced output vector containing only the specified valid outputs. 
 \end{DoxyReturn}
 
+\end{DoxyItemize}
 
 \label{doc-variable-members}
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_doc-variable-members}
@@ -220,11 +262,19 @@ A sliced output vector containing only the specified indices.
 {\footnotesize\ttfamily \label{classcmp_1_1sobol_1_1_sobol_saltelli_a97555979766a8de3b44170e014d7bbd1} 
 size\+\_\+t cmp\+::sobol\+::\+Sobol\+Saltelli\+::dim\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+The dimensionality $ d $ of the input parameter space. 
+
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!nObs\_@{nObs\_}}
 \index{nObs\_@{nObs\_}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
 \doxysubsubsection{\texorpdfstring{nObs\_}{nObs\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1sobol_1_1_sobol_saltelli_ae07db6288123f1de98e77a1e902bb74c} 
 size\+\_\+t cmp\+::sobol\+::\+Sobol\+Saltelli\+::n\+Obs\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of base samples $ N $. 
 
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!nTotalObs\_@{nTotalObs\_}}
 \index{nTotalObs\_@{nTotalObs\_}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
@@ -232,11 +282,19 @@ size\+\_\+t cmp\+::sobol\+::\+Sobol\+Saltelli\+::n\+Obs\+\_\+ = 0\hspace{0.3cm}{
 {\footnotesize\ttfamily \label{classcmp_1_1sobol_1_1_sobol_saltelli_a1450c1b39f423c53f78bc0e3f081faf2} 
 size\+\_\+t cmp\+::sobol\+::\+Sobol\+Saltelli\+::n\+Total\+Obs\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+The total number of evaluations required across all matrices. 
+
 \Hypertarget{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6}\index{cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}!secondOrder\_@{secondOrder\_}}
 \index{secondOrder\_@{secondOrder\_}!cmp::sobol::SobolSaltelli@{cmp::sobol::SobolSaltelli}}
 \doxysubsubsection{\texorpdfstring{secondOrder\_}{secondOrder\_}}
 {\footnotesize\ttfamily \label{classcmp_1_1sobol_1_1_sobol_saltelli_aaf0a591e05a349ffaf9989f7be4eadf6} 
 bool cmp\+::sobol\+::\+Sobol\+Saltelli\+::second\+Order\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag indicating whether second-\/order indices should be computed. 
 
 
 

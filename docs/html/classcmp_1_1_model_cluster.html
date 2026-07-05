@@ -139,22 +139,39 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af3fee4780d4743facb0b7f6a2a0f4966" id="r_af3fee4780d4743facb0b7f6a2a0f4966"><td class="memItemLeft" align="right" valign="top">std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3fee4780d4743facb0b7f6a2a0f4966">rng_</a></td></tr>
+<tr class="memdesc:af3fee4780d4743facb0b7f6a2a0f4966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pseudo-random number generator.  <br /></td></tr>
 <tr class="memitem:a835834b4fa16aad5472bd2d1798456a5" id="r_a835834b4fa16aad5472bd2d1798456a5"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a835834b4fa16aad5472bd2d1798456a5">xObs_</a></td></tr>
+<tr class="memdesc:a835834b4fa16aad5472bd2d1798456a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Training input matrix of observations.  <br /></td></tr>
 <tr class="memitem:afd4893fd895132b6d5252b8e91de9f85" id="r_afd4893fd895132b6d5252b8e91de9f85"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd4893fd895132b6d5252b8e91de9f85">yObs_</a></td></tr>
+<tr class="memdesc:afd4893fd895132b6d5252b8e91de9f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Training target response vector.  <br /></td></tr>
 <tr class="memitem:a4fa583b127e1e7d68cc34dbe163785c0" id="r_a4fa583b127e1e7d68cc34dbe163785c0"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fa583b127e1e7d68cc34dbe163785c0">nClusters_</a></td></tr>
+<tr class="memdesc:a4fa583b127e1e7d68cc34dbe163785c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of active clusters.  <br /></td></tr>
 <tr class="memitem:a51c0cb0d467b968cb3766365ac8d0d8b" id="r_a51c0cb0d467b968cb3766365ac8d0d8b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51c0cb0d467b968cb3766365ac8d0d8b">nObs_</a></td></tr>
+<tr class="memdesc:a51c0cb0d467b968cb3766365ac8d0d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of training observations.  <br /></td></tr>
 <tr class="memitem:ace54dcee8f1d6b8a764aba59f6375167" id="r_ace54dcee8f1d6b8a764aba59f6375167"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace54dcee8f1d6b8a764aba59f6375167">dimX_</a></td></tr>
+<tr class="memdesc:ace54dcee8f1d6b8a764aba59f6375167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimension of input features.  <br /></td></tr>
 <tr class="memitem:a880bd3f2c8a4befa253caf45391e2972" id="r_a880bd3f2c8a4befa253caf45391e2972"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#ae250387a701e162bacbe517bf3bededc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a880bd3f2c8a4befa253caf45391e2972">labels_</a></td></tr>
+<tr class="memdesc:a880bd3f2c8a4befa253caf45391e2972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cluster assignments label vector.  <br /></td></tr>
 <tr class="memitem:acad5b20073c9b691bb521645395728bd" id="r_acad5b20073c9b691bb521645395728bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#ae250387a701e162bacbe517bf3bededc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acad5b20073c9b691bb521645395728bd">localIndexTable_</a></td></tr>
+<tr class="memdesc:acad5b20073c9b691bb521645395728bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local coordinate lookup index mapping.  <br /></td></tr>
 <tr class="memitem:a6ff16a1ff0d8a9757b6f171d63b76cb0" id="r_a6ff16a1ff0d8a9757b6f171d63b76cb0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ff16a1ff0d8a9757b6f171d63b76cb0">fit_</a></td></tr>
+<tr class="memdesc:a6ff16a1ff0d8a9757b6f171d63b76cb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cluster fit/convergence status flag vector.  <br /></td></tr>
 <tr class="memitem:a677bdf019ea9af69d355065294bada8c" id="r_a677bdf019ea9af69d355065294bada8c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a677bdf019ea9af69d355065294bada8c">centroids_</a></td></tr>
+<tr class="memdesc:a677bdf019ea9af69d355065294bada8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordinates for each cluster's centroid.  <br /></td></tr>
 <tr class="memitem:ad5efe4f4aaa91e0333750f01f4d4fbe9" id="r_ad5efe4f4aaa91e0333750f01f4d4fbe9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html">cmp::gp::GaussianProcess</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5efe4f4aaa91e0333750f01f4d4fbe9">gps_</a></td></tr>
+<tr class="memdesc:ad5efe4f4aaa91e0333750f01f4d4fbe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian process models for each cluster.  <br /></td></tr>
 <tr class="memitem:a1be702bfff40bed62b5b7f3bdaffc647" id="r_a1be702bfff40bed62b5b7f3bdaffc647"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1be702bfff40bed62b5b7f3bdaffc647">clusterSize_</a></td></tr>
+<tr class="memdesc:a1be702bfff40bed62b5b7f3bdaffc647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of points assigned to each cluster.  <br /></td></tr>
 <tr class="memitem:a3013ef46aaf5bd217f90a4674bcf4024" id="r_a3013ef46aaf5bd217f90a4674bcf4024"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3013ef46aaf5bd217f90a4674bcf4024">gamma_</a> {1.0}</td></tr>
+<tr class="memdesc:a3013ef46aaf5bd217f90a4674bcf4024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regularization blending parameter gamma.  <br /></td></tr>
 <tr class="memitem:a974fd526a325b478a901bf8714ab689c" id="r_a974fd526a325b478a901bf8714ab689c"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1covariance_1_1_covariance.html">covariance::Covariance</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a974fd526a325b478a901bf8714ab689c">kernel_</a></td></tr>
+<tr class="memdesc:a974fd526a325b478a901bf8714ab689c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariance kernel function shared across clusters.  <br /></td></tr>
 <tr class="memitem:a0527d4aeb7acbdaa6bc171af53b3a580" id="r_a0527d4aeb7acbdaa6bc171af53b3a580"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1mean_1_1_mean.html">mean::Mean</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0527d4aeb7acbdaa6bc171af53b3a580">mean_</a></td></tr>
+<tr class="memdesc:a0527d4aeb7acbdaa6bc171af53b3a580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean function shared across clusters.  <br /></td></tr>
 <tr class="memitem:acfb06136f2a94cb0fad7ddd4d5b11d91" id="r_acfb06136f2a94cb0fad7ddd4d5b11d91"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfb06136f2a94cb0fad7ddd4d5b11d91">parameters_</a></td></tr>
+<tr class="memdesc:acfb06136f2a94cb0fad7ddd4d5b11d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel hyperparameter values.  <br /></td></tr>
 <tr class="memitem:adeeac837c7bd0c4c9f871bd089c058ca" id="r_adeeac837c7bd0c4c9f871bd089c058ca"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adeeac837c7bd0c4c9f871bd089c058ca">nugget_</a> {1e-8}</td></tr>
+<tr class="memdesc:adeeac837c7bd0c4c9f871bd089c058ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard noise variance nugget.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages a clustered set of Gaussian Processes for localized regression. </p>
@@ -969,6 +986,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Coordinates for each cluster's centroid. </p>
+
 </div>
 </div>
 <a id="a1be702bfff40bed62b5b7f3bdaffc647" name="a1be702bfff40bed62b5b7f3bdaffc647"></a>
@@ -990,6 +1009,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Number of points assigned to each cluster. </p>
 
 </div>
 </div>
@@ -1013,6 +1034,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Dimension of input features. </p>
+
 </div>
 </div>
 <a id="a6ff16a1ff0d8a9757b6f171d63b76cb0" name="a6ff16a1ff0d8a9757b6f171d63b76cb0"></a>
@@ -1034,6 +1057,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Cluster fit/convergence status flag vector. </p>
 
 </div>
 </div>
@@ -1057,6 +1082,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Regularization blending parameter gamma. </p>
+
 </div>
 </div>
 <a id="ad5efe4f4aaa91e0333750f01f4d4fbe9" name="ad5efe4f4aaa91e0333750f01f4d4fbe9"></a>
@@ -1078,6 +1105,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gaussian process models for each cluster. </p>
 
 </div>
 </div>
@@ -1101,6 +1130,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Covariance kernel function shared across clusters. </p>
+
 </div>
 </div>
 <a id="a880bd3f2c8a4befa253caf45391e2972" name="a880bd3f2c8a4befa253caf45391e2972"></a>
@@ -1122,6 +1153,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Cluster assignments label vector. </p>
 
 </div>
 </div>
@@ -1145,6 +1178,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Local coordinate lookup index mapping. </p>
+
 </div>
 </div>
 <a id="a0527d4aeb7acbdaa6bc171af53b3a580" name="a0527d4aeb7acbdaa6bc171af53b3a580"></a>
@@ -1166,6 +1201,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Mean function shared across clusters. </p>
 
 </div>
 </div>
@@ -1189,6 +1226,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Number of active clusters. </p>
+
 </div>
 </div>
 <a id="a51c0cb0d467b968cb3766365ac8d0d8b" name="a51c0cb0d467b968cb3766365ac8d0d8b"></a>
@@ -1210,6 +1249,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Number of training observations. </p>
 
 </div>
 </div>
@@ -1233,6 +1274,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Standard noise variance nugget. </p>
+
 </div>
 </div>
 <a id="acfb06136f2a94cb0fad7ddd4d5b11d91" name="acfb06136f2a94cb0fad7ddd4d5b11d91"></a>
@@ -1254,6 +1297,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Kernel hyperparameter values. </p>
 
 </div>
 </div>
@@ -1277,6 +1322,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Pseudo-random number generator. </p>
+
 </div>
 </div>
 <a id="a835834b4fa16aad5472bd2d1798456a5" name="a835834b4fa16aad5472bd2d1798456a5"></a>
@@ -1299,6 +1346,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Training input matrix of observations. </p>
+
 </div>
 </div>
 <a id="afd4893fd895132b6d5252b8e91de9f85" name="afd4893fd895132b6d5252b8e91de9f85"></a>
@@ -1320,6 +1369,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Training target response vector. </p>
 
 </div>
 </div>

@@ -19,8 +19,8 @@
 \DoxyCodeLine{00033\ }
 \DoxyCodeLine{00048\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}\ \{}
 \DoxyCodeLine{00049\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00050\ \ \ \ \ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}{leftPrior\_}};}
-\DoxyCodeLine{00051\ \ \ \ \ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}{rightPrior\_}};}
+\DoxyCodeLine{00050\ \ \ \ \ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_adf76ebd31d59263f1ddd922470fd6ae0}{leftPrior\_}};\ \ }
+\DoxyCodeLine{00051\ \ \ \ \ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a64eefe7b3f70076bc724dd1850875353}{rightPrior\_}};\ }
 \DoxyCodeLine{00052\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00053\ }
 \DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_product_a1922c8ccf7d55d7de1bece4c13d2f0c4}{Product}}()\ =\ \textcolor{keywordflow}{default};}
@@ -77,11 +77,11 @@
 \DoxyCodeLine{00134\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ DistType>}
 \DoxyCodeLine{00135\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_prior}{Prior}}\ \{}
 \DoxyCodeLine{00136\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00137\ \ \ \ \ DistType\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}{dist\_}};}
-\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}};}
+\DoxyCodeLine{00137\ \ \ \ \ DistType\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a8d98a4b6b1cc3beec914cc51af3282bc}{dist\_}};\ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_ada47df923a76e1d21b2dd346bd38371d}{paramIndex\_}};\ \ }
 \DoxyCodeLine{00139\ }
 \DoxyCodeLine{00140\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Delete\ default\ constructor\ since\ we\ need\ a\ valid\ distribution}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ Delete\ default\ constructor\ since\ we\ need\ a\ valid\ distribution}}
 \DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}()\ =\ \textcolor{keyword}{delete};}
 \DoxyCodeLine{00143\ }
 \DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_a28e7b2e6a158c762695dbe39b208e32b}{FromDistribution}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_af2b70c1a2e303f35805cd4b96a41bcd9}{FromDistribution}}\&)\ =\ \textcolor{keywordflow}{default};}
@@ -116,7 +116,7 @@
 \DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
 \DoxyCodeLine{00179\ \ \ \ \ \}}
 \DoxyCodeLine{00180\ }
-\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ Factory\ method\ matching\ your\ other\ Prior\ classes}}
+\DoxyCodeLine{00181\ \textcolor{comment}{//\ Factory\ method\ matching\ your\ other\ Prior\ classes}}
 \DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Prior>\ \mbox{\hyperlink{classcmp_1_1prior_1_1_from_distribution_aa9f0d271a541fe507959252dace73cb1}{make}}(\textcolor{keyword}{const}\ DistType\&\ dist,\ \textcolor{keywordtype}{size\_t}\ paramIndex)\ \{}
 \DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<FromDistribution<DistType>>(dist,\ paramIndex);}
 \DoxyCodeLine{00184\ \ \ \ \ \}}

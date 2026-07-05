@@ -19,10 +19,26 @@
 #include <unsupported/Eigen/FFT>
 #include <complex>
 
+/**
+ * @addtogroup core
+ * @{
+ */
 namespace cmp::statistics {
 
 /**
- * @brief K-Fold Cross-Validation class
+ * @brief K-Fold cross-validation partition generator.
+ * 
+ * @details Mathematical Formulation
+ * Partitions a dataset \f$\mathcal{D}\f$ of size \f$N\f$ into \f$K\f$ mutually exclusive, approximately equal-sized subsets \f$\{F_1, \dots, F_K\}\f$ such that:
+ * \f[
+ * \bigcup_{k=1}^K F_k = \mathcal{D}, \quad F_i \cap F_j = \emptyset \quad \forall i \neq j
+ * \f]
+ * During the \f$k\f$-th fold iteration, the model is trained on \f$\mathcal{D} \setminus F_k\f$ and validated on \f$F_k\f$.
+ * 
+ * @details Implementation Algorithm
+ * 1. Computes the base size of each fold: \f$S = \lfloor N/K \rfloor\f$.
+ * 2. Assigns indices to splits. The \f$k\f$-th split covers index range \f$[k \cdot S, (k+1) \cdot S)\f$, and the last fold covers any remainder.
+ * 3. Returns the respective train and test index vectors.
  */
 class KFold {
   private:
@@ -67,19 +83,34 @@ class KFold {
         }
     }
 
+    /**
+     * @brief Iterator class to traverse folds for K-Fold cross-validation.
+     */
     class KFoldIterator {
       private:
         Eigen::Index currentSplit_;
         const KFold &parent_;
 
       public:
+        /**
+         * @brief Constructs a KFoldIterator.
+         * @param kf Reference to the parent KFold object.
+         * @param split Index of the current split/fold.
+         */
         KFoldIterator(const KFold& kf, Eigen::Index split)
             : currentSplit_(split), parent_(kf) {}
 
+        /**
+         * @brief Checks inequality with another iterator.
+         */
         bool operator!=(const KFoldIterator& other) const {
             return currentSplit_ != other.currentSplit_;
         }
 
+        /**
+         * @brief Dereferences the iterator to compute training and test index sets for the current fold.
+         * @return A pair containing {train_indices, test_indices}.
+         */
         std::pair<Eigen::VectorXs, Eigen::VectorXs> operator*() const {
             Eigen::Index fold_size = parent_.nObs_ / parent_.nSplits_;
             Eigen::Index start = currentSplit_ * fold_size;
@@ -101,19 +132,34 @@ class KFold {
             return {train_indices, test_indices};
         }
 
+        /**
+         * @brief Increments the iterator to point to the next fold.
+         */
         KFoldIterator& operator++() {
             ++currentSplit_;
             return *this;
         }
     };
 
+    /**
+     * @brief Gets the iterator pointing to the first fold.
+     */
     KFoldIterator begin() const {
         return KFoldIterator(*this, 0);
     }
+
+    /**
+     * @brief Gets the iterator pointing to the end of the folds.
+     */
     KFoldIterator end()   const {
         return KFoldIterator(*this, nSplits_);
     }
 
+    /**
+     * @brief Directly accesses the train/test indices for a specific split.
+     * @param split The split index.
+     * @return A pair of training and test index vectors.
+     */
     std::pair<Eigen::VectorXs, Eigen::VectorXs> operator()(Eigen::Index split) const {
         if(split < 0 || split >= nSplits_) {
             throw std::out_of_range("Split index out of range.");
@@ -121,12 +167,34 @@ class KFold {
         return *(KFoldIterator(*this, split));
     }
 
+    /**
+     * @brief Gets the number of splits/folds.
+     */
     size_t nFolds() const {
         return this->nSplits_;
     }
 };
 
 
+/**
+ * @brief Bootstrap resampling index generator.
+ * 
+ * @details Mathematical Formulation
+ * Draws a random sample \f$\mathcal{D}^*\f$ of size \f$M\f$ from a dataset \f$\mathcal{D}\f$ of size \f$N\f$.
+ * - If with replacement:
+ *   \f[
+ *   P(x_i^* = x_j) = \frac{1}{N} \quad \forall i \in \{1,\dots,M\}, \ j \in \{1,\dots,N\}
+ *   \f]
+ * - If without replacement:
+ *   \f[
+ *   P(x_i^* = x_j) = \frac{1}{N - i + 1}
+ *   \f]
+ *   subject to all selections being distinct.
+ * 
+ * @details Implementation Algorithm
+ * 1. If `withReplacement_` is true, generates \f$M\f$ random integers in range \f$[0, N-1]\f$.
+ * 2. If false, shuffles the index array using `std::shuffle` and extracts the first \f$M\f$ elements.
+ */
 class Bootstrap {
   private:
     size_t nObs_;
@@ -461,5 +529,7 @@ class PairwiseDistanceStats {
 };
 
 } // namespace cmp::statistics
+
+/** @} */
 
 #endif // CMP_STATISTICS_H

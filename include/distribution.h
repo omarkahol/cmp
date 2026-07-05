@@ -10,6 +10,10 @@
 #include <limits>
 #include <Eigen/Dense>
 
+/**
+ * @addtogroup probability
+ * @{
+ */
 namespace cmp::distribution {
 
 
@@ -39,46 +43,144 @@ inline double sech(const double &x) {
 // CRTP BASE CLASSES
 // ==============================================================================
 
+/**
+ * @brief CRTP base class for all univariate probability distributions.
+ * 
+ * @details Mathematical Formulation
+ * Defines a probability distribution over a scalar random variable \f$X \in \mathbb{R}\f$ with probability density function \f$p(x)\f$.
+ * Provides static polymorphic interfaces for:
+ * - Log-likelihood: \f$\log p(x)\f$
+ * - First-order score: \f$\frac{d}{dx} \log p(x)\f$
+ * - Second-order Hessian: \f$\frac{d^2}{dx^2} \log p(x)\f$
+ * - Cumulative distribution function (CDF): \f$F(x) = \int_{-\infty}^x p(t) dt\f$
+ * - Quantile function: \f$F^{-1}(p)\f$ for \f$p \in [0, 1]\f$
+ * 
+ * @details Implementation Algorithm
+ * Uses the Curiously Recurring Template Pattern (CRTP) for compile-time devirtualization of statistical calls.
+ */
 template <typename Derived>
 class UnivariateDistribution {
   public:
+    /**
+     * @brief Computes the log probability density function (log-PDF) of the distribution.
+     * 
+     * @param x Point at which to evaluate the log-PDF.
+     * @return Evaluated log-PDF.
+     */
     double logPDF(const double &x) const {
         return static_cast<const Derived*>(this)->logPDF(x);
     }
+
+    /**
+     * @brief Computes the first derivative of the log-PDF.
+     * 
+     * @param x Point at which to evaluate the derivative.
+     * @return Evaluated first derivative.
+     */
     double dLogPDF(const double &x) const {
         return static_cast<const Derived*>(this)->dLogPDF(x);
     }
+
+    /**
+     * @brief Computes the second derivative of the log-PDF.
+     * 
+     * @param x Point at which to evaluate the second derivative.
+     * @return Evaluated second derivative.
+     */
     double ddLogPDF(const double &x) const {
         return static_cast<const Derived*>(this)->ddLogPDF(x);
     }
+
+    /**
+     * @brief Computes the cumulative distribution function (CDF).
+     * 
+     * @param x Point at which to evaluate the CDF.
+     * @return Evaluated CDF value in [0, 1].
+     */
     double CDF(const double &x) const {
         return static_cast<const Derived*>(this)->CDF(x);
     }
+
+    /**
+     * @brief Computes the quantile function (inverse CDF).
+     * 
+     * @param p Probability value in [0, 1].
+     * @return The quantile value x such that CDF(x) = p.
+     */
     double quantile(const double &p) const {
         return static_cast<const Derived*>(this)->quantile(p);
     }
+
+    /**
+     * @brief Draws a single pseudo-random sample from the distribution.
+     * 
+     * @param rng Random number engine.
+     * @return A random sample.
+     */
     double sample(std::default_random_engine &rng) {
         return static_cast<Derived*>(this)->sample(rng);
     }
 };
 
+/**
+ * @brief CRTP base class for all multivariate probability distributions.
+ * 
+ * @details Mathematical Formulation
+ * Defines a probability distribution over a random vector \f$\mathbf{X} \in \mathbb{R}^d\f$ with joint probability density function \f$p(\mathbf{x})\f$.
+ * Provides static polymorphic interfaces for:
+ * - Joint log-likelihood: \f$\log p(\mathbf{x})\f$
+ * - Vector sampling: drawing \f$\mathbf{x} \sim p(\mathbf{x})\f$
+ * - Canonical transformations (bijective mapping to/from standard multivariate space).
+ * 
+ * @details Implementation Algorithm
+ * Uses the Curiously Recurring Template Pattern (CRTP) to implement static polymorphism.
+ */
 template <typename Derived>
 class MultivariateDistribution {
   public:
+    /**
+     * @brief Computes the joint log probability density function (log-PDF) of the distribution.
+     * 
+     * @param x Vector point at which to evaluate the log-PDF.
+     * @return Evaluated log-PDF.
+     */
     double logPDF(const Eigen::Ref<const Eigen::VectorXd> &x) const {
         return static_cast<const Derived*>(this)->logPDF(x);
     }
+
+    /**
+     * @brief Draws a single vector sample from the joint distribution.
+     * 
+     * @param rng Random number engine.
+     * @return Random vector sample.
+     */
     Eigen::VectorXd sample(std::default_random_engine &rng) {
         return static_cast<Derived*>(this)->sample(rng);
     }
 
+    /**
+     * @brief Transforms physical samples to standard canonical space.
+     * 
+     * @param x Matrix of physical samples (each row is a sample).
+     * @return Matrix of canonical samples.
+     */
     Eigen::MatrixXd toCanonical(const Eigen::MatrixXd &x) const {
         return static_cast<const Derived*>(this)->toCanonical(x);
     }
+
+    /**
+     * @brief Transforms standard canonical samples back to physical space.
+     * 
+     * @param x Matrix of canonical samples.
+     * @return Matrix of physical samples.
+     */
     Eigen::MatrixXd fromCanonical(const Eigen::MatrixXd &x) const {
         return static_cast<const Derived*>(this)->fromCanonical(x);
     }
 
+    /**
+     * @brief Returns the dimensionality of the multivariate space.
+     */
     size_t dimension() const {
         return static_cast<const Derived*>(this)->dimension();
     }
@@ -113,9 +215,9 @@ class ProposalDistribution : public MultivariateDistribution<Derived> {
 
 class NormalDistribution : public UnivariateDistribution<NormalDistribution> {
   private:
-    double mean_{0.0};
-    double std_{1.0};
-    std::normal_distribution<double> distN_;
+    double mean_{0.0};                        ///< Mean parameter.
+    double std_{1.0};                         ///< Standard deviation parameter.
+    std::normal_distribution<double> distN_;  ///< Normal distribution generator helper.
   public:
     NormalDistribution(double mean, double sd): mean_(mean), std_(sd), distN_(0., 1.) {}
     NormalDistribution() = default;
@@ -160,9 +262,9 @@ class NormalDistribution : public UnivariateDistribution<NormalDistribution> {
 
 class UniformDistribution : public UnivariateDistribution<UniformDistribution> {
   private:
-    double lowerBound_{0.0};
-    double upperBound_{1.0};
-    std::uniform_real_distribution<double> distU_{0., 1.};
+    double lowerBound_{0.0};                               ///< Lower bound parameter.
+    double upperBound_{1.0};                               ///< Upper bound parameter.
+    std::uniform_real_distribution<double> distU_{0., 1.}; ///< Uniform distribution generator helper.
   public:
     UniformDistribution(double a, double b): lowerBound_(a), upperBound_(b), distU_(0., 1.) {}
     UniformDistribution() = default;
@@ -199,9 +301,9 @@ class UniformDistribution : public UnivariateDistribution<UniformDistribution> {
 
 class InverseGammaDistribution : public UnivariateDistribution<InverseGammaDistribution> {
   private:
-    double alpha_;
-    double beta_;
-    std::gamma_distribution<double> distGamma_;
+    double alpha_;                             ///< Shape parameter alpha.
+    double beta_;                              ///< Scale parameter beta.
+    std::gamma_distribution<double> distGamma_; ///< Gamma distribution helper for sampling.
   public:
     InverseGammaDistribution(double alpha, double beta): alpha_(alpha), beta_(beta), distGamma_(alpha, 1 / beta) {}
     InverseGammaDistribution() = default;
@@ -234,9 +336,9 @@ class InverseGammaDistribution : public UnivariateDistribution<InverseGammaDistr
 
 class GammaDistribution : public UnivariateDistribution<GammaDistribution> {
   private:
-    double alpha_; // Shape parameter (often denoted as k)
-    double beta_;  // Rate parameter (often denoted as theta = 1/beta)
-    std::gamma_distribution<double> distGamma_;
+    double alpha_;                              ///< Shape parameter (often denoted as k).
+    double beta_;                               ///< Rate parameter (often denoted as theta = 1/beta).
+    std::gamma_distribution<double> distGamma_; ///< Gamma distribution helper for sampling.
 
   public:
     // std::gamma_distribution takes (shape, scale), so we pass (alpha, 1/beta)
@@ -300,12 +402,10 @@ class GammaDistribution : public UnivariateDistribution<GammaDistribution> {
 
 class BetaDistribution : public UnivariateDistribution<BetaDistribution> {
   private:
-    double alpha_;
-    double beta_;
-
-    // We use std::gamma_distribution internally with a rate of 1.0 for fast sampling
-    std::gamma_distribution<double> distGammaAlpha_;
-    std::gamma_distribution<double> distGammaBeta_;
+    double alpha_;                                  ///< Shape parameter alpha.
+    double beta_;                                   ///< Scale parameter beta.
+    std::gamma_distribution<double> distGammaAlpha_; ///< Gamma distribution shape-alpha helper.
+    std::gamma_distribution<double> distGammaBeta_;  ///< Gamma distribution shape-beta helper.
 
   public:
     BetaDistribution(double alpha, double beta)
@@ -381,9 +481,9 @@ class BetaDistribution : public UnivariateDistribution<BetaDistribution> {
 
 class LogNormalDistribution : public UnivariateDistribution<LogNormalDistribution> {
   private:
-    double mean_{0.0};
-    double std_{1.0};
-    std::normal_distribution<double> distN_;
+    double mean_{0.0};                        ///< Log-mean parameter.
+    double std_{1.0};                         ///< Log-standard deviation parameter.
+    std::normal_distribution<double> distN_;  ///< Normal distribution generator helper.
   public:
     LogNormalDistribution(double mu, double sigma): mean_(mu), std_(sigma), distN_(0, 1) {}
     LogNormalDistribution() = default;
@@ -417,11 +517,11 @@ class LogNormalDistribution : public UnivariateDistribution<LogNormalDistributio
 
 class StudentDistribution : public UnivariateDistribution<StudentDistribution> {
   private:
-    double dofs_;
-    double mean_;
-    double std_;
-    std::student_t_distribution<double> distN_;
-    std::normal_distribution<double> normDist_{0.0, 1.0};
+    double dofs_;                                       ///< Degrees of freedom parameter.
+    double mean_;                                       ///< Mean parameter.
+    double std_;                                        ///< Scale standard deviation parameter.
+    std::student_t_distribution<double> distN_;         ///< Student-t distribution helper.
+    std::normal_distribution<double> normDist_{0.0, 1.0}; ///< Normal distribution helper for sampling.
   public:
     StudentDistribution(double nu, double mu, double sigma): dofs_(nu), mean_(mu), std_(sigma), distN_(nu) {}
     StudentDistribution() = default;
@@ -463,9 +563,9 @@ class StudentDistribution : public UnivariateDistribution<StudentDistribution> {
 
 class PowerLawDistribution : public UnivariateDistribution<PowerLawDistribution> {
   private:
-    double degree_;
-    double lowerBound_;
-    std::uniform_real_distribution<double> distU_;
+    double degree_;                                 ///< Power law degree parameter (exponent).
+    double lowerBound_;                             ///< Lower bound parameter.
+    std::uniform_real_distribution<double> distU_;   ///< Uniform distribution helper for sampling.
   public:
     PowerLawDistribution(double alpha, double lowerBound = 1.0): degree_(alpha), distU_(0., 1.), lowerBound_(lowerBound) {}
     PowerLawDistribution() = default;
@@ -496,11 +596,11 @@ class PowerLawDistribution : public UnivariateDistribution<PowerLawDistribution>
 
 class SmoothUniformDistribution : public UnivariateDistribution<SmoothUniformDistribution> {
   private:
-    double lowerBound_;
-    double upperBound_;
-    double std_;
-    std::uniform_real_distribution<double> distU_;
-    std::normal_distribution<double> distN_;
+    double lowerBound_;                            ///< Lower boundary.
+    double upperBound_;                            ///< Upper boundary.
+    double std_;                                   ///< Standard deviation of smoothing Gaussian.
+    std::uniform_real_distribution<double> distU_;  ///< Uniform generator helper.
+    std::normal_distribution<double> distN_;        ///< Normal generator helper.
   public:
     SmoothUniformDistribution(double lowerBound, double upperBound, double sigma): lowerBound_(lowerBound), upperBound_(upperBound), std_(sigma), distU_(0, 1), distN_(0, 1) {}
     SmoothUniformDistribution() = default;
@@ -553,9 +653,9 @@ class SmoothUniformDistribution : public UnivariateDistribution<SmoothUniformDis
 
 class MultivariateNormalDistribution : public ProposalDistribution<MultivariateNormalDistribution> {
   private:
-    Eigen::VectorXd mean_;
-    Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition_;
-    std::normal_distribution<double> distN_;
+    Eigen::VectorXd mean_;                           ///< Mean vector.
+    Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition_; ///< LDLT decomposition of the covariance matrix.
+    std::normal_distribution<double> distN_;         ///< Univariate normal helper for coordinate-wise sampling.
   public:
 
     MultivariateNormalDistribution(const Eigen::Ref<const Eigen::VectorXd> &mean, const Eigen::Ref<const Eigen::MatrixXd> &cov)
@@ -649,8 +749,8 @@ class MultivariateNormalDistribution : public ProposalDistribution<MultivariateN
 
 class MultivariateMixtureDistribution : public MultivariateDistribution<MultivariateMixtureDistribution> {
   private:
-    std::vector<std::shared_ptr<MultivariateNormalDistribution>> components_;
-    std::vector<double> weights_;
+    std::vector<std::shared_ptr<MultivariateNormalDistribution>> components_; ///< Gaussian components of the mixture.
+    std::vector<double> weights_;                                             ///< Mixing weights for each component.
   public:
     MultivariateMixtureDistribution(
         const std::vector<std::shared_ptr<MultivariateNormalDistribution>>& components,
@@ -679,10 +779,10 @@ class MultivariateMixtureDistribution : public MultivariateDistribution<Multivar
 
 class MultivariateStudentDistribution : public ProposalDistribution<MultivariateStudentDistribution> {
   private:
-    Eigen::VectorXd mean_;
-    Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition_;
-    double dofs_;
-    std::normal_distribution<double> distN_;
+    Eigen::VectorXd mean_;                           ///< Mean vector.
+    Eigen::LDLT<Eigen::MatrixXd> ldltDecomposition_; ///< LDLT decomposition of the covariance scale matrix.
+    double dofs_;                                    ///< Degrees of freedom parameter (nu).
+    std::normal_distribution<double> distN_;         ///< Normal distribution helper for coordinate sampling.
   public:
 
     template <typename LDLTDerived>
@@ -778,12 +878,9 @@ class MultivariateStudentDistribution : public ProposalDistribution<Multivariate
 
 class MultivariateUniformDistribution : public MultivariateDistribution<MultivariateUniformDistribution> {
   private:
-    Eigen::VectorXd lowerBound_;
-    Eigen::VectorXd upperBound_;
-
-    // FIX 2: Standard random generator must span [0, 1] to correctly scale physical bounds
-    std::uniform_real_distribution<double> distU_;
-
+    Eigen::VectorXd lowerBound_;                      ///< Lower bounds vector.
+    Eigen::VectorXd upperBound_;                      ///< Upper bounds vector.
+    std::uniform_real_distribution<double> distU_;    ///< Uniform distribution helper for [0, 1] scaling.
   public:
 
     MultivariateUniformDistribution(const Eigen::Ref<const Eigen::VectorXd> &lowerBound,
@@ -1000,5 +1097,7 @@ class NormalInverseWishartDistribution : public MultivariateDistribution<NormalI
 };
 
 } // namespace cmp::distribution
+
+/** @} */
 
 #endif // DISTRIBUTION_HPP

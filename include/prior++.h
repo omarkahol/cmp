@@ -4,6 +4,10 @@
 #include <cmp_defines.h>
 #include <distribution.h>
 
+/**
+ * @addtogroup probability
+ * @{
+ */
 namespace cmp::prior {
 /**
  * @class Prior
@@ -180,14 +184,31 @@ class FromDistribution : public Prior {
     }
 };
 
+/**
+ * @brief Helper template function to create a FromDistribution prior.
+ * 
+ * @tparam DistType The type of the univariate distribution.
+ * @param dist The distribution.
+ * @param paramIndex The index of the parameter coordinate.
+ * @return Shared pointer to the created Prior.
+ */
 template <typename DistType>
 std::shared_ptr<Prior> make(const DistType& dist, size_t paramIndex) {
     return FromDistribution<DistType>::make(dist, paramIndex);
 }
 
+/**
+ * @brief Multiplies two prior distributions (returns a Product prior).
+ * 
+ * @param p1 First prior distribution.
+ * @param p2 Second prior distribution.
+ * @return Shared pointer to the Product prior.
+ */
 std::shared_ptr<Prior> operator*(std::shared_ptr<Prior> p1, std::shared_ptr<Prior> p2);
 
 }
 
+
+/** @} */
 
 #endif

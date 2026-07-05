@@ -3,6 +3,10 @@
 
 #include <cmp_defines.h>
 
+/**
+ * @addtogroup core
+ * @{
+ */
 namespace cmp {
 
 /**
@@ -170,5 +174,7 @@ class TensorIntegrator {
     }
 };
 }
+
+/** @} */
 
 #endif // INTEGRATOR_H

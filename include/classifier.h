@@ -10,9 +10,20 @@
 #include <kde.h>
 #include <covariance.h>
 
+/**
+ * @addtogroup classifiers
+ * @{
+ */
 namespace cmp::classifier {
 
-enum method {CV_SCORE, CV_PROB_SCORE};
+/**
+ * @brief Bandwidth selection objective criterion.
+ */
+enum method {
+    CV_SCORE,      ///< Cross-validation score optimization based on classification accuracy
+    CV_PROB_SCORE  ///< Cross-validation score optimization based on probability likelihood
+};
+
 
 
 /**
@@ -48,27 +59,63 @@ class Classifier {
  */
 class KNN {
   private:
-    std::vector<std::vector<size_t>> neighbours_;
-    size_t kNearestValue_;
-    size_t nPoints_;
+    std::vector<std::vector<size_t>> neighbours_; ///< Cache containing nearest neighbor indices for each data point.
+    size_t kNearestValue_;                        ///< The number of nearest neighbors (k).
+    size_t nPoints_;                              ///< Total number of data points.
 
   public:
-    KNN() = default;
-
+    /**
+     * @brief Computes the nearest neighbor index map for the given points.
+     * 
+     * @param points Vector of data points.
+     * @param k Number of nearest neighbors to compute.
+     */
     void compute(const std::vector<Eigen::VectorXd> &points, size_t k);
 
+    /**
+     * @brief Accesses the list of nearest neighbor indices for the i-th point.
+     * 
+     * @param i Index of the query point.
+     * @return Reference to a vector of neighbor indices.
+     */
     const std::vector<size_t> &operator[](size_t i) const;
+
+    /**
+     * @brief Returns the total number of points in the dataset.
+     * 
+     * @return Size of the dataset.
+     */
     size_t nPoints() const;
+
+    /**
+     * @brief Returns the value of k (number of neighbors).
+     * 
+     * @return Number of neighbors.
+     */
     size_t k() const;
 };
 
 
 
 /**
- * \brief Classifier that uses Kernel Density Estimation (KDE) for classification.
- * This class implements a non-parametric method to estimate the probability density function of a random variable.
- * It uses a kernel function to smooth the observations and estimate the density.
- * It can be used for classification by predicting the class probabilities based on the estimated densities.
+ * @brief Classifier that uses Kernel Density Estimation (KDE) for classification.
+ * 
+ * @details Mathematical Formulation
+ * Estimates the conditional probability density function for class \f$c\f$ at point \f$\mathbf{x} \in \mathbb{R}^D\f$ using kernel density estimation:
+ * \f[
+ * p(\mathbf{x} \mid y = c) = \frac{1}{N_c} \sum_{i \in \mathcal{D}_c} \prod_{d=1}^D \frac{1}{h_{c,d}} K\left(\frac{x_d - x_{i,d}}{h_{c,d}}\right)
+ * \f]
+ * where \f$N_c\f$ is the number of samples in class \f$c\f$, \f$h_{c,d}\f$ is the bandwidth for dimension \f$d\f$ in class \f$c\f$, and \f$K\f$ is a univariate kernel.
+ * The class posterior probability is obtained using Bayes' rule:
+ * \f[
+ * P(y = c \mid \mathbf{x}) = \frac{p(\mathbf{x} \mid y = c) P(y = c)}{\sum_{j=0}^{C-1} p(\mathbf{x} \mid y = j) P(y = j)}
+ * \f]
+ * where \f$P(y = c) = \frac{N_c}{N}\f$ represents the empirical prior probability of class \f$c\f$.
+ * 
+ * @details Implementation Algorithm
+ * 1. `condition()` partitions training samples by class label and computes class priors \f$P(y=c)\f$.
+ * 2. `predictProbabilities()` computes the kernel density \f$p(\mathbf{x} \mid y = c)\f$ for each class, computes the product of density and prior, and normalizes the results.
+ * 3. `fit()` optimizes the bandwidth vector \f$\mathbf{h}\f$ by maximizing K-fold cross-validation likelihood or leave-one-out (LOO) log-probability using NLopt optimization routines.
  */
 class KDE : public Classifier {
   private:
@@ -76,9 +123,9 @@ class KDE : public Classifier {
     Eigen::VectorXs labels_ = Eigen::VectorXs(0);  /// Labels for the observations
     Eigen::VectorXs classCounts_;               /// Count of observations per class
 
-    size_t nObs_ = 0;
-    size_t dimX_ = 0;
-    size_t nClasses_ = 1;
+    size_t nObs_ = 0;      ///< Number of training observations.
+    size_t dimX_ = 0;      ///< Input features dimensionality.
+    size_t nClasses_ = 1;  ///< Total number of distinct class labels.
 
     std::shared_ptr<cmp::kernel::Bandwidth> bandwidth_{nullptr}; /// Bandwidth object for KDE
     std::shared_ptr<kernel::Kernel> kernel_{nullptr};            /// Kernel object for KDE
@@ -200,8 +247,32 @@ class KDE : public Classifier {
 
 
 /**
- * @brief Classifier that uses Support Eigen::VectorXd Machine (SVM) for classification.
- * This class implements a supervised learning algorithm for classification tasks using LIBSVM.
+ * @brief Classifier that uses Support Vector Machine (SVM) for classification.
+ * 
+ * @details Mathematical Formulation
+ * SVM constructs a hyperparameter-tuned decision boundary in a high-dimensional feature space mapped via a kernel:
+ * \f[
+ * k(\mathbf{x}_i, \mathbf{x}_j) = \phi(\mathbf{x}_i)^T \phi(\mathbf{x}_j)
+ * \f]
+ * The dual optimization problem solved is:
+ * \f[
+ * \min_{\boldsymbol{\alpha}} \frac{1}{2} \sum_{i,j=1}^N \alpha_i \alpha_j y_i y_j k(\mathbf{x}_i, \mathbf{x}_j) - \sum_{i=1}^N \alpha_i
+ * \f]
+ * subject to:
+ * \f[
+ * 0 \le \alpha_i \le C, \quad \sum_{i=1}^N \alpha_i y_i = 0
+ * \f]
+ * where \f$C > 0\f$ is the regularization parameter, \f$y_i \in \{-1, 1\}\f$ are class labels, and \f$\alpha_i\f$ are Lagrange multipliers.
+ * Class probabilities are calculated using Platt scaling to compute the probability of class 1:
+ * \f[
+ * P(y=1 \mid \mathbf{x}) = \frac{1}{1 + \exp(A f(\mathbf{x}) + B)}
+ * \f]
+ * where \f$f(\mathbf{x}) = \sum_i \alpha_i y_i k(\mathbf{x}_i, \mathbf{x}) + b\f$ is the decision function, and parameters \f$A, B\f$ are fitted via maximum likelihood on cross-validation outputs.
+ * 
+ * @details Implementation Algorithm
+ * 1. `condition()` maps training dataset to LIBSVM nodes, constructs the precomputed kernel matrix \f$\mathbf{K}\f$, and trains the support vectors via Sequential Minimal Optimization (SMO).
+ * 2. `predictProbabilities()` performs Platt scaling by passing computed decision function outputs to Platt's sigmoid model.
+ * 3. `fit()` optimizes hyperparameters (including kernel lengthscales and SVM penalty \f$C\f$) using cross-validation or span-based bounds.
  */
 class SVM : public Classifier {
   private:
@@ -214,13 +285,22 @@ class SVM : public Classifier {
     Eigen::VectorXd hyperparameters_ = Eigen::VectorXd(0);                             /// Hyperparameters for the covariance function
 
     // Eigen::VectorXd to hold the original training data
-    Eigen::MatrixXd xObs_;
-    size_t nObs_ = 0;
+    Eigen::MatrixXd xObs_; ///< Training observation points.
+    size_t nObs_ = 0;      ///< Total number of training observations.
 
-    // Custom print function that does nothing
+    /**
+     * @brief Custom print redirect function to suppress standard console output from LIBSVM.
+     * 
+     * @param s The string output from LIBSVM.
+     */
     static void silent_print(const char *s) {}
 
-    // Initialize default parameters for the SVM model
+    /**
+     * @brief Initializes default parameters for the SVM model.
+     * 
+     * @param C Regularization penalty parameter.
+     * @param eps Tolerance of termination criterion.
+     */
     void initDefaultParameters(double C, double eps) {
         modelParameters_ = svm_parameter();
 
@@ -370,17 +450,53 @@ class SVM : public Classifier {
 };
 
 
+/**
+ * @brief Baseline classifier predicting class labels based on training frequency distributions.
+ * 
+ * @details Mathematical Formulation
+ * The predicted probability for class \f$c\f$ at any input point \f$\mathbf{x}\f$ is equal to the class prior:
+ * \f[
+ * P(y=c \mid \mathbf{x}) = \frac{N_c}{N}
+ * \f]
+ * where \f$N_c\f$ is the number of occurrences of class \f$c\f$ in the training set and \f$N\f$ is the total number of training observations.
+ * 
+ * @details Implementation Algorithm
+ * 1. `condition()` computes class counts \f$N_c\f$ from the labels training vector.
+ * 2. `predictProbabilities()` returns a vector of class proportions.
+ */
 class Dummy : public Classifier {
   private :
-    size_t nClasses_{1};
+    size_t nClasses_{1}; ///< Total number of class labels.
 
   public :
+    /**
+     * @brief Computes the class frequencies from training labels.
+     * 
+     * @param xObs A matrix of training observations (unused).
+     * @param labels A vector of training labels.
+     */
     void condition(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXs> &labels);
+
+    /**
+     * @brief Predicts the class label with the highest prior frequency.
+     * 
+     * @param x The query point (unused).
+     * @return The most frequent class label.
+     */
     size_t predict(const Eigen::Ref<const Eigen::VectorXd> &x) const override;
+
+    /**
+     * @brief Estimates the class prior probabilities based on training frequencies.
+     * 
+     * @param x The query point (unused).
+     * @return A vector of class prior probabilities.
+     */
     std::vector<double> predictProbabilities(const Eigen::Ref<const Eigen::VectorXd> &x) const override;
 
 };
 
 } // namespace cmp::classifier
+
+/** @} */
 
 #endif // CLASSIFIER_H

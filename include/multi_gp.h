@@ -3,7 +3,26 @@
 
 #include "gp.h"
 
+/**
+ * @addtogroup surrogate
+ * @{
+ */
 namespace cmp::gp {
+/**
+ * @brief Manages a collection of independent Gaussian Processes for multi-output regression.
+ * 
+ * @details Mathematical Formulation
+ * Models a vector-valued function \f$\mathbf{f}: \mathbb{R}^D \to \mathbb{R}^M\f$ using \f$M\f$ independent Gaussian Processes:
+ * \f[
+ * f_j(\mathbf{x}) \sim \mathcal{GP}\left(m_j(\mathbf{x}), k_j(\mathbf{x}, \mathbf{x}')\right), \quad j = 0, \dots, M-1
+ * \f]
+ * Often used in combination with PCA dimension reduction, where the high-dimensional response vector \f$\mathbf{y} \in \mathbb{R}^Q\f$ is projected onto \f$M\f$ principal components, and each component is modeled by a separate GP.
+ * 
+ * @details Implementation Algorithm
+ * 1. `condition()` partitions the multi-column target matrix \f$\mathbf{Y}\f$ to condition each internal `GaussianProcess` object.
+ * 2. `fit()` sequentially optimizes hyperparameters for each GP in the collection using the specified MLE/LOO objectives.
+ * 3. `predict()` queries predictions from each internal GP to reconstruct the multivariate output mean and variance vectors.
+ */
 class MultiOutputGaussianProcess {
 
   private:
@@ -74,14 +93,25 @@ class MultiOutputGaussianProcess {
         return gps_.at(i);
     }
 
+    /**
+     * @brief Returns the number of output dimensions (the number of GP models).
+     * @return Size of the GP collection.
+     */
     size_t size() const {
         return gps_.size();
     }
 
+    /**
+     * @brief Predicts the output mean vector at the test point x.
+     * @param x The test point.
+     * @param t Evaluation type (PRIOR or POSTERIOR).
+     * @return Predictive mean vector.
+     */
     Eigen::VectorXd predictMean(const Eigen::Ref<const Eigen::VectorXd> &x, const type &t = type::POSTERIOR) const;
 };
 
 
 }
+/** @} */
 
 #endif

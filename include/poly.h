@@ -12,9 +12,27 @@
 #include <string>
 #include <integrator.h>
 
+/**
+ * @addtogroup surrogate
+ * @{
+ */
 namespace cmp {
 
 // Basis for polynomial chaos expansion
+/**
+ * @brief Hermite orthogonal polynomial basis.
+ * 
+ * @details Mathematical Formulation
+ * Probabilist's Hermite polynomials \f$H_n(\xi)\f$ are orthogonal with respect to the standard Gaussian density function \f$w(\xi) = \frac{1}{\sqrt{2\pi}} e^{-\xi^2/2}\f$. The recurrence relation is:
+ * \f[
+ * H_0(\xi) = 1, \quad H_1(\xi) = \xi, \quad H_{n+1}(\xi) = \xi H_n(\xi) - n H_{n-1}(\xi)
+ * \f]
+ * with \f$\mathbb{E}[H_m(\xi) H_n(\xi)] = n! \delta_{mn}\f$.
+ * 
+ * @details Implementation Algorithm
+ * 1. `evaluate()` computes polynomial values using the 3-term recurrence relation.
+ * 2. `getJacobiMatrix()` constructs the symmetric tridiagonal Jacobi matrix \f$\mathbf{J}\f$ with diagonal \f$\alpha_i = 0\f$ and off-diagonal \f$\beta_i = \sqrt{i}\f$ to evaluate quadrature nodes via spectral decomposition.
+ */
 struct HermiteBasis {
     static inline double evaluate(size_t deg, double xi) {
         if(deg == 0) return 1.0;
@@ -59,6 +77,20 @@ struct HermiteBasis {
     }
 };
 
+/**
+ * @brief Legendre orthogonal polynomial basis.
+ * 
+ * @details Mathematical Formulation
+ * Legendre polynomials \f$P_n(\xi)\f$ are orthogonal with respect to the uniform density function \f$w(\xi) = 1/2\f$ on \f$[-1, 1]\f$. The recurrence relation is:
+ * \f[
+ * (n+1) P_{n+1}(\xi) = (2n+1) \xi P_n(\xi) - n P_{n-1}(\xi)
+ * \f]
+ * with \f$\int_{-1}^1 P_m(\xi) P_n(\xi) d\xi = \frac{2}{2n+1} \delta_{mn}\f$.
+ * 
+ * @details Implementation Algorithm
+ * 1. `evaluate()` computes polynomial values using Bonnet's recurrence relation.
+ * 2. `getJacobiMatrix()` constructs the symmetric tridiagonal Jacobi matrix \f$\mathbf{J}\f$ with \f$\alpha_i = 0\f$ and off-diagonal \f$\beta_i = \frac{i}{\sqrt{(2i-1)(2i+1)}}\f$.
+ */
 struct LegendreBasis {
     static inline double evaluate(size_t deg, double xi) {
         if(deg == 0) return 1.0;
@@ -101,6 +133,19 @@ struct LegendreBasis {
     }
 };
 
+/**
+ * @brief Chebyshev orthogonal polynomial basis.
+ * 
+ * @details Mathematical Formulation
+ * Chebyshev polynomials of the first kind \f$T_n(\xi)\f$ are orthogonal with respect to the weight function \f$w(\xi) = \frac{1}{\sqrt{1-\xi^2}}\f$ on \f$[-1, 1]\f$. The recurrence relation is:
+ * \f[
+ * T_0(\xi) = 1, \quad T_1(\xi) = \xi, \quad T_{n+1}(\xi) = 2\xi T_n(\xi) - T_{n-1}(\xi)
+ * \f]
+ * 
+ * @details Implementation Algorithm
+ * 1. `evaluate()` computes polynomial values using the 3-term recurrence relation.
+ * 2. `getJacobiMatrix()` constructs the symmetric tridiagonal Jacobi matrix \f$\mathbf{J}\f$ with \f$\alpha_i = 0\f$ and off-diagonal \f$\beta_1 = \frac{1}{\sqrt{2}}\f$, \f$\beta_i = 0.5\f$ for \f$i \ge 2\f$.
+ */
 struct ChebyshevBasis {
     static inline double evaluate(size_t deg, double xi) {
         if(deg == 0) return 1.0;
@@ -142,6 +187,19 @@ struct ChebyshevBasis {
     }
 };
 
+/**
+ * @brief Laguerre orthogonal polynomial basis.
+ * 
+ * @details Mathematical Formulation
+ * Laguerre polynomials \f$L_n(\xi)\f$ are orthogonal with respect to the exponential weight function \f$w(\xi) = e^{-\xi}\f$ on \f$[0, \infty)\f$. The recurrence relation is:
+ * \f[
+ * (n+1) L_{n+1}(\xi) = (2n + 1 - \xi) L_n(\xi) - n L_{n-1}(\xi)
+ * \f]
+ * 
+ * @details Implementation Algorithm
+ * 1. `evaluate()` computes polynomial values using the standard Laguerre recurrence relation.
+ * 2. `getJacobiMatrix()` constructs the symmetric tridiagonal Jacobi matrix \f$\mathbf{J}\f$ with diagonal \f$\alpha_i = 2i + 1\f$ and off-diagonal \f$\beta_i = i + 1\f$.
+ */
 struct LaguerreBasis {
     static inline double evaluate(size_t deg, double xi) {
         if(deg == 0) return 1.0;
@@ -590,5 +648,6 @@ class PolynomialExpansion {
 };
 
 } // namespace cmp
+/** @} */
 
 #endif // POLY_H

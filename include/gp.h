@@ -10,17 +10,27 @@
 #include <optimization.h>
 #include <memory>
 
+/**
+ * @addtogroup surrogate
+ * @{
+ */
 namespace cmp::gp {
 
+/**
+ * @brief Optimization method for GP hyperparameters.
+ */
 enum method {
-    MLE,
-    LOO,
-    LOO_MSE,
+    MLE,     ///< Maximum Likelihood Estimation (maximizing marginal likelihood)
+    LOO,     ///< Leave-One-Out cross-validation predictive probability optimization
+    LOO_MSE  ///< Leave-One-Out Mean Squared Error minimization
 };
 
+/**
+ * @brief GP evaluation type.
+ */
 enum type {
-    PRIOR,
-    POSTERIOR
+    PRIOR,     ///< Prior GP response (before conditioning on training data)
+    POSTERIOR  ///< Posterior GP response (conditioned on training data)
 };
 
 /**
@@ -159,14 +169,26 @@ class GaussianProcess {
         return par_;
     }
 
+    /**
+     * @brief Gets the shared pointer to the GP prior mean function.
+     * @return Shared pointer to the Mean object.
+     */
     std::shared_ptr<cmp::mean::Mean> getMean() const {
         return this->pMean_;
     }
 
+    /**
+     * @brief Gets the shared pointer to the GP covariance kernel.
+     * @return Shared pointer to the Covariance object.
+     */
     std::shared_ptr<cmp::covariance::Covariance> getKernel() const {
         return this->pKernel_;
     }
 
+    /**
+     * @brief Gets the observation noise variance (nugget).
+     * @return Nugget value.
+     */
     double getNugget() const {
         return this->nugget_;
     }
@@ -221,6 +243,10 @@ class GaussianProcess {
         return pYObs_.value();
     }
 
+    /**
+     * @brief Returns the number of training observations.
+     * @return Number of training data rows.
+     */
     size_t nObs() const {
         if(!pXObs_.has_value()) {
             return 0;
@@ -340,5 +366,6 @@ class GaussianProcess {
     double objectiveFunctionLOOMSE(const Eigen::Ref<const Eigen::VectorXd> &x, Eigen::Ref<Eigen::VectorXd> grad, const std::shared_ptr<cmp::prior::Prior> &prior);
 };
 }
+/** @} */
 
 #endif // MACRO

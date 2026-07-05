@@ -3,6 +3,10 @@
 #include <Eigen/Dense>
 #include <cmp_defines.h>
 
+/**
+ * @addtogroup sampling
+ * @{
+ */
 namespace cmp::mcmc {
 
 
@@ -176,3 +180,5 @@ class HamiltonianMarkovChain {
 };
 
 }
+/** @} */
+

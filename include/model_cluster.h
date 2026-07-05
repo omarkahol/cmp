@@ -14,6 +14,10 @@
 #include <cstring>
 
 
+/**
+ * @addtogroup surrogate
+ * @{
+ */
 namespace cmp {
 
 /**
@@ -96,6 +100,15 @@ class ModelCluster {
 
     ModelCluster() = default;
 
+    /**
+     * @brief Configures parameters, kernel, and random seed for the clustered local GP model.
+     * @param kernel Shared covariance function.
+     * @param mean Shared mean function.
+     * @param parameters Covariance hyperparameter vector.
+     * @param nugget Standard observation noise.
+     * @param gamma Blending scale/regularization factor.
+     * @param seed Random seed.
+     */
     void set(std::shared_ptr<covariance::Covariance> kernel, std::shared_ptr<mean::Mean> mean, Eigen::VectorXd parameters, double nugget, double gamma, unsigned int seed) {
         kernel_ = kernel;
         mean_ = mean;
@@ -105,6 +118,12 @@ class ModelCluster {
         rng_.seed(seed);
     }
 
+    /**
+     * @brief Conditions the model on observations and initial cluster labels.
+     * @param xObs Observation point matrix.
+     * @param yObs Response vector.
+     * @param labels Cluster assignments vector.
+     */
     void condition(const Eigen::Ref<const Eigen::MatrixXd> &xObs, const Eigen::Ref<const Eigen::VectorXd> &yObs, const Eigen::Ref<const Eigen::VectorXs> &labels) {
 
         // Initialize the members
@@ -780,9 +799,9 @@ namespace mean {
  * @details Mathematical Formulation
  * The blended mean function at input $x$ is evaluated as:
  * \f[
- * M(x) = \sum_{k=1}^K P(C=k \mid x) m_k(x; \theta_k)
+ * M(x) = \sum_{k=1}^K P(C=k | x) m_k(x; \theta_k)
  * \f]
- * where $P(C=k \mid x)$ is the classifier-derived probability that $x$ belongs to cluster $k$,
+ * where $P(C=k | x)$ is the classifier-derived probability that $x$ belongs to cluster $k$,
  * and $m_k$ is the mean function of the $k$-th cluster's GP.
  *
  * @details Implementation Algorithm
@@ -821,5 +840,6 @@ class ModelClusterMean: public cmp::mean::Mean {
 } // namespace mean
 
 } // namespace cmp
+/** @} */
 
 #endif

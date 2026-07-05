@@ -14,7 +14,31 @@
 #include <set>
 
 
+/**
+ * @addtogroup surrogate
+ * @{
+ */
 namespace cmp {
+/**
+ * @class ModelClusterPoly
+ * @brief Manages a clustered set of Polynomial Chaos Expansion (PCE) models for localized regression.
+ * 
+ * @details Mathematical Formulation
+ * Partitions the input dataset \f$\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N\f$ into \f$K\f$ localized clusters. For each cluster \f$k \in \{0, \dots, K-1\}\f$, it fits a localized Polynomial Chaos Expansion surrogate:
+ * \f[
+ * Y^{(k)}(\boldsymbol{\xi}) \approx \sum_{j=0}^{P-1} c_j^{(k)} \Psi_j^{(k)}(\boldsymbol{\xi})
+ * \f]
+ * where \f$\Psi_j^{(k)}\f$ is the orthonormal polynomial basis for cluster \f$k\f$, and \f$c_j^{(k)}\f$ are the local expansion coefficients.
+ * For a test query \f$\mathbf{x}^*\f$, local predictions are combined using the classifier's posterior probabilities \f$P(C=k \mid \mathbf{x}^*)\f$:
+ * \f[
+ * \mu(\mathbf{x}^*) = \sum_{k=1}^K P(C=k \mid \mathbf{x}^*) \mu_k(\mathbf{x}^*)
+ * \f]
+ * where \f$\mu_k(\mathbf{x}^*)\f$ is the output of the \f$k\f$-th local PCE model.
+ * 
+ * @details Implementation Algorithm
+ * 1. `condition()` groups training inputs according to active clusters and solves the local spectral projection or regression to estimate coefficients \f$c_j^{(k)}\f$.
+ * 2. `predict()` obtains classifier probabilities and computes the weighted average of local polynomial evaluations.
+ */
 class ModelClusterPoly {
 
   private:
@@ -571,5 +595,6 @@ class ModelClusterPoly {
 };
 
 } // namespace cmp
+/** @} */
 
 #endif

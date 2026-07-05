@@ -12,6 +12,10 @@
 #include <random>
 #include <Eigen/Dense>
 
+/**
+ * @addtogroup sampling
+ * @{
+ */
 namespace cmp::mcmc {
 
 // ==============================================================================
@@ -235,25 +239,58 @@ class MarkovChain {
         scale_ = 5.6644 / static_cast<double>(dim_);
     }
 
+    /**
+     * @brief Gets the current parameters of the chain.
+     * @return Parameter vector.
+     */
     Eigen::VectorXd getCurrent() const {
         return proposal_.get();
     }
+
+    /**
+     * @brief Gets the current log probability score of the chain.
+     * @return Log score.
+     */
     double getScore() const {
         return score_;
     }
+
+    /**
+     * @brief Gets the dimensionality of the parameter space.
+     * @return Parameter dimension.
+     */
     size_t getDim() const {
         return dim_;
     }
+
+    /**
+     * @brief Gets the total number of steps run in this chain.
+     * @return Steps count.
+     */
     size_t getSteps() const {
         return nSteps_;
     }
+
+    /**
+     * @brief Gets the current acceptance ratio of proposals.
+     * @return Acceptance ratio value in [0, 1].
+     */
     double getAcceptanceRatio() const {
         return static_cast<double>(nAccepts_) / static_cast<double>(nSteps_);
     }
+
+    /**
+     * @brief Gets the running mean of the parameter samples.
+     * @return Mean vector.
+     */
     Eigen::VectorXd getMean() const {
         return mean_;
     }
 
+    /**
+     * @brief Gets the running covariance of the parameter samples.
+     * @return Covariance matrix.
+     */
     Eigen::MatrixXd getCovariance() const {
         if(nSteps_ <= 1) {
             return Eigen::MatrixXd::Zero(dim_, dim_);
@@ -277,7 +314,25 @@ class MarkovChain {
 // ==============================================================================
 
 /**
- * @brief Computes the R-hat multi-chain diagnosis metric
+ * @brief Computes the Gelman-Rubin convergence diagnostic metric (R-hat).
+ * 
+ * @details Mathematical Formulation
+ * For \f$M\f$ chains of length \f$N\f$, it computes within-chain variance \f$W\f$ and between-chain variance \f$B\f$:
+ * \f[
+ * W = \frac{1}{M} \sum_{m=1}^M s_m^2, \quad B = \frac{N}{M-1} \sum_{m=1}^M (\bar{\theta}_{m} - \bar{\theta}_{\cdot})^2
+ * \f]
+ * The posterior marginal variance is estimated as:
+ * \f[
+ * \widehat{\text{Var}}(\theta \mid y) = \frac{N-1}{N} W + \frac{1}{N} B
+ * \f]
+ * The potential scale reduction factor (PSRF or \f$\hat{R}\f$) is:
+ * \f[
+ * \hat{R} = \sqrt{\frac{\widehat{\text{Var}}(\theta \mid y)}{W}}
+ * \f]
+ * An \f$\hat{R} \to 1.0\f$ indicates successful convergence.
+ * 
+ * @details Implementation Algorithm
+ * Computes coordinate-wise mean and variance vectors across all active chains, calculates the within-chain and between-chain variances, and returns the maximum coordinate value of \f$\hat{R}\f$.
  */
 template <typename ProposalType>
 double multiChainDiagnosis(const std::vector<MarkovChain<ProposalType>> &chains) {
@@ -324,6 +379,25 @@ double multiChainDiagnosis(const std::vector<MarkovChain<ProposalType>> &chains)
 }
 
 
+/**
+ * @brief Implements an Evolutionary Markov Chain Monte Carlo sampler.
+ * 
+ * @details Mathematical Formulation
+ * Uses differential evolution crossover proposals. For each chain \f$i\f$, candidate states \f$\boldsymbol{\theta}_i^*\f$ are generated using states from two other distinct, randomly selected chains \f$j\f$ and \f$k\f$:
+ * \f[
+ * \boldsymbol{\theta}_i^* = \boldsymbol{\theta}_i + \gamma (\boldsymbol{\theta}_j - \boldsymbol{\theta}_k) + \mathbf{e}
+ * \f]
+ * where \f$\gamma\f$ is the scale factor and \f$\mathbf{e} \sim \mathcal{N}(\mathbf{0}, \sigma_e^2 \mathbf{I})\f$ represents small mutation noise.
+ * The candidate state is accepted according to the Metropolis-Hastings probability:
+ * \f[
+ * \alpha = \min\left(1, \exp\left(\log \pi(\boldsymbol{\theta}_i^*) - \log \pi(\boldsymbol{\theta}_i)\right)\right)
+ * \f]
+ * 
+ * @details Implementation Algorithm
+ * 1. For each chain \f$i\f$, randomly selects distinct partner chains \f$j\f$ and \f$k\f$.
+ * 2. Evaluates mutated crossover states.
+ * 3. Applies Metropolis-Hastings rejection step based on the likelihood evaluations.
+ */
 class EvolutionaryMarkovChain {
   protected:
     size_t nChains_{0};
@@ -344,14 +418,34 @@ class EvolutionaryMarkovChain {
     EvolutionaryMarkovChain() = default;
 
 
+    /**
+     * @brief Constructs an EvolutionaryMarkovChain sampler.
+     * @param initialSamples Initial parameter states for each chain.
+     * @param initialScores Initial log probability scores for each chain.
+     * @param nugget Standard deviation scaling for crossover mutation noise.
+     */
     EvolutionaryMarkovChain(std::vector<Eigen::VectorXd> initialSamples, std::vector<double> initialScores, double nugget = 1e-6);
 
+    /**
+     * @brief Performs one crossover and mutation step for all chains.
+     * @param getScore The log posterior probability evaluator.
+     * @param rng Random number engine.
+     * @param gamma Scale factor for difference vector in differential evolution.
+     */
     void step(const score_t &getScore, std::default_random_engine &rng, double gamma = 0.2);
 
+    /**
+     * @brief Gets the current states of all chains.
+     * @return Vector of chain samples.
+     */
     std::vector<Eigen::VectorXd> getCurrent() const {
         return chainSamples_;
     }
 
+    /**
+     * @brief Gets the current log probability scores of all chains.
+     * @return Vector of chain scores.
+     */
     std::vector<double> getScores() const {
         return chainScores_;
     }
@@ -374,5 +468,7 @@ class EvolutionaryMarkovChain {
 
 
 }
+
+/** @} */
 
 #endif

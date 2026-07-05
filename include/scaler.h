@@ -4,6 +4,10 @@
 #include <cmp_defines.h>
 
 
+/**
+ * @addtogroup surrogate
+ * @{
+ */
 namespace cmp::scaler {
 
 constexpr double TOL = 1e-10;
@@ -84,7 +88,31 @@ class StandardScaler : public Scaler {
     Eigen::MatrixXd fit_transform(const Eigen::Ref<const Eigen::MatrixXd> &data) override;
 };
 
-// PCA scaler
+/**
+ * @class PCA
+ * @brief Principal Component Analysis (PCA) feature scaler and dimension reducer.
+ * 
+ * @details Mathematical Formulation
+ * Centers data matrix \f$\mathbf{X} \in \mathbb{R}^{N \times D}\f$ around column mean \f$\boldsymbol{\mu}\f$ and computes the eigendecomposition of the sample covariance matrix \f$\boldsymbol{\Sigma}\f$:
+ * \f[
+ * \boldsymbol{\Sigma} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^T
+ * \f]
+ * where \f$\mathbf{V}\f$ contains orthogonal eigenvectors and \f$\mathbf{\Lambda}\f$ contains eigenvalues in descending order.
+ * The transformation projects \f$\mathbf{x}\f$ into a lower-dimensional latent space of size \f$M\f$:
+ * \f[
+ * \mathbf{y} = \mathbf{\Lambda}_M^{-1/2} \mathbf{V}_M^T (\mathbf{x} - \boldsymbol{\mu})
+ * \f]
+ * where \f$\mathbf{V}_M\f$ and \f$\mathbf{\Lambda}_M\f$ represent truncated eigenvector and eigenvalue matrices.
+ * The inverse transformation reconstructs the point:
+ * \f[
+ * \mathbf{x} = \mathbf{V}_M \mathbf{\Lambda}_M^{1/2} \mathbf{y} + \boldsymbol{\mu}
+ * \f]
+ * 
+ * @details Implementation Algorithm
+ * 1. `fit()` computes the mean \f$\boldsymbol{\mu}\f$ and covariance \f$\boldsymbol{\Sigma}\f$ of the training matrix, then runs `Eigen::SelfAdjointEigenSolver`.
+ * 2. `transform()` centers the query vector, projects it onto the principal eigenvectors, and scales it by the inverse square root of eigenvalues.
+ * 3. `inverseTransform()` rescales by square root eigenvalues, projects back to physical coordinates, and adds the mean.
+ */
 class PCA : public Scaler {
   private:
     Eigen::VectorXd mean_;
@@ -94,10 +122,17 @@ class PCA : public Scaler {
 
     size_t nComponents_;
 
+    /**
+     * @brief Internal helper to run eigenvalues and eigenvectors solvers.
+     */
     void eigenDecomposition();
 
 
   public:
+    /**
+     * @brief Constructs a PCA scaler with the specified number of components.
+     * @param nComponents Number of principal components to retain.
+     */
     PCA(size_t nComponents) : nComponents_(nComponents) {};
     PCA(const PCA &other) = default;
     PCA(PCA &&other) = default;
@@ -107,7 +142,14 @@ class PCA : public Scaler {
     PCA &operator=(const PCA &other) = default;
     PCA &operator=(PCA &&other) = default;
 
+    /**
+     * @brief Projects physical data onto the principal components.
+     */
     Eigen::VectorXd transform(const Eigen::Ref<const Eigen::VectorXd> &data) const override;
+
+    /**
+     * @brief Reconstructs physical data from the principal components.
+     */
     Eigen::VectorXd inverseTransform(const Eigen::Ref<const Eigen::VectorXd> &data) const override;
 
     Eigen::VectorXd getIntercept() const override {
@@ -117,20 +159,39 @@ class PCA : public Scaler {
         return sqrtCov_;
     };
 
+    /**
+     * @brief Fits the PCA model to the training dataset.
+     */
     void fit(const Eigen::Ref<const Eigen::MatrixXd> &data) override;
+
+    /**
+     * @brief Fits the PCA model and returns the projected dataset.
+     */
     Eigen::MatrixXd fit_transform(const Eigen::Ref<const Eigen::MatrixXd> &data) override;
 
+    /**
+     * @brief Resizes the number of principal components.
+     */
     void resize(size_t nComponents);
 
+    /**
+     * @brief Returns the eigenvalues of the covariance matrix.
+     */
     Eigen::VectorXd getEigenvalues() const {
         return eigenSolver_.eigenvalues();
     };
+
+    /**
+     * @brief Returns the eigenvectors of the covariance matrix.
+     */
     Eigen::MatrixXd getEigenvectors() const {
         return eigenSolver_.eigenvectors();
     };
 };
 
-// Dummy vector scaler
+/**
+ * @brief Dummy scaler that leaves input data unchanged.
+ */
 class DummyScaler : public Scaler {
   private:
     size_t dim_;
@@ -145,9 +206,16 @@ class DummyScaler : public Scaler {
     DummyScaler &operator=(const DummyScaler &other) = default;
     DummyScaler &operator=(DummyScaler &&other) = default;
 
+    /**
+     * @brief Returns the input data unchanged.
+     */
     Eigen::VectorXd transform(const Eigen::Ref<const Eigen::VectorXd> &data) const override {
         return data;
     };
+
+    /**
+     * @brief Returns the input data unchanged.
+     */
     Eigen::VectorXd inverseTransform(const Eigen::Ref<const Eigen::VectorXd> &data) const override {
         return data;
     };
@@ -159,22 +227,39 @@ class DummyScaler : public Scaler {
         return Eigen::MatrixXd::Identity(dim_, dim_);
     };
 
+    /**
+     * @brief Learns the dimension of the training dataset.
+     */
     void fit(const Eigen::Ref<const Eigen::MatrixXd> &data) override {
         dim_ = data.cols();
     };
 
+    /**
+     * @brief Learns the dimension and returns the unchanged dataset.
+     */
     Eigen::MatrixXd fit_transform(const Eigen::Ref<const Eigen::MatrixXd> &data) override {
         dim_ = data.cols();
         return data;
     };
 
+    /**
+     * @brief Sets the data dimensionality.
+     */
     void setDim(size_t dim) {
         dim_ = dim;
     };
 
 };
 
-// Elliptic vector scaler
+/**
+ * @brief Scaler that standardizes features independently (diagonal variance scaling).
+ * 
+ * @details Mathematical Formulation
+ * Standardizes each feature coordinate independently:
+ * \f[
+ * y_j = \frac{x_j - \mu_j}{\sigma_j}
+ * \f]
+ */
 class EllipticScaler : public Scaler {
   private:
     Eigen::VectorXd mean_;
@@ -182,6 +267,10 @@ class EllipticScaler : public Scaler {
 
   public:
     EllipticScaler() = default;
+
+    /**
+     * @brief Constructs an EllipticScaler with specified mean and standard deviations.
+     */
     EllipticScaler(const Eigen::Ref<const Eigen::VectorXd> &mean, const Eigen::Ref<const Eigen::VectorXd> &std) : mean_(mean), std_(std) {};
     EllipticScaler(const EllipticScaler &other) = default;
     EllipticScaler(EllipticScaler &&other) = default;
@@ -190,11 +279,21 @@ class EllipticScaler : public Scaler {
 
     EllipticScaler &operator=(const EllipticScaler &other) = default;
     EllipticScaler &operator=(EllipticScaler &&other) = default;
+
+    /**
+     * @brief Standardizes the input data vector.
+     */
     Eigen::VectorXd transform(const Eigen::Ref<const Eigen::VectorXd> &data) const override;
+
+    /**
+     * @brief Unstandardizes the input data vector back to physical space.
+     */
     Eigen::VectorXd inverseTransform(const Eigen::Ref<const Eigen::VectorXd> &data) const override;
+
     Eigen::VectorXd getIntercept() const override {
         return mean_;
     };
+
     Eigen::MatrixXd getScale() const override {
         Eigen::MatrixXd scale = Eigen::MatrixXd::Identity(mean_.size(), mean_.size());
         for(int i = 0; i < mean_.size(); i++) {
@@ -202,17 +301,47 @@ class EllipticScaler : public Scaler {
         }
         return scale;
     };
+
+    /**
+     * @brief Fits the mean and standard deviation of each coordinate of the training data.
+     */
     void fit(const Eigen::Ref<const Eigen::MatrixXd> &data) override;
+
+    /**
+     * @brief Fits the scaler and returns standardized data.
+     */
     Eigen::MatrixXd fit_transform(const Eigen::Ref<const Eigen::MatrixXd> &data) override;
+
+    /**
+     * @brief Explicitly sets the mean parameters.
+     */
     void setMean(const Eigen::Ref<const Eigen::VectorXd> &mean) {
         mean_ = mean;
     };
+
+    /**
+     * @brief Explicitly sets the standard deviation scaling parameters.
+     */
     void setStd(const Eigen::Ref<const Eigen::VectorXd> &std) {
         std_ = std;
     };
 };
 
-// Min-Max vector scaler
+/**
+ * @class MinMaxScaler
+ * @brief Linearly scales features to a target bounding box range.
+ * 
+ * @details Mathematical Formulation
+ * Scales each feature vector component to live within range \f$[a_j, b_j]\f$ (typically \f$[0, 1]\f$):
+ * \f[
+ * y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}} (b_j - a_j)
+ * \f]
+ * where \f$x_{\text{min}, j}\f$ and \f$x_{\text{max}, j}\f$ are the training data's minimum and maximum values for feature \f$j\f$.
+ * 
+ * @details Implementation Algorithm
+ * 1. `fit()` computes column-wise minima and maxima vectors of the training matrix.
+ * 2. `transform()` and `inverseTransform()` apply element-wise division and scaling multiplication.
+ */
 class MinMaxScaler : public Scaler {
   private:
     Eigen::VectorXd min_;
@@ -246,5 +375,7 @@ class MinMaxScaler : public Scaler {
 };
 }
 
+
+/** @} */
 
 #endif // SCALER_H

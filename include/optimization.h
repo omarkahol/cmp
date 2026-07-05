@@ -11,8 +11,30 @@
 #include <Eigen/Dense>
 #include <nlopt.hpp>
 
+/**
+ * @addtogroup core
+ * @{
+ */
 namespace cmp {
 
+/**
+ * @brief Functor wrapper for NLopt with automatic, transparent parameter space mapping (e.g., log-scaling).
+ * 
+ * @details Mathematical Formulation
+ * When optimization parameters span multiple orders of magnitude, log-scaling maps the optimization coordinate \f$y_k\f$ to the physical parameter \f$x_k\f$:
+ * \f[
+ * x_k = \exp(y_k)
+ * \f]
+ * By the chain rule, the gradient evaluated by NLopt with respect to \f$y_k\f$ is:
+ * \f[
+ * \frac{\partial f}{\partial y_k} = \frac{\partial f}{\partial x_k} \frac{\partial x_k}{\partial y_k} = \frac{\partial f}{\partial x_k} \exp(y_k) = \frac{\partial f}{\partial x_k} x_k
+ * \f]
+ * 
+ * @details Implementation Algorithm
+ * 1. `mapToReal()` performs element-wise exponential transformation if log-scaling is enabled for a given parameter index.
+ * 2. `mapGradientToOpt()` multiplies each computed gradient entry \f$\frac{\partial f}{\partial x_k}\f$ by \f$x_k\f$ if log-scaling is active.
+ * 3. `NLoptCallback` coordinates the mapping of std::vector to Eigen::Map mapping and triggers evaluations.
+ */
 class ObjectiveFunctor {
   public:
     // Gradient-free constructor
@@ -63,6 +85,10 @@ class ObjectiveFunctor {
         return (*functor)(x_eig, grad_map);
     }
 
+    /**
+     * @brief Checks if the functor utilizes gradient information.
+     * @return True if gradients are used, false otherwise.
+     */
     bool usesGradient() const {
         return use_gradient_;
     }
@@ -76,13 +102,13 @@ class ObjectiveFunctor {
         eq_constraints_.push_back(std::move(h));
     }
 
-
-
-
+    /**
+     * @brief Context struct for NLopt constraint evaluation callback.
+     */
     struct ConstraintContext {
-        ObjectiveFunctor* functor;
-        size_t index;
-        bool is_inequality;
+        ObjectiveFunctor* functor; ///< Pointer to the parent functor.
+        size_t index;              ///< Index of the constraint in the vector.
+        bool is_inequality;        ///< True if it is an inequality constraint, false if equality.
     };
 
     // Unified static wrapper for evaluating constraints with log-scaling awareness
@@ -114,7 +140,22 @@ class ObjectiveFunctor {
     bool use_gradient_;
     std::vector<bool> log_scale_; // Mask indicating which dims are log-scaled
 
-    // Helper: Map optimizer space x (log) to real physical space x
+    /**
+     * @brief Maps parameters from optimization space (potentially log-scaled) to physical space.
+     * 
+     * @details Mathematical Formulation
+     * For dimensions flagged as log-scaled:
+     * \f[
+     * \theta_{\text{real}, i} = \exp\left( \theta_{\text{opt}, i} \right)
+     * \f]
+     * For unscaled dimensions:
+     * \f[
+     * \theta_{\text{real}, i} = \theta_{\text{opt}, i}
+     * \f]
+     * 
+     * @param x_opt Parameter vector in optimization space.
+     * @return Parameter vector in real space.
+     */
     Eigen::VectorXd mapToReal(Eigen::Ref<const Eigen::VectorXd> x_opt) const {
         if(log_scale_.empty()) return x_opt;
         Eigen::VectorXd x_real = x_opt;
@@ -126,7 +167,18 @@ class ObjectiveFunctor {
         return x_real;
     }
 
-    // Helper: Map real gradient back to optimizer space gradient via Chain Rule
+    /**
+     * @brief Transforms gradients from real space back to optimization space using the chain rule.
+     * 
+     * @details Mathematical Formulation
+     * By the chain rule, the gradient with respect to the optimization parameter is:
+     * \f[
+     * \frac{\partial f}{\partial \theta_{\text{opt}, i}} = \frac{\partial f}{\partial \theta_{\text{real}, i}} \frac{d \theta_{\text{real}, i}}{d \theta_{\text{opt}, i}} = \frac{\partial f}{\partial \theta_{\text{real}, i}} \theta_{\text{real}, i}
+     * \f]
+     * 
+     * @param x_real Parameter vector in real space.
+     * @param grad_real Gradient vector in real space (modified in-place to optimization space gradient).
+     */
     void mapGradientToOpt(Eigen::Ref<const Eigen::VectorXd> x_real, Eigen::Ref<Eigen::VectorXd> grad_real) const {
         if(log_scale_.empty() || grad_real.size() == 0) return;
         for(int i = 0; i < grad_real.size(); ++i) {
@@ -137,7 +189,15 @@ class ObjectiveFunctor {
         }
     }
 
-    // Helper to evaluate constraints dynamically while respecting log scaling
+    /**
+     * @brief Evaluates a constraint while properly translating inputs and mapping output gradients.
+     * 
+     * @param index Index of the constraint in the vector.
+     * @param is_ineq True if inequality, false if equality constraint.
+     * @param x_opt Input vector in optimization space.
+     * @param grad_opt Output gradient vector in optimization space.
+     * @return The evaluated constraint value.
+     */
     double evaluateConstraint(size_t index, bool is_ineq, Eigen::Ref<const Eigen::VectorXd> x_opt, Eigen::Ref<Eigen::VectorXd> grad_opt) const {
         Eigen::VectorXd x_real = mapToReal(x_opt);
         double val = 0.0;
@@ -162,3 +222,5 @@ class ObjectiveFunctor {
 double nlopt_max(cmp::ObjectiveFunctor &f, Eigen::Ref<Eigen::VectorXd> x0, const Eigen::Ref<const Eigen::VectorXd> &lb, const Eigen::Ref<const Eigen::VectorXd> &ub, nlopt::algorithm alg = nlopt::LN_SBPLX, double ftol_rel = 1e-6);
 
 } // namespace cmp
+/** @} */
+

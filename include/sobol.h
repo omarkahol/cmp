@@ -12,24 +12,46 @@
 #include <statistics.h>
 #include <grid.h>
 
+/**
+ * @addtogroup sensitivity
+ * @{
+ */
 namespace cmp::sobol {
 
+/**
+ * @brief Struct to hold calculated Sobol sensitivity indices.
+ */
 struct SobolResults {
-    Eigen::VectorXd firstOrder; // First order indices
-    Eigen::VectorXd totalOrder; // Total order indices
+    Eigen::VectorXd firstOrder;  ///< First-order (main effect) Sobol indices.
+    Eigen::VectorXd totalOrder;  ///< Total-order Sobol indices.
+    Eigen::VectorXd secondOrder; ///< Second-order (interaction effect) Sobol indices (if computed).
 
-    // Stores the interaction indices for second order if computed
-    // First element is interaction between 0 and 1, second between 0 and 2, ..., (d-1) and d, etc.
-    Eigen::VectorXd secondOrder; // Second order indices (if computed)
-
+    /**
+     * @brief Gets the first-order Sobol index for input parameter i.
+     * @param i Index of the input parameter.
+     * @return First-order Sobol index value.
+     */
     double getFirstOrder(size_t i) const {
         if(i >= firstOrder.size()) throw std::out_of_range("Index out of range");
         return firstOrder(i);
     }
+
+    /**
+     * @brief Gets the total-order Sobol index for input parameter i.
+     * @param i Index of the input parameter.
+     * @return Total-order Sobol index value.
+     */
     double getTotalOrder(size_t i) const {
         if(i >= totalOrder.size()) throw std::out_of_range("Index out of range");
         return totalOrder(i);
     }
+
+    /**
+     * @brief Gets the second-order Sobol index for interaction between parameters i and j.
+     * @param i Index of the first parameter.
+     * @param j Index of the second parameter.
+     * @return Second-order Sobol index value.
+     */
     double getSecondOrder(size_t i, size_t j) const {
         if(secondOrder.size() == 0) throw std::logic_error("Second order Sobol indices were not computed.");
         if(i >= firstOrder.size() || j >= firstOrder.size()) throw std::out_of_range("Index out of range");
@@ -89,12 +111,23 @@ class SobolSaltelli {
         nTotalObs_ = (2 + dim_ + (secondOrder_ ? dim_ * (dim_ - 1) / 2 : 0)) * nObs_;
     }
 
+    /**
+     * @brief Gets the total number of evaluations required.
+     */
     size_t nTotalObs() const {
         return nTotalObs_;
     }
+
+    /**
+     * @brief Gets the number of dimension parameters.
+     */
     size_t dim() const {
         return dim_;
     }
+
+    /**
+     * @brief Gets the number of base samples.
+     */
     size_t nObs() const {
         return nObs_;
     }
@@ -137,4 +170,6 @@ class SobolSaltelli {
 
 };
 }
+/** @} */
+
 #endif // CMP_SOBOL_H

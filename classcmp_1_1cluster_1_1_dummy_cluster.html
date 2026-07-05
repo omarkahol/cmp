@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,6 +107,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1cluster_1_1_dummy_cluster.
 </div><!--header-->
 <div class="contents">
 
+<p>Simple partitioning algorithm that assigns observations to clusters uniformly at random.  
+ <a href="classcmp_1_1cluster_1_1_dummy_cluster.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="cluster_8h_source.html">cluster.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -113,20 +117,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad79c1ddf389f7c96bc2b57a06cecbe03" id="r_ad79c1ddf389f7c96bc2b57a06cecbe03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dummy_cluster.html#ad79c1ddf389f7c96bc2b57a06cecbe03">DummyCluster</a> (size_t nClusters, unsigned int seed=42)</td></tr>
 <tr class="separator:ad79c1ddf389f7c96bc2b57a06cecbe03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad466acb58ffc955424660ef4da57089d" id="r_ad466acb58ffc955424660ef4da57089d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dummy_cluster.html#ad466acb58ffc955424660ef4da57089d">fit</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;points)</td></tr>
+<tr class="memdesc:ad466acb58ffc955424660ef4da57089d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomly assigns each data point to a cluster uniformly at random.  <br /></td></tr>
 <tr class="separator:ad466acb58ffc955424660ef4da57089d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae114e57f9bcaa1a6877e6f6d31256ceb" id="r_ae114e57f9bcaa1a6877e6f6d31256ceb"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dummy_cluster.html#ae114e57f9bcaa1a6877e6f6d31256ceb">getLabels</a> () const</td></tr>
+<tr class="memdesc:ae114e57f9bcaa1a6877e6f6d31256ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the randomly generated cluster labels.  <br /></td></tr>
 <tr class="separator:ae114e57f9bcaa1a6877e6f6d31256ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a7c8e182f83e36d9f1c7dce68653b335c" id="r_a7c8e182f83e36d9f1c7dce68653b335c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dummy_cluster.html#a7c8e182f83e36d9f1c7dce68653b335c">nClusters_</a></td></tr>
+<tr class="memdesc:a7c8e182f83e36d9f1c7dce68653b335c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of target clusters.  <br /></td></tr>
 <tr class="separator:a7c8e182f83e36d9f1c7dce68653b335c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf87d5ed7f495e9c3be8613ce822ae8d" id="r_aaf87d5ed7f495e9c3be8613ce822ae8d"><td class="memItemLeft" align="right" valign="top">std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dummy_cluster.html#aaf87d5ed7f495e9c3be8613ce822ae8d">rng_</a></td></tr>
+<tr class="memdesc:aaf87d5ed7f495e9c3be8613ce822ae8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random number generator.  <br /></td></tr>
 <tr class="separator:aaf87d5ed7f495e9c3be8613ce822ae8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47b1c931dbb1a64e2ca9290dd4081174" id="r_a47b1c931dbb1a64e2ca9290dd4081174"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dummy_cluster.html#a47b1c931dbb1a64e2ca9290dd4081174">labels_</a></td></tr>
+<tr class="memdesc:a47b1c931dbb1a64e2ca9290dd4081174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of randomly assigned labels.  <br /></td></tr>
 <tr class="separator:a47b1c931dbb1a64e2ca9290dd4081174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Simple partitioning algorithm that assigns observations to clusters uniformly at random. </p>
+<p>Mathematical Formulation Each sample index \(i\) is assigned a cluster assignment variable \(z_i\) drawn from a discrete uniform distribution:  </p><p class="formulaDsp">
+\[
+P(z_i = k) = \frac{1}{K}, \quad k \in \{0, 1, \dots, K-1\}
+\]
+</p>
+<p> where \(K\) is the number of target clusters.</p>
+<p>Implementation Algorithm The <code><a class="el" href="classcmp_1_1cluster_1_1_dummy_cluster.html#ad466acb58ffc955424660ef4da57089d" title="Randomly assigns each data point to a cluster uniformly at random.">fit()</a></code> function constructs a <code>std::uniform_int_distribution</code> and samples an integer in the range \([0, K-1]\) for each data point sequentially. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad79c1ddf389f7c96bc2b57a06cecbe03" name="ad79c1ddf389f7c96bc2b57a06cecbe03"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad79c1ddf389f7c96bc2b57a06cecbe03">&#9670;&#160;</a></span>DummyCluster()</h2>
 
@@ -188,6 +206,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Randomly assigns each data point to a cluster uniformly at random. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>Matrix of points. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ae114e57f9bcaa1a6877e6f6d31256ceb" name="ae114e57f9bcaa1a6877e6f6d31256ceb"></a>
@@ -213,6 +239,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the randomly generated cluster labels. </p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the label vector. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -236,6 +265,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Vector of randomly assigned labels. </p>
+
 </div>
 </div>
 <a id="a7c8e182f83e36d9f1c7dce68653b335c" name="a7c8e182f83e36d9f1c7dce68653b335c"></a>
@@ -258,6 +289,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Number of target clusters. </p>
+
 </div>
 </div>
 <a id="aaf87d5ed7f495e9c3be8613ce822ae8d" name="aaf87d5ed7f495e9c3be8613ce822ae8d"></a>
@@ -279,6 +312,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Random number generator. </p>
 
 </div>
 </div>

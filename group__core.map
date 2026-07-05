@@ -1,0 +1,9 @@
+<map id="Core Utilities &amp; Integration" name="Core Utilities &amp; Integration">
+<area shape="rect" id="Node000002" href="$group__classifiers.html" title="Class probability models, Support Vector Machines, KDE, and KNN." alt="" coords="338,5,427,31"/>
+<area shape="rect" id="Node000003" href="$group__clustering.html" title="Dirichlet Process Mixture Models (DPMM), geometric K&#45;Means, and baseline clusterers." alt="" coords="309,55,457,80"/>
+<area shape="rect" id="Node000001" title="Numeric quadrature, tensor integration, cross&#45;validation, bootstrap resampling, Sliced Wasserstein di..." alt="" coords="5,144,201,169"/>
+<area shape="rect" id="Node000004" href="$group__probability.html" title="Continuous probability distributions, covariance kernels, GP mean functions, prior probability defini..." alt="" coords="291,105,474,145"/>
+<area shape="rect" id="Node000006" href="$group__sampling.html" title="MCMC, Evolutionary MCMC, and NUTS/Hamiltonian Monte Carlo." alt="" coords="301,169,464,209"/>
+<area shape="rect" id="Node000007" href="$group__sensitivity.html" title="Global sensitivity analysis and Saltelli&#45;Sobol variance decomposition." alt="" coords="307,233,458,259"/>
+<area shape="rect" id="Node000005" href="$group__surrogate.html" title="Kriging (Gaussian Processes), Polynomial Chaos Expansion, Clustered Surrogates, and PCA." alt="" coords="279,283,487,323"/>
+</map>

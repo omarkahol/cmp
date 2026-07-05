@@ -1,0 +1,5 @@
+<map id="cmp::grid::NiederreiterGrid" name="cmp::grid::NiederreiterGrid">
+<area shape="rect" id="Node000001" title="Niederreiter (base 2) low&#45;discrepancy sequence grid generator." alt="" coords="5,79,201,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="44,5,163,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,44,106,79,101,79,101,44"/>
+</map>

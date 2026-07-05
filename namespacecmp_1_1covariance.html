@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -101,36 +102,47 @@ $(document).ready(function(){initNavTree('namespacecmp_1_1covariance.html',''); 
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">cmp::covariance Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">cmp::covariance Namespace Reference<div class="ingroups"><a class="el" href="group__probability.html">Probability Distributions, Priors, &amp; Kernels</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_constant.html">Constant</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a constant scale covariance function.  <a href="classcmp_1_1covariance_1_1_constant.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_covariance.html">Covariance</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for all covariance (kernel) functions.  <a href="classcmp_1_1covariance_1_1_covariance.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_custom.html">Custom</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a custom user-defined covariance function using std::function wrappers.  <a href="classcmp_1_1covariance_1_1_custom.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_inverse.html">Inverse</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an <a class="el" href="classcmp_1_1covariance_1_1_inverse.html" title="Represents an Inverse covariance function.">Inverse</a> covariance function.  <a href="classcmp_1_1covariance_1_1_inverse.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_linear.html">Linear</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a <a class="el" href="classcmp_1_1covariance_1_1_linear.html" title="Represents a Linear covariance function.">Linear</a> covariance function.  <a href="classcmp_1_1covariance_1_1_linear.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_matern.html">Matern</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">General Matérn covariance function.  <a href="classcmp_1_1covariance_1_1_matern.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_matern52.html">Matern52</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matérn covariance function with parameter nu = 5/2.  <a href="classcmp_1_1covariance_1_1_matern52.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_model_cluster_covariance.html">ModelClusterCovariance</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blended covariance kernel that interpolates local GP kernels using classifier probabilities.  <a href="classcmp_1_1covariance_1_1_model_cluster_covariance.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_product.html">Product</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the product of two covariance functions.  <a href="classcmp_1_1covariance_1_1_product.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_squared_exponential.html">SquaredExponential</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Squared Exponential (RBF / Gaussian) covariance function.  <a href="classcmp_1_1covariance_1_1_squared_exponential.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_sum.html">Sum</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the sum of two covariance functions.  <a href="classcmp_1_1covariance_1_1_sum.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_white_noise.html">WhiteNoise</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">White noise covariance function.  <a href="classcmp_1_1covariance_1_1_white_noise.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>

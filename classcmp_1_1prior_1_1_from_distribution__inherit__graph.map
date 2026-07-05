@@ -1,0 +1,5 @@
+<map id="cmp::prior::FromDistribution&lt; DistType &gt;" name="cmp::prior::FromDistribution&lt; DistType &gt;">
+<area shape="rect" id="Node000001" title="Adapts a univariate probability distribution to act as a prior on a single coordinate." alt="" coords="5,79,211,119"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1prior_1_1_prior.html" title="Base class for prior probability distributions." alt="" coords="45,5,171,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,44,111,79,105,79,105,44"/>
+</map>

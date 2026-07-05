@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,11 +106,23 @@ $(document).ready(function(){initNavTree('classcmp_1_1kernel_1_1_kernel.html',''
 </div><!--header-->
 <div class="contents">
 
+<p>Abstract base class for KDE density kernel functions.  
+ <a href="classcmp_1_1kernel_1_1_kernel.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="kernel_09_09_8h_source.html">kernel++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::kernel::Kernel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_kernel__inherit__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_kernel_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1kernel_1_1_kernel_inherit__map" id="acmp_1_1kernel_1_1_kernel_inherit__map">
+<area shape="rect" title="Abstract base class for KDE density kernel functions." alt="" coords="235,5,382,31"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel." alt="" coords="5,79,201,104"/>
+<area shape="poly" title=" " alt="" coords="264,38,137,81,136,76,262,33"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel." alt="" coords="225,79,392,104"/>
+<area shape="poly" title=" " alt="" coords="311,44,311,79,306,79,306,44"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_uniform.html" title="Rectangular (uniform) density kernel." alt="" coords="416,79,575,104"/>
+<area shape="poly" title=" " alt="" coords="352,33,466,76,464,81,350,38"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -124,7 +137,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aad7b69ab20fe331b1b9e64ca9afa10ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Now we implement a kernel virtual class and derive a few kernels from it. </p>
+<div class="textblock"><p>Abstract base class for KDE density kernel functions. </p>
+<p>Mathematical Formulation A multivariate kernel \(K: \mathbb{R}^D \to [0,\infty)\) defines localized weights for smoothing observations, satisfying:  </p><p class="formulaDsp">
+\[
+\int_{\mathbb{R}^D} K(\mathbf{z}) d\mathbf{z} = 1.0, \quad \int_{\mathbb{R}^D} \mathbf{z} K(\mathbf{z}) d\mathbf{z} = \mathbf{0}
+\]
+</p>
+<p>Implementation Algorithm Defines virtual methods for evaluating the kernel value (<code>eval</code>), computing the dimension-dependent normalizing scalar (<code>normalizationConstant</code>), and calculating gradients (<code>applyToGradient</code>). </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aad1d785fbdc3a74aedfa575053b09bb0" name="aad1d785fbdc3a74aedfa575053b09bb0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aad1d785fbdc3a74aedfa575053b09bb0">&#9670;&#160;</a></span>~Kernel()</h2>

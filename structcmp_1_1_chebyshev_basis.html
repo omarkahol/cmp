@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,6 +106,9 @@ $(document).ready(function(){initNavTree('structcmp_1_1_chebyshev_basis.html',''
 </div><!--header-->
 <div class="contents">
 
+<p>Chebyshev orthogonal polynomial basis.  
+ <a href="structcmp_1_1_chebyshev_basis.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="poly_8h_source.html">poly.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -120,7 +124,18 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a91d4034f3a88e520076cefa9183ad6f2" id="r_a91d4034f3a88e520076cefa9183ad6f2"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1_chebyshev_basis.html#a91d4034f3a88e520076cefa9183ad6f2">mapToCanonical</a> (double x, double lowerBound, double upperBound)</td></tr>
 <tr class="separator:a91d4034f3a88e520076cefa9183ad6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Chebyshev orthogonal polynomial basis. </p>
+<p>Mathematical Formulation Chebyshev polynomials of the first kind \(T_n(\xi)\) are orthogonal with respect to the weight function \(w(\xi) = \frac{1}{\sqrt{1-\xi^2}}\) on \([-1, 1]\). The recurrence relation is:  </p><p class="formulaDsp">
+\[
+T_0(\xi) = 1, \quad T_1(\xi) = \xi, \quad T_{n+1}(\xi) = 2\xi T_n(\xi) - T_{n-1}(\xi)
+\]
+</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li><code><a class="el" href="structcmp_1_1_chebyshev_basis.html#a5f0845652060aae9c4e619b0016159f7">evaluate()</a></code> computes polynomial values using the 3-term recurrence relation.</li>
+<li><code><a class="el" href="structcmp_1_1_chebyshev_basis.html#adb86c9103354ef2ddfc1859e79cd40f1">getJacobiMatrix()</a></code> constructs the symmetric tridiagonal Jacobi matrix \(\mathbf{J}\) with \(\alpha_i = 0\) and off-diagonal \(\beta_1 = \frac{1}{\sqrt{2}}\), \(\beta_i = 0.5\) for \(i \ge 2\). </li>
+</ol>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5f0845652060aae9c4e619b0016159f7" name="a5f0845652060aae9c4e619b0016159f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f0845652060aae9c4e619b0016159f7">&#9670;&#160;</a></span>evaluate()</h2>
 

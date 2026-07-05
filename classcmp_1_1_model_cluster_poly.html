@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,6 +106,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1_model_cluster_poly.html',
   <div class="headertitle"><div class="title">cmp::ModelClusterPoly Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Manages a clustered set of Polynomial Chaos Expansion (PCE) models for localized regression.  
+ <a href="classcmp_1_1_model_cluster_poly.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="model__cluster__poly_8h_source.html">model_cluster_poly.h</a>&gt;</code></p>
 <table class="memberdecls">
@@ -192,7 +196,24 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a1512f2a35af1c4db21eaa468710dbb47" id="r_a1512f2a35af1c4db21eaa468710dbb47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1_model_cluster_poly.html#a1691f2f9f3f0bf58b5687dbf02b013a6">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_model_cluster_poly.html#a1512f2a35af1c4db21eaa468710dbb47">gamma_</a> {1.0}</td></tr>
 <tr class="separator:a1512f2a35af1c4db21eaa468710dbb47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Manages a clustered set of Polynomial Chaos Expansion (PCE) models for localized regression. </p>
+<p>Mathematical Formulation Partitions the input dataset \(\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N\) into \(K\) localized clusters. For each cluster \(k \in \{0, \dots, K-1\}\), it fits a localized Polynomial Chaos Expansion surrogate:  </p><p class="formulaDsp">
+\[
+Y^{(k)}(\boldsymbol{\xi}) \approx \sum_{j=0}^{P-1} c_j^{(k)} \Psi_j^{(k)}(\boldsymbol{\xi})
+\]
+</p>
+<p> where \(\Psi_j^{(k)}\) is the orthonormal polynomial basis for cluster \(k\), and \(c_j^{(k)}\) are the local expansion coefficients. For a test query \(\mathbf{x}^*\), local predictions are combined using the classifier's posterior probabilities \(P(C=k \mid \mathbf{x}^*)\):  </p><p class="formulaDsp">
+\[
+\mu(\mathbf{x}^*) = \sum_{k=1}^K P(C=k \mid \mathbf{x}^*) \mu_k(\mathbf{x}^*)
+\]
+</p>
+<p> where \(\mu_k(\mathbf{x}^*)\) is the output of the \(k\)-th local PCE model.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li><code><a class="el" href="classcmp_1_1_model_cluster_poly.html#aa15e6acc2aebc488071b77ba0c183465">condition()</a></code> groups training inputs according to active clusters and solves the local spectral projection or regression to estimate coefficients \(c_j^{(k)}\).</li>
+<li><code>predict()</code> obtains classifier probabilities and computes the weighted average of local polynomial evaluations. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afd09bdae0789e2e967ecb7e46db7c794" name="afd09bdae0789e2e967ecb7e46db7c794"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd09bdae0789e2e967ecb7e46db7c794">&#9670;&#160;</a></span>ModelClusterPoly()</h2>
 

@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,6 +106,9 @@ $(document).ready(function(){initNavTree('structcmp_1_1_laguerre_basis.html','')
 </div><!--header-->
 <div class="contents">
 
+<p>Laguerre orthogonal polynomial basis.  
+ <a href="structcmp_1_1_laguerre_basis.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="poly_8h_source.html">poly.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -120,7 +124,18 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a6d0391f30553a1d3b2ec3053a5de44f3" id="r_a6d0391f30553a1d3b2ec3053a5de44f3"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1_laguerre_basis.html#a6d0391f30553a1d3b2ec3053a5de44f3">mapToCanonical</a> (double x, double location, double scale)</td></tr>
 <tr class="separator:a6d0391f30553a1d3b2ec3053a5de44f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Laguerre orthogonal polynomial basis. </p>
+<p>Mathematical Formulation Laguerre polynomials \(L_n(\xi)\) are orthogonal with respect to the exponential weight function \(w(\xi) = e^{-\xi}\) on \([0, \infty)\). The recurrence relation is:  </p><p class="formulaDsp">
+\[
+(n+1) L_{n+1}(\xi) = (2n + 1 - \xi) L_n(\xi) - n L_{n-1}(\xi)
+\]
+</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li><code><a class="el" href="structcmp_1_1_laguerre_basis.html#abf7e42f89027ae10f7d230f9b2cfca58">evaluate()</a></code> computes polynomial values using the standard Laguerre recurrence relation.</li>
+<li><code><a class="el" href="structcmp_1_1_laguerre_basis.html#aa0857f3c75f48067c08ed2c3a2453502">getJacobiMatrix()</a></code> constructs the symmetric tridiagonal Jacobi matrix \(\mathbf{J}\) with diagonal \(\alpha_i = 2i + 1\) and off-diagonal \(\beta_i = i + 1\). </li>
+</ol>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="abf7e42f89027ae10f7d230f9b2cfca58" name="abf7e42f89027ae10f7d230f9b2cfca58"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf7e42f89027ae10f7d230f9b2cfca58">&#9670;&#160;</a></span>evaluate()</h2>
 

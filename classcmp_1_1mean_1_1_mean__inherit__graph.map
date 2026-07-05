@@ -1,0 +1,9 @@
+<map id="cmp::mean::Mean" name="cmp::mean::Mean">
+<area shape="rect" id="Node000001" title="Abstract base class for Gaussian Process prior mean functions." alt="" coords="234,5,373,31"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1mean_1_1_constant.html" title="Represents a constant mean function." alt="" coords="5,79,167,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,37,122,81,120,76,255,32"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1mean_1_1_model_cluster_mean.html" title="Blended mean function that interpolates local GP means using classifier probabilities." alt="" coords="191,79,416,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="306,44,306,79,301,79,301,44"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1mean_1_1_zero.html" title="Represents a constant zero mean function." alt="" coords="441,79,574,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="350,33,475,76,473,81,348,38"/>
+</map>

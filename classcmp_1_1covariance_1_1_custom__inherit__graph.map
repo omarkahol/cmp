@@ -1,0 +1,5 @@
+<map id="cmp::covariance::Custom" name="cmp::covariance::Custom">
+<area shape="rect" id="Node000001" title="Represents a custom user&#45;defined covariance function using std::function wrappers." alt="" coords="17,79,204,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1covariance_1_1_covariance.html" title="Abstract base class for all covariance (kernel) functions." alt="" coords="5,5,216,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,44,113,79,108,79,108,44"/>
+</map>

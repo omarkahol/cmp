@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -101,13 +102,14 @@ $(document).ready(function(){initNavTree('namespacecmp_1_1mcmc.html',''); initRe
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">cmp::mcmc Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">cmp::mcmc Namespace Reference<div class="ingroups"><a class="el" href="group__sampling.html">Sampling &amp; Inference Methods</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html">EvolutionaryMarkovChain</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements an Evolutionary Markov Chain Monte Carlo sampler.  <a href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_hamiltonian_markov_chain.html">HamiltonianMarkovChain</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the Hamiltonian Monte Carlo (HMC) algorithm with the No-U-Turn Sampler (NUTS) and Dual Averaging.  <a href="classcmp_1_1mcmc_1_1_hamiltonian_markov_chain.html#details">More...</a><br /></td></tr>
@@ -122,7 +124,7 @@ Functions</h2></td></tr>
 <tr class="separator:a45523db96e65cb76028af79f8a3b319f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f3e921a004b7fa12216fe92d9e2dfc2" id="r_a5f3e921a004b7fa12216fe92d9e2dfc2"><td class="memTemplParams" colspan="2">template&lt;typename ProposalType &gt; </td></tr>
 <tr class="memitem:a5f3e921a004b7fa12216fe92d9e2dfc2"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1mcmc.html#a5f3e921a004b7fa12216fe92d9e2dfc2">multiChainDiagnosis</a> (const std::vector&lt; <a class="el" href="classcmp_1_1mcmc_1_1_markov_chain.html">MarkovChain</a>&lt; ProposalType &gt; &gt; &amp;chains)</td></tr>
-<tr class="memdesc:a5f3e921a004b7fa12216fe92d9e2dfc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the R-hat multi-chain diagnosis metric.  <br /></td></tr>
+<tr class="memdesc:a5f3e921a004b7fa12216fe92d9e2dfc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Gelman-Rubin convergence diagnostic metric (R-hat).  <br /></td></tr>
 <tr class="separator:a5f3e921a004b7fa12216fe92d9e2dfc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -170,7 +172,24 @@ template&lt;typename ProposalType &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the R-hat multi-chain diagnosis metric. </p>
+<p>Computes the Gelman-Rubin convergence diagnostic metric (R-hat). </p>
+<p>Mathematical Formulation For \(M\) chains of length \(N\), it computes within-chain variance \(W\) and between-chain variance \(B\):  </p><p class="formulaDsp">
+\[
+W = \frac{1}{M} \sum_{m=1}^M s_m^2, \quad B = \frac{N}{M-1} \sum_{m=1}^M (\bar{\theta}_{m} - \bar{\theta}_{\cdot})^2
+\]
+</p>
+<p> The posterior marginal variance is estimated as:  </p><p class="formulaDsp">
+\[
+\widehat{\text{Var}}(\theta \mid y) = \frac{N-1}{N} W + \frac{1}{N} B
+\]
+</p>
+<p> The potential scale reduction factor (PSRF or \(\hat{R}\)) is:  </p><p class="formulaDsp">
+\[
+\hat{R} = \sqrt{\frac{\widehat{\text{Var}}(\theta \mid y)}{W}}
+\]
+</p>
+<p> An \(\hat{R} \to 1.0\) indicates successful convergence.</p>
+<p>Implementation Algorithm Computes coordinate-wise mean and variance vectors across all active chains, calculates the within-chain and between-chain variances, and returns the maximum coordinate value of \(\hat{R}\). </p>
 
 </div>
 </div>

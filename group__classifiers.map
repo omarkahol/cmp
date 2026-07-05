@@ -1,0 +1,9 @@
+<map id="Classifiers" name="Classifiers">
+<area shape="rect" id="Node000001" title="Class probability models, Support Vector Machines, KDE, and KNN." alt="" coords="5,144,95,169"/>
+<area shape="rect" id="Node000002" href="$group__clustering.html" title="Dirichlet Process Mixture Models (DPMM), geometric K&#45;Means, and baseline clusterers." alt="" coords="202,5,350,31"/>
+<area shape="rect" id="Node000003" href="$group__core.html" title="Numeric quadrature, tensor integration, cross&#45;validation, bootstrap resampling, Sliced Wasserstein di..." alt="" coords="178,55,374,80"/>
+<area shape="rect" id="Node000004" href="$group__probability.html" title="Continuous probability distributions, covariance kernels, GP mean functions, prior probability defini..." alt="" coords="185,105,367,145"/>
+<area shape="rect" id="Node000006" href="$group__sampling.html" title="MCMC, Evolutionary MCMC, and NUTS/Hamiltonian Monte Carlo." alt="" coords="195,169,357,209"/>
+<area shape="rect" id="Node000007" href="$group__sensitivity.html" title="Global sensitivity analysis and Saltelli&#45;Sobol variance decomposition." alt="" coords="201,233,351,259"/>
+<area shape="rect" id="Node000005" href="$group__surrogate.html" title="Kriging (Gaussian Processes), Polynomial Chaos Expansion, Clustered Surrogates, and PCA." alt="" coords="172,283,380,323"/>
+</map>

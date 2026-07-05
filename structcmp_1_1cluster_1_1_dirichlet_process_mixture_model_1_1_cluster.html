@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -116,12 +117,16 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3c569bfb1a3fb5d87431f9fcbc94dcb0" id="r_a3c569bfb1a3fb5d87431f9fcbc94dcb0"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster.html#a3c569bfb1a3fb5d87431f9fcbc94dcb0">id_</a></td></tr>
+<tr class="memdesc:a3c569bfb1a3fb5d87431f9fcbc94dcb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique cluster ID (not necessarily contiguous).  <br /></td></tr>
 <tr class="separator:a3c569bfb1a3fb5d87431f9fcbc94dcb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a673f9ad44296c8b397e21478bd860a84" id="r_a673f9ad44296c8b397e21478bd860a84"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster.html#a673f9ad44296c8b397e21478bd860a84">nPoints_</a></td></tr>
+<tr class="memdesc:a673f9ad44296c8b397e21478bd860a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of points assigned to this cluster.  <br /></td></tr>
 <tr class="separator:a673f9ad44296c8b397e21478bd860a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fd5af5b8c8475019b4d6c6e73bc6dc6" id="r_a0fd5af5b8c8475019b4d6c6e73bc6dc6"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster.html#a0fd5af5b8c8475019b4d6c6e73bc6dc6">sumOfX_</a></td></tr>
+<tr class="memdesc:a0fd5af5b8c8475019b4d6c6e73bc6dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of all points in the cluster.  <br /></td></tr>
 <tr class="separator:a0fd5af5b8c8475019b4d6c6e73bc6dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a406f1b23941339a080771aa12aabd59f" id="r_a406f1b23941339a080771aa12aabd59f"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster.html#a406f1b23941339a080771aa12aabd59f">sumOfXXT_</a></td></tr>
+<tr class="memdesc:a406f1b23941339a080771aa12aabd59f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of all outer products x * x^T for points in the cluster.  <br /></td></tr>
 <tr class="separator:a406f1b23941339a080771aa12aabd59f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -199,6 +204,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Unique cluster ID (not necessarily contiguous). </p>
+
 </div>
 </div>
 <a id="a673f9ad44296c8b397e21478bd860a84" name="a673f9ad44296c8b397e21478bd860a84"></a>
@@ -212,6 +219,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Number of points assigned to this cluster. </p>
 
 </div>
 </div>
@@ -227,6 +236,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sum of all points in the cluster. </p>
+
 </div>
 </div>
 <a id="a406f1b23941339a080771aa12aabd59f" name="a406f1b23941339a080771aa12aabd59f"></a>
@@ -240,6 +251,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sum of all outer products x * x^T for points in the cluster. </p>
 
 </div>
 </div>

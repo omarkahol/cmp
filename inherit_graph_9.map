@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classcmp_1_1distribution_1_1_multivariate_distribution.html" title="CRTP base class for all multivariate probability distributions." alt="" coords="5,84,183,139"/>
+<area shape="rect" id="Node000001" href="$classcmp_1_1distribution_1_1_proposal_distribution.html" title=" " alt="" coords="232,5,487,60"/>
+<area shape="poly" id="edge15_Node000000_Node000001" title=" " alt="" coords="195,79,266,58,267,63,196,84"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1distribution_1_1_proposal_distribution.html" title=" " alt="" coords="231,84,488,139"/>
+<area shape="poly" id="edge17_Node000000_Node000003" title=" " alt="" coords="196,109,231,109,231,114,196,114"/>
+<area shape="rect" id="Node000005" href="$classcmp_1_1distribution_1_1_proposal_distribution.html" title=" " alt="" coords="282,163,437,217"/>
+<area shape="poly" id="edge19_Node000000_Node000005" title=" " alt="" coords="197,139,283,165,281,170,195,144"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1distribution_1_1_multivariate_normal_distribution.html" title=" " alt="" coords="537,13,762,53"/>
+<area shape="poly" id="edge16_Node000001_Node000002" title=" " alt="" coords="500,30,537,30,537,35,500,35"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1distribution_1_1_multivariate_student_distribution.html" title=" " alt="" coords="536,91,763,131"/>
+<area shape="poly" id="edge18_Node000003_Node000004" title=" " alt="" coords="502,109,536,109,536,114,502,114"/>
+</map>

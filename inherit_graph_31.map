@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="5,55,152,80"/>
+<area shape="rect" id="Node000001" href="$classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel." alt="" coords="200,5,396,31"/>
+<area shape="poly" id="edge43_Node000000_Node000001" title=" " alt="" coords="148,49,240,28,241,33,150,54"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel." alt="" coords="215,55,381,80"/>
+<area shape="poly" id="edge44_Node000000_Node000002" title=" " alt="" coords="166,65,214,65,214,70,166,70"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1kernel_1_1_uniform.html" title="Rectangular (uniform) density kernel." alt="" coords="219,104,377,129"/>
+<area shape="poly" id="edge45_Node000000_Node000003" title=" " alt="" coords="150,80,241,101,240,107,148,86"/>
+</map>

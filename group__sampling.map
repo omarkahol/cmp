@@ -1,0 +1,9 @@
+<map id="Sampling &amp; Inference Methods" name="Sampling &amp; Inference Methods">
+<area shape="rect" id="Node000002" href="$group__classifiers.html" title="Class probability models, Support Vector Machines, KDE, and KNN." alt="" coords="305,5,394,31"/>
+<area shape="rect" id="Node000003" href="$group__clustering.html" title="Dirichlet Process Mixture Models (DPMM), geometric K&#45;Means, and baseline clusterers." alt="" coords="275,55,423,80"/>
+<area shape="rect" id="Node000004" href="$group__core.html" title="Numeric quadrature, tensor integration, cross&#45;validation, bootstrap resampling, Sliced Wasserstein di..." alt="" coords="251,104,447,129"/>
+<area shape="rect" id="Node000005" href="$group__probability.html" title="Continuous probability distributions, covariance kernels, GP mean functions, prior probability defini..." alt="" coords="258,154,441,194"/>
+<area shape="rect" id="Node000001" title="MCMC, Evolutionary MCMC, and NUTS/Hamiltonian Monte Carlo." alt="" coords="5,126,168,166"/>
+<area shape="rect" id="Node000007" href="$group__sensitivity.html" title="Global sensitivity analysis and Saltelli&#45;Sobol variance decomposition." alt="" coords="274,219,425,244"/>
+<area shape="rect" id="Node000006" href="$group__surrogate.html" title="Kriging (Gaussian Processes), Polynomial Chaos Expansion, Clustered Surrogates, and PCA." alt="" coords="245,269,453,309"/>
+</map>

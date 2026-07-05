@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -101,20 +102,23 @@ $(document).ready(function(){initNavTree('namespacecmp_1_1density.html',''); ini
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">cmp::density Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">cmp::density Namespace Reference<div class="ingroups"><a class="el" href="group__probability.html">Probability Distributions, Priors, &amp; Kernels</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multivariate Kernel Density Estimation (<a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a>) class.  <a href="classcmp_1_1density_1_1_k_d_e.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8f9b2df230a3e644c2b72b77d7a11edd" id="r_a8f9b2df230a3e644c2b72b77d7a11edd"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1density.html#a8f9b2df230a3e644c2b72b77d7a11edd">bandwidthSelectionRule</a> (const <a class="el" href="classcmp_1_1density_1_1_k_d_e.html#aaa6e5f680dd962720fdcc0ff3f1a3188">KDE::BandWidthSelectionMethod</a> &amp;method, Eigen::Ref&lt; Eigen::MatrixXd &gt; xObs)</td></tr>
+<tr class="memdesc:a8f9b2df230a3e644c2b72b77d7a11edd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the bandwidth matrix using standard rules of thumb.  <br /></td></tr>
 <tr class="separator:a8f9b2df230a3e644c2b72b77d7a11edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a012d8e2e86d97caec305fb1d3bf3a2ab" id="r_a012d8e2e86d97caec305fb1d3bf3a2ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1density.html#a012d8e2e86d97caec305fb1d3bf3a2ab">bandwidthOptimizationCrossValidation</a> (const <a class="el" href="classcmp_1_1statistics_1_1_k_fold.html">cmp::statistics::KFold</a> &amp;kf, Eigen::Ref&lt; Eigen::MatrixXd &gt; xObs, std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">cmp::kernel::Kernel</a> &gt; kernel, std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html">cmp::kernel::Bandwidth</a> &gt; initialBandwidth, const double &amp;min, const double &amp;max, nlopt::algorithm alg, const double &amp;tol=1e-4)</td></tr>
+<tr class="memdesc:a012d8e2e86d97caec305fb1d3bf3a2ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimizes the bandwidth matrix using K-Fold cross-validation over the observations.  <br /></td></tr>
 <tr class="separator:a012d8e2e86d97caec305fb1d3bf3a2ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -180,6 +184,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Optimizes the bandwidth matrix using K-Fold cross-validation over the observations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>KFold cross-validation partitioning helper. </td></tr>
+    <tr><td class="paramname">xObs</td><td>Observation data matrix. </td></tr>
+    <tr><td class="paramname">kernel</td><td>The density kernel to use. </td></tr>
+    <tr><td class="paramname">initialBandwidth</td><td>Input/output bandwidth object to optimize. </td></tr>
+    <tr><td class="paramname">min</td><td>Minimum bounds for bandwidth parameters. </td></tr>
+    <tr><td class="paramname">max</td><td>Maximum bounds for bandwidth parameters. </td></tr>
+    <tr><td class="paramname">alg</td><td>The optimization algorithm. </td></tr>
+    <tr><td class="paramname">tol</td><td>Optimization relative tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a8f9b2df230a3e644c2b72b77d7a11edd" name="a8f9b2df230a3e644c2b72b77d7a11edd"></a>
@@ -207,6 +226,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Computes the bandwidth matrix using standard rules of thumb. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>Selection rule (SCOTT or SILVERMAN). </td></tr>
+    <tr><td class="paramname">xObs</td><td>Observation data matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Calculated bandwidth matrix. </dd></dl>
 
 </div>
 </div>

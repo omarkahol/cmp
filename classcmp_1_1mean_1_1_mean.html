@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,11 +106,23 @@ $(document).ready(function(){initNavTree('classcmp_1_1mean_1_1_mean.html',''); i
 </div><!--header-->
 <div class="contents">
 
+<p>Abstract base class for Gaussian Process prior mean functions.  
+ <a href="classcmp_1_1mean_1_1_mean.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="mean_09_09_8h_source.html">mean++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::mean::Mean:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1mean_1_1_mean__inherit__graph.png" border="0" usemap="#acmp_1_1mean_1_1_mean_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1mean_1_1_mean_inherit__map" id="acmp_1_1mean_1_1_mean_inherit__map">
+<area shape="rect" title="Abstract base class for Gaussian Process prior mean functions." alt="" coords="234,5,373,31"/>
+<area shape="rect" href="classcmp_1_1mean_1_1_constant.html" title="Represents a constant mean function." alt="" coords="5,79,167,104"/>
+<area shape="poly" title=" " alt="" coords="256,37,122,81,120,76,255,32"/>
+<area shape="rect" href="classcmp_1_1mean_1_1_model_cluster_mean.html" title="Blended mean function that interpolates local GP means using classifier probabilities." alt="" coords="191,79,416,104"/>
+<area shape="poly" title=" " alt="" coords="306,44,306,79,301,79,301,44"/>
+<area shape="rect" href="classcmp_1_1mean_1_1_zero.html" title="Represents a constant zero mean function." alt="" coords="441,79,574,104"/>
+<area shape="poly" title=" " alt="" coords="350,33,475,76,473,81,348,38"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -123,7 +136,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac07ce7fda90ebaaa9bfc282a43947c46" id="r_ac07ce7fda90ebaaa9bfc282a43947c46"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mean_1_1_mean.html#ac07ce7fda90ebaaa9bfc282a43947c46">evalHessian</a> (const Eigen::VectorXd &amp;x, const Eigen::VectorXd &amp;par, const size_t &amp;i, const size_t &amp;j) const =0</td></tr>
 <tr class="separator:ac07ce7fda90ebaaa9bfc282a43947c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract base class for Gaussian Process prior mean functions. </p>
+<p>Mathematical Formulation The mean function \(m: \mathbb{R}^D \to \mathbb{R}\) defines the expected value of the GP prior at any input \(\mathbf{x}\):  </p><p class="formulaDsp">
+\[
+m(\mathbf{x}) = \mathbb{E}[f(\mathbf{x})]
+\]
+</p>
+<p> Commonly configured as a constant \(m(\mathbf{x}) = c\) or zero \(m(\mathbf{x}) = 0\).</p>
+<p>Implementation Algorithm Provides virtual interfaces for mean evaluations (<code>eval</code>), first-order gradients (<code>evalGradient</code>) with respect to a parameter \(p_i\), and second-order Hessians (<code>evalHessian</code>). </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afa5d512bd5c31b2a646c603e5300fd88" name="afa5d512bd5c31b2a646c603e5300fd88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afa5d512bd5c31b2a646c603e5300fd88">&#9670;&#160;</a></span>~Mean()</h2>
 

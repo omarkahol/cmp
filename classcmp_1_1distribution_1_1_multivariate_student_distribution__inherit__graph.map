@@ -1,0 +1,7 @@
+<map id="cmp::distribution::MultivariateStudentDistribution" name="cmp::distribution::MultivariateStudentDistribution">
+<area shape="rect" id="Node000001" title=" " alt="" coords="21,211,247,251"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1distribution_1_1_proposal_distribution.html" title=" " alt="" coords="5,108,263,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,176,137,211,131,211,131,176"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1distribution_1_1_multivariate_distribution.html" title="CRTP base class for all multivariate probability distributions." alt="" coords="45,5,223,60"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="137,74,137,108,131,108,131,74"/>
+</map>

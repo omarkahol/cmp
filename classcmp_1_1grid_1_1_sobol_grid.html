@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,16 +107,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1grid_1_1_sobol_grid.html',
 </div><!--header-->
 <div class="contents">
 
+<p>Sobol low-discrepancy sequence grid generator.  
+ <a href="classcmp_1_1grid_1_1_sobol_grid.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="grid_8h_source.html">grid.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::grid::SobolGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_sobol_grid__inherit__graph.png" border="0" usemap="#acmp_1_1grid_1_1_sobol_grid_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1grid_1_1_sobol_grid_inherit__map" id="acmp_1_1grid_1_1_sobol_grid_inherit__map">
+<area shape="rect" title="Sobol low&#45;discrepancy sequence grid generator." alt="" coords="5,79,160,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="23,5,142,31"/>
+<area shape="poly" title=" " alt="" coords="85,44,85,79,80,79,80,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::grid::SobolGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_sobol_grid__coll__graph.png" border="0" usemap="#acmp_1_1grid_1_1_sobol_grid_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1grid_1_1_sobol_grid_coll__map" id="acmp_1_1grid_1_1_sobol_grid_coll__map">
+<area shape="rect" title="Sobol low&#45;discrepancy sequence grid generator." alt="" coords="5,79,160,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="23,5,142,31"/>
+<area shape="poly" title=" " alt="" coords="85,44,85,79,80,79,80,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -143,7 +157,20 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:afdf04d200badf8c27aa11930c3ef781b" id="r_afdf04d200badf8c27aa11930c3ef781b"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_sobol_grid.html#afdf04d200badf8c27aa11930c3ef781b">upperBound_</a></td></tr>
 <tr class="separator:afdf04d200badf8c27aa11930c3ef781b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sobol low-discrepancy sequence grid generator. </p>
+<p>Mathematical Formulation Generates points using the quasi-random Sobol sequence to minimize star discrepancy:  </p><p class="formulaDsp">
+\[
+D_N^*(\mathcal{P}) = O\left( \frac{\log^D N}{N} \right)
+\]
+</p>
+<p> ensuring faster convergence of multi-dimensional integrals compared to standard Monte Carlo.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Invokes Boost's Sobol generator.</li>
+<li>Multiplies generated uniform fractions by dimension bounds \([a_d, b_d]\).</li>
+<li>Shuffles output coordinates to break spatial correlations in short prefixes. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad4895def5371c3f3eb22b5ae68785b13" name="ad4895def5371c3f3eb22b5ae68785b13"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4895def5371c3f3eb22b5ae68785b13">&#9670;&#160;</a></span>SobolGrid()</h2>
 

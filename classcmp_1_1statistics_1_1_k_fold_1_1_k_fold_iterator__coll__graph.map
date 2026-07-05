@@ -1,0 +1,5 @@
+<map id="cmp::statistics::KFold::KFoldIterator" name="cmp::statistics::KFold::KFoldIterator">
+<area shape="rect" id="Node000001" title="Iterator class to traverse folds for K&#45;Fold cross&#45;validation." alt="" coords="5,93,167,133"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1statistics_1_1_k_fold.html" title="K&#45;Fold cross&#45;validation partition generator." alt="" coords="5,5,167,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,44,89,93,83,93,83,44"/>
+</map>

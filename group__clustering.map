@@ -1,0 +1,9 @@
+<map id="Clustering Methods" name="Clustering Methods">
+<area shape="rect" id="Node000002" href="$group__classifiers.html" title="Class probability models, Support Vector Machines, KDE, and KNN." alt="" coords="290,5,379,31"/>
+<area shape="rect" id="Node000001" title="Dirichlet Process Mixture Models (DPMM), geometric K&#45;Means, and baseline clusterers." alt="" coords="5,144,153,169"/>
+<area shape="rect" id="Node000003" href="$group__core.html" title="Numeric quadrature, tensor integration, cross&#45;validation, bootstrap resampling, Sliced Wasserstein di..." alt="" coords="237,55,433,80"/>
+<area shape="rect" id="Node000004" href="$group__probability.html" title="Continuous probability distributions, covariance kernels, GP mean functions, prior probability defini..." alt="" coords="243,105,426,145"/>
+<area shape="rect" id="Node000006" href="$group__sampling.html" title="MCMC, Evolutionary MCMC, and NUTS/Hamiltonian Monte Carlo." alt="" coords="253,169,416,209"/>
+<area shape="rect" id="Node000007" href="$group__sensitivity.html" title="Global sensitivity analysis and Saltelli&#45;Sobol variance decomposition." alt="" coords="259,233,410,259"/>
+<area shape="rect" id="Node000005" href="$group__surrogate.html" title="Kriging (Gaussian Processes), Polynomial Chaos Expansion, Clustered Surrogates, and PCA." alt="" coords="231,283,439,323"/>
+</map>

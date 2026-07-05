@@ -1,0 +1,11 @@
+<map id="cmp::cluster::DirichletProcessMixtureModel" name="cmp::cluster::DirichletProcessMixtureModel">
+<area shape="rect" id="Node000001" title="Implements an infinite Gaussian Mixture Model using a Dirichlet Process Mixture Model (DPMM) and Gibb..." alt="" coords="699,55,913,95"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution.html" title=" " alt="" coords="329,17,573,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="588,49,699,61,698,66,587,54"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1distribution_1_1_multivariate_distribution.html" title=" " alt="" coords="5,5,280,60"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="294,32,329,32,329,38,294,37"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1distribution_1_1_gamma_distribution.html" title=" " alt="" coords="376,87,527,127"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="540,100,674,90,698,87,699,93,675,95,540,106"/>
+<area shape="rect" id="Node000005" href="$classcmp_1_1distribution_1_1_univariate_distribution.html" title=" " alt="" coords="53,84,233,139"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="246,107,376,106,376,111,246,113"/>
+</map>

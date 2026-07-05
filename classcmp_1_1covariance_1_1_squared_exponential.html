@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,16 +108,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1covariance_1_1_squared_exp
 </div><!--header-->
 <div class="contents">
 
+<p>Squared Exponential (RBF / Gaussian) covariance function.  
+ <a href="classcmp_1_1covariance_1_1_squared_exponential.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="covariance_8h_source.html">covariance.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::covariance::SquaredExponential:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1covariance_1_1_squared_exponential__inherit__graph.png" border="0" usemap="#acmp_1_1covariance_1_1_squared_exponential_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1covariance_1_1_squared_exponential_inherit__map" id="acmp_1_1covariance_1_1_squared_exponential_inherit__map">
+<area shape="rect" title="Squared Exponential (RBF / Gaussian) covariance function." alt="" coords="15,79,206,119"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_covariance.html" title="Abstract base class for all covariance (kernel) functions." alt="" coords="5,5,216,31"/>
+<area shape="poly" title=" " alt="" coords="113,44,113,79,108,79,108,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::covariance::SquaredExponential:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1covariance_1_1_squared_exponential__coll__graph.png" border="0" usemap="#acmp_1_1covariance_1_1_squared_exponential_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1covariance_1_1_squared_exponential_coll__map" id="acmp_1_1covariance_1_1_squared_exponential_coll__map">
+<area shape="rect" title="Squared Exponential (RBF / Gaussian) covariance function." alt="" coords="15,79,206,119"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_covariance.html" title="Abstract base class for all covariance (kernel) functions." alt="" coords="5,5,216,31"/>
+<area shape="poly" title=" " alt="" coords="113,44,113,79,108,79,108,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -149,11 +163,26 @@ Static Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a8d0796d2fe7ed12135e06fa6c84f641d" id="r_a8d0796d2fe7ed12135e06fa6c84f641d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_squared_exponential.html#a8d0796d2fe7ed12135e06fa6c84f641d">index_</a></td></tr>
+<tr class="memdesc:a8d0796d2fe7ed12135e06fa6c84f641d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hyperparameter index for the lengthscale parameter.  <br /></td></tr>
 <tr class="separator:a8d0796d2fe7ed12135e06fa6c84f641d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1373bb0cc4484c0e187aa1edb4f1da7e" id="r_a1373bb0cc4484c0e187aa1edb4f1da7e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_squared_exponential.html#a1373bb0cc4484c0e187aa1edb4f1da7e">indexX_</a></td></tr>
+<tr class="memdesc:a1373bb0cc4484c0e187aa1edb4f1da7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimension index to evaluate, or -1 for the full isotropic kernel.  <br /></td></tr>
 <tr class="separator:a1373bb0cc4484c0e187aa1edb4f1da7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Squared Exponential (RBF / Gaussian) covariance function. </p>
+<p>Mathematical Formulation Evaluates the squared exponential kernel between two inputs \(\mathbf{x}_1, \mathbf{x}_2\):  </p><p class="formulaDsp">
+\[
+k(\mathbf{x}_1, \mathbf{x}_2) = \exp\left( -\frac{1}{2} \left(\frac{d}{\ell}\right)^2 \right)
+\]
+</p>
+<p> where \(d\) is the distance (Euclidean norm \(\|\mathbf{x}_1 - \mathbf{x}_2\|_2\) if isotropic, or absolute coordinate distance \(|x_{1,i} - x_{2,i}|\) if restricted to dimension \(i\)), and \(\ell = \theta_{\text{index}}\) is the lengthscale hyperparameter.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Computes the distance \(d\) based on the component index configuration.</li>
+<li>Computes the exponential kernel value.</li>
+<li>Evaluates analytical first-order and second-order derivatives with respect to the lengthscale \(\ell\). </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad803a99653c349ecf1f5105b93e0df81" name="ad803a99653c349ecf1f5105b93e0df81"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad803a99653c349ecf1f5105b93e0df81">&#9670;&#160;</a></span>SquaredExponential() <span class="overload">[1/3]</span></h2>
 
@@ -502,6 +531,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Hyperparameter index for the lengthscale parameter. </p>
+
 </div>
 </div>
 <a id="a1373bb0cc4484c0e187aa1edb4f1da7e" name="a1373bb0cc4484c0e187aa1edb4f1da7e"></a>
@@ -523,6 +554,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Dimension index to evaluate, or -1 for the full isotropic kernel. </p>
 
 </div>
 </div>

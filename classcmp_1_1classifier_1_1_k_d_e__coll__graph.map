@@ -1,0 +1,5 @@
+<map id="cmp::classifier::KDE" name="cmp::classifier::KDE">
+<area shape="rect" id="Node000001" title="Classifier that uses Kernel Density Estimation (KDE) for classification." alt="" coords="22,79,173,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers." alt="" coords="5,5,189,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,44,100,79,95,79,95,44"/>
+</map>

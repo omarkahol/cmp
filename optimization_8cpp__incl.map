@@ -1,0 +1,15 @@
+<map id="src/optimization.cpp" name="src/optimization.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="157,5,311,31"/>
+<area shape="rect" id="Node000002" href="$optimization_8h.html" title="Functor wrapper for NLopt with automatic, transparent log&#45;scaling." alt="" coords="176,79,292,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="237,31,237,65,231,65,231,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,92,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="205,107,92,149,91,145,203,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="116,152,179,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="222,106,174,145,170,141,218,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="203,152,265,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="237,104,237,138,231,138,231,104"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="289,152,392,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="253,102,313,142,310,147,250,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="417,152,499,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="271,101,410,145,408,150,269,107"/>
+</map>

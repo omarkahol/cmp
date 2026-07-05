@@ -1,0 +1,5 @@
+<map id="cmp::kernel::Uniform" name="cmp::kernel::Uniform">
+<area shape="rect" id="Node000001" title="Rectangular (uniform) density kernel." alt="" coords="5,79,164,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="11,5,158,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,44,87,79,82,79,82,44"/>
+</map>

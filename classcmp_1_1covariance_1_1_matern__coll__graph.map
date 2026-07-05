@@ -1,0 +1,5 @@
+<map id="cmp::covariance::Matern" name="cmp::covariance::Matern">
+<area shape="rect" id="Node000001" title="General Matérn covariance function." alt="" coords="19,79,202,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1covariance_1_1_covariance.html" title="Abstract base class for all covariance (kernel) functions." alt="" coords="5,5,216,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,44,113,79,108,79,108,44"/>
+</map>

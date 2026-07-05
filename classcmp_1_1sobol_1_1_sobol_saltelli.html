@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -118,10 +119,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0d1150ad0fa2fe3e0e0dd0d5bd55713f" id="r_a0d1150ad0fa2fe3e0e0dd0d5bd55713f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a0d1150ad0fa2fe3e0e0dd0d5bd55713f">SobolSaltelli</a> (size_t <a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ad8128589b6f4bdc529070fae23fcdc10">nObs</a>, size_t <a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ac959e8075de90bc95cd8095375a69581">dim</a>, bool secondOrder=false)</td></tr>
 <tr class="separator:a0d1150ad0fa2fe3e0e0dd0d5bd55713f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d89e3fef9b739fd60a29460c390af65" id="r_a1d89e3fef9b739fd60a29460c390af65"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#a1d89e3fef9b739fd60a29460c390af65">nTotalObs</a> () const</td></tr>
+<tr class="memdesc:a1d89e3fef9b739fd60a29460c390af65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total number of evaluations required.  <br /></td></tr>
 <tr class="separator:a1d89e3fef9b739fd60a29460c390af65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac959e8075de90bc95cd8095375a69581" id="r_ac959e8075de90bc95cd8095375a69581"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ac959e8075de90bc95cd8095375a69581">dim</a> () const</td></tr>
+<tr class="memdesc:ac959e8075de90bc95cd8095375a69581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of dimension parameters.  <br /></td></tr>
 <tr class="separator:ac959e8075de90bc95cd8095375a69581"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8128589b6f4bdc529070fae23fcdc10" id="r_ad8128589b6f4bdc529070fae23fcdc10"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ad8128589b6f4bdc529070fae23fcdc10">nObs</a> () const</td></tr>
+<tr class="memdesc:ad8128589b6f4bdc529070fae23fcdc10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of base samples.  <br /></td></tr>
 <tr class="separator:ad8128589b6f4bdc529070fae23fcdc10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1e0a4d0c4dc274cd0274b5e6738576c" id="r_aa1e0a4d0c4dc274cd0274b5e6738576c"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#aa1e0a4d0c4dc274cd0274b5e6738576c">evaluationGrid</a> (size_t <a class="el" href="classcmp_1_1sobol_1_1_sobol_saltelli.html#ad8128589b6f4bdc529070fae23fcdc10">nObs</a>, std::shared_ptr&lt; <a class="el" href="classcmp_1_1grid_1_1_grid.html">cmp::grid::Grid</a> &gt; gridType, bool secondOrder=false)</td></tr>
 <tr class="memdesc:aa1e0a4d0c4dc274cd0274b5e6738576c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the Sobol evaluation grid using the Saltelli sampling scheme.  <br /></td></tr>
@@ -283,7 +287,7 @@ Constraints &amp; Invariants</h3>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html">SobolResults</a> struct containing the first-order (firstOrder), total-order (T), and if computed, second-order (secondOrder) Sobol indices. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html" title="Struct to hold calculated Sobol sensitivity indices.">SobolResults</a> struct containing the first-order (firstOrder), total-order (T), and if computed, second-order (secondOrder) Sobol indices. </dd></dl>
 
 </div>
 </div>
@@ -328,7 +332,7 @@ Constraints &amp; Invariants</h3>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pair of <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html">SobolResults</a> which is just a storage for 3 <a class="el" href="namespace_eigen.html">Eigen</a> vectors firstOrder, T, and secondOrder (if second order is computed). The first element contains the mean estimates, and the second element contains the standard deviations from the bootstrap samples. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pair of <a class="el" href="structcmp_1_1sobol_1_1_sobol_results.html" title="Struct to hold calculated Sobol sensitivity indices.">SobolResults</a> which is just a storage for 3 <a class="el" href="namespace_eigen.html">Eigen</a> vectors firstOrder, T, and secondOrder (if second order is computed). The first element contains the mean estimates, and the second element contains the standard deviations from the bootstrap samples. </dd></dl>
 
 </div>
 </div>
@@ -354,6 +358,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the number of dimension parameters. </p>
 
 </div>
 </div>
@@ -425,6 +431,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the number of base samples. </p>
+
 </div>
 </div>
 <a id="a1d89e3fef9b739fd60a29460c390af65" name="a1d89e3fef9b739fd60a29460c390af65"></a>
@@ -449,6 +457,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the total number of evaluations required. </p>
 
 </div>
 </div>

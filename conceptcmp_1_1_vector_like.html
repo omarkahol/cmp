@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -102,6 +103,9 @@ $(document).ready(function(){initNavTree('conceptcmp_1_1_vector_like.html',''); 
 </div><!--header-->
 <div class="contents">
 
+<p>Concept for compile-time validation of vector-like containers.  
+<a href="conceptcmp_1_1_vector_like.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="cmp__defines_8h_source.html">cmp_defines.h</a>&gt;</code></p>
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
@@ -126,8 +130,17 @@ $(document).ready(function(){initNavTree('conceptcmp_1_1_vector_like.html',''); 
 <div class="line">        a.end()</div>
 <div class="line">    };</div>
 <div class="line">}</div>
-<div class="ttc" id="aconceptcmp_1_1_vector_like_html"><div class="ttname"><a href="conceptcmp_1_1_vector_like.html">cmp::VectorLike</a></div><div class="ttdef"><b>Definition</b> cmp_defines.h:34</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconceptcmp_1_1_vector_like_html"><div class="ttname"><a href="conceptcmp_1_1_vector_like.html">cmp::VectorLike</a></div><div class="ttdoc">Concept for compile-time validation of vector-like containers.</div><div class="ttdef"><b>Definition</b> cmp_defines.h:51</div></div>
+</div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Concept for compile-time validation of vector-like containers. </p>
+<p>Mathematical Formulation Defines a set of constraints for type \(T\) representing an element in a finite-dimensional vector space \(\mathbb{R}^N\).</p>
+<p>Implementation Algorithm Ensures that \(T\) supports:</p><ul>
+<li><code>.size()</code> returning an integer/size type.</li>
+<li><code>operator[]</code> for coordinate access.</li>
+<li><code>.data()</code> providing a raw pointer to contiguous memory.</li>
+<li>Iterators <code>.begin()</code> and <code>.end()</code>. </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

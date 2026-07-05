@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,25 +108,41 @@ $(document).ready(function(){initNavTree('classcmp_1_1grid_1_1_linspaced_grid.ht
 </div><!--header-->
 <div class="contents">
 
+<p>Linearly spaced Cartesian tensor product grid generator.  
+ <a href="classcmp_1_1grid_1_1_linspaced_grid.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="grid_8h_source.html">grid.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::grid::LinspacedGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_linspaced_grid__inherit__graph.png" border="0" usemap="#acmp_1_1grid_1_1_linspaced_grid_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1grid_1_1_linspaced_grid_inherit__map" id="acmp_1_1grid_1_1_linspaced_grid_inherit__map">
+<area shape="rect" title="Linearly spaced Cartesian tensor product grid generator." alt="" coords="5,79,188,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="37,5,156,31"/>
+<area shape="poly" title=" " alt="" coords="99,44,99,79,94,79,94,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::grid::LinspacedGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_linspaced_grid__coll__graph.png" border="0" usemap="#acmp_1_1grid_1_1_linspaced_grid_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1grid_1_1_linspaced_grid_coll__map" id="acmp_1_1grid_1_1_linspaced_grid_coll__map">
+<area shape="rect" title="Linearly spaced Cartesian tensor product grid generator." alt="" coords="5,79,188,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="37,5,156,31"/>
+<area shape="poly" title=" " alt="" coords="99,44,99,79,94,79,94,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aabcbbd2c6d0cc174f2cedba2b919ea84" id="r_aabcbbd2c6d0cc174f2cedba2b919ea84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_linspaced_grid.html#aabcbbd2c6d0cc174f2cedba2b919ea84">LinspacedGrid</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;lowerBound, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;upperBound)</td></tr>
+<tr class="memdesc:aabcbbd2c6d0cc174f2cedba2b919ea84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1grid_1_1_linspaced_grid.html" title="Linearly spaced Cartesian tensor product grid generator.">LinspacedGrid</a>.  <br /></td></tr>
 <tr class="separator:aabcbbd2c6d0cc174f2cedba2b919ea84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af404de350b5639c0ac250e00d4a4f6a9" id="r_af404de350b5639c0ac250e00d4a4f6a9"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_linspaced_grid.html#af404de350b5639c0ac250e00d4a4f6a9">construct</a> (const size_t &amp;nPoints) override</td></tr>
+<tr class="memdesc:af404de350b5639c0ac250e00d4a4f6a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the linearly spaced grid matrix.  <br /></td></tr>
 <tr class="separator:af404de350b5639c0ac250e00d4a4f6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae97d1965714989ceb67f900c0430f76a" id="r_ae97d1965714989ceb67f900c0430f76a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_linspaced_grid.html#ae97d1965714989ceb67f900c0430f76a">dim</a> () const override</td></tr>
+<tr class="memdesc:ae97d1965714989ceb67f900c0430f76a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dimension of the domain.  <br /></td></tr>
 <tr class="separator:ae97d1965714989ceb67f900c0430f76a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcmp_1_1grid_1_1_grid"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcmp_1_1grid_1_1_grid')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcmp_1_1grid_1_1_grid.html">cmp::grid::Grid</a></td></tr>
 <tr class="memitem:a810aba7babdddc7cd156ef087741bdaf inherit pub_methods_classcmp_1_1grid_1_1_grid" id="r_a810aba7babdddc7cd156ef087741bdaf"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_grid.html#a810aba7babdddc7cd156ef087741bdaf">~Grid</a> ()=default</td></tr>
@@ -134,6 +151,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a807c90b654f10c28ea194496e0e9158a" id="r_a807c90b654f10c28ea194496e0e9158a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_linspaced_grid.html#a807c90b654f10c28ea194496e0e9158a">gridElement</a> (const size_t &amp;index, const size_t &amp;n_pts, const size_t &amp;<a class="el" href="classcmp_1_1grid_1_1_linspaced_grid.html#ae97d1965714989ceb67f900c0430f76a">dim</a>)</td></tr>
+<tr class="memdesc:a807c90b654f10c28ea194496e0e9158a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to retrieve the multi-dimensional grid index matching a flat index.  <br /></td></tr>
 <tr class="separator:a807c90b654f10c28ea194496e0e9158a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -145,7 +163,15 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:affe51c110c321cf4915e1f797afad7a0" id="r_affe51c110c321cf4915e1f797afad7a0"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_linspaced_grid.html#affe51c110c321cf4915e1f797afad7a0">upperBound_</a></td></tr>
 <tr class="separator:affe51c110c321cf4915e1f797afad7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Linearly spaced Cartesian tensor product grid generator. </p>
+<p>Mathematical Formulation Given a total number of target points \(N\), computes the number of points per dimension:  </p><p class="formulaDsp">
+\[
+N_d = \lceil N^{1/D} \rceil
+\]
+</p>
+<p> Constructs a uniform Cartesian grid of size \(N_d^D\). </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aabcbbd2c6d0cc174f2cedba2b919ea84" name="aabcbbd2c6d0cc174f2cedba2b919ea84"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aabcbbd2c6d0cc174f2cedba2b919ea84">&#9670;&#160;</a></span>LinspacedGrid()</h2>
 
@@ -180,6 +206,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a <a class="el" href="classcmp_1_1grid_1_1_linspaced_grid.html" title="Linearly spaced Cartesian tensor product grid generator.">LinspacedGrid</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lowerBound</td><td>The lower bounds of the hyperrectangle. </td></tr>
+    <tr><td class="paramname">upperBound</td><td>The upper bounds of the hyperrectangle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -207,6 +242,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs the linearly spaced grid matrix. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nPoints</td><td>Target number of points (actual size will be rounded up to the nearest perfect power). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="classcmp_1_1grid_1_1_grid.html#a0c0b19ca98cc39bdd96de5d7fa46ee77">cmp::grid::Grid</a>.</p>
 
 </div>
@@ -233,6 +276,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the dimension of the domain. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1grid_1_1_grid.html#aa7e12c6dca3c6b86fd0b3eab746bc95b">cmp::grid::Grid</a>.</p>
 
@@ -277,6 +322,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Helper to retrieve the multi-dimensional grid index matching a flat index. </p>
 
 </div>
 </div>

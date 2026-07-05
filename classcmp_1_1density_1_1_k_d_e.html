@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,6 +108,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1density_1_1_k_d_e.html',''
 </div><!--header-->
 <div class="contents">
 
+<p>Multivariate Kernel Density Estimation (<a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a>) class.  
+ <a href="classcmp_1_1density_1_1_k_d_e.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="kde_8h_source.html">kde.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -119,10 +123,10 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a252d9d65c481bfb3a57c8cde6ad60e09" id="r_a252d9d65c481bfb3a57c8cde6ad60e09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a252d9d65c481bfb3a57c8cde6ad60e09">KDE</a> ()</td></tr>
-<tr class="memdesc:a252d9d65c481bfb3a57c8cde6ad60e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a>. Creates a <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> with identity bandwidth and Gaussian kernel in 1D.  <br /></td></tr>
+<tr class="memdesc:a252d9d65c481bfb3a57c8cde6ad60e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a>. Creates a <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> with identity bandwidth and Gaussian kernel in 1D.  <br /></td></tr>
 <tr class="separator:a252d9d65c481bfb3a57c8cde6ad60e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17ae9ce7ab56879d916b160584b34323" id="r_a17ae9ce7ab56879d916b160584b34323"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a17ae9ce7ab56879d916b160584b34323">KDE</a> (std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html">kernel::Bandwidth</a> &gt; <a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">bandwidth</a>, std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">kernel::Kernel</a> &gt; kernel)</td></tr>
-<tr class="memdesc:a17ae9ce7ab56879d916b160584b34323"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> with specified bandwidth and kernel.  <br /></td></tr>
+<tr class="memdesc:a17ae9ce7ab56879d916b160584b34323"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> with specified bandwidth and kernel.  <br /></td></tr>
 <tr class="separator:a17ae9ce7ab56879d916b160584b34323"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11ef130726a41ed562db4f7a9fb47f9e" id="r_a11ef130726a41ed562db4f7a9fb47f9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a11ef130726a41ed562db4f7a9fb47f9e">KDE</a> (<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">const</a> <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> &amp;<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">other</a>)</td></tr>
 <tr class="separator:a11ef130726a41ed562db4f7a9fb47f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,13 +137,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a124d20c4097a4d2a8d22b5e546273f88" id="r_a124d20c4097a4d2a8d22b5e546273f88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a124d20c4097a4d2a8d22b5e546273f88">operator=</a> (<a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> &amp;&amp;<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">other</a>) <a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">noexcept</a></td></tr>
 <tr class="separator:a124d20c4097a4d2a8d22b5e546273f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a025590cc89bd18ec0ed2aac677253323" id="r_a025590cc89bd18ec0ed2aac677253323"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">set</a> (const std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html">kernel::Bandwidth</a> &gt; &amp;bandwidth, const std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">kernel::Kernel</a> &gt; &amp;kernel)</td></tr>
-<tr class="memdesc:a025590cc89bd18ec0ed2aac677253323"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bandwidth and kernel for the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a>.  <br /></td></tr>
+<tr class="memdesc:a025590cc89bd18ec0ed2aac677253323"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bandwidth and kernel for the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a>.  <br /></td></tr>
 <tr class="separator:a025590cc89bd18ec0ed2aac677253323"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c351627adef2b24a76e8c53bbcea22b" id="r_a9c351627adef2b24a76e8c53bbcea22b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a9c351627adef2b24a76e8c53bbcea22b">condition</a> (<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">const</a> Eigen::Ref&lt; <a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">const</a> Eigen::MatrixXd &gt; &amp;<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">data</a>, <a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">bool</a> <a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">copyData</a>=<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">false</a>)</td></tr>
-<tr class="memdesc:a9c351627adef2b24a76e8c53bbcea22b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Condition the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> on the provided data.  <br /></td></tr>
+<tr class="memdesc:a9c351627adef2b24a76e8c53bbcea22b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Condition the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> on the provided data.  <br /></td></tr>
 <tr class="separator:a9c351627adef2b24a76e8c53bbcea22b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0de562b368818bb4de7a7d28d5e7ff4b" id="r_a0de562b368818bb4de7a7d28d5e7ff4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a0de562b368818bb4de7a7d28d5e7ff4b">eval</a> (<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">const</a> Eigen::VectorXd &amp;<a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">x</a>) <a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">const</a></td></tr>
-<tr class="memdesc:a0de562b368818bb4de7a7d28d5e7ff4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> at a given point.  <br /></td></tr>
+<tr class="memdesc:a0de562b368818bb4de7a7d28d5e7ff4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> at a given point.  <br /></td></tr>
 <tr class="separator:a0de562b368818bb4de7a7d28d5e7ff4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -159,7 +163,24 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a5f5e313a0cfe43a372d5f3016ea73300" id="r_a5f5e313a0cfe43a372d5f3016ea73300"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a025590cc89bd18ec0ed2aac677253323">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a5f5e313a0cfe43a372d5f3016ea73300">nPoints_</a> {0}</td></tr>
 <tr class="separator:a5f5e313a0cfe43a372d5f3016ea73300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Multivariate Kernel Density Estimation (<a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a>) class. </p>
+<p>Mathematical Formulation Evaluates the multivariate probability density function estimate of a random vector \(\mathbf{x} \in \mathbb{R}^D\) based on observations \(\{\mathbf{x}_i\}_{i=1}^N\):  </p><p class="formulaDsp">
+\[
+\hat{f}(\mathbf{x}) = \frac{1}{N} \sum_{i=1}^N \frac{1}{\det(\mathbf{H})} K\left( \mathbf{H}^{-1} (\mathbf{x} - \mathbf{x}_i) \right)
+\]
+</p>
+<p> where \(\mathbf{H}\) is the bandwidth matrix and \(K\) is the multi-dimensional kernel function.</p><ul>
+<li>Scott's Rule: \(H_{dd} = N^{-1/(D+4)} \hat{\sigma}_d\)</li>
+<li><p class="startli">Silverman's Rule: \(H_{dd} = \left(\frac{4}{D+2}\right)^{1/(D+4)} N^{-1/(D+4)} \hat{\sigma}_d\) where \(\hat{\sigma}_d\) is the standard deviation of coordinate \(d\).</p>
+<p class="startli">Implementation Algorithm</p>
+</li>
+</ul>
+<ol type="1">
+<li><code><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a9c351627adef2b24a76e8c53bbcea22b" title="Condition the KDE on the provided data.">condition()</a></code> registers the dataset references.</li>
+<li><code><a class="el" href="classcmp_1_1density_1_1_k_d_e.html#a0de562b368818bb4de7a7d28d5e7ff4b" title="Evaluate the KDE at a given point.">eval()</a></code> averages kernel evaluations over all conditioning observation points, scaled by the determinant of the bandwidth matrix. </li>
+</ol>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="aaa6e5f680dd962720fdcc0ff3f1a3188" name="aaa6e5f680dd962720fdcc0ff3f1a3188"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa6e5f680dd962720fdcc0ff3f1a3188">&#9670;&#160;</a></span>BandWidthSelectionMethod</h2>
 
@@ -202,7 +223,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Default constructor for <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a>. Creates a <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> with identity bandwidth and Gaussian kernel in 1D. </p>
+<p>Default constructor for <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a>. Creates a <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> with identity bandwidth and Gaussian kernel in 1D. </p>
 
 </div>
 </div>
@@ -232,7 +253,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor for <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> with specified bandwidth and kernel. </p>
+<p>Constructor for <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> with specified bandwidth and kernel. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">bandwidth</td><td>Shared pointer to the bandwidth object. </td></tr>
@@ -314,11 +335,11 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Condition the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> on the provided data. </p>
+<p>Condition the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> on the provided data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The data matrix where each row is a data point. </td></tr>
-    <tr><td class="paramname">copyData</td><td>If true, the data is copied into the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> object; if false, a reference is kept. </td></tr>
+    <tr><td class="paramname">copyData</td><td>If true, the data is copied into the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> object; if false, a reference is kept. </td></tr>
   </table>
   </dd>
 </dl>
@@ -341,7 +362,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Evaluate the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a> at a given point. </p>
+<p>Evaluate the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a> at a given point. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>The point at which to evaluate the density estimate. </td></tr>
@@ -422,7 +443,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set the bandwidth and kernel for the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html">KDE</a>. </p>
+<p>Set the bandwidth and kernel for the <a class="el" href="classcmp_1_1density_1_1_k_d_e.html" title="Multivariate Kernel Density Estimation (KDE) class.">KDE</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">bandwidth</td><td>Shared pointer to the bandwidth object. </td></tr>

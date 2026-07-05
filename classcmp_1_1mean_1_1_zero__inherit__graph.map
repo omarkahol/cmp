@@ -1,0 +1,5 @@
+<map id="cmp::mean::Zero" name="cmp::mean::Zero">
+<area shape="rect" id="Node000001" title="Represents a constant zero mean function." alt="" coords="8,79,141,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1mean_1_1_mean.html" title="Abstract base class for Gaussian Process prior mean functions." alt="" coords="5,5,144,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,44,77,79,72,79,72,44"/>
+</map>

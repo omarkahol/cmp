@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -117,11 +118,51 @@ $(document).ready(function(){initNavTree('optimization_8h.html',''); initResizab
 Include dependency graph for optimization.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="optimization_8h__incl.png" border="0" usemap="#ainclude_2optimization_8h" alt=""/></div>
+<map name="ainclude_2optimization_8h" id="ainclude_2optimization_8h">
+<area shape="rect" title="Functor wrapper for NLopt with automatic, transparent log&#45;scaling." alt="" coords="151,5,317,31"/>
+<area shape="rect" title=" " alt="" coords="5,79,92,104"/>
+<area shape="poly" title=" " alt="" coords="205,33,92,76,91,71,203,28"/>
+<area shape="rect" title=" " alt="" coords="116,79,179,104"/>
+<area shape="poly" title=" " alt="" coords="222,33,174,72,170,68,218,29"/>
+<area shape="rect" title=" " alt="" coords="203,79,265,104"/>
+<area shape="poly" title=" " alt="" coords="237,31,237,65,231,65,231,31"/>
+<area shape="rect" title=" " alt="" coords="289,79,392,104"/>
+<area shape="poly" title=" " alt="" coords="253,28,313,69,310,73,250,33"/>
+<area shape="rect" title=" " alt="" coords="417,79,499,104"/>
+<area shape="poly" title=" " alt="" coords="271,28,410,72,408,77,269,33"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="optimization_8h__dep__incl.png" border="0" usemap="#ainclude_2optimization_8hdep" alt=""/></div>
+<map name="ainclude_2optimization_8hdep" id="ainclude_2optimization_8hdep">
+<area shape="rect" title="Functor wrapper for NLopt with automatic, transparent log&#45;scaling." alt="" coords="362,5,529,31"/>
+<area shape="rect" href="classifier_8h.html" title=" " alt="" coords="189,152,331,177"/>
+<area shape="poly" title=" " alt="" coords="394,38,354,56,316,81,300,98,286,118,267,153,262,151,281,115,296,95,313,77,351,51,391,33"/>
+<area shape="rect" href="gp_8h.html" title=" " alt="" coords="460,79,561,104"/>
+<area shape="poly" title=" " alt="" coords="467,39,502,77,498,80,463,43"/>
+<area shape="rect" href="kde_8h.html" title=" " alt="" coords="327,79,436,104"/>
+<area shape="poly" title=" " alt="" coords="428,43,394,80,390,77,424,39"/>
+<area shape="rect" href="optimization_8cpp.html" title=" " alt="" coords="585,79,740,104"/>
+<area shape="poly" title=" " alt="" coords="494,32,628,76,627,81,492,37"/>
+<area shape="rect" href="model__cluster_8h.html" title=" " alt="" coords="349,233,525,258"/>
+<area shape="poly" title=" " alt="" coords="299,180,413,230,410,235,297,185"/>
+<area shape="rect" href="model__cluster__poly_8h.html" title=" " alt="" coords="5,225,171,265"/>
+<area shape="poly" title=" " alt="" coords="224,185,131,228,129,223,222,180"/>
+<area shape="rect" href="classifier_8cpp.html" title=" " alt="" coords="195,233,325,258"/>
+<area shape="poly" title=" " alt="" coords="263,191,263,232,257,232,257,191"/>
+<area shape="poly" title=" " alt="" coords="502,118,445,234,441,231,497,115"/>
+<area shape="rect" href="multi__gp_8h.html" title=" " alt="" coords="527,152,670,177"/>
+<area shape="poly" title=" " alt="" coords="537,110,586,150,583,154,534,115"/>
+<area shape="rect" href="gp_8cpp.html" title=" " alt="" coords="695,152,783,177"/>
+<area shape="poly" title=" " alt="" coords="561,106,703,149,701,154,560,111"/>
+<area shape="rect" href="multi__gp_8cpp.html" title=" " alt="" coords="550,233,679,258"/>
+<area shape="poly" title=" " alt="" coords="606,190,615,232,610,233,601,191"/>
+<area shape="poly" title=" " alt="" coords="351,113,281,154,279,149,348,109"/>
+<area shape="rect" href="kde_8cpp.html" title=" " alt="" coords="356,152,452,177"/>
+<area shape="poly" title=" " alt="" coords="392,117,403,151,398,153,387,118"/>
+</map>
 </div>
 </div>
 <p><a href="optimization_8h_source.html">Go to the source code of this file.</a></p>
@@ -129,8 +170,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_objective_functor.html">cmp::ObjectiveFunctor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor wrapper for NLopt with automatic, transparent parameter space mapping (e.g., log-scaling).  <a href="classcmp_1_1_objective_functor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1_objective_functor_1_1_constraint_context.html">cmp::ObjectiveFunctor::ConstraintContext</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context struct for NLopt constraint evaluation callback.  <a href="structcmp_1_1_objective_functor_1_1_constraint_context.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>

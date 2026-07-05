@@ -26,6 +26,7 @@ var NAVTREE =
 [
   [ "CMP++: Uncertainty Quantification & Bayesian Calibration", "index.html", [
     [ "CMP++: Scientific Uncertainty Quantification and Bayesian Calibration Library", "index.html", "index" ],
+    [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -64,16 +65,16 @@ var NAVTREEINDEX =
 [
 "_mainpage_8h.html",
 "classcmp_1_1_polynomial_expansion.html#a80f67b013b42902c02e13a3846200ff0",
-"classcmp_1_1cluster_1_1_geometric_cluster.html#a2f3e3fc361864c55b6b33a60f11f982b",
-"classcmp_1_1covariance_1_1_sum.html#a093c765b13a3df793869c43e69a653e4",
-"classcmp_1_1distribution_1_1_multivariate_normal_distribution.html#a8c0e8a5e0cbd2bf9240c03df6702baab",
-"classcmp_1_1distribution_1_1_student_distribution.html#a3070112b4c12cdbd118090d32b5f8300",
-"classcmp_1_1grid_1_1_faure_grid.html#a2db7c0ec848c430be37b62b1c4004601",
-"classcmp_1_1kernel_1_1_isotropic_bandwidth.html#ae70a1d45aa44d2e872920520fa2bc26a",
-"classcmp_1_1prior_1_1_from_distribution.html#a28e7b2e6a158c762695dbe39b208e32b",
-"classcmp_1_1scaler_1_1_standard_scaler.html#a16833680d40ba0835aecc0b1cbe81b2d",
-"functions_vars_u.html",
-"structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster.html#a406f1b23941339a080771aa12aabd59f"
+"classcmp_1_1cluster_1_1_geometric_cluster.html#a52873464ae777b98143ec1d38787173e",
+"classcmp_1_1covariance_1_1_sum.html#a0ede71a4a41c1d532a4da3c1d0a4d315",
+"classcmp_1_1distribution_1_1_multivariate_normal_distribution.html#a900fae77f8e6bea000b4db031d9d0265",
+"classcmp_1_1distribution_1_1_student_distribution.html#a3d088db3811252a4a91df9dd031a94ea",
+"classcmp_1_1grid_1_1_faure_grid.html#a6c4be4c601d6ba60df9928d946431313",
+"classcmp_1_1kernel_1_1_isotropic_bandwidth.html#ae805f0f988d554c6d838382dbf13a414",
+"classcmp_1_1prior_1_1_from_distribution.html#a2b0523472860f611985d5c28dff57c28",
+"classcmp_1_1scaler_1_1_standard_scaler.html#a2a046cbb08c243e8868294262e27813a",
+"functions_vars_x.html",
+"structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster.html#a4d1849503e2a2c5231b99ce57e19a8e1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

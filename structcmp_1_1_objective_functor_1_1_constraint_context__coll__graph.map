@@ -1,0 +1,5 @@
+<map id="cmp::ObjectiveFunctor::ConstraintContext" name="cmp::ObjectiveFunctor::ConstraintContext">
+<area shape="rect" id="Node000001" title="Context struct for NLopt constraint evaluation callback." alt="" coords="5,93,173,133"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1_objective_functor.html" title="Functor wrapper for NLopt with automatic, transparent parameter space mapping (e.g...." alt="" coords="5,5,173,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,44,92,93,87,93,87,44"/>
+</map>

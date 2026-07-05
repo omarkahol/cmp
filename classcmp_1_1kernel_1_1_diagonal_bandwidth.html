@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,16 +108,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1kernel_1_1_diagonal_bandwi
 </div><!--header-->
 <div class="contents">
 
+<p>Diagonal bandwidth matrix (independent parameter per dimension).  
+ <a href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="kernel_09_09_8h_source.html">kernel++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::kernel::DiagonalBandwidth:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_diagonal_bandwidth__inherit__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_diagonal_bandwidth_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1kernel_1_1_diagonal_bandwidth_inherit__map" id="acmp_1_1kernel_1_1_diagonal_bandwidth_inherit__map">
+<area shape="rect" title="Diagonal bandwidth matrix (independent parameter per dimension)." alt="" coords="5,79,239,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_bandwidth.html" title="Abstract base class for multivariate KDE bandwidth matrices." alt="" coords="35,5,209,31"/>
+<area shape="poly" title=" " alt="" coords="125,44,125,79,119,79,119,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::kernel::DiagonalBandwidth:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_diagonal_bandwidth__coll__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_diagonal_bandwidth_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1kernel_1_1_diagonal_bandwidth_coll__map" id="acmp_1_1kernel_1_1_diagonal_bandwidth_coll__map">
+<area shape="rect" title="Diagonal bandwidth matrix (independent parameter per dimension)." alt="" coords="5,79,239,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_bandwidth.html" title="Abstract base class for multivariate KDE bandwidth matrices." alt="" coords="35,5,209,31"/>
+<area shape="poly" title=" " alt="" coords="125,44,125,79,119,79,119,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -124,12 +138,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5ca9a18310308d0181a78db8efa62396" id="r_a5ca9a18310308d0181a78db8efa62396"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#a5ca9a18310308d0181a78db8efa62396">DiagonalBandwidth</a> ()=delete</td></tr>
 <tr class="separator:a5ca9a18310308d0181a78db8efa62396"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a906a60d34379b56b2c61a7e124ba7d32" id="r_a906a60d34379b56b2c61a7e124ba7d32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#a906a60d34379b56b2c61a7e124ba7d32">DiagonalBandwidth</a> (const Eigen::VectorXd &amp;h)</td></tr>
+<tr class="memdesc:a906a60d34379b56b2c61a7e124ba7d32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html" title="Diagonal bandwidth matrix (independent parameter per dimension).">DiagonalBandwidth</a> from a parameter vector.  <br /></td></tr>
 <tr class="separator:a906a60d34379b56b2c61a7e124ba7d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30cdee5966d0c041a02b1bb5799bfcb0" id="r_a30cdee5966d0c041a02b1bb5799bfcb0"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#a30cdee5966d0c041a02b1bb5799bfcb0">apply</a> (const Eigen::VectorXd &amp;x1, const Eigen::VectorXd &amp;x2) const override</td></tr>
+<tr class="memdesc:a30cdee5966d0c041a02b1bb5799bfcb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the coordinate distances independently by 1 / h_d.  <br /></td></tr>
 <tr class="separator:a30cdee5966d0c041a02b1bb5799bfcb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ca633e2913ffe602d1f2726260d01cf" id="r_a1ca633e2913ffe602d1f2726260d01cf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#a1ca633e2913ffe602d1f2726260d01cf">determinant</a> () const override</td></tr>
+<tr class="memdesc:a1ca633e2913ffe602d1f2726260d01cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the determinant of the diagonal bandwidth matrix.  <br /></td></tr>
 <tr class="separator:a1ca633e2913ffe602d1f2726260d01cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aade0fa1151a3cf6ffd54374fa9a743f8" id="r_aade0fa1151a3cf6ffd54374fa9a743f8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#aade0fa1151a3cf6ffd54374fa9a743f8">size</a> () const override</td></tr>
+<tr class="memdesc:aade0fa1151a3cf6ffd54374fa9a743f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dimension of the space.  <br /></td></tr>
 <tr class="separator:aade0fa1151a3cf6ffd54374fa9a743f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab233586f447b5cb6888eaa18a4ed218d" id="r_ab233586f447b5cb6888eaa18a4ed218d"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#ab233586f447b5cb6888eaa18a4ed218d">gradientOfApply</a> (const Eigen::VectorXd &amp;x1, const Eigen::VectorXd &amp;x2, const size_t &amp;i) const override</td></tr>
 <tr class="separator:ab233586f447b5cb6888eaa18a4ed218d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,7 +173,15 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aff91c96966828ae18b71232d50de1078" id="r_aff91c96966828ae18b71232d50de1078"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#aff91c96966828ae18b71232d50de1078">det_</a></td></tr>
 <tr class="separator:aff91c96966828ae18b71232d50de1078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Diagonal bandwidth matrix (independent parameter per dimension). </p>
+<p>Mathematical Formulation Represents a diagonal matrix \(\mathbf{H} = \text{diag}(h_1, \dots, h_D)\). Coordinates are scaled independently:  </p><p class="formulaDsp">
+\[
+z_d = \frac{x_{1,d} - x_{2,d}}{h_d}
+\]
+</p>
+<p> The determinant is \(\det(\mathbf{H}) = \prod_{d=1}^D h_d\). </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5ca9a18310308d0181a78db8efa62396" name="a5ca9a18310308d0181a78db8efa62396"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5ca9a18310308d0181a78db8efa62396">&#9670;&#160;</a></span>DiagonalBandwidth() <span class="overload">[1/2]</span></h2>
 
@@ -205,6 +231,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a <a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html" title="Diagonal bandwidth matrix (independent parameter per dimension).">DiagonalBandwidth</a> from a parameter vector. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -242,6 +270,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Scales the coordinate distances independently by 1 / h_d. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a7b59faf763ae6808acd9ec5cf93f2663">cmp::kernel::Bandwidth</a>.</p>
 
 </div>
@@ -268,6 +298,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Computes the determinant of the diagonal bandwidth matrix. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a718d366c32b080389cae1e844f126002">cmp::kernel::Bandwidth</a>.</p>
 
@@ -448,6 +480,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the dimension of the space. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a873ddb11a78e7adc920d31aa2c9cbeae">cmp::kernel::Bandwidth</a>.</p>
 

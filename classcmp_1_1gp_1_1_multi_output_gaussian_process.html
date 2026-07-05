@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,6 +107,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1gp_1_1_multi_output_gaussi
 </div><!--header-->
 <div class="contents">
 
+<p>Manages a collection of independent Gaussian Processes for multi-output regression.  
+ <a href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="multi__gp_8h_source.html">multi_gp.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -138,8 +142,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae557729de3199b26db41742eb48644d7" id="r_ae557729de3199b26db41742eb48644d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html">GaussianProcess</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#ae557729de3199b26db41742eb48644d7">operator[]</a> (<a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a> <a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">int</a> &amp;<a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">i</a>)</td></tr>
 <tr class="separator:ae557729de3199b26db41742eb48644d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a621db0861d8b294708ebd89f5656c6c0" id="r_a621db0861d8b294708ebd89f5656c6c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#a621db0861d8b294708ebd89f5656c6c0">size</a> () <a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a></td></tr>
+<tr class="memdesc:a621db0861d8b294708ebd89f5656c6c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of output dimensions (the number of GP models).  <br /></td></tr>
 <tr class="separator:a621db0861d8b294708ebd89f5656c6c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91ce2f2bc5de2472e34be588e48ab0f2" id="r_a91ce2f2bc5de2472e34be588e48ab0f2"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#a91ce2f2bc5de2472e34be588e48ab0f2">predictMean</a> (<a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a> Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a> Eigen::VectorXd &gt; &amp;<a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">x</a>, <a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a> <a class="el" href="namespacecmp_1_1gp.html#a06753fcdc5112589811ecce3b6eddc27">type</a> &amp;<a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">t</a>=<a class="el" href="namespacecmp_1_1gp.html#a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43">type::POSTERIOR</a>) <a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a></td></tr>
+<tr class="memdesc:a91ce2f2bc5de2472e34be588e48ab0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predicts the output mean vector at the test point x.  <br /></td></tr>
 <tr class="separator:a91ce2f2bc5de2472e34be588e48ab0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -155,7 +161,20 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aee02ee50d007bd0857053a563722e47d" id="r_aee02ee50d007bd0857053a563722e47d"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#abacf63f0465478e66c35e03cbd583639">const</a> Eigen::MatrixXd &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#aee02ee50d007bd0857053a563722e47d">pYObs_</a></td></tr>
 <tr class="separator:aee02ee50d007bd0857053a563722e47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Manages a collection of independent Gaussian Processes for multi-output regression. </p>
+<p>Mathematical Formulation Models a vector-valued function \(\mathbf{f}: \mathbb{R}^D \to \mathbb{R}^M\) using \(M\) independent Gaussian Processes:  </p><p class="formulaDsp">
+\[
+f_j(\mathbf{x}) \sim \mathcal{GP}\left(m_j(\mathbf{x}), k_j(\mathbf{x}, \mathbf{x}&#39;)\right), \quad j = 0, \dots, M-1
+\]
+</p>
+<p> Often used in combination with PCA dimension reduction, where the high-dimensional response vector \(\mathbf{y} \in \mathbb{R}^Q\) is projected onto \(M\) principal components, and each component is modeled by a separate GP.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li><code><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#a893521abd7e6c2a477c14ef614397529" title="Set the values of the observations.">condition()</a></code> partitions the multi-column target matrix \(\mathbf{Y}\) to condition each internal <code><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html" title="This class implements a Gaussian Process (GP) regression model for non-parametric Bayesian regression...">GaussianProcess</a></code> object.</li>
+<li><code><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#a332d6b952925a94c6bfa23caa95e9df7" title="Fit the Gaussian Process to the observations.">fit()</a></code> sequentially optimizes hyperparameters for each GP in the collection using the specified MLE/LOO objectives.</li>
+<li><code><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#aec6b463e12fc0be10c11b81758725182">predict()</a></code> queries predictions from each internal GP to reconstruct the multivariate output mean and variance vectors. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4b0358b1679d25d1db4654cff3c527d4" name="a4b0358b1679d25d1db4654cff3c527d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4b0358b1679d25d1db4654cff3c527d4">&#9670;&#160;</a></span>MultiOutputGaussianProcess() <span class="overload">[1/4]</span></h2>
 
@@ -566,6 +585,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Predicts the output mean vector at the test point x. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The test point. </td></tr>
+    <tr><td class="paramname">t</td><td>Evaluation type (PRIOR or POSTERIOR). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Predictive mean vector. </dd></dl>
+
 </div>
 </div>
 <a id="abacf63f0465478e66c35e03cbd583639" name="abacf63f0465478e66c35e03cbd583639"></a>
@@ -648,6 +677,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the number of output dimensions (the number of GP models). </p>
+<dl class="section return"><dt>Returns</dt><dd>Size of the GP collection. </dd></dl>
 
 </div>
 </div>

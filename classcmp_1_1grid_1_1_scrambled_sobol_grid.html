@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,16 +108,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1grid_1_1_scrambled_sobol_g
 </div><!--header-->
 <div class="contents">
 
+<p>Owen-scrambled Sobol low-discrepancy sequence grid generator.  
+ <a href="classcmp_1_1grid_1_1_scrambled_sobol_grid.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="grid_8h_source.html">grid.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::grid::ScrambledSobolGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_scrambled_sobol_grid__inherit__graph.png" border="0" usemap="#acmp_1_1grid_1_1_scrambled_sobol_grid_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1grid_1_1_scrambled_sobol_grid_inherit__map" id="acmp_1_1grid_1_1_scrambled_sobol_grid_inherit__map">
+<area shape="rect" title="Owen&#45;scrambled Sobol low&#45;discrepancy sequence grid generator." alt="" coords="5,79,228,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="57,5,176,31"/>
+<area shape="poly" title=" " alt="" coords="119,44,119,79,114,79,114,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::grid::ScrambledSobolGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_scrambled_sobol_grid__coll__graph.png" border="0" usemap="#acmp_1_1grid_1_1_scrambled_sobol_grid_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1grid_1_1_scrambled_sobol_grid_coll__map" id="acmp_1_1grid_1_1_scrambled_sobol_grid_coll__map">
+<area shape="rect" title="Owen&#45;scrambled Sobol low&#45;discrepancy sequence grid generator." alt="" coords="5,79,228,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="57,5,176,31"/>
+<area shape="poly" title=" " alt="" coords="119,44,119,79,114,79,114,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -153,7 +167,21 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:adecfa6922bbbf54d79ee0217d68b954b" id="r_adecfa6922bbbf54d79ee0217d68b954b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_scrambled_sobol_grid.html#adecfa6922bbbf54d79ee0217d68b954b">dim_seeds_</a></td></tr>
 <tr class="separator:adecfa6922bbbf54d79ee0217d68b954b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Owen-scrambled Sobol low-discrepancy sequence grid generator. </p>
+<p>Mathematical Formulation Owen scrambling randomized digital nets by applying random permutations on the digital trees. It preserves the low-discrepancy property:  </p><p class="formulaDsp">
+\[
+D_N^*(\mathcal{P}) = O\left( \frac{\log^D N}{N} \right)
+\]
+</p>
+<p> while providing unbiased estimates and improving the numerical integration variance rate to \(o(N^{-1})\).</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Obtains Sobol sequences from the underlying Boost generator.</li>
+<li>Maps values to 64-bit unsigned integers representing fractional components.</li>
+<li>Applies a recursive bitwise Owen scrambled hash permutation using the prefix history.</li>
+<li>Maps the scrambled values back to floating point space and scales them to the boundaries. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac9adcb70ea599f5628b13f5f675d7feb" name="ac9adcb70ea599f5628b13f5f675d7feb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac9adcb70ea599f5628b13f5f675d7feb">&#9670;&#160;</a></span>ScrambledSobolGrid()</h2>
 

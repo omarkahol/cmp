@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -116,8 +117,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3c99c6842800bbba6e54f984ca675f88" id="r_a3c99c6842800bbba6e54f984ca675f88"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_model_cluster.html#a3c99c6842800bbba6e54f984ca675f88">ModelCluster</a> ()=<a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">default</a></td></tr>
 <tr class="separator:a3c99c6842800bbba6e54f984ca675f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5218d3b8fa32adad41424c5a83c0b810" id="r_a5218d3b8fa32adad41424c5a83c0b810"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">set</a> (std::shared_ptr&lt; <a class="el" href="classcmp_1_1covariance_1_1_covariance.html">covariance::Covariance</a> &gt; kernel, std::shared_ptr&lt; <a class="el" href="classcmp_1_1mean_1_1_mean.html">mean::Mean</a> &gt; mean, Eigen::VectorXd parameters, double nugget, double gamma, unsigned int seed)</td></tr>
+<tr class="memdesc:a5218d3b8fa32adad41424c5a83c0b810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures parameters, kernel, and random seed for the clustered local GP model.  <br /></td></tr>
 <tr class="separator:a5218d3b8fa32adad41424c5a83c0b810"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ce6d896c4f91211a933859b39bde8c2" id="r_a2ce6d896c4f91211a933859b39bde8c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_model_cluster.html#a2ce6d896c4f91211a933859b39bde8c2">condition</a> (<a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">const</a> Eigen::Ref&lt; <a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">const</a> Eigen::MatrixXd &gt; &amp;<a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">xObs</a>, <a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">const</a> Eigen::Ref&lt; <a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">const</a> Eigen::VectorXd &gt; &amp;<a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">yObs</a>, <a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">const</a> Eigen::Ref&lt; <a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">const</a> <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &gt; &amp;<a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">labels</a>)</td></tr>
+<tr class="memdesc:a2ce6d896c4f91211a933859b39bde8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conditions the model on observations and initial cluster labels.  <br /></td></tr>
 <tr class="separator:a2ce6d896c4f91211a933859b39bde8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6095d042de1475e8d7d08e84573eeec3" id="r_a6095d042de1475e8d7d08e84573eeec3"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">double</a>, <a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">double</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_model_cluster.html#a6095d042de1475e8d7d08e84573eeec3">predict</a> (<a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">const</a> Eigen::VectorXd &amp;<a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">xStar</a>, <a class="el" href="classcmp_1_1classifier_1_1_classifier.html">cmp::classifier::Classifier</a> *classifier) <a class="el" href="classcmp_1_1_model_cluster.html#a5218d3b8fa32adad41424c5a83c0b810">const</a></td></tr>
 <tr class="separator:a6095d042de1475e8d7d08e84573eeec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -441,6 +444,16 @@ p_{ij} \propto P(C = j \mid x_i) \exp\left( \frac{\Delta_{ij}}{T} \right)
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Conditions the model on observations and initial cluster labels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xObs</td><td>Observation point matrix. </td></tr>
+    <tr><td class="paramname">yObs</td><td>Response vector. </td></tr>
+    <tr><td class="paramname">labels</td><td>Cluster assignments vector. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -987,6 +1000,19 @@ p_{ij} \propto P(C = j \mid x_i) \exp\left( \frac{\Delta_{ij}}{T} \right)
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Configures parameters, kernel, and random seed for the clustered local GP model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kernel</td><td>Shared covariance function. </td></tr>
+    <tr><td class="paramname">mean</td><td>Shared mean function. </td></tr>
+    <tr><td class="paramname">parameters</td><td>Covariance hyperparameter vector. </td></tr>
+    <tr><td class="paramname">nugget</td><td>Standard observation noise. </td></tr>
+    <tr><td class="paramname">gamma</td><td>Blending scale/regularization factor. </td></tr>
+    <tr><td class="paramname">seed</td><td>Random seed. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

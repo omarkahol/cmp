@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,7 +108,7 @@ $(document).ready(function(){initNavTree('classcmp_1_1statistics_1_1_k_fold.html
 </div><!--header-->
 <div class="contents">
 
-<p>K-Fold Cross-Validation class.  
+<p>K-Fold cross-validation partition generator.  
  <a href="classcmp_1_1statistics_1_1_k_fold.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="statistics_8h_source.html">statistics.h</a>&gt;</code></p>
@@ -115,20 +116,25 @@ $(document).ready(function(){initNavTree('classcmp_1_1statistics_1_1_k_fold.html
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html">KFoldIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator class to traverse folds for K-Fold cross-validation.  <a href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f3735ac2d7d52a59a097e4840c496f0" id="r_a1f3735ac2d7d52a59a097e4840c496f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold.html#a1f3735ac2d7d52a59a097e4840c496f0">KFold</a> (Eigen::Index n_splits, Eigen::Index n_obs, bool shuffle=false, unsigned int random_state=42)</td></tr>
-<tr class="memdesc:a1f3735ac2d7d52a59a097e4840c496f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classcmp_1_1statistics_1_1_k_fold.html" title="K-Fold Cross-Validation class.">KFold</a> class.  <br /></td></tr>
+<tr class="memdesc:a1f3735ac2d7d52a59a097e4840c496f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classcmp_1_1statistics_1_1_k_fold.html" title="K-Fold cross-validation partition generator.">KFold</a> class.  <br /></td></tr>
 <tr class="separator:a1f3735ac2d7d52a59a097e4840c496f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2407535251bd801769a675c099c994eb" id="r_a2407535251bd801769a675c099c994eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html">KFoldIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold.html#a2407535251bd801769a675c099c994eb">begin</a> () const</td></tr>
+<tr class="memdesc:a2407535251bd801769a675c099c994eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the iterator pointing to the first fold.  <br /></td></tr>
 <tr class="separator:a2407535251bd801769a675c099c994eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0aafc0a8c140532d630ead2ed1ad1ea" id="r_aa0aafc0a8c140532d630ead2ed1ad1ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html">KFoldIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold.html#aa0aafc0a8c140532d630ead2ed1ad1ea">end</a> () const</td></tr>
+<tr class="memdesc:aa0aafc0a8c140532d630ead2ed1ad1ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the iterator pointing to the end of the folds.  <br /></td></tr>
 <tr class="separator:aa0aafc0a8c140532d630ead2ed1ad1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a190bbe598f6af6c21a57d25f8b61936e" id="r_a190bbe598f6af6c21a57d25f8b61936e"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>, <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold.html#a190bbe598f6af6c21a57d25f8b61936e">operator()</a> (Eigen::Index split) const</td></tr>
+<tr class="memdesc:a190bbe598f6af6c21a57d25f8b61936e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directly accesses the train/test indices for a specific split.  <br /></td></tr>
 <tr class="separator:a190bbe598f6af6c21a57d25f8b61936e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4210521829bdc32e8ae9cd69b703eda" id="r_ad4210521829bdc32e8ae9cd69b703eda"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold.html#ad4210521829bdc32e8ae9cd69b703eda">nFolds</a> () const</td></tr>
+<tr class="memdesc:ad4210521829bdc32e8ae9cd69b703eda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of splits/folds.  <br /></td></tr>
 <tr class="separator:ad4210521829bdc32e8ae9cd69b703eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -147,7 +153,18 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a4af9769867e9ff7f1933c58ed9d10929"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>K-Fold Cross-Validation class. </p>
+<div class="textblock"><p>K-Fold cross-validation partition generator. </p>
+<p>Mathematical Formulation Partitions a dataset \(\mathcal{D}\) of size \(N\) into \(K\) mutually exclusive, approximately equal-sized subsets \(\{F_1, \dots, F_K\}\) such that:  </p><p class="formulaDsp">
+\[
+\bigcup_{k=1}^K F_k = \mathcal{D}, \quad F_i \cap F_j = \emptyset \quad \forall i \neq j
+\]
+</p>
+<p> During the \(k\)-th fold iteration, the model is trained on \(\mathcal{D} \setminus F_k\) and validated on \(F_k\).</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Computes the base size of each fold: \(S = \lfloor N/K \rfloor\).</li>
+<li>Assigns indices to splits. The \(k\)-th split covers index range \([k \cdot S, (k+1) \cdot S)\), and the last fold covers any remainder.</li>
+<li>Returns the respective train and test index vectors. </li>
+</ol>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1f3735ac2d7d52a59a097e4840c496f0" name="a1f3735ac2d7d52a59a097e4840c496f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f3735ac2d7d52a59a097e4840c496f0">&#9670;&#160;</a></span>KFold()</h2>
@@ -195,7 +212,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor for <a class="el" href="classcmp_1_1statistics_1_1_k_fold.html" title="K-Fold Cross-Validation class.">KFold</a> class. </p>
+<p>Constructor for <a class="el" href="classcmp_1_1statistics_1_1_k_fold.html" title="K-Fold cross-validation partition generator.">KFold</a> class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n_splits</td><td>Number of folds. Must be at least 2 and at most n_obs. </td></tr>
@@ -238,6 +255,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the iterator pointing to the first fold. </p>
+
 </div>
 </div>
 <a id="aa0aafc0a8c140532d630ead2ed1ad1ea" name="aa0aafc0a8c140532d630ead2ed1ad1ea"></a>
@@ -262,6 +281,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the iterator pointing to the end of the folds. </p>
 
 </div>
 </div>
@@ -288,6 +309,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the number of splits/folds. </p>
+
 </div>
 </div>
 <a id="a190bbe598f6af6c21a57d25f8b61936e" name="a190bbe598f6af6c21a57d25f8b61936e"></a>
@@ -313,6 +336,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Directly accesses the train/test indices for a specific split. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">split</td><td>The split index. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pair of training and test index vectors. </dd></dl>
 
 </div>
 </div>

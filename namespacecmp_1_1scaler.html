@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -101,19 +102,23 @@ $(document).ready(function(){initNavTree('namespacecmp_1_1scaler.html',''); init
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#var-members">Variables</a>  </div>
-  <div class="headertitle"><div class="title">cmp::scaler Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">cmp::scaler Namespace Reference<div class="ingroups"><a class="el" href="group__surrogate.html">Surrogate Modeling &amp; Dimensionality Reduction</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_dummy_scaler.html">DummyScaler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dummy scaler that leaves input data unchanged.  <a href="classcmp_1_1scaler_1_1_dummy_scaler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently (diagonal variance scaling).  <a href="classcmp_1_1scaler_1_1_elliptic_scaler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html">MinMaxScaler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linearly scales features to a target bounding box range.  <a href="classcmp_1_1scaler_1_1_min_max_scaler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html">PCA</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Principal Component Analysis (<a class="el" href="classcmp_1_1scaler_1_1_p_c_a.html" title="Principal Component Analysis (PCA) feature scaler and dimension reducer.">PCA</a>) feature scaler and dimension reducer.  <a href="classcmp_1_1scaler_1_1_p_c_a.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_scaler.html">Scaler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template virtual base class for feature scaling and transformation.  <a href="classcmp_1_1scaler_1_1_scaler.html#details">More...</a><br /></td></tr>

@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,11 +106,23 @@ $(document).ready(function(){initNavTree('classcmp_1_1kernel_1_1_bandwidth.html'
 </div><!--header-->
 <div class="contents">
 
+<p>Abstract base class for multivariate KDE bandwidth matrices.  
+ <a href="classcmp_1_1kernel_1_1_bandwidth.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="kernel_09_09_8h_source.html">kernel++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::kernel::Bandwidth:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_bandwidth__inherit__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_bandwidth_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1kernel_1_1_bandwidth_inherit__map" id="acmp_1_1kernel_1_1_bandwidth_inherit__map">
+<area shape="rect" title="Abstract base class for multivariate KDE bandwidth matrices." alt="" coords="5,55,180,80"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html" title="Diagonal bandwidth matrix (independent parameter per dimension)." alt="" coords="228,5,461,31"/>
+<area shape="poly" title=" " alt="" coords="171,49,278,28,279,33,172,55"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_full_bandwidth.html" title="Full covariance bandwidth matrix parameterized by its Cholesky factor." alt="" coords="245,55,444,80"/>
+<area shape="poly" title=" " alt="" coords="194,65,245,65,245,70,194,70"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_isotropic_bandwidth.html" title="Isotropic bandwidth matrix (single scalar parameter h)." alt="" coords="229,104,460,129"/>
+<area shape="poly" title=" " alt="" coords="172,80,279,101,278,107,171,85"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -131,7 +144,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1c1ec89f8c2823ade415bfc22c46ff11" id="r_a1c1ec89f8c2823ade415bfc22c46ff11"><td class="memItemLeft" align="right" valign="top">virtual Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a1c1ec89f8c2823ade415bfc22c46ff11">getParams</a> () const =0</td></tr>
 <tr class="separator:a1c1ec89f8c2823ade415bfc22c46ff11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract base class for multivariate KDE bandwidth matrices. </p>
+<p>Mathematical Formulation The bandwidth matrix \(\mathbf{H} \in \mathbb{R}^{D \times D}\) acts as a linear transformation scaling spatial distances:  </p><p class="formulaDsp">
+\[
+\mathbf{z} = \mathbf{H}^{-1} (\mathbf{x}_1 - \mathbf{x}_2)
+\]
+</p>
+<p> The smoothing kernel scales inversely with the determinant: \(\frac{1}{\det(\mathbf{H})}\).</p>
+<p>Implementation Algorithm Defines virtual methods to compute coordinate scaling (<code>apply</code>), matrix determinant (<code>determinant</code>), and parameter gradients for NLopt optimization. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2bcf9c9c28c36fa4f5c38a779d8f2ae8" name="a2bcf9c9c28c36fa4f5c38a779d8f2ae8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2bcf9c9c28c36fa4f5c38a779d8f2ae8">&#9670;&#160;</a></span>~Bandwidth()</h2>
 

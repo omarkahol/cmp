@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,27 +107,44 @@ $(document).ready(function(){initNavTree('classcmp_1_1grid_1_1_monte_carlo_grid.
 </div><!--header-->
 <div class="contents">
 
+<p>Standard Monte Carlo random grid generator.  
+ <a href="classcmp_1_1grid_1_1_monte_carlo_grid.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="grid_8h_source.html">grid.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::grid::MonteCarloGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_monte_carlo_grid__inherit__graph.png" border="0" usemap="#acmp_1_1grid_1_1_monte_carlo_grid_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1grid_1_1_monte_carlo_grid_inherit__map" id="acmp_1_1grid_1_1_monte_carlo_grid_inherit__map">
+<area shape="rect" title="Standard Monte Carlo random grid generator." alt="" coords="5,79,199,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="43,5,161,31"/>
+<area shape="poly" title=" " alt="" coords="105,44,105,79,99,79,99,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::grid::MonteCarloGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_monte_carlo_grid__coll__graph.png" border="0" usemap="#acmp_1_1grid_1_1_monte_carlo_grid_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1grid_1_1_monte_carlo_grid_coll__map" id="acmp_1_1grid_1_1_monte_carlo_grid_coll__map">
+<area shape="rect" title="Standard Monte Carlo random grid generator." alt="" coords="5,79,199,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="43,5,161,31"/>
+<area shape="poly" title=" " alt="" coords="105,44,105,79,99,79,99,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab770e33976b9a444c6144c2fcc3d6bc0" id="r_ab770e33976b9a444c6144c2fcc3d6bc0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_monte_carlo_grid.html#ab770e33976b9a444c6144c2fcc3d6bc0">MonteCarloGrid</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;lowerBound, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;upperBound, unsigned int seed=42)</td></tr>
+<tr class="memdesc:ab770e33976b9a444c6144c2fcc3d6bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1grid_1_1_monte_carlo_grid.html" title="Standard Monte Carlo random grid generator.">MonteCarloGrid</a> generator.  <br /></td></tr>
 <tr class="separator:ab770e33976b9a444c6144c2fcc3d6bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0afe702679d6e5aae6a086ec961fd483" id="r_a0afe702679d6e5aae6a086ec961fd483"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_monte_carlo_grid.html#a0afe702679d6e5aae6a086ec961fd483">construct</a> (const size_t &amp;nPoints) override</td></tr>
+<tr class="memdesc:a0afe702679d6e5aae6a086ec961fd483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a matrix of random Monte Carlo samples.  <br /></td></tr>
 <tr class="separator:a0afe702679d6e5aae6a086ec961fd483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0eb9f14154a48b03ed37ea87aad1d71" id="r_af0eb9f14154a48b03ed37ea87aad1d71"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_monte_carlo_grid.html#af0eb9f14154a48b03ed37ea87aad1d71">operator()</a> ()</td></tr>
+<tr class="memdesc:af0eb9f14154a48b03ed37ea87aad1d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a single random Monte Carlo sample.  <br /></td></tr>
 <tr class="separator:af0eb9f14154a48b03ed37ea87aad1d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad99f8459f435c900dd6a414e5e7661a8" id="r_ad99f8459f435c900dd6a414e5e7661a8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_monte_carlo_grid.html#ad99f8459f435c900dd6a414e5e7661a8">dim</a> () const override</td></tr>
+<tr class="memdesc:ad99f8459f435c900dd6a414e5e7661a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dimension of the domain.  <br /></td></tr>
 <tr class="separator:ad99f8459f435c900dd6a414e5e7661a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcmp_1_1grid_1_1_grid"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcmp_1_1grid_1_1_grid')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcmp_1_1grid_1_1_grid.html">cmp::grid::Grid</a></td></tr>
 <tr class="memitem:a810aba7babdddc7cd156ef087741bdaf inherit pub_methods_classcmp_1_1grid_1_1_grid" id="r_a810aba7babdddc7cd156ef087741bdaf"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_grid.html#a810aba7babdddc7cd156ef087741bdaf">~Grid</a> ()=default</td></tr>
@@ -145,7 +163,14 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a3d06d1864af6a7c323ffba12c60dd707" id="r_a3d06d1864af6a7c323ffba12c60dd707"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_monte_carlo_grid.html#a3d06d1864af6a7c323ffba12c60dd707">upperBound_</a></td></tr>
 <tr class="separator:a3d06d1864af6a7c323ffba12c60dd707"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Standard Monte Carlo random grid generator. </p>
+<p>Mathematical Formulation Generates independent and identically distributed (i.i.d.) samples drawn uniformly from the design space:  </p><p class="formulaDsp">
+\[
+\mathbf{x}_i \sim \mathcal{U}\left( \prod_{d=1}^D [a_d, b_d] \right)
+\]
+</p>
+ </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab770e33976b9a444c6144c2fcc3d6bc0" name="ab770e33976b9a444c6144c2fcc3d6bc0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab770e33976b9a444c6144c2fcc3d6bc0">&#9670;&#160;</a></span>MonteCarloGrid()</h2>
 
@@ -186,6 +211,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a <a class="el" href="classcmp_1_1grid_1_1_monte_carlo_grid.html" title="Standard Monte Carlo random grid generator.">MonteCarloGrid</a> generator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lowerBound</td><td>The lower bounds of the hyperrectangle. </td></tr>
+    <tr><td class="paramname">upperBound</td><td>The upper bounds of the hyperrectangle. </td></tr>
+    <tr><td class="paramname">seed</td><td>Seed for the pseudo-random number generator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -212,6 +247,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs a matrix of random Monte Carlo samples. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nPoints</td><td>Number of points to generate. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classcmp_1_1grid_1_1_grid.html#a0c0b19ca98cc39bdd96de5d7fa46ee77">cmp::grid::Grid</a>.</p>
 
@@ -240,6 +283,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns the dimension of the domain. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1grid_1_1_grid.html#aa7e12c6dca3c6b86fd0b3eab746bc95b">cmp::grid::Grid</a>.</p>
 
 </div>
@@ -266,6 +311,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Evaluates a single random Monte Carlo sample. </p>
 
 </div>
 </div>

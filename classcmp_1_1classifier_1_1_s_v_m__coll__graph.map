@@ -1,0 +1,5 @@
+<map id="cmp::classifier::SVM" name="cmp::classifier::SVM">
+<area shape="rect" id="Node000001" title="Classifier that uses Support Vector Machine (SVM) for classification." alt="" coords="21,79,174,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers." alt="" coords="5,5,189,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,44,100,79,95,79,95,44"/>
+</map>

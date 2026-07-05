@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -113,24 +114,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1classifier_1_1_k_n_n.html'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9ed1aca7714da899b0261d93ae84b38f" id="r_a9ed1aca7714da899b0261d93ae84b38f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#a9ed1aca7714da899b0261d93ae84b38f">KNN</a> ()=default</td></tr>
-<tr class="separator:a9ed1aca7714da899b0261d93ae84b38f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a683120d033cab65d84a0dad5f14689e2" id="r_a683120d033cab65d84a0dad5f14689e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#a683120d033cab65d84a0dad5f14689e2">compute</a> (const std::vector&lt; Eigen::VectorXd &gt; &amp;points, size_t <a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#ab14d257edb7f10593d734d008d1bca45">k</a>)</td></tr>
+<tr class="memdesc:a683120d033cab65d84a0dad5f14689e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the nearest neighbor index map for the given points.  <br /></td></tr>
 <tr class="separator:a683120d033cab65d84a0dad5f14689e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d4dab364f380b50d2964528321f6dc7" id="r_a5d4dab364f380b50d2964528321f6dc7"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; size_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#a5d4dab364f380b50d2964528321f6dc7">operator[]</a> (size_t i) const</td></tr>
+<tr class="memdesc:a5d4dab364f380b50d2964528321f6dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the list of nearest neighbor indices for the i-th point.  <br /></td></tr>
 <tr class="separator:a5d4dab364f380b50d2964528321f6dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c857acc2f3117c578a020ef5695ba73" id="r_a2c857acc2f3117c578a020ef5695ba73"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#a2c857acc2f3117c578a020ef5695ba73">nPoints</a> () const</td></tr>
+<tr class="memdesc:a2c857acc2f3117c578a020ef5695ba73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total number of points in the dataset.  <br /></td></tr>
 <tr class="separator:a2c857acc2f3117c578a020ef5695ba73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab14d257edb7f10593d734d008d1bca45" id="r_ab14d257edb7f10593d734d008d1bca45"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#ab14d257edb7f10593d734d008d1bca45">k</a> () const</td></tr>
+<tr class="memdesc:ab14d257edb7f10593d734d008d1bca45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of k (number of neighbors).  <br /></td></tr>
 <tr class="separator:ab14d257edb7f10593d734d008d1bca45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a48cfa40a75110ac48cc559fcbe55fbb1" id="r_a48cfa40a75110ac48cc559fcbe55fbb1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; size_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#a48cfa40a75110ac48cc559fcbe55fbb1">neighbours_</a></td></tr>
+<tr class="memdesc:a48cfa40a75110ac48cc559fcbe55fbb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cache containing nearest neighbor indices for each data point.  <br /></td></tr>
 <tr class="separator:a48cfa40a75110ac48cc559fcbe55fbb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e7e9dc0ee2fa074c4f8129be6e5a55" id="r_a78e7e9dc0ee2fa074c4f8129be6e5a55"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#a78e7e9dc0ee2fa074c4f8129be6e5a55">kNearestValue_</a></td></tr>
+<tr class="memdesc:a78e7e9dc0ee2fa074c4f8129be6e5a55"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of nearest neighbors (k).  <br /></td></tr>
 <tr class="separator:a78e7e9dc0ee2fa074c4f8129be6e5a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0840d7055a75035523eb166b6ad6944" id="r_ae0840d7055a75035523eb166b6ad6944"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html#ae0840d7055a75035523eb166b6ad6944">nPoints_</a></td></tr>
+<tr class="memdesc:ae0840d7055a75035523eb166b6ad6944"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of data points.  <br /></td></tr>
 <tr class="separator:ae0840d7055a75035523eb166b6ad6944"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -139,33 +145,7 @@ Private Attributes</h2></td></tr>
 \[ d(\mathbf{x}, \mathbf{x}_i) = \|\mathbf{x} - \mathbf{x}_i\|_2 \]
 </p>
 <p>Implementation Algorithm The <code>compute</code> method builds an indexing/neighbour structure. For each point in the dataset, it searches and stores the indices of its \(k\) nearest neighbors. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9ed1aca7714da899b0261d93ae84b38f" name="a9ed1aca7714da899b0261d93ae84b38f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ed1aca7714da899b0261d93ae84b38f">&#9670;&#160;</a></span>KNN()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">cmp::classifier::KNN::KNN </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a683120d033cab65d84a0dad5f14689e2" name="a683120d033cab65d84a0dad5f14689e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a683120d033cab65d84a0dad5f14689e2">&#9670;&#160;</a></span>compute()</h2>
 
@@ -192,6 +172,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Computes the nearest neighbor index map for the given points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>Vector of data points. </td></tr>
+    <tr><td class="paramname">k</td><td>Number of nearest neighbors to compute. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ab14d257edb7f10593d734d008d1bca45" name="ab14d257edb7f10593d734d008d1bca45"></a>
@@ -208,6 +197,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the value of k (number of neighbors). </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of neighbors. </dd></dl>
 
 </div>
 </div>
@@ -226,6 +218,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the total number of points in the dataset. </p>
+<dl class="section return"><dt>Returns</dt><dd>Size of the dataset. </dd></dl>
+
 </div>
 </div>
 <a id="a5d4dab364f380b50d2964528321f6dc7" name="a5d4dab364f380b50d2964528321f6dc7"></a>
@@ -243,6 +238,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Accesses the list of nearest neighbor indices for the i-th point. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>Index of the query point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to a vector of neighbor indices. </dd></dl>
 
 </div>
 </div>
@@ -267,6 +271,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The number of nearest neighbors (k). </p>
+
 </div>
 </div>
 <a id="a48cfa40a75110ac48cc559fcbe55fbb1" name="a48cfa40a75110ac48cc559fcbe55fbb1"></a>
@@ -289,6 +295,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Cache containing nearest neighbor indices for each data point. </p>
+
 </div>
 </div>
 <a id="ae0840d7055a75035523eb166b6ad6944" name="ae0840d7055a75035523eb166b6ad6944"></a>
@@ -310,6 +318,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Total number of data points. </p>
 
 </div>
 </div>

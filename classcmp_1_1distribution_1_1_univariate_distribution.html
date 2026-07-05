@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,24 +106,45 @@ $(document).ready(function(){initNavTree('classcmp_1_1distribution_1_1_univariat
 </div><!--header-->
 <div class="contents">
 
+<p>CRTP base class for all univariate probability distributions.  
+ <a href="classcmp_1_1distribution_1_1_univariate_distribution.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="distribution_8h_source.html">distribution.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9931f4f984317ac7bd92e0cefa5162ea" id="r_a9931f4f984317ac7bd92e0cefa5162ea"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a9931f4f984317ac7bd92e0cefa5162ea">logPDF</a> (const double &amp;x) const</td></tr>
+<tr class="memdesc:a9931f4f984317ac7bd92e0cefa5162ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the log probability density function (log-PDF) of the distribution.  <br /></td></tr>
 <tr class="separator:a9931f4f984317ac7bd92e0cefa5162ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e2fb25e16d8a5be4e07aaaf7176baf3" id="r_a0e2fb25e16d8a5be4e07aaaf7176baf3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a0e2fb25e16d8a5be4e07aaaf7176baf3">dLogPDF</a> (const double &amp;x) const</td></tr>
+<tr class="memdesc:a0e2fb25e16d8a5be4e07aaaf7176baf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the first derivative of the log-PDF.  <br /></td></tr>
 <tr class="separator:a0e2fb25e16d8a5be4e07aaaf7176baf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9007089eadc69399bd8a7439a0f23daf" id="r_a9007089eadc69399bd8a7439a0f23daf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a9007089eadc69399bd8a7439a0f23daf">ddLogPDF</a> (const double &amp;x) const</td></tr>
+<tr class="memdesc:a9007089eadc69399bd8a7439a0f23daf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the second derivative of the log-PDF.  <br /></td></tr>
 <tr class="separator:a9007089eadc69399bd8a7439a0f23daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bbc084f54acc7b70441727ed118f4aa" id="r_a8bbc084f54acc7b70441727ed118f4aa"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a8bbc084f54acc7b70441727ed118f4aa">CDF</a> (const double &amp;x) const</td></tr>
+<tr class="memdesc:a8bbc084f54acc7b70441727ed118f4aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the cumulative distribution function (CDF).  <br /></td></tr>
 <tr class="separator:a8bbc084f54acc7b70441727ed118f4aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01a92715e42ea2aaf4cb459f88370667" id="r_a01a92715e42ea2aaf4cb459f88370667"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a01a92715e42ea2aaf4cb459f88370667">quantile</a> (const double &amp;p) const</td></tr>
+<tr class="memdesc:a01a92715e42ea2aaf4cb459f88370667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the quantile function (inverse CDF).  <br /></td></tr>
 <tr class="separator:a01a92715e42ea2aaf4cb459f88370667"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a476afdc57d8b5855586323f45488ed96" id="r_a476afdc57d8b5855586323f45488ed96"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a476afdc57d8b5855586323f45488ed96">sample</a> (std::default_random_engine &amp;rng)</td></tr>
+<tr class="memdesc:a476afdc57d8b5855586323f45488ed96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a single pseudo-random sample from the distribution.  <br /></td></tr>
 <tr class="separator:a476afdc57d8b5855586323f45488ed96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Derived&gt;<br />
+class cmp::distribution::UnivariateDistribution&lt; Derived &gt;</div><p>CRTP base class for all univariate probability distributions. </p>
+<p>Mathematical Formulation Defines a probability distribution over a scalar random variable \(X \in \mathbb{R}\) with probability density function \(p(x)\). Provides static polymorphic interfaces for:</p><ul>
+<li>Log-likelihood: \(\log p(x)\)</li>
+<li>First-order score: \(\frac{d}{dx} \log p(x)\)</li>
+<li>Second-order Hessian: \(\frac{d^2}{dx^2} \log p(x)\)</li>
+<li>Cumulative distribution function (CDF): \(F(x) = \int_{-\infty}^x p(t) dt\)</li>
+<li><p class="startli">Quantile function: \(F^{-1}(p)\) for \(p \in [0, 1]\)</p>
+<p class="startli">Implementation Algorithm Uses the Curiously Recurring Template Pattern (CRTP) for compile-time devirtualization of statistical calls. </p>
+</li>
+</ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8bbc084f54acc7b70441727ed118f4aa" name="a8bbc084f54acc7b70441727ed118f4aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8bbc084f54acc7b70441727ed118f4aa">&#9670;&#160;</a></span>CDF()</h2>
 
@@ -148,6 +170,15 @@ template&lt;typename Derived &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Computes the cumulative distribution function (CDF). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Point at which to evaluate the CDF. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluated CDF value in [0, 1]. </dd></dl>
 
 </div>
 </div>
@@ -177,6 +208,15 @@ template&lt;typename Derived &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the second derivative of the log-PDF. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Point at which to evaluate the second derivative. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluated second derivative. </dd></dl>
+
 </div>
 </div>
 <a id="a0e2fb25e16d8a5be4e07aaaf7176baf3" name="a0e2fb25e16d8a5be4e07aaaf7176baf3"></a>
@@ -204,6 +244,15 @@ template&lt;typename Derived &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Computes the first derivative of the log-PDF. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Point at which to evaluate the derivative. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluated first derivative. </dd></dl>
 
 </div>
 </div>
@@ -233,6 +282,15 @@ template&lt;typename Derived &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the log probability density function (log-PDF) of the distribution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Point at which to evaluate the log-PDF. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluated log-PDF. </dd></dl>
+
 </div>
 </div>
 <a id="a01a92715e42ea2aaf4cb459f88370667" name="a01a92715e42ea2aaf4cb459f88370667"></a>
@@ -261,6 +319,15 @@ template&lt;typename Derived &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the quantile function (inverse CDF). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Probability value in [0, 1]. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The quantile value x such that CDF(x) = p. </dd></dl>
+
 </div>
 </div>
 <a id="a476afdc57d8b5855586323f45488ed96" name="a476afdc57d8b5855586323f45488ed96"></a>
@@ -288,6 +355,15 @@ template&lt;typename Derived &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Draws a single pseudo-random sample from the distribution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rng</td><td>Random number engine. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A random sample. </dd></dl>
 
 </div>
 </div>

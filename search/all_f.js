@@ -15,6 +15,7 @@ var searchData=
   ['operator_5b_5d_12',['operator[]',['../classcmp_1_1classifier_1_1_k_n_n.html#a5d4dab364f380b50d2964528321f6dc7',1,'cmp::classifier::KNN::operator[]()'],['../classcmp_1_1cluster_1_1_geometric_cluster.html#a046053468202d006e673a8bd241e25af',1,'cmp::cluster::GeometricCluster::operator[]()'],['../classcmp_1_1_model_cluster.html#ae448f40ad086700b4925aa20193fb1d9',1,'cmp::ModelCluster::operator[]()'],['../classcmp_1_1_model_cluster_poly.html#ad68921c5cc117d9a5a1f208f15ec4720',1,'cmp::ModelClusterPoly::operator[]()'],['../classcmp_1_1gp_1_1_multi_output_gaussian_process.html#ae557729de3199b26db41742eb48644d7',1,'cmp::gp::MultiOutputGaussianProcess::operator[]()'],['../classcmp_1_1_multi_index.html#a8b472dd11eb6f1c47a0207bd139df78d',1,'cmp::MultiIndex::operator[]()']]],
   ['optimization_2ecpp_13',['optimization.cpp',['../optimization_8cpp.html',1,'']]],
   ['optimization_2eh_14',['optimization.h',['../optimization_8h.html',1,'']]],
-  ['overview_15',['Architectural &amp; Mathematical Overview',['../index.html#overview_sec',1,'']]],
-  ['owen_5fscramble_16',['owen_scramble',['../classcmp_1_1grid_1_1_scrambled_sobol_grid.html#a163f8a21135138f16ec10831ecbabf32',1,'cmp::grid::ScrambledSobolGrid']]]
+  ['organization_20source_20headers_15',['File Organization &amp; Source Headers',['../index.html#quickstart_sec',1,'']]],
+  ['overview_16',['Architectural &amp; Scientific Overview',['../index.html#overview_sec',1,'']]],
+  ['owen_5fscramble_17',['owen_scramble',['../classcmp_1_1grid_1_1_scrambled_sobol_grid.html#a163f8a21135138f16ec10831ecbabf32',1,'cmp::grid::ScrambledSobolGrid']]]
 ];

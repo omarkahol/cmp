@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,27 +106,58 @@ $(document).ready(function(){initNavTree('classcmp_1_1distribution_1_1_multivari
 </div><!--header-->
 <div class="contents">
 
+<p>CRTP base class for all multivariate probability distributions.  
+ <a href="classcmp_1_1distribution_1_1_multivariate_distribution.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="distribution_8h_source.html">distribution.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::distribution::MultivariateDistribution&lt; Derived &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1distribution_1_1_multivariate_distribution__inherit__graph.png" border="0" usemap="#acmp_1_1distribution_1_1_multivariate_distribution_3_01_derived_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1distribution_1_1_multivariate_distribution_3_01_derived_01_4_inherit__map" id="acmp_1_1distribution_1_1_multivariate_distribution_3_01_derived_01_4_inherit__map">
+<area shape="rect" title="CRTP base class for all multivariate probability distributions." alt="" coords="5,84,183,139"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_proposal_distribution.html" title=" " alt="" coords="232,5,487,60"/>
+<area shape="poly" title=" " alt="" coords="195,79,266,58,267,63,196,84"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_proposal_distribution.html" title=" " alt="" coords="231,84,488,139"/>
+<area shape="poly" title=" " alt="" coords="196,109,231,109,231,114,196,114"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_proposal_distribution.html" title=" " alt="" coords="282,163,437,217"/>
+<area shape="poly" title=" " alt="" coords="197,139,283,165,281,170,195,144"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_multivariate_normal_distribution.html" title=" " alt="" coords="537,13,762,53"/>
+<area shape="poly" title=" " alt="" coords="500,30,537,30,537,35,500,35"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_multivariate_student_distribution.html" title=" " alt="" coords="536,91,763,131"/>
+<area shape="poly" title=" " alt="" coords="502,109,536,109,536,114,502,114"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adf3b1409c78a9180147df5ff4d9c65cd" id="r_adf3b1409c78a9180147df5ff4d9c65cd"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_multivariate_distribution.html#adf3b1409c78a9180147df5ff4d9c65cd">logPDF</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;x) const</td></tr>
+<tr class="memdesc:adf3b1409c78a9180147df5ff4d9c65cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the joint log probability density function (log-PDF) of the distribution.  <br /></td></tr>
 <tr class="separator:adf3b1409c78a9180147df5ff4d9c65cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11d88504b8e41a0d7cf53407a851ddc2" id="r_a11d88504b8e41a0d7cf53407a851ddc2"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_multivariate_distribution.html#a11d88504b8e41a0d7cf53407a851ddc2">sample</a> (std::default_random_engine &amp;rng)</td></tr>
+<tr class="memdesc:a11d88504b8e41a0d7cf53407a851ddc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a single vector sample from the joint distribution.  <br /></td></tr>
 <tr class="separator:a11d88504b8e41a0d7cf53407a851ddc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab20c160e414e53d0082fa02b6bfa90a" id="r_aab20c160e414e53d0082fa02b6bfa90a"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_multivariate_distribution.html#aab20c160e414e53d0082fa02b6bfa90a">toCanonical</a> (const Eigen::MatrixXd &amp;x) const</td></tr>
+<tr class="memdesc:aab20c160e414e53d0082fa02b6bfa90a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms physical samples to standard canonical space.  <br /></td></tr>
 <tr class="separator:aab20c160e414e53d0082fa02b6bfa90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9cfbac42c99982f2abe4f8b46bca784" id="r_ad9cfbac42c99982f2abe4f8b46bca784"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_multivariate_distribution.html#ad9cfbac42c99982f2abe4f8b46bca784">fromCanonical</a> (const Eigen::MatrixXd &amp;x) const</td></tr>
+<tr class="memdesc:ad9cfbac42c99982f2abe4f8b46bca784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms standard canonical samples back to physical space.  <br /></td></tr>
 <tr class="separator:ad9cfbac42c99982f2abe4f8b46bca784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7af8e6314ab5158173f1c7809c3c9aa" id="r_ae7af8e6314ab5158173f1c7809c3c9aa"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_multivariate_distribution.html#ae7af8e6314ab5158173f1c7809c3c9aa">dimension</a> () const</td></tr>
+<tr class="memdesc:ae7af8e6314ab5158173f1c7809c3c9aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dimensionality of the multivariate space.  <br /></td></tr>
 <tr class="separator:ae7af8e6314ab5158173f1c7809c3c9aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Derived&gt;<br />
+class cmp::distribution::MultivariateDistribution&lt; Derived &gt;</div><p>CRTP base class for all multivariate probability distributions. </p>
+<p>Mathematical Formulation Defines a probability distribution over a random vector \(\mathbf{X} \in \mathbb{R}^d\) with joint probability density function \(p(\mathbf{x})\). Provides static polymorphic interfaces for:</p><ul>
+<li>Joint log-likelihood: \(\log p(\mathbf{x})\)</li>
+<li>Vector sampling: drawing \(\mathbf{x} \sim p(\mathbf{x})\)</li>
+<li><p class="startli">Canonical transformations (bijective mapping to/from standard multivariate space).</p>
+<p class="startli">Implementation Algorithm Uses the Curiously Recurring Template Pattern (CRTP) to implement static polymorphism. </p>
+</li>
+</ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae7af8e6314ab5158173f1c7809c3c9aa" name="ae7af8e6314ab5158173f1c7809c3c9aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7af8e6314ab5158173f1c7809c3c9aa">&#9670;&#160;</a></span>dimension()</h2>
 
@@ -150,6 +182,8 @@ template&lt;typename Derived &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the dimensionality of the multivariate space. </p>
 
 </div>
 </div>
@@ -179,6 +213,15 @@ template&lt;typename Derived &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Transforms standard canonical samples back to physical space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Matrix of canonical samples. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Matrix of physical samples. </dd></dl>
+
 </div>
 </div>
 <a id="adf3b1409c78a9180147df5ff4d9c65cd" name="adf3b1409c78a9180147df5ff4d9c65cd"></a>
@@ -206,6 +249,15 @@ template&lt;typename Derived &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Computes the joint log probability density function (log-PDF) of the distribution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Vector point at which to evaluate the log-PDF. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluated log-PDF. </dd></dl>
 
 </div>
 </div>
@@ -235,6 +287,15 @@ template&lt;typename Derived &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Draws a single vector sample from the joint distribution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rng</td><td>Random number engine. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Random vector sample. </dd></dl>
+
 </div>
 </div>
 <a id="aab20c160e414e53d0082fa02b6bfa90a" name="aab20c160e414e53d0082fa02b6bfa90a"></a>
@@ -262,6 +323,15 @@ template&lt;typename Derived &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Transforms physical samples to standard canonical space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Matrix of physical samples (each row is a sample). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Matrix of canonical samples. </dd></dl>
 
 </div>
 </div>

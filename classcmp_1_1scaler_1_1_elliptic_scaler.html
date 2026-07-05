@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,16 +107,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1scaler_1_1_elliptic_scaler
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently (diagonal variance scaling).  
+ <a href="classcmp_1_1scaler_1_1_elliptic_scaler.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="scaler_8h_source.html">scaler.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::scaler::EllipticScaler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1scaler_1_1_elliptic_scaler__inherit__graph.png" border="0" usemap="#acmp_1_1scaler_1_1_elliptic_scaler_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1scaler_1_1_elliptic_scaler_inherit__map" id="acmp_1_1scaler_1_1_elliptic_scaler_inherit__map">
+<area shape="rect" title="Scaler that standardizes features independently (diagonal variance scaling)." alt="" coords="5,79,195,104"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="27,5,173,31"/>
+<area shape="poly" title=" " alt="" coords="103,44,103,79,97,79,97,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::scaler::EllipticScaler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1scaler_1_1_elliptic_scaler__coll__graph.png" border="0" usemap="#acmp_1_1scaler_1_1_elliptic_scaler_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1scaler_1_1_elliptic_scaler_coll__map" id="acmp_1_1scaler_1_1_elliptic_scaler_coll__map">
+<area shape="rect" title="Scaler that standardizes features independently (diagonal variance scaling)." alt="" coords="5,79,195,104"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="27,5,173,31"/>
+<area shape="poly" title=" " alt="" coords="103,44,103,79,97,79,97,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -123,6 +137,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4cc577e745eed3d8d04ea3b22886a92b" id="r_a4cc577e745eed3d8d04ea3b22886a92b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a4cc577e745eed3d8d04ea3b22886a92b">EllipticScaler</a> ()=default</td></tr>
 <tr class="separator:a4cc577e745eed3d8d04ea3b22886a92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a769b58f04d54d6ccda9c9e48291a0401" id="r_a769b58f04d54d6ccda9c9e48291a0401"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a769b58f04d54d6ccda9c9e48291a0401">EllipticScaler</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;mean, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;std)</td></tr>
+<tr class="memdesc:a769b58f04d54d6ccda9c9e48291a0401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently (diagonal variance scaling).">EllipticScaler</a> with specified mean and standard deviations.  <br /></td></tr>
 <tr class="separator:a769b58f04d54d6ccda9c9e48291a0401"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53f8d1f69524076db56af2a709881414" id="r_a53f8d1f69524076db56af2a709881414"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a53f8d1f69524076db56af2a709881414">EllipticScaler</a> (const <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;other)=default</td></tr>
 <tr class="separator:a53f8d1f69524076db56af2a709881414"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,20 +150,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab596ef021cf6fc07d008e18179c2e05d" id="r_ab596ef021cf6fc07d008e18179c2e05d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#ab596ef021cf6fc07d008e18179c2e05d">operator=</a> (<a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html">EllipticScaler</a> &amp;&amp;other)=default</td></tr>
 <tr class="separator:ab596ef021cf6fc07d008e18179c2e05d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9165c49ba109a73f91bdfeb288c1f4c" id="r_aa9165c49ba109a73f91bdfeb288c1f4c"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#aa9165c49ba109a73f91bdfeb288c1f4c">transform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
+<tr class="memdesc:aa9165c49ba109a73f91bdfeb288c1f4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standardizes the input data vector.  <br /></td></tr>
 <tr class="separator:aa9165c49ba109a73f91bdfeb288c1f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0527554327168152d5bb453ca4928953" id="r_a0527554327168152d5bb453ca4928953"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a0527554327168152d5bb453ca4928953">inverseTransform</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;data) const override</td></tr>
+<tr class="memdesc:a0527554327168152d5bb453ca4928953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unstandardizes the input data vector back to physical space.  <br /></td></tr>
 <tr class="separator:a0527554327168152d5bb453ca4928953"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4702e651e83aac9b13cb75ca1600531c" id="r_a4702e651e83aac9b13cb75ca1600531c"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a4702e651e83aac9b13cb75ca1600531c">getIntercept</a> () const override</td></tr>
 <tr class="separator:a4702e651e83aac9b13cb75ca1600531c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7ee167e34c4c747dbea374196cd6a18" id="r_aa7ee167e34c4c747dbea374196cd6a18"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#aa7ee167e34c4c747dbea374196cd6a18">getScale</a> () const override</td></tr>
 <tr class="separator:aa7ee167e34c4c747dbea374196cd6a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a044939a8e126affba4a3ca42f037590d" id="r_a044939a8e126affba4a3ca42f037590d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a044939a8e126affba4a3ca42f037590d">fit</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
+<tr class="memdesc:a044939a8e126affba4a3ca42f037590d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the mean and standard deviation of each coordinate of the training data.  <br /></td></tr>
 <tr class="separator:a044939a8e126affba4a3ca42f037590d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a657486b28e38db1d45eab3fb452fbd37" id="r_a657486b28e38db1d45eab3fb452fbd37"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a657486b28e38db1d45eab3fb452fbd37">fit_transform</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data) override</td></tr>
+<tr class="memdesc:a657486b28e38db1d45eab3fb452fbd37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the scaler and returns standardized data.  <br /></td></tr>
 <tr class="separator:a657486b28e38db1d45eab3fb452fbd37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bc119f6ef15a7ee235e493f6b2b34bb" id="r_a7bc119f6ef15a7ee235e493f6b2b34bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a7bc119f6ef15a7ee235e493f6b2b34bb">setMean</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;mean)</td></tr>
+<tr class="memdesc:a7bc119f6ef15a7ee235e493f6b2b34bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly sets the mean parameters.  <br /></td></tr>
 <tr class="separator:a7bc119f6ef15a7ee235e493f6b2b34bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a157800ab1b134d2700b56a2dc6244205" id="r_a157800ab1b134d2700b56a2dc6244205"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#a157800ab1b134d2700b56a2dc6244205">setStd</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;std)</td></tr>
+<tr class="memdesc:a157800ab1b134d2700b56a2dc6244205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicitly sets the standard deviation scaling parameters.  <br /></td></tr>
 <tr class="separator:a157800ab1b134d2700b56a2dc6244205"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -158,7 +179,14 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ad92d211a4816b5c773c2f80f20624106" id="r_ad92d211a4816b5c773c2f80f20624106"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html#ad92d211a4816b5c773c2f80f20624106">std_</a></td></tr>
 <tr class="separator:ad92d211a4816b5c773c2f80f20624106"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation.">Scaler</a> that standardizes features independently (diagonal variance scaling). </p>
+<p>Mathematical Formulation Standardizes each feature coordinate independently:  </p><p class="formulaDsp">
+\[
+y_j = \frac{x_j - \mu_j}{\sigma_j}
+\]
+</p>
+ </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4cc577e745eed3d8d04ea3b22886a92b" name="a4cc577e745eed3d8d04ea3b22886a92b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4cc577e745eed3d8d04ea3b22886a92b">&#9670;&#160;</a></span>EllipticScaler() <span class="overload">[1/4]</span></h2>
 
@@ -217,6 +245,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs an <a class="el" href="classcmp_1_1scaler_1_1_elliptic_scaler.html" title="Scaler that standardizes features independently (diagonal variance scaling).">EllipticScaler</a> with specified mean and standard deviations. </p>
 
 </div>
 </div>
@@ -322,6 +352,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Fits the mean and standard deviation of each coordinate of the training data. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a034490dc8b97ab47a73ca3ffb3b6db66">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -349,6 +381,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Fits the scaler and returns standardized data. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a51d8c5c552334f8a92975516acb811f4">cmp::scaler::Scaler</a>.</p>
 
@@ -432,6 +466,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Unstandardizes the input data vector back to physical space. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#a34c7739c949f4603ec1a430daf405dec">cmp::scaler::Scaler</a>.</p>
 
 </div>
@@ -512,6 +548,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Explicitly sets the mean parameters. </p>
+
 </div>
 </div>
 <a id="a157800ab1b134d2700b56a2dc6244205" name="a157800ab1b134d2700b56a2dc6244205"></a>
@@ -538,6 +576,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Explicitly sets the standard deviation scaling parameters. </p>
+
 </div>
 </div>
 <a id="aa9165c49ba109a73f91bdfeb288c1f4c" name="aa9165c49ba109a73f91bdfeb288c1f4c"></a>
@@ -563,6 +603,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Standardizes the input data vector. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1scaler_1_1_scaler.html#ada894025d92d10d357205a79ffe5f8f1">cmp::scaler::Scaler</a>.</p>
 

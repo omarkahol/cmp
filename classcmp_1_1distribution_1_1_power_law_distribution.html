@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -111,11 +112,21 @@ $(document).ready(function(){initNavTree('classcmp_1_1distribution_1_1_power_law
 Inheritance diagram for cmp::distribution::PowerLawDistribution:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1distribution_1_1_power_law_distribution__inherit__graph.png" border="0" usemap="#acmp_1_1distribution_1_1_power_law_distribution_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1distribution_1_1_power_law_distribution_inherit__map" id="acmp_1_1distribution_1_1_power_law_distribution_inherit__map">
+<area shape="rect" title=" " alt="" coords="21,108,185,148"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_univariate_distribution.html" title=" " alt="" coords="5,5,200,60"/>
+<area shape="poly" title=" " alt="" coords="105,74,105,108,100,108,100,74"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::distribution::PowerLawDistribution:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1distribution_1_1_power_law_distribution__coll__graph.png" border="0" usemap="#acmp_1_1distribution_1_1_power_law_distribution_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1distribution_1_1_power_law_distribution_coll__map" id="acmp_1_1distribution_1_1_power_law_distribution_coll__map">
+<area shape="rect" title=" " alt="" coords="21,108,185,148"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_univariate_distribution.html" title=" " alt="" coords="5,5,200,60"/>
+<area shape="poly" title=" " alt="" coords="105,74,105,108,100,108,100,74"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -140,25 +151,34 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a86a6f5725a0b627fe115e5980e829bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcmp_1_1distribution_1_1_univariate_distribution')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html">cmp::distribution::UnivariateDistribution&lt; PowerLawDistribution &gt;</a></td></tr>
 <tr class="memitem:a9931f4f984317ac7bd92e0cefa5162ea inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution" id="r_a9931f4f984317ac7bd92e0cefa5162ea"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a9931f4f984317ac7bd92e0cefa5162ea">logPDF</a> (const double &amp;x) const</td></tr>
+<tr class="memdesc:a9931f4f984317ac7bd92e0cefa5162ea inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the log probability density function (log-PDF) of the distribution.  <br /></td></tr>
 <tr class="separator:a9931f4f984317ac7bd92e0cefa5162ea inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e2fb25e16d8a5be4e07aaaf7176baf3 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution" id="r_a0e2fb25e16d8a5be4e07aaaf7176baf3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a0e2fb25e16d8a5be4e07aaaf7176baf3">dLogPDF</a> (const double &amp;x) const</td></tr>
+<tr class="memdesc:a0e2fb25e16d8a5be4e07aaaf7176baf3 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the first derivative of the log-PDF.  <br /></td></tr>
 <tr class="separator:a0e2fb25e16d8a5be4e07aaaf7176baf3 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9007089eadc69399bd8a7439a0f23daf inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution" id="r_a9007089eadc69399bd8a7439a0f23daf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a9007089eadc69399bd8a7439a0f23daf">ddLogPDF</a> (const double &amp;x) const</td></tr>
+<tr class="memdesc:a9007089eadc69399bd8a7439a0f23daf inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the second derivative of the log-PDF.  <br /></td></tr>
 <tr class="separator:a9007089eadc69399bd8a7439a0f23daf inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bbc084f54acc7b70441727ed118f4aa inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution" id="r_a8bbc084f54acc7b70441727ed118f4aa"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a8bbc084f54acc7b70441727ed118f4aa">CDF</a> (const double &amp;x) const</td></tr>
+<tr class="memdesc:a8bbc084f54acc7b70441727ed118f4aa inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the cumulative distribution function (CDF).  <br /></td></tr>
 <tr class="separator:a8bbc084f54acc7b70441727ed118f4aa inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01a92715e42ea2aaf4cb459f88370667 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution" id="r_a01a92715e42ea2aaf4cb459f88370667"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a01a92715e42ea2aaf4cb459f88370667">quantile</a> (const double &amp;p) const</td></tr>
+<tr class="memdesc:a01a92715e42ea2aaf4cb459f88370667 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the quantile function (inverse CDF).  <br /></td></tr>
 <tr class="separator:a01a92715e42ea2aaf4cb459f88370667 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a476afdc57d8b5855586323f45488ed96 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution" id="r_a476afdc57d8b5855586323f45488ed96"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_univariate_distribution.html#a476afdc57d8b5855586323f45488ed96">sample</a> (std::default_random_engine &amp;rng)</td></tr>
+<tr class="memdesc:a476afdc57d8b5855586323f45488ed96 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a single pseudo-random sample from the distribution.  <br /></td></tr>
 <tr class="separator:a476afdc57d8b5855586323f45488ed96 inherit pub_methods_classcmp_1_1distribution_1_1_univariate_distribution"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a7fb43accdf4946b0a28181623b62ea65" id="r_a7fb43accdf4946b0a28181623b62ea65"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_power_law_distribution.html#a7fb43accdf4946b0a28181623b62ea65">degree_</a></td></tr>
+<tr class="memdesc:a7fb43accdf4946b0a28181623b62ea65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power law degree parameter (exponent).  <br /></td></tr>
 <tr class="separator:a7fb43accdf4946b0a28181623b62ea65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7592c97bd1f46461062a7b5750f25566" id="r_a7592c97bd1f46461062a7b5750f25566"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_power_law_distribution.html#a7592c97bd1f46461062a7b5750f25566">lowerBound_</a></td></tr>
+<tr class="memdesc:a7592c97bd1f46461062a7b5750f25566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower bound parameter.  <br /></td></tr>
 <tr class="separator:a7592c97bd1f46461062a7b5750f25566"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abee83e20e9e9cf5e37da252fab90ae10" id="r_abee83e20e9e9cf5e37da252fab90ae10"><td class="memItemLeft" align="right" valign="top">std::uniform_real_distribution&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1distribution_1_1_power_law_distribution.html#abee83e20e9e9cf5e37da252fab90ae10">distU_</a></td></tr>
+<tr class="memdesc:abee83e20e9e9cf5e37da252fab90ae10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform distribution helper for sampling.  <br /></td></tr>
 <tr class="separator:abee83e20e9e9cf5e37da252fab90ae10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -427,6 +447,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Power law degree parameter (exponent). </p>
+
 </div>
 </div>
 <a id="abee83e20e9e9cf5e37da252fab90ae10" name="abee83e20e9e9cf5e37da252fab90ae10"></a>
@@ -449,6 +471,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Uniform distribution helper for sampling. </p>
+
 </div>
 </div>
 <a id="a7592c97bd1f46461062a7b5750f25566" name="a7592c97bd1f46461062a7b5750f25566"></a>
@@ -470,6 +494,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Lower bound parameter. </p>
 
 </div>
 </div>

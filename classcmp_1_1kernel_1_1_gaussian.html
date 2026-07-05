@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,16 +107,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1kernel_1_1_gaussian.html',
 </div><!--header-->
 <div class="contents">
 
+<p>Standard <a class="el" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel.">Gaussian</a> density kernel.  
+ <a href="classcmp_1_1kernel_1_1_gaussian.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="kernel_09_09_8h_source.html">kernel++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::kernel::Gaussian:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_gaussian__inherit__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_gaussian_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1kernel_1_1_gaussian_inherit__map" id="acmp_1_1kernel_1_1_gaussian_inherit__map">
+<area shape="rect" title="Standard Gaussian density kernel." alt="" coords="5,79,172,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="15,5,162,31"/>
+<area shape="poly" title=" " alt="" coords="91,44,91,79,86,79,86,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::kernel::Gaussian:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_gaussian__coll__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_gaussian_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1kernel_1_1_gaussian_coll__map" id="acmp_1_1kernel_1_1_gaussian_coll__map">
+<area shape="rect" title="Standard Gaussian density kernel." alt="" coords="5,79,172,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="15,5,162,31"/>
+<area shape="poly" title=" " alt="" coords="91,44,91,79,86,79,86,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -123,10 +137,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e9f7bd5513c1c92df9021315297fe55" id="r_a8e9f7bd5513c1c92df9021315297fe55"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_gaussian.html#a8e9f7bd5513c1c92df9021315297fe55">Gaussian</a> ()=default</td></tr>
 <tr class="separator:a8e9f7bd5513c1c92df9021315297fe55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45c5037253b8b75056a5dbdbac8eacea" id="r_a45c5037253b8b75056a5dbdbac8eacea"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_gaussian.html#a45c5037253b8b75056a5dbdbac8eacea">eval</a> (const Eigen::VectorXd &amp;z_diff) const override</td></tr>
+<tr class="memdesc:a45c5037253b8b75056a5dbdbac8eacea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates the unnormalized <a class="el" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel.">Gaussian</a> kernel.  <br /></td></tr>
 <tr class="separator:a45c5037253b8b75056a5dbdbac8eacea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca2277b5c630a150e95a1401576d90a4" id="r_aca2277b5c630a150e95a1401576d90a4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_gaussian.html#aca2277b5c630a150e95a1401576d90a4">normalizationConstant</a> (const size_t &amp;dim) const override</td></tr>
+<tr class="memdesc:aca2277b5c630a150e95a1401576d90a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the normalization constant for a given dimension.  <br /></td></tr>
 <tr class="separator:aca2277b5c630a150e95a1401576d90a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28505136011d51c47cf5a545d5e7fda8" id="r_a28505136011d51c47cf5a545d5e7fda8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_gaussian.html#a28505136011d51c47cf5a545d5e7fda8">applyToGradient</a> (const Eigen::VectorXd &amp;z, const Eigen::VectorXd &amp;grad_z_i) const override</td></tr>
+<tr class="memdesc:a28505136011d51c47cf5a545d5e7fda8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the gradient of the kernel evaluation.  <br /></td></tr>
 <tr class="separator:a28505136011d51c47cf5a545d5e7fda8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcmp_1_1kernel_1_1_kernel"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcmp_1_1kernel_1_1_kernel')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">cmp::kernel::Kernel</a></td></tr>
 <tr class="memitem:aad1d785fbdc3a74aedfa575053b09bb0 inherit pub_methods_classcmp_1_1kernel_1_1_kernel" id="r_aad1d785fbdc3a74aedfa575053b09bb0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_kernel.html#aad1d785fbdc3a74aedfa575053b09bb0">~Kernel</a> ()=default</td></tr>
@@ -135,9 +152,17 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a2ad6859667a4598245cb917eb4ce4d0c" id="r_a2ad6859667a4598245cb917eb4ce4d0c"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">Kernel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_gaussian.html#a2ad6859667a4598245cb917eb4ce4d0c">make</a> ()</td></tr>
+<tr class="memdesc:a2ad6859667a4598245cb917eb4ce4d0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory method for creating a <a class="el" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel.">Gaussian</a> kernel.  <br /></td></tr>
 <tr class="separator:a2ad6859667a4598245cb917eb4ce4d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Standard <a class="el" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel.">Gaussian</a> density kernel. </p>
+<p>Mathematical Formulation The standard multivariate <a class="el" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel.">Gaussian</a> density kernel:  </p><p class="formulaDsp">
+\[
+K(\mathbf{z}) = (2\pi)^{-D/2} \exp\left(-\frac{1}{2} \|\mathbf{z}\|_2^2 \right)
+\]
+</p>
+ </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8e9f7bd5513c1c92df9021315297fe55" name="a8e9f7bd5513c1c92df9021315297fe55"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e9f7bd5513c1c92df9021315297fe55">&#9670;&#160;</a></span>Gaussian()</h2>
 
@@ -198,6 +223,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the gradient of the kernel evaluation. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#aad7b69ab20fe331b1b9e64ca9afa10ad">cmp::kernel::Kernel</a>.</p>
 
 </div>
@@ -226,6 +253,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Evaluates the unnormalized <a class="el" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel.">Gaussian</a> kernel. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#a93a0f6bc1b69f2398d9fdc0f36bd01bb">cmp::kernel::Kernel</a>.</p>
 
 </div>
@@ -253,6 +282,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Factory method for creating a <a class="el" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel.">Gaussian</a> kernel. </p>
+
 </div>
 </div>
 <a id="aca2277b5c630a150e95a1401576d90a4" name="aca2277b5c630a150e95a1401576d90a4"></a>
@@ -278,6 +309,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the normalization constant for a given dimension. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#a8e73dd33c293a97bb12cb3dc1b22725a">cmp::kernel::Kernel</a>.</p>
 

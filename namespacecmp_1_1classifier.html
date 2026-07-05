@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -101,7 +102,7 @@ $(document).ready(function(){initNavTree('namespacecmp_1_1classifier.html',''); 
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
-  <div class="headertitle"><div class="title">cmp::classifier Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">cmp::classifier Namespace Reference<div class="ingroups"><a class="el" href="group__classifiers.html">Classifiers</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -111,15 +112,16 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for all classifiers.  <a href="classcmp_1_1classifier_1_1_classifier.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_dummy.html">Dummy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Baseline classifier predicting class labels based on training frequency distributions.  <a href="classcmp_1_1classifier_1_1_dummy.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_d_e.html">KDE</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers.">Classifier</a> that uses Kernel Density Estimation (<a class="el" href="classcmp_1_1classifier_1_1_k_d_e.html" title="Classifier that uses Kernel Density Estimation (KDE) for classification. This class implements a non-...">KDE</a>) for classification. This class implements a non-parametric method to estimate the probability density function of a random variable. It uses a kernel function to smooth the observations and estimate the density. It can be used for classification by predicting the class probabilities based on the estimated densities.  <a href="classcmp_1_1classifier_1_1_k_d_e.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers.">Classifier</a> that uses Kernel Density Estimation (<a class="el" href="classcmp_1_1classifier_1_1_k_d_e.html" title="Classifier that uses Kernel Density Estimation (KDE) for classification.">KDE</a>) for classification.  <a href="classcmp_1_1classifier_1_1_k_d_e.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_k_n_n.html">KNN</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">K-Nearest Neighbors classifier helper class.  <a href="classcmp_1_1classifier_1_1_k_n_n.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1classifier_1_1_s_v_m.html">SVM</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers.">Classifier</a> that uses Support Eigen::VectorXd Machine (<a class="el" href="classcmp_1_1classifier_1_1_s_v_m.html" title="Classifier that uses Support Eigen::VectorXd Machine (SVM) for classification. This class implements ...">SVM</a>) for classification. This class implements a supervised learning algorithm for classification tasks using LIBSVM.  <a href="classcmp_1_1classifier_1_1_s_v_m.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers.">Classifier</a> that uses Support Vector Machine (<a class="el" href="classcmp_1_1classifier_1_1_s_v_m.html" title="Classifier that uses Support Vector Machine (SVM) for classification.">SVM</a>) for classification.  <a href="classcmp_1_1classifier_1_1_s_v_m.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -127,6 +129,7 @@ Enumerations</h2></td></tr>
 <tr class="memitem:aa762cd221c89d3516bbb7686df10306d" id="r_aa762cd221c89d3516bbb7686df10306d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1classifier.html#aa762cd221c89d3516bbb7686df10306d">method</a> { <a class="el" href="namespacecmp_1_1classifier.html#aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db">CV_SCORE</a>
 , <a class="el" href="namespacecmp_1_1classifier.html#aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343">CV_PROB_SCORE</a>
  }</td></tr>
+<tr class="memdesc:aa762cd221c89d3516bbb7686df10306d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandwidth selection objective criterion.  <a href="namespacecmp_1_1classifier.html#aa762cd221c89d3516bbb7686df10306d">More...</a><br /></td></tr>
 <tr class="separator:aa762cd221c89d3516bbb7686df10306d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -141,9 +144,13 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Bandwidth selection objective criterion. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db" name="aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db"></a>CV_SCORE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343" name="aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343"></a>CV_PROB_SCORE&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db" name="aa762cd221c89d3516bbb7686df10306da793462511d6d3c471730a1658f1a22db"></a>CV_SCORE&#160;</td><td class="fielddoc"><p>Cross-validation score optimization based on classification accuracy. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343" name="aa762cd221c89d3516bbb7686df10306daa2382ee962272dd5f6e0c04394240343"></a>CV_PROB_SCORE&#160;</td><td class="fielddoc"><p>Cross-validation score optimization based on probability likelihood. </p>
+</td></tr>
 </table>
 
 </div>

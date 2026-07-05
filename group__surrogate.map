@@ -1,0 +1,9 @@
+<map id="Surrogate Modeling &amp; Dimensionality Reduction" name="Surrogate Modeling &amp; Dimensionality Reduction">
+<area shape="rect" id="Node000002" href="$group__classifiers.html" title="Class probability models, Support Vector Machines, KDE, and KNN." alt="" coords="344,5,433,31"/>
+<area shape="rect" id="Node000003" href="$group__clustering.html" title="Dirichlet Process Mixture Models (DPMM), geometric K&#45;Means, and baseline clusterers." alt="" coords="315,55,463,80"/>
+<area shape="rect" id="Node000004" href="$group__core.html" title="Numeric quadrature, tensor integration, cross&#45;validation, bootstrap resampling, Sliced Wasserstein di..." alt="" coords="291,104,487,129"/>
+<area shape="rect" id="Node000005" href="$group__probability.html" title="Continuous probability distributions, covariance kernels, GP mean functions, prior probability defini..." alt="" coords="297,154,480,194"/>
+<area shape="rect" id="Node000006" href="$group__sampling.html" title="MCMC, Evolutionary MCMC, and NUTS/Hamiltonian Monte Carlo." alt="" coords="307,218,470,258"/>
+<area shape="rect" id="Node000007" href="$group__sensitivity.html" title="Global sensitivity analysis and Saltelli&#45;Sobol variance decomposition." alt="" coords="313,283,464,308"/>
+<area shape="rect" id="Node000001" title="Kriging (Gaussian Processes), Polynomial Chaos Expansion, Clustered Surrogates, and PCA." alt="" coords="5,126,213,166"/>
+</map>

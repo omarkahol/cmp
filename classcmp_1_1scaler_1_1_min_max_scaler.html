@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,16 +107,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1scaler_1_1_min_max_scaler.
 </div><!--header-->
 <div class="contents">
 
+<p>Linearly scales features to a target bounding box range.  
+ <a href="classcmp_1_1scaler_1_1_min_max_scaler.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="scaler_8h_source.html">scaler.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::scaler::MinMaxScaler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1scaler_1_1_min_max_scaler__inherit__graph.png" border="0" usemap="#acmp_1_1scaler_1_1_min_max_scaler_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1scaler_1_1_min_max_scaler_inherit__map" id="acmp_1_1scaler_1_1_min_max_scaler_inherit__map">
+<area shape="rect" title="Linearly scales features to a target bounding box range." alt="" coords="5,79,203,104"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="31,5,177,31"/>
+<area shape="poly" title=" " alt="" coords="107,44,107,79,101,79,101,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::scaler::MinMaxScaler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1scaler_1_1_min_max_scaler__coll__graph.png" border="0" usemap="#acmp_1_1scaler_1_1_min_max_scaler_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1scaler_1_1_min_max_scaler_coll__map" id="acmp_1_1scaler_1_1_min_max_scaler_coll__map">
+<area shape="rect" title="Linearly scales features to a target bounding box range." alt="" coords="5,79,203,104"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="31,5,177,31"/>
+<area shape="poly" title=" " alt="" coords="107,44,107,79,101,79,101,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -162,7 +176,19 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ac40d713951e369ed819178379218974a" id="r_ac40d713951e369ed819178379218974a"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#ac40d713951e369ed819178379218974a">data_max_</a></td></tr>
 <tr class="separator:ac40d713951e369ed819178379218974a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Linearly scales features to a target bounding box range. </p>
+<p>Mathematical Formulation Scales each feature vector component to live within range \([a_j, b_j]\) (typically \([0, 1]\)):  </p><p class="formulaDsp">
+\[
+y_j = a_j + \frac{x_j - x_{\text{min}, j}}{x_{\text{max}, j} - x_{\text{min}, j}} (b_j - a_j)
+\]
+</p>
+<p> where \(x_{\text{min}, j}\) and \(x_{\text{max}, j}\) are the training data's minimum and maximum values for feature \(j\).</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li><code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a16823cc81232127bc86759957d1c7cd5">fit()</a></code> computes column-wise minima and maxima vectors of the training matrix.</li>
+<li><code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a566ca9d333c4703307bd78e7afaebf0c">transform()</a></code> and <code><a class="el" href="classcmp_1_1scaler_1_1_min_max_scaler.html#a23768d4063032ff713f6cdd9092240b4">inverseTransform()</a></code> apply element-wise division and scaling multiplication. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4ed6dfccaab541f91a2ce38e47cef532" name="a4ed6dfccaab541f91a2ce38e47cef532"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ed6dfccaab541f91a2ce38e47cef532">&#9670;&#160;</a></span>MinMaxScaler() <span class="overload">[1/4]</span></h2>
 

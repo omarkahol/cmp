@@ -1,0 +1,5 @@
+<map id="cmp::covariance::ModelClusterCovariance" name="cmp::covariance::ModelClusterCovariance">
+<area shape="rect" id="Node000001" title="Blended covariance kernel that interpolates local GP kernels using classifier probabilities." alt="" coords="5,79,228,119"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1covariance_1_1_covariance.html" title="Abstract base class for all covariance (kernel) functions." alt="" coords="11,5,222,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,44,119,79,114,79,114,44"/>
+</map>

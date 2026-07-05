@@ -1,0 +1,27 @@
+<map id="include/optimization.h" name="include/optimization.h">
+<area shape="rect" id="Node000001" title="Functor wrapper for NLopt with automatic, transparent log&#45;scaling." alt="" coords="362,5,529,31"/>
+<area shape="rect" id="Node000002" href="$classifier_8h.html" title=" " alt="" coords="189,152,331,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="394,38,354,56,316,81,300,98,286,118,267,153,262,151,281,115,296,95,313,77,351,51,391,33"/>
+<area shape="rect" id="Node000006" href="$gp_8h.html" title=" " alt="" coords="460,79,561,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="467,39,502,77,498,80,463,43"/>
+<area shape="rect" id="Node000010" href="$kde_8h.html" title=" " alt="" coords="327,79,436,104"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="428,43,394,80,390,77,424,39"/>
+<area shape="rect" id="Node000012" href="$optimization_8cpp.html" title=" " alt="" coords="585,79,740,104"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="494,32,628,76,627,81,492,37"/>
+<area shape="rect" id="Node000003" href="$model__cluster_8h.html" title=" " alt="" coords="349,233,525,258"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="299,180,413,230,410,235,297,185"/>
+<area shape="rect" id="Node000004" href="$model__cluster__poly_8h.html" title=" " alt="" coords="5,225,171,265"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="224,185,131,228,129,223,222,180"/>
+<area shape="rect" id="Node000005" href="$classifier_8cpp.html" title=" " alt="" coords="195,233,325,258"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="263,191,263,232,257,232,257,191"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="502,118,445,234,441,231,497,115"/>
+<area shape="rect" id="Node000007" href="$multi__gp_8h.html" title=" " alt="" coords="527,152,670,177"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="537,110,586,150,583,154,534,115"/>
+<area shape="rect" id="Node000009" href="$gp_8cpp.html" title=" " alt="" coords="695,152,783,177"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="561,106,703,149,701,154,560,111"/>
+<area shape="rect" id="Node000008" href="$multi__gp_8cpp.html" title=" " alt="" coords="550,233,679,258"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="606,190,615,232,610,233,601,191"/>
+<area shape="poly" id="edge11_Node000010_Node000002" title=" " alt="" coords="351,113,281,154,279,149,348,109"/>
+<area shape="rect" id="Node000011" href="$kde_8cpp.html" title=" " alt="" coords="356,152,452,177"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="392,117,403,151,398,153,387,118"/>
+</map>

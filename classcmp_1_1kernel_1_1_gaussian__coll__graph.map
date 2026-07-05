@@ -1,0 +1,5 @@
+<map id="cmp::kernel::Gaussian" name="cmp::kernel::Gaussian">
+<area shape="rect" id="Node000001" title="Standard Gaussian density kernel." alt="" coords="5,79,172,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="15,5,162,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,44,91,79,86,79,86,44"/>
+</map>

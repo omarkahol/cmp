@@ -1,0 +1,25 @@
+<map id="cmp::covariance::Covariance" name="cmp::covariance::Covariance">
+<area shape="rect" id="Node000001" title="Abstract base class for all covariance (kernel) functions." alt="" coords="5,252,216,277"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1covariance_1_1_constant.html" title="Represents a constant scale covariance function." alt="" coords="278,5,473,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,238,140,194,170,140,211,85,236,61,263,40,284,28,287,33,265,44,239,65,215,89,175,143,144,196,124,240"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1covariance_1_1_custom.html" title="Represents a custom user&#45;defined covariance function using std::function wrappers." alt="" coords="282,55,469,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,239,147,205,178,164,217,123,263,89,288,78,290,82,265,94,221,127,182,167,151,208,128,242"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1covariance_1_1_inverse.html" title="Represents an Inverse covariance function." alt="" coords="283,104,468,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="131,240,187,188,224,161,263,138,293,127,295,132,265,143,226,166,191,192,135,244"/>
+<area shape="rect" id="Node000005" href="$classcmp_1_1covariance_1_1_linear.html" title="Represents a Linear covariance function." alt="" coords="287,153,464,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="145,243,199,214,263,187,303,176,304,181,265,193,202,219,147,247"/>
+<area shape="rect" id="Node000006" href="$classcmp_1_1covariance_1_1_matern.html" title="General Matérn covariance function." alt="" coords="284,203,467,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="192,247,306,225,307,231,193,252"/>
+<area shape="rect" id="Node000007" href="$classcmp_1_1covariance_1_1_matern52.html" title="Matérn covariance function with parameter nu = 5/2." alt="" coords="276,252,475,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="230,262,276,262,276,267,230,267"/>
+<area shape="rect" id="Node000008" href="$classcmp_1_1covariance_1_1_model_cluster_covariance.html" title="Blended covariance kernel that interpolates local GP kernels using classifier probabilities." alt="" coords="264,302,487,342"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="184,278,283,299,282,305,183,283"/>
+<area shape="rect" id="Node000009" href="$classcmp_1_1covariance_1_1_product.html" title="Represents the product of two covariance functions." alt="" coords="282,367,469,392"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="142,283,198,318,265,352,305,364,303,369,263,356,195,323,139,288"/>
+<area shape="rect" id="Node000010" href="$classcmp_1_1covariance_1_1_squared_exponential.html" title="Squared Exponential (RBF / Gaussian) covariance function." alt="" coords="280,417,471,457"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="133,286,189,343,225,374,265,401,293,414,291,419,263,406,222,379,185,347,129,289"/>
+<area shape="rect" id="Node000011" href="$classcmp_1_1covariance_1_1_sum.html" title="Represents the sum of two covariance functions." alt="" coords="292,481,459,507"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="126,289,147,329,178,377,218,426,265,466,293,479,290,484,263,471,214,430,173,380,142,331,121,291"/>
+<area shape="rect" id="Node000012" href="$classcmp_1_1covariance_1_1_white_noise.html" title="White noise covariance function." alt="" coords="269,531,481,556"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="122,290,141,339,170,400,212,463,237,492,266,516,289,528,286,533,262,520,233,495,208,466,166,403,136,341,117,291"/>
+</map>

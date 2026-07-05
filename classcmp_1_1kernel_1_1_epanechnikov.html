@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,16 +107,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1kernel_1_1_epanechnikov.ht
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel.">Epanechnikov</a> (parabolic) density kernel.  
+ <a href="classcmp_1_1kernel_1_1_epanechnikov.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="kernel_09_09_8h_source.html">kernel++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::kernel::Epanechnikov:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_epanechnikov__inherit__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_epanechnikov_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1kernel_1_1_epanechnikov_inherit__map" id="acmp_1_1kernel_1_1_epanechnikov_inherit__map">
+<area shape="rect" title="Epanechnikov (parabolic) density kernel." alt="" coords="5,79,201,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="30,5,177,31"/>
+<area shape="poly" title=" " alt="" coords="106,44,106,79,101,79,101,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::kernel::Epanechnikov:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_epanechnikov__coll__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_epanechnikov_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1kernel_1_1_epanechnikov_coll__map" id="acmp_1_1kernel_1_1_epanechnikov_coll__map">
+<area shape="rect" title="Epanechnikov (parabolic) density kernel." alt="" coords="5,79,201,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="30,5,177,31"/>
+<area shape="poly" title=" " alt="" coords="106,44,106,79,101,79,101,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -123,10 +137,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9478a3763346d37fa3576398afe3ce0d" id="r_a9478a3763346d37fa3576398afe3ce0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html#a9478a3763346d37fa3576398afe3ce0d">Epanechnikov</a> ()=default</td></tr>
 <tr class="separator:a9478a3763346d37fa3576398afe3ce0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee71c6de645381a8262c5a86b9969c0c" id="r_aee71c6de645381a8262c5a86b9969c0c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html#aee71c6de645381a8262c5a86b9969c0c">eval</a> (const Eigen::VectorXd &amp;z_diff) const override</td></tr>
+<tr class="memdesc:aee71c6de645381a8262c5a86b9969c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates the unnormalized <a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel.">Epanechnikov</a> kernel.  <br /></td></tr>
 <tr class="separator:aee71c6de645381a8262c5a86b9969c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96c071d4b783b7e3cc73038e0df45c35" id="r_a96c071d4b783b7e3cc73038e0df45c35"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html#a96c071d4b783b7e3cc73038e0df45c35">normalizationConstant</a> (const size_t &amp;dim) const override</td></tr>
+<tr class="memdesc:a96c071d4b783b7e3cc73038e0df45c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the normalization constant for a given dimension.  <br /></td></tr>
 <tr class="separator:a96c071d4b783b7e3cc73038e0df45c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609c5f59d390ef31f60980fdf63b8227" id="r_a609c5f59d390ef31f60980fdf63b8227"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html#a609c5f59d390ef31f60980fdf63b8227">applyToGradient</a> (const Eigen::VectorXd &amp;z, const Eigen::VectorXd &amp;grad_z_i) const override</td></tr>
+<tr class="memdesc:a609c5f59d390ef31f60980fdf63b8227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the gradient of the kernel evaluation.  <br /></td></tr>
 <tr class="separator:a609c5f59d390ef31f60980fdf63b8227"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcmp_1_1kernel_1_1_kernel"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcmp_1_1kernel_1_1_kernel')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">cmp::kernel::Kernel</a></td></tr>
 <tr class="memitem:aad1d785fbdc3a74aedfa575053b09bb0 inherit pub_methods_classcmp_1_1kernel_1_1_kernel" id="r_aad1d785fbdc3a74aedfa575053b09bb0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_kernel.html#aad1d785fbdc3a74aedfa575053b09bb0">~Kernel</a> ()=default</td></tr>
@@ -135,9 +152,17 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af3171106e52bfff69338f17f2684cc4c" id="r_af3171106e52bfff69338f17f2684cc4c"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">Kernel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html#af3171106e52bfff69338f17f2684cc4c">make</a> ()</td></tr>
+<tr class="memdesc:af3171106e52bfff69338f17f2684cc4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory method for creating an <a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel.">Epanechnikov</a> kernel.  <br /></td></tr>
 <tr class="separator:af3171106e52bfff69338f17f2684cc4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel.">Epanechnikov</a> (parabolic) density kernel. </p>
+<p>Mathematical Formulation The multivariate <a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel.">Epanechnikov</a> kernel:  </p><p class="formulaDsp">
+\[
+K(\mathbf{z}) \propto \begin{cases} 1 - \|\mathbf{z}\|_2^2 &amp; \text{if } \|\mathbf{z}\|_2 \le 1 \\ 0 &amp; \text{otherwise} \end{cases}
+\]
+</p>
+ </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9478a3763346d37fa3576398afe3ce0d" name="a9478a3763346d37fa3576398afe3ce0d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9478a3763346d37fa3576398afe3ce0d">&#9670;&#160;</a></span>Epanechnikov()</h2>
 
@@ -198,6 +223,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the gradient of the kernel evaluation. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#aad7b69ab20fe331b1b9e64ca9afa10ad">cmp::kernel::Kernel</a>.</p>
 
 </div>
@@ -226,6 +253,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Evaluates the unnormalized <a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel.">Epanechnikov</a> kernel. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#a93a0f6bc1b69f2398d9fdc0f36bd01bb">cmp::kernel::Kernel</a>.</p>
 
 </div>
@@ -253,6 +282,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Factory method for creating an <a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel.">Epanechnikov</a> kernel. </p>
+
 </div>
 </div>
 <a id="a96c071d4b783b7e3cc73038e0df45c35" name="a96c071d4b783b7e3cc73038e0df45c35"></a>
@@ -278,6 +309,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the normalization constant for a given dimension. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#a8e73dd33c293a97bb12cb3dc1b22725a">cmp::kernel::Kernel</a>.</p>
 

@@ -1,0 +1,5 @@
+<map id="cmp::classifier::Dummy" name="cmp::classifier::Dummy">
+<area shape="rect" id="Node000001" title="Baseline classifier predicting class labels based on training frequency distributions." alt="" coords="9,79,185,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers." alt="" coords="5,5,189,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,44,100,79,95,79,95,44"/>
+</map>

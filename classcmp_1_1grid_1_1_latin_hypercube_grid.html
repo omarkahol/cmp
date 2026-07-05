@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,25 +107,41 @@ $(document).ready(function(){initNavTree('classcmp_1_1grid_1_1_latin_hypercube_g
 </div><!--header-->
 <div class="contents">
 
+<p>Latin Hypercube Sampling (LHS) grid generator.  
+ <a href="classcmp_1_1grid_1_1_latin_hypercube_grid.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="grid_8h_source.html">grid.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::grid::LatinHypercubeGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_latin_hypercube_grid__inherit__graph.png" border="0" usemap="#acmp_1_1grid_1_1_latin_hypercube_grid_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1grid_1_1_latin_hypercube_grid_inherit__map" id="acmp_1_1grid_1_1_latin_hypercube_grid_inherit__map">
+<area shape="rect" title="Latin Hypercube Sampling (LHS) grid generator." alt="" coords="5,79,225,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="56,5,175,31"/>
+<area shape="poly" title=" " alt="" coords="118,44,118,79,113,79,113,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::grid::LatinHypercubeGrid:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1grid_1_1_latin_hypercube_grid__coll__graph.png" border="0" usemap="#acmp_1_1grid_1_1_latin_hypercube_grid_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1grid_1_1_latin_hypercube_grid_coll__map" id="acmp_1_1grid_1_1_latin_hypercube_grid_coll__map">
+<area shape="rect" title="Latin Hypercube Sampling (LHS) grid generator." alt="" coords="5,79,225,104"/>
+<area shape="rect" href="classcmp_1_1grid_1_1_grid.html" title="Abstract base class for numerical integration grids and space&#45;filling designs." alt="" coords="56,5,175,31"/>
+<area shape="poly" title=" " alt="" coords="118,44,118,79,113,79,113,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f501738b14eb1b40b659005a3b72ccc" id="r_a1f501738b14eb1b40b659005a3b72ccc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_latin_hypercube_grid.html#a1f501738b14eb1b40b659005a3b72ccc">LatinHypercubeGrid</a> (const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;lowerBound, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;upperBound, unsigned int seed=42)</td></tr>
+<tr class="memdesc:a1f501738b14eb1b40b659005a3b72ccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1grid_1_1_latin_hypercube_grid.html" title="Latin Hypercube Sampling (LHS) grid generator.">LatinHypercubeGrid</a> generator.  <br /></td></tr>
 <tr class="separator:a1f501738b14eb1b40b659005a3b72ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb0f180fe3a8928cc373d132c1a9f084" id="r_aeb0f180fe3a8928cc373d132c1a9f084"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_latin_hypercube_grid.html#aeb0f180fe3a8928cc373d132c1a9f084">construct</a> (const size_t &amp;nPoints) override</td></tr>
+<tr class="memdesc:aeb0f180fe3a8928cc373d132c1a9f084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a Latin Hypercube matrix of samples.  <br /></td></tr>
 <tr class="separator:aeb0f180fe3a8928cc373d132c1a9f084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7c69c621e2cca950944639a11784010" id="r_ad7c69c621e2cca950944639a11784010"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_latin_hypercube_grid.html#ad7c69c621e2cca950944639a11784010">dim</a> () const override</td></tr>
+<tr class="memdesc:ad7c69c621e2cca950944639a11784010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dimension of the domain.  <br /></td></tr>
 <tr class="separator:ad7c69c621e2cca950944639a11784010"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcmp_1_1grid_1_1_grid"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcmp_1_1grid_1_1_grid')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcmp_1_1grid_1_1_grid.html">cmp::grid::Grid</a></td></tr>
 <tr class="memitem:a810aba7babdddc7cd156ef087741bdaf inherit pub_methods_classcmp_1_1grid_1_1_grid" id="r_a810aba7babdddc7cd156ef087741bdaf"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_grid.html#a810aba7babdddc7cd156ef087741bdaf">~Grid</a> ()=default</td></tr>
@@ -141,7 +158,20 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:abe236a7bcf0af0f3e02763158305ef08" id="r_abe236a7bcf0af0f3e02763158305ef08"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1grid_1_1_latin_hypercube_grid.html#abe236a7bcf0af0f3e02763158305ef08">upperBound_</a></td></tr>
 <tr class="separator:abe236a7bcf0af0f3e02763158305ef08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Latin Hypercube Sampling (LHS) grid generator. </p>
+<p>Mathematical Formulation For each dimension \(d \in \{1,\dots,D\}\), LHS divides the domain range \([a_d, b_d]\) into \(N\) equal-probability bins. The coordinate values for the \(i\)-th sample is placed inside the \(\pi_d(i)\)-th bin:  </p><p class="formulaDsp">
+\[
+x_{i, d} = a_d + \frac{b_d - a_d}{N} \left( \pi_d(i) - 1 + u_{i,d} \right)
+\]
+</p>
+<p> where \(\pi_d\) is a random permutation of the set \(\{1,\dots,N\}\) chosen independently for each dimension, and \(u_{i,d} \sim \mathcal{U}(0, 1)\) is a random jitter.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Allocates \(N \times D\) matrix.</li>
+<li>For each dimension \(d\), generates a vector of indices \(\{0, \dots, N-1\}\) and shuffles it.</li>
+<li>Draws a random uniform offset \(u\) inside each bin and maps the resulting value to the target hyperrectangle bounds. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1f501738b14eb1b40b659005a3b72ccc" name="a1f501738b14eb1b40b659005a3b72ccc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f501738b14eb1b40b659005a3b72ccc">&#9670;&#160;</a></span>LatinHypercubeGrid()</h2>
 
@@ -182,6 +212,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a <a class="el" href="classcmp_1_1grid_1_1_latin_hypercube_grid.html" title="Latin Hypercube Sampling (LHS) grid generator.">LatinHypercubeGrid</a> generator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lowerBound</td><td>The lower bounds of the hyperrectangle. </td></tr>
+    <tr><td class="paramname">upperBound</td><td>The upper bounds of the hyperrectangle. </td></tr>
+    <tr><td class="paramname">seed</td><td>Seed for the random number generator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -209,6 +249,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a Latin Hypercube matrix of samples. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nPoints</td><td>Number of points to generate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="classcmp_1_1grid_1_1_grid.html#a0c0b19ca98cc39bdd96de5d7fa46ee77">cmp::grid::Grid</a>.</p>
 
 </div>
@@ -235,6 +283,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the dimension of the domain. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1grid_1_1_grid.html#aa7e12c6dca3c6b86fd0b3eab746bc95b">cmp::grid::Grid</a>.</p>
 

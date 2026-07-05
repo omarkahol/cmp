@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -115,6 +116,13 @@ $(document).ready(function(){initNavTree('classcmp_1_1gp_1_1_gaussian_process.ht
 Collaboration diagram for cmp::gp::GaussianProcess:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1gp_1_1_gaussian_process__coll__graph.png" border="0" usemap="#acmp_1_1gp_1_1_gaussian_process_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1gp_1_1_gaussian_process_coll__map" id="acmp_1_1gp_1_1_gaussian_process_coll__map">
+<area shape="rect" title="This class implements a Gaussian Process (GP) regression model for non&#45;parametric Bayesian regression..." alt="" coords="11,168,203,193"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_standard_scaler.html" title="Standardizes features by removing the mean and scaling to unit variance (using Cholesky decomposition..." alt="" coords="5,80,208,105"/>
+<area shape="poly" title=" " alt="" coords="109,119,109,167,104,167,104,119"/>
+<area shape="rect" href="classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="34,5,179,31"/>
+<area shape="poly" title=" " alt="" coords="109,45,109,80,104,80,104,45"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -145,10 +153,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:add352029266a5297021f045e021a27a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the hyperparameters of the Gaussian Process.  <br /></td></tr>
 <tr class="separator:add352029266a5297021f045e021a27a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ede6e7dc5c732b7e215931ebde95779" id="r_a1ede6e7dc5c732b7e215931ebde95779"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1mean_1_1_mean.html">cmp::mean::Mean</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a1ede6e7dc5c732b7e215931ebde95779">getMean</a> () <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a></td></tr>
+<tr class="memdesc:a1ede6e7dc5c732b7e215931ebde95779"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the shared pointer to the GP prior mean function.  <br /></td></tr>
 <tr class="separator:a1ede6e7dc5c732b7e215931ebde95779"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92a2f833d0fe1024b359bc1ed40d9da7" id="r_a92a2f833d0fe1024b359bc1ed40d9da7"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1covariance_1_1_covariance.html">cmp::covariance::Covariance</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a92a2f833d0fe1024b359bc1ed40d9da7">getKernel</a> () <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a></td></tr>
+<tr class="memdesc:a92a2f833d0fe1024b359bc1ed40d9da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the shared pointer to the GP covariance kernel.  <br /></td></tr>
 <tr class="separator:a92a2f833d0fe1024b359bc1ed40d9da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f270f1d0734ce7e266cb24262b61528" id="r_a4f270f1d0734ce7e266cb24262b61528"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a4f270f1d0734ce7e266cb24262b61528">getNugget</a> () <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a></td></tr>
+<tr class="memdesc:a4f270f1d0734ce7e266cb24262b61528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the observation noise variance (nugget).  <br /></td></tr>
 <tr class="separator:a4f270f1d0734ce7e266cb24262b61528"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20896339bc48c4de5ffadfa309610c0c" id="r_a20896339bc48c4de5ffadfa309610c0c"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a20896339bc48c4de5ffadfa309610c0c">covariance</a> (Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a> Eigen::VectorXd &gt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">par</a>) <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a></td></tr>
 <tr class="memdesc:a20896339bc48c4de5ffadfa309610c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates the covariance matrix of the Kernel.  <br /></td></tr>
@@ -170,6 +181,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a26da96ffcedd0219d7982abcaecf23b9" id="r_a26da96ffcedd0219d7982abcaecf23b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a> Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a> Eigen::VectorXd &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a26da96ffcedd0219d7982abcaecf23b9">getYObs</a> () <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a></td></tr>
 <tr class="separator:a26da96ffcedd0219d7982abcaecf23b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2ab783f98785f652bd5d890ef72783e" id="r_ac2ab783f98785f652bd5d890ef72783e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#ac2ab783f98785f652bd5d890ef72783e">nObs</a> () <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a></td></tr>
+<tr class="memdesc:ac2ab783f98785f652bd5d890ef72783e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of training observations.  <br /></td></tr>
 <tr class="separator:ac2ab783f98785f652bd5d890ef72783e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1856da5ad122dca3219b03128e5b48ac" id="r_a1856da5ad122dca3219b03128e5b48ac"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a1856da5ad122dca3219b03128e5b48ac">priorMean</a> (Eigen::Ref&lt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a> Eigen::VectorXd &gt; <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">par</a>) <a class="el" href="classcmp_1_1gp_1_1_gaussian_process.html#a50f9449412e91c05f3d62449715ff62f">const</a></td></tr>
 <tr class="memdesc:a1856da5ad122dca3219b03128e5b48ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates the mean on the observations.  <br /></td></tr>
@@ -848,6 +860,9 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the shared pointer to the GP covariance kernel. </p>
+<dl class="section return"><dt>Returns</dt><dd>Shared pointer to the Covariance object. </dd></dl>
+
 </div>
 </div>
 <a id="a1ede6e7dc5c732b7e215931ebde95779" name="a1ede6e7dc5c732b7e215931ebde95779"></a>
@@ -873,6 +888,9 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the shared pointer to the GP prior mean function. </p>
+<dl class="section return"><dt>Returns</dt><dd>Shared pointer to the Mean object. </dd></dl>
+
 </div>
 </div>
 <a id="a4f270f1d0734ce7e266cb24262b61528" name="a4f270f1d0734ce7e266cb24262b61528"></a>
@@ -897,6 +915,9 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the observation noise variance (nugget). </p>
+<dl class="section return"><dt>Returns</dt><dd>Nugget value. </dd></dl>
 
 </div>
 </div>
@@ -1081,6 +1102,9 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the number of training observations. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of training data rows. </dd></dl>
 
 </div>
 </div>

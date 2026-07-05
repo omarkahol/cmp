@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,11 +106,39 @@ $(document).ready(function(){initNavTree('classcmp_1_1covariance_1_1_covariance.
 </div><!--header-->
 <div class="contents">
 
+<p>Abstract base class for all covariance (kernel) functions.  
+ <a href="classcmp_1_1covariance_1_1_covariance.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="covariance_8h_source.html">covariance.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::covariance::Covariance:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1covariance_1_1_covariance__inherit__graph.png" border="0" usemap="#acmp_1_1covariance_1_1_covariance_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1covariance_1_1_covariance_inherit__map" id="acmp_1_1covariance_1_1_covariance_inherit__map">
+<area shape="rect" title="Abstract base class for all covariance (kernel) functions." alt="" coords="5,252,216,277"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_constant.html" title="Represents a constant scale covariance function." alt="" coords="278,5,473,31"/>
+<area shape="poly" title=" " alt="" coords="120,238,140,194,170,140,211,85,236,61,263,40,284,28,287,33,265,44,239,65,215,89,175,143,144,196,124,240"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_custom.html" title="Represents a custom user&#45;defined covariance function using std::function wrappers." alt="" coords="282,55,469,80"/>
+<area shape="poly" title=" " alt="" coords="124,239,147,205,178,164,217,123,263,89,288,78,290,82,265,94,221,127,182,167,151,208,128,242"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_inverse.html" title="Represents an Inverse covariance function." alt="" coords="283,104,468,129"/>
+<area shape="poly" title=" " alt="" coords="131,240,187,188,224,161,263,138,293,127,295,132,265,143,226,166,191,192,135,244"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_linear.html" title="Represents a Linear covariance function." alt="" coords="287,153,464,179"/>
+<area shape="poly" title=" " alt="" coords="145,243,199,214,263,187,303,176,304,181,265,193,202,219,147,247"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_matern.html" title="General Matérn covariance function." alt="" coords="284,203,467,228"/>
+<area shape="poly" title=" " alt="" coords="192,247,306,225,307,231,193,252"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_matern52.html" title="Matérn covariance function with parameter nu = 5/2." alt="" coords="276,252,475,277"/>
+<area shape="poly" title=" " alt="" coords="230,262,276,262,276,267,230,267"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_model_cluster_covariance.html" title="Blended covariance kernel that interpolates local GP kernels using classifier probabilities." alt="" coords="264,302,487,342"/>
+<area shape="poly" title=" " alt="" coords="184,278,283,299,282,305,183,283"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_product.html" title="Represents the product of two covariance functions." alt="" coords="282,367,469,392"/>
+<area shape="poly" title=" " alt="" coords="142,283,198,318,265,352,305,364,303,369,263,356,195,323,139,288"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_squared_exponential.html" title="Squared Exponential (RBF / Gaussian) covariance function." alt="" coords="280,417,471,457"/>
+<area shape="poly" title=" " alt="" coords="133,286,189,343,225,374,265,401,293,414,291,419,263,406,222,379,185,347,129,289"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_sum.html" title="Represents the sum of two covariance functions." alt="" coords="292,481,459,507"/>
+<area shape="poly" title=" " alt="" coords="126,289,147,329,178,377,218,426,265,466,293,479,290,484,263,471,214,430,173,380,142,331,121,291"/>
+<area shape="rect" href="classcmp_1_1covariance_1_1_white_noise.html" title="White noise covariance function." alt="" coords="269,531,481,556"/>
+<area shape="poly" title=" " alt="" coords="122,290,141,339,170,400,212,463,237,492,266,516,289,528,286,533,262,520,233,495,208,466,166,403,136,341,117,291"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -123,7 +152,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5bef06041608b381246c500a4faefb9e" id="r_a5bef06041608b381246c500a4faefb9e"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1covariance_1_1_covariance.html#a5bef06041608b381246c500a4faefb9e">evalHessian</a> (const Eigen::VectorXd &amp;x1, const Eigen::VectorXd &amp;x2, const Eigen::VectorXd &amp;par, const size_t &amp;i, const size_t &amp;j) const =0</td></tr>
 <tr class="separator:a5bef06041608b381246c500a4faefb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract base class for all covariance (kernel) functions. </p>
+<p>Mathematical Formulation A covariance function (kernel) \(k: \mathbb{R}^D \times \mathbb{R}^D \to \mathbb{R}\) defines the covariance between GP values at any two inputs \(\mathbf{x}_1, \mathbf{x}_2\):  </p><p class="formulaDsp">
+\[
+\text{Cov}(f(\mathbf{x}_1), f(\mathbf{x}_2)) = k(\mathbf{x}_1, \mathbf{x}_2; \boldsymbol{\theta})
+\]
+</p>
+<p> where \(\boldsymbol{\theta}\) is the vector of kernel hyperparameters. The function must be symmetric and positive semi-definite:  </p><p class="formulaDsp">
+\[
+\sum_{i=1}^n \sum_{j=1}^n c_i c_j k(\mathbf{x}_i, \mathbf{x}_j) \ge 0 \quad \forall c_i \in \mathbb{R}
+\]
+</p>
+<p>Implementation Algorithm Provides a virtual interface for evaluating the covariance value (<code>eval</code>), its first-order gradient (<code>evalGradient</code>) with respect to a hyperparameter \(\theta_i\), and its second-order Hessian (<code>evalHessian</code>) with respect to hyperparameters \(\theta_i, \theta_j\). </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5f37d5d9fcdeee6b4e7839e0f718a404" name="a5f37d5d9fcdeee6b4e7839e0f718a404"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f37d5d9fcdeee6b4e7839e0f718a404">&#9670;&#160;</a></span>~Covariance()</h2>
 

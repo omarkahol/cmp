@@ -1,0 +1,250 @@
+/* Custom Styling for CMP++ Doxygen Documentation */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+    --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-monospace: 'JetBrains Mono', monospace;
+    
+    /* Clean Indigo / Cyan Accent color scheme for light mode */
+    --primary-color: #4f46e5;
+    --primary-dark-color: #3730a3;
+    --primary-light-color: #818cf8;
+    --on-primary-color: #ffffff;
+    
+    --border-radius-large: 12px;
+    --border-radius-medium: 8px;
+    --border-radius-small: 6px;
+    
+    --box-shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    
+    --transition-standard: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode Overrides */
+html:not(.light-mode) {
+    --primary-color: #818cf8;
+    --primary-dark-color: #c7d2fe;
+    --primary-light-color: #4f46e5;
+    
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+body {
+    font-family: var(--font-family) !important;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+}
+
+code, kbd, pre, samp {
+    font-family: var(--font-monospace) !important;
+    font-size: 0.9em;
+}
+
+/* Smooth Transitions & Hover Effects on Interactive Elements */
+a, .navpath a, .treeview li a {
+    transition: var(--transition-standard);
+}
+
+a:hover {
+    color: var(--primary-light-color) !important;
+    text-decoration: none !important;
+}
+
+/* Title and Headers Styling */
+h1.title, .title {
+    font-size: 2.5em !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--primary-color), #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px !important;
+    margin-top: 15px !important;
+}
+
+h2 {
+    font-size: 1.8em !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em;
+    border-bottom: 2px solid var(--separator-color) !important;
+    padding-bottom: 8px;
+    margin-top: 40px !important;
+    margin-bottom: 20px !important;
+}
+
+h3 {
+    font-size: 1.4em !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em;
+    margin-top: 30px !important;
+}
+
+h4 {
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    margin-top: 20px !important;
+}
+
+/* Modern Card Layout for Member Items */
+.memitem {
+    border-radius: var(--border-radius-large) !important;
+    border: 1px solid var(--separator-color) !important;
+    box-shadow: var(--box-shadow) !important;
+    transition: var(--transition-standard) !important;
+    background-color: var(--page-background-color) !important;
+    margin-bottom: 25px !important;
+    overflow: hidden;
+}
+
+.memitem:hover {
+    box-shadow: var(--box-shadow-hover) !important;
+    transform: translateY(-2px);
+}
+
+.memproto {
+    background-color: var(--code-background, #f8fafc) !important;
+    border-bottom: 1px solid var(--separator-color) !important;
+    padding: 12px 16px !important;
+    font-family: var(--font-monospace) !important;
+    font-size: 0.95em !important;
+}
+
+.memdoc {
+    padding: 16px 20px !important;
+    border-radius: 0 0 var(--border-radius-large) var(--border-radius-large) !important;
+}
+
+/* Code Blocks Styles */
+.fragment {
+    border-radius: var(--border-radius-medium) !important;
+    border: 1px solid var(--separator-color) !important;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02) !important;
+    padding: 14px 18px !important;
+    background-color: var(--code-background, #f8fafc) !important;
+    line-height: 1.6 !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--separator-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--page-secondary-foreground-color);
+}
+
+/* MathJax (Formula Display) Beautification */
+.formulaDsp {
+    background: var(--code-background, #f8fafc);
+    border: 1px solid var(--separator-color);
+    border-radius: var(--border-radius-medium);
+    padding: 20px !important;
+    margin: 25px 0 !important;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition-standard);
+    overflow-x: auto;
+}
+
+.formulaDsp:hover {
+    box-shadow: var(--box-shadow-hover);
+}
+
+/* Stunning Glassmorphic EU Funding Banner */
+.eu-acknowledgement {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--border-radius-large);
+    padding: 24px;
+    margin-top: 50px;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition-standard);
+}
+
+.eu-acknowledgement:hover {
+    box-shadow: var(--box-shadow-hover);
+    transform: translateY(-2px);
+    border-color: var(--primary-light-color) !important;
+}
+
+.eu-acknowledgement-logo-img {
+    flex-shrink: 0;
+    height: 52px;
+    margin-right: 24px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+    transition: var(--transition-standard);
+}
+
+.eu-acknowledgement:hover .eu-acknowledgement-logo-img {
+    transform: scale(1.05);
+}
+
+.eu-acknowledgement-text {
+    font-size: 0.95em;
+    line-height: 1.6;
+    font-weight: 500;
+    color: #0f172a !important;
+}
+
+/* Glassmorphic dark mode adjustment for EU banner */
+html:not(.light-mode) .eu-acknowledgement {
+    border: 1px solid rgba(30, 41, 59, 0.8) !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+}
+
+html:not(.light-mode) .eu-acknowledgement-text {
+    color: #e2e8f0 !important;
+}
+
+/* Clean image presentation styling */
+.image-container {
+    text-align: center;
+    margin: 35px 0;
+}
+
+.image-container img {
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow-hover);
+    border: 1px solid var(--separator-color);
+    max-width: 100%;
+    transition: var(--transition-standard);
+}
+
+.image-container img:hover {
+    transform: scale(1.01);
+}
+
+/* Navigation & Tree View tweaks */
+.treeview {
+    font-weight: 500;
+}
+
+.treeview li {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.treeview li a:hover {
+    background-color: rgba(79, 70, 229, 0.08) !important;
+    border-radius: var(--border-radius-small);
+}
+
+html:not(.light-mode) .treeview li a:hover {
+    background-color: rgba(129, 140, 248, 0.15) !important;
+}

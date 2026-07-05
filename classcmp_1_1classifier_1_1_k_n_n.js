@@ -1,6 +1,5 @@
 var classcmp_1_1classifier_1_1_k_n_n =
 [
-    [ "KNN", "classcmp_1_1classifier_1_1_k_n_n.html#a9ed1aca7714da899b0261d93ae84b38f", null ],
     [ "compute", "classcmp_1_1classifier_1_1_k_n_n.html#a683120d033cab65d84a0dad5f14689e2", null ],
     [ "k", "classcmp_1_1classifier_1_1_k_n_n.html#ab14d257edb7f10593d734d008d1bca45", null ],
     [ "nPoints", "classcmp_1_1classifier_1_1_k_n_n.html#a2c857acc2f3117c578a020ef5695ba73", null ],

@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,7 +107,7 @@ $(document).ready(function(){initNavTree('classcmp_1_1cluster_1_1_geometric_clus
 </div><!--header-->
 <div class="contents">
 
-<p>Implements a k-means clustering algorithm.  
+<p>Implements a standard k-means clustering algorithm.  
  <a href="classcmp_1_1cluster_1_1_geometric_cluster.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="cluster_8h_source.html">cluster.h</a>&gt;</code></p>
@@ -116,35 +117,69 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af388f3da2b93f110ef956e5ad5d889b9" id="r_af388f3da2b93f110ef956e5ad5d889b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#af388f3da2b93f110ef956e5ad5d889b9">GeometricCluster</a> ()=default</td></tr>
 <tr class="separator:af388f3da2b93f110ef956e5ad5d889b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8b7e1b55ae7b3bce7c1d635ebda098a" id="r_ac8b7e1b55ae7b3bce7c1d635ebda098a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#ac8b7e1b55ae7b3bce7c1d635ebda098a">fit</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;points, size_t <a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#a54c293056d5713b5bad8c7c9e662a962">nClusters</a>, std::default_random_engine &amp;rng, size_t max_iter=1000)</td></tr>
+<tr class="memdesc:ac8b7e1b55ae7b3bce7c1d635ebda098a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the K-means clustering model on the given dataset.  <br /></td></tr>
 <tr class="separator:ac8b7e1b55ae7b3bce7c1d635ebda098a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a046053468202d006e673a8bd241e25af" id="r_a046053468202d006e673a8bd241e25af"><td class="memItemLeft" align="right" valign="top">const size_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#a046053468202d006e673a8bd241e25af">operator[]</a> (size_t i) const</td></tr>
+<tr class="memdesc:a046053468202d006e673a8bd241e25af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses the cluster label of the i-th point.  <br /></td></tr>
 <tr class="separator:a046053468202d006e673a8bd241e25af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52873464ae777b98143ec1d38787173e" id="r_a52873464ae777b98143ec1d38787173e"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#a52873464ae777b98143ec1d38787173e">centroid</a> (size_t i) const</td></tr>
+<tr class="memdesc:a52873464ae777b98143ec1d38787173e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the centroid of the i-th cluster.  <br /></td></tr>
 <tr class="separator:a52873464ae777b98143ec1d38787173e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f3e3fc361864c55b6b33a60f11f982b" id="r_a2f3e3fc361864c55b6b33a60f11f982b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#a2f3e3fc361864c55b6b33a60f11f982b">getLabels</a> () const</td></tr>
-<tr class="separator:a2f3e3fc361864c55b6b33a60f11f982b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54c293056d5713b5bad8c7c9e662a962" id="r_a54c293056d5713b5bad8c7c9e662a962"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#a54c293056d5713b5bad8c7c9e662a962">nClusters</a> () const</td></tr>
+<tr class="memdesc:a54c293056d5713b5bad8c7c9e662a962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of clusters.  <br /></td></tr>
 <tr class="separator:a54c293056d5713b5bad8c7c9e662a962"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a538021d3ce75a01c53c27f918239d7b6" id="r_a538021d3ce75a01c53c27f918239d7b6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#a538021d3ce75a01c53c27f918239d7b6">nPoints</a> () const</td></tr>
+<tr class="memdesc:a538021d3ce75a01c53c27f918239d7b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of data points.  <br /></td></tr>
 <tr class="separator:a538021d3ce75a01c53c27f918239d7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17dd8284c4d5dac885c3833bdac5c2e0" id="r_a17dd8284c4d5dac885c3833bdac5c2e0"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#a17dd8284c4d5dac885c3833bdac5c2e0">dim</a> () const</td></tr>
+<tr class="memdesc:a17dd8284c4d5dac885c3833bdac5c2e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dimension of the data.  <br /></td></tr>
 <tr class="separator:a17dd8284c4d5dac885c3833bdac5c2e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f3e3fc361864c55b6b33a60f11f982b" id="r_a2f3e3fc361864c55b6b33a60f11f982b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#a2f3e3fc361864c55b6b33a60f11f982b">getLabels</a> () const</td></tr>
+<tr class="memdesc:a2f3e3fc361864c55b6b33a60f11f982b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the cluster assignments vector.  <br /></td></tr>
+<tr class="separator:a2f3e3fc361864c55b6b33a60f11f982b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:adc096b4f56036c5da4da2097e1e8d46c" id="r_adc096b4f56036c5da4da2097e1e8d46c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#adc096b4f56036c5da4da2097e1e8d46c">labels_</a></td></tr>
+<tr class="memdesc:adc096b4f56036c5da4da2097e1e8d46c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cluster label assigned to each data point.  <br /></td></tr>
 <tr class="separator:adc096b4f56036c5da4da2097e1e8d46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad42d010720fd09e4b1f00ef4fede3865" id="r_ad42d010720fd09e4b1f00ef4fede3865"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#ad42d010720fd09e4b1f00ef4fede3865">centroids_</a></td></tr>
+<tr class="memdesc:ad42d010720fd09e4b1f00ef4fede3865"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centroid coordinates for each cluster.  <br /></td></tr>
 <tr class="separator:ad42d010720fd09e4b1f00ef4fede3865"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac26f622a9e449c022dbde6236f2856a" id="r_aac26f622a9e449c022dbde6236f2856a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#aac26f622a9e449c022dbde6236f2856a">nClusters_</a></td></tr>
+<tr class="memdesc:aac26f622a9e449c022dbde6236f2856a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of clusters.  <br /></td></tr>
 <tr class="separator:aac26f622a9e449c022dbde6236f2856a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae043fd7e6cc4afa358873e4fa12e8bf6" id="r_ae043fd7e6cc4afa358873e4fa12e8bf6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#ae043fd7e6cc4afa358873e4fa12e8bf6">nPoints_</a></td></tr>
+<tr class="memdesc:ae043fd7e6cc4afa358873e4fa12e8bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of data points.  <br /></td></tr>
 <tr class="separator:ae043fd7e6cc4afa358873e4fa12e8bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa635e89afa48702e0536ddb0196a3e7" id="r_afa635e89afa48702e0536ddb0196a3e7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_geometric_cluster.html#afa635e89afa48702e0536ddb0196a3e7">dim_</a></td></tr>
+<tr class="memdesc:afa635e89afa48702e0536ddb0196a3e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimensionality of data features.  <br /></td></tr>
 <tr class="separator:afa635e89afa48702e0536ddb0196a3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements a k-means clustering algorithm. </p>
+<div class="textblock"><p>Implements a standard k-means clustering algorithm. </p>
+<p>Mathematical Formulation K-means partitions \(N\) observations \(\{\mathbf{x}_1, \dots, \mathbf{x}_N\}\) where \(\mathbf{x}_j \in \mathbb{R}^d\) into \(K\) clusters \(\mathbf{S} = \{S_1, \dots, S_K\}\) to minimize the within-cluster sum of squares (WCSS):  </p><p class="formulaDsp">
+\[
+\arg\min_{\mathbf{S}} \sum_{i=1}^K \sum_{\mathbf{x} \in S_i} \|\mathbf{x} - \boldsymbol{\mu}_i\|_2^2
+\]
+</p>
+<p> where \(\boldsymbol{\mu}_i\) is the centroid of the points in \(S_i\).</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Initialize centroids \(\boldsymbol{\mu}_i\) by randomly selecting \(K\) distinct data points.</li>
+<li>Assign each point \(\mathbf{x}_j\) to the cluster with the nearest centroid:  <p class="formulaDsp">
+\[
+   S_i^{(t)} = \left\{ \mathbf{x}_j : \|\mathbf{x}_j - \boldsymbol{\mu}_i^{(t)}\|_2 \le \|\mathbf{x}_j - \boldsymbol{\mu}_m^{(t)}\|_2 \ \forall m=1,\dots,K \right\}
+   \]
+</p>
+</li>
+<li>Update the centroids to be the arithmetic mean of all points in that cluster:  <p class="formulaDsp">
+\[
+   \boldsymbol{\mu}_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{\mathbf{x}_j \in S_i^{(t)}} \mathbf{x}_j
+   \]
+</p>
+</li>
+<li>Iterate steps 2-3 until convergence (centroids no longer change or <code>max_iter</code> is reached). </li>
+</ol>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af388f3da2b93f110ef956e5ad5d889b9" name="af388f3da2b93f110ef956e5ad5d889b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af388f3da2b93f110ef956e5ad5d889b9">&#9670;&#160;</a></span>GeometricCluster()</h2>
@@ -188,6 +223,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the centroid of the i-th cluster. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>Cluster index. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector representation of the cluster centroid. </dd></dl>
+
 </div>
 </div>
 <a id="a17dd8284c4d5dac885c3833bdac5c2e0" name="a17dd8284c4d5dac885c3833bdac5c2e0"></a>
@@ -204,6 +248,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the dimension of the data. </p>
 
 </div>
 </div>
@@ -245,6 +291,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fits the K-means clustering model on the given dataset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>N x d matrix of points to cluster. </td></tr>
+    <tr><td class="paramname">nClusters</td><td>The number of clusters K. </td></tr>
+    <tr><td class="paramname">rng</td><td>Random number generator used to initialize centroids. </td></tr>
+    <tr><td class="paramname">max_iter</td><td>Maximum number of K-means iterations. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if convergence was reached, false if maximum iterations was exceeded. </dd></dl>
+
 </div>
 </div>
 <a id="a2f3e3fc361864c55b6b33a60f11f982b" name="a2f3e3fc361864c55b6b33a60f11f982b"></a>
@@ -270,6 +328,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns the cluster assignments vector. </p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the vector of cluster labels. </dd></dl>
+
 </div>
 </div>
 <a id="a54c293056d5713b5bad8c7c9e662a962" name="a54c293056d5713b5bad8c7c9e662a962"></a>
@@ -286,6 +347,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the number of clusters. </p>
 
 </div>
 </div>
@@ -304,6 +367,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the number of data points. </p>
+
 </div>
 </div>
 <a id="a046053468202d006e673a8bd241e25af" name="a046053468202d006e673a8bd241e25af"></a>
@@ -321,6 +386,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Accesses the cluster label of the i-th point. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>Index of the point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cluster label index. </dd></dl>
 
 </div>
 </div>
@@ -345,6 +419,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Centroid coordinates for each cluster. </p>
+
 </div>
 </div>
 <a id="afa635e89afa48702e0536ddb0196a3e7" name="afa635e89afa48702e0536ddb0196a3e7"></a>
@@ -366,6 +442,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Dimensionality of data features. </p>
 
 </div>
 </div>
@@ -389,6 +467,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Cluster label assigned to each data point. </p>
+
 </div>
 </div>
 <a id="aac26f622a9e449c022dbde6236f2856a" name="aac26f622a9e449c022dbde6236f2856a"></a>
@@ -411,6 +491,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Number of clusters. </p>
+
 </div>
 </div>
 <a id="ae043fd7e6cc4afa358873e4fa12e8bf6" name="ae043fd7e6cc4afa358873e4fa12e8bf6"></a>
@@ -432,6 +514,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Number of data points. </p>
 
 </div>
 </div>

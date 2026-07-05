@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -115,11 +116,25 @@ $(document).ready(function(){initNavTree('classcmp_1_1mean_1_1_model_cluster_mea
 Inheritance diagram for cmp::mean::ModelClusterMean:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1mean_1_1_model_cluster_mean__inherit__graph.png" border="0" usemap="#acmp_1_1mean_1_1_model_cluster_mean_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1mean_1_1_model_cluster_mean_inherit__map" id="acmp_1_1mean_1_1_model_cluster_mean_inherit__map">
+<area shape="rect" title="Blended mean function that interpolates local GP means using classifier probabilities." alt="" coords="5,79,231,104"/>
+<area shape="rect" href="classcmp_1_1mean_1_1_mean.html" title="Abstract base class for Gaussian Process prior mean functions." alt="" coords="49,5,187,31"/>
+<area shape="poly" title=" " alt="" coords="121,44,121,79,115,79,115,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::mean::ModelClusterMean:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1mean_1_1_model_cluster_mean__coll__graph.png" border="0" usemap="#acmp_1_1mean_1_1_model_cluster_mean_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1mean_1_1_model_cluster_mean_coll__map" id="acmp_1_1mean_1_1_model_cluster_mean_coll__map">
+<area shape="rect" title="Blended mean function that interpolates local GP means using classifier probabilities." alt="" coords="127,93,353,119"/>
+<area shape="rect" href="classcmp_1_1mean_1_1_mean.html" title="Abstract base class for Gaussian Process prior mean functions." alt="" coords="5,5,144,31"/>
+<area shape="poly" title=" " alt="" coords="110,35,219,91,216,95,108,39"/>
+<area shape="rect" href="classcmp_1_1_model_cluster.html" title="Manages a clustered set of Gaussian Processes for localized regression." alt="" coords="168,5,312,31"/>
+<area shape="poly" title=" " alt="" coords="243,45,243,93,237,93,237,45"/>
+<area shape="rect" href="classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers." alt="" coords="336,5,520,31"/>
+<area shape="poly" title=" " alt="" coords="403,41,352,72,286,96,284,91,350,67,400,37"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -152,10 +167,10 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Blended mean function that interpolates local GP means using classifier probabilities. </p>
 <p>Mathematical Formulation The blended mean function at input $x$ is evaluated as:  </p><p class="formulaDsp">
 \[
-M(x) = \sum_{k=1}^K P(C=k \mid x) m_k(x; \theta_k)
+M(x) = \sum_{k=1}^K P(C=k | x) m_k(x; \theta_k)
 \]
 </p>
-<p> where $P(C=k \mid x)$ is the classifier-derived probability that $x$ belongs to cluster $k$, and $m_k$ is the mean function of the $k$-th cluster's GP.</p>
+<p> where $P(C=k | x)$ is the classifier-derived probability that $x$ belongs to cluster $k$, and $m_k$ is the mean function of the $k$-th cluster's GP.</p>
 <p>Implementation Algorithm</p><ol type="1">
 <li>Queries the classifier for the cluster membership probability vector at input $x$.</li>
 <li>Evaluates the local mean function for each cluster GP at $x$.</li>

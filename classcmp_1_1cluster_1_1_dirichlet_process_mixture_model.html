@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -116,6 +117,17 @@ $(document).ready(function(){initNavTree('classcmp_1_1cluster_1_1_dirichlet_proc
 Collaboration diagram for cmp::cluster::DirichletProcessMixtureModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model__coll__graph.png" border="0" usemap="#acmp_1_1cluster_1_1_dirichlet_process_mixture_model_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1cluster_1_1_dirichlet_process_mixture_model_coll__map" id="acmp_1_1cluster_1_1_dirichlet_process_mixture_model_coll__map">
+<area shape="rect" title="Implements an infinite Gaussian Mixture Model using a Dirichlet Process Mixture Model (DPMM) and Gibb..." alt="" coords="699,55,913,95"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution.html" title=" " alt="" coords="329,17,573,57"/>
+<area shape="poly" title=" " alt="" coords="588,49,699,61,698,66,587,54"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_multivariate_distribution.html" title=" " alt="" coords="5,5,280,60"/>
+<area shape="poly" title=" " alt="" coords="294,32,329,32,329,38,294,37"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_gamma_distribution.html" title=" " alt="" coords="376,87,527,127"/>
+<area shape="poly" title=" " alt="" coords="540,100,674,90,698,87,699,93,675,95,540,106"/>
+<area shape="rect" href="classcmp_1_1distribution_1_1_univariate_distribution.html" title=" " alt="" coords="53,84,233,139"/>
+<area shape="poly" title=" " alt="" coords="246,107,376,106,376,111,246,113"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -126,64 +138,91 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad8d57685732e0491786307a19e20a1fe" id="r_ad8d57685732e0491786307a19e20a1fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#ad8d57685732e0491786307a19e20a1fe">DirichletProcessMixtureModel</a> (double alpha, const <a class="el" href="classcmp_1_1distribution_1_1_gamma_distribution.html">cmp::distribution::GammaDistribution</a> &amp;alphaPrior, const <a class="el" href="classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution.html">cmp::distribution::NormalInverseWishartDistribution</a> &amp;hyper, unsigned int seed=12345)</td></tr>
+<tr class="memdesc:ad8d57685732e0491786307a19e20a1fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html" title="Implements an infinite Gaussian Mixture Model using a Dirichlet Process Mixture Model (DPMM) and Gibb...">DirichletProcessMixtureModel</a> object.  <br /></td></tr>
 <tr class="separator:ad8d57685732e0491786307a19e20a1fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51fbd889895500a4026c6abcc6cc22a0" id="r_a51fbd889895500a4026c6abcc6cc22a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a51fbd889895500a4026c6abcc6cc22a0">condition</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;data, const <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &amp;init_labels)</td></tr>
+<tr class="memdesc:a51fbd889895500a4026c6abcc6cc22a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conditions the DPMM model on the given dataset with initial cluster labels.  <br /></td></tr>
 <tr class="separator:a51fbd889895500a4026c6abcc6cc22a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0edf2151639d901a23e1ab7ff831578" id="r_ae0edf2151639d901a23e1ab7ff831578"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#ae0edf2151639d901a23e1ab7ff831578">step</a> ()</td></tr>
+<tr class="memdesc:ae0edf2151639d901a23e1ab7ff831578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs one complete sweep of collapsed Gibbs sampling over all points.  <br /></td></tr>
 <tr class="separator:ae0edf2151639d901a23e1ab7ff831578"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0274fdabfd53ad302ff5aaad823edc9" id="r_ad0274fdabfd53ad302ff5aaad823edc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#ad0274fdabfd53ad302ff5aaad823edc9">remapLabels</a> ()</td></tr>
+<tr class="memdesc:ad0274fdabfd53ad302ff5aaad823edc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remaps cluster labels to be contiguous integers starting from 0.  <br /></td></tr>
 <tr class="separator:ad0274fdabfd53ad302ff5aaad823edc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2413eda7c582905edde42c1e09fa8355" id="r_a2413eda7c582905edde42c1e09fa8355"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a2413eda7c582905edde42c1e09fa8355">getLabels</a> () const</td></tr>
+<tr class="memdesc:a2413eda7c582905edde42c1e09fa8355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current cluster label assignments vector.  <br /></td></tr>
 <tr class="separator:a2413eda7c582905edde42c1e09fa8355"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a049b71a80255f310aecc6f628ed0edd5" id="r_a049b71a80255f310aecc6f628ed0edd5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a049b71a80255f310aecc6f628ed0edd5">nClusters</a> () const</td></tr>
+<tr class="memdesc:a049b71a80255f310aecc6f628ed0edd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current number of active clusters.  <br /></td></tr>
 <tr class="separator:a049b71a80255f310aecc6f628ed0edd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a452d4e8cbc2d5d97a55a7c034d14adef" id="r_a452d4e8cbc2d5d97a55a7c034d14adef"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a452d4e8cbc2d5d97a55a7c034d14adef">getAlpha</a> () const</td></tr>
+<tr class="memdesc:a452d4e8cbc2d5d97a55a7c034d14adef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current concentration parameter alpha.  <br /></td></tr>
 <tr class="separator:a452d4e8cbc2d5d97a55a7c034d14adef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:aeed1e322dddddba9cc5eaf9120ab7f60" id="r_aeed1e322dddddba9cc5eaf9120ab7f60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#aeed1e322dddddba9cc5eaf9120ab7f60">init</a> (const <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &amp;init_labels)</td></tr>
+<tr class="memdesc:aeed1e322dddddba9cc5eaf9120ab7f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes cluster counts, sums, and sufficient statistics.  <br /></td></tr>
 <tr class="separator:aeed1e322dddddba9cc5eaf9120ab7f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dd327aea614f567ff379a45b2815eb9" id="r_a5dd327aea614f567ff379a45b2815eb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a5dd327aea614f567ff379a45b2815eb9">removePointFromCluster</a> (const size_t &amp;pointIndex, const size_t &amp;clusterID)</td></tr>
+<tr class="memdesc:a5dd327aea614f567ff379a45b2815eb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a point from the sufficient statistics of a specified cluster.  <br /></td></tr>
 <tr class="separator:a5dd327aea614f567ff379a45b2815eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70fc7f6955723b0d83357924e8c558c3" id="r_a70fc7f6955723b0d83357924e8c558c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a70fc7f6955723b0d83357924e8c558c3">addPointToCluster</a> (const size_t &amp;pointIndex, const size_t &amp;clusterID)</td></tr>
+<tr class="memdesc:a70fc7f6955723b0d83357924e8c558c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a point to the sufficient statistics of a specified cluster.  <br /></td></tr>
 <tr class="separator:a70fc7f6955723b0d83357924e8c558c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbd48bcaf4222f13ef07039bea9d98ab" id="r_adbd48bcaf4222f13ef07039bea9d98ab"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#adbd48bcaf4222f13ef07039bea9d98ab">logNIWPosterior</a> (const Eigen::VectorXd &amp;x, const <a class="el" href="structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster.html">Cluster</a> &amp;c) const</td></tr>
+<tr class="memdesc:adbd48bcaf4222f13ef07039bea9d98ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the log posterior probability of a point under a cluster's NIW predictive distribution.  <br /></td></tr>
 <tr class="separator:adbd48bcaf4222f13ef07039bea9d98ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3dbafcd002cd529a6136b32018e06c2" id="r_ab3dbafcd002cd529a6136b32018e06c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#ab3dbafcd002cd529a6136b32018e06c2">updateAlpha</a> ()</td></tr>
+<tr class="memdesc:ab3dbafcd002cd529a6136b32018e06c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the concentration parameter alpha via auxiliary variable sampling.  <br /></td></tr>
 <tr class="separator:ab3dbafcd002cd529a6136b32018e06c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a217eb8b0524d9276f8549eaebd9a8328" id="r_a217eb8b0524d9276f8549eaebd9a8328"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a217eb8b0524d9276f8549eaebd9a8328">logp_workspace_</a></td></tr>
+<tr class="memdesc:a217eb8b0524d9276f8549eaebd9a8328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temporary buffer for cluster log-probabilities.  <br /></td></tr>
 <tr class="separator:a217eb8b0524d9276f8549eaebd9a8328"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8bb0daa61526d49983def38e0a30ff8" id="r_af8bb0daa61526d49983def38e0a30ff8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#af8bb0daa61526d49983def38e0a30ff8">probs_workspace_</a></td></tr>
+<tr class="memdesc:af8bb0daa61526d49983def38e0a30ff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temporary buffer for cluster probability weights.  <br /></td></tr>
 <tr class="separator:af8bb0daa61526d49983def38e0a30ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf5ccdefa14ab8ef8d20866a683891c0" id="r_adf5ccdefa14ab8ef8d20866a683891c0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#adf5ccdefa14ab8ef8d20866a683891c0">clusterIDs_workspace_</a></td></tr>
+<tr class="memdesc:adf5ccdefa14ab8ef8d20866a683891c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temporary buffer for cluster IDs.  <br /></td></tr>
 <tr class="separator:adf5ccdefa14ab8ef8d20866a683891c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a089ca83c33514dfca66ddd699292f180" id="r_a089ca83c33514dfca66ddd699292f180"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a089ca83c33514dfca66ddd699292f180">xObs_</a></td></tr>
+<tr class="memdesc:a089ca83c33514dfca66ddd699292f180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Observed data points matrix (N x D).  <br /></td></tr>
 <tr class="separator:a089ca83c33514dfca66ddd699292f180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eed344e6896b8a4ce53bb60191ae349" id="r_a4eed344e6896b8a4ce53bb60191ae349"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a4eed344e6896b8a4ce53bb60191ae349">labels_</a></td></tr>
+<tr class="memdesc:a4eed344e6896b8a4ce53bb60191ae349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current cluster assignment label vector.  <br /></td></tr>
 <tr class="separator:a4eed344e6896b8a4ce53bb60191ae349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc57304801ca9b94d4132d0412af0e68" id="r_abc57304801ca9b94d4132d0412af0e68"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#abc57304801ca9b94d4132d0412af0e68">nPoints_</a> {0}</td></tr>
+<tr class="memdesc:abc57304801ca9b94d4132d0412af0e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of observation points.  <br /></td></tr>
 <tr class="separator:abc57304801ca9b94d4132d0412af0e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4ec5ef7f4d9bc852f6c4c73ac2762ec" id="r_ad4ec5ef7f4d9bc852f6c4c73ac2762ec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#ad4ec5ef7f4d9bc852f6c4c73ac2762ec">dim_</a> {0}</td></tr>
+<tr class="memdesc:ad4ec5ef7f4d9bc852f6c4c73ac2762ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimensionality of the feature space.  <br /></td></tr>
 <tr class="separator:ad4ec5ef7f4d9bc852f6c4c73ac2762ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a358136eacb5a457821c21427d5e8f764" id="r_a358136eacb5a457821c21427d5e8f764"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a358136eacb5a457821c21427d5e8f764">clusterIDs_</a></td></tr>
+<tr class="memdesc:a358136eacb5a457821c21427d5e8f764"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of active cluster IDs.  <br /></td></tr>
 <tr class="separator:a358136eacb5a457821c21427d5e8f764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7709e0b1e31bb1c864d8cfcb98251ffb" id="r_a7709e0b1e31bb1c864d8cfcb98251ffb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1distribution_1_1_normal_inverse_wishart_distribution.html">cmp::distribution::NormalInverseWishartDistribution</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a7709e0b1e31bb1c864d8cfcb98251ffb">hyper_</a></td></tr>
+<tr class="memdesc:a7709e0b1e31bb1c864d8cfcb98251ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hyperprior distribution parameters for clusters.  <br /></td></tr>
 <tr class="separator:a7709e0b1e31bb1c864d8cfcb98251ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86ac06e9822ef3957eefc42c8da55088" id="r_a86ac06e9822ef3957eefc42c8da55088"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1distribution_1_1_gamma_distribution.html">cmp::distribution::GammaDistribution</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a86ac06e9822ef3957eefc42c8da55088">alphaPrior_</a></td></tr>
+<tr class="memdesc:a86ac06e9822ef3957eefc42c8da55088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prior distribution parameters for concentration parameter.  <br /></td></tr>
 <tr class="separator:a86ac06e9822ef3957eefc42c8da55088"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c0c45b7b90eb86a067586709e4d4140" id="r_a8c0c45b7b90eb86a067586709e4d4140"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a8c0c45b7b90eb86a067586709e4d4140">alpha_</a> {1.0}</td></tr>
+<tr class="memdesc:a8c0c45b7b90eb86a067586709e4d4140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concentration parameter alpha for the Dirichlet Process.  <br /></td></tr>
 <tr class="separator:a8c0c45b7b90eb86a067586709e4d4140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2747b925e11eab0b8d204763d34cdd1f" id="r_a2747b925e11eab0b8d204763d34cdd1f"><td class="memItemLeft" align="right" valign="top">std::map&lt; size_t, <a class="el" href="structcmp_1_1cluster_1_1_dirichlet_process_mixture_model_1_1_cluster.html">Cluster</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a2747b925e11eab0b8d204763d34cdd1f">clusters_</a></td></tr>
+<tr class="memdesc:a2747b925e11eab0b8d204763d34cdd1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map from cluster ID to sufficient statistics cluster structure.  <br /></td></tr>
 <tr class="separator:a2747b925e11eab0b8d204763d34cdd1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a043dcc7c70ec73b428932391b5c541" id="r_a8a043dcc7c70ec73b428932391b5c541"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#a8a043dcc7c70ec73b428932391b5c541">nextClusterId_</a></td></tr>
+<tr class="memdesc:a8a043dcc7c70ec73b428932391b5c541"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter to generate unique new cluster IDs.  <br /></td></tr>
 <tr class="separator:a8a043dcc7c70ec73b428932391b5c541"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8bf4143b14944f09cb1e1f2a7c5366b" id="r_ab8bf4143b14944f09cb1e1f2a7c5366b"><td class="memItemLeft" align="right" valign="top">std::default_random_engine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#ab8bf4143b14944f09cb1e1f2a7c5366b">rng_</a></td></tr>
+<tr class="memdesc:ab8bf4143b14944f09cb1e1f2a7c5366b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pseudo-random number generator engine.  <br /></td></tr>
 <tr class="separator:ab8bf4143b14944f09cb1e1f2a7c5366b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade19ad5d2f4e8d26f5d3b10d5ac41d52" id="r_ade19ad5d2f4e8d26f5d3b10d5ac41d52"><td class="memItemLeft" align="right" valign="top">std::uniform_real_distribution&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html#ade19ad5d2f4e8d26f5d3b10d5ac41d52">distU_</a> {0.0, 1.0}</td></tr>
+<tr class="memdesc:ade19ad5d2f4e8d26f5d3b10d5ac41d52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform real generator for rejection sampler.  <br /></td></tr>
 <tr class="separator:ade19ad5d2f4e8d26f5d3b10d5ac41d52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -270,6 +309,17 @@ Constraints &amp; Invariants</h3>
       </table>
 </div><div class="memdoc">
 
+<p>Constructs a new <a class="el" href="classcmp_1_1cluster_1_1_dirichlet_process_mixture_model.html" title="Implements an infinite Gaussian Mixture Model using a Dirichlet Process Mixture Model (DPMM) and Gibb...">DirichletProcessMixtureModel</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha</td><td>Initial concentration parameter for the Dirichlet Process. </td></tr>
+    <tr><td class="paramname">alphaPrior</td><td>Gamma prior distribution parameters for concentration updates. </td></tr>
+    <tr><td class="paramname">hyper</td><td>Normal-Inverse-Wishart hyperprior parameters for clusters. </td></tr>
+    <tr><td class="paramname">seed</td><td>Seed value for the random number generator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -307,6 +357,15 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Adds a point to the sufficient statistics of a specified cluster. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pointIndex</td><td>Index of the data point. </td></tr>
+    <tr><td class="paramname">clusterID</td><td>ID of the cluster. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a51fbd889895500a4026c6abcc6cc22a0" name="a51fbd889895500a4026c6abcc6cc22a0"></a>
@@ -335,6 +394,15 @@ Constraints &amp; Invariants</h3>
       </table>
 </div><div class="memdoc">
 
+<p>Conditions the DPMM model on the given dataset with initial cluster labels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>N x D matrix of observed points. </td></tr>
+    <tr><td class="paramname">init_labels</td><td>Initial cluster assignment vector of size N. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a452d4e8cbc2d5d97a55a7c034d14adef" name="a452d4e8cbc2d5d97a55a7c034d14adef"></a>
@@ -359,6 +427,9 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the current concentration parameter alpha. </p>
+<dl class="section return"><dt>Returns</dt><dd>Value of alpha. </dd></dl>
 
 </div>
 </div>
@@ -385,6 +456,9 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the current cluster label assignments vector. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> of cluster labels. </dd></dl>
+
 </div>
 </div>
 <a id="aeed1e322dddddba9cc5eaf9120ab7f60" name="aeed1e322dddddba9cc5eaf9120ab7f60"></a>
@@ -410,6 +484,14 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Initializes cluster counts, sums, and sufficient statistics. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">init_labels</td><td>Initial cluster labels. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -447,6 +529,16 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the log posterior probability of a point under a cluster's NIW predictive distribution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The point vector. </td></tr>
+    <tr><td class="paramname">c</td><td>The cluster structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The log posterior probability. </dd></dl>
+
 </div>
 </div>
 <a id="a049b71a80255f310aecc6f628ed0edd5" name="a049b71a80255f310aecc6f628ed0edd5"></a>
@@ -472,6 +564,9 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the current number of active clusters. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of clusters. </dd></dl>
+
 </div>
 </div>
 <a id="ad0274fdabfd53ad302ff5aaad823edc9" name="ad0274fdabfd53ad302ff5aaad823edc9"></a>
@@ -488,6 +583,8 @@ Constraints &amp; Invariants</h3>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Remaps cluster labels to be contiguous integers starting from 0. </p>
 
 </div>
 </div>
@@ -525,6 +622,15 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Removes a point from the sufficient statistics of a specified cluster. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pointIndex</td><td>Index of the data point. </td></tr>
+    <tr><td class="paramname">clusterID</td><td>ID of the cluster. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ae0edf2151639d901a23e1ab7ff831578" name="ae0edf2151639d901a23e1ab7ff831578"></a>
@@ -541,6 +647,8 @@ Constraints &amp; Invariants</h3>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Performs one complete sweep of collapsed Gibbs sampling over all points. </p>
 
 </div>
 </div>
@@ -567,6 +675,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Updates the concentration parameter alpha via auxiliary variable sampling. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -590,6 +700,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Concentration parameter alpha for the Dirichlet Process. </p>
+
 </div>
 </div>
 <a id="a86ac06e9822ef3957eefc42c8da55088" name="a86ac06e9822ef3957eefc42c8da55088"></a>
@@ -611,6 +723,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Prior distribution parameters for concentration parameter. </p>
 
 </div>
 </div>
@@ -634,6 +748,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>List of active cluster IDs. </p>
+
 </div>
 </div>
 <a id="adf5ccdefa14ab8ef8d20866a683891c0" name="adf5ccdefa14ab8ef8d20866a683891c0"></a>
@@ -655,6 +771,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Temporary buffer for cluster IDs. </p>
 
 </div>
 </div>
@@ -678,6 +796,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Map from cluster ID to sufficient statistics cluster structure. </p>
+
 </div>
 </div>
 <a id="ad4ec5ef7f4d9bc852f6c4c73ac2762ec" name="ad4ec5ef7f4d9bc852f6c4c73ac2762ec"></a>
@@ -699,6 +819,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Dimensionality of the feature space. </p>
 
 </div>
 </div>
@@ -722,6 +844,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Uniform real generator for rejection sampler. </p>
+
 </div>
 </div>
 <a id="a7709e0b1e31bb1c864d8cfcb98251ffb" name="a7709e0b1e31bb1c864d8cfcb98251ffb"></a>
@@ -743,6 +867,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Hyperprior distribution parameters for clusters. </p>
 
 </div>
 </div>
@@ -766,6 +892,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Current cluster assignment label vector. </p>
+
 </div>
 </div>
 <a id="a217eb8b0524d9276f8549eaebd9a8328" name="a217eb8b0524d9276f8549eaebd9a8328"></a>
@@ -787,6 +915,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Temporary buffer for cluster log-probabilities. </p>
 
 </div>
 </div>
@@ -810,6 +940,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Counter to generate unique new cluster IDs. </p>
+
 </div>
 </div>
 <a id="abc57304801ca9b94d4132d0412af0e68" name="abc57304801ca9b94d4132d0412af0e68"></a>
@@ -831,6 +963,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Number of observation points. </p>
 
 </div>
 </div>
@@ -854,6 +988,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Temporary buffer for cluster probability weights. </p>
+
 </div>
 </div>
 <a id="ab8bf4143b14944f09cb1e1f2a7c5366b" name="ab8bf4143b14944f09cb1e1f2a7c5366b"></a>
@@ -876,6 +1012,8 @@ Constraints &amp; Invariants</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Pseudo-random number generator engine. </p>
+
 </div>
 </div>
 <a id="a089ca83c33514dfca66ddd699292f180" name="a089ca83c33514dfca66ddd699292f180"></a>
@@ -897,6 +1035,8 @@ Constraints &amp; Invariants</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Observed data points matrix (N x D). </p>
 
 </div>
 </div>

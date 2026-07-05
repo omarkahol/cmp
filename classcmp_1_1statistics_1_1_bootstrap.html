@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,6 +107,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1statistics_1_1_bootstrap.h
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html" title="Bootstrap resampling index generator.">Bootstrap</a> resampling index generator.  
+ <a href="classcmp_1_1statistics_1_1_bootstrap.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="statistics_8h_source.html">statistics.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -132,7 +136,29 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a1fddd44e98592e4675a45b81126f4580" id="r_a1fddd44e98592e4675a45b81126f4580"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html#a1fddd44e98592e4675a45b81126f4580">withReplacement_</a></td></tr>
 <tr class="separator:a1fddd44e98592e4675a45b81126f4580"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classcmp_1_1statistics_1_1_bootstrap.html" title="Bootstrap resampling index generator.">Bootstrap</a> resampling index generator. </p>
+<p>Mathematical Formulation Draws a random sample \(\mathcal{D}^*\) of size \(M\) from a dataset \(\mathcal{D}\) of size \(N\).</p><ul>
+<li>If with replacement:  <p class="formulaDsp">
+\[
+  P(x_i^* = x_j) = \frac{1}{N} \quad \forall i \in \{1,\dots,M\}, \ j \in \{1,\dots,N\}
+  \]
+</p>
+</li>
+<li><p class="startli">If without replacement:  </p><p class="formulaDsp">
+\[
+  P(x_i^* = x_j) = \frac{1}{N - i + 1}
+  \]
+</p>
+<p> subject to all selections being distinct.</p>
+<p class="startli">Implementation Algorithm</p>
+</li>
+</ul>
+<ol type="1">
+<li>If <code>withReplacement_</code> is true, generates \(M\) random integers in range \([0, N-1]\).</li>
+<li>If false, shuffles the index array using <code>std::shuffle</code> and extracts the first \(M\) elements. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a682182ddb9dad7bb853dd282d9349724" name="a682182ddb9dad7bb853dd282d9349724"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a682182ddb9dad7bb853dd282d9349724">&#9670;&#160;</a></span>Bootstrap()</h2>
 

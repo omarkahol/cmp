@@ -1,0 +1,9 @@
+<map id="cmp::classifier::Classifier" name="cmp::classifier::Classifier">
+<area shape="rect" id="Node000001" title="Abstract base class for all classifiers." alt="" coords="189,5,373,31"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1classifier_1_1_dummy.html" title="Baseline classifier predicting class labels based on training frequency distributions." alt="" coords="5,79,181,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,38,125,81,123,76,238,33"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1classifier_1_1_k_d_e.html" title="Classifier that uses Kernel Density Estimation (KDE) for classification." alt="" coords="206,79,357,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="284,44,284,79,279,79,279,44"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1classifier_1_1_s_v_m.html" title="Classifier that uses Support Vector Machine (SVM) for classification." alt="" coords="381,79,534,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="323,33,430,76,428,81,321,38"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="cmp::prior::Prior" name="cmp::prior::Prior">
+<area shape="rect" id="Node000001" title="Base class for prior probability distributions." alt="" coords="245,5,371,31"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1prior_1_1_from_distribution.html" title="Adapts a univariate probability distribution to act as a prior on a single coordinate." alt="" coords="5,79,211,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="267,38,157,81,155,76,265,33"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1prior_1_1_product.html" title="Represents the product (sum of logs) of two independent prior distributions." alt="" coords="235,86,381,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="311,44,311,86,305,86,305,44"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1prior_1_1_uniform.html" title="Represents an improper flat (uniform) prior." alt="" coords="405,86,555,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="346,34,456,84,454,88,344,39"/>
+</map>

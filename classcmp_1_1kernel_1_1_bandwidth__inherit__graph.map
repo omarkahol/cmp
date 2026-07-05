@@ -1,0 +1,9 @@
+<map id="cmp::kernel::Bandwidth" name="cmp::kernel::Bandwidth">
+<area shape="rect" id="Node000001" title="Abstract base class for multivariate KDE bandwidth matrices." alt="" coords="5,55,180,80"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1kernel_1_1_diagonal_bandwidth.html" title="Diagonal bandwidth matrix (independent parameter per dimension)." alt="" coords="228,5,461,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,49,278,28,279,33,172,55"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1kernel_1_1_full_bandwidth.html" title="Full covariance bandwidth matrix parameterized by its Cholesky factor." alt="" coords="245,55,444,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,65,245,65,245,70,194,70"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1kernel_1_1_isotropic_bandwidth.html" title="Isotropic bandwidth matrix (single scalar parameter h)." alt="" coords="229,104,460,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,80,279,101,278,107,171,85"/>
+</map>

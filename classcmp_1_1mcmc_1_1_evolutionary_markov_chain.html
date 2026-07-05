@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,6 +107,9 @@ $(document).ready(function(){initNavTree('classcmp_1_1mcmc_1_1_evolutionary_mark
 </div><!--header-->
 <div class="contents">
 
+<p>Implements an Evolutionary Markov Chain Monte Carlo sampler.  
+ <a href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="mcmc_8h_source.html">mcmc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -113,12 +117,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a716929479bfa4b4a7ae8e6f3bad25acc" id="r_a716929479bfa4b4a7ae8e6f3bad25acc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#a716929479bfa4b4a7ae8e6f3bad25acc">EvolutionaryMarkovChain</a> ()=default</td></tr>
 <tr class="separator:a716929479bfa4b4a7ae8e6f3bad25acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9d2600ec8040555acd6bf7c62a8b739" id="r_aa9d2600ec8040555acd6bf7c62a8b739"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#aa9d2600ec8040555acd6bf7c62a8b739">EvolutionaryMarkovChain</a> (std::vector&lt; Eigen::VectorXd &gt; initialSamples, std::vector&lt; double &gt; initialScores, double nugget=1e-6)</td></tr>
+<tr class="memdesc:aa9d2600ec8040555acd6bf7c62a8b739"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html" title="Implements an Evolutionary Markov Chain Monte Carlo sampler.">EvolutionaryMarkovChain</a> sampler.  <br /></td></tr>
 <tr class="separator:aa9d2600ec8040555acd6bf7c62a8b739"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3f9806a58e314654ff5d56e98e215c8" id="r_ae3f9806a58e314654ff5d56e98e215c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#ae3f9806a58e314654ff5d56e98e215c8">step</a> (const <a class="el" href="namespacecmp.html#a50b0111fd3568977d869565bf5e707dc">score_t</a> &amp;getScore, std::default_random_engine &amp;rng, double gamma=0.2)</td></tr>
+<tr class="memdesc:ae3f9806a58e314654ff5d56e98e215c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs one crossover and mutation step for all chains.  <br /></td></tr>
 <tr class="separator:ae3f9806a58e314654ff5d56e98e215c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaccefa584544c903b55c7ddf99cd2ddf" id="r_aaccefa584544c903b55c7ddf99cd2ddf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#aaccefa584544c903b55c7ddf99cd2ddf">getCurrent</a> () const</td></tr>
+<tr class="memdesc:aaccefa584544c903b55c7ddf99cd2ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current states of all chains.  <br /></td></tr>
 <tr class="separator:aaccefa584544c903b55c7ddf99cd2ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a782a4c4a6a36e9dcd3aa292dfcf27b1b" id="r_a782a4c4a6a36e9dcd3aa292dfcf27b1b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#a782a4c4a6a36e9dcd3aa292dfcf27b1b">getScores</a> () const</td></tr>
+<tr class="memdesc:a782a4c4a6a36e9dcd3aa292dfcf27b1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current log probability scores of all chains.  <br /></td></tr>
 <tr class="separator:a782a4c4a6a36e9dcd3aa292dfcf27b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -140,7 +148,24 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ad26388ab7e796253ac77f1b82844af49" id="r_ad26388ab7e796253ac77f1b82844af49"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html#ad26388ab7e796253ac77f1b82844af49">nugget_</a> {1e-6}</td></tr>
 <tr class="separator:ad26388ab7e796253ac77f1b82844af49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements an Evolutionary Markov Chain Monte Carlo sampler. </p>
+<p>Mathematical Formulation Uses differential evolution crossover proposals. For each chain \(i\), candidate states \(\boldsymbol{\theta}_i^*\) are generated using states from two other distinct, randomly selected chains \(j\) and \(k\):  </p><p class="formulaDsp">
+\[
+\boldsymbol{\theta}_i^* = \boldsymbol{\theta}_i + \gamma (\boldsymbol{\theta}_j - \boldsymbol{\theta}_k) + \mathbf{e}
+\]
+</p>
+<p> where \(\gamma\) is the scale factor and \(\mathbf{e} \sim \mathcal{N}(\mathbf{0}, \sigma_e^2 \mathbf{I})\) represents small mutation noise. The candidate state is accepted according to the Metropolis-Hastings probability:  </p><p class="formulaDsp">
+\[
+\alpha = \min\left(1, \exp\left(\log \pi(\boldsymbol{\theta}_i^*) - \log \pi(\boldsymbol{\theta}_i)\right)\right)
+\]
+</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>For each chain \(i\), randomly selects distinct partner chains \(j\) and \(k\).</li>
+<li>Evaluates mutated crossover states.</li>
+<li>Applies Metropolis-Hastings rejection step based on the likelihood evaluations. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a716929479bfa4b4a7ae8e6f3bad25acc" name="a716929479bfa4b4a7ae8e6f3bad25acc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a716929479bfa4b4a7ae8e6f3bad25acc">&#9670;&#160;</a></span>EvolutionaryMarkovChain() <span class="overload">[1/2]</span></h2>
 
@@ -198,6 +223,16 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructs an <a class="el" href="classcmp_1_1mcmc_1_1_evolutionary_markov_chain.html" title="Implements an Evolutionary Markov Chain Monte Carlo sampler.">EvolutionaryMarkovChain</a> sampler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initialSamples</td><td>Initial parameter states for each chain. </td></tr>
+    <tr><td class="paramname">initialScores</td><td>Initial log probability scores for each chain. </td></tr>
+    <tr><td class="paramname">nugget</td><td>Standard deviation scaling for crossover mutation noise. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -224,6 +259,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the current states of all chains. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of chain samples. </dd></dl>
+
 </div>
 </div>
 <a id="a782a4c4a6a36e9dcd3aa292dfcf27b1b" name="a782a4c4a6a36e9dcd3aa292dfcf27b1b"></a>
@@ -248,6 +286,9 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the current log probability scores of all chains. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of chain scores. </dd></dl>
 
 </div>
 </div>
@@ -282,6 +323,16 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Performs one crossover and mutation step for all chains. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">getScore</td><td>The log posterior probability evaluator. </td></tr>
+    <tr><td class="paramname">rng</td><td>Random number engine. </td></tr>
+    <tr><td class="paramname">gamma</td><td>Scale factor for difference vector in differential evolution. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

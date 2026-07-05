@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,16 +108,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1kernel_1_1_full_bandwidth.
 </div><!--header-->
 <div class="contents">
 
+<p>Full covariance bandwidth matrix parameterized by its Cholesky factor.  
+ <a href="classcmp_1_1kernel_1_1_full_bandwidth.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="kernel_09_09_8h_source.html">kernel++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::kernel::FullBandwidth:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_full_bandwidth__inherit__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_full_bandwidth_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1kernel_1_1_full_bandwidth_inherit__map" id="acmp_1_1kernel_1_1_full_bandwidth_inherit__map">
+<area shape="rect" title="Full covariance bandwidth matrix parameterized by its Cholesky factor." alt="" coords="5,79,204,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_bandwidth.html" title="Abstract base class for multivariate KDE bandwidth matrices." alt="" coords="17,5,192,31"/>
+<area shape="poly" title=" " alt="" coords="107,44,107,79,102,79,102,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::kernel::FullBandwidth:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_full_bandwidth__coll__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_full_bandwidth_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1kernel_1_1_full_bandwidth_coll__map" id="acmp_1_1kernel_1_1_full_bandwidth_coll__map">
+<area shape="rect" title="Full covariance bandwidth matrix parameterized by its Cholesky factor." alt="" coords="5,79,204,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_bandwidth.html" title="Abstract base class for multivariate KDE bandwidth matrices." alt="" coords="17,5,192,31"/>
+<area shape="poly" title=" " alt="" coords="107,44,107,79,102,79,102,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -124,24 +138,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ddf096ebf1acfe67beed015cf2d08a0" id="r_a7ddf096ebf1acfe67beed015cf2d08a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a7ddf096ebf1acfe67beed015cf2d08a0">FullBandwidth</a> ()=delete</td></tr>
 <tr class="separator:a7ddf096ebf1acfe67beed015cf2d08a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8843ec4c6b914ff1057dc979c2715a49" id="r_a8843ec4c6b914ff1057dc979c2715a49"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a8843ec4c6b914ff1057dc979c2715a49">FullBandwidth</a> (const Eigen::MatrixXd &amp;LLT)</td></tr>
+<tr class="memdesc:a8843ec4c6b914ff1057dc979c2715a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html" title="Full covariance bandwidth matrix parameterized by its Cholesky factor.">FullBandwidth</a> from a positive definite scale matrix.  <br /></td></tr>
 <tr class="separator:a8843ec4c6b914ff1057dc979c2715a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab10e0d03356a1216a70bb4550bf541a4" id="r_ab10e0d03356a1216a70bb4550bf541a4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#ab10e0d03356a1216a70bb4550bf541a4">determinant</a> () const override</td></tr>
+<tr class="memdesc:ab10e0d03356a1216a70bb4550bf541a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the determinant of the bandwidth matrix.  <br /></td></tr>
 <tr class="separator:ab10e0d03356a1216a70bb4550bf541a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ee84d8b42b8488a266408649506400b" id="r_a0ee84d8b42b8488a266408649506400b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a0ee84d8b42b8488a266408649506400b">size</a> () const</td></tr>
+<tr class="memdesc:a0ee84d8b42b8488a266408649506400b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dimension of the space.  <br /></td></tr>
 <tr class="separator:a0ee84d8b42b8488a266408649506400b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad09d7dde73c614d9d9d14c79379562e3" id="r_ad09d7dde73c614d9d9d14c79379562e3"><td class="memItemLeft" align="right" valign="top">std::pair&lt; size_t, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#ad09d7dde73c614d9d9d14c79379562e3">indexToRowCol</a> (const size_t &amp;i) const</td></tr>
+<tr class="memdesc:ad09d7dde73c614d9d9d14c79379562e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a flat index to row and column indices of the Cholesky factor.  <br /></td></tr>
 <tr class="separator:ad09d7dde73c614d9d9d14c79379562e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6259f9454ca705178e15350750a1eb23" id="r_a6259f9454ca705178e15350750a1eb23"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a6259f9454ca705178e15350750a1eb23">apply</a> (const Eigen::VectorXd &amp;x1, const Eigen::VectorXd &amp;x2) const override</td></tr>
+<tr class="memdesc:a6259f9454ca705178e15350750a1eb23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Projects the distance vector using the inverse of the Cholesky factor L.  <br /></td></tr>
 <tr class="separator:a6259f9454ca705178e15350750a1eb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f0390182b2293ab011726d6590c5aef" id="r_a2f0390182b2293ab011726d6590c5aef"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a2f0390182b2293ab011726d6590c5aef">gradientOfApply</a> (const Eigen::VectorXd &amp;x1, const Eigen::VectorXd &amp;x2, const size_t &amp;i) const override</td></tr>
+<tr class="memdesc:a2f0390182b2293ab011726d6590c5aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the gradient of the scaling transformation with respect to parameter i.  <br /></td></tr>
 <tr class="separator:a2f0390182b2293ab011726d6590c5aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4abd245fbba3514679bc8cc9f54968f2" id="r_a4abd245fbba3514679bc8cc9f54968f2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a4abd245fbba3514679bc8cc9f54968f2">gradientOfLogDeterminant</a> (const size_t &amp;i) const override</td></tr>
+<tr class="memdesc:a4abd245fbba3514679bc8cc9f54968f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the gradient of the log-determinant.  <br /></td></tr>
 <tr class="separator:a4abd245fbba3514679bc8cc9f54968f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f53f06e7579d8c07d8284c0bb15de45" id="r_a0f53f06e7579d8c07d8284c0bb15de45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a0f53f06e7579d8c07d8284c0bb15de45">setFromVector</a> (const Eigen::VectorXd &amp;params) override</td></tr>
+<tr class="memdesc:a0f53f06e7579d8c07d8284c0bb15de45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the bandwidth parameters from a parameter vector.  <br /></td></tr>
 <tr class="separator:a0f53f06e7579d8c07d8284c0bb15de45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62bfa6bf98fab34a92ae2cb0b7407345" id="r_a62bfa6bf98fab34a92ae2cb0b7407345"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a62bfa6bf98fab34a92ae2cb0b7407345">getParams</a> () const override</td></tr>
+<tr class="memdesc:a62bfa6bf98fab34a92ae2cb0b7407345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the bandwidth parameters as a vector.  <br /></td></tr>
 <tr class="separator:a62bfa6bf98fab34a92ae2cb0b7407345"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf91cd1d8e2ea8f7a5340dab9d1e9d6b" id="r_aaf91cd1d8e2ea8f7a5340dab9d1e9d6b"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#aaf91cd1d8e2ea8f7a5340dab9d1e9d6b">matrix</a> () const</td></tr>
+<tr class="memdesc:aaf91cd1d8e2ea8f7a5340dab9d1e9d6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full density bandwidth matrix.  <br /></td></tr>
 <tr class="separator:aaf91cd1d8e2ea8f7a5340dab9d1e9d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcmp_1_1kernel_1_1_bandwidth"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcmp_1_1kernel_1_1_bandwidth')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html">cmp::kernel::Bandwidth</a></td></tr>
 <tr class="memitem:a2bcf9c9c28c36fa4f5c38a779d8f2ae8 inherit pub_methods_classcmp_1_1kernel_1_1_bandwidth" id="r_a2bcf9c9c28c36fa4f5c38a779d8f2ae8"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a2bcf9c9c28c36fa4f5c38a779d8f2ae8">~Bandwidth</a> ()=default</td></tr>
@@ -150,6 +174,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a66e3bf8eab7e67fa871495f2358b4d4f" id="r_a66e3bf8eab7e67fa871495f2358b4d4f"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html">Bandwidth</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#a66e3bf8eab7e67fa871495f2358b4d4f">make</a> (const Eigen::MatrixXd &amp;LLT)</td></tr>
+<tr class="memdesc:a66e3bf8eab7e67fa871495f2358b4d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory method for creating a <a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html" title="Full covariance bandwidth matrix parameterized by its Cholesky factor.">FullBandwidth</a>.  <br /></td></tr>
 <tr class="separator:a66e3bf8eab7e67fa871495f2358b4d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -161,7 +186,24 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:afd6bbe8c3a506dcea498ec8c7f969814" id="r_afd6bbe8c3a506dcea498ec8c7f969814"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html#afd6bbe8c3a506dcea498ec8c7f969814">dim_</a></td></tr>
 <tr class="separator:afd6bbe8c3a506dcea498ec8c7f969814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Full covariance bandwidth matrix parameterized by its Cholesky factor. </p>
+<p>Mathematical Formulation Represents a full bandwidth matrix parameterized via lower triangular Cholesky factor \(\mathbf{L}\) where:  </p><p class="formulaDsp">
+\[
+\mathbf{H} = \mathbf{L} \mathbf{L}^T
+\]
+</p>
+<p> The transformation projects distances as:  </p><p class="formulaDsp">
+\[
+\mathbf{z} = \mathbf{L}^{-1} (\mathbf{x}_1 - \mathbf{x}_2)
+\]
+</p>
+<p> The determinant is computed from the diagonal elements of the Cholesky factor:  </p><p class="formulaDsp">
+\[
+\det(\mathbf{H}) = \prod_{d=1}^D L_{dd}^2
+\]
+</p>
+ </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7ddf096ebf1acfe67beed015cf2d08a0" name="a7ddf096ebf1acfe67beed015cf2d08a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7ddf096ebf1acfe67beed015cf2d08a0">&#9670;&#160;</a></span>FullBandwidth() <span class="overload">[1/2]</span></h2>
 
@@ -211,6 +253,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a <a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html" title="Full covariance bandwidth matrix parameterized by its Cholesky factor.">FullBandwidth</a> from a positive definite scale matrix. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -248,6 +292,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Projects the distance vector using the inverse of the Cholesky factor L. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a7b59faf763ae6808acd9ec5cf93f2663">cmp::kernel::Bandwidth</a>.</p>
 
 </div>
@@ -275,6 +321,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the determinant of the bandwidth matrix. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a718d366c32b080389cae1e844f126002">cmp::kernel::Bandwidth</a>.</p>
 
 </div>
@@ -301,6 +349,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the bandwidth parameters as a vector. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a1c1ec89f8c2823ade415bfc22c46ff11">cmp::kernel::Bandwidth</a>.</p>
 
@@ -346,6 +396,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the gradient of the scaling transformation with respect to parameter i. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a2e95090dd6f3648c895b3763bc23f519">cmp::kernel::Bandwidth</a>.</p>
 
 </div>
@@ -374,6 +426,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the gradient of the log-determinant. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a8e0152653d956a81f9ee555ab83c8e1b">cmp::kernel::Bandwidth</a>.</p>
 
 </div>
@@ -393,6 +447,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Maps a flat index to row and column indices of the Cholesky factor. </p>
 
 </div>
 </div>
@@ -420,6 +476,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Factory method for creating a <a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html" title="Full covariance bandwidth matrix parameterized by its Cholesky factor.">FullBandwidth</a>. </p>
+
 </div>
 </div>
 <a id="aaf91cd1d8e2ea8f7a5340dab9d1e9d6b" name="aaf91cd1d8e2ea8f7a5340dab9d1e9d6b"></a>
@@ -444,6 +502,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the full density bandwidth matrix. </p>
 
 </div>
 </div>
@@ -471,6 +531,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets the bandwidth parameters from a parameter vector. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#af901feed1ed1e7bd7b44ecd12152b1d4">cmp::kernel::Bandwidth</a>.</p>
 
 </div>
@@ -497,6 +559,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the dimension of the space. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html#a873ddb11a78e7adc920d31aa2c9cbeae">cmp::kernel::Bandwidth</a>.</p>
 

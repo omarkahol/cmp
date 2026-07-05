@@ -1,0 +1,9 @@
+<map id="cmp::covariance::ModelClusterCovariance" name="cmp::covariance::ModelClusterCovariance">
+<area shape="rect" id="Node000001" title="Blended covariance kernel that interpolates local GP kernels using classifier probabilities." alt="" coords="201,93,423,133"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1covariance_1_1_covariance.html" title="Abstract base class for all covariance (kernel) functions." alt="" coords="5,5,216,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,34,273,91,270,96,147,39"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1_model_cluster.html" title="Manages a clustered set of Gaussian Processes for localized regression." alt="" coords="240,5,384,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="315,44,315,93,309,93,309,44"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers." alt="" coords="408,5,592,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="474,41,424,72,369,96,367,91,421,67,471,37"/>
+</map>

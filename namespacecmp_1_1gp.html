@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -101,7 +102,7 @@ $(document).ready(function(){initNavTree('namespacecmp_1_1gp.html',''); initResi
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
-  <div class="headertitle"><div class="title">cmp::gp Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">cmp::gp Namespace Reference<div class="ingroups"><a class="el" href="group__surrogate.html">Surrogate Modeling &amp; Dimensionality Reduction</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -111,6 +112,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class implements a Gaussian Process (GP) regression model for non-parametric Bayesian regression.  <a href="classcmp_1_1gp_1_1_gaussian_process.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html">MultiOutputGaussianProcess</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages a collection of independent Gaussian Processes for multi-output regression.  <a href="classcmp_1_1gp_1_1_multi_output_gaussian_process.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -119,10 +121,12 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespacecmp_1_1gp.html#aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60">LOO</a>
 , <a class="el" href="namespacecmp_1_1gp.html#aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03">LOO_MSE</a>
  }</td></tr>
+<tr class="memdesc:aebc70dfa5fe7ad34bd9d0e256ebb1bcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimization method for GP hyperparameters.  <a href="namespacecmp_1_1gp.html#aebc70dfa5fe7ad34bd9d0e256ebb1bcf">More...</a><br /></td></tr>
 <tr class="separator:aebc70dfa5fe7ad34bd9d0e256ebb1bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06753fcdc5112589811ecce3b6eddc27" id="r_a06753fcdc5112589811ecce3b6eddc27"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1gp.html#a06753fcdc5112589811ecce3b6eddc27">type</a> { <a class="el" href="namespacecmp_1_1gp.html#a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11">PRIOR</a>
 , <a class="el" href="namespacecmp_1_1gp.html#a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43">POSTERIOR</a>
  }</td></tr>
+<tr class="memdesc:a06753fcdc5112589811ecce3b6eddc27"><td class="mdescLeft">&#160;</td><td class="mdescRight">GP evaluation type.  <a href="namespacecmp_1_1gp.html#a06753fcdc5112589811ecce3b6eddc27">More...</a><br /></td></tr>
 <tr class="separator:a06753fcdc5112589811ecce3b6eddc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -137,10 +141,15 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Optimization method for GP hyperparameters. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7" name="aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7"></a>MLE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60" name="aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60"></a>LOO&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03" name="aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03"></a>LOO_MSE&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7" name="aebc70dfa5fe7ad34bd9d0e256ebb1bcfac4ce71dbe83e2a71161a100c6e1258b7"></a>MLE&#160;</td><td class="fielddoc"><p>Maximum Likelihood Estimation (maximizing marginal likelihood) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60" name="aebc70dfa5fe7ad34bd9d0e256ebb1bcfaacf2220bc317c3f8c55b8f81032d9d60"></a>LOO&#160;</td><td class="fielddoc"><p>Leave-One-Out cross-validation predictive probability optimization. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03" name="aebc70dfa5fe7ad34bd9d0e256ebb1bcfabea4a9b249aa75fc327a4a2bb4402e03"></a>LOO_MSE&#160;</td><td class="fielddoc"><p>Leave-One-Out Mean Squared Error minimization. </p>
+</td></tr>
 </table>
 
 </div>
@@ -156,9 +165,13 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>GP evaluation type. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11" name="a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11"></a>PRIOR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43" name="a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43"></a>POSTERIOR&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11" name="a06753fcdc5112589811ecce3b6eddc27a1b73e07ac46e404a62b134f7673fdb11"></a>PRIOR&#160;</td><td class="fielddoc"><p>Prior GP response (before conditioning on training data) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43" name="a06753fcdc5112589811ecce3b6eddc27ab0e71364e896f2b468df048c1ac04a43"></a>POSTERIOR&#160;</td><td class="fielddoc"><p>Posterior GP response (conditioned on training data) </p>
+</td></tr>
 </table>
 
 </div>

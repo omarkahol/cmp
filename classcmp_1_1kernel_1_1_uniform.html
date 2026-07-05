@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,16 +107,29 @@ $(document).ready(function(){initNavTree('classcmp_1_1kernel_1_1_uniform.html','
 </div><!--header-->
 <div class="contents">
 
+<p>Rectangular (uniform) density kernel.  
+ <a href="classcmp_1_1kernel_1_1_uniform.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="kernel_09_09_8h_source.html">kernel++.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for cmp::kernel::Uniform:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_uniform__inherit__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_uniform_inherit__map" alt="Inheritance graph"/></div>
+<map name="acmp_1_1kernel_1_1_uniform_inherit__map" id="acmp_1_1kernel_1_1_uniform_inherit__map">
+<area shape="rect" title="Rectangular (uniform) density kernel." alt="" coords="5,79,164,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="11,5,158,31"/>
+<area shape="poly" title=" " alt="" coords="87,44,87,79,82,79,82,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for cmp::kernel::Uniform:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1kernel_1_1_uniform__coll__graph.png" border="0" usemap="#acmp_1_1kernel_1_1_uniform_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1kernel_1_1_uniform_coll__map" id="acmp_1_1kernel_1_1_uniform_coll__map">
+<area shape="rect" title="Rectangular (uniform) density kernel." alt="" coords="5,79,164,104"/>
+<area shape="rect" href="classcmp_1_1kernel_1_1_kernel.html" title="Abstract base class for KDE density kernel functions." alt="" coords="11,5,158,31"/>
+<area shape="poly" title=" " alt="" coords="87,44,87,79,82,79,82,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -123,10 +137,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a34a9cfeb755cc6ae2435dfd8928f0353" id="r_a34a9cfeb755cc6ae2435dfd8928f0353"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_uniform.html#a34a9cfeb755cc6ae2435dfd8928f0353">Uniform</a> ()=default</td></tr>
 <tr class="separator:a34a9cfeb755cc6ae2435dfd8928f0353"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6b7a2c0dc2c0eccc339da1cd77f51e4" id="r_af6b7a2c0dc2c0eccc339da1cd77f51e4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_uniform.html#af6b7a2c0dc2c0eccc339da1cd77f51e4">eval</a> (const Eigen::VectorXd &amp;z_diff) const override</td></tr>
+<tr class="memdesc:af6b7a2c0dc2c0eccc339da1cd77f51e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates the unnormalized uniform kernel.  <br /></td></tr>
 <tr class="separator:af6b7a2c0dc2c0eccc339da1cd77f51e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c9ecbd90297949b3a0960ac71720b50" id="r_a2c9ecbd90297949b3a0960ac71720b50"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_uniform.html#a2c9ecbd90297949b3a0960ac71720b50">normalizationConstant</a> (const size_t &amp;dim) const override</td></tr>
+<tr class="memdesc:a2c9ecbd90297949b3a0960ac71720b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the normalization constant for a given dimension.  <br /></td></tr>
 <tr class="separator:a2c9ecbd90297949b3a0960ac71720b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d19bf5e8fa6c259cf1b60259700755f" id="r_a4d19bf5e8fa6c259cf1b60259700755f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_uniform.html#a4d19bf5e8fa6c259cf1b60259700755f">applyToGradient</a> (const Eigen::VectorXd &amp;z, const Eigen::VectorXd &amp;grad_z_i) const override</td></tr>
+<tr class="memdesc:a4d19bf5e8fa6c259cf1b60259700755f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the gradient of the kernel evaluation (always 0 since it is flat).  <br /></td></tr>
 <tr class="separator:a4d19bf5e8fa6c259cf1b60259700755f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcmp_1_1kernel_1_1_kernel"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcmp_1_1kernel_1_1_kernel')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">cmp::kernel::Kernel</a></td></tr>
 <tr class="memitem:aad1d785fbdc3a74aedfa575053b09bb0 inherit pub_methods_classcmp_1_1kernel_1_1_kernel" id="r_aad1d785fbdc3a74aedfa575053b09bb0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_kernel.html#aad1d785fbdc3a74aedfa575053b09bb0">~Kernel</a> ()=default</td></tr>
@@ -135,9 +152,17 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a6397931e0c750db84f207445e2b727ae" id="r_a6397931e0c750db84f207445e2b727ae"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classcmp_1_1kernel_1_1_kernel.html">Kernel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_uniform.html#a6397931e0c750db84f207445e2b727ae">make</a> ()</td></tr>
+<tr class="memdesc:a6397931e0c750db84f207445e2b727ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory method for creating a <a class="el" href="classcmp_1_1kernel_1_1_uniform.html" title="Rectangular (uniform) density kernel.">Uniform</a> kernel.  <br /></td></tr>
 <tr class="separator:a6397931e0c750db84f207445e2b727ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Rectangular (uniform) density kernel. </p>
+<p>Mathematical Formulation The multivariate uniform kernel:  </p><p class="formulaDsp">
+\[
+K(\mathbf{z}) \propto \begin{cases} 1 &amp; \text{if } \|\mathbf{z}\|_\infty \le 1/2 \\ 0 &amp; \text{otherwise} \end{cases}
+\]
+</p>
+ </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a34a9cfeb755cc6ae2435dfd8928f0353" name="a34a9cfeb755cc6ae2435dfd8928f0353"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a34a9cfeb755cc6ae2435dfd8928f0353">&#9670;&#160;</a></span>Uniform()</h2>
 
@@ -198,6 +223,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the gradient of the kernel evaluation (always 0 since it is flat). </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#aad7b69ab20fe331b1b9e64ca9afa10ad">cmp::kernel::Kernel</a>.</p>
 
 </div>
@@ -226,6 +253,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Evaluates the unnormalized uniform kernel. </p>
+
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#a93a0f6bc1b69f2398d9fdc0f36bd01bb">cmp::kernel::Kernel</a>.</p>
 
 </div>
@@ -253,6 +282,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Factory method for creating a <a class="el" href="classcmp_1_1kernel_1_1_uniform.html" title="Rectangular (uniform) density kernel.">Uniform</a> kernel. </p>
+
 </div>
 </div>
 <a id="a2c9ecbd90297949b3a0960ac71720b50" name="a2c9ecbd90297949b3a0960ac71720b50"></a>
@@ -278,6 +309,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the normalization constant for a given dimension. </p>
 
 <p>Implements <a class="el" href="classcmp_1_1kernel_1_1_kernel.html#a8e73dd33c293a97bb12cb3dc1b22725a">cmp::kernel::Kernel</a>.</p>
 

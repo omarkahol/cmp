@@ -1,0 +1,9 @@
+<map id="cmp::kernel::Kernel" name="cmp::kernel::Kernel">
+<area shape="rect" id="Node000001" title="Abstract base class for KDE density kernel functions." alt="" coords="235,5,382,31"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel." alt="" coords="5,79,201,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,38,137,81,136,76,262,33"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel." alt="" coords="225,79,392,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="311,44,311,79,306,79,306,44"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1kernel_1_1_uniform.html" title="Rectangular (uniform) density kernel." alt="" coords="416,79,575,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="352,33,466,76,464,81,350,38"/>
+</map>

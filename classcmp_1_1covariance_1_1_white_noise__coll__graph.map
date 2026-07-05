@@ -1,0 +1,5 @@
+<map id="cmp::covariance::WhiteNoise" name="cmp::covariance::WhiteNoise">
+<area shape="rect" id="Node000001" title="White noise covariance function." alt="" coords="5,79,217,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1covariance_1_1_covariance.html" title="Abstract base class for all covariance (kernel) functions." alt="" coords="6,5,217,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,44,114,79,109,79,109,44"/>
+</map>

@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,22 +107,34 @@ $(document).ready(function(){initNavTree('classcmp_1_1statistics_1_1_k_fold_1_1_
 </div><!--header-->
 <div class="contents">
 
+<p>Iterator class to traverse folds for K-Fold cross-validation.  
+ <a href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="statistics_8h_source.html">statistics.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for cmp::statistics::KFold::KFoldIterator:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator__coll__graph.png" border="0" usemap="#acmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_coll__map" alt="Collaboration graph"/></div>
+<map name="acmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_coll__map" id="acmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator_coll__map">
+<area shape="rect" title="Iterator class to traverse folds for K&#45;Fold cross&#45;validation." alt="" coords="5,93,167,133"/>
+<area shape="rect" href="classcmp_1_1statistics_1_1_k_fold.html" title="K&#45;Fold cross&#45;validation partition generator." alt="" coords="5,5,167,31"/>
+<area shape="poly" title=" " alt="" coords="89,44,89,93,83,93,83,44"/>
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6e3a816cd0afe3290d4b44b678ddebf1" id="r_a6e3a816cd0afe3290d4b44b678ddebf1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html#a6e3a816cd0afe3290d4b44b678ddebf1">KFoldIterator</a> (const <a class="el" href="classcmp_1_1statistics_1_1_k_fold.html">KFold</a> &amp;kf, Eigen::Index split)</td></tr>
+<tr class="memdesc:a6e3a816cd0afe3290d4b44b678ddebf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html" title="Iterator class to traverse folds for K-Fold cross-validation.">KFoldIterator</a>.  <br /></td></tr>
 <tr class="separator:a6e3a816cd0afe3290d4b44b678ddebf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af62ee2692c2dc7286f2e542276ed7772" id="r_af62ee2692c2dc7286f2e542276ed7772"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html#af62ee2692c2dc7286f2e542276ed7772">operator!=</a> (const <a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html">KFoldIterator</a> &amp;other) const</td></tr>
+<tr class="memdesc:af62ee2692c2dc7286f2e542276ed7772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks inequality with another iterator.  <br /></td></tr>
 <tr class="separator:af62ee2692c2dc7286f2e542276ed7772"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c1a24c70d594a3b48af46614f5a513f" id="r_a9c1a24c70d594a3b48af46614f5a513f"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>, <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html#a9c1a24c70d594a3b48af46614f5a513f">operator*</a> () const</td></tr>
+<tr class="memdesc:a9c1a24c70d594a3b48af46614f5a513f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dereferences the iterator to compute training and test index sets for the current fold.  <br /></td></tr>
 <tr class="separator:a9c1a24c70d594a3b48af46614f5a513f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa367728d4a1ae929534e3c876060819e" id="r_aa367728d4a1ae929534e3c876060819e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html">KFoldIterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html#aa367728d4a1ae929534e3c876060819e">operator++</a> ()</td></tr>
+<tr class="memdesc:aa367728d4a1ae929534e3c876060819e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the iterator to point to the next fold.  <br /></td></tr>
 <tr class="separator:aa367728d4a1ae929534e3c876060819e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -131,7 +144,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aa7025823435ca0152e03d94bde9957c0" id="r_aa7025823435ca0152e03d94bde9957c0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classcmp_1_1statistics_1_1_k_fold.html">KFold</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html#aa7025823435ca0152e03d94bde9957c0">parent_</a></td></tr>
 <tr class="separator:aa7025823435ca0152e03d94bde9957c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Iterator class to traverse folds for K-Fold cross-validation. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6e3a816cd0afe3290d4b44b678ddebf1" name="a6e3a816cd0afe3290d4b44b678ddebf1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6e3a816cd0afe3290d4b44b678ddebf1">&#9670;&#160;</a></span>KFoldIterator()</h2>
 
@@ -166,6 +181,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a <a class="el" href="classcmp_1_1statistics_1_1_k_fold_1_1_k_fold_iterator.html" title="Iterator class to traverse folds for K-Fold cross-validation.">KFoldIterator</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>Reference to the parent <a class="el" href="classcmp_1_1statistics_1_1_k_fold.html" title="K-Fold cross-validation partition generator.">KFold</a> object. </td></tr>
+    <tr><td class="paramname">split</td><td>Index of the current split/fold. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -193,6 +217,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Checks inequality with another iterator. </p>
+
 </div>
 </div>
 <a id="a9c1a24c70d594a3b48af46614f5a513f" name="a9c1a24c70d594a3b48af46614f5a513f"></a>
@@ -218,6 +244,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Dereferences the iterator to compute training and test index sets for the current fold. </p>
+<dl class="section return"><dt>Returns</dt><dd>A pair containing {train_indices, test_indices}. </dd></dl>
+
 </div>
 </div>
 <a id="aa367728d4a1ae929534e3c876060819e" name="aa367728d4a1ae929534e3c876060819e"></a>
@@ -242,6 +271,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Increments the iterator to point to the next fold. </p>
 
 </div>
 </div>

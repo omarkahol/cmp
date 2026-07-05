@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -111,23 +112,23 @@ $(document).ready(function(){initNavTree('io_8h_source.html',''); initResizable(
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="cmp__defines_8h.html">cmp_defines.h</a>&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecmp.html">cmp</a> {</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecmp.html#af85e70639980f381b7c0e708ad9b9c4d">write_vector</a>(<span class="keyword">const</span> std::vector&lt;Eigen::VectorXd&gt; &amp;data, std::ofstream &amp;o_file);</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecmp.html#a4a5aa7d715cd32b0f56a7b92b12516f7">write_data</a>(<span class="keyword">const</span> std::vector&lt;Eigen::VectorXd&gt; &amp;x, <span class="keyword">const</span> Eigen::MatrixXd &amp;y, std::ofstream &amp;o_file);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>std::vector&lt;Eigen::VectorXd&gt; <a class="code hl_function" href="namespacecmp.html#a42c4e9833f2dc4e5f7b1d4c14b3ea7fc">read_vector</a>(std::ifstream &amp;i_file, std::string delimiter = <span class="stringliteral">&quot;,&quot;</span>, <span class="keywordtype">size_t</span> header = 0);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecmp.html">cmp</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecmp.html#af85e70639980f381b7c0e708ad9b9c4d">write_vector</a>(<span class="keyword">const</span> std::vector&lt;Eigen::VectorXd&gt; &amp;data, std::ofstream &amp;o_file);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecmp.html#a4a5aa7d715cd32b0f56a7b92b12516f7">write_data</a>(<span class="keyword">const</span> std::vector&lt;Eigen::VectorXd&gt; &amp;x, <span class="keyword">const</span> Eigen::MatrixXd &amp;y, std::ofstream &amp;o_file);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>std::vector&lt;Eigen::VectorXd&gt; <a class="code hl_function" href="namespacecmp.html#a42c4e9833f2dc4e5f7b1d4c14b3ea7fc">read_vector</a>(std::ifstream &amp;i_file, std::string delimiter = <span class="stringliteral">&quot;,&quot;</span>, <span class="keywordtype">size_t</span> header = 0);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="acmp__defines_8h_html"><div class="ttname"><a href="cmp__defines_8h.html">cmp_defines.h</a></div></div>
-<div class="ttc" id="anamespacecmp_html"><div class="ttname"><a href="namespacecmp.html">cmp</a></div><div class="ttdef"><b>Definition</b> classifier.h:13</div></div>
-<div class="ttc" id="anamespacecmp_html_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc"><div class="ttname"><a href="namespacecmp.html#a42c4e9833f2dc4e5f7b1d4c14b3ea7fc">cmp::read_vector</a></div><div class="ttdeci">std::vector&lt; Eigen::VectorXd &gt; read_vector(std::ifstream &amp;i_file, std::string delimiter=&quot;,&quot;, size_t header=0)</div><div class="ttdoc">Read the contents of a file. Note, the file must be organized in rows containing data in the form of ...</div><div class="ttdef"><b>Definition</b> io.cpp:25</div></div>
-<div class="ttc" id="anamespacecmp_html_a4a5aa7d715cd32b0f56a7b92b12516f7"><div class="ttname"><a href="namespacecmp.html#a4a5aa7d715cd32b0f56a7b92b12516f7">cmp::write_data</a></div><div class="ttdeci">void write_data(const std::vector&lt; Eigen::VectorXd &gt; &amp;x, const Eigen::MatrixXd &amp;y, std::ofstream &amp;o_file)</div><div class="ttdoc">Write data points to a file.</div><div class="ttdef"><b>Definition</b> io.cpp:13</div></div>
-<div class="ttc" id="anamespacecmp_html_af85e70639980f381b7c0e708ad9b9c4d"><div class="ttname"><a href="namespacecmp.html#af85e70639980f381b7c0e708ad9b9c4d">cmp::write_vector</a></div><div class="ttdeci">void write_vector(const std::vector&lt; Eigen::VectorXd &gt; &amp;data, std::ofstream &amp;o_file)</div><div class="ttdef"><b>Definition</b> io.cpp:3</div></div>
+<div class="ttc" id="anamespacecmp_html"><div class="ttname"><a href="namespacecmp.html">cmp</a></div><div class="ttdef"><b>Definition</b> classifier.h:17</div></div>
+<div class="ttc" id="anamespacecmp_html_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc"><div class="ttname"><a href="namespacecmp.html#a42c4e9833f2dc4e5f7b1d4c14b3ea7fc">cmp::read_vector</a></div><div class="ttdeci">std::vector&lt; Eigen::VectorXd &gt; read_vector(std::ifstream &amp;i_file, std::string delimiter=&quot;,&quot;, size_t header=0)</div><div class="ttdoc">Read the contents of a delimited text file into vector collections.</div><div class="ttdef"><b>Definition</b> io.cpp:25</div></div>
+<div class="ttc" id="anamespacecmp_html_a4a5aa7d715cd32b0f56a7b92b12516f7"><div class="ttname"><a href="namespacecmp.html#a4a5aa7d715cd32b0f56a7b92b12516f7">cmp::write_data</a></div><div class="ttdeci">void write_data(const std::vector&lt; Eigen::VectorXd &gt; &amp;x, const Eigen::MatrixXd &amp;y, std::ofstream &amp;o_file)</div><div class="ttdoc">Write data points and evaluations to a file.</div><div class="ttdef"><b>Definition</b> io.cpp:13</div></div>
+<div class="ttc" id="anamespacecmp_html_af85e70639980f381b7c0e708ad9b9c4d"><div class="ttname"><a href="namespacecmp.html#af85e70639980f381b7c0e708ad9b9c4d">cmp::write_vector</a></div><div class="ttdeci">void write_vector(const std::vector&lt; Eigen::VectorXd &gt; &amp;data, std::ofstream &amp;o_file)</div><div class="ttdoc">Serializes a list of vector coordinates to a file stream.</div><div class="ttdef"><b>Definition</b> io.cpp:3</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

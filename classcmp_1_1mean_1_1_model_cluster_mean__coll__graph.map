@@ -1,0 +1,9 @@
+<map id="cmp::mean::ModelClusterMean" name="cmp::mean::ModelClusterMean">
+<area shape="rect" id="Node000001" title="Blended mean function that interpolates local GP means using classifier probabilities." alt="" coords="127,93,353,119"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1mean_1_1_mean.html" title="Abstract base class for Gaussian Process prior mean functions." alt="" coords="5,5,144,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,35,219,91,216,95,108,39"/>
+<area shape="rect" id="Node000003" href="$classcmp_1_1_model_cluster.html" title="Manages a clustered set of Gaussian Processes for localized regression." alt="" coords="168,5,312,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="243,45,243,93,237,93,237,45"/>
+<area shape="rect" id="Node000004" href="$classcmp_1_1classifier_1_1_classifier.html" title="Abstract base class for all classifiers." alt="" coords="336,5,520,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="403,41,352,72,286,96,284,91,350,67,400,37"/>
+</map>

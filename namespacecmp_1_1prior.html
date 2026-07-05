@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -101,7 +102,7 @@ $(document).ready(function(){initNavTree('namespacecmp_1_1prior.html',''); initR
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">cmp::prior Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">cmp::prior Namespace Reference<div class="ingroups"><a class="el" href="group__probability.html">Probability Distributions, Priors, &amp; Kernels</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -124,8 +125,10 @@ Classes</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:adb31d0f5e3c1784da4742ce84f67c2f2" id="r_adb31d0f5e3c1784da4742ce84f67c2f2"><td class="memTemplParams" colspan="2">template&lt;typename DistType &gt; </td></tr>
 <tr class="memitem:adb31d0f5e3c1784da4742ce84f67c2f2"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1prior_1_1_prior.html">Prior</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1prior.html#adb31d0f5e3c1784da4742ce84f67c2f2">make</a> (const DistType &amp;dist, size_t paramIndex)</td></tr>
+<tr class="memdesc:adb31d0f5e3c1784da4742ce84f67c2f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper template function to create a <a class="el" href="classcmp_1_1prior_1_1_from_distribution.html" title="Adapts a univariate probability distribution to act as a prior on a single coordinate.">FromDistribution</a> prior.  <br /></td></tr>
 <tr class="separator:adb31d0f5e3c1784da4742ce84f67c2f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbd773d63bc95b5e9a16f907edc37a74" id="r_acbd773d63bc95b5e9a16f907edc37a74"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classcmp_1_1prior_1_1_prior.html">Prior</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp_1_1prior.html#acbd773d63bc95b5e9a16f907edc37a74">operator*</a> (std::shared_ptr&lt; <a class="el" href="classcmp_1_1prior_1_1_prior.html">Prior</a> &gt; p1, std::shared_ptr&lt; <a class="el" href="classcmp_1_1prior_1_1_prior.html">Prior</a> &gt; p2)</td></tr>
+<tr class="memdesc:acbd773d63bc95b5e9a16f907edc37a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies two prior distributions (returns a <a class="el" href="classcmp_1_1prior_1_1_product.html" title="Represents the product (sum of logs) of two independent prior distributions.">Product</a> prior).  <br /></td></tr>
 <tr class="separator:acbd773d63bc95b5e9a16f907edc37a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -157,6 +160,22 @@ template&lt;typename DistType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Helper template function to create a <a class="el" href="classcmp_1_1prior_1_1_from_distribution.html" title="Adapts a univariate probability distribution to act as a prior on a single coordinate.">FromDistribution</a> prior. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DistType</td><td>The type of the univariate distribution. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dist</td><td>The distribution. </td></tr>
+    <tr><td class="paramname">paramIndex</td><td>The index of the parameter coordinate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Shared pointer to the created <a class="el" href="classcmp_1_1prior_1_1_prior.html" title="Base class for prior probability distributions.">Prior</a>. </dd></dl>
+
 </div>
 </div>
 <a id="acbd773d63bc95b5e9a16f907edc37a74" name="acbd773d63bc95b5e9a16f907edc37a74"></a>
@@ -184,6 +203,16 @@ template&lt;typename DistType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Multiplies two prior distributions (returns a <a class="el" href="classcmp_1_1prior_1_1_product.html" title="Represents the product (sum of logs) of two independent prior distributions.">Product</a> prior). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>First prior distribution. </td></tr>
+    <tr><td class="paramname">p2</td><td>Second prior distribution. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Shared pointer to the <a class="el" href="classcmp_1_1prior_1_1_product.html" title="Represents the product (sum of logs) of two independent prior distributions.">Product</a> prior. </dd></dl>
 
 </div>
 </div>

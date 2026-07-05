@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -110,11 +111,58 @@ $(document).ready(function(){initNavTree('kernel_09_09_8h.html',''); initResizab
 Include dependency graph for kernel++.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="kernel_09_09_8h__incl.png" border="0" usemap="#ainclude_2kernel_09_09_8h" alt=""/></div>
+<map name="ainclude_2kernel_09_09_8h" id="ainclude_2kernel_09_09_8h">
+<area shape="rect" title=" " alt="" coords="521,5,667,31"/>
+<area shape="rect" href="cmp__defines_8h.html" title=" " alt="" coords="536,79,652,104"/>
+<area shape="poly" title=" " alt="" coords="597,31,597,65,591,65,591,31"/>
+<area shape="rect" title=" " alt="" coords="5,152,108,177"/>
+<area shape="poly" title=" " alt="" coords="536,102,355,123,122,154,121,149,354,117,535,96"/>
+<area shape="rect" title=" " alt="" coords="132,152,195,177"/>
+<area shape="poly" title=" " alt="" coords="536,102,391,122,208,154,208,149,390,117,535,97"/>
+<area shape="rect" title=" " alt="" coords="219,152,292,177"/>
+<area shape="poly" title=" " alt="" coords="537,107,307,154,305,149,536,101"/>
+<area shape="rect" title=" " alt="" coords="317,152,397,177"/>
+<area shape="poly" title=" " alt="" coords="557,107,409,151,407,145,555,101"/>
+<area shape="rect" title=" " alt="" coords="421,152,487,177"/>
+<area shape="poly" title=" " alt="" coords="573,106,490,148,488,143,570,102"/>
+<area shape="rect" title=" " alt="" coords="512,152,580,177"/>
+<area shape="poly" title=" " alt="" coords="588,106,564,142,559,139,584,103"/>
+<area shape="rect" title=" " alt="" coords="605,152,679,177"/>
+<area shape="poly" title=" " alt="" coords="604,103,629,139,624,142,600,106"/>
+<area shape="rect" title=" " alt="" coords="703,152,754,177"/>
+<area shape="poly" title=" " alt="" coords="617,102,696,143,693,148,614,106"/>
+<area shape="rect" title=" " alt="" coords="778,152,850,177"/>
+<area shape="poly" title=" " alt="" coords="630,101,766,145,765,150,629,107"/>
+<area shape="rect" title=" " alt="" coords="874,152,933,177"/>
+<area shape="poly" title=" " alt="" coords="650,101,861,149,860,154,649,107"/>
+<area shape="rect" title=" " alt="" coords="957,152,1039,177"/>
+<area shape="poly" title=" " alt="" coords="653,99,943,149,942,154,652,104"/>
+<area shape="rect" title=" " alt="" coords="1064,152,1151,177"/>
+<area shape="poly" title=" " alt="" coords="653,96,827,117,1051,149,1050,155,826,122,652,102"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="kernel_09_09_8h__dep__incl.png" border="0" usemap="#ainclude_2kernel_09_09_8hdep" alt=""/></div>
+<map name="ainclude_2kernel_09_09_8hdep" id="ainclude_2kernel_09_09_8hdep">
+<area shape="rect" title=" " alt="" coords="307,5,453,31"/>
+<area shape="rect" href="classifier_8h.html" title=" " alt="" coords="217,152,359,177"/>
+<area shape="poly" title=" " alt="" coords="353,41,333,59,316,80,299,118,292,152,287,151,294,117,311,77,329,55,349,37"/>
+<area shape="rect" href="kde_8h.html" title=" " alt="" coords="325,79,435,104"/>
+<area shape="poly" title=" " alt="" coords="383,44,383,79,377,79,377,44"/>
+<area shape="rect" href="kernel_09_09_8cpp.html" title=" " alt="" coords="459,79,594,104"/>
+<area shape="poly" title=" " alt="" coords="417,34,504,76,502,81,414,39"/>
+<area shape="rect" href="model__cluster_8h.html" title=" " alt="" coords="5,233,181,258"/>
+<area shape="poly" title=" " alt="" coords="248,185,123,235,121,230,246,180"/>
+<area shape="rect" href="model__cluster__poly_8h.html" title=" " alt="" coords="205,225,371,265"/>
+<area shape="poly" title=" " alt="" coords="291,191,291,225,285,225,285,191"/>
+<area shape="rect" href="classifier_8cpp.html" title=" " alt="" coords="395,233,525,258"/>
+<area shape="poly" title=" " alt="" coords="326,181,436,230,434,235,324,185"/>
+<area shape="poly" title=" " alt="" coords="356,114,305,154,301,150,353,110"/>
+<area shape="rect" href="kde_8cpp.html" title=" " alt="" coords="384,152,480,177"/>
+<area shape="poly" title=" " alt="" coords="399,114,426,150,421,153,394,117"/>
+</map>
 </div>
 </div>
 <p><a href="kernel_09_09_8h_source.html">Go to the source code of this file.</a></p>
@@ -122,20 +170,28 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_bandwidth.html">cmp::kernel::Bandwidth</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for multivariate KDE bandwidth matrices.  <a href="classcmp_1_1kernel_1_1_bandwidth.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_isotropic_bandwidth.html">cmp::kernel::IsotropicBandwidth</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Isotropic bandwidth matrix (single scalar parameter h).  <a href="classcmp_1_1kernel_1_1_isotropic_bandwidth.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html">cmp::kernel::DiagonalBandwidth</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagonal bandwidth matrix (independent parameter per dimension).  <a href="classcmp_1_1kernel_1_1_diagonal_bandwidth.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_full_bandwidth.html">cmp::kernel::FullBandwidth</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full covariance bandwidth matrix parameterized by its Cholesky factor.  <a href="classcmp_1_1kernel_1_1_full_bandwidth.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_kernel.html">cmp::kernel::Kernel</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for KDE density kernel functions.  <a href="classcmp_1_1kernel_1_1_kernel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_gaussian.html">cmp::kernel::Gaussian</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard <a class="el" href="classcmp_1_1kernel_1_1_gaussian.html" title="Standard Gaussian density kernel.">Gaussian</a> density kernel.  <a href="classcmp_1_1kernel_1_1_gaussian.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html">cmp::kernel::Epanechnikov</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcmp_1_1kernel_1_1_epanechnikov.html" title="Epanechnikov (parabolic) density kernel.">Epanechnikov</a> (parabolic) density kernel.  <a href="classcmp_1_1kernel_1_1_epanechnikov.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1kernel_1_1_uniform.html">cmp::kernel::Uniform</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rectangular (uniform) density kernel.  <a href="classcmp_1_1kernel_1_1_uniform.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>

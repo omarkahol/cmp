@@ -9,8 +9,9 @@ var indexSectionsWithContent =
   6: "gisv",
   7: "abmt",
   8: "ceflmps",
-  9: ":abclqsu",
-  10: "c"
+  9: "acdikmprsu",
+  10: ":abclqsu",
+  11: "c"
 };
 
 var indexSectionNames =
@@ -24,8 +25,9 @@ var indexSectionNames =
   6: "typedefs",
   7: "enums",
   8: "enumvalues",
-  9: "pages",
-  10: "concepts"
+  9: "groups",
+  10: "pages",
+  11: "concepts"
 };
 
 var indexSectionLabels =
@@ -39,7 +41,8 @@ var indexSectionLabels =
   6: "Typedefs",
   7: "Enumerations",
   8: "Enumerator",
-  9: "Pages",
-  10: "Concepts"
+  9: "Modules",
+  10: "Pages",
+  11: "Concepts"
 };
 

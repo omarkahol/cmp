@@ -1,0 +1,5 @@
+<map id="cmp::scaler::PCA" name="cmp::scaler::PCA">
+<area shape="rect" id="Node000001" title="Principal Component Analysis (PCA) feature scaler and dimension reducer." alt="" coords="13,79,143,104"/>
+<area shape="rect" id="Node000002" href="$classcmp_1_1scaler_1_1_scaler.html" title="Template virtual base class for feature scaling and transformation." alt="" coords="5,5,151,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,44,81,79,75,79,75,44"/>
+</map>

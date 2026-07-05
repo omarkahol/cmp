@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -110,11 +111,55 @@ $(document).ready(function(){initNavTree('mean_09_09_8h.html',''); initResizable
 Include dependency graph for mean++.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="mean_09_09_8h__incl.png" border="0" usemap="#ainclude_2mean_09_09_8h" alt=""/></div>
+<map name="ainclude_2mean_09_09_8h" id="ainclude_2mean_09_09_8h">
+<area shape="rect" title=" " alt="" coords="582,5,726,31"/>
+<area shape="rect" href="cmp__defines_8h.html" title=" " alt="" coords="536,79,652,104"/>
+<area shape="poly" title=" " alt="" coords="646,33,615,70,610,66,642,29"/>
+<area shape="rect" title=" " alt="" coords="677,79,754,104"/>
+<area shape="poly" title=" " alt="" coords="666,29,698,66,694,70,662,33"/>
+<area shape="rect" title=" " alt="" coords="5,152,108,177"/>
+<area shape="poly" title=" " alt="" coords="536,102,355,123,122,154,121,149,354,117,535,96"/>
+<area shape="rect" title=" " alt="" coords="132,152,195,177"/>
+<area shape="poly" title=" " alt="" coords="536,102,391,122,208,154,208,149,390,117,535,97"/>
+<area shape="rect" title=" " alt="" coords="219,152,292,177"/>
+<area shape="poly" title=" " alt="" coords="537,107,307,154,305,149,536,101"/>
+<area shape="rect" title=" " alt="" coords="317,152,397,177"/>
+<area shape="poly" title=" " alt="" coords="557,107,409,151,407,145,555,101"/>
+<area shape="rect" title=" " alt="" coords="421,152,487,177"/>
+<area shape="poly" title=" " alt="" coords="573,106,490,148,488,143,570,102"/>
+<area shape="rect" title=" " alt="" coords="512,152,580,177"/>
+<area shape="poly" title=" " alt="" coords="588,106,564,142,559,139,584,103"/>
+<area shape="rect" title=" " alt="" coords="605,152,679,177"/>
+<area shape="poly" title=" " alt="" coords="604,103,629,139,624,142,600,106"/>
+<area shape="rect" title=" " alt="" coords="703,152,754,177"/>
+<area shape="poly" title=" " alt="" coords="617,102,696,143,693,148,614,106"/>
+<area shape="rect" title=" " alt="" coords="778,152,850,177"/>
+<area shape="poly" title=" " alt="" coords="630,101,766,145,765,150,629,107"/>
+<area shape="rect" title=" " alt="" coords="874,152,933,177"/>
+<area shape="poly" title=" " alt="" coords="650,101,861,149,860,154,649,107"/>
+<area shape="rect" title=" " alt="" coords="957,152,1039,177"/>
+<area shape="poly" title=" " alt="" coords="653,100,943,149,942,154,652,105"/>
+<area shape="rect" title=" " alt="" coords="1064,152,1151,177"/>
+<area shape="poly" title=" " alt="" coords="653,100,665,101,856,124,1051,149,1050,155,855,129,664,107,652,105"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="mean_09_09_8h__dep__incl.png" border="0" usemap="#ainclude_2mean_09_09_8hdep" alt=""/></div>
+<map name="ainclude_2mean_09_09_8hdep" id="ainclude_2mean_09_09_8hdep">
+<area shape="rect" title=" " alt="" coords="205,5,349,31"/>
+<area shape="rect" href="gp_8h.html" title=" " alt="" coords="227,79,328,104"/>
+<area shape="poly" title=" " alt="" coords="280,44,280,79,275,79,275,44"/>
+<area shape="rect" href="model__cluster_8h.html" title=" " alt="" coords="5,152,181,177"/>
+<area shape="poly" title=" " alt="" coords="236,111,124,154,122,149,234,106"/>
+<area shape="rect" href="multi__gp_8h.html" title=" " alt="" coords="206,152,349,177"/>
+<area shape="poly" title=" " alt="" coords="280,118,280,152,275,152,275,118"/>
+<area shape="rect" href="gp_8cpp.html" title=" " alt="" coords="373,152,461,177"/>
+<area shape="poly" title=" " alt="" coords="313,108,396,149,393,154,311,113"/>
+<area shape="rect" href="multi__gp_8cpp.html" title=" " alt="" coords="213,225,342,251"/>
+<area shape="poly" title=" " alt="" coords="280,191,280,225,275,225,275,191"/>
+</map>
 </div>
 </div>
 <p><a href="mean_09_09_8h_source.html">Go to the source code of this file.</a></p>
@@ -122,10 +167,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mean_1_1_mean.html">cmp::mean::Mean</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for Gaussian Process prior mean functions.  <a href="classcmp_1_1mean_1_1_mean.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mean_1_1_constant.html">cmp::mean::Constant</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a constant mean function.  <a href="classcmp_1_1mean_1_1_constant.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1mean_1_1_zero.html">cmp::mean::Zero</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a constant zero mean function.  <a href="classcmp_1_1mean_1_1_zero.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>

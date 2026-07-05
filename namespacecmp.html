@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -106,7 +107,7 @@ $(document).ready(function(){initNavTree('namespacecmp.html',''); initResizable(
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
-  <div class="headertitle"><div class="title">cmp Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">cmp Namespace Reference<div class="ingroups"><a class="el" href="group__classifiers.html">Classifiers</a> &#124; <a class="el" href="group__clustering.html">Clustering Methods</a> &#124; <a class="el" href="group__core.html">Core Utilities &amp; Integration</a> &#124; <a class="el" href="group__probability.html">Probability Distributions, Priors, &amp; Kernels</a> &#124; <a class="el" href="group__surrogate.html">Surrogate Modeling &amp; Dimensionality Reduction</a> &#124; <a class="el" href="group__sampling.html">Sampling &amp; Inference Methods</a> &#124; <a class="el" href="group__sensitivity.html">Sensitivity Analysis</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -144,21 +145,27 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1_chebyshev_basis.html">ChebyshevBasis</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chebyshev orthogonal polynomial basis.  <a href="structcmp_1_1_chebyshev_basis.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1_hermite_basis.html">HermiteBasis</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hermite orthogonal polynomial basis.  <a href="structcmp_1_1_hermite_basis.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1_laguerre_basis.html">LaguerreBasis</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Laguerre orthogonal polynomial basis.  <a href="structcmp_1_1_laguerre_basis.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1_legendre_basis.html">LegendreBasis</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legendre orthogonal polynomial basis.  <a href="structcmp_1_1_legendre_basis.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_model_cluster.html">ModelCluster</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages a clustered set of Gaussian Processes for localized regression.  <a href="classcmp_1_1_model_cluster.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_model_cluster_poly.html">ModelClusterPoly</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages a clustered set of Polynomial Chaos Expansion (PCE) models for localized regression.  <a href="classcmp_1_1_model_cluster_poly.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_multi_index.html">MultiIndex</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_objective_functor.html">ObjectiveFunctor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor wrapper for NLopt with automatic, transparent parameter space mapping (e.g., log-scaling).  <a href="classcmp_1_1_objective_functor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcmp_1_1_polynomial_expansion.html">PolynomialExpansion</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements multi-dimensional Polynomial Chaos Expansion (PCE) for spectral surrogate modeling.  <a href="classcmp_1_1_polynomial_expansion.html#details">More...</a><br /></td></tr>
@@ -173,6 +180,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptcmp_1_1_vector_like.html">VectorLike</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for compile-time validation of vector-like containers. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -200,46 +208,52 @@ Functions</h2></td></tr>
 <tr class="memitem:a4f75935600bc75d75cd4e2be2b052b7d" id="r_a4f75935600bc75d75cd4e2be2b052b7d"><td class="memItemLeft" align="right" valign="top">const Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a4f75935600bc75d75cd4e2be2b052b7d">DummyVector</a> (0)</td></tr>
 <tr class="separator:a4f75935600bc75d75cd4e2be2b052b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab31a233db5724680beea2f084e788593" id="r_ab31a233db5724680beea2f084e788593"><td class="memItemLeft" align="right" valign="top">Eigen::LDLT&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#ab31a233db5724680beea2f084e788593">ldltDecomposition</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;cov)</td></tr>
+<tr class="memdesc:ab31a233db5724680beea2f084e788593"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the LDLT decomposition of a symmetric matrix.  <br /></td></tr>
 <tr class="separator:ab31a233db5724680beea2f084e788593"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed2492db04bf5592363dd260d1ec4916" id="r_aed2492db04bf5592363dd260d1ec4916"><td class="memTemplParams" colspan="2">template&lt;VectorLike V&gt; </td></tr>
 <tr class="memitem:aed2492db04bf5592363dd260d1ec4916"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecmp.html#aed2492db04bf5592363dd260d1ec4916">asEigen</a> (const V &amp;v) -&gt; Eigen::Map&lt; const Eigen::Matrix&lt; typename V::value_type, Eigen::Dynamic, 1 &gt; &gt;</td></tr>
+<tr class="memdesc:aed2492db04bf5592363dd260d1ec4916"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a non-owning, read-only <a class="el" href="namespace_eigen.html">Eigen</a> view (Eigen::Map) of a vector-like container.  <br /></td></tr>
 <tr class="separator:aed2492db04bf5592363dd260d1ec4916"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4edecd623071cd30997e4ce1f41d2b43" id="r_a4edecd623071cd30997e4ce1f41d2b43"><td class="memTemplParams" colspan="2">template&lt;VectorLike V&gt; </td></tr>
 <tr class="memitem:a4edecd623071cd30997e4ce1f41d2b43"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a4edecd623071cd30997e4ce1f41d2b43">asEigen</a> (V &amp;v) -&gt; Eigen::Map&lt; Eigen::Matrix&lt; typename V::value_type, Eigen::Dynamic, 1 &gt; &gt;</td></tr>
+<tr class="memdesc:a4edecd623071cd30997e4ce1f41d2b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a non-owning, read-write <a class="el" href="namespace_eigen.html">Eigen</a> view (Eigen::Map) of a vector-like container.  <br /></td></tr>
 <tr class="separator:a4edecd623071cd30997e4ce1f41d2b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4598dd0b664a7aca04f272933e62a9e6" id="r_a4598dd0b664a7aca04f272933e62a9e6"><td class="memTemplParams" colspan="2">template&lt;VectorLike V&gt; </td></tr>
 <tr class="memitem:a4598dd0b664a7aca04f272933e62a9e6"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a4598dd0b664a7aca04f272933e62a9e6">toEigen</a> (const V &amp;v) -&gt; Eigen::VectorXd</td></tr>
+<tr class="memdesc:a4598dd0b664a7aca04f272933e62a9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the elements of a vector-like container to a new Eigen::VectorXd.  <br /></td></tr>
 <tr class="separator:a4598dd0b664a7aca04f272933e62a9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72460633038acb89481cec84c091f8a0" id="r_a72460633038acb89481cec84c091f8a0"><td class="memTemplParams" colspan="2">template&lt;VectorLike V&gt; </td></tr>
 <tr class="memitem:a72460633038acb89481cec84c091f8a0"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a72460633038acb89481cec84c091f8a0">toStdVector</a> (const V &amp;v) -&gt; std::vector&lt; typename V::value_type &gt;</td></tr>
+<tr class="memdesc:a72460633038acb89481cec84c091f8a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the elements of a vector-like container to a new std::vector.  <br /></td></tr>
 <tr class="separator:a72460633038acb89481cec84c091f8a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc91bff429824c640cf3adbd468d4fbe" id="r_abc91bff429824c640cf3adbd468d4fbe"><td class="memTemplParams" colspan="2">template&lt;typename Derived &gt; </td></tr>
 <tr class="memitem:abc91bff429824c640cf3adbd468d4fbe"><td class="memTemplItemLeft" align="right" valign="top">Derived::PlainObject&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecmp.html#abc91bff429824c640cf3adbd468d4fbe">slice</a> (const Eigen::MatrixBase&lt; Derived &gt; &amp;mat, const <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &amp;indices)</td></tr>
+<tr class="memdesc:abc91bff429824c640cf3adbd468d4fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slices a matrix along its rows based on a set of indices.  <br /></td></tr>
 <tr class="separator:abc91bff429824c640cf3adbd468d4fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85a82f291af82d7530729e9ec05a4c75" id="r_a85a82f291af82d7530729e9ec05a4c75"><td class="memTemplParams" colspan="2">template&lt;typename DerivedX , typename DerivedY &gt; </td></tr>
 <tr class="memitem:a85a82f291af82d7530729e9ec05a4c75"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a85a82f291af82d7530729e9ec05a4c75">trainTestSplit</a> (const Eigen::MatrixBase&lt; DerivedX &gt; &amp;xObs, const Eigen::MatrixBase&lt; DerivedY &gt; &amp;yObs, const std::pair&lt; <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a>, <a class="el" href="namespace_eigen.html#a125783d1a3bbf23daf958d9325c14cbc">Eigen::VectorXs</a> &gt; &amp;train_test_pair)</td></tr>
 <tr class="memdesc:a85a82f291af82d7530729e9ec05a4c75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to split training data into training and test sets.  <br /></td></tr>
 <tr class="separator:a85a82f291af82d7530729e9ec05a4c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accafa4931504d0ddd35567ea0667eda4" id="r_accafa4931504d0ddd35567ea0667eda4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#accafa4931504d0ddd35567ea0667eda4">fd_gradient</a> (const Eigen::VectorXd &amp;x_0, const std::function&lt; double(const Eigen::VectorXd &amp;)&gt; fun, const int &amp;i, const <a class="el" href="namespacecmp.html#a7cdd4e585f27736074b06674fdab41cc">accuracy</a> order=<a class="el" href="namespacecmp.html#a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69">SECOND</a>, const double h=1E-5)</td></tr>
-<tr class="memdesc:accafa4931504d0ddd35567ea0667eda4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compte the <code>i-th</code> component of the gradient of the function <code>fun</code> evaluated at <code>x_0</code> using a central difference scheme.  <br /></td></tr>
+<tr class="memdesc:accafa4931504d0ddd35567ea0667eda4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the i-th component of the gradient of the function fun evaluated at x_0 using a central difference scheme.  <br /></td></tr>
 <tr class="separator:accafa4931504d0ddd35567ea0667eda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bde7a7cabe126e1e77fa22771f3477f" id="r_a8bde7a7cabe126e1e77fa22771f3477f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a8bde7a7cabe126e1e77fa22771f3477f">fd_hessian</a> (const Eigen::VectorXd &amp;x_0, const std::function&lt; double(const Eigen::VectorXd &amp;)&gt; fun, const int &amp;i, const int &amp;j, const <a class="el" href="namespacecmp.html#a7cdd4e585f27736074b06674fdab41cc">accuracy</a> order=<a class="el" href="namespacecmp.html#a7cdd4e585f27736074b06674fdab41cca697b45a18e13243e10fbc8575ea08d69">SECOND</a>, const double h=1E-5)</td></tr>
-<tr class="memdesc:a8bde7a7cabe126e1e77fa22771f3477f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compte the <code>i-th</code> and <code>j-th</code> component of the hessian of the function <code>fun</code> evaluated at <code>x_0</code> using a central difference scheme.  <br /></td></tr>
+<tr class="memdesc:a8bde7a7cabe126e1e77fa22771f3477f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the i-th and j-th component of the Hessian of the function fun evaluated at x_0 using a central difference scheme.  <br /></td></tr>
 <tr class="separator:a8bde7a7cabe126e1e77fa22771f3477f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af85e70639980f381b7c0e708ad9b9c4d" id="r_af85e70639980f381b7c0e708ad9b9c4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#af85e70639980f381b7c0e708ad9b9c4d">write_vector</a> (const std::vector&lt; Eigen::VectorXd &gt; &amp;data, std::ofstream &amp;o_file)</td></tr>
+<tr class="memdesc:af85e70639980f381b7c0e708ad9b9c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes a list of vector coordinates to a file stream.  <br /></td></tr>
 <tr class="separator:af85e70639980f381b7c0e708ad9b9c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a5aa7d715cd32b0f56a7b92b12516f7" id="r_a4a5aa7d715cd32b0f56a7b92b12516f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a4a5aa7d715cd32b0f56a7b92b12516f7">write_data</a> (const std::vector&lt; Eigen::VectorXd &gt; &amp;x, const Eigen::MatrixXd &amp;y, std::ofstream &amp;o_file)</td></tr>
-<tr class="memdesc:a4a5aa7d715cd32b0f56a7b92b12516f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data points to a file.  <br /></td></tr>
+<tr class="memdesc:a4a5aa7d715cd32b0f56a7b92b12516f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data points and evaluations to a file.  <br /></td></tr>
 <tr class="separator:a4a5aa7d715cd32b0f56a7b92b12516f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42c4e9833f2dc4e5f7b1d4c14b3ea7fc" id="r_a42c4e9833f2dc4e5f7b1d4c14b3ea7fc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a42c4e9833f2dc4e5f7b1d4c14b3ea7fc">read_vector</a> (std::ifstream &amp;i_file, std::string delimiter=&quot;,&quot;, size_t header=0)</td></tr>
-<tr class="memdesc:a42c4e9833f2dc4e5f7b1d4c14b3ea7fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the contents of a file. Note, the file must be organized in rows containing data in the form of numbers. As an example, a valid file is <br  />
-.  <br /></td></tr>
+<tr class="memdesc:a42c4e9833f2dc4e5f7b1d4c14b3ea7fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the contents of a delimited text file into vector collections.  <br /></td></tr>
 <tr class="separator:a42c4e9833f2dc4e5f7b1d4c14b3ea7fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad81c50ed5f55159cbd1d893f599ba74e" id="r_ad81c50ed5f55159cbd1d893f599ba74e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#ad81c50ed5f55159cbd1d893f599ba74e">nlopt_max</a> (<a class="el" href="classcmp_1_1_objective_functor.html">cmp::ObjectiveFunctor</a> &amp;f, Eigen::Ref&lt; Eigen::VectorXd &gt; x0, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;lb, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;ub, nlopt::algorithm alg=nlopt::LN_SBPLX, double ftol_rel=1e-6)</td></tr>
 <tr class="memdesc:ad81c50ed5f55159cbd1d893f599ba74e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global helper function to execute NLopt maximization, managing the log-scaling wrapper. Users pass physical, real-world bounds and initial guesses. The function manages the log translations.  <br /></td></tr>
 <tr class="separator:ad81c50ed5f55159cbd1d893f599ba74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd4351ddf3bb25c5d954baa0b88d580c" id="r_afd4351ddf3bb25c5d954baa0b88d580c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#afd4351ddf3bb25c5d954baa0b88d580c">wasserstein1D</a> (Eigen::VectorXd &amp;s1, Eigen::VectorXd &amp;s2, double p)</td></tr>
-<tr class="memdesc:afd4351ddf3bb25c5d954baa0b88d580c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the 1D Wasserstein distance between two distributions using the greedy mass-transport algorithm. Handles unequal sample sizes.  <br /></td></tr>
+<tr class="memdesc:afd4351ddf3bb25c5d954baa0b88d580c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the 1D Wasserstein distance between two empirical distributions.  <br /></td></tr>
 <tr class="separator:afd4351ddf3bb25c5d954baa0b88d580c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4676deee482c16dcbe067f72925e9cf8" id="r_a4676deee482c16dcbe067f72925e9cf8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecmp.html#a4676deee482c16dcbe067f72925e9cf8">slicedWassersteinDistance</a> (const Eigen::MatrixXd &amp;samples_1, const Eigen::MatrixXd &amp;samples_2, double p, int slices, size_t seed=42)</td></tr>
 <tr class="memdesc:a4676deee482c16dcbe067f72925e9cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the sliced-Wasserstein distance of order p between two n-dimensional datasets.  <br /></td></tr>
@@ -327,7 +341,26 @@ template&lt;VectorLike V&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Functions to convert between vector types and Eigen::VectorXd Non owning (read only) view of vector-like containers as Eigen::VectorXd\ </p>
+
+<p>Creates a non-owning, read-only <a class="el" href="namespace_eigen.html">Eigen</a> view (Eigen::Map) of a vector-like container. </p>
+<p>Mathematical Formulation Maps a vector \(\mathbf{v} \in \mathbb{R}^N\) represented by a contiguous-memory container to an <a class="el" href="namespace_eigen.html">Eigen</a> Vector expression without copying:  </p><p class="formulaDsp">
+\[
+\mathbf{v}_{\text{Eigen}} = \text{Map}(\mathbf{v})
+\]
+</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">V</td><td>The type of the vector-like container, must satisfy the VectorLike concept. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The vector-like container. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A non-owning Eigen::Map view pointing to the underlying data. </dd></dl>
 
 </div>
 </div>
@@ -348,6 +381,21 @@ template&lt;VectorLike V&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a non-owning, read-write <a class="el" href="namespace_eigen.html">Eigen</a> view (Eigen::Map) of a vector-like container. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">V</td><td>The type of the vector-like container, must satisfy the VectorLike concept. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The vector-like container. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A mutable, non-owning Eigen::Map view pointing to the underlying data. </dd></dl>
 
 </div>
 </div>
@@ -457,18 +505,29 @@ template&lt;VectorLike V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Compte the <code>i-th</code> component of the gradient of the function <code>fun</code> evaluated at <code>x_0</code> using a central difference scheme. </p>
+<p>Computes the i-th component of the gradient of the function fun evaluated at x_0 using a central difference scheme. </p>
+<p>Mathematical Formulation Approximates the partial derivative of \(f: \mathbb{R}^D \to \mathbb{R}\) at \(\mathbf{x}_0\) with respect to the \(i\)-th variable using a central difference stencil:  </p><p class="formulaDsp">
+\[
+\frac{\partial f(\mathbf{x}_0)}{\partial x_i} \approx \frac{f(\mathbf{x}_0 + h \mathbf{e}_i) - f(\mathbf{x}_0 - h \mathbf{e}_i)}{2h}
+\]
+</p>
+<p> where \(\mathbf{e}_i\) is the \(i\)-th standard basis vector, and \(h &gt; 0\) is the step size. For higher-order accuracy (e.g., 4th, 6th, or 8th order), wider stencils are employed.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Creates coordinate perturbations \(\mathbf{x}_0 \pm n h \mathbf{e}_i\) for stencil points \(n\).</li>
+<li>Evaluates the function <code>fun</code> at each perturbed point.</li>
+<li>Takes a linear combination of the function values scaled by the central difference stencil coefficients.</li>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x_0</td><td>The point at which to evaluate the gradient </td></tr>
     <tr><td class="paramname">fun</td><td>The function of which to evaluate the gradient </td></tr>
     <tr><td class="paramname">i</td><td>The component of the gradient </td></tr>
-    <tr><td class="paramname">order</td><td>The accuracy order (default = 2) </td></tr>
+    <tr><td class="paramname">order</td><td>The accuracy order (default = SECOND) </td></tr>
     <tr><td class="paramname">h</td><td>The step size (default = 1E-5) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The required component </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The required component of the gradient </dd></dl>
 
 </div>
 </div>
@@ -522,19 +581,34 @@ template&lt;VectorLike V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Compte the <code>i-th</code> and <code>j-th</code> component of the hessian of the function <code>fun</code> evaluated at <code>x_0</code> using a central difference scheme. </p>
+<p>Computes the i-th and j-th component of the Hessian of the function fun evaluated at x_0 using a central difference scheme. </p>
+<p>Mathematical Formulation Approximates the second-order partial derivative \(\frac{\partial^2 f(\mathbf{x}_0)}{\partial x_i \partial x_j}\) at \(\mathbf{x}_0\). For diagonal elements ( \(i = j\)):  </p><p class="formulaDsp">
+\[
+\frac{\partial^2 f(\mathbf{x}_0)}{\partial x_i^2} \approx \frac{f(\mathbf{x}_0 + h\mathbf{e}_i) - 2f(\mathbf{x}_0) + f(\mathbf{x}_0 - h\mathbf{e}_i)}{h^2}
+\]
+</p>
+<p> For off-diagonal elements ( \(i \neq j\)):  </p><p class="formulaDsp">
+\[
+\frac{\partial^2 f(\mathbf{x}_0)}{\partial x_i \partial x_j} \approx \frac{f(\mathbf{x}_0 + h\mathbf{e}_i + h\mathbf{e}_j) - f(\mathbf{x}_0 + h\mathbf{e}_i - h\mathbf{e}_j) - f(\mathbf{x}_0 - h\mathbf{e}_i + h\mathbf{e}_j) + f(\mathbf{x}_0 - h\mathbf{e}_i - h\mathbf{e}_j)}{4h^2}
+\]
+</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Checks if \(i = j\) or \(i \neq j\).</li>
+<li>Prepares perturbations along standard directions \(\mathbf{e}_i\) and \(\mathbf{e}_j\).</li>
+<li>Evaluates the function at the perturbed points and computes the stencil difference quotient.</li>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x_0</td><td>The point at which to evaluate the hessian </td></tr>
     <tr><td class="paramname">fun</td><td>The function of which to evaluate the hessian </td></tr>
     <tr><td class="paramname">i</td><td>Row of the hessian </td></tr>
     <tr><td class="paramname">j</td><td>Column of the hessian </td></tr>
-    <tr><td class="paramname">order</td><td>The accuracy order (default = 2) </td></tr>
+    <tr><td class="paramname">order</td><td>The accuracy order (default = SECOND) </td></tr>
     <tr><td class="paramname">h</td><td>The step size (default = 1E-5) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The required component </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The required component of the Hessian </dd></dl>
 
 </div>
 </div>
@@ -561,7 +635,15 @@ template&lt;VectorLike V&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Function for the LDLT decomposition of a covariance matrix </p>
+
+<p>Computes the LDLT decomposition of a symmetric matrix. </p>
+<p>Mathematical Formulation For a symmetric positive semidefinite matrix \(\mathbf{A} \in \mathbb{R}^{n \times n}\), LDLT decomposes \(\mathbf{A}\) into:  </p><p class="formulaDsp">
+\[
+\mathbf{A} = \mathbf{L} \mathbf{D} \mathbf{L}^T
+\]
+</p>
+<p> where \(\mathbf{L}\) is a lower unit triangular matrix and \(\mathbf{D}\) is a diagonal matrix. This decomposition is more numerically stable than Cholesky decomposition for semi-definite matrices as it avoids taking square roots of diagonal elements.</p>
+<p>Implementation Algorithm Calls <a class="el" href="namespace_eigen.html">Eigen</a>'s <code>.ldlt()</code> method on the matrix block. </p>
 
 </div>
 </div>
@@ -651,14 +733,14 @@ template&lt;VectorLike V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Read the contents of a file. Note, the file must be organized in rows containing data in the form of numbers. As an example, a valid file is <br  />
-. </p>
-<p>0.1 1.2 3.0 <br  />
-0.2 1.3 3.1 <br  />
-... <br  />
-5.4 7.8 9.0 <br  />
-<br  />
-The separator must be a blank space </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Read the contents of a delimited text file into vector collections. </p>
+<p>Mathematical Formulation Parses text lines representing coordinate records to rebuild the set \(\{\mathbf{x}_i\}_{i=1}^M \subset \mathbb{R}^N\).</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Skips the specified number of <code>header</code> rows.</li>
+<li>Parses each line using <code>std::getline</code>, splitting coordinates based on the delimiter.</li>
+<li>Converts string tokens to <code>double</code> using standard converters, aggregates them into <code>Eigen::VectorXd</code> rows, and returns them as a standard vector.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i_file</td><td>An open and valid file stream. </td></tr>
     <tr><td class="paramname">delimiter</td><td>The delimiter string separating columns (default is ",") </td></tr>
@@ -697,6 +779,27 @@ template&lt;typename Derived &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Slices a matrix along its rows based on a set of indices. </p>
+<p>Mathematical Formulation For a matrix \(\mathbf{X} \in \mathbb{R}^{M \times D}\) and a vector of indices \(\mathcal{I} = [i_1, i_2, \dots, i_K]^T\), computes the sliced matrix \(\mathbf{X}_{\mathcal{I}} \in \mathbb{R}^{K \times D}\):  </p><p class="formulaDsp">
+\[
+\left(\mathbf{X}_{\mathcal{I}}\right)_{k, \cdot} = \mathbf{X}_{i_k, \cdot}
+\]
+</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Derived</td><td>The derived <a class="el" href="namespace_eigen.html">Eigen</a> matrix expression type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mat</td><td>The input matrix. </td></tr>
+    <tr><td class="paramname">indices</td><td>A vector of row indices to extract. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new plain matrix containing only the specified rows of mat. </dd></dl>
 
 </div>
 </div>
@@ -745,6 +848,17 @@ template&lt;typename Derived &gt; </div>
 </div><div class="memdoc">
 
 <p>Computes the sliced-Wasserstein distance of order p between two n-dimensional datasets. </p>
+<p>Mathematical Formulation The Sliced Wasserstein distance projects multivariate distributions \(\mu, \nu\) in \(\mathbb{R}^D\) onto 1D lines along random directions \(\boldsymbol{\theta} \in \mathbb{S}^{D-1}\) (the unit sphere):  </p><p class="formulaDsp">
+\[
+SW_p^p(\mu, \nu) = \int_{\mathbb{S}^{D-1}} W_p^p(\boldsymbol{\theta}^* \mu, \boldsymbol{\theta}^* \nu) d\boldsymbol{\theta} \approx \frac{1}{L} \sum_{l=1}^L W_p^p(\boldsymbol{\theta}_l^T \mathbf{X}_1, \boldsymbol{\theta}_l^T \mathbf{X}_2)
+\]
+</p>
+<p> where \(\boldsymbol{\theta}_l\) are random projection directions drawn uniformly from the unit sphere.</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Generates \(L\) random directions by sampling from a standard multivariate Gaussian and normalizing to unit norm.</li>
+<li>Projects the multivariate samples \(\mathbf{X}_1\) and \(\mathbf{X}_2\) onto each direction.</li>
+<li>Computes the 1D Wasserstein distance for each projection and returns the arithmetic mean.</li>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">samples_1</td><td>The first set of samples (N x D matrix). </td></tr>
@@ -777,6 +891,21 @@ template&lt;VectorLike V&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Copies the elements of a vector-like container to a new Eigen::VectorXd. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">V</td><td>The type of the vector-like container, must satisfy the VectorLike concept. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The vector-like container to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new Eigen::VectorXd containing a copy of the elements of v. </dd></dl>
+
 </div>
 </div>
 <a id="a72460633038acb89481cec84c091f8a0" name="a72460633038acb89481cec84c091f8a0"></a>
@@ -796,6 +925,21 @@ template&lt;VectorLike V&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Copies the elements of a vector-like container to a new std::vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">V</td><td>The type of the vector-like container, must satisfy the VectorLike concept. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The vector-like container to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new std::vector containing a copy of the elements of v. </dd></dl>
 
 </div>
 </div>
@@ -878,9 +1022,23 @@ template&lt;typename DerivedX , typename DerivedY &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Computes the 1D Wasserstein distance between two distributions using the greedy mass-transport algorithm. Handles unequal sample sizes. </p>
-<ul>
-<li><dl class="section warning"><dt>Warning</dt><dd>This function sorts the input vectors in-place to avoid memory allocation overhead.</dd></dl>
+<p>Computes the 1D Wasserstein distance between two empirical distributions. </p>
+<p>Mathematical Formulation The 1D Wasserstein distance of order \(p \ge 1\) between two empirical measures \(\mu = \frac{1}{N}\sum \delta_{x_i}\) and \(\nu = \frac{1}{M}\sum \delta_{y_j}\) is defined as the \(L^p\) distance between their quantile functions \(F^{-1}(t)\) and \(G^{-1}(t)\):  </p><p class="formulaDsp">
+\[
+W_p^p(\mu, \nu) = \int_0^1 |F^{-1}(t) - G^{-1}(t)|^p dt
+\]
+</p>
+<p> When \(N = M\), this reduces to:  </p><p class="formulaDsp">
+\[
+W_p^p(\mu, \nu) = \frac{1}{N} \sum_{i=1}^N |x_{(i)} - y_{(i)}|^p
+\]
+</p>
+<p> where \(x_{(i)}\) and \(y_{(i)}\) are sorted samples. For unequal sample sizes, the integral is solved by integrating the differences of the step functions over partitions of \([0, 1]\).</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li>Sorts <code>s1</code> and <code>s2</code> in-place to form the empirical quantiles.</li>
+<li>Iterates through the joint partition of \([0, 1]\) defined by the cumulative weight steps \(i/N\) and \(j/M\).</li>
+<li>Integrates the constant difference raised to power \(p\) over each interval.</li>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s1</td><td>The first set of 1D projected samples. (Modified in-place) </td></tr>
@@ -890,8 +1048,6 @@ template&lt;typename DerivedX , typename DerivedY &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>W_p^p, the p-th power of the Wasserstein distance. </dd></dl>
-</li>
-</ul>
 
 </div>
 </div>
@@ -927,7 +1083,13 @@ template&lt;typename DerivedX , typename DerivedY &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Write data points to a file. </p>
+<p>Write data points and evaluations to a file. </p>
+<p>Mathematical Formulation Serializes input vectors \(\mathbf{x}_i \in \mathbb{R}^D\) along with corresponding multivariate observations \(\mathbf{y}_i \in \mathbb{R}^Q\):  </p><p class="formulaDsp">
+\[
+\text{Row}_i = [x_{i,1}, \dots, x_{i,D}, y_{i,1}, \dots, y_{i,Q}]
+\]
+</p>
+<p>Implementation Algorithm Loops over the vector entries, streaming coordinates of \(\mathbf{x}_i\) followed by the corresponding row coordinates of the matrix \(\mathbf{y}_i\) into <code>o_file</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>The points (as a vector) </td></tr>
@@ -964,7 +1126,15 @@ template&lt;typename DerivedX , typename DerivedY &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Write the contents of a matrix into a file. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Serializes a list of vector coordinates to a file stream. </p>
+<p>Mathematical Formulation Serializes a set of vectors \(\{\mathbf{x}_i\}_{i=1}^M\) where \(\mathbf{x}_i \in \mathbb{R}^N\) into a structured grid representation in text format:  </p><p class="formulaDsp">
+\[
+\mathbf{x}_i^T = [x_{i,1}, x_{i,2}, \dots, x_{i,N}]
+\]
+</p>
+<p>Implementation Algorithm Streams each vector to the output file stream <code>o_file</code> line-by-line, separating coordinates with spaces.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>A matrix containing the data. </td></tr>
     <tr><td class="paramname">o_file</td><td>An open and valid file in which to write the contents. </td></tr>

@@ -26,6 +26,7 @@ MathJax.Hub.Config({
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -105,6 +106,9 @@ $(document).ready(function(){initNavTree('structcmp_1_1_legendre_basis.html','')
 </div><!--header-->
 <div class="contents">
 
+<p>Legendre orthogonal polynomial basis.  
+ <a href="structcmp_1_1_legendre_basis.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="poly_8h_source.html">poly.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -122,7 +126,19 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a9dc9d7cd5c7be60b600c095185a38710" id="r_a9dc9d7cd5c7be60b600c095185a38710"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcmp_1_1_legendre_basis.html#a9dc9d7cd5c7be60b600c095185a38710">mapToCanonical</a> (double x, double lowerBound, double upperBound)</td></tr>
 <tr class="separator:a9dc9d7cd5c7be60b600c095185a38710"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Legendre orthogonal polynomial basis. </p>
+<p>Mathematical Formulation Legendre polynomials \(P_n(\xi)\) are orthogonal with respect to the uniform density function \(w(\xi) = 1/2\) on \([-1, 1]\). The recurrence relation is:  </p><p class="formulaDsp">
+\[
+(n+1) P_{n+1}(\xi) = (2n+1) \xi P_n(\xi) - n P_{n-1}(\xi)
+\]
+</p>
+<p> with \(\int_{-1}^1 P_m(\xi) P_n(\xi) d\xi = \frac{2}{2n+1} \delta_{mn}\).</p>
+<p>Implementation Algorithm</p><ol type="1">
+<li><code><a class="el" href="structcmp_1_1_legendre_basis.html#a367a40281029852ebebe93e1bb038ed0">evaluate()</a></code> computes polynomial values using Bonnet's recurrence relation.</li>
+<li><code><a class="el" href="structcmp_1_1_legendre_basis.html#a8e98d75858c0f97f1ad2bace3dbac833">getJacobiMatrix()</a></code> constructs the symmetric tridiagonal Jacobi matrix \(\mathbf{J}\) with \(\alpha_i = 0\) and off-diagonal \(\beta_i = \frac{i}{\sqrt{(2i-1)(2i+1)}}\). </li>
+</ol>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a367a40281029852ebebe93e1bb038ed0" name="a367a40281029852ebebe93e1bb038ed0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a367a40281029852ebebe93e1bb038ed0">&#9670;&#160;</a></span>evaluate()</h2>
 
